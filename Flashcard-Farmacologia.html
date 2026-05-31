@@ -90,6 +90,18 @@ nav{display:flex;gap:7px;margin-left:auto;flex-wrap:wrap}
 .streak{display:flex;align-items:center;gap:5px;font-weight:800;color:var(--ink);background:var(--orange);border:2.5px solid var(--ink);padding:6px 13px;border-radius:14px;font-size:.92rem;box-shadow:2px 2px 0 rgba(58,50,43,.16);transform:rotate(2deg)}
 .langtog{font-family:var(--font-display);font-weight:700;font-size:.9rem;color:var(--ink);background:var(--blue);border:2.5px solid var(--ink);padding:5px 12px;border-radius:11px 8px 12px 7px/7px 12px 8px 11px;cursor:pointer;box-shadow:2px 2px 0 rgba(58,50,43,.16);transform:rotate(-2deg)}
 .langtog:hover{transform:translateY(-1px) rotate(-2deg)}
+/* header compatto su telefono: piu' spazio per la scheda */
+@media(max-width:480px){
+  .hwrap{padding:8px 13px;gap:7px}
+  .brand .mk{width:34px;height:34px}
+  .brand b{font-size:1.05rem}
+  #brandSub{font-size:.55rem}
+  nav{gap:5px}
+  .tab{padding:5px 11px;font-size:.82rem}
+  .langtog,.streak{padding:4px 10px;font-size:.8rem}
+  main{padding-top:18px}
+  .flash{min-height:52vh}
+}
 
 main{max-width:var(--maxw);margin:0 auto;padding:28px max(20px,env(safe-area-inset-left)) calc(90px + env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-right));position:relative;z-index:1}
 .view{display:none;animation:pop .4s cubic-bezier(.2,1.2,.4,1) both}
@@ -143,7 +155,8 @@ h1.page em::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height
 .deckcard{position:relative;border:2.5px solid var(--ink);border-radius:var(--sk);padding:15px;cursor:pointer;transition:transform .14s;background:var(--paper-2);box-shadow:var(--shadow)}
 .deckcard:nth-child(2n){transform:rotate(-.8deg)}.deckcard:nth-child(3n){transform:rotate(.7deg)}
 .deckcard:hover{transform:translate(-1px,-3px) rotate(0)}
-.deckcard .dc-code{font-family:var(--font-display);font-size:.82rem;font-weight:700;padding:2px 10px;border-radius:10px;display:inline-block;margin-bottom:9px;border:2px solid var(--ink);color:var(--ink)}
+.dc-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}
+.deckcard .dc-code{font-family:var(--font-display);font-size:.82rem;font-weight:700;padding:2px 10px;border-radius:10px;display:inline-block;border:2px solid var(--ink);color:var(--ink)}
 .deckcard .dc-title{font-family:var(--font-display);font-weight:700;font-size:1.08rem;line-height:1.15;margin-bottom:11px;min-height:2.3em}
 .dc-bar{height:9px;border-radius:5px;background:#ece1cb;overflow:hidden;display:flex;border:1.5px solid var(--ink)}
 .dc-bar i{display:block;height:100%}
@@ -174,7 +187,7 @@ h1.page em::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height
 .topic-doodle{width:118px;height:118px;margin:0 auto 4px;animation:bob 4s ease-in-out infinite}
 .topic-doodle svg{width:100%;height:100%;display:block}
 @keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
-.dc-ico{position:absolute;top:11px;right:11px;width:42px;height:42px;opacity:.95;pointer-events:none}
+.dc-ico{width:40px;height:40px;opacity:.95;pointer-events:none;flex-shrink:0}
 .dc-ico svg{width:100%;height:100%}
 .memo-doodle{width:50px;height:50px;flex-shrink:0;align-self:center}
 .memo-doodle svg{width:100%;height:100%}
@@ -193,7 +206,11 @@ h1.page em::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height
 /* barra di voto fissa in basso (sempre raggiungibile) */
 .gradebar{position:fixed;left:0;right:0;bottom:0;z-index:45;display:none;background:rgba(255,248,236,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:2.5px dashed var(--ink);padding:10px max(14px,env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-right))}
 .gradebar.show{display:block;animation:revealUp .25s ease both}
-.gradebar .grades{margin:0 auto;max-width:760px;gap:9px}
+.gradebar .grades{margin:0 auto;max-width:760px;gap:8px}
+.gradebar .grade{padding:8px 5px}
+.gradebar .grade .em{font-size:1.25rem}
+.gradebar .grade .lb{font-size:.82rem;margin-top:2px}
+.gradebar .grade .iv{font-size:.66rem;margin-top:1px}
 .back-name{font-family:var(--font-display);font-weight:700;font-size:1.55rem;text-align:center;margin:8px 0 14px;color:var(--ink)}
 
 /* memofrase (post-it) */
@@ -648,8 +665,7 @@ function deckCardHTML(d){
   const cs=CARDS.filter(c=>c.deckId===d.id);const n=cs.length;let mat=0,yng=0,lrn=0,due=0;const t=todayISO();
   cs.forEach(c=>{const m=maturity(c.id);if(m==='mature')mat++;else if(m==='young')yng++;else if(m==='learning')lrn++;const s=S.srs[c.id];if(s&&s.state!=='new'&&s.due&&s.due<=t)due++;});
   return `<div class="deckcard" onclick="openDeck('${d.id}')">
-    ${deckDoodle(d.id,'dc-ico')}
-    <span class="dc-code" style="background:${d.color}44">${esc(d.code)}</span>
+    <div class="dc-top"><span class="dc-code" style="background:${d.color}44">${esc(d.code)}</span>${deckDoodle(d.id,'dc-ico')}</div>
     <div class="dc-title">${esc(deckTitle(d))}</div>
     <div class="dc-bar"><i class="mat" style="width:${mat/n*100}%"></i><i class="yng" style="width:${yng/n*100}%"></i><i class="lrn" style="width:${lrn/n*100}%"></i></div>
     <div class="dc-meta"><span>${n} ${T('cards')}</span>${due?`<span class="dc-due">${due} ${T('dc_due')}</span>`:`<span>${mat} ${T('dc_mature')}</span>`}</div></div>`;
@@ -715,7 +731,8 @@ function renderStudy(){
     </div></div>`;
   session.revealed=false;
 }
-function revealCard(){if(!session||session.revealed)return;session.revealed=true;$('#backFace').classList.add('show');$('#frontFace').style.display='none';const gb=$('#gradeBar');if(gb)gb.classList.add('show');window.scrollTo({top:0,behavior:'smooth'});}
+function fitGradeClearance(){const gb=$('#gradeBar'),bf=$('#backFace');if(gb&&bf&&gb.classList.contains('show'))bf.style.paddingBottom=(gb.offsetHeight+26)+'px';}
+function revealCard(){if(!session||session.revealed)return;session.revealed=true;$('#backFace').classList.add('show');$('#frontFace').style.display='none';const gb=$('#gradeBar');if(gb)gb.classList.add('show');fitGradeClearance();window.scrollTo({top:0,behavior:'smooth'});}
 function grade(g){
   if(!session||!session.revealed)return;const card=session.queue[session.idx];
   const wasNew=(!S.srs[card.id]||S.srs[card.id].state==='new');const rq=applyGrade(card,g);
@@ -813,6 +830,7 @@ document.addEventListener('keydown',e=>{
 function applyHash(){const h=decodeURIComponent(location.hash.replace(/^#/,''));if(!h)return;if(h==='dash'||h==='browse'||h==='stats')go(h);else if(h==='study')startGlobal();else if(h.startsWith('front=')){const id=h.slice(6);if(CARD_BY_ID[id])startSession([CARD_BY_ID[id]],'anteprima');}else if(h.startsWith('card=')){const id=h.slice(5);if(CARD_BY_ID[id]){startSession([CARD_BY_ID[id]],'anteprima');revealCard();}}}
 window.addEventListener('hashchange',applyHash);
 $('#search').addEventListener('input',applyBrowse);
+window.addEventListener('resize',fitGradeClearance);
 applyStaticStrings();renderDash();$('#streakN').textContent=streak();applyHash();
 </script>
 </body>
