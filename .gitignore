@@ -9,6 +9,7 @@ Icon?
 build/_*.js
 build/*.tmp
 build/i18n/src-*.json
+build/batches/
 screenshots/_*.png
 *.tmp
 *.log

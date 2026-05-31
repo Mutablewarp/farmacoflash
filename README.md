@@ -4,7 +4,7 @@
 
 **Flashcard interattive di Farmacologia** — ripetizione spaziata, memofrasi d'impatto e disegni esplicativi disegnati a mano. Tutto in **un unico file HTML**, funziona **offline**, i progressi restano sul dispositivo.
 
-> 214 card · 28 mazzi · estratte dalle sbobine (Moduli I–II) e arricchite dove serve dal *Goodman & Gilman, 14ª ed.*
+> 214 card · 28 mazzi · estratte dalle sbobine (Moduli I–II) · ogni card ha un **approfondimento verificato** su *Goodman & Gilman, 14ª ed.* e **PubMed**
 
 ---
 
@@ -31,6 +31,7 @@
 - **Ripetizione spaziata (SM-2, stile Anki)** — valuti ogni card *Male / Così così / Bene / Facile* e l'app ricalcola quando rivederla.
 - **Tracciamento giornaliero** — quante card hai studiato, com'è andata oggi, heatmap dei giorni di studio, streak 🔥.
 - **Memofrase d'impatto** su post-it — una frase secca per card che fissa il concetto chiave.
+- **Approfondimento su ogni card** (📘) — una nota clinica d'esame verificata su *Goodman & Gilman, 14ª ed.* e **PubMed** (PMID citati), distinta e complementare alla risposta base.
 - **Disegni a mano esplicativi** — un'illustrazione per ogni argomento (sinapsi, nefrone, batterio, cuore…) e **30 diagrammi-meccanismo su 43 card chiave**: cascata COX/eicosanoidi, canale K-ATP, GLUT4, AMPK, SGLT2, scala OMS del dolore, recettore μ, GABA-A, RAAS, statine, emostasi, triade anestesia, vie dopaminergiche, classi di Vaughan-Williams, pompa protonica, PBP/β-lattamici, ribosoma 30S/50S, via dei folati, reuptake SSRI, siti diuretici, checkpoint immunitario, nomenclatura mAb, classi di Ambler, L-DOPA/carbidopa, eparina-ATIII, warfarin/VKOR, nitrati→NO, bifosfonati, incretine GLP-1, MAO/tiramina.
 - **Sfoglia & cerca** full-text per nome, meccanismo, target o reazione avversa.
 - **Statistiche** — composizione del mazzo, padronanza per argomento, ritenzione.
@@ -84,6 +85,6 @@ task_plan.md / notes.md         ← piano e appunti di lavoro
 ## ⚠️ Note
 
 - Materiale a **uso personale di studio**. Le memofrasi sono sintesi mnemoniche, non sostituiscono il libro di testo né il giudizio clinico.
-- Dati estratti dalle proprie sbobine; gli approfondimenti citano *Goodman & Gilman, The Pharmacological Basis of Therapeutics, 14ª ed.*
+- Dati estratti dalle proprie sbobine. Ogni card ha un approfondimento con citazioni verificate su *Goodman & Gilman, 14ª ed.* e **PubMed** (i PMID sono stati controllati uno a uno; qualche citazione è di contesto più che diretta). Restano sintesi di studio: verifica sempre sul libro.
 
 🤖 Costruita con [Claude Code](https://claude.com/claude-code)

@@ -4,7 +4,7 @@
 
 **Interactive pharmacology flashcards** — spaced repetition, punchy memo-lines and hand-drawn explanatory diagrams. All in **a single HTML file**, works **offline**, progress stays on your device. Switch the interface and all content between **Italian and English** with the **IT/EN** toggle in the header.
 
-> 214 cards · 28 decks · extracted from university lecture notes (Modules I–II) and, where needed, enriched from *Goodman & Gilman, 14th ed.*
+> 214 cards · 28 decks · extracted from university lecture notes (Modules I–II) · every card carries a **source-verified in-depth note** from *Goodman & Gilman, 14th ed.* and **PubMed**
 
 ---
 
@@ -34,6 +34,7 @@
 - **Spaced repetition (SM-2, Anki-style)** — rate each card *Again / Hard / Good / Easy* and the app recomputes when to show it next.
 - **Daily tracking** — how many cards you studied, how today went, a study-day heatmap, streak 🔥.
 - **Punchy memo-line** on a sticky note — one sharp sentence per card that locks in the key idea.
+- **In-depth note on every card** (📘) — a clinical, exam-focused note verified against *Goodman & Gilman, 14th ed.* and **PubMed** (PMIDs cited), separate from and complementary to the base answer.
 - **Hand-drawn explanatory drawings** — one illustration per topic (synapse, nephron, bacterium, heart…) plus **30 mechanism diagrams on 43 key cards**: COX/eicosanoid cascade, K-ATP channel, GLUT4, AMPK, SGLT2, WHO pain ladder, μ receptor, GABA-A, RAAS, statins, haemostasis, anaesthesia triad, dopaminergic pathways, Vaughan-Williams classes, proton pump, PBP/β-lactams, 30S/50S ribosome, folate pathway, SSRI reuptake, diuretic sites, immune checkpoint, mAb nomenclature, Ambler classes, L-DOPA/carbidopa, heparin-ATIII, warfarin/VKOR, nitrates→NO, bisphosphonates, GLP-1 incretins, MAO/tyramine.
 - **Browse & full-text search** by name, mechanism, target or adverse reaction.
 - **Stats** — deck composition, mastery by topic, retention.
@@ -92,6 +93,6 @@ task_plan.md / notes.md         ← plan and working notes
 ## ⚠️ Notes
 
 - Material for **personal study use**. The memo-lines are mnemonic summaries; they do not replace the textbook or clinical judgement.
-- Data extracted from the author's own lecture notes; in-depth notes cite *Goodman & Gilman, The Pharmacological Basis of Therapeutics, 14th ed.* (the *etifoxine* note cites the EMA summary of product characteristics).
+- Data extracted from the author's own lecture notes. Every card has an in-depth note with citations verified against *Goodman & Gilman, 14th ed.* and **PubMed** (PMIDs checked one by one; a few citations are contextual rather than direct; the *etifoxine* note cites the EMA SmPC). These remain study summaries — always verify against the textbook.
 
 🤖 Built with [Claude Code](https://claude.com/claude-code)
