@@ -160,7 +160,7 @@ h1.page em::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height
 .exit{background:var(--paper-2);border:2.5px solid var(--ink);color:var(--ink);border-radius:12px;padding:7px 13px;cursor:pointer;font-weight:800;font-size:.86rem;box-shadow:2px 2px 0 rgba(58,50,43,.16)}
 .exit:hover{background:var(--red);color:#fff}
 
-.flash{border:3px solid var(--ink);border-radius:24px 16px 26px 18px/18px 26px 16px 24px;background:var(--paper-2);box-shadow:var(--shadow-lg);min-height:58vh;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.flash{border:3px solid var(--ink);border-radius:24px 16px 26px 18px/18px 26px 16px 24px;background:var(--paper-2);box-shadow:var(--shadow-lg);min-height:58vh;display:flex;flex-direction:column;overflow:hidden;position:relative;animation:cardIn .3s ease both}
 .flash::before{content:"";position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(-3deg);width:120px;height:26px;background:rgba(255,206,58,.5);border:2px solid rgba(58,50,43,.25);border-radius:3px}
 .flash-head{padding:20px 22px 0;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
 .chip{font-family:var(--font-display);font-size:.78rem;font-weight:700;padding:3px 11px;border-radius:11px;border:2px solid var(--ink);color:var(--ink);background:#fff}
@@ -184,11 +184,16 @@ h1.page em::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height
 .diagram-box .cap{font-family:var(--font-display);font-weight:700;font-size:.92rem;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px}
 .diagram-box .art{width:100%;max-width:330px;margin:0 auto}
 .diagram-box .art svg{width:100%;height:auto;display:block}
-@media(prefers-reduced-motion:reduce){.topic-doodle{animation:none}}
+@media(prefers-reduced-motion:reduce){.topic-doodle,.flash,.flash-back.show,.gradebar.show,.view{animation:none!important}}
 
 .flash-back{padding:8px 24px 26px;display:none}
-.flash-back.show{display:block;animation:revealUp .28s ease both}
+.flash-back.show{display:block;animation:revealUp .28s ease both;padding-bottom:96px}
 @keyframes revealUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes cardIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+/* barra di voto fissa in basso (sempre raggiungibile) */
+.gradebar{position:fixed;left:0;right:0;bottom:0;z-index:45;display:none;background:rgba(255,248,236,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:2.5px dashed var(--ink);padding:10px max(14px,env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-right))}
+.gradebar.show{display:block;animation:revealUp .25s ease both}
+.gradebar .grades{margin:0 auto;max-width:760px;gap:9px}
 .back-name{font-family:var(--font-display);font-weight:700;font-size:1.55rem;text-align:center;margin:8px 0 14px;color:var(--ink)}
 
 /* memofrase (post-it) */
@@ -700,17 +705,17 @@ function renderStudy(){
       <div class="flash-back" id="backFace">
         <div class="back-name">${esc(C.name)}</div>
         ${renderBack(card)}
-        <div class="grades">
-          <button class="grade g0" onclick="grade(0)"><span class="em">😖</span><span class="lb">${gl[0]}</span><span class="iv">${pv[0]}</span></button>
-          <button class="grade g1" onclick="grade(1)"><span class="em">😐</span><span class="lb">${gl[1]}</span><span class="iv">${pv[1]}</span></button>
-          <button class="grade g2" onclick="grade(2)"><span class="em">😄</span><span class="lb">${gl[2]}</span><span class="iv">${pv[2]}</span></button>
-          <button class="grade g3" onclick="grade(3)"><span class="em">🌟</span><span class="lb">${gl[3]}</span><span class="iv">${pv[3]}</span></button>
-        </div>
       </div>
-    </div>`;
+    </div>
+    <div class="gradebar" id="gradeBar"><div class="grades">
+      <button class="grade g0" onclick="grade(0)"><span class="em">😖</span><span class="lb">${gl[0]}</span><span class="iv">${pv[0]}</span></button>
+      <button class="grade g1" onclick="grade(1)"><span class="em">😐</span><span class="lb">${gl[1]}</span><span class="iv">${pv[1]}</span></button>
+      <button class="grade g2" onclick="grade(2)"><span class="em">😄</span><span class="lb">${gl[2]}</span><span class="iv">${pv[2]}</span></button>
+      <button class="grade g3" onclick="grade(3)"><span class="em">🌟</span><span class="lb">${gl[3]}</span><span class="iv">${pv[3]}</span></button>
+    </div></div>`;
   session.revealed=false;
 }
-function revealCard(){if(!session||session.revealed)return;session.revealed=true;$('#backFace').classList.add('show');$('#frontFace').style.display='none';window.scrollTo({top:0,behavior:'smooth'});}
+function revealCard(){if(!session||session.revealed)return;session.revealed=true;$('#backFace').classList.add('show');$('#frontFace').style.display='none';const gb=$('#gradeBar');if(gb)gb.classList.add('show');window.scrollTo({top:0,behavior:'smooth'});}
 function grade(g){
   if(!session||!session.revealed)return;const card=session.queue[session.idx];
   const wasNew=(!S.srs[card.id]||S.srs[card.id].state==='new');const rq=applyGrade(card,g);
@@ -801,6 +806,7 @@ document.addEventListener('keydown',e=>{
   if(modalOpen){if(e.key==='Escape')closeModal();return;}
   const tag=(e.target.tagName||'').toLowerCase();if(tag==='input'||tag==='textarea')return;
   if(!$('#v-study').classList.contains('active')||!session)return;
+  if(e.key==='Escape'){quitSession();return;}
   if((e.key===' '||e.key==='Enter')&&!session.revealed){e.preventDefault();revealCard();}
   else if(session.revealed&&['1','2','3','4'].includes(e.key)){e.preventDefault();grade(+e.key-1);}
 });
