@@ -29,6 +29,7 @@
 ## ✨ Cosa fa
 
 - **Ripetizione spaziata (SM-2, stile Anki)** — valuti ogni card *Male / Così così / Bene / Facile* e l'app ricalcola quando rivederla.
+- **Ordine casuale** 🔀 — un interruttore per studiare le card mescolate, senza seguire l'ordine del mazzo (più un tasto 🔀 in studio per rimescolare al volo).
 - **Tracciamento giornaliero** — quante card hai studiato, com'è andata oggi, heatmap dei giorni di studio, streak 🔥.
 - **Memofrase d'impatto** su post-it — una frase secca per card che fissa il concetto chiave.
 - **Approfondimento su ogni card** (📘) — una nota clinica d'esame verificata su *Goodman & Gilman, 14ª ed.* e **PubMed** (PMID citati), distinta e complementare alla risposta base.

@@ -32,6 +32,7 @@
 
 - **Bilingual (IT / EN)** — one toggle translates the whole interface, the cards (questions and answers), the memo-lines and the diagram labels.
 - **Spaced repetition (SM-2, Anki-style)** — rate each card *Again / Hard / Good / Easy* and the app recomputes when to show it next.
+- **Shuffle mode** 🔀 — a toggle to study cards in random order instead of deck order (plus a 🔀 button during a session to reshuffle on the fly).
 - **Daily tracking** — how many cards you studied, how today went, a study-day heatmap, streak 🔥.
 - **Punchy memo-line** on a sticky note — one sharp sentence per card that locks in the key idea.
 - **In-depth note on every card** (📘) — a clinical, exam-focused note verified against *Goodman & Gilman, 14th ed.* and **PubMed** (PMIDs cited), separate from and complementary to the base answer.

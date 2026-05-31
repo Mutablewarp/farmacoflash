@@ -172,6 +172,9 @@ h1.page em::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height
 .study-counts .c-done{color:var(--green-deep)}
 .exit{background:var(--paper-2);border:2.5px solid var(--ink);color:var(--ink);border-radius:12px;padding:7px 13px;cursor:pointer;font-weight:800;font-size:.86rem;box-shadow:2px 2px 0 rgba(58,50,43,.16)}
 .exit:hover{background:var(--red);color:#fff}
+.shuffle-btn{font-size:1rem;line-height:1}
+.shuffle-btn:hover{background:var(--blue);color:#fff}
+.shuffle-btn.on{background:var(--yellow)}
 
 .flash{border:3px solid var(--ink);border-radius:24px 16px 26px 18px/18px 26px 16px 24px;background:var(--paper-2);box-shadow:var(--shadow-lg);min-height:58vh;display:flex;flex-direction:column;overflow:hidden;position:relative;animation:cardIn .3s ease both}
 .flash::before{content:"";position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(-3deg);width:120px;height:26px;background:rgba(255,206,58,.5);border:2px solid rgba(58,50,43,.25);border-radius:3px}
@@ -406,6 +409,7 @@ const STR={
  t_nothing:{it:'Niente da studiare qui.',en:'Nothing to study here.'},t_clear:{it:'Nessuna carta in coda — bravo! 🎉',en:'No cards in queue — nice! 🎉'},
  confirm_reset:{it:'Azzerare TUTTI i progressi? I farmaci restano, ma riparti da zero.',en:'Reset ALL progress? The drugs stay, but you start over.'},
  npd_set:{it:'Nuove al giorno:',en:'New per day:'},npd_all:{it:'Tutte',en:'All'},
+ shuffle_label:{it:'Ordine casuale',en:'Shuffle'},shuffle_on:{it:'🔀 Ordine casuale attivo',en:'🔀 Shuffle on'},shuffle_off:{it:'Ordine normale ripristinato',en:'Normal order restored'},shuffle_now:{it:'Mescola le carte',en:'Shuffle the cards'},
  indepth:{it:'Approfondimento',en:'In depth'}
 };
 function T(k){const e=STR[k];return e?(e[LANG]||e.it):k;}
@@ -439,8 +443,8 @@ function rerender(){
 /* ============================ STORE ============================ */
 const KEY='farmaco-srs-v1';
 let S=load();
-function load(){try{const r=JSON.parse(localStorage.getItem(KEY));if(r&&r.v)return migrate(r);}catch(e){}return {v:1,srs:{},log:[],settings:{newPerDay:15},daily:{date:'',newDone:0},created:todayISO()};}
-function migrate(r){r.settings=r.settings||{newPerDay:15};r.daily=r.daily||{date:'',newDone:0};return r;}
+function load(){try{const r=JSON.parse(localStorage.getItem(KEY));if(r&&r.v)return migrate(r);}catch(e){}return {v:1,srs:{},log:[],settings:{newPerDay:15,shuffle:false},daily:{date:'',newDone:0},created:todayISO()};}
+function migrate(r){r.settings=r.settings||{newPerDay:15};if(typeof r.settings.shuffle!=='boolean')r.settings.shuffle=false;r.daily=r.daily||{date:'',newDone:0};return r;}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){if(!save._w){save._w=1;setTimeout(()=>toast('⚠️ Safari sta bloccando il salvataggio: Impostazioni › Privacy › togli «Blocca tutti i cookie», oppure usa Esporta backup.'),400);}}}
 
 /* ============================ DATE ============================ */
@@ -488,6 +492,7 @@ function buildQueue(deckId){
 
 /* ============================ RENDER HELPERS ============================ */
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+function shuffleArr(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function fmtInline(s){return esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');}
 function fmt(text){
@@ -643,6 +648,7 @@ function renderDash(){
           <button class="cta ghost" onclick="go('browse')">${T('browse_all')}</button>
         </div>
         <div class="npd-row">${npdChips()}</div>
+        <div class="npd-row">${shuffleToggle()}</div>
       </div>
       <div>${donut([[T('m_mature'),mature,'#5bc873'],[T('m_started'),started-mature,'#ffce3a'],[T('m_new'),CARDS.length-started,'#ece1cb']],CARDS.length,T('cards'))}</div>
     </div></div>
@@ -702,7 +708,7 @@ function studyDeck(id,all){closeModal();const d=DECK_BY_ID[id];const cards=all?C
 let session=null;
 function startGlobal(){const q=buildQueue(null);if(!q.queue.length){go('dash');toast(T('t_clear'));return;}startSession(q.queue,LANG==='en'?'Daily review':'Ripasso del giorno');}
 function startSession(cards,title){if(!cards||!cards.length){toast(T('t_nothing'));return;}
-  session={queue:[...cards],idx:0,title,revealed:false,total:cards.length,done:0,res:{bad:0,mid:0,good:0,easy:0}};
+  session={queue:(S.settings.shuffle?shuffleArr([...cards]):[...cards]),idx:0,title,revealed:false,total:cards.length,done:0,res:{bad:0,mid:0,good:0,easy:0}};
   $$('.tab').forEach(t=>t.classList.toggle('active',t.dataset.v==='study'));
   $$('.view').forEach(s=>s.classList.remove('active'));$('#v-study').classList.add('active');window.scrollTo({top:0});renderStudy();}
 function renderStudy(){
@@ -714,6 +720,7 @@ function renderStudy(){
       <button class="exit" onclick="quitSession()">${T('exit')}</button>
       <div class="prog"><i style="width:${pct}%"></i></div>
       <div class="study-counts"><span class="c-done">${session.done}</span>/${session.total}</div>
+      <button class="exit shuffle-btn" title="${T('shuffle_now')}" onclick="shuffleRest()">🔀</button>
     </div>
     <div class="flash">
       <div class="flash-head">${deckChip(card)} <span class="chip">${T('chip_'+mat)}</span></div>
@@ -818,6 +825,9 @@ function renderStats(){
 function statTile(k,v,col){return `<div class="tile"><div class="k">${k}</div><div class="v" style="color:${col}">${v}</div></div>`;}
 function npdChips(){const cur=S.settings.newPerDay,opts=[10,15,20,30,50,999];return `<span class="npd-lab">${T('npd_set')}</span>`+opts.map(n=>{const lab=n>=999?T('npd_all'):n,on=(cur===n||(n>=999&&cur>=999))?' on':'';return `<button class="fchip npd-chip${on}" onclick="setNPD(${n})">${lab}</button>`;}).join('');}
 function setNPD(n){S.settings.newPerDay=n;save();renderDash();toast(n>=999?T('npd_all')+' ✓':T('npd_set')+' '+n);}
+function shuffleToggle(){return `<button class="fchip npd-chip${S.settings.shuffle?' on':''}" onclick="toggleShuffle()">🔀 ${T('shuffle_label')}</button>`;}
+function toggleShuffle(){S.settings.shuffle=!S.settings.shuffle;save();renderDash();toast(S.settings.shuffle?T('shuffle_on'):T('shuffle_off'));}
+function shuffleRest(){if(!session)return;const head=session.queue.slice(0,session.idx);const rest=shuffleArr(session.queue.slice(session.idx));session.queue=head.concat(rest);session.revealed=false;renderStudy();window.scrollTo(0,0);toast(T('shuffle_on'));}
 function saveNPD(){S.settings.newPerDay=Math.min(999,Math.max(0,parseInt($('#npd').value)||0));save();toast(T('t_saved'));}
 function exportData(){const blob=new Blob([JSON.stringify(S)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='farmacoflash-progress-'+todayISO()+'.json';a.click();toast(T('t_exported'));}
 function importData(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.srs)throw 0;S=migrate(d);save();toast(T('t_imported'));renderStats();$('#streakN').textContent=streak();}catch(e){toast(T('t_invalid'));}};r.readAsText(f);}
