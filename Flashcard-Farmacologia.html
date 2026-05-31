@@ -258,6 +258,9 @@ h1.page em::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height
 .fchip{background:var(--paper-2);border:2.5px solid var(--ink);color:var(--ink);padding:5px 13px;border-radius:12px;font-size:.84rem;font-weight:800;cursor:pointer;transition:transform .1s;box-shadow:2px 2px 0 rgba(58,50,43,.14)}
 .fchip:hover{transform:translateY(-1px)}
 .fchip.on{background:var(--yellow)}
+.npd-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:18px}
+.npd-lab{font-family:var(--font-display);font-weight:700;font-size:.9rem;color:var(--ink-soft);margin-right:2px}
+.npd-chip{padding:4px 11px;font-size:.82rem}
 .browse-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:13px}
 .brow{border:2.5px solid var(--ink);border-radius:var(--sk);padding:15px 16px;cursor:pointer;transition:transform .12s;position:relative;background:var(--paper-2);box-shadow:var(--shadow)}
 .brow:nth-child(3n){transform:rotate(-.6deg)}.brow:nth-child(4n){transform:rotate(.6deg)}
@@ -402,6 +405,7 @@ const STR={
  t_saved:{it:'Salvato ✓',en:'Saved ✓'},t_exported:{it:'Backup esportato 💾',en:'Backup exported 💾'},t_imported:{it:'Backup importato ✓',en:'Backup imported ✓'},t_invalid:{it:'File non valido 🙈',en:'Invalid file 🙈'},t_reset:{it:'Progressi azzerati',en:'Progress reset'},
  t_nothing:{it:'Niente da studiare qui.',en:'Nothing to study here.'},t_clear:{it:'Nessuna carta in coda — bravo! 🎉',en:'No cards in queue — nice! 🎉'},
  confirm_reset:{it:'Azzerare TUTTI i progressi? I farmaci restano, ma riparti da zero.',en:'Reset ALL progress? The drugs stay, but you start over.'},
+ npd_set:{it:'Nuove al giorno:',en:'New per day:'},npd_all:{it:'Tutte',en:'All'},
  indepth:{it:'Approfondimento',en:'In depth'}
 };
 function T(k){const e=STR[k];return e?(e[LANG]||e.it):k;}
@@ -638,6 +642,7 @@ function renderDash(){
           <button class="cta" onclick="startGlobal()" ${totalDue?'':'disabled'}>${T('start_review')}</button>
           <button class="cta ghost" onclick="go('browse')">${T('browse_all')}</button>
         </div>
+        <div class="npd-row">${npdChips()}</div>
       </div>
       <div>${donut([[T('m_mature'),mature,'#5bc873'],[T('m_started'),started-mature,'#ffce3a'],[T('m_new'),CARDS.length-started,'#ece1cb']],CARDS.length,T('cards'))}</div>
     </div></div>
@@ -806,12 +811,14 @@ function renderStats(){
       ${DECKS.map(d=>{const cs=CARDS.filter(c=>c.deckId===d.id);const m=cs.filter(c=>maturity(c.id)==='mature').length;const y=cs.filter(c=>maturity(c.id)==='young').length;const l=cs.filter(c=>maturity(c.id)==='learning').length;const pc=Math.round(m/cs.length*100);return `<tr><td><b style="color:${d.color}">${esc(d.code)}</b> ${esc(deckTitle(d))}</td><td class="n">${cs.length}</td><td><div class="minibar"><i style="width:${m/cs.length*100}%;background:#5bc873"></i><i style="width:${y/cs.length*100}%;background:#ffce3a"></i><i style="width:${l/cs.length*100}%;background:#ff9f5a"></i></div></td><td class="n">${pc}%</td></tr>`;}).join('')}
       </tbody></table></div>
     <div class="panel"><h3>${T('set_title')}</h3>
-      <div class="settings-row"><label>${T('set_newday')}</label><input type="number" id="npd" min="0" max="100" value="${S.settings.newPerDay}"><button class="btn-sm" onclick="saveNPD()">${T('set_save')}</button></div>
+      <div class="settings-row"><label>${T('set_newday')}</label><input type="number" id="npd" min="0" max="999" value="${S.settings.newPerDay}"><button class="btn-sm" onclick="saveNPD()">${T('set_save')}</button></div>
       <div class="hint" style="margin-top:4px">${T('set_h')}</div>
       <div class="settings-row"><button class="btn-sm" onclick="exportData()">${T('set_export')}</button><button class="btn-sm" onclick="$('#imp').click()">${T('set_import')}</button><input type="file" id="imp" accept=".json" style="display:none" onchange="importData(this)"><button class="btn-sm danger" onclick="resetData()">${T('set_reset')}</button></div></div>`;
 }
 function statTile(k,v,col){return `<div class="tile"><div class="k">${k}</div><div class="v" style="color:${col}">${v}</div></div>`;}
-function saveNPD(){S.settings.newPerDay=Math.max(0,parseInt($('#npd').value)||0);save();toast(T('t_saved'));}
+function npdChips(){const cur=S.settings.newPerDay,opts=[10,15,20,30,50,999];return `<span class="npd-lab">${T('npd_set')}</span>`+opts.map(n=>{const lab=n>=999?T('npd_all'):n,on=(cur===n||(n>=999&&cur>=999))?' on':'';return `<button class="fchip npd-chip${on}" onclick="setNPD(${n})">${lab}</button>`;}).join('');}
+function setNPD(n){S.settings.newPerDay=n;save();renderDash();toast(n>=999?T('npd_all')+' ✓':T('npd_set')+' '+n);}
+function saveNPD(){S.settings.newPerDay=Math.min(999,Math.max(0,parseInt($('#npd').value)||0));save();toast(T('t_saved'));}
 function exportData(){const blob=new Blob([JSON.stringify(S)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='farmacoflash-progress-'+todayISO()+'.json';a.click();toast(T('t_exported'));}
 function importData(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.srs)throw 0;S=migrate(d);save();toast(T('t_imported'));renderStats();$('#streakN').textContent=streak();}catch(e){toast(T('t_invalid'));}};r.readAsText(f);}
 function resetData(){if(confirm(T('confirm_reset'))){S={v:1,srs:{},log:[],settings:S.settings,daily:{date:'',newDone:0},created:todayISO()};save();renderStats();$('#streakN').textContent=0;toast(T('t_reset'));}}
