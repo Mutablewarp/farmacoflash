@@ -1,0 +1,480 @@
+{
+ "group": "G7",
+ "entries": [
+  {
+   "id": "B12__emostasi-e-bersagli-della-terapia",
+   "name": "Haemostasis and therapeutic targets",
+   "nameShort": "Haemostasis and therapeutic targets",
+   "memo": "Platelets → **antiplatelets** (arteries); fibrin → **anticoagulants** (veins); already-formed clot → **thrombolytics**.",
+   "segments": [
+    {
+     "label": "Coagulation cascade",
+     "value": "enzymatically activated zymogens → exponential initiation/propagation → **fibrin**."
+    },
+    {
+     "label": "Pharmacological targets",
+     "value": "**factor Xa** (joins the intrinsic and extrinsic pathways), **thrombin**, potentiation of **antithrombin**, antagonism of **vitamin K**."
+    }
+   ],
+   "freetext": [
+    "**Antiplatelets** → **ARTERIAL** district (platelets); **anticoagulants** → **VENOUS** district (coagulation cascade/factors)."
+   ]
+  },
+  {
+   "id": "B12__aspirina-e-inibitori-reversibili-della-c",
+   "name": "Aspirin and reversible COX1 inhibitors",
+   "nameShort": "Aspirin and reversible COX1 inhibitors",
+   "memo": "100 mg: **acetylates platelet COX-1 forever** (platelet has no nucleus); the endothelium repairs itself and preserves PGI2.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**aspirin** = **IRREVERSIBLE** COX1 inhibitor (Ser529 acetylation) → ↓ thromboxane (via PGH2) → ↓ platelet aggregation."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "platelet COX1."
+    },
+    {
+     "label": "Pharmacokinetic Parameters / Doses",
+     "value": "<100 mg/day (160 mg in acute MI/ischaemic stroke; 75 mg → ↓15% CV death)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "respiratory reactions from ↑ leukotrienes (angioedema, asthma/bronchospasm, urticaria)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "⚠️ **NO co-administration with other NSAIDs** (ibuprofen/naproxen compete at COX1 without antiplatelet effect → haemorrhage/↓ efficacy); variable resistance (platelet hyporesponsiveness)."
+    },
+    {
+     "label": "Reversible COX1 inhibitors",
+     "value": "indobufen, triflusal, naproxen (more manageable)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B12__antagonisti-del-recettore-p2y12-ticlopid",
+   "name": "P2Y12 receptor antagonists (ticlopidine, clopidogrel, prasugrel, ticagrelor)",
+   "nameShort": "P2Y12 receptor antagonists",
+   "memo": "They block ADP; **clopidogrel = CYP2C19 prodrug** (slow metabolizers = not protected); ticagrelor reversible.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "antagonists of the purinergic **P2Y12** receptor (binds **ADP** → perpetuates aggregation)."
+    },
+    {
+     "label": "Ticlopidine",
+     "value": "**prodrug**, **irreversible** inhibitor; 13 metabolites (half-life 36-96h); ⚠️ **MYELOTOXICITY** (neutropenia, thrombocytopenia, aplastic anaemia, purpura) → replaced."
+    },
+    {
+     "label": "Clopidogrel",
+     "value": "**prodrug**; ⚠️ high variability (CYP2C19/CYP3A4, polymorphisms, GI absorption, compliance) → used less and less."
+    },
+    {
+     "label": "Prasugrel",
+     "value": "3rd generation, irreversible; simple/rapid metabolism (Cmax ~30 min), greater potency, less variability; **TRITON-TIMI 38** (↓ CV deaths vs clopidogrel); ⚠️ greater haemorrhagic risk (history of stroke/TIA, >75 years, <60 kg)."
+    },
+    {
+     "label": "Ticagrelor",
+     "value": "**REVERSIBLE**, **NOT a prodrug** (rapid onset); inhibition proportional to concentration (no peaks), more manageable; ↓ deaths/MI/stent thrombosis vs clopidogrel; ⚠️ **dyspnoea**; no antidote. Loading 180 mg, maintenance 90 mg ×2."
+    },
+    {
+     "label": "Cangrelor",
+     "value": "IV, reversible (3-5 min)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B12__antagonisti-della-gp-iib-iiia-e-altri-an",
+   "name": "GP IIb/IIIa antagonists and other antiplatelets",
+   "nameShort": "GP IIb/IIIa antagonists and other antiplatelets",
+   "memo": "They block the **final common pathway** of aggregation: total blockade, IV only during angioplasty.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**GP IIb/IIIa** is the final common point of aggregation (activated by TXA2/ADP → binding of **fibrinogen** → mesh)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "unstable angina, myocardial ischaemia; in combination with heparin/aspirin before/during cardiac procedures."
+    },
+    {
+     "label": "Abciximab",
+     "value": "monoclonal antibody, **non-specific** binding; large molecule → ⚠️ allergies/autoimmunity, thrombocytopenia (1%); **reversible with platelet transfusion**."
+    },
+    {
+     "label": "Eptifibatide/tirofiban",
+     "value": "smaller, more specific but less affine, short half-life, **NOT** reversible with transfusion; no thrombocytopenia. Benefits in NSTE-ACS with diabetes/↑ troponin."
+    },
+    {
+     "label": "Others",
+     "value": "cilostazol; **dipyridamole** (antiplatelet/vasodilator, PDE5 inhibitor); **terutroban** (TXA2 antagonist); antagonists of the thrombin **PAR-1/4** receptors (experimental)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B12__eparina-eparine-a-basso-peso-molecolare-",
+   "name": "Heparin, low-molecular-weight heparins and synthetic derivatives",
+   "nameShort": "Heparin, low-molecular-weight heparins and synthetic derivatives",
+   "memo": "They potentiate antithrombin; **unfractionated** (IIa+Xa, aPTT) vs **LMWH** (Xa only, SC). Risk: **HIT** (thrombi, not haemorrhage).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**heparin** = binds **antithrombin**, potentiating its effect (thrombin inhibition). High molecular weight → ⚠️ immune response (anaphylactic shock)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "subcutaneous, minimal renal excretion, **does NOT cross the placenta** → ⚠️ **usable in PREGNANCY**."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "DVT, pulmonary embolism, unstable angina, angioplasty, cardiopulmonary bypass."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **thrombocytopenia (HIT, 1-2% after 4-5 days, IgG anti-heparin/PF4)**, ↑ transaminases, osteoporosis/hypercalcaemia (>6 months). **ANTIDOTE = protamine.**\n• **LMWH** (enoxaparin, dalteparin, nadroparin, reviparin): lower anti-Xa activity; venous thromboembolism/ACS; SC every 12-24h; ⚠️ protamine poorly effective.\n• **Synthetic derivatives** (pentasaccharides: **fondaparinux**, idraparinux, idrabiotaparinux): strong action on **Xa**; long half-life (fondaparinux 17-20h; idrabiotaparinux 120h, antidote **avidin** via biotin); ⚠️ **fondaparinux crosses the placenta** (not in pregnancy)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B12__anticoagulanti-orali-vka-inibitori-diret",
+   "name": "Oral anticoagulants (VKA, direct factor Xa and thrombin inhibitors)",
+   "nameShort": "Oral anticoagulants",
+   "memo": "**Warfarin** = vitamin-K factors (II, VII, IX, X), lives by INR; the **DOACs** = fixed dose, no tests, dedicated antidotes.",
+   "segments": [
+    {
+     "label": "VKA (warfarin, coumarin)",
+     "value": "antagonists of **vitamin K** → ↓ vitamin K-dependent proteins. ⚠️ **slow** action, narrow therapeutic window/low therapeutic index → **constant monitoring (INR)**, low compliance, food/drug interactions, haemorrhagic risk 3-4%, ⚠️ **skin necrosis** (protein C/S deficiency); not for emergencies."
+    },
+    {
+     "label": "Direct factor Xa inhibitors (rivaroxaban, apixaban, edoxaban)",
+     "value": "direct binding to the active site of Xa (independent of antithrombin), oral. **Rivaroxaban:** no effect on aggregation, bioavailability 80-100%, high protein binding (92-95%), low interaction potential, **mixed renal/faecal excretion** (useful in renal impairment); ⚠️ contraindicated in pregnancy/breastfeeding/liver disease with coagulopathy."
+    },
+    {
+     "label": "Direct thrombin inhibitors (dabigatran)",
+     "value": "prodrug (dabigatran etexilate), selective/reversible; bioavailability 7%, **renal elimination 80%** (⚠️ assess renal function), half-life 7-17h, no cytochrome interactions; *according to the document \"absence of an antidote\"* (N.B. outside the lecture notes: idarucizumab now exists)."
+    },
+    {
+     "label": "Newest",
+     "value": "razaxaban/apixaban/otamixaban (anti-Xa); soluble thrombomodulin; activated protein C/drotrecogin α."
+    },
+    {
+     "label": "DOAC advantages",
+     "value": "rapid onset, predictable effect, no dietary restrictions, few interactions → ↑ compliance."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B12__fibrinolitici-e-antitrombotico-ideale",
+   "name": "Fibrinolytics and the ideal antithrombotic",
+   "nameShort": "Fibrinolytics and the ideal antithrombotic",
+   "memo": "**tPA** dissolves the thrombus by activating plasmin; very narrow window (stroke ≤ 4.5h), risk of **haemorrhage**.",
+   "segments": [
+    {
+     "label": "Ideal antithrombotic",
+     "value": "100% efficacy, no haemorrhagic complications, oral/sublingual route, no dose adjustment, no monitoring, low cost, no unexpected toxicity."
+    },
+    {
+     "label": "European guidelines (1st class)",
+     "value": "heparin; **fondaparinux** (⚠️ contraindicated in severe CKD <20 ml/min); clopidogrel; ticagrelor (no dose reduction, max 180 mg/day); abciximab; **aspirin** (150-300 mg initial, 75-100 mg maintenance)."
+    }
+   ],
+   "freetext": [
+    "**Fibrinolytics** (on **already-formed** clots): **alteplase/reteplase** (serine proteases → activate plasminogen → plasmin in the presence of fibrin; acute MI, pulmonary embolism, arterial thromboses; ⚠️ **timeliness**; IV bolus); **streptokinase** (protease from β-haemolytic streptococcus; ⚠️ risk of **intracranial haemorrhage**; contraindicated in hypertension, stroke, abdominal haemorrhage, post-operative <15 days)."
+   ]
+  },
+  {
+   "id": "B12b__vasodilatatori-overview-e-antagonisti-de",
+   "name": "Vasodilators — overview and endothelin antagonists (bosentan)",
+   "nameShort": "Vasodilators — overview and endothelin antagonists",
+   "memo": "**Bosentan** blocks endothelin (the most potent endogenous vasoconstrictor): pulmonary hypertension; hepatotoxic.",
+   "segments": [
+    {
+     "label": "Principle",
+     "value": "they act **directly on the smooth muscle** of the vessel (not centrally). **Classes:** Ca-antagonists (dihydropyridines → file B11); endothelin antagonists (bosentan); NO donors (nitroglycerin); K⁺-ATP channel activators (minoxidil, diazoxide); hydralazine."
+    },
+    {
+     "label": "Endothelin",
+     "value": "main regulator of vascular smooth muscle tone; synthesis stimulated by **adrenaline, angiotensin II, vasopressin, cortisol, thrombin, glucose, hypoxia** → **ET-1** gene → preproET-1 → ET-1 → **ETa/ETb** receptors → **vasoconstriction**, ↑ pressure, smooth muscle proliferation, activation of the HPA axis. Pulmonary/renal elimination."
+    },
+    {
+     "label": "Bosentan",
+     "value": "non-peptide **non-selective ETa/ETb** antagonist; potent, orally active (50%), half-life 5h."
+    },
+    {
+     "label": "Selective ETa",
+     "value": "sitaxentan, ambrisentan (fewer hepatic effects, fewer interactions)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B12b__nitrati-nitrossidi-nitroglicerina-isosor",
+   "name": "Nitrates / nitric oxides (nitroglycerin, isosorbide, nitroprusside)",
+   "nameShort": "Nitrates / nitric oxides",
+   "memo": "They release **NO → ↓ preload** (veins); sublingual in acute settings, but **tachyphylaxis** → a nocturnal nitrate-free interval is needed.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "donors of **NO** (EDRF), synthesized by **NOS** (endothelial, CNS, platelets) from arginine + O₂. **Inducible NOS** (⚠️ inhibited by glucocorticoids, prolonged/nanomolar release) vs **constitutive** (unaffected by glucocorticoids, brief/picomolar release)."
+    },
+    {
+     "label": "Molecules",
+     "value": "nitroglycerin, isosorbide mononitrate/dinitrate, sodium nitroprusside."
+    },
+    {
+     "label": "Haemodynamic effects",
+     "value": "dilation of **medium-calibre** arteries/veins and of the **coronaries**, ↓ venous return (**preload**) → ↓ metabolic O₂ demand."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**antianginal/anti-ischaemic**; **sublingual** route (emotional/sporadic angina), **transdermal** (**Prinzmetal** angina, more accurate control)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **tachyphylaxis**, headache, hypotension, **reflex tachycardia** (compensation → locus coeruleus → catecholamines)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B12b__attivatori-dei-canali-k-atp-e-idralazina",
+   "name": "K⁺-ATP channel activators and hydralazine",
+   "nameShort": "K⁺-ATP channel activators and hydralazine",
+   "memo": "**Minoxidil** opens K-ATP channels (vasodilation); signature ADR = **hypertrichosis** → repurposed for baldness.",
+   "segments": [
+    {
+     "label": "K⁺-ATP channel activators",
+     "value": "they open ATP-dependent K⁺ channels → **hyperpolarization** (↑ membrane threshold) → smooth muscle less receptive to constriction; **they also regulate glycaemia** (interference with insulin release → use in diabetes)."
+    },
+    {
+     "label": "Molecules (arteriolar vasodilators)",
+     "value": "**diazoxide**; **minoxidil** → ⚠️ **hypertrichosis/hirsutism** (famous side effect), cardiovascular reactions. *(N.B. some antiepileptics also cause hirsutism.)*"
+    },
+    {
+     "label": "Hydralazine",
+     "value": "direct arteriolar vasodilator (further details N/A in the provided documents)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B13__aritmie-e-strategie-antiaritmiche",
+   "name": "Arrhythmias and antiarrhythmic strategies",
+   "nameShort": "Arrhythmias and antiarrhythmic strategies",
+   "memo": "Vaughan-Williams: **I sodium, II β-blockers, III potassium, IV calcium** (+ adenosine and digoxin, outside the classes).",
+   "segments": [
+    {
+     "label": "Arrhythmia",
+     "value": "non-sinus or irregular rhythm (alterations in rate/conduction); symptom = **palpitations**."
+    },
+    {
+     "label": "Strategies",
+     "value": "↓ **slope of phase 4** (delay of depolarization); ↑ **threshold potential** (refractory Na⁺ channels); shift of the **resting potential** toward more negative values; **prolongation of repolarization**.\n• **Pacemaker tissue** (SAN/AVN): excitability sustained by **Ca²⁺** currents; Purkinje = poor pacemaker activity, rapid conduction."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B13__classe-i-bloccanti-dei-canali-del-na-ia-",
+   "name": "Class I — Na⁺ channel blockers (Ia, Ib, Ic)",
+   "nameShort": "Class I — Na⁺ channel blockers",
+   "memo": "**IB (lidocaine)** loves ischaemic tissue after MI; **IC (flecainide)** is proarrhythmic in the post-infarction setting (CAST trial).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "they block voltage-dependent Na⁺ channels (**open** state) → ↓ depolarization rate (phase 0)/conduction, ↑ threshold, ↓ SA automaticity, ↑ refractoriness. **State-dependence:** more active at high rates/ischaemic tissue (ectopic foci). Kinetics: **Ib fast, Ic slow, Ia intermediate**."
+    },
+    {
+     "label": "Ia (quinidine, procainamide, disopyramide)",
+     "value": "they also block **K⁺** → ↑ AP duration / **↑ QT**.\n• *Quinidine:* moderate Na block + **vagolytic action** (⚠️ ↑ ventricular impulse → use for **supraventricular** arrhythmias; combine with β-blocker/verapamil); ADR: diarrhoea/nausea/headache, interaction with digoxin.\n• *Procainamide:* no anticholinergic effect; converts AF → sinus rhythm (**WPW**); ⚠️ **SLE**, pleural effusion, tamponade.\n• *Disopyramide:* marked **anticholinergic** effect (⚠️ urinary retention, dry mouth); obstructive hypertrophic cardiomyopathy."
+    },
+    {
+     "label": "Ib (lidocaine, mexiletine, tocainide, phenytoin)",
+     "value": "↓ AP duration / **shortens QT**; fast kinetics → active in ischaemic tissue; poor atrial effects.\n• *Lidocaine:* ⚠️ most used antiarrhythmic in **VENTRICULAR arrhythmias in emergencies**; half-life 20 min, hepatic metabolism; ⚠️ CNS toxicity (confusion, seizures) if systemic; can induce bradycardia/asystole."
+    },
+    {
+     "label": "Ic (flecainide, propafenone, encainide, moricizine)",
+     "value": "potent Na blockers, **do not modify QT**; paroxysmal supraventricular tachycardia/AF; **\"pill in pocket\"** (AF cardioversion); ⚠️ rule out ventricular arrhythmias/structural heart disease."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B13__classe-ii-bloccanti",
+   "name": "Class II — β-blockers",
+   "nameShort": "Class II — β-blockers",
+   "memo": "The **β-blockers**: rate control in atrial fibrillation, reduced mortality after infarction.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**β1** antagonists → ↓ slope of phase 4 (↓ automaticity, ↓ O₂ demand), prolongation of repolarization/↑ refractoriness of the AV node (↓ re-entry); SA/AV block → restoration of sinus rhythm."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "nodal β1 receptor."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "supraventricular/ventricular arrhythmias **worsened by sympathetic stimulation**; often **1st line** (excellent safety profile)."
+    },
+    {
+     "label": "Molecules",
+     "value": "propranolol, atenolol, metoprolol, acebutolol, labetalol, carvedilol, nadolol, pindolol, timolol. *(ADR/properties details → file B10.)*"
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B13__classe-iii-bloccanti-dei-canali-del-k",
+   "name": "Class III — K⁺ channel blockers",
+   "nameShort": "Class III — K⁺ channel blockers",
+   "memo": "**Amiodarone**: extremely effective but toxic everywhere (thyroid, lung, cornea, skin); half-life of months.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "they block **K⁺** channels → ↓ repolarization → ↑ plateau/AP duration → ↑ refractoriness (↓ re-entry). ⚠️ ↑ plateau → **early afterdepolarizations / torsades de pointes**; **reverse use-dependence** (greater effect at low rates)."
+    },
+    {
+     "label": "Molecules",
+     "value": "**ibutilide/dofetilide** (only **atrial** arrhythmias, AF/flutter cardioversion); **sotalol** (class **II + III**: non-selective β-blocker + K⁺ block; supra- and ventricular); bretylium."
+    },
+    {
+     "label": "Amiodarone",
+     "value": "⚠️ **multiclass action (I+II+III+IV)**: ↑ refractoriness, blocks inactivated Na⁺, blocks α/β, blocks Ca²⁺ (↓ AV conduction, bradycardia). Recommended in **AF** to maintain sinus rhythm (especially with LV systolic dysfunction)."
+    },
+    {
+     "label": "Adverse Reactions (amiodarone)",
+     "value": "⚠️ **dose-dependent** toxicity → pulmonary fibrosis/pneumonitis, **hypo/hyperthyroidism**, hepatic (↑ enzymes), neurological (lipophilic: neuropathy, tremors, ataxia), **corneal microdeposits**, alteration of skin colour."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B13__classe-iv-ca-antagonisti-adenosina-e-pot",
+   "name": "Class IV (Ca-antagonists), Adenosine and Potassium",
+   "nameShort": "Class IV",
+   "memo": "**Adenosine** stops the AV node for a few seconds → interrupts **paroxysmal supraventricular tachycardia**.",
+   "segments": [
+    {
+     "label": "Class IV (verapamil, diltiazem — non-dihydropyridines)",
+     "value": "they block **L-type Ca²⁺** channels in the SA/AV nodal tissue (Ca-dependent phase 0) → ↓ slope of phase 0/4, ↓ SA pacing, ↓ AV conduction (↑ ERP/PR interval). Useful in **AV node re-entry arrhythmias**; ⚠️ excessive dose → cardiac block/arrest. *(The only dihydropyridine with an effect on the SAN: isradipine.)*"
+    },
+    {
+     "label": "Adenosine",
+     "value": "stimulates the purinergic **P1** receptors (SA/AV/atria) → opening of K⁺ channels (hyperpolarization) + ↓ cAMP-induced Ca²⁺ entry. ⚠️ **1st-CHOICE drug** in **narrow-complex paroxysmal supraventricular tachyarrhythmias**; ADR: headache, skin flushing, sternal pain."
+    },
+    {
+     "label": "Potassium",
+     "value": "**hypokalaemia** → afterdepolarizations/ectopic beats; **hyperkalaemia** → ↓ conduction velocity (fatal effects → indication for **dialysis** in CKD)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B14__antitumorali-strategie-e-principi",
+   "name": "Antineoplastics — strategies and principles",
+   "nameShort": "Antineoplastics — strategies and principles",
+   "memo": "From chemo that 'poisons everything that grows' to **target therapy** on the tumour's specific mutation.",
+   "segments": [
+    {
+     "label": "Traditional strategies",
+     "value": "surgery, **chemotherapy**, radiotherapy, **hormone therapy** (tamoxifen in breast cancer)."
+    },
+    {
+     "label": "Since the late 1990s",
+     "value": "**Target Therapy** (molecularly targeted therapy) and **Immunotherapy**."
+    },
+    {
+     "label": "Chemotherapy",
+     "value": "**non-selective** action on rapidly proliferating cells → ⚠️ ADR in high-turnover tissues (**hair follicle** = alopecia; **digestive tract** = diarrhoea/vomiting/mucositis).\n• **Tumour heterogeneity** (spatial and temporal, subclones) = the basis of **chemotherapy failure**."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B14__target-therapy-e-biomarcatori",
+   "name": "Target therapy and biomarkers",
+   "nameShort": "Target therapy and biomarkers",
+   "memo": "You profile the tumour by **biomarker**: no target → no drug (e.g. **imatinib on BCR-ABL** in CML).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "drugs directed against **driver molecular targets** of the tumour (oncogene addiction)."
+    },
+    {
+     "label": "Imatinib",
+     "value": "prototype, **tyrosine kinase inhibitor (TKi)** for **KIT** and **PDGF-R** (→ **GIST**, survival from months to 10-15 years) and for **Bcr-Abl** (→ chronic myeloid leukaemia)."
+    },
+    {
+     "label": "Predictive biomarkers",
+     "value": "**EGFR** (mutations → anti-EGFR), **ALK** (translocations), **HER** (gene amplifications)."
+    },
+    {
+     "label": "Agnostic therapies",
+     "value": "guided by the **molecular alteration** (not by the organ) → **NTRK** fusions (present in different tumours) treated with **larotrectinib/entrectinib** (selective inhibitors). Management: **Molecular Tumor Board**."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B14__parp-inibitori-e-letalita-sintetica",
+   "name": "PARP inhibitors and synthetic lethality",
+   "nameShort": "PARP inhibitors and synthetic lethality",
+   "memo": "**Synthetic lethality**: in the BRCA-mutated tumour you remove the only remaining DNA repair pathway → only it dies.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**synthetic lethality** — PARP and BRCA repair DNA via different pathways; by inhibiting PARP in cells with **HRD** (Homologous Recombination Deficiency, e.g. **BRCA1/2 mutations**) the repair is not compensated for → the cell cannot repair the DNA → **apoptosis**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "PARP enzyme (DNA repair)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**maintenance therapy of ovarian cancer** after chemotherapy (survival advantage vs placebo; historical chemo = Carboplatin + Paclitaxel)."
+    },
+    {
+     "label": "Selectivity",
+     "value": "they selectively hit tumours with HRD."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B14__immunoterapia-checkpoint-inhibitors-e-an",
+   "name": "Immunotherapy (checkpoint inhibitors) and antiangiogenics",
+   "nameShort": "Immunotherapy",
+   "memo": "The **checkpoint inhibitors** release the brake (PD-1/PD-L1) on T lymphocytes; the price: **autoimmune** toxicity.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "tumour cells **overexpress PD-L1** (inhibitory checkpoint) → binds **PD-1** on the T lymphocyte → **switches it off** (↓ cytotoxic activity, immunosuppressive environment). The **checkpoint inhibitors** (monoclonal antibodies **anti-PD1**, e.g. **nivolumab**; **anti-PD-L1**) interrupt the binding → reactivate the tumoricidal action of T lymphocytes."
+    },
+    {
+     "label": "Other immunotherapeutic classes",
+     "value": "vaccines, **CAR-T** (especially in haematological tumours), T-cell agonists."
+    },
+    {
+     "label": "Antiangiogenics",
+     "value": "they regulate/normalize angiogenesis; ⚠️ **bidirectional link between angiogenesis and immunosuppression** → synergistic combinations (immunotherapy + antiangiogenics/target therapy/chemo)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "opportunistic conditions (interstitial pneumonias, mucositis) → corticosteroids/immunosuppressants; ⚠️ **autoimmune patients excluded** from trials."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "⚠️ **PD-L1 is not an ideal biomarker** (inducible by IFN-γ, dynamic); response only in ~1/3 of patients (≈15% across all tumours), not predictable."
+    }
+   ],
+   "freetext": []
+  }
+ ]
+}

@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "entries": [
+    { "id": "B1__benzodiazepine-bdz", "memo": "**Modulano** il GABA-A (non lo aprono da sole): tetrade ansiolisi-ipnosi-miorilassante-anticonvulsivante. Trappola: **dipendenza**." },
+    { "id": "B1__flumazenil", "memo": "**Antagonista** del sito BDZ: antidoto dell'overdose, ma emivita corta → la benzodiazepina può **rientrare**." },
+    { "id": "B1__barbiturici-fenobarbital-secobarbital-pe", "memo": "**Aprono il canale GABA-A da soli** → niente effetto tetto → letali in overdose. Per questo soppiantati dalle BDZ." },
+    { "id": "B1__z-compounds-zaleplon-zolpidem", "memo": "GABA-A **α1-selettivi**: solo ipnotici, niente ansiolisi; ADR firma = **sonnambulismo**." },
+    { "id": "B1__etifoxina", "memo": "Ansiolitico **non-BDZ** (via TSPO/neurosteroidi): meno dipendenza, ma **epatotossicità**." },
+    { "id": "B1__buspirone-e-serotoninergici-ansia-cronic", "memo": "Agonista parziale **5-HT1A**: niente dipendenza né sedazione, ma agisce **dopo 2-4 settimane** → solo GAD cronico." },
+    { "id": "B1__neurosteroidi-steroidi-neuroattivi", "memo": "**Modulatori GABA-A endogeni**; il brexanolone EV cura la **depressione post-partum**." },
+
+    { "id": "B2__anestetici-generali-principi", "memo": "Anestesia = **tre obiettivi insieme**: ipnosi + analgesia + miorisoluzione. Un farmaco solo non basta." },
+    { "id": "B2__anestetici-inalatori-volatili-alotano-is", "memo": "Potenza misurata in **MAC**; modulano GABA/NMDA. Emergenza rara ma mortale: **ipertermia maligna** → dantrolene." },
+    { "id": "B2__anestetici-endovenosi-tiopentale-propofo", "memo": "**Propofol** = induzione rapida e pulita; **ketamina** = NMDA-antagonista dissociativo e broncodilatatore." },
+    { "id": "B2__anestetici-locali-meccanismo-e-farmacoci", "memo": "Bloccano il **canale Na⁺ dall'interno** → niente potenziale d'azione; in **acidosi/ascesso** rendono meno." },
+    { "id": "B2__anestetici-locali-singole-molecole", "memo": "**Esteri** (1 'i' nel nome, colinesterasi, più allergie) vs **amidi** (2 'i', metabolismo epatico, più sicuri)." },
+    { "id": "B2__anestetici-locali-adr-e-associazione-con", "memo": "Tossicità **prima SNC poi cardiaca** (bupivacaina la peggiore); con **adrenalina** durano di più, **mai nei distretti terminali**." },
+
+    { "id": "B3__antidepressivi-basi-fisiopatologiche", "memo": "↑ monoammine in giorni, ma l'effetto clinico arriva **dopo 2-4 settimane** (serve la plasticità sinaptica)." },
+    { "id": "B3__antidepressivi-triciclici-tca", "memo": "Bloccano SERT+NET ma anche M1/H1/α1; overdose pericolosa: le **3 C — Coma, Convulsioni, Cardiotossicità** (QRS largo)." },
+    { "id": "B3__imao-inibitori-delle-monoamino-ossidasi", "memo": "Bloccano le MAO → **crisi ipertensiva da tiramina** (formaggi, vino): il classico 'cheese effect'." },
+    { "id": "B3__sindrome-serotoninergica", "memo": "Troppa 5-HT: **stato mentale alterato + iperattività autonomica + clono**. Il **clono** la distingue dalla NMS. Antidoto: ciproeptadina." },
+    { "id": "B3__ssri-citalopram-escitalopram-fluoxetina-", "memo": "Bloccano il **SERT**: prima linea per depressione/ansia. ADR firma = **disfunzione sessuale**; sospensione graduale." },
+    { "id": "B3__reboxetina-nri-inibitore-reuptake-noradr", "memo": "**Noradrenalina pura** (NET): per la depressione con rallentamento psicomotorio e apatia." },
+    { "id": "B3__bupropione-dri-inibitore-reuptake-dopami", "memo": "**Dopamina + noradrenalina, zero serotonina** → niente disfunzione sessuale; aiuta a **smettere di fumare** (↓ soglia convulsiva)." },
+    { "id": "B3__venlafaxina-snri", "memo": "Dose-dipendente: bassa = SSRI, alta = **+ noradrenalina** (↑ pressione); utile nel dolore neuropatico." },
+    { "id": "B3__nassa-mirtazapina", "memo": "**Mirtazapina**: i suoi 'effetti collaterali' — sonno e appetito — sono la **terapia** della depressione con insonnia e dimagrimento." },
+    { "id": "B3__sari-trazodone-nefazodone", "memo": "**Trazodone**: a basse dosi ipnotico senza dipendenza; raro ma serio: **priapismo**." },
+
+    { "id": "B4__disturbo-bipolare-basi", "memo": "**Stabilizzanti dell'umore** in continuo; l'antidepressivo dato da solo rischia lo **switch maniacale**." },
+    { "id": "B4__litio-sali-di-litio", "memo": "Gold standard, ma **finestra terapeutica strettissima**: tremore, poliuria, ipotiroidismo, teratogeno (anomalia di Ebstein)." },
+    { "id": "B4__acido-valproico-valproato-sodico-come-st", "memo": "Stabilizzante efficace ma **teratogeno potente** → mai in donna fertile senza contraccezione sicura." },
+    { "id": "B4__carbamazepina-come-stabilizzante-dell-um", "memo": "Blocca i canali Na⁺ ed è **autoinduttore** (CYP); rischio **Stevens-Johnson** (HLA-B*1502) e iponatriemia." },
+    { "id": "B4__lamotrigina", "memo": "Lo stabilizzante del **polo depressivo** del bipolare; **titolazione lentissima** o **rash fino a SJS**." },
+
+    { "id": "B5__psicosi-schizofrenia-basi-e-vie-dopamine", "memo": "Iperattività **mesolimbica** (sintomi positivi); bloccare D2 ovunque colpisce anche nigrostriatale (EPS) e prolattina." },
+    { "id": "B5__antipsicotici-tipici-1-generazione-neuro", "memo": "Antagonisti **D2 puri**: spengono i deliri ma danno **EPS** e **discinesie tardive irreversibili**." },
+    { "id": "B5__antipsicotici-atipici-2-generazione", "memo": "**D2 + 5-HT2A** → meno EPS; prezzo: **sindrome metabolica** (peso, diabete, lipidi)." },
+    { "id": "B5__aripiprazolo-3-generazione", "memo": "**Agonista parziale D2**: 'termostato' dopaminergico → pochi EPS e pochi effetti metabolici." },
+    { "id": "B5__antipsicotici-effetti-indesiderati-e-for", "memo": "EPS/prolattina (tipici), metabolici (atipici), clozapina = **agranulocitosi**; i **LAI** combattono la non-aderenza." },
+
+    { "id": "B6__parkinson-strategia-terapeutica", "memo": "Poca dopamina, troppa acetilcolina: rimpiazza la DA, mimala, non degradarla, o **riduci l'ACh**." },
+    { "id": "B6__levodopa-l-dopa-carbidopa-benserazide", "memo": "Precursore della dopamina + **carbidopa** (blocca la conversione periferica); dopo anni → **fluttuazioni on-off e discinesie**." },
+    { "id": "B6__dopamino-agonisti", "memo": "Meno discinesie della L-DOPA, ma ADR firma = **disturbi del controllo degli impulsi** (gioco, ipersessualità)." },
+    { "id": "B6__imao-b-selegilina-rasagilina-safinamide", "memo": "Bloccano la degradazione della dopamina; **selettivi B → niente cheese effect** alle dosi terapeutiche." },
+    { "id": "B6__comt-inibitori-entacapone-opicapone-tolc", "memo": "Non sprecano la L-DOPA in periferia (sempre con essa); **tolcapone epatotossico**, urine arancioni." },
+    { "id": "B6__amantadina-antimuscarinici-e-farmaci-acc", "memo": "Antivirale riciclato + **antagonismo NMDA**: utile soprattutto sulle **discinesie da L-DOPA**." },
+
+    { "id": "B7__alzheimer-strategia-terapeutica", "memo": "Carenza colinergica + placche amiloidi; per ora solo **sintomatici**: ↑ acetilcolina e modulazione del glutammato." },
+    { "id": "B7__inibitori-dell-acetilcolinesterasi-donep", "memo": "**↑ acetilcolina** (donepezil): miglioramento modesto; ADR colinergici (nausea, bradicardia, diarrea)." },
+    { "id": "B7__memantina", "memo": "Antagonista **NMDA** che blocca solo l'**eccesso** patologico di glutammato: per le fasi moderate-severe." },
+    { "id": "B7__alzheimer-terapie-accessorie-e-prospetti", "memo": "mAb **anti-amiloide**: tolgono le placche, beneficio clinico modesto, rischio **ARIA** (edema/microemorragie)." },
+    { "id": "B7__sm-basi-e-glucocorticoidi-attacco-acuto", "memo": "Malattia **demielinizzante** autoimmune; il **bolo di metilprednisolone** spegne la recidiva ma non cambia il decorso." },
+    { "id": "B7__sm-immunosoppressori-aspecifici", "memo": "Vecchia scuola ad ampio spettro: **mitoxantrone** (cardiotossico cumulativo, leucemogeno)." },
+    { "id": "B7__sm-disease-modifying-treatments-dmt", "memo": "Modificano il decorso: IFN-β, **fingolimod** (sequestra i linfociti), **natalizumab** (rischio **PML** da virus JC), anti-CD20." },
+    { "id": "B7__sm-farmaci-adiuvanti-sintomatici", "memo": "Sintomatici: **fampridina** (bloccante K⁺) per camminare meglio, baclofene per la spasticità." }
+  ]
+}

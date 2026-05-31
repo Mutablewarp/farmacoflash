@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "entries": [
+    { "id": "B8__terapia-del-dolore-scala-oms-e-adiuvanti", "memo": "Scala a 3 gradini: **si sale, non si salta**; non-oppioidi e adiuvanti restano a ogni livello." },
+    { "id": "B8__sistema-oppioidergico-recettori-e-meccan", "memo": "Recettore **μ**: analgesia, euforia, **depressione respiratoria** e dipendenza viaggiano insieme (Gi → ↓ cAMP)." },
+    { "id": "B8__oppioidi-effetti-tolleranza-e-dipendenza", "memo": "Triade dell'overdose: **coma + depressione respiratoria + miosi**; tolleranza a tutto **tranne miosi e stipsi**." },
+    { "id": "B8__oppiacei-deboli-codeina-tramadolo-step-2", "memo": "**Codeina = profarmaco del CYP2D6** (→ morfina); il **tramadolo** è anche SNRI (sindrome serotoninergica, ↓ soglia convulsiva)." },
+    { "id": "B8__oppiacei-forti-step-3", "memo": "**Fentanil 100× la morfina**; **buprenorfina** agonista parziale (effetto tetto, più sicura). Antidoto: **naloxone**." },
+    { "id": "B8__antagonisti-paracetamolo-e-cannabinoidi", "memo": "**Naloxone** riapre i recettori μ in minuti, ma dura poco → riosserva il paziente dopo il risveglio." },
+
+    { "id": "B9__antiepilettici-meccanismi-e-principi", "memo": "Fermare la scarica: **bloccare Na⁺/Ca²⁺** (eccitazione) o **potenziare il GABA** (inibizione)." },
+    { "id": "B9__aed-i-gen-bloccanti-dei-canali-na-fenito", "memo": "**Fenitoina**: cinetica di **ordine zero** (saturabile → tossicità improvvisa); iperplasia gengivale, irsutismo." },
+    { "id": "B9__aed-i-gen-gabaergici-e-altri-barbiturici", "memo": "**Etosuccimide** blocca i **canali T-Ca²⁺ talamici** = gold standard delle **crisi di assenza**." },
+    { "id": "B9__aed-ii-generazione", "memo": "**Gabapentin/pregabalin** (α2δ): più dolore neuropatico che epilessia; **levetiracetam** semplice, **lamotrigina → rash**." },
+    { "id": "B9__antiepilettici-indicazioni-per-tipo-di-c", "memo": "**Assenze → etosuccimide**; nello **status epilepticus** la prima mossa è una **benzodiazepina EV**." },
+    { "id": "B9__statine-meccanismo-e-farmacocinetica", "memo": "Bloccano l'**HMG-CoA reduttasi** → il fegato alza i recettori LDL → **↓ LDL nel sangue**." },
+    { "id": "B9__statine-classificazione-effetti-collater", "memo": "Rischio **miopatia/rabdomiolisi** (↑ CK), peggiorato dagli inibitori CYP3A4 e dal **succo di pompelmo**." },
+    { "id": "B9__altri-ipolipemizzanti-fibrati-acido-nico", "memo": "**Ezetimibe** (assorbimento), **fibrati** (re dei trigliceridi), **PCSK9-inibitori** (LDL ai minimi storici)." },
+
+    { "id": "B10__ipertensione-strategia-terapeutica", "memo": "Cinque famiglie + diuretico tiazidico; spesso **combinazione fissa** per arrivare a target con una sola compressa." },
+    { "id": "B10__simpaticolitici-centrali-2-agonisti-clon", "memo": "**Clonidina** = agonista α2 centrale (↓ simpatico); **rebound severo** se sospesa di colpo." },
+    { "id": "B10__metildopa", "memo": "Falso neurotrasmettitore: **prima scelta nell'ipertensione in gravidanza** (sicurezza fetale provata da decenni)." },
+    { "id": "B10__1-bloccanti-prazosina-doxazosina-tamsulo", "memo": "↓ pressione + sblocco prostatico (IPB); ADR firma = **ipotensione ortostatica da prima dose**." },
+    { "id": "B10__bloccanti-generazioni-e-proprieta-ancill", "memo": "**Cardioselettivi β1** (atenololo, bisoprololo, metoprololo) → sicuri nei bronchi; i non selettivi no (asma)." },
+    { "id": "B10__bloccanti-meccanismi-avanzati-indicazion", "memo": "Salvavita **post-infarto**; nel diabetico **mascherano l'ipoglicemia** e non si sospendono mai di colpo." },
+
+    { "id": "B11__sraa-fisiologia-e-bersagli-farmacologici", "memo": "Cascata renina → ACE → angiotensina II; quattro punti di blocco: renina, ACE, recettore AT1, aldosterone." },
+    { "id": "B11__ace-inibitori-captopril-enalapril-ramipr", "memo": "↓ angiotensina II + ↑ bradichinina → ADR firma = **tosse secca** e raro angioedema; **teratogeni**." },
+    { "id": "B11__sartani-losartan-valsartan-irbesartan-te", "memo": "Antagonisti **AT1**: stessa efficacia degli ACE-inibitori ma **senza la tosse**." },
+    { "id": "B11__inibitori-della-renina-aliskiren", "memo": "**Aliskiren** blocca lo step iniziale, ma **non va combinato** con ACE-i/sartani (peggiora gli esiti)." },
+    { "id": "B11__calcio-antagonisti-diidropiridine-verapa", "memo": "**-dipina ai vasi** (edema malleolare), **verapamil al cuore** (mai col β-bloccante → blocco AV completo)." },
+
+    { "id": "B11b__insufficienza-cardiaca-basi-fisiopatolog", "memo": "Si **blocca il danno** neurormonale: ACE-i + β-bloccante + antialdosteronico + SGLT2-i (i 'fab 4')." },
+    { "id": "B11b__digitale-digossina", "memo": "Blocca la Na⁺/K⁺-ATPasi → **↑ contrattilità**; finestra strettissima → **xantopsia (vede giallo)**, aritmie. Antidoto: Digibind." },
+    { "id": "B11b__teofillina-e-xantine", "memo": "Broncodilatatore con lieve effetto cardiaco; oggi marginale per finestra stretta e interazioni CYP1A2." },
+    { "id": "B11b__diuretici-overview-siti-e-classi", "memo": "Ogni classe a una **fermata del nefrone**: più a monte agisci, più diuresi (ma più elettroliti persi)." },
+    { "id": "B11b__inibitori-dell-anidrasi-carbonica-acetaz", "memo": "Inibitore dell'**anidrasi carbonica**: glaucoma e **mal di montagna** (l'acidosi spinge a iperventilare)." },
+    { "id": "B11b__diuretici-osmotici-mannitolo", "memo": "**Diuretico osmotico**: tira fuori acqua dai tessuti → **edema cerebrale** e ipertensione endocranica." },
+    { "id": "B11b__diuretici-dell-ansa-drastici-furosemide-", "memo": "**Lasix = 'lasts six'**: salvavita nell'edema polmonare, ma porta via **K⁺, Ca²⁺, Mg²⁺** (+ ototossicità)." },
+    { "id": "B11b__diuretici-tiazidici-e-risparmiatori-di-k", "memo": "**Trattengono il calcio** (utile nell'osteoporosi); le 'iper' (glicemia, uricemia, lipidi). Spironolattone → **ginecomastia**." },
+
+    { "id": "B12__emostasi-e-bersagli-della-terapia", "memo": "Piastrine → **antiaggreganti** (arterie); fibrina → **anticoagulanti** (vene); coagulo già formato → **trombolitici**." },
+    { "id": "B12__aspirina-e-inibitori-reversibili-della-c", "memo": "100 mg: **acetila la COX-1 piastrinica per sempre** (piastrina senza nucleo); l'endotelio si ripara e conserva la PGI2." },
+    { "id": "B12__antagonisti-del-recettore-p2y12-ticlopid", "memo": "Bloccano l'ADP; **clopidogrel = profarmaco del CYP2C19** (metabolizzatori lenti = non protetti); ticagrelor reversibile." },
+    { "id": "B12__antagonisti-della-gp-iib-iiia-e-altri-an", "memo": "Bloccano la **via finale comune** dell'aggregazione: blocco totale, solo EV durante l'angioplastica." },
+    { "id": "B12__eparina-eparine-a-basso-peso-molecolare-", "memo": "Potenziano l'antitrombina; **non frazionata** (IIa+Xa, aPTT) vs **LMWH** (solo Xa, SC). Rischio: **HIT** (trombi, non emorragia)." },
+    { "id": "B12__anticoagulanti-orali-vka-inibitori-diret", "memo": "**Warfarin** = fattori vit-K (II, VII, IX, X), vive di INR; i **DOAC** = dose fissa, niente esami, antidoti dedicati." },
+    { "id": "B12__fibrinolitici-e-antitrombotico-ideale", "memo": "**tPA** scioglie il trombo attivando la plasmina; finestra strettissima (ictus ≤ 4,5h), rischio **emorragia**." },
+
+    { "id": "B12b__vasodilatatori-overview-e-antagonisti-de", "memo": "**Bosentan** blocca l'endotelina (il vasocostrittore endogeno più potente): ipertensione polmonare; epatotossico." },
+    { "id": "B12b__nitrati-nitrossidi-nitroglicerina-isosor", "memo": "Liberano **NO → ↓ precarico** (vene); sublinguale in acuto, ma **tachifilassi** → serve l'intervallo libero notturno." },
+    { "id": "B12b__attivatori-dei-canali-k-atp-e-idralazina", "memo": "**Minoxidil** apre i canali K-ATP (vasodilatazione); ADR firma = **ipertricosi** → riciclato per la calvizie." },
+
+    { "id": "B13__aritmie-e-strategie-antiaritmiche", "memo": "Vaughan-Williams: **I sodio, II β-bloccanti, III potassio, IV calcio** (+ adenosina e digossina, fuori classe)." },
+    { "id": "B13__classe-i-bloccanti-dei-canali-del-na-ia-", "memo": "**IB (lidocaina)** ama il tessuto ischemico post-IMA; **IC (flecainide)** è proaritmica nel post-infarto (trial CAST)." },
+    { "id": "B13__classe-ii-bloccanti", "memo": "I **β-bloccanti**: controllo della frequenza nella fibrillazione atriale, mortalità ridotta post-infarto." },
+    { "id": "B13__classe-iii-bloccanti-dei-canali-del-k", "memo": "**Amiodarone**: efficacissimo ma tossico ovunque (tiroide, polmone, cornea, pelle); emivita di mesi." },
+    { "id": "B13__classe-iv-ca-antagonisti-adenosina-e-pot", "memo": "**Adenosina** ferma il nodo AV per pochi secondi → interrompe la **tachicardia parossistica sopraventricolare**." },
+
+    { "id": "B14__antitumorali-strategie-e-principi", "memo": "Dalla chemio che 'avvelena tutto ciò che cresce' alla **target therapy** sulla mutazione specifica del tumore." },
+    { "id": "B14__target-therapy-e-biomarcatori", "memo": "Profili il tumore per **biomarcatore**: niente bersaglio → niente farmaco (es. **imatinib su BCR-ABL** nella LMC)." },
+    { "id": "B14__parp-inibitori-e-letalita-sintetica", "memo": "**Letalità sintetica**: nel tumore BRCA-mutato togli l'unica via di riparazione del DNA rimasta → muore solo lui." },
+    { "id": "B14__immunoterapia-checkpoint-inhibitors-e-an", "memo": "I **checkpoint inhibitor** tolgono il freno (PD-1/PD-L1) ai linfociti T; prezzo: tossicità **autoimmuni**." }
+  ]
+}

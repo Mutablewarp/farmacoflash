@@ -1,0 +1,842 @@
+{
+ "group": "G8",
+ "entries": [
+  {
+   "id": "Antibiotici-2__fosfomicina",
+   "name": "Fosfomycin",
+   "nameShort": "Fosfomycin",
+   "memo": "Blocks the **first step** of the cell wall (pyruvyltransferase); **single dose** for cystitis, thanks to bladder accumulation.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "inhibits pyruvyltransferase (first reaction of peptidoglycan biosynthesis); reactive analog of phosphoenolpyruvate. Bactericidal."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "pyruvyltransferase (PEP-dependent enzyme)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "small, highly hydrophilic molecule; well absorbed orally; does not bind plasma proteins; rapid renal excretion with sustained accumulation in the bladder; single administration 2-3 g/day orally. Unstable intermediate (phosphonic derivative)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "uncomplicated urinary tract infections (selective indications); broad spectrum Gram+/Gram-."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "well tolerated."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "low resistance rate (especially E. coli)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "interactions with drugs that alter the GI tract (e.g. metoclopramide)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-2__cicloserina",
+   "name": "Cycloserine",
+   "nameShort": "Cycloserine",
+   "memo": "Analog of **D-alanine** (cell wall); second-line antitubercular, **neurotoxic** (seizures, psychosis).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "acts on the first step of peptidoglycan assembly; structural analog of D-alanine; inhibits alanine racemase (L-ala → D-ala) and the ligase that forms the D-ala–D-ala dimer. Broad-spectrum bactericidal."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "alanine racemase + D-ala–D-ala ligase."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "well absorbed orally; good diffusion (CSF, serous cavities, placenta → not safe in pregnancy); 0.5 g BID; slow elimination."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "broad spectrum Gram+/Gram-; second-line antimycobacterial/TB therapy (after isoniazid, rifampicin, ethambutol)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "CNS toxicity (due to high diffusion): headache, agitation, insomnia → tremors, psychosis, seizures."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "no specific data in the documents."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "N/A in the provided documents."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-2__bacitracina",
+   "name": "Bacitracin",
+   "nameShort": "Bacitracin",
+   "memo": "Blocks bactoprenol; too toxic for systemic use → only **topical use** (Gram+).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "cyclic peptide derivative; inhibits bactoprenol (the phospholipid carrier that transports forming peptidoglycan toward the outside of the cell)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "bactoprenol."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "not completely absorbed orally → exploited for topical action (like neomycin, rifaximin)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "selective Gram+ spectrum; topical action for intestinal infections by susceptible germs (cocci, Gram+ bacilli)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "GI tract (nausea, constipation, vomiting)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "does not cross the outer membrane of Gram-."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "often combined with neomycin (an aminoglycoside)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-2__glicopeptidi-classe-vancomicina-teicopla",
+   "name": "Glycopeptides (class — vancomycin, teicoplanin, daptomycin)",
+   "nameShort": "Glycopeptides",
+   "memo": "Latch onto **D-ala-D-ala** (not the enzyme); for **resistant Gram+**. VanA resistance = D-ala-D-lactate.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "complex cyclic peptides; bind directly to the D-alanine–D-alanine dimer → prevent target recognition by the enzymes (blocking transglycosidase). Bactericidal."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "D-alanine–D-alanine dimer (substrate)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "see individual molecules."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "Gram+: methicillin-resistant S. aureus (MRSA), Enterococci, Bacillus anthracis, Clostridium difficile."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "hypersensitivity (see individual drugs)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "VanA phenotype = inducible cross-resistance vancomycin/teicoplanin; constitutive or inducible plasmid."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "caution with combination with aminoglycosides (endocarditis); avoid synergistic toxicity (oto-/nephrotoxicity, e.g. with diuretics)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-2__vancomicina",
+   "name": "Vancomycin",
+   "nameShort": "Vancomycin",
+   "memo": "IV for **MRSA**, **orally for C. difficile** (not absorbed); slow infusion or **'red man syndrome'**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "glycopeptide (binds the D-ala–D-ala dimer)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "D-alanine–D-alanine dimer."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "orally → poor absorption (macrocyclic structure) → intestinal topical action; IV for systemic infections; good distribution, low plasma protein binding, reaches the CNS with inflamed meninges; renal elimination; low t½ → repeated low doses."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "C. difficile pseudomembranous colitis (orally); severe MRSA (IV): septicemia, pneumonia, osteomyelitis, soft tissue infections."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "hypersensitivity (urticaria, anaphylactoid reactions, phlebitis, red man syndrome); nephrotoxicity; ototoxicity."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "MIC increase over the years; VanA."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "caution + aminoglycosides (endocarditis) and + diuretics (ototoxic synergism)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-2__teicoplanina",
+   "name": "Teicoplanin",
+   "nameShort": "Teicoplanin",
+   "memo": "Like vancomycin but once daily, **no red man syndrome**, less nephrotoxic.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "glycopeptide."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "D-alanine–D-alanine dimer."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "long duration of action, high plasma protein binding → IM as a single daily administration (also IV)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "same as vancomycin; comparable efficacy."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "nausea, vomiting, diarrhea, hypersensitivity."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "VanA phenotype (inducible cross-resistance with vancomycin)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "no specific data in the documents."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-2__antimicobatterici-quadro-generale-terapi",
+   "name": "Antimycobacterials (general overview + antitubercular therapy)",
+   "nameShort": "Antimycobacterials",
+   "memo": "**RIPE** regimen (Rifampicin, Isoniazid, Pyrazinamide, Ethambutol): **always in combination**, or resistance.",
+   "segments": [],
+   "freetext": [
+    "Characteristics of mycobacteria: slow growth, sparse activation cycles, intracellular, thick cell wall with mycolic acids (protection), localization in hard-to-reach tissues (bone marrow, liver, lymph nodes), reactivation after latency → long therapies (months), in combination, with multiple mechanisms, to counter rapidly emerging resistance.",
+    "First line (fewer side effects): isoniazid, rifampicin, pyrazinamide; also ethambutol (less tolerated, especially + isoniazid).",
+    "Second line (greater toxicity/resistance): streptomycin and others.",
+    "TB regimen: initial phase 2 months = isoniazid + rifampicin + pyrazinamide + ethambutol; maintenance 4 months = isoniazid + rifampicin (pyrazinamide and ethambutol only in the initial phase).",
+    "Context: TB among the leading causes of death (third world), increasing cases in Italy, leading cause of death in AIDS; rising resistance to first-line drugs."
+   ]
+  },
+  {
+   "id": "Antibiotici-2__isoniazide-ini",
+   "name": "Isoniazid (INI)",
+   "nameShort": "Isoniazid",
+   "memo": "Blocks **mycolic acids**; always give **vitamin B6** (prevents neuropathy); hepatotoxic.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "inhibits the enzymes of mycolic acid biosynthesis → selective action on the mycobacterium; bactericidal."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "enzymes of mycolic acid biosynthesis."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "well absorbed orally; phase II metabolism by acetylation; polymorphism (fast/slow acetylators) → slow acetylators have reduced elimination → ↑ side effects."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "first-choice drug in TB (initial phase + maintenance)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "peripheral neuropathy, nausea, vomiting, constipation, dry mouth (inhibition of cholinergic transmission), psychotic episodes, gynecomastia, hyperglycemia; worse in slow acetylators and in combination with ethambutol."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "development of resistance → use in combination."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "increased toxicity in combination with ethambutol."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-2__etambutolo",
+   "name": "Ethambutol",
+   "nameShort": "Ethambutol",
+   "memo": "'**EThambutol → EYEs**': **optic neuritis** with red-green dyschromatopsia → check visual acuity.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "inhibits the transfer of mycolic acid into the mycobacterial cell wall; selective target; bacteriostatic."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "mycolic acid transfer."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "no details in the documents."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "first-line TB (initial phase)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "visual disturbances from optic nerve toxicity — optic neuritis, refraction disturbances, red-green color blindness, visual field narrowing, reduced visual acuity; worse if + isoniazid."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "not used in maintenance (potential for adverse effects)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "increased neuropathic toxicity in combination with isoniazid."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-2__rifampicina",
+   "name": "Rifampicin",
+   "nameShort": "Rifampicin",
+   "memo": "Inhibits **RNA polymerase**; **extremely potent CYP inducer** (nullifies the pill!) and turns everything **orange**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "macrocyclic antibiotic; inhibits DNA-dependent RNA polymerase → inhibits RNA synthesis; also active on slow-growing microorganisms."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "DNA-dependent RNA polymerase."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "well absorbed orally; enterohepatic recirculation; INDUCER of cytochromes CYP1A2, 2C9, 2C19, 2D6, 3A4 (already after 7 days); excellent distribution (incl. CNS); turns secretions red (feces, urine, saliva)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "TB (initial phase + maintenance); leprosy (anti-leprotic); other mycobacteria."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "skin eruptions, hepatopathies, GI involvement; rarely hypersensitivity, severe cutaneous reactions, flu-like syndrome."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "increasing resistance (concerning given the drug's manageability/safety)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "in combinations it offers a dual point of attack (different target → ↓ resistance). ⚠️ Enzyme inducer → alters concomitant therapies (caution during the 2+4 months)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-2__pirazinamide",
+   "name": "Pyrazinamide",
+   "nameShort": "Pyrazinamide",
+   "memo": "Active on **dormant bacilli in an acidic environment**; shortens the regimen; signature ADR = **hyperuricemia**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "not clarified; it appears to increase intracellular oxidative damage, concentrate and lower the cellular pH selectively for the mycobacterium, even without replication. Bactericidal even on extremely slow-growing organisms."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "not clarified."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "rapidly absorbed orally. (The most recent among the antitubercular drugs.)"
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "TB (initial phase; not in maintenance)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "hepatic toxicity (↑ transaminases), nausea, vomiting, GI alterations, alterations of hemostasis/hematocrit (also concerning), hypersensitivity (IgE or delayed)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "induces resistance → only in combination; less safe in terms of tolerability."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "always in combination (never alone)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-2__antitubercolari-di-ii-scelta",
+   "name": "Second-line antitubercular drugs",
+   "nameShort": "Second-line antitubercular drugs",
+   "memo": "For **MDR-TB**: fluoroquinolones, bedaquiline, linezolid; 18-24 months, toxic drugs.",
+   "segments": [
+    {
+     "label": "Use",
+     "value": "resistance/intolerance to first-line drugs or treatment of relapses; greater toxicity profile.\nCycloserine → see dedicated card.\nCapreomycin: cyclic peptide, particular mechanism, induces resistance.\nFluoroquinolones: good intracellular distribution; act on DNA gyrase (mechanism different from the \"mycolic acid\" target); resistance increasing very rapidly.\nKanamycin, amikacin, streptomycin (aminoglycosides): induce resistance; significant toxicity (nephrotoxicity; streptomycin causes irreversible ototoxicity); caution with use alongside isoniazid and other neurotoxic agents."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-3__sulfamidici",
+   "name": "Sulfonamides",
+   "nameShort": "Sulfonamides",
+   "memo": "Analogs of **PABA** → block folate synthesis (which we don't perform → selective toxicity); risk of **Stevens-Johnson**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "analogs of para-aminobenzoic acid (PABA); inhibit dihydropteroate synthetase (fusion of PABA + pteridine → dihydropteroic acid) in the folate pathway → block the de novo synthesis of tetrahydrofolic acid. Bacteriostatic."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "dihydropteroate synthetase."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "distinction by kinetics. Sulfadiazine/sulfamethoxazole/sulfisoxazole: rapid oral absorption, hepatic metabolism by acetylation, rapid renal excretion → high urinary concentrations. Sulfadoxine: long duration. Sulfaguanidine: protonated in the gastric environment → very low bioavailability → intestinal topical. Silver sulfadiazine: topical. High plasma protein binding."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "broad spectrum (aerobic Gram+/Gram-; common folate pathway). Historically urinary infections (now replaced); respiratory and GI tract. Sulfadoxine + pyrimethamine → malaria (therapy/prophylaxis). Sulfamethoxazole + trimethoprim → nocardiosis, toxoplasmosis. Low cost → developing countries."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "crystalluria (insoluble acetylated metabolites → damage to renal epithelium); severe hematopoietic toxicity; hypersensitivity (similarity to PABA) up to epithelial necrosis and Stevens-Johnson syndrome; hepatopathies, nausea, vomiting, diarrhea, headache."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "replaced by drugs with lower toxicity."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "+ trimethoprim (synergy, sequential blockade of the folate pathway → co-trimoxazole / Bactrim®). ⚠️ displacement of warfarin, NSAIDs, antiepileptics (high protein binding)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-3__trimetoprim",
+   "name": "Trimethoprim",
+   "nameShort": "Trimethoprim",
+   "memo": "Blocks **dihydrofolate reductase**; with a sulfonamide it performs a **sequential blockade** (co-trimoxazole/Bactrim).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "inhibits dihydrofolate reductase (downstream reaction) → blocks the synthesis of tetrahydrofolic acid."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "dihydrofolate reductase."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "no details available (used in combination)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "often + a sulfonamide (Bactrim®); cystitis (alternative to fluoroquinolones indicated by the EMA)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "from folate deficiency → megaloblastic anemia, leukopenia, granulocytopenia (resolvable with tetrahydrofolic acid)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "no specific data in the documents."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "+ sulfonamides (co-trimoxazole); folate supplementation in case of bone marrow toxicity."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-3__chinoloni-e-fluorochinoloni",
+   "name": "Quinolones and Fluoroquinolones",
+   "nameShort": "Quinolones and Fluoroquinolones",
+   "memo": "Block **DNA gyrase/topoisomerase IV**; restricted due to **tendinopathies/Achilles rupture** and aortic risk.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "inhibit the enzymes that cut/supercoil the bacterial chromosome → topoisomerase IV (Gram+) and DNA gyrase (Gram-), preventing the supercoiling needed for duplication. Broad spectrum."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "topoisomerase IV (Gram+) / DNA gyrase (Gram-)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "fluoroquinolones are the second generation of quinolones (the prototype is nalidixic acid, today without marketing authorization). The fluorine → excellent bioavailability/distribution (even hard-to-reach tissues), high intracellular Vd, accumulation in phagocytes. Hepatic metabolism, predominantly renal excretion (reduce dose in chronic renal failure/elderly; moxifloxacin tolerated in chronic renal failure). Concentration-dependent, AUC/MIC parameter (>50% for success). Generations: nalidixic → norfloxacin → cipro/levofloxacin → moxifloxacin (also covers atypicals: chlamydiae, legionella, mycoplasma, M. tuberculosis)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "respiratory infections (bronchitis, sinusitis, pneumonia), sexually transmitted, prostatitis, uncomplicated genitourinary, bone (pefloxacin), soft tissues, GI; inpatient and outpatient."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "CONTRAINDICATED < 12 years (connective tissue toxicity, alteration of β1-integrins) and caution in the elderly (arthropathies, tendinitis, Achilles tendon rupture); GI in 20% (incl. C. difficile pseudomembranous colitis); CNS (drowsiness, confusion, delirium, headache, lowering of the proconvulsant threshold — they displace GABA); QT prolongation/torsade de pointes (max moxifloxacin, min ciprofloxacin); alteration of ATP-dependent K channels and glycemia; phototoxicity; hypersensitivity/idiosyncratic (less than β-lactams)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "EMA 2018 restrictions (no prophylaxis; not if safer alternatives are available; not for mild/moderate infections except in case of hypersensitivity to others; not for non-bacterial infections)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "interaction with theophylline and NSAIDs (protein binding; theophylline + FQ → CNS effects). Second line in TB (cf. file Antibiotici-2)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-3__rifampicina-integrazione-lez-17-profilo-",
+   "name": "Rifampicin (supplement Lec 17 — complete antitubercular profile in file Antibiotici-2)",
+   "nameShort": "Rifampicin",
+   "memo": "Not just TB: **meningitis prophylaxis**, brucellosis, leprosy; always in combination (rapid resistance).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "inhibits DNA-dependent RNA polymerase → inhibition of RNA synthesis. Bacteriostatic."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "DNA-dependent RNA polymerase."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "metabolism inducer (CYP) → reduces the half-life of digoxin, verapamil, ketoconazole, corticosteroids, barbiturates, oral contraceptives; turns secretions red."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "broad spectrum (Gram+, Gram-, meningococcus, Haemophilus influenzae meningitis); TB in combination with isoniazid."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "nausea, vomiting, skin eruption, hepatopathies."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "increasing resistance (cf. file Antibiotici-2)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "⚠️ potent enzyme inducer → interactions with many cytochrome substrates."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-3__macrolidi-classe-eritromicina-claritromi",
+   "name": "Macrolides (class — erythromycin, clarithromycin, roxithromycin, azithromycin)",
+   "nameShort": "Macrolides",
+   "memo": "Bind to the **50S** (king of atypicals: Legionella, Mycoplasma, Chlamydia); **↑ QT** and CYP3A4 inhibition.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "bind to the 50S ribosomal subunit → prevent the binding of the amino acid to the acceptor site → hinder elongation of the polypeptide chain."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "50S ribosomal subunit."
+    },
+    {
+     "label": "Origin/structure",
+     "value": "erythromycin (natural), clarithromycin/roxithromycin (semisynthetic), azithromycin (synthetic). 14-C macrocycle (azithromycin 15 C)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "see individual molecules."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "see individual molecules."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "see individual drugs; hypersensitivity rare."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "modification of the ribosomal target site; CROSS-resistance with lincosamides (clindamycin) and streptogramins (nearby sites of action)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "see individual drugs (CYP/P-glycoprotein interactions)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-3__eritromicina",
+   "name": "Erythromycin",
+   "nameShort": "Erythromycin",
+   "memo": "The prototype; **motilin agonist** → cramps/nausea (sometimes used deliberately as a prokinetic).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "macrolide (50S)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "low oral bioavailability, sensitive to acidic pH → esters (ethylsuccinate, estolate, stearate) with high oral bioavailability. Time-dependent. Important inhibitor of CYP3A4."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "narrow spectrum, selective Gram+; motilin-like effect (↑ peristalsis)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "frequent GI effects; hepatotoxicity (especially estolate); interference with K⁺ currents → sudden cardiac death (more frequent than with amoxicillin), especially if + CYP3A4 inhibitors (e.g. statins); transient deafness (high doses/prolonged use/elderly/renal failure/hepatic failure)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "cross-resistance macrolides–lincosamides–streptogramins."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "⚠️ CYP3A4 inhibitor → ↑ concentrations of corticosteroids, digoxin, benzodiazepines; risk with statins."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-3__azitromicina",
+   "name": "Azithromycin",
+   "nameShort": "Azithromycin",
+   "memo": "**Very long half-life** and tissue accumulation → short regimen; **chlamydia in a single dose**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "macrolide (50S); 15 carbon atoms, dibasic structure."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "bioavailability 37% (dibasic structure) but stable in an acidic environment, lipophilic; long half-life, excellent Vd, excellent distribution in polymorphonuclear leukocytes; trapping phenomenon (two basic centers → protonated and trapped at acidic intracellular pH → concentrates in neutrophils) → post-antibiotic effect (release by degranulation at the infection site) → effective even on intracellular bacteria (chlamydiae); effect up to 5 days after the first dose. Concentration-dependent. NOT biotransformed by the liver; renal elimination 10%, 90% unchanged."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "broader spectrum than erythromycin; S. aureus, S. pyogenes, S. pneumoniae, Moraxella catarrhalis, mycoplasma, intracellular; more effective vs Haemophilus influenzae, Neisseriae, chlamydia → genitourinary infections and STIs. Sub-MIC immunomodulatory effects (panbronchiolitis, asthma, respiratory infections, otitis, cystic fibrosis; used in COVID-19 for the cytokine storm — a unique feature). Dosage: 500 mg/day × 3 days or 1 g single administration (STIs)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "lower GI toxicity than the others (but motilin-like effects: GI disturbances, epigastric heaviness, nausea, vomiting, diarrhea); does NOT cause the K⁺/CYP effects of erythromycin."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "MIC increase → reduced success; class cross-resistance."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "absence of the CYP/cardiac interactions of erythromycin."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-3__claritromicina-nota",
+   "name": "Clarithromycin (note)",
+   "nameShort": "Clarithromycin",
+   "memo": "Cornerstone of the **anti-H. pylori triple therapy**; strong CYP3A4 inhibitor, prolongs the QT.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "semisynthetic macrolide (50S)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "bioavailability 55%; may interfere (less than erythromycin) with K⁺ currents."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "⚠️ inhibits P-glycoprotein → ↑ concentrations of P-gp substrates (e.g. digoxin).\nOther aspects: as per the macrolide class."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-3__lincosamidi-clindamicina",
+   "name": "Lincosamides (Clindamycin)",
+   "nameShort": "Lincosamides",
+   "memo": "Excellent against **anaerobes**, but it is the **leading cause of C. difficile colitis**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "binds to the 50S subunit; semisynthetic derivative of lincomycin."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "50S ribosomal subunit."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "intense hepatic metabolism, elimination via feces; penetrates polymorphonuclear granulocytes → reaches hard-to-reach tissues (bones). Topical formulations (gel/cream) for acne."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "intermediate spectrum (Gram+, Gram-), active against anaerobes (clostridia); NOT active against aerobic Gram- (does not cross the outer membrane); osteomyelitis (e.g. from streptococci)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "NOT active against C. difficile, indeed it can cause its pseudomembranous colitis (selection in 10%); nausea, vomiting; neuromuscular junction blockade (caution in myasthenia gravis)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "cross-resistance with macrolides/streptogramins; contraindicated in hepatic/renal alterations and diarrhea."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "systemic use infrequent; no data on specific combinations."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-3__cloramfenicolo-caf",
+   "name": "Chloramphenicol (CAF)",
+   "nameShort": "Chloramphenicol",
+   "memo": "Very broad spectrum but toxic: **aplastic anemia** and **gray baby syndrome** in the newborn.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "interferes with the 50S subunit → prevents the binding of tRNA to the acceptor site → blocks elongation."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "50S ribosomal subunit."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "excellent distribution (incl. cerebral → brain abscesses); metabolism by glucuronidation (deficient in newborns)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "broad spectrum (Gram+, Gram-, rickettsiae, mycoplasmas, chlamydiae; bactericidal on Haemophilus, Neisseriae, S. pneumoniae); typhoid fever, bacterial meningitis, brain abscesses, anaerobes, brucellosis, rickettsioses, lymphogranuloma venereum. Reserved for difficult germs / when safer alternatives (tetracyclines, FQ, β-lactams) cannot be used."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "mitochondrial toxicity; hematopoietic toxicity (hypochromic anemia, bone marrow aplasia); gray baby syndrome (newborns, reduced glucuronidation → accumulation; mortality 40%); nausea, vomiting, diarrhea, hypersensitivity, angioneurotic edema, peripheral neuritis, optic neuritis, psychiatric disturbances."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "poorly manageable; contraindicated in bone marrow depression and breastfeeding."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "⚠️ inhibits CYP450 → alters dicoumarol, phenobarbital, phenytoin; CYP inducers reduce its efficacy."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-3__aminoglicosidi-classe-meccanismo-cinetic",
+   "name": "Aminoglycosides (class — mechanism, kinetics and toxicity)",
+   "nameShort": "Aminoglycosides",
+   "memo": "Bind to the **30S** (misreading of mRNA → bactericidal); **single dose/day**; **nephro- and ototoxic**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "bind to the 30S subunit with a dual action → inhibit the initiation of protein synthesis AND promote aberrant proteins (misfolded/incomplete) that insert into the membrane/cell wall → alter permeability → lysis. BACTERICIDAL."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "30S ribosomal subunit."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "hydrophilic; concentration-dependent par excellence; cross the porins of Gram- (easier at 4-5× MIC); ATP- and O₂-dependent entry (→ only aerobes; do not enter eukaryotic cells → ineffective on intracellular organisms). Poor oral absorption (→ intestinal topical); good distribution in interstitial fluids (ascitic, synovial, pleural); systemic use = parenteral. Not biotransformed, 90% excreted unchanged via the kidney; low protein binding; short half-life. Strategy: a single high, intermittent daily peak → maximizes efficacy and reduces accumulation/toxicity; post-antibiotic effect."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "predominantly Gram- (Pseudomonas aeruginosa, Klebsiella, Enterobacteriaceae, Proteus, E. coli); β-lactamase-producing staphylococci are susceptible; resistant streptococci. (Individual drugs → dedicated card.)"
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "low therapeutic index. OTOTOXICITY (accumulation in endolymph/perilymph → VIII pair: early vestibular toxicity — vertigo, nausea, vomiting, nystagmus; cochlear toxicity insidious — first high then low frequencies → irreversible bilateral deafness; tinnitus = early sign). NEPHROTOXICITY (cortical accumulation → tubular damage/acute renal failure; 10% of drug-induced acute renal failure; neomycin the worst; reversible). Neuromuscular junction blockade (↓ acetylcholine release → caution in myasthenia gravis). Hypersensitivity."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "modifying enzymes (acetyl-, phospho-, adenyl-transferases), acquired via plasmids; the semisynthetics (netilmicin, amikacin) resist acetyl-transferases."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "+ β-lactams/penicillins (weaken the Gram+ cell wall → favor entry; e.g. endocarditis). ⚠️ avoid with other ototoxic agents and loop diuretics (furosemide, ethacrynic acid); nephrotoxic synergism with NSAIDs, ACE inhibitors, cyclosporine, cisplatin."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "Antibiotici-3__aminoglicosidi-singoli-farmaci",
+   "name": "Aminoglycosides — individual drugs",
+   "nameShort": "Aminoglycosides — individual drugs",
+   "memo": "**Amikacin** = reserve for gentamicin-resistant strains; **neomycin** topical only (too toxic).",
+   "segments": [],
+   "freetext": [
+    "Natural origin: streptomycin, gentamicin, tobramycin, kanamycin, neomycin. Semisynthetic: netilmicin, amikacin.",
+    "Streptomycin / gentamicin: septicemia, upper urinary tract infections, endocarditis (+ a β-lactam), brucellosis, plague.",
+    "Streptomycin: leading anti-TB agent.",
+    "Gentamicin: peritonitis, meningitis, pneumonia, Gram+ infections (+ penicillin).",
+    "Tobramycin: NOT with penicillins in endocarditis (incompatibility); active against Pseudomonas aeruginosa; ophthalmic eye drops (± glucocorticoids).",
+    "Neomycin / paromomycin: topical (not absorbed) → enteric infections, pre-surgical bowel preparation, ↓ ammonemia in hepatic coma; neomycin = severe nephrotoxicity → not systemic.",
+    "Amikacin / netilmicin: resistant to acetyl-transferases → gentamicin-resistant bacteria, nosocomial infections."
+   ]
+  },
+  {
+   "id": "Antibiotici-3__tetracicline",
+   "name": "Tetracyclines",
+   "nameShort": "Tetracyclines",
+   "memo": "Bind to the **30S**; **not under age 8/in pregnancy** (teeth), photosensitivity, **chelate Ca²⁺/Fe** (not with milk).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "insert into the 30S subunit → prevent the binding of tRNA to the acceptor site. Four-ring structure with a divalent-cation chelating motif."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "30S ribosomal subunit."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "chelation of divalent cations (Ca, Mg) → insoluble precipitates in the gastric environment → zero bioavailability (caution with dairy products/cheeses/antacids); bone tropism (chelate tissue Ca). Natural: tetracycline, oxytetracycline, chlortetracycline, demeclocycline; semisynthetic: doxycycline, minocycline."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "broad spectrum (Gram+, Gram-, aerobes, anaerobes, protozoa, spirochetes, rickettsiae, ureaplasmas, mycoplasmas, chlamydiae); rickettsioses, intracellular organisms, brucellosis/cholera, cocci, genitourinary, acne (Propionibacterium acnes), H. pylori (in combination)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADRs)",
+     "value": "CONTRAINDICATED < 12 years and in pregnancy/breastfeeding (irreversible dental discoloration/hypoplasia, ↓ bone strength; in newborns ↑ intracranial pressure); direct GI toxicity (esophagitis, erosions/ulcers, pancreatitis, hepatitis, pseudomembranous colitis); renal toxicity (interstitial nephritis, acute renal failure — less than aminoglycosides; ⚠️ expired tetracyclines = nephrotoxic); hypersensitivity rare (rash, angioedema); thrombophlebitis, photosensitivity; minocycline → transient vestibular disturbances."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "widespread and easy to induce — efflux pumps (Tet genes, plasmids), ribosomal protection, reduced penetration, enzymatic inhibition."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "❌ never with divalent cations (dairy products, antacids); + other drugs in H. pylori therapy."
+    }
+   ],
+   "freetext": []
+  }
+ ]
+}

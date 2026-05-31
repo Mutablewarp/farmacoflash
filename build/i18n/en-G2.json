@@ -1,0 +1,709 @@
+{
+ "group": "G2",
+ "entries": [
+  {
+   "id": "A7__emicrania-terapia-dell-attacco-acuto-fan",
+   "name": "Migraine — acute attack therapy (NSAIDs / paracetamol; principles)",
+   "nameShort": "Migraine — acute attack therapy",
+   "memo": "Attack driven by **CGRP + meningeal vasodilation**: NSAIDs+caffeine, and triptans if needed.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "NSAIDs → ↓ inflammation, ↓ central and nociceptive-terminal sensitization (↓ prostaglandins). (NSAID/paracetamol details → file A5.)"
+    },
+    {
+     "label": "Molecular Target",
+     "value": "COX."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "clinical endpoint = pain reduction at **2 h** + need for *rescue therapy*."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**level A** (max efficacy): analgesics and some NSAIDs (paracetamol, ASA, diclofenac, ibuprofen, naproxen), **triptans** (oral/nasal spray/sc), **ergot derivatives** (dihydroergotamine). Ketorolac → not top-level evidence. Indometacin (potent, nephrotoxic), ketorolac (nephrotoxic/gastrolesive). **In the SmPC** for migraine: only **naproxen and ibuprofen**; paracetamol/ASA → \"headache\" (others = **off-label**). ASA retains efficacy in repeated attacks (no tolerance)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "NSAIDs → gastrolesivity and nephrotoxicity; **opioids/barbiturates** → tolerance/dependence."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**overuse** if used >3 times/month (NSAIDs or triptans) → medication-overuse headache. NSAIDs/paracetamol **safe in G6PD deficiency** at therapeutic doses."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "**caffeine** → ↑ GI absorption of ergotamine/dihydroergotamine (↑ bioavailability; no nociceptive action)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A7__derivati-dell-ergot-ergotamina-diidroerg",
+   "name": "Ergot derivatives (ergotamine, dihydroergotamine)",
+   "nameShort": "Ergot derivatives",
+   "memo": "Potent but dirty vasoconstriction (also α1): effective, toxic, supplanted by triptans.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**agonist** of **serotonergic, noradrenergic/adrenergic and dopaminergic** receptors → **vasoconstriction** (↓ vascular caliber), ↓ inflammatory component."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "5-HT receptors (incl. **5-HT2**), adrenergic, dopaminergic."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "ergotamine **very low bioavailability** (<1% oral, up to 3% rectal); extensive hepatic metabolism; short half-life (2 h). Caffeine ↑ absorption."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "acute migraine attacks (since 1926); dihydroergotamine = level A."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "significant **emetogenic** effect (especially parenteral); **intense generalized vasoconstriction** (paresthesias, numbness, hot/cold sensations, up to **gangrene** = ergotism); **coronary vasospasm** (chest pain/heaviness); central effects (5-HT2)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**contraindicated** in peripheral vasculopathies, coronary artery disease, hypertension, **pregnancy** (abortifacient)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "caffeine (↑ bioavailability). ⚠️ **NOT with triptans** (synergism of side effects)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A7__triptani-sumatriptan-ii-generazione",
+   "name": "Triptans (sumatriptan + 2nd generation)",
+   "nameShort": "Triptans",
+   "memo": "**5-HT1B/1D** agonists: selective meningeal vasoconstriction; **forbidden in ischemic heart disease**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "serotonin analogs; **selective 5-HT1 agonists** (B/D; eletriptan also central **F**) → ↓ peripheral neurogenic inflammation, ↓ excitability of trigeminal nuclei (5-HT1F)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "**5-HT1B / 5-HT1D** receptors (+ 1F for the lipophilic ones)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "sumatriptan (1st gen, oral bioavailability **14%**, onset 60 min); 2nd gen → higher bioavailability (~40%), onset 30-45 min, more lipophilic (eletriptan, naratriptan); routes oral/nasal spray/**sc** (sc sumatriptan = best response). **MAO** metabolism. **Early administration** (during aura/onset of attack) → ↓ central sensitization (allodinia if inadequate response at 2 h)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "moderate-severe acute attacks; also effective on **associated symptoms** (photophobia, phonophobia, nausea, vomiting); **no tolerance**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "peripheral paresthesias; **coronary spasm (4%)**, shortness of breath, heaviness, anxiety, palpitations, chest pain. **NO** central effects (no 5-HT2 → no hallucinations); low risk of serotonin syndrome."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**contraindicated** in coronary artery disease, hypertension, cardiac alterations; ⚠️ **NOT with ergot alkaloids**. **Sulfonamide group** (sumatriptan, naratriptan, eletriptan, almotriptan) → cross-hypersensitivity with sulfonamides → prefer **zolmitriptan, rizatriptan, frovatriptan** (lacking SH)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "⚠️ **MAO inhibitors** (↑ serotonin → serotonin syndrome); often + antiemetics (**metoclopramide**, crosses the BBB)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A7__nuove-classi-anti-emicrania-ditani-gepan",
+   "name": "New antimigraine classes (ditans, gepants, anti-CGRP mAbs)",
+   "nameShort": "New antimigraine classes",
+   "memo": "They target **CGRP** without constricting vessels: gepants and anti-CGRP antibodies, safe even in cardiac patients.",
+   "segments": [
+    {
+     "label": "Ditans (Lasmiditan)",
+     "value": "**selective central 5-HT1F agonist**, lacking 5-HT1B/1D agonism → **no peripheral vasoconstriction → no CV effects** of triptans. (FDA yes, EMA not yet.)"
+    },
+    {
+     "label": "Gepants (Rimegepant, Ubrogepant)",
+     "value": "**CGRP receptor antagonists** (small molecules) → block CGRP-receptor binding (receptor with accessory protein **RAMP-1**). **Oral** route. Rimegepant ≈ sumatriptan at high concentrations (EMA: acute attack **and** prevention); ubrogepant sustained efficacy. **No peripheral vasoconstriction**; mild ADR (nausea, dizziness, fatigue, somnolence, dry mouth)."
+    },
+    {
+     "label": "Anti-CGRP mAbs (prophylaxis)",
+     "value": "**Fremanezumab, Galcanezumab** (anti-CGRP, bind soluble and bound fractions), **Erenumab** (anti-CGRP **receptor**). Large molecules → no central action; **parenteral** (sc/IV); **long half-life** (monthly/quarterly → ↑ compliance); **no interactions/no hepatic alterations**; humanized (Erenumab) → ↓ hypersensitivity. Erenumab ADR: constipation, nasopharyngitis, injection-site reactions; rarely severe hypersensitivity. **Expensive → not 1st line.**"
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A7__emicrania-terapia-profilattica",
+   "name": "Migraine — prophylactic therapy",
+   "nameShort": "Migraine — prophylactic therapy",
+   "memo": "Prevented with 'borrowed' drugs: **β-blockers, antiepileptics, TCAs**, and nowadays anti-CGRP.",
+   "segments": [
+    {
+     "label": "Indication",
+     "value": "≥3 severe attacks/month or failure to respond to symptomatic therapy. Reduces recurrence by ~**50%** (not curative).\n• **Beta-blockers** (**propranolol**, the most lipophilic; non-selective β1/β2 — the β2 component is needed for vasoconstriction): **the only antihypertensives usable in pregnancy**.\n• **Membrane-stabilizing antiepileptics**: **valproic acid**, **topiramate** (2nd gen, better) → ↓ trigeminal excitability.\n• **Tricyclic antidepressants** (**amitriptyline**): potentiate the descending inhibitory pain pathways + stabilization of Na channels.\n• **Verapamil** (calcium-channel blocker) → **cluster headache**."
+    },
+    {
+     "label": "Common ADR",
+     "value": "**weight gain** (all except **topiramate**; reversible on discontinuation)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A7__antiemetici-centro-del-vomito-e-classi",
+   "name": "Antiemetics (vomiting center and classes)",
+   "nameShort": "Antiemetics",
+   "memo": "Four vomiting targets — **D2, 5-HT3, H1/M1, NK1** — choose the antiemetic based on the cause.",
+   "segments": [
+    {
+     "label": "Causes",
+     "value": "toxins/xenobiotics, motion sickness/vestibular, endocrine-metabolic, **hyperemesis gravidarum (1st trimester)**, postoperative, infections (pediatrics), GI obstructions; **drugs** (oral antibiotics, dopaminergics L-dopa/bromocriptine/ropinirole, cytotoxics, digoxin, NSAIDs, oral iron, opiates)."
+    },
+    {
+     "label": "Classes",
+     "value": "**antimuscarinics** (scopolamine → motion sickness; transdermal retroauricular patch 72 h; anesthesia premedication; ADR: somnolence, blurred vision, urinary retention); **1st-gen anti-H1** (promethazine, cyclizine; **doxylamine succinate + pyridoxine** → 1st-trimester pregnancy vomiting); **D2 antagonists** (phenothiazines, droperidol, domperidone, metoclopramide); **5-HT3 antagonists** (ondansetron, granisetron, tropisetron, dolasetron — **chemo**-induced vomiting, + glucocorticoids; ADR: headache, constipation, flushing); **benzodiazepines** (diazepam, lorazepam — chemo, cortical afferents); **glucocorticoids** (dexamethasone, methylprednisolone); **cannabinoids** (nabilone — chemo; ↑ appetite, ↓ pain, ↑ mood)."
+    }
+   ],
+   "freetext": [
+    "**Vomiting center / CTZ** (area postrema, **outside the BBB**) stimulated by: **acetylcholine** (muscarinic), **vestibular afferents**, GI mechanoceptors, **serotonin** (peripheral and central 5-HT3 — chemo/radiotherapy), **dopamine** (**D2** — L-dopa, agonists, opiates), **histamine** (H1), cortex (psychogenic/meninges → GABA/serotonin)."
+   ]
+  },
+  {
+   "id": "A7__domperidone-e-metoclopramide",
+   "name": "Domperidone and Metoclopramide",
+   "nameShort": "Domperidone and Metoclopramide",
+   "memo": "Same D2 target: **metoclopramide crosses the BBB → EPS**, **domperidone does not** (but prolongs the QT).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "(1) **D2 antagonism in the CTZ** → ↓ sensation of vomiting; (2) counteract dopaminergic inhibition in the **myenteric plexus** → **↑ peristalsis (prokinetic)**. **Metoclopramide** additionally: **5-HT3** antagonist + **5-HT4 agonist** (prokinetic)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "D2 receptor (+ 5-HT3/5-HT4 for metoclopramide)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**Domperidone** → **does NOT cross the BBB** (devoid of extrapyramidal effects). **Metoclopramide** → **crosses the BBB** (sedative effect); good oral bioavailability (often injectable because of the vomiting); **phase II** metabolism; renal elimination."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "metoclopramide → gastroparesis, functional dyspepsia, chemotherapy-induced vomiting, gastroesophageal reflux."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "(from central D2 blockade) **iatrogenic parkinsonism**, limbic/mesocortical dysfunction (cognitive), **tuberoinfundibular → hyperprolactinemia**, xerostomia, headache; **irreversible extrapyramidal effects** (metoclopramide → **avoid in children**, methemoglobinemia risk). **QT prolongation** (domperidone)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "domperidone less problematic than metoclopramide on the extrapyramidal level."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "metoclopramide often combined with **triptans** (central component of nausea/vomiting)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A8__asma-bpco-basi-e-strategia-terapeutica",
+   "name": "Asthma / COPD — basis and therapeutic strategy",
+   "nameShort": "Asthma / COPD — basis and therapeutic strategy",
+   "memo": "Two fronts together: **bronchodilate** and **quench inflammation**. SABA as needed, **inhaled corticosteroid as maintenance**.",
+   "segments": [
+    {
+     "label": "Bronchomotor tone",
+     "value": "**inhibitors** (bronchodilation) → adrenergic system (**β2**), NO, VIP; **excitators** (bronchoconstriction) → cholinergic (ACh on postsynaptic **M3/M1** + ↑ mucus; presynaptic **M2** = inhibitory autoreceptor), purinergic (**adenosine A1**), tachykinins."
+    },
+    {
+     "label": "Asthma",
+     "value": "bronchial hyperreactivity (allergens) → bronchospasm + inflammation + mucus hypersecretion; **reversible** (except for remodeling). **Early phase** (mast cells → **histamine + leukotrienes**) + **late phase** (eosinophils, lymphocytes, cytokines, leukotrienes C/D, adenosine; **basic cationic protein** → tissue damage)."
+    },
+    {
+     "label": "COPD",
+     "value": "**progressive** narrowing, not trigger-dependent, **not preventable**; ↑ local ACh (**TNF-α** on the epithelium)."
+    },
+    {
+     "label": "Strategy",
+     "value": "bronchodilators (β2-agonists, antimuscarinics, xanthines) + anti-inflammatories (glucocorticoids, antileukotrienes). ⚠️ **NSAIDs contraindicated** (shunt toward lipoxygenase → ↑ leukotrienes); **antihistamines only for prophylaxis**. **Inhalation route** → ↓ systemic effects (powder devices = active inspiration vs pressurized = no inspiration, for pediatric/elderly patients; **rinse the oral cavity**)."
+    },
+    {
+     "label": "SABA tolerance",
+     "value": "repeated stimulation → **β-arrestin** → downregulation/internalization of the β2 receptor → **tachyphylaxis**. Solution: **LABA + glucocorticoid** (synergy)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A8__2-agonisti-saba-laba-ultra-laba",
+   "name": "β2-agonists (SABA, LABA, ultra-LABA)",
+   "nameShort": "β2-agonists",
+   "memo": "Stimulate **β2 → bronchodilation**: SABA for emergencies, LABA (always with ICS) for maintenance. ADR: tremor, tachycardia, hypokalemia.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**β2** agonists (Gs → AC → ↑ cAMP → PKA → myosin light-chain phosphorylation → relaxation). **Pleiotropic effect:** mast cells/eosinophils (↓ mediator release), epithelium (↑ mucociliary transport), endothelium (↓ extravasation), T lymphocytes (↓ cytokines)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "β2-adrenergic receptor."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**SABA** (salbutamol, terbutaline — onset **1-2 min**, half-life <6h; catecholaminergic analogs resistant to **COMT/MAO**) → acute phase as needed; **LABA** (salmeterol [partial agonist, delayed onset], formoterol [rapid onset] — duration **≥12h**, twice/day) → control/prevention; **ultra-LABA** (single administration, COPD)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**1st line** asthma and COPD; inhaled as needed (SABA) or systemic in severe attacks."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "cardiovascular (dose-mediated vasodilation, **reflex tachycardia**, ↑ cardiac work, nonspecific β1 stimulation, tachyarrhythmias); **hypokalemia** (↑ muscle K uptake → arrhythmias); **tremors**; **hyperglycemia** (hepatic/pancreatic β2 → ↑ insulin); **tachyphylaxis**."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "tolerance with chronic SABA use; ⚠️ if a β-blocker is needed → use **β1-selective** ones."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "**LABA + glucocorticoid** (synergy, ↓ tolerance); **LABA + antimuscarinic** (COPD)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A8__xantine-teofillinici-teofillina-aminofil",
+   "name": "Xanthines / theophyllines (theophylline, aminophylline)",
+   "nameShort": "Xanthines / theophyllines",
+   "memo": "↑ cAMP (anti-adenosine + PDE), but **very narrow therapeutic window** → arrhythmias and seizures.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "(1) **phosphodiesterase inhibitors** → ↑ cAMP and cGMP → bronchodilation (PKA + G-kinase); (2) **adenosine A1 receptor antagonists**. Pleiotropic anti-inflammatory effect (↓ mediators from mast cells/lymphocytes/eosinophils, ↓ vascular permeability). (Methylxanthines: theophylline, aminophylline, caffeine, theobromine.)"
+    },
+    {
+     "label": "Molecular Target",
+     "value": "phosphodiesterase; adenosine A1 receptor."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "⚠️ **narrow therapeutic window** (range **5-15 µg/ml** → plasma monitoring); metabolism via cytochromes."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "bronchodilator (asthma/COPD); **low cost** → useful in low-resource settings."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "CNS (insomnia, irritability, headache), GI (↑ peristalsis, ↑ acid secretion, ulcer), tremors, cardiac. **>30 µg/ml**: acid-base alterations, cerebral vasoconstriction, hypotension, **cardiac arrest, seizures, brain damage**."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "narrow window; contraindicated in cardiovascular disease, IBD, gastric hypersecretion, ulcer."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "⚠️ **inducers** (phenytoin, barbiturates, smoking, rifampicin) → ↓ concentrations; **inhibitors** (valproic acid) → ↑ concentrations above the range."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A8__antimuscarinici-sama-lama",
+   "name": "Antimuscarinics (SAMA, LAMA)",
+   "nameShort": "Antimuscarinics",
+   "memo": "Block **M3 → vagal bronchodilation**: the true protagonists of **COPD**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "antagonists of muscarinic **M1/M3** receptors → ↓ bronchoconstriction and ↓ mucus secretion."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "muscarinic receptors M1, M3."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**SAMA** (**ipratropium bromide** — onset 30-60 min, duration 6-8h, multiple administrations on a **regular** basis, not as needed); **LAMA** (**tiotropium bromide** — more lipophilic, single administration; **slow dissociation from M1/M3 and rapid from M2** = advantageous; glycopyrronium bromide)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "⚠️ especially **COPD** (↑ local ACh via TNF-α); nocturnal asthma/bronchospasm from psychogenic factors; in allergic asthma little advantage (β2 + GC preferred)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**xerostomia** (oral deposit, bitter taste → ↓ compliance); **do not cross the BBB** (no central effects); poor systemic absorption → well tolerated."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**regular** administration (not as needed)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "+ **LABA** / + β2-agonist (COPD)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A8__glucocorticoidi-sistemici-inalatori",
+   "name": "Glucocorticoids (systemic + inhaled)",
+   "nameShort": "Glucocorticoids",
+   "memo": "Corticosteroids with **complete hepatic first-pass**: they quench asthma with minimal systemic effects.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**GR** receptor → transcription (↓ proinflammatory cytokines, **↑ annexin-1** → inhibits phospholipase A2 → ↓ arachidonic acid **upstream** → ↓ prostanoids *and* leukotrienes; ↑ **NF-κB** inhibitor). Unlike NSAIDs, no shunt toward lipoxygenase."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "glucocorticoid receptor (GR); NF-κB; phospholipase A2 (via annexin-1)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**systemic** → methylprednisolone (active, **IV in severe attack every 6h**), prednisone/methylprednisone (ketone forms → hepatic bioactivation, oral). **Inhaled** → **beclometasone, ciclesonide** (bioactivated by pulmonary esterases), **budesonide, fluticasone** (intense hepatic first-pass → inactivation)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**cornerstone of asthma** (+ β2-agonist, synergy); severe attack (IV methylprednisolone); short oral courses (prednisone **5 days**) for exacerbations; **inhaled** preferred."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**systemic** → *see file A4* (HPA axis suppression, hyperglycemia, hypertension/edema, osteoporosis, ulcer, cataract, psychosis, **growth retardation** → systemic ones **NOT to be used in pediatrics**). **Inhaled**: oral candidiasis, **dysphonia** (vocal cord atrophy); minimal systemic effects (budesonide safe up to 1500 µg/day)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "therapy >5 days → **taper** (risk of acute adrenal insufficiency)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "+ **β2-agonist** (synergy: ↑ β2 expression, ↓ tolerance)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A8__cromoni-cromoglicato-di-sodio",
+   "name": "Cromones (sodium cromoglycate)",
+   "nameShort": "Cromones",
+   "memo": "**Stabilize mast cells**: prophylaxis only, useless during the attack.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**membrane stabilization** of inflammatory cells (↓ mediator release) + inhibition of cytokine release; mechanism not fully elucidated; **no direct effect on bronchial tone**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "mast cell/inflammatory cell membrane."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "inhalation route; poor GI absorption; no BBB; **excreted unchanged** (no metabolic interactions)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "asthma from antigens/physical activity/irritants; ⚠️ **pediatrics and pregnancy** (absolute safety). Prophylaxis."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "few (airway irritation, rare headache/nausea/vomiting/dizziness)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**modest** efficacy (\"better than nothing\")."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "—"
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A8__antileucotrienici-zileuton-montelukast-z",
+   "name": "Antileukotrienes (zileuton; montelukast, zafirlukast, pranlukast)",
+   "nameShort": "Antileukotrienes",
+   "memo": "**Montelukast** blocks CysLT1: one tablet in the evening for exercise-induced asthma, ASA-induced asthma, and in children.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "(1) **5-lipoxygenase inhibitor** (**Zileuton**); (2) **cysteinyl-leukotriene receptor antagonists** (**montelukast, zafirlukast, pranlukast**). Cysteinyl-leukotrienes → bronchoconstriction, exudate, eosinophil recruitment, ↑ mucus."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "5-lipoxygenase (zileuton); cysteinyl-leukotriene receptor (-lukast)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**oral route** (not inhalation); zileuton short half-life (multiple administrations, low potency); **montelukast** single administration/day (also **pediatric**). Intense hepatic metabolism."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "asthma (montelukast with registered pediatric studies)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **hepatic toxicity** (monitor transaminases with chronic use); headache."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**polymorphisms** of leukotriene receptors → interindividual variability (try an alternative molecule)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "consider metabolic inducers/inhibitors."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A8__biotecnologici-omalizumab-anti-il5",
+   "name": "Biotechnological agents (omalizumab, anti-IL5)",
+   "nameShort": "Biotechnological agents",
+   "memo": "Targeted antibodies for severe asthma: **anti-IgE** (omalizumab, allergic) and **anti-IL5** (eosinophilic).",
+   "segments": [
+    {
+     "label": "Omalizumab",
+     "value": "**anti-IgE IgG** → binds **free circulating IgE** (not those bound to the receptor) → ↓ interaction with the receptor on mast cells/eosinophils/macrophages → ↓ early and late response. Indication: **severe uncontrolled asthma, >12 years** (not pediatric). **Sc**, dose based on IgE titer; **half-life 26 days** (every 2-4 weeks). ADR: murine portion → immunogenicity/hypersensitivity (long-term unknown). High cost."
+    },
+    {
+     "label": "Anti-IL5",
+     "value": "**mepolizumab, reslizumab** (anti-IL5); **benralizumab** (anti-IL5 **receptor**) → ↓ activation and **eosinophil depletion** (within 24h). Indication: **severe refractory asthma with eosinophilic phenotype >50%**. Well tolerated short-term."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A9__farmaci-biologici-proteine-terapeutiche-",
+   "name": "Biological drugs / therapeutic proteins (concepts)",
+   "nameShort": "Biological drugs / therapeutic proteins",
+   "memo": "Proteins from recombinant DNA: the copy is not a generic but a **biosimilar** (a dedicated trial is required).",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "drugs **more potent and specific than glucocorticoids**, for diseases from abnormal immune response (allergic/dermatological), autoimmunity, inflammation (**RA, IBD**), oncology (immunotherapy). They are **proteins** (or nucleic acids) produced with **recombinant DNA**."
+    },
+    {
+     "label": "Requirements of the biotechnological agent",
+     "value": "not present in nature in native form; produced with genetic engineering; may require a **hybridoma** (mAb); act via the body's receptors. (The antibiotic is **NOT** biotechnological.)"
+    },
+    {
+     "label": "Types of therapeutic proteins",
+     "value": "monoclonal antibodies, cytokines, **hormones** (insulin = the first, 1980s), **fusion proteins** (etanercept). **Decoy receptor** = molecular trap (recognizes the ligand but lacks the intracellular domain) → e.g. **denosumab**."
+    },
+    {
+     "label": "Generations",
+     "value": "**I** = identical to the human endogenous one → replacement therapies (recombinant insulin, GH, somatostatin, coagulation factors, erythropoietin); **II** = modified primary/post-translational structure, same function but better PK/PD (insulin analogs lispro/aspart/glargine; PEGylation; fusion proteins); **III** = modifications that **change the activity** → new functions (**pegvisomant** = mutated GH + PEG → GH receptor **antagonist**)."
+    },
+    {
+     "label": "Structural modifications",
+     "value": "glycosylation; **PEGylation** (↑ hydrophilicity, masks immunogenic epitopes, ↑ protease resistance, ↓ renal filtration → **↑ half-life**, ↓ aggregation); **fusion partner** (antibody Fc → dimerization, ↑ receptor binding)."
+    },
+    {
+     "label": "Pharmacokinetics",
+     "value": "**parenteral** route (no oral → degradation + high MW; IV/sc/im; **sc** improves compliance); exception **ciclosporin** (lipophilic cyclic peptide → oral). **Lymphatic** distribution; no binding to plasma proteins; hepatic metabolism (internalization/lysis); metabolites = amino acids."
+    },
+    {
+     "label": "Disadvantages",
+     "value": "**immunogenicity** (anti-drug antibodies → ↓ half-life); instability/aggregation; manufacturing process to be standardized (toxic contaminants)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A9__anticorpi-monoclonali-tipi-e-nomenclatur",
+   "name": "Monoclonal antibodies (types and nomenclature)",
+   "nameShort": "Monoclonal antibodies",
+   "memo": "The suffix tells how human it is: **-omab → -ximab → -zumab → -umab** (decreasing immunogenicity).",
+   "segments": [
+    {
+     "label": "Structure",
+     "value": "2 heavy chains + 2 light chains. **Constant Fc** (interaction with receptors/complement/NK, signal transduction); **variable/hypervariable portion** (antigen-specific binding)."
+    },
+    {
+     "label": "Types (decreasing immunogenicity)",
+     "value": "**murine** (`-omab`; high hypersensitivity risk, low half-life); **chimeric** (`-ximab`; human Fc + murine variable); **humanized** (`-zumab`; only murine hypervariable, ~5%); **human** (`-umab`; minimal immunogenic risk, transgenic mice)."
+    },
+    {
+     "label": "Nomenclature",
+     "value": "[free prefix] + [target: **-li-** = immune system] + [origin: **-xi-** chimeric, **-zu-** humanized, **-u-** human] + suffix **-mab**. E.g. **infli-xi-mab**."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A9__anti-tnf-classe",
+   "name": "Anti-TNF-α (class)",
+   "nameShort": "Anti-TNF-α",
+   "memo": "Neutralize **TNF-α**, the engine of chronic inflammation; **rule out latent TB** before starting.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**TNF-α** is the main pro-inflammatory cytokine (with IL-1) → orchestrates the acute/chronic immune response (dysregulation also in oncology). The drugs bind **soluble** TNF-α → ↓ concentration → ↓ signal; the **antibodies** also bind the **transmembrane** form → cell lysis via complement/NK (upstream modulation → reduction of the **granuloma** in Crohn/TB). 3 molecules: 2 antibodies (**infliximab** chimeric, **adalimumab** human) + 1 **fusion protein** (**etanercept**)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "TNF-α (etanercept also TNF-β)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "all **parenteral** (see individual molecules)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "RA, psoriasis/psoriatic arthritis, Crohn's disease, ankylosing spondylitis."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "injection-site reactions (sc wheal); flu-like syndrome (nausea, headache); **immediate IV reactions** (urticaria, fever, hypo/hypertension → anaphylaxis); **↑ susceptibility to infections** (respiratory/cutaneous); ⚠️ **reactivation of latent TB** (loss of the granuloma → **screening before therapy**); **demyelination/multiple sclerosis** (contraindicated if present); **heart failure** (contraindicated in cardiac patients); ↑ risk of **lymphomas/solid/cutaneous tumors**; drug-induced lupus (controversial). **Infliximab** = more reactions (more immunogenic)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "etanercept lower efficacy than the mAbs (does not bind the transmembrane form)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "**new prospects** → **certolizumab pegol** (PEGylated, single antibody portion + PEG instead of the Fc → ↑ safety); **golimumab** (human mAb, superior potency at reduced doses, binds soluble + transmembrane)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A9__infliximab",
+   "name": "Infliximab",
+   "nameShort": "Infliximab",
+   "memo": "**Chimeric** → immunogenic (anti-drug antibodies): combined with **methotrexate** to last.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**chimeric** anti-TNF-α antibody; binds the **soluble + bound + transmembrane** form."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "TNF-α."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**IV only**; weekly frequency → then more spaced out. Severe psoriasis: **-75% symptoms at week 24**."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "severe psoriasis, moderate-severe psoriatic arthritis, RA, ankylosing spondylitis, Crohn's."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "the **most immunogenic/cumulative** of the class (see card \"Anti-TNF-α\")."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "N/A specific."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "N/A specific."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A9__adalimumab",
+   "name": "Adalimumab",
+   "nameShort": "Adalimumab",
+   "memo": "**Fully human**, subcutaneous at home every 2 weeks: long the best-selling drug in the world.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**fully human** anti-TNF-α antibody; binds **soluble + bound + transmembrane** form."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "TNF-α."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**sc**, loading dose + **biweekly** maintenance; effect maintained over time."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "like infliximab."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**lower probability** of adverse reactions (human antibody)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "N/A specific."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "⚠️ ↓ TNF-α → **de-inhibition of cytochromes 2D6 and 1A2** (TNF-α inhibits them) → ↑ metabolism of drugs such as **duloxetine**."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A9__etanercept",
+   "name": "Etanercept",
+   "nameShort": "Etanercept",
+   "memo": "Not an antibody but a **decoy receptor** for TNF; weak in IBD (does not bind membrane TNF).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**fusion protein** = TNF-α (and TNF-β) receptor + antibody Fc; binds **soluble + bound** form, **NOT** the transmembrane one → no cell lysis."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "TNF-α and TNF-β."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**sc**."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "like the others (RA, Crohn's, psoriasis); ⚠️ **also approved in children** (relevant for severe pediatric chronic inflammatory diseases)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "well tolerated."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**somewhat lower efficacy** than the mAbs (does not bind the transmembrane form → mechanism not implemented)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "N/A specific."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A9__biosimilari-concetti",
+   "name": "Biosimilars (concepts)",
+   "nameShort": "Biosimilars",
+   "memo": "**Similar, not identical**: equivalence is demonstrated with a trial, not by chemistry alone.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "medicinal product **similar (not identical)** to an **originator** biologic whose patent has expired. Difference from the **generic**: the generic (small molecule) is **bioequivalent** and identical; the biosimilar is not, because **\"it is the process that makes the product\"** (host, glycosylation pattern, conformation) → possible differences in size, structure, post-translational modifications, stability (without impact on efficacy/safety)."
+    },
+    {
+     "label": "Registration (MA)",
+     "value": "modules 1-5. **Generic** → **bioequivalence** study (module 5), omits the preclinical (module 4). **Biosimilar** → **\"comparability exercise\"** in modules 3-4-5 (non-clinical **and** clinical), because it is not the same molecule; some data extrapolable from the originator; **immunogenicity and toxicology** to be evaluated."
+    },
+    {
+     "label": "Pharmacovigilance",
+     "value": "specific post-marketing plan. E.g. **Eprex** (erythropoietin biosimilar) withdrawn for **increased immunogenicity** due to a specific buffer."
+    },
+    {
+     "label": "Switching",
+     "value": "transition from originator to biosimilar. **WHO**: interchangeable if same clinical effect. **EMA**: choice by a **specialized center** (not by the GP), because they are similar but not identical. Meta-analyses → no relevant criticalities, but careful pharmacovigilance."
+    }
+   ],
+   "freetext": []
+  }
+ ]
+}

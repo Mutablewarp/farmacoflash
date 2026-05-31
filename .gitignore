@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+
+# log di sessione / file temporanei
+.claude/logs/
+build/_*.js
+build/*.tmp
+build/i18n/src-*.json
+screenshots/_*.png
+*.tmp
+*.log
+
+# sicurezza (mai committare segreti)
+.env
+.env.*
+*.pem
+*.key
+settings.json
+credentials.json
+*_secret*
+*_token*
+
+# note interne di lavoro (non nel repo)
+task_plan.md
+notes.md

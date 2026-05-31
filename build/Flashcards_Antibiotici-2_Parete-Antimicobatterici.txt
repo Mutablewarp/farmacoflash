@@ -1,0 +1,119 @@
+💊 FLASHCARDS — ANTIBIOTICI (2): INIBITORI PARETE NON-β-LATTAMICI + ANTIMICOBATTERICI
+Fonte: sbobine 🅱 Modulo I – docente, Lezione 16 "Gli antibiotici" (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
+
+
+💊 Fosfomicina
+Meccanismo d'Azione: inibisce la piruviltransferasi (prima reazione della biosintesi del peptidoglicano); analogo reattivo del fosfoenolpiruvato. Battericida.
+Target Molecolare: piruviltransferasi (enzima PEP-dipendente).
+Parametri Farmacocinetici: piccola molecola molto idrofila; ben assorbita os; non lega le proteine plasmatiche; rapida escrezione renale con accumulo sostenuto in vescica; monosomministrazione 2-3 g/die os. Intermedio instabile (derivato fosfonico).
+Indicazioni Cliniche: infezioni delle vie urinarie non complicate (indicazioni selettive); ampio spettro Gram+/Gram-.
+Reazioni Avverse Comuni (ADR): ben tollerata.
+Resistenze / Limiti di Efficacia: tasso di resistenza basso (soprattutto E. coli).
+Associazioni Farmacologiche / Adiuvanti: interazioni con farmaci che alterano il tratto GI (es. metoclopramide).
+
+
+💊 Cicloserina
+Meccanismo d'Azione: agisce sulla prima tappa dell'assemblaggio del peptidoglicano; analogo strutturale della D-alanina; inibisce l'alanina racemasi (L-ala → D-ala) e la ligasi che forma il dimero D-ala–D-ala. Battericida ad ampio spettro.
+Target Molecolare: alanina racemasi + D-ala–D-ala ligasi.
+Parametri Farmacocinetici: ben assorbita os; buona diffusione (liquor, cavità sierose, placenta → non sicura in gravidanza); 0,5 g BID; eliminazione lenta.
+Indicazioni Cliniche: ampio spettro Gram+/Gram-; terapia antimicobatterica/TBC di II linea (dopo isoniazide, rifampicina, etambutolo).
+Reazioni Avverse Comuni (ADR): tossicità SNC (per elevata diffusione): cefalea, agitazione, insonnia → tremori, psicosi, convulsioni.
+Resistenze / Limiti di Efficacia: N/D specifici nei documenti.
+Associazioni Farmacologiche / Adiuvanti: N/D nei documenti forniti.
+
+
+💊 Bacitracina
+Meccanismo d'Azione: derivato peptidico ciclico; inibisce il bactoprenolo (trasportatore fosfolipidico del peptidoglicano in formazione verso l'esterno della cellula).
+Target Molecolare: bactoprenolo.
+Parametri Farmacocinetici: non completamente assorbita os → sfruttata per azione topica (come neomicina, rifaximina).
+Indicazioni Cliniche: spettro selettivo Gram+; azione topica per infezioni intestinali da germi sensibili (cocchi, bacilli Gram+).
+Reazioni Avverse Comuni (ADR): tratto GI (nausea, stipsi, vomito).
+Resistenze / Limiti di Efficacia: non attraversa la membrana esterna dei Gram-.
+Associazioni Farmacologiche / Adiuvanti: spesso associata a neomicina (aminoglicoside).
+
+
+💊 Glicopeptidi (classe — vancomicina, teicoplanina, daptomicina)
+Meccanismo d'Azione: peptidi ciclici complessi; si legano direttamente al dimero D-alanina–D-alanina → impediscono il riconoscimento del target da parte degli enzimi (bloccano la transglicosidasi). Battericidi.
+Target Molecolare: dimero D-alanina–D-alanina (substrato).
+Parametri Farmacocinetici: vedi singole molecole.
+Indicazioni Cliniche: Gram+: S. aureus meticillino-resistente (MRSA), Enterococchi, Bacillus anthracis, Clostridium difficile.
+Reazioni Avverse Comuni (ADR): ipersensibilità (vedi singole).
+Resistenze / Limiti di Efficacia: fenotipo VAN A = resistenza inducibile crociata vancomicina/teicoplanina; plasmide costitutivo o inducibile.
+Associazioni Farmacologiche / Adiuvanti: attenzione all'associazione con aminoglicosidi (endocardite); evitare sinergismo di tossicità (oto-/nefrotossicità, es. con diuretici).
+
+
+💊 Vancomicina
+Meccanismo d'Azione: glicopeptide (lega il dimero D-ala–D-ala).
+Target Molecolare: dimero D-alanina–D-alanina.
+Parametri Farmacocinetici: os → scarso assorbimento (struttura macrociclica) → azione topica intestinale; EV per infezioni sistemiche; buona distribuzione, basso legame proteine plasmatiche, raggiunge il SNC con meningi infiammate; eliminazione renale; t½ basso → dosi basse ripetute.
+Indicazioni Cliniche: colite pseudomembranosa da C. difficile (os); MRSA grave (EV): setticemia, polmoniti, osteomieliti, infezioni dei tessuti molli.
+Reazioni Avverse Comuni (ADR): ipersensibilità (orticaria, reazioni anafilattoidi, flebiti, sindrome dell'uomo rosso); nefrotossicità; ototossicità.
+Resistenze / Limiti di Efficacia: incremento della MIC negli anni; VAN A.
+Associazioni Farmacologiche / Adiuvanti: attenzione + aminoglicosidi (endocardite) e + diuretici (sinergismo ototossico).
+
+
+💊 Teicoplanina
+Meccanismo d'Azione: glicopeptide.
+Target Molecolare: dimero D-alanina–D-alanina.
+Parametri Farmacocinetici: lunga durata d'azione, alto legame proteine plasmatiche → IM in monosomministrazione/die (anche EV).
+Indicazioni Cliniche: stesse della vancomicina; efficacia paragonabile.
+Reazioni Avverse Comuni (ADR): nausea, vomito, diarrea, ipersensibilità.
+Resistenze / Limiti di Efficacia: fenotipo VAN A (resistenza inducibile crociata con vancomicina).
+Associazioni Farmacologiche / Adiuvanti: N/D specifici nei documenti.
+
+
+💊 Antimicobatterici (quadro generale + terapia antitubercolare)
+Caratteristiche dei micobatteri: crescita lenta, cicli di attivazione rarefatti, intracellulari, parete spessa con acidi micolici (protezione), localizzazione in tessuti difficili (midollo osseo, fegato, linfonodi), riattivazione dopo latenza → terapie lunghe (mesi), in associazione, a meccanismi multipli, per contrastare resistenze a rapida insorgenza.
+I linea (minori effetti collaterali): isoniazide, rifampicina, pirazinamide; anche etambutolo (meno tollerato, soprattutto + isoniazide).
+II linea (maggiore tossicità/resistenza): streptomicina e altre.
+Schema TBC: fase iniziale 2 mesi = isoniazide + rifampicina + pirazinamide + etambutolo; mantenimento 4 mesi = isoniazide + rifampicina (pirazinamide ed etambutolo solo in fase iniziale).
+Contesto: TBC tra le principali cause di morte (terzo mondo), aumento dei casi in Italia, prima causa di morte in AIDS; aumento delle resistenze ai farmaci di I linea.
+
+
+💊 Isoniazide (INI)
+Meccanismo d'Azione: inibisce gli enzimi della biosintesi dell'acido micolico → azione selettiva sul micobatterio; battericida.
+Target Molecolare: enzimi della biosintesi dell'acido micolico.
+Parametri Farmacocinetici: ben assorbita os; metabolismo di fase II per acetilazione; polimorfismo (acetilatori rapidi/lenti) → gli acetilatori lenti hanno ridotta eliminazione → ↑ effetti collaterali.
+Indicazioni Cliniche: farmaco di prima scelta nella TBC (fase iniziale + mantenimento).
+Reazioni Avverse Comuni (ADR): neuropatia periferica, nausea, vomito, stitichezza, secchezza delle fauci (inibizione trasmissione colinergica), episodi psicotici, ginecomastia, iperglicemia; peggiori negli acetilatori lenti e in associazione con etambutolo.
+Resistenze / Limiti di Efficacia: sviluppo di resistenze → uso in associazione.
+Associazioni Farmacologiche / Adiuvanti: tossicità aumentata in associazione con etambutolo.
+
+
+💊 Etambutolo
+Meccanismo d'Azione: inibisce il trasferimento dell'acido micolico nella parete del micobatterio; target selettivo; batteriostatico.
+Target Molecolare: trasferimento dell'acido micolico.
+Parametri Farmacocinetici: N/D dettagli nei documenti.
+Indicazioni Cliniche: I linea TBC (fase iniziale).
+Reazioni Avverse Comuni (ADR): disturbi visivi da tossicità del nervo ottico — nevrite ottica, disturbi della rifrazione, cecità al colore rosso-verde, restringimento del campo visivo, riduzione dell'acuità visiva; peggiori se + isoniazide.
+Resistenze / Limiti di Efficacia: non usato in mantenimento (potenziale di effetti indesiderati).
+Associazioni Farmacologiche / Adiuvanti: tossicità neuropatica aumentata in associazione con isoniazide.
+
+
+💊 Rifampicina
+Meccanismo d'Azione: antibiotico macrociclico; inibisce l'RNA-polimerasi DNA-dipendente → inibisce la sintesi dell'RNA; attiva anche su microrganismi a lenta crescita.
+Target Molecolare: RNA-polimerasi DNA-dipendente.
+Parametri Farmacocinetici: ben assorbita os; ricircolo enteroepatico; INDUTTORE dei citocromi CYP1A2, 2C9, 2C19, 2D6, 3A4 (già dopo 7 giorni); ottima distribuzione (incl. SNC); colora di rosso le secrezioni (feci, urina, saliva).
+Indicazioni Cliniche: TBC (fase iniziale + mantenimento); lebbra (anti-leprosico); altri micobatteri.
+Reazioni Avverse Comuni (ADR): eruzioni cutanee, epatopatie, interessamento GI; raramente ipersensibilità, reazioni cutanee gravi, sindrome simil-influenzale.
+Resistenze / Limiti di Efficacia: aumento delle resistenze (preoccupante data la maneggevolezza/sicurezza del farmaco).
+Associazioni Farmacologiche / Adiuvanti: nelle associazioni offre un doppio punto d'attacco (target diverso → ↓ resistenze). ⚠️ Induttore enzimatico → altera le terapie concomitanti (attenzione nei 2+4 mesi).
+
+
+💊 Pirazinamide
+Meccanismo d'Azione: non chiarito; sembra aumentare il danno ossidativo intracellulare, concentrarsi e ridurre il pH cellulare in modo selettivo per il micobatterio, anche senza replicazione. Battericida anche su organismi a lentissima crescita.
+Target Molecolare: non chiarito.
+Parametri Farmacocinetici: rapidamente assorbita os. (La più recente tra gli antitubercolari.)
+Indicazioni Cliniche: TBC (fase iniziale; non in mantenimento).
+Reazioni Avverse Comuni (ADR): tossicità epatica (↑ transaminasi), nausea, vomito, alterazioni GI, alterazioni di emostasi/ematocrito (anche preoccupanti), ipersensibilità (IgE o ritardata).
+Resistenze / Limiti di Efficacia: induce resistenze → solo in associazione; meno sicura sul piano della tollerabilità.
+Associazioni Farmacologiche / Adiuvanti: sempre in associazione (mai da sola).
+
+
+💊 Antitubercolari di II scelta
+Uso: resistenza/intolleranza ai farmaci di I linea o trattamento delle ricadute; maggiore profilo di tossicità.
+Cicloserina → vedi card dedicata.
+Capreomicina: peptide ciclico, meccanismo particolare, induce resistenza.
+Fluorochinoloni: buona distribuzione intracellulare; agiscono sulla DNA-girasi (meccanismo diverso dal target "acido micolico"); resistenza in rapidissimo aumento.
+Kanamicina, amikacina, streptomicina (aminoglicosidi): inducono resistenze; tossicità importante (nefrotossicità; la streptomicina dà ototossicità irreversibile); attenzione all'uso con isoniazide e altri neurotossici.
+

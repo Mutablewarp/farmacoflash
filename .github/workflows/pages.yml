@@ -1,0 +1,41 @@
+# Pubblica FarmacoFlash su GitHub Pages — SOLO manuale (workflow_dispatch).
+#
+# ⚠️ PRIVACY: su un account GitHub gratuito un sito Pages è PUBBLICO anche se il
+# repository è privato. Per un sito Pages *privato* (accesso solo agli utenti
+# autorizzati) serve GitHub Pro/Team/Enterprise.
+# Questo workflow NON parte da solo: va avviato a mano (Actions → "Deploy FarmacoFlash")
+# e Pages va prima abilitato in Settings → Pages → Source: GitHub Actions.
+# Finché non lo avvii tu, nulla viene pubblicato.
+
+name: Deploy FarmacoFlash (Pages)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepara il sito (app come index.html + screenshot)
+        run: |
+          mkdir -p _site
+          cp "Flashcard-Farmacologia.html" _site/index.html
+          cp -r screenshots _site/screenshots 2>/dev/null || true
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

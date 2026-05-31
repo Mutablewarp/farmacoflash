@@ -1,0 +1,836 @@
+{
+ "group": "G1",
+ "entries": [
+  {
+   "id": "A4__glucocorticoidi-classe-meccanismo-effett",
+   "name": "Glucocorticoids (class — mechanism, systemic effects, ADRs, interactions)",
+   "nameShort": "Glucocorticoids",
+   "memo": "They switch off inflammation by blocking **NF-κB**: no prostaglandins or leukotrienes. They treat almost everything, but the bill is **iatrogenic Cushing's**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "lipophilic (steroid structure, like cholesterol). They bind **intracellular receptors**: **GR** (glucocorticoid receptor, activated at **high** concentrations) and **MR** (mineralocorticoid, **high affinity**, activated at low conc). The receptor is complexed with **HSP** in the cytosol → on binding it is released, **dimerizes**, enters the nucleus, binds the **GRE** (glucocorticoid responsive element) → modulates **gene transcription**. **Anti-inflammatory action:** inhibition of **NF-κB** (↑ inhibitors, ↓ expression; genomic and non-genomic mechanism) → ↓ COX-2, iNOS, cytokines; **↑ annexin-1** → inhibition of **phospholipase A2** → ↓ arachidonic acid → ↓ **prostaglandins AND leukotrienes**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "GR and MR receptors (intracellular transcription factors)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters (class)",
+     "value": "excellent absorption by **all routes** (systemic even from intra-articular/topical/inhaled). Cortisol → **transcortin** + albumin; the synthetic ones bind **mainly albumin**. **Extensive hepatic first-pass metabolism** (caution in patients with liver disease); glucuronide/sulfate conjugation → renal elimination. ⚠️ **Peak not immediate** → **not suitable for acute emergencies**. Classification by potency/duration (see individual agents)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**replacement therapy** (adrenal insufficiency → hydrocortisone); **abnormal immune response** (immunosuppression in transplantation; autoimmune: asthma, rheumatoid arthritis, lupus, COPD; hypersensitivity/allergies); **oncology** (leukaemias, lymphomas — selective action on T lymphocytes, + chemotherapeutics); **oedema** (cerebral, trauma). Effects on formed elements: ↓ eosinophils/T lymphocytes/macrophages/dendritic cells/mast cells; **↑ circulating PMNs** (demargination + blockade of tissue migration); little effect on B lymphocytes (cellular immunity > humoral)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "they reflect the physiological systemic effects. Metabolism: **hyperglycaemia** (↑ gluconeogenesis/glucose-6-phosphatase; insulin resistance), protein catabolism → **steroid myopathy**, fat redistribution → **moon/cushingoid facies**. Salt-and-water (MR): **hypertension, oedema**; ↑ Ca excretion → **osteoporosis**. CV: ↑ sensitivity to catecholamines (↑ β1/α1) + RAAS. Gastric: ↓ prostaglandins → **peptic ulcer**. CNS: behavioural/mood disturbances, alteration of the sleep-wake rhythm. Endocrine alterations; **↓ GH in children**; cataract/vision disturbances; **immunosuppression → infections**. ⚠️ **From abrupt withdrawal** → **acute adrenal insufficiency** (suppressed axis) → **gradual tapered withdrawal** (prefer short half-life and/or alternate days)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**rapid tolerance** to the effects; not suitable for emergencies; **contraindications** (chronic use): hypertension/heart disease, **diabetes**, **ulcer**, psychosis/schizophrenia, **osteoporosis**, **glaucoma**, **infections**."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "**pharmacodynamic interactions** (antagonism with **antihypertensives**; they alter antidiabetics/hypoglycaemics/lipid-lowering drugs; **+ NSAIDs/ASA → ↑ ulcer risk** and pressor effects) and **pharmacokinetic** ones (**induction of hepatic cytochromes**)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A4__idrocortisone-cortisolo-cortisone",
+   "name": "Hydrocortisone (= cortisol) / Cortisone",
+   "nameShort": "Hydrocortisone",
+   "memo": "**Identical to cortisol** (1:1 gluco/mineralocorticoid): it is the **replacement therapy** for Addison's, not the anti-inflammatory of choice.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "reference glucocorticoid (endogenous); **glucocorticoid : mineralocorticoid activity = 1:1**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "GR + MR."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**short duration of action (8-12 h)**; reference equivalent dose ~**20 mg**. **Succinate** ester (hydrophilic) → IV in emergencies; **acetate/butyrate** esters (lipophilic) → cutaneous preparations. **Cortisone** = prodrug, converted in vivo into cortisol."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**replacement therapy** for adrenal insufficiency (acute and chronic) — of choice because it maintains **both** activities (GC + MC); emergencies (shock, anaphylaxis) by the IV route (succinate ester)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "as for the class."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "as for the class."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "as for the class."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A4__prednisone-prednisolone",
+   "name": "Prednisone / Prednisolone",
+   "nameShort": "Prednisone / Prednisolone",
+   "memo": "**Prodrug**: the liver activates it to prednisoLone. In patients with liver disease the conversion fails → **prednisoLone** is given directly.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "cortisol analogues with a **double bond at 1-2** → ↑ anti-inflammatory glucocorticoid activity, ↓ mineralocorticoid (MC ~0.3-0.5)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "GR."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**intermediate half-life** (~12-36 h) → less interference with the circadian rhythm compared with long-duration derivatives. **Prednisone → prednisolone** (active metabolite; hepatic first-pass essential → in patients with liver disease administer prednisolone directly). The **most versatile** among systemic GCs."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "chronic inflammatory and autoimmune diseases, **anti-rejection therapy**, hypersensitivity/allergies; rheumatology (2nd choice after NSAIDs); locoregional **intra-articular** use (only molecules not bioactivated by the liver)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "as for the class."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "as for the class."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "+ other immunosuppressants."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A4__metilprednisolone",
+   "name": "Methylprednisolone",
+   "nameShort": "Methylprednisolone",
+   "memo": "The **high-potency IV bolus** for immunological emergencies (MS relapse): plenty of glucocorticoid, **zero mineralocorticoid**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "derivative with a double bond and a **methyl ester** → ↑ glucocorticoid vs mineralocorticoid activity."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "GR."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**intermediate duration** (like prednisolone). Widespread oral use; **succinate** ester (hydrophilic) → IV; **acetate** ester → IM as a **depot form** (long duration)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "allergic conditions (fever/serum reactions, urticaria); **severe asthma attack** (point/resolving use, + bronchodilators — **never chronic** by the systemic route); prophylaxis of respiratory distress in **preterm birth**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "as for the class."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "chronic systemic use contraindicated (axis suppression already after ~5 days)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "+ bronchodilators (asthma)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A4__triamcinolone",
+   "name": "Triamcinolone",
+   "nameShort": "Triamcinolone",
+   "memo": "The **intra-articular** corticosteroid: the 16α-OH retains it within the joint, mineralocorticoid activity **abolished**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "↑ lipophilicity → ↑ glucocorticoid activity, **mineralocorticoid activity abolished (~0)**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "GR."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "intermediate duration."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "allergic and inflammatory conditions."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "as for the class."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "as for the class."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "No specific data in the documents."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A4__betametasone-e-desametasone-fluorurati",
+   "name": "Betamethasone and Dexamethasone (fluorinated)",
+   "nameShort": "Betamethasone and Dexamethasone",
+   "memo": "The **9α-fluoro** makes them up to **30× cortisol**, long duration, zero mineralocorticoid: dexamethasone of the cytokine storm.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "introduction of **fluorine** → **more potent and lipophilic** glucocorticoids, very high anti-inflammatory activity, **negligible mineralocorticoid**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "GR."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**long duration of action (up to 72 h)**; high potency (very low equivalent dose)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**Betamethasone** (methyl derivative of triamcinolone): critical/severe conditions **for short periods**; oral (effervescent phosphate), IV/IM (hydrophilic phosphate), hydrophobic esters (valerates/benzoates) for dermatological use; also useful for **pain** associated with post-operative oedema and in intra-articular administration. **Dexamethasone** (sodium phosphate, hydrophilic, parenteral): **cerebral oedema**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "profile of undesirable effects proportional to potency (as for the class)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**time-limited use** (no chronically elevated concentrations)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "as for the class."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A4__fludrocortisone",
+   "name": "Fludrocortisone",
+   "nameShort": "Fludrocortisone",
+   "memo": "The only glucocorticoid that works as a **pure mineralocorticoid**: it reabsorbs sodium → Addison's and orthostatic hypotension.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "structural variations with the opposite effect: **it loses glucocorticoid activity and gains mineralocorticoid activity**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "MR (predominant)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "No details in the documents."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**NOT** used as an anti-inflammatory → mineralocorticoid indication (different)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "No specific data in the documents."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "N/A in the provided documents."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "N/A in the provided documents."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A4__glucocorticoidi-topici-e-inalatori-beclo",
+   "name": "Topical and inhaled glucocorticoids (beclometasone, ciclesonide, budesonide, fluticasone; cutaneous)",
+   "nameShort": "Topical and inhaled glucocorticoids",
+   "memo": "**Total hepatic first-pass**: they act in the bronchus with minimal systemic effects. Rinse your mouth or **candida** sets in.",
+   "segments": [
+    {
+     "label": "Rationale",
+     "value": "**different molecules** from the systemic ones (the latter, if used topically, would give almost complete systemic absorption). Prodrugs bioactivated locally or molecules inactivated by hepatic first-pass are chosen → **minimal systemic exposure**."
+    },
+    {
+     "label": "Inhaled/topical (prodrugs from bronchial esterases)",
+     "value": "**Beclometasone dipropionate** (oral bioavailability ~20%; aerosol), **Ciclesonide** (oral bioavailability <1%)."
+    },
+    {
+     "label": "Inactivated by hepatic first-pass",
+     "value": "**Budesonide** (**gastro-resistant controlled-release** formulations → IBD, intestinal topical action; also inhaled), **Fluticasone** (inhaled/topical, negligible systemic effect)."
+    },
+    {
+     "label": "Cutaneous by potency",
+     "value": "low = hydrocortisone acetate; medium = clobetasone butyrate, hydrocortisone butyrate; high = beclometasone/betamethasone dipropionate, diflucortolone, fluticasone propionate; very high = clobetasol propionate, alcinonide. **Vehicle:** ointment (lipophilic) ↑ absorption; lotion/gel ↓ potency. Dose according to **FTU (finger-tip unit)**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "cutaneous → **skin atrophy, folliculitis, hypertrichosis** (androgen-like action), **hypersensitivity** (rare, **non-cross-reactive**; often from excipients/preservatives), rapid tolerance. In **children** ↑ systemic absorption (surface area/weight ratio) → systemic effects (hyperglycaemia, ↓ GH, axis suppression)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "systemic absorption ↑ with application surface area, altered skin barrier (burns), enhancers (iontophoresis/sonophoresis/laser), occlusive dressings."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "as for the class (for the absorbed fraction)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A5__fans-classe-meccanismo-azioni-effetti-co",
+   "name": "NSAIDs (class — mechanism, actions, side effects)",
+   "nameShort": "NSAIDs",
+   "memo": "They block **COX-1 and COX-2**: less pain, fever and inflammation, but also less protection → **gastric ulcer** and **renal damage**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**weak acids**; they inhibit **cyclooxygenase (COX)**. **COX-1** (constitutive) → thromboxane A2 (platelet aggregation), gastric cytoprotection (↑ mucus/bicarbonate, inhibition of the proton pump via PGE₂/EP3 receptor), renal perfusion. **COX-2** (inducible) → mediators of inflammation. Classic **non-selective** NSAIDs: steric hindrance in the catalytic site → they block the entry of arachidonic acid into **both**. **Coxibs**: they bind an accessory sulfonamide pocket **only of COX-2**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "COX-1 and/or COX-2."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "classification by **half-life**: short <6h (ASA, diclofenac, ibuprofen, indometacin, ketoprofen), medium 6-12h (ketorolac, etodolac, nimesulide), long >12h (piroxicam, naproxen, meloxicam). **Chemical** classification: propionic acid (-en), acetic acid (-ac), salicylic, fenamic, sulfonamides (coxibs), enolic (oxicams)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**3 actions** — **anti-inflammatory** (↓ PG from COX-2), **analgesic** (↓ nociceptor sensitization: PGs ↑ conduction via PKA → Ca/Na entry; role of **TRPV1** channels), **antipyretic** (↓ hypothalamic setpoint)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**GI/gastric injury** (ulcer, haemorrhage; favoured by **ion trapping** — undissociated acid crosses and accumulates in the gastric cell); **platelets** (↓ aggregation → haemorrhagic risk); **renal** (↓ prostacyclins → hypoperfusion/AKI — risk in hypertensives/CV/CKD/diuretics); **cardiovascular** (see coxibs); **CNS** (migraine, vertigo, hyperventilation — salicylates); **uterus** (indicated in primary dysmenorrhoea, **contraindicated in pregnancy** → prolongation of gestation, closure of the ductus arteriosus); **hypersensitivity** (vasomotor rhinitis, angioneurotic oedema, **asthma** — free leukotrienes, urticaria, shock)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**contraindications** — cardiovascular and renal alterations, hypersensitivity (especially to ASA), pregnancy/breastfeeding. **Paracetamol** = safer alternative (analgesic-antipyretic, not anti-inflammatory)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "**PPIs** or **misoprostol** (PG analogue, stimulates EP3) for gastroprotection; ⚠️ **+ glucocorticoids** → ↑ gastric injury; **+ anticoagulants** → ↑ haemorrhagic risk. **ASA + NSAIDs** → competition for COX-1 (see ASA card)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A5__acido-acetilsalicilico-asa-aspirina",
+   "name": "Acetylsalicylic acid (ASA / Aspirin)",
+   "nameShort": "Acetylsalicylic acid",
+   "memo": "**It acetylates COX irreversibly**: the anucleate platelet cannot repair itself → 100 mg = antiplatelet for 7-10 days.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**IRREVERSIBLE** inhibitor by **acetylation** (Ser of COX-1 and COX-2) → prevents the binding of arachidonic acid."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "COX-1 and COX-2 (acetylation)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "absorption in the stomach and **especially the intestine**; peak 1-2h; **short half-life** (hydrolysed in the plasma/liver); renal elimination. **Dose dependence:** low doses → analgesic/antipyretic; high doses (max **4 g/day**) → anti-inflammatory."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "inflammation, fever, rheumatic disease; **ANTIPLATELET at low doses (75-325 mg)** → secondary prevention of myocardial infarction (Patrono). *Kinetic rationale:* at low doses it acts on the **platelets in the portal circulation** (high concentration) before systemic dilution → **cumulative blockade** of platelets (lacking a nucleus → they do not resynthesize the enzyme) without systemic exposure."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**gastric injury** (accentuated by the irreversibility); hypersensitivity; **AKI** (elderly, CKD, children); **Reye's syndrome** in children (encephalopathy + hepatic toxicity → **contraindicated < 12 years**); **aspirin-induced asthma** (leukotrienes); salicylate poisoning (hyperventilation, **respiratory alkalosis**, suppression of the respiratory centre)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "in paediatrics only **paracetamol and ibuprofen** are permitted."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "↑ effect of **anticoagulants/antiplatelets** (synergy → haemorrhage); **+ glucocorticoids** → gastric injury; alters hypoglycaemics (hyperkalaemia → insulin); ↓ diuretics. ⚠️ **ASA + another NSAID** (e.g. ibuprofen): competition for COX-1 → the NSAID can **temporarily block the acetylation site** → ASA does not acetylate irreversibly → **loss of antiplatelet activity** → ↑ cardiovascular risk."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A5__derivati-dell-acido-propionico-ibuprofen",
+   "name": "Propionic acid derivatives (ibuprofen, ketoprofen, naproxen, flurbiprofen, fenoprofen)",
+   "nameShort": "Propionic acid derivatives",
+   "memo": "**Reversible** inhibition of COX-1/2 and short half-life: the most manageable and widely used NSAID.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**REVERSIBLE** inhibitors of COX; generally **non-selective** (some more COX-1: flurbiprofen, ketoprofen)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "COX-1/COX-2."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "well absorbed orally, **almost complete binding to albumin**. **Ibuprofen**: 200-800 mg every 4-6 h, the **best tolerated** (least gastric injury)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "common inflammations; chronic treatment of **rheumatoid arthritis and osteoarthritis**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**better GI tolerability** (vs other NSAIDs)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "as for the class."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "see ASA + NSAIDs."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A5__diclofenac-derivato-dell-acido-acetico",
+   "name": "Diclofenac (acetic acid derivative)",
+   "nameShort": "Diclofenac",
+   "memo": "**COX-2 preferential**: an excellent anti-inflammatory but the most **cardiotoxic** among the commonly used NSAIDs.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**greater selectivity for COX-2** → greater anti-inflammatory activity, fewer side effects (it spares COX-1)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "COX-2 (preferential)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "rapid absorption, **high protein binding**, half-life **1-2 h**; hepatic metabolism via **CYP2C** → glucuronidation/sulfation → urinary/biliary excretion."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "RA, osteoarthritis, pain, primary dysmenorrhoea (100-200 mg)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "reduced (COX-2 selectivity)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "No specific data."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "**peculiarity**: at low pH (inflammation) it **accumulates in inflamed joints/tissues**; possible inhibition of the **NF-κB** cascade (additional anti-inflammatory potential)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A5__indometacina-derivato-dell-acido-acetico",
+   "name": "Indometacin (acetic acid derivative)",
+   "nameShort": "Indometacin",
+   "memo": "Potent and toxic; the blockade of PGE2 is exploited to **close the ductus arteriosus** in the preterm infant.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**non-selective** NSAID, fairly **potent**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "COX-1/COX-2."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "peak 1-2h; **enterohepatic recirculation** (glucuronidated metabolites cleaved by the intestinal flora → reabsorption of the base form)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "chronic diseases (osteoarthritis, rheumatoid arthritis)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**significant nephrotoxicity** → not in common use (an option when the better-tolerated NSAIDs do not respond); enterohepatic recirculation prolongs the undesirable effects."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "use limited by toxicity."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "No specific data in the documents."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A5__ketorolac-toradol-derivato-dell-acido-ac",
+   "name": "Ketorolac (Toradol — acetic acid derivative)",
+   "nameShort": "Ketorolac",
+   "memo": "NSAID analgesia **comparable to opioids**, but **maximum 5 days**: beyond that, the kidney gives way.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "NSAID with **strong analgesic potential**; more selective for **COX-1**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "COX-1 (preferential)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "medium half-life (6-12h)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "analgesic power **comparable to opioids** → **moderate-severe post-operative pain**, alternative to weak opioids; **only short-term (max 5 days)**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**strong gastric injury** (proportional to the analgesic power)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "use limited to the short term."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "advantage vs opioids → **no respiratory depression, no dependence** (at the cost of gastric injury)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A5__nimesulide-aulin",
+   "name": "Nimesulide (Aulin)",
+   "nameShort": "Nimesulide",
+   "memo": "COX-2 preferential (stomach protected) but **hepatotoxic**: maximum 15 days.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "NSAID (medium half-life)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "COX (COX-2 oriented)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "medium half-life (6-12h)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "restricted by AIFA to **acute pain** and **primary dysmenorrhoea** (NOT chronic pain); **2nd line**, **maximum 15 days**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**hepatotoxicity** (EMA/AIFA reports) → little prescribed today."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "restricted indications because of the hepatic/GI risk."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "No specific data in the documents."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A5__oxicam-piroxicam-meloxicam",
+   "name": "Oxicams (piroxicam, meloxicam)",
+   "nameShort": "Oxicams",
+   "memo": "**Long half-life (24h)**, once daily owing to the enterohepatic circulation; the price: marked **gastric injury**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "NSAIDs derived from enolic acids; **non-selective** for COX-2 but \"**oriented**\"."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "COX (COX-2 oriented)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**long half-life** (>12h) → **single daily administration**."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**chronic** conditions (arthritis, osteoarthritis, rheumatoid arthritis)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "as for the class."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "No specific data."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "No specific data in the documents."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A5__coxib-celecoxib-valdecoxib-rofecoxib",
+   "name": "Coxibs (celecoxib, valdecoxib, rofecoxib)",
+   "nameShort": "Coxibs",
+   "memo": "**COX-2 selective**: they save the stomach but tip the balance towards **thrombosis** (rofecoxib was withdrawn because of myocardial infarctions).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**COX-2 selective** (accessory sulfonamide pocket)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "COX-2 (selective)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "No details in the documents."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "analgesic, anti-inflammatory, antipyretic with **low potential for gastric injury** and platelet alteration (TXA2 unaffected). **Celecoxib** → abdominal pain."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **increased cardiovascular risk** (↓ vasodilating prostacyclins against active COX-1/TXA2 → prothrombotic imbalance); **first coxibs withdrawn from the market** because of serious CV events."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**contraindicated** in patients at cardiovascular risk."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "No specific data in the documents."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A5__paracetamolo-fans-atipico",
+   "name": "Paracetamol (atypical NSAID)",
+   "nameShort": "Paracetamol",
+   "memo": "Safe up to a threshold, then **NAPQI** depletes glutathione → hepatic necrosis. Antidote: **N-acetylcysteine**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "different chemical structure; **poor inhibitor of COX-1/COX-2**. Activity on a **\"central COX-3\"** (antipyretic effect). Analgesia not fully clarified → **central** action (↓ central PGs), **descending inhibitory pathways** (serotonergic/noradrenergic), **endogenous opioid peptides**, **endocannabinoid system** (metabolite conjugated with arachidonic acid → **AM404**, anandamide-like → CB1 + desensitized TRPV). **Analgesic and antipyretic only, NOT anti-inflammatory.**"
+    },
+    {
+     "label": "Molecular Target",
+     "value": "central COX-3; serotonergic/noradrenergic/opioid/endocannabinoid systems."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**excellent** oral **bioavailability**; peak 30-60 min; **short half-life (2h)**; hepatic metabolism; renal elimination. **No gastric injury or platelet effect.**"
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "mild-moderate pain and fever; **one of the few drugs usable in paediatrics** (NSAIDs carry renal risk in children); dose sparing on opioids (↓ tolerance). Dose: 1000 mg/day inhibits ~50% COX-1/2."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **HEPATIC DAMAGE** — the metabolite **N-acetyl-benzoquinone-imine** (via **CYP2E1**) is normally detoxified by **glutathione**; if glutathione is depleted (excessive doses / wrong frequency) → **hepatotoxicity**. (<4 g low risk; >10 g severe insult.)"
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "safe in children, pregnancy, platelet problems, CV events, hypertension, nephropathies (liver disease with caution — the liver is the \"Achilles' heel\")."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "**antidote for poisoning = N-acetylcysteine** (thiol groups, replaces glutathione); ⚠️ **ethanol** induces CYP2E1 → ↑ hepatotoxic risk."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A6__istamina-recettori-e-strategie-farmacolo",
+   "name": "Histamine — receptors and pharmacological strategies",
+   "nameShort": "Histamine — receptors and pharmacological strategies",
+   "memo": "Four receptors, four worlds: **H1** allergy/CNS, **H2** gastric acid, H3 brake, H4 immunity.",
+   "segments": [
+    {
+     "label": "Receptors (4 isotypes, all GPCRs; drugs only for H1 and H2)",
+     "value": "• **H1** (Gq → PLC → DAG/IP3 → ↑ Ca²⁺): endothelium (NO → **vasodilation**), bronchial/intestinal smooth muscle (**bronchoconstriction**, ↑ peristalsis/cramps), CTZ/**vestibular apparatus** (nausea/vomiting), **hypothalamus** (feeding behaviour, **wakefulness**), skin (wheal, flushing, ↑ permeability), nerve endings (**itch/pain**).\n• **H2** (Gs → AC → ↑ cAMP): **gastric parietal cell** (↑ proton pump → HCl), heart (↑ chronotropism/inotropism).\n• **H3** (CNS, inhibitory control of NT release) and **H4** (immune cells): no drug available."
+    },
+    {
+     "label": "Pharmacological strategies",
+     "value": "(1) **H1/H2 antagonists** (= **inverse agonists** → they stabilize the resting form of the constitutively active receptor); (2) **inhibitors of mast cell degranulation** (**sodium cromoglicate** → useful in **prophylaxis**, ineffective against already-released histamine); (3) **functional antagonism** (**adrenaline** in anaphylactic shock: α1 ↑ blood pressure, β1 stimulates the heart, bronchodilation — faster than antihistamines)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A6__anti-h1-di-i-generazione-clorfeniramina-",
+   "name": "1st-generation anti-H1 (chlorphenamine, diphenhydramine, hydroxyzine, promethazine)",
+   "nameShort": "1st-generation anti-H1",
+   "memo": "They cross the blood-brain barrier → **sedation** + antimuscarinic effects: they are the over-the-counter sleep aids.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "inverse agonists of the **H1** receptor (they do not act on H2); **high lipophilicity** → they cross the **blood-brain barrier**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "H1 receptor (+ **poor selectivity** → also muscarinic, α-adrenergic, serotonergic receptors)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "excellent; high lipophilicity, high Vd, uniform distribution; hepatic metabolism; urinary elimination."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "symptomatic treatment of **allergic reactions** (rhinitis, urticaria, dermatitis); **antiemetics** (motion sickness/vestibular origin); **sedative-hypnotics** (promethazine); **Parkinson's** (anticholinergic activity to counterbalance the dopaminergic deficit). Little used as antiallergics because of the sedation."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**CNS** (sedation, ↓ alertness, ↓ psychomotor activity, **↑ appetite/weight** — hypothalamic H1 + serotonergic antagonism); **antimuscarinic** (dry mouth, urinary retention, **sinus tachycardia** from M2 antagonism); **anti-α-adrenergic** (orthostatic hypotension, vertigo, reflex tachycardia); **teratogenic** (discontinue in pregnancy). Overdose: hallucinations, excitation, coma, ataxia, convulsions."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**unfavourable** risk-benefit ratio (poor receptor selectivity)."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "⚠️ they potentiate other CNS depressants (**benzodiazepines**, sedative-hypnotics, **alcohol**); **antipsychotics** (summation of anticholinergic/anti-α1/antihistamine effects); **MAOIs** (potentiate the anticholinergic effect)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A6__anti-h1-di-ii-generazione-loratadina-cet",
+   "name": "2nd-generation anti-H1 (loratadine, cetirizine) — *withdrawn: terfenadine, astemizole*",
+   "nameShort": "2nd-generation anti-H1",
+   "memo": "**They do not cross the BBB** → antihistamines without drowsiness (cetirizine remains the most sedating of the group).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "they block H1 with **less crossing of the BBB** → **peripheral effects only**; **better selectivity** (no antimuscarinic/anti-α)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "H1 receptor (peripheral)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**piperidines** (loratadine), **piperazines** (cetirizine); greater affinity/potency; lower lipophilicity; well absorbed orally; **CYP450** metabolism; urinary excretion; **longer duration of action**."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**allergic reactions only** (no sedation, no vestibular/appetite effects)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **Terfenadine/Astemizole** (withdrawn) → **torsades de pointes, QT prolongation** (interaction with K⁺ channels) + cytochrome inhibition. Loratadine/cetirizine → cardiac concern with prolonged use (monitor)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "cardiac monitoring in chronic therapy."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "⚠️ with **CYP inhibitors** → ↑ plasma concentrations → cardiac effects."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A6__anti-h1-di-iii-generazione-desloratadina",
+   "name": "3rd-generation anti-H1 (desloratadine, levocetirizine, fexofenadine; topical: azelastine, levocabastine, ketotifen)",
+   "nameShort": "3rd-generation anti-H1",
+   "memo": "**Active metabolites ready to go**: they bypass the cytochrome → fewer interactions.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**purified active stereoisomers** of the 2nd generation (**desloratadine** = dextrorotatory form of loratadine; **levocetirizine** = levorotatory form of cetirizine) → lower doses, ↓ side effects. **Fexofenadine** = prodrug with active metabolites."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "H1 receptor (peripheral)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "reduced doses; **they do not cross the BBB** → no sedation → can be administered in the **morning**."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "allergic reactions safely (even during working activity). **Topical** (azelastine, levocabastine, ketotifen): dermatological preparations/urticaria, prophylaxis of the asthma attack. **Ketotifen**: stabilization of the mast cell membrane (similar to the cromones)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**free of cardiotoxicity** (reduced doses)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "—"
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "as for the 2nd generation, but with a better safety profile."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A6__anti-h2-cimetidina-ranitidina-famotidina",
+   "name": "Anti-H2 (cimetidine, ranitidine, famotidine, nizatidine, roxatidine)",
+   "nameShort": "Anti-H2",
+   "memo": "They block the **H2 of the parietal cell** → less HCl; today second choice after the PPIs.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**selective competitive antagonists of the H2 receptor** on the parietal cell → ↓ **PKA-mediated** stimulation of the proton pump → ↓ acid secretion (**basal, nocturnal, food-stimulated**; to a lesser extent that induced by gastrin and ACh). It is a **modulation, not a definitive blockade** → **it does not compromise vitamin B12 absorption**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "gastric H2 receptor."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "structure similar to histamine (no lipophilic component → **no BBB → no central effects**); important **hepatic first-pass** (cimetidine, ranitidine, famotidine); **renal tubular** excretion by active secretion (caution in CKD); **nizatidine** (fluorine atom) → better bioavailability. Half-life not long, effect ~6-8 h."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**Zollinger-Ellison syndrome**, gastric/duodenal ulcer, *H. pylori* ulcer (multiple therapy), gastroesophageal reflux, stress ulcer."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "poor antimuscarinic/antidopaminergic/antiserotonergic/anti-α/antiallergic activity. Non-specific: headache, vertigo, nausea, erythema, itch, haematological effects (↓ bone marrow activity). ⚠️ **Cimetidine**: it binds the androgen receptor, interferes with estradiol/prolactin → **loss of libido, impotence, gynaecomastia** (in men), alterations of the menstrual cycle."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**cimetidine** (interactions) and **ranitidine** (contamination with carcinogenic **nitrosamines**) **no longer on the market**."
+    },
+    {
+     "label": "Drug Combinations / Adjuvants",
+     "value": "⚠️ **Cimetidine = potent CYP450 inhibitor** → ↑ concentrations of barbiturates, benzodiazepines, antidepressants, antipsychotics, calcium channel blockers, sulfonylureas (the other molecules do not share this inhibition)."
+    }
+   ],
+   "freetext": []
+  }
+ ]
+}

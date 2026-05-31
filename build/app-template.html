@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<title>FarmacoFlash — Flashcard di Farmacologia</title>
+<meta name="theme-color" content="#fff8ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="FarmacoFlash">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23fff8ec'/%3E%3Crect x='34' y='74' width='112' height='44' rx='22' transform='rotate(-28 90 96)' fill='%23ff6b6b' stroke='%233a322b' stroke-width='9'/%3E%3Cline x1='62' y1='110' x2='118' y2='82' stroke='%233a322b' stroke-width='9'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,400..700;1,400..600&family=Nunito:ital,wght@0,400..900;1,600..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* tema "quaderno felice" — chiaro, doodle */
+  --paper:#fff8ec; --paper-2:#fffdf7; --grid:rgba(140,110,60,.09);
+  --ink:#3a322b; --ink-soft:#6f6253; --muted:#a3937e; --faint:#c2b39a;
+  /* crayon palette */
+  --red:#ff6b6b; --yellow:#ffce3a; --blue:#4ea8de; --green:#5bc873; --purple:#b07cd6; --orange:#ff9f5a; --pink:#ff8fb1;
+  /* alias semantici (compat con il JS) */
+  --amber:#ffb43f; --amber-2:#ef9a23; --amber-deep:#e08a1f;
+  --green-deep:#3da85a; --rose:#ff6b6b; --rose-deep:#e85555; --ochre:#ff9f5a; --teal:#4ea8de;
+  --surface:#fffdf7; --surface2:#f5ecd9; --raised:#efe4cc; --bg2:#fff8ec; --line:#3a322b; --line2:#3a322b;
+  --font-display:'Shantell Sans','Comic Sans MS',cursive;
+  --font-body:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --r:18px;
+  --sk:14px 22px 16px 20px/20px 16px 22px 14px;   /* border-radius "storto" */
+  --sk2:22px 14px 20px 16px/16px 20px 14px 22px;
+  --shadow:3px 3px 0 rgba(58,50,43,.16);
+  --shadow-lg:5px 6px 0 rgba(58,50,43,.16);
+  --maxw:1060px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-body); color:var(--ink); font-size:16px; line-height:1.55; font-weight:600;
+  min-height:100vh; min-height:100dvh; overflow-x:hidden;
+  -webkit-font-smoothing:antialiased; -webkit-tap-highlight-color:transparent;
+  text-rendering:optimizeLegibility;
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    radial-gradient(900px 500px at 85% -10%, rgba(255,206,58,.16), transparent 60%),
+    radial-gradient(800px 600px at 5% 110%, rgba(78,168,222,.12), transparent 55%);
+  background-size:28px 28px, 28px 28px, 100% 100%, 100% 100%;
+  background-attachment:fixed;
+}
+::selection{background:var(--yellow);color:var(--ink)}
+a{color:var(--blue)}
+button{font-family:inherit;-webkit-tap-highlight-color:transparent}
+/* Safari / iOS polish */
+.tab,.cta,.grade,.fchip,.exit,.btn-sm,.deckcard,.brow,.flash-front,.modal-close,.streak,.meme-btn{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.heat,.modal{-webkit-overflow-scrolling:touch}
+input,textarea{font-size:16px}  /* evita lo zoom automatico al focus su iOS */
+@supports(-webkit-touch-callout:none){.search{font-size:16px}}
+/* niente testo fuori dai riquadri (titoli/parole lunghe es. B9 "STATINE/IPOLIPEMIZZANTI") */
+.dc-title,.drugname,.back-name,.memo-txt,.chip,h1.page,.modal-head h2,.brow .bn,.panel h3,.done-card .big{overflow-wrap:break-word;word-break:break-word;-webkit-hyphens:auto;hyphens:auto}
+.chip{max-width:100%}
+
+/* doodles sparsi di sfondo */
+.doodles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.doodles svg{position:absolute;opacity:.5}
+.dd1{top:90px;left:18px;width:60px;transform:rotate(-12deg)}
+.dd2{top:160px;right:30px;width:54px;transform:rotate(10deg)}
+.dd3{bottom:90px;left:40px;width:66px;transform:rotate(8deg)}
+.dd4{bottom:150px;right:48px;width:48px;transform:rotate(-14deg)}
+@media(max-width:760px){.doodles{display:none}}
+
+/* contorno "a pennarello" riutilizzabile */
+.sketch{border:2.5px solid var(--ink);border-radius:var(--sk);background:var(--paper-2);box-shadow:var(--shadow)}
+
+/* ---------- HEADER ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(255,248,236,.88);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:2.5px dashed var(--ink);padding-top:env(safe-area-inset-top)}
+.hwrap{max-width:var(--maxw);margin:0 auto;padding:12px max(20px,env(safe-area-inset-left)) 12px max(20px,env(safe-area-inset-right));display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink);flex-shrink:0}
+.brand .mk{width:42px;height:42px;flex-shrink:0;transform:rotate(-6deg)}
+.brand b{font-family:var(--font-display);font-weight:700;font-size:1.32rem;letter-spacing:.3px;line-height:1}
+.brand b i{color:var(--red);font-style:normal}
+.brand span{display:block;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:3px;font-weight:800}
+nav{display:flex;gap:7px;margin-left:auto;flex-wrap:wrap}
+.tab{background:var(--paper-2);border:2.5px solid var(--ink);color:var(--ink);padding:7px 15px;border-radius:14px 9px 13px 8px/8px 13px 9px 14px;
+  font-size:.92rem;font-weight:800;cursor:pointer;transition:transform .12s, background .15s;box-shadow:2px 2px 0 rgba(58,50,43,.16)}
+.tab:hover{transform:translate(-1px,-1px);background:#fff}
+.tab:active{transform:translate(1px,1px);box-shadow:1px 1px 0 rgba(58,50,43,.16)}
+.tab.active{background:var(--yellow)}
+.streak{display:flex;align-items:center;gap:5px;font-weight:800;color:var(--ink);background:var(--orange);border:2.5px solid var(--ink);padding:6px 13px;border-radius:14px;font-size:.92rem;box-shadow:2px 2px 0 rgba(58,50,43,.16);transform:rotate(2deg)}
+.langtog{font-family:var(--font-display);font-weight:700;font-size:.9rem;color:var(--ink);background:var(--blue);border:2.5px solid var(--ink);padding:5px 12px;border-radius:11px 8px 12px 7px/7px 12px 8px 11px;cursor:pointer;box-shadow:2px 2px 0 rgba(58,50,43,.16);transform:rotate(-2deg)}
+.langtog:hover{transform:translateY(-1px) rotate(-2deg)}
+
+main{max-width:var(--maxw);margin:0 auto;padding:28px max(20px,env(safe-area-inset-left)) calc(90px + env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-right));position:relative;z-index:1}
+.view{display:none;animation:pop .4s cubic-bezier(.2,1.2,.4,1) both}
+.view.active{display:block}
+@keyframes pop{from{opacity:0;transform:translateY(14px) rotate(-.4deg)}to{opacity:1;transform:none}}
+.eyebrow{display:inline-block;font-family:var(--font-display);font-size:.92rem;color:var(--ink);font-weight:700;background:var(--pink);border:2.5px solid var(--ink);padding:2px 12px;border-radius:12px 7px 11px 6px/6px 11px 7px 12px;transform:rotate(-1.5deg);margin-bottom:14px;box-shadow:2px 2px 0 rgba(58,50,43,.16)}
+h1.page{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,5vw,2.9rem);line-height:1.04;margin-bottom:8px}
+h1.page em{font-style:normal;color:var(--red);position:relative}
+h1.page em::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:7px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='8'%3E%3Cpath d='M1 5 Q 20 1 40 4 T 79 4' stroke='%23ffce3a' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;background-size:80px 8px}
+.sub{color:var(--ink-soft);font-size:1.04rem;margin-bottom:24px;max-width:60ch;font-weight:700}
+
+/* ---------- DASHBOARD ---------- */
+.hero{position:relative;border:3px solid var(--ink);border-radius:var(--sk2);padding:30px;overflow:hidden;background:
+  repeating-linear-gradient(135deg, rgba(255,206,58,.12) 0 18px, transparent 18px 36px), var(--paper-2);box-shadow:var(--shadow-lg);margin-bottom:24px}
+.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:26px;align-items:center}
+@media(max-width:720px){.hero-grid{grid-template-columns:1fr}}
+.bignum{font-family:var(--font-display);font-size:clamp(3rem,10vw,5.2rem);font-weight:700;line-height:.85;color:var(--red)}
+.bignum small{display:block;font-family:var(--font-body);font-size:.95rem;color:var(--ink-soft);font-weight:800;margin-top:10px;line-height:1.3}
+.cta{display:inline-flex;align-items:center;gap:9px;background:var(--green);color:var(--ink);border:2.5px solid var(--ink);
+  font-family:var(--font-display);font-size:1.1rem;font-weight:700;padding:13px 24px;border-radius:16px 10px 14px 10px/10px 14px 10px 16px;cursor:pointer;transition:transform .12s;box-shadow:var(--shadow)}
+.cta:hover{transform:translate(-1px,-2px) rotate(-1deg)}
+.cta:active{transform:translate(1px,1px)}
+.cta.ghost{background:var(--blue)}
+.cta:disabled{opacity:.5;cursor:default;transform:none;background:var(--surface2)}
+.donut{width:160px;height:160px;margin:0 auto}
+
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px}
+@media(max-width:720px){.tiles{grid-template-columns:repeat(2,1fr)}}
+.tile{border:2.5px solid var(--ink);border-radius:var(--sk);padding:16px 17px;background:var(--paper-2);box-shadow:var(--shadow)}
+.tile:nth-child(2n){transform:rotate(.6deg)} .tile:nth-child(3n){transform:rotate(-.7deg)}
+.tile .k{font-size:.76rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.tile .v{font-family:var(--font-display);font-size:2rem;font-weight:700;margin-top:3px;color:var(--ink)}
+.tile.good{background:#eafae6}.tile.good .v{color:var(--green-deep)}
+.tile.mid{background:#fff3d6}.tile.mid .v{color:var(--orange)}
+.tile.bad{background:#ffe7e7}.tile.bad .v{color:var(--rose-deep)}
+.tile.am{background:#fff0cf}.tile.am .v{color:var(--amber-2)}
+
+.panel{border:2.5px solid var(--ink);border-radius:var(--sk2);padding:22px;margin-bottom:22px;background:var(--paper-2);box-shadow:var(--shadow)}
+.panel h3{font-family:var(--font-display);font-weight:700;font-size:1.4rem;margin-bottom:3px;color:var(--ink)}
+.panel .hint{color:var(--ink-soft);font-size:.9rem;margin-bottom:16px;font-weight:700}
+
+/* heatmap */
+.heat{display:flex;gap:3px;overflow-x:auto;padding-bottom:6px}
+.heat .col{display:flex;flex-direction:column;gap:3px}
+.heat .cell{width:14px;height:14px;border-radius:4px;background:#ece1cb;border:1.5px solid rgba(58,50,43,.12)}
+.heat .cell.l1{background:#c4ebb4}.heat .cell.l2{background:#92d97c}.heat .cell.l3{background:#5bc873}.heat .cell.l4{background:#3da85a}
+.heat-legend{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:.8rem;margin-top:10px;justify-content:flex-end;font-weight:800}
+
+/* deck grid */
+.decks{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:14px}
+.deckcard{position:relative;border:2.5px solid var(--ink);border-radius:var(--sk);padding:15px;cursor:pointer;transition:transform .14s;background:var(--paper-2);box-shadow:var(--shadow)}
+.deckcard:nth-child(2n){transform:rotate(-.8deg)}.deckcard:nth-child(3n){transform:rotate(.7deg)}
+.deckcard:hover{transform:translate(-1px,-3px) rotate(0)}
+.deckcard .dc-code{font-family:var(--font-display);font-size:.82rem;font-weight:700;padding:2px 10px;border-radius:10px;display:inline-block;margin-bottom:9px;border:2px solid var(--ink);color:var(--ink)}
+.deckcard .dc-title{font-family:var(--font-display);font-weight:700;font-size:1.08rem;line-height:1.15;margin-bottom:11px;min-height:2.3em}
+.dc-bar{height:9px;border-radius:5px;background:#ece1cb;overflow:hidden;display:flex;border:1.5px solid var(--ink)}
+.dc-bar i{display:block;height:100%}
+.dc-bar .mat{background:var(--green)}.dc-bar .yng{background:var(--yellow)}.dc-bar .lrn{background:var(--orange)}
+.deckcard .dc-meta{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);margin-top:9px;font-weight:800}
+.deckcard .dc-due{color:var(--red)}
+
+/* ---------- STUDY ---------- */
+.study-top{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.prog{flex:1;height:12px;background:#ece1cb;border-radius:8px;overflow:hidden;border:2.5px solid var(--ink)}
+.prog i{display:block;height:100%;background:repeating-linear-gradient(45deg,var(--green) 0 8px,#6fd488 8px 16px);transition:width .35s}
+.study-counts{font-family:var(--font-display);font-weight:700;font-size:1rem;font-variant-numeric:tabular-nums}
+.study-counts .c-done{color:var(--green-deep)}
+.exit{background:var(--paper-2);border:2.5px solid var(--ink);color:var(--ink);border-radius:12px;padding:7px 13px;cursor:pointer;font-weight:800;font-size:.86rem;box-shadow:2px 2px 0 rgba(58,50,43,.16)}
+.exit:hover{background:var(--red);color:#fff}
+
+.flash{border:3px solid var(--ink);border-radius:24px 16px 26px 18px/18px 26px 16px 24px;background:var(--paper-2);box-shadow:var(--shadow-lg);min-height:58vh;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.flash::before{content:"";position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(-3deg);width:120px;height:26px;background:rgba(255,206,58,.5);border:2px solid rgba(58,50,43,.25);border-radius:3px}
+.flash-head{padding:20px 22px 0;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.chip{font-family:var(--font-display);font-size:.78rem;font-weight:700;padding:3px 11px;border-radius:11px;border:2px solid var(--ink);color:var(--ink);background:#fff}
+.flash-front{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 26px;cursor:pointer}
+.flash-front .q{font-family:var(--font-display);font-size:1rem;color:var(--blue);font-weight:700;margin-bottom:16px;transform:rotate(-1deg)}
+.drugname{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,6vw,3.3rem);line-height:1.05;color:var(--ink)}
+.drugname .full{display:block;font-size:.95rem;font-family:var(--font-body);color:var(--muted);font-weight:700;margin-top:14px;max-width:50ch}
+.reveal-hint{color:var(--muted);font-size:.88rem;margin-top:28px;font-weight:700}
+.kbd{font-family:var(--font-body);background:#fff;border:2px solid var(--ink);border-radius:8px;padding:1px 8px;font-size:.8rem;font-weight:800;box-shadow:1px 1px 0 var(--ink)}
+/* disegni a mano esplicativi */
+.topic-doodle{width:118px;height:118px;margin:0 auto 4px;animation:bob 4s ease-in-out infinite}
+.topic-doodle svg{width:100%;height:100%;display:block}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
+.dc-ico{position:absolute;top:11px;right:11px;width:42px;height:42px;opacity:.95;pointer-events:none}
+.dc-ico svg{width:100%;height:100%}
+.memo-doodle{width:50px;height:50px;flex-shrink:0;align-self:center}
+.memo-doodle svg{width:100%;height:100%}
+.topic-diagram{width:min(86%,300px);margin:0 auto 6px}
+.topic-diagram svg{width:100%;height:auto;display:block}
+.diagram-box{margin:2px 0 22px;border:2.5px solid var(--ink);border-radius:var(--sk);background:#fffdf7;box-shadow:var(--shadow);padding:12px 14px;transform:rotate(.5deg)}
+.diagram-box .cap{font-family:var(--font-display);font-weight:700;font-size:.92rem;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.diagram-box .art{width:100%;max-width:330px;margin:0 auto}
+.diagram-box .art svg{width:100%;height:auto;display:block}
+@media(prefers-reduced-motion:reduce){.topic-doodle{animation:none}}
+
+.flash-back{padding:8px 24px 26px;display:none}
+.flash-back.show{display:block;animation:pop .35s ease both}
+.back-name{font-family:var(--font-display);font-weight:700;font-size:1.55rem;text-align:center;margin:8px 0 14px;color:var(--ink)}
+
+/* memofrase (post-it) */
+.memo-banner{display:flex;gap:13px;align-items:flex-start;background:#fff2b8;border:2.5px solid var(--ink);border-radius:18px 10px 20px 12px/12px 20px 10px 18px;box-shadow:var(--shadow);padding:16px 18px;margin:2px 0 22px;transform:rotate(-.7deg)}
+.memo-ico{font-size:1.6rem;flex-shrink:0;line-height:1.1}
+.memo-txt{font-family:var(--font-display);font-weight:600;font-size:1.22rem;line-height:1.38;color:#5b4a10}
+.memo-txt strong{color:var(--ink);box-shadow:inset 0 -.55em 0 #ffd84d}
+
+.seg{border-top:2.5px dotted #d9c9aa;padding:13px 0}
+.seg:first-child{border-top:none}
+.seg .lab{display:flex;align-items:center;gap:7px;font-family:var(--font-display);font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:5px}
+.seg .lab .dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink);flex-shrink:0}
+.seg .lab.warn{color:var(--rose-deep)}
+.seg .val{color:var(--ink-soft);font-size:.98rem;font-weight:600}
+.seg .val p{margin:.25em 0}.seg .val strong{color:var(--ink);font-weight:800}
+.seg .val ul{margin:.3em 0 .3em 1.1em}.seg .val li{margin:.15em 0}
+.seg.free .val p{margin:.5em 0;padding-left:13px;border-left:3px solid var(--yellow)}
+.seg.goodman{background:#eef6ff;border:2.5px solid var(--blue);border-radius:var(--sk);padding:14px 16px;margin-top:10px}
+.seg.goodman .lab{color:var(--blue)}
+
+/* grade bar */
+.grades{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:24px}
+@media(max-width:560px){.grades{gap:8px}}
+.grade{border:2.5px solid var(--ink);background:var(--paper-2);border-radius:16px 11px 15px 10px/10px 15px 11px 16px;padding:13px 8px;cursor:pointer;transition:transform .12s;text-align:center;color:var(--ink);box-shadow:var(--shadow)}
+.grade:hover{transform:translate(-1px,-3px)}
+.grade:active{transform:translate(1px,1px);box-shadow:1px 1px 0 rgba(58,50,43,.16)}
+.grade .em{font-size:1.6rem;display:block}
+.grade .lb{display:block;font-family:var(--font-display);font-weight:700;font-size:.96rem;margin-top:4px;line-height:1.1}
+.grade .iv{display:block;font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:3px;font-weight:800}
+.grade.g0:hover{background:#ffe0e0}.grade.g0 .lb{color:var(--rose-deep)}
+.grade.g1:hover{background:#fff0d2}.grade.g1 .lb{color:var(--orange)}
+.grade.g2:hover{background:#e6f7df}.grade.g2 .lb{color:var(--green-deep)}
+.grade.g3:hover{background:#e2f2fb}.grade.g3 .lb{color:var(--blue)}
+
+.done-card{text-align:center;padding:54px 24px}
+.done-card .em{font-size:4.2rem;margin-bottom:8px}
+.done-card .big{font-family:var(--font-display);font-size:2.6rem;font-weight:700}
+
+/* ---------- BROWSE ---------- */
+.searchbar{margin-bottom:16px}
+.search{width:100%;background:var(--paper-2);border:2.5px solid var(--ink);border-radius:16px 11px 15px 11px/11px 15px 11px 16px;padding:13px 17px;color:var(--ink);font-size:1.02rem;font-family:var(--font-body);font-weight:700;box-shadow:var(--shadow)}
+.search:focus{outline:none;background:#fff}
+.search::placeholder{color:var(--faint);font-weight:700}
+.filterchips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.fchip{background:var(--paper-2);border:2.5px solid var(--ink);color:var(--ink);padding:5px 13px;border-radius:12px;font-size:.84rem;font-weight:800;cursor:pointer;transition:transform .1s;box-shadow:2px 2px 0 rgba(58,50,43,.14)}
+.fchip:hover{transform:translateY(-1px)}
+.fchip.on{background:var(--yellow)}
+.browse-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:13px}
+.brow{border:2.5px solid var(--ink);border-radius:var(--sk);padding:15px 16px;cursor:pointer;transition:transform .12s;position:relative;background:var(--paper-2);box-shadow:var(--shadow)}
+.brow:nth-child(3n){transform:rotate(-.6deg)}.brow:nth-child(4n){transform:rotate(.6deg)}
+.brow:hover{transform:translate(-1px,-3px) rotate(0)}
+.brow .bn{font-family:var(--font-display);font-weight:700;font-size:1.1rem;line-height:1.15;padding-right:64px}
+.brow .bd{font-size:.78rem;color:var(--muted);margin-top:5px;font-weight:800}
+.brow .bmech{font-size:.86rem;color:var(--ink-soft);margin-top:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-weight:600}
+.statusdot{position:absolute;top:13px;right:13px;font-family:var(--font-display);font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:9px;border:2px solid var(--ink)}
+.sd-new{background:#e2f2fb}.sd-learning{background:#fff0d2}.sd-young{background:#fff0cf}.sd-mature{background:#e6f7df}
+.empty{text-align:center;color:var(--muted);padding:48px;font-family:var(--font-display);font-weight:700;font-size:1.1rem}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:100;background:rgba(58,50,43,.45);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;overflow-y:auto}
+.modal.show{display:flex;animation:pop .25s ease both}
+.modal-box{background:var(--paper);border:3px solid var(--ink);border-radius:24px 18px 26px 18px/18px 26px 18px 24px;max-width:680px;width:100%;box-shadow:6px 7px 0 rgba(58,50,43,.22);position:relative}
+.modal-head{padding:22px 26px 14px;border-bottom:2.5px dashed var(--ink);position:sticky;top:0;background:var(--paper);border-radius:24px 18px 0 0}
+.modal-head h2{font-family:var(--font-display);font-weight:700;font-size:1.7rem;line-height:1.1}
+.modal-body{padding:14px 26px 26px}
+.modal-close{position:absolute;top:16px;right:16px;background:var(--red);border:2.5px solid var(--ink);color:#fff;width:38px;height:38px;border-radius:11px;cursor:pointer;font-size:1.1rem;font-weight:800;box-shadow:2px 2px 0 rgba(58,50,43,.2)}
+.modal-close:hover{transform:rotate(-6deg)}
+
+/* ---------- STATS ---------- */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-bottom:24px}
+table.mastery{width:100%;border-collapse:collapse;font-size:.92rem;font-weight:700}
+table.mastery th,table.mastery td{text-align:left;padding:9px 10px;border-bottom:2px dotted #d9c9aa}
+table.mastery th{color:var(--muted);font-size:.76rem;text-transform:uppercase;font-weight:800}
+table.mastery td.n{font-variant-numeric:tabular-nums;text-align:right}
+.minibar{height:9px;border-radius:5px;background:#ece1cb;overflow:hidden;display:flex;min-width:90px;border:1.5px solid var(--ink)}
+.settings-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin:12px 0}
+.settings-row label{font-weight:800;color:var(--ink)}
+.settings-row input[type=number]{width:82px;background:#fff;border:2.5px solid var(--ink);color:var(--ink);border-radius:11px;padding:8px 10px;font-family:var(--font-body);font-size:1rem;font-weight:800}
+.btn-sm{background:var(--paper-2);border:2.5px solid var(--ink);color:var(--ink);border-radius:12px;padding:9px 15px;font-weight:800;cursor:pointer;font-size:.88rem;box-shadow:2px 2px 0 rgba(58,50,43,.16)}
+.btn-sm:hover{transform:translateY(-1px);background:#fff}
+.btn-sm.danger{background:#ffe7e7;color:var(--rose-deep)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px) rotate(-1deg);background:var(--ink);border:2.5px solid var(--ink);color:#fff;padding:12px 22px;border-radius:14px;font-weight:800;z-index:200;transition:.35s;box-shadow:var(--shadow);opacity:0;font-family:var(--font-display)}
+.toast.show{transform:translateX(-50%) translateY(0) rotate(-1deg);opacity:1}
+.foot{text-align:center;color:var(--muted);font-size:.82rem;margin-top:40px;font-weight:800}
+</style>
+</head>
+<body>
+<div class="doodles" aria-hidden="true">
+  <svg class="dd1" viewBox="0 0 40 40" fill="none"><path d="M20 2l4 12 13 1-10 8 4 13-11-8-11 8 4-13-10-8 13-1z" stroke="#ffce3a" stroke-width="2.4" stroke-linejoin="round"/></svg>
+  <svg class="dd2" viewBox="0 0 40 40" fill="none"><path d="M20 6c6 0 9 8 0 16-9-8-6-16 0-16z" stroke="#ff8fb1" stroke-width="2.4" stroke-linejoin="round"/></svg>
+  <svg class="dd3" viewBox="0 0 50 30" fill="none"><path d="M2 16 Q 12 2 22 16 T 48 14" stroke="#4ea8de" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>
+  <svg class="dd4" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="9" stroke="#ff9f5a" stroke-width="2.4"/><g stroke="#ff9f5a" stroke-width="2.4" stroke-linecap="round"><path d="M20 3v5M20 32v5M3 20h5M32 20h5M8 8l3 3M29 29l3 3M32 8l-3 3M11 29l-3 3"/></g></svg>
+</div>
+
+<header>
+  <div class="hwrap">
+    <a class="brand" href="#" onclick="go('dash');return false">
+      <svg class="mk" viewBox="0 0 44 44" fill="none"><rect x="7" y="16" width="30" height="14" rx="7" transform="rotate(-30 22 22)" fill="#ff6b6b" stroke="#3a322b" stroke-width="2.6"/><line x1="15" y1="26" x2="29" y2="18" stroke="#3a322b" stroke-width="2.6"/></svg>
+      <span><b>Farmaco<i>Flash</i></b><span id="brandSub">flashcard di farmacologia</span></span>
+    </a>
+    <nav>
+      <button class="tab active" data-v="dash" onclick="go('dash')">Oggi</button>
+      <button class="tab" data-v="study" onclick="startGlobal()">Studia</button>
+      <button class="tab" data-v="browse" onclick="go('browse')">Sfoglia</button>
+      <button class="tab" data-v="stats" onclick="go('stats')">Statistiche</button>
+    </nav>
+    <button class="langtog" id="langTog" onclick="toggleLang()" title="Italiano / English">EN</button>
+    <div class="streak" id="streakWrap" title="Giorni di studio di fila">🔥 <span id="streakN">0</span></div>
+  </div>
+</header>
+
+<main>
+  <section class="view active" id="v-dash"></section>
+  <section class="view" id="v-study"></section>
+  <section class="view" id="v-browse">
+    <div class="eyebrow" id="brEyebrow">✏️ esplora</div>
+    <h1 class="page" id="brTitle">Sfoglia il <em>formulario</em></h1>
+    <p class="sub" id="brSub">Cerca per nome, meccanismo, target o reazione avversa. Apri una card per leggerla senza toccare il ripasso.</p>
+    <div class="searchbar"><input class="search" id="search" placeholder="🔎  cerca un farmaco, un meccanismo, un recettore…"></div>
+    <div class="filterchips" id="deckChips"></div>
+    <div class="browse-list" id="browseList"></div>
+  </section>
+  <section class="view" id="v-stats"></section>
+  <div class="foot" id="foot">FarmacoFlash · dati dalle tue sbobine · ripetizione spaziata · i progressi restano su questo dispositivo 🐢</div>
+</main>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <div class="modal-head"><button class="modal-close" onclick="closeModal()">✕</button><div id="modalHead"></div></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================ DATI ============================ */
+function decodeData(b64){return JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(b64),c=>c.charCodeAt(0))));}
+const DATA = decodeData("__DATA_B64__");
+const CARDS = DATA.cards, DECKS = DATA.decks;
+const CARD_BY_ID = {}; CARDS.forEach(c=>CARD_BY_ID[c.id]=c);
+const DECK_BY_ID = {}; DECKS.forEach(d=>DECK_BY_ID[d.id]=d);
+const DECK_COLORS=['#ff6b6b','#5bc873','#4ea8de','#ffce3a','#b07cd6','#ff9f5a','#ff8fb1','#7fc8a0'];
+DECKS.forEach((d,i)=>d.color=DECK_COLORS[i%DECK_COLORS.length]);
+const norm=s=>(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+CARDS.forEach(c=>{
+  const parts=[c.name]; c.segments.forEach(s=>parts.push(s.value)); (c.freetext||[]).forEach(f=>parts.push(f));
+  if(c.memo)parts.push(c.memo);
+  if(c.en){parts.push(c.en.name);(c.en.segments||[]).forEach(s=>parts.push(s.value));(c.en.freetext||[]).forEach(f=>parts.push(f));if(c.en.memo)parts.push(c.en.memo);}
+  c._search=norm(parts.join(' '));
+});
+
+/* ============================ i18n ============================ */
+let LANG=(()=>{try{return localStorage.getItem('farmaco-lang')||'it';}catch(e){return 'it';}})();
+const STR={
+ nav_dash:{it:'Oggi',en:'Today'},nav_study:{it:'Studia',en:'Study'},nav_browse:{it:'Sfoglia',en:'Browse'},nav_stats:{it:'Statistiche',en:'Stats'},
+ brand_sub:{it:'flashcard di farmacologia',en:'pharmacology flashcards'},streak_t:{it:'Giorni di studio di fila',en:'Day study streak'},
+ due_today:{it:'carte da ripassare oggi 🎒',en:'cards due today 🎒'},all_done:{it:'tutto fatto, sei in pari! 🎉',en:"all done, you're up to date! 🎉"},
+ start_review:{it:'▶ Inizia il ripasso',en:'▶ Start review'},browse_all:{it:'Sfoglia tutto',en:'Browse all'},cards:{it:'carte',en:'cards'},
+ m_mature:{it:'Mature',en:'Mature'},m_started:{it:'Avviate',en:'Started'},m_new:{it:'Nuove',en:'New'},m_young:{it:'Giovani',en:'Young'},m_learning:{it:'In appr.',en:'Learning'},
+ tile_due:{it:'Da ripassare',en:'Due'},tile_newtoday:{it:'Nuove oggi',en:'New today'},tile_studied:{it:'Studiate oggi',en:'Studied today'},tile_streak:{it:'Costanza',en:'Streak'},
+ today_how:{it:"Com'è andata oggi",en:'How it went today'},today_how_h:{it:'Cosa ricordi bene, così così, male.',en:'What you remember well, so-so, badly.'},
+ g_bad:{it:'Male',en:'Again'},g_mid:{it:'Così così',en:'Hard'},g_good:{it:'Bene',en:'Good'},g_easy:{it:'Facile',en:'Easy'},
+ cal_title:{it:'Calendario dello studio',en:'Study calendar'},cal_h:{it:'Ogni quadratino è un giorno; più è verde, più hai ripassato.',en:'Each square is a day; greener = more reviews.'},
+ less:{it:'meno',en:'less'},more:{it:'più',en:'more'},
+ decks_title:{it:'I tuoi mazzi',en:'Your decks'},decks_h:{it:'Tocca un mazzo per studiarlo o sfogliarlo.',en:'Tap a deck to study or browse it.'},
+ dc_due:{it:'da ripassare',en:'due'},dc_mature:{it:'mature',en:'mature'},
+ study_q:{it:'quale farmaco / classe?',en:'which drug / class?'},reveal_hint:{it:'pensa alla risposta, poi',en:'think of the answer, then'},reveal_or:{it:'o tocca 👆',en:'or tap 👆'},
+ exit:{it:'✕ Esci',en:'✕ Exit'},howworks:{it:'✏️ come agisce',en:'✏️ how it works'},
+ done_title:{it:'Fatto!',en:'Done!'},done_answers:{it:'risposte',en:'answers'},back_today:{it:'Torna a Oggi',en:'Back to Today'},
+ br_eyebrow:{it:'✏️ esplora',en:'✏️ explore'},br_title_a:{it:'Sfoglia il',en:'Browse the'},br_title_b:{it:'formulario',en:'formulary'},
+ br_sub:{it:'Cerca per nome, meccanismo, target o reazione avversa. Apri una card per leggerla senza toccare il ripasso.',en:'Search by name, mechanism, target or adverse reaction. Open a card to read it without affecting your reviews.'},
+ br_search:{it:'🔎  cerca un farmaco, un meccanismo, un recettore…',en:'🔎  search a drug, a mechanism, a receptor…'},br_all:{it:'Tutti',en:'All'},
+ empty:{it:'Nessuna card trovata 🤔 prova un altro termine.',en:'No cards found 🤔 try another term.'},
+ sd_new:{it:'nuova',en:'new'},sd_learning:{it:'appr.',en:'learn.'},sd_young:{it:'giovane',en:'young'},sd_mature:{it:'matura',en:'mature'},
+ mat_new:{it:'nuova',en:'new'},mat_learning:{it:'in apprendimento',en:'learning'},mat_young:{it:'giovane',en:'young'},mat_mature:{it:'matura',en:'mature'},
+ chip_new:{it:'nuova ✨',en:'new ✨'},chip_learning:{it:'in apprendimento',en:'learning'},chip_young:{it:'giovane',en:'young'},chip_mature:{it:'matura 🌳',en:'mature 🌳'},
+ deck_study:{it:'▶ Studia',en:'▶ Study'},deck_all:{it:'Tutte',en:'All'},deck_review:{it:'ripasso',en:'review'},
+ never:{it:'mai studiata',en:'never studied'},due_now:{it:'in ripasso oggi',en:'due today'},next_in:{it:'prossimo ripasso tra',en:'next review in'},
+ st_eyebrow:{it:'📊 progressi',en:'📊 progress'},st_title_a:{it:'Le tue',en:'Your'},st_title_b:{it:'statistiche',en:'stats'},
+ st_sub:{it:'Quanto hai studiato, quanto ricordi e dove conviene insistere.',en:'How much you studied, how much you remember, and where to focus.'},
+ st_reviews:{it:'Ripassi totali',en:'Total reviews'},st_days:{it:'Giorni attivi',en:'Active days'},st_streak:{it:'Costanza',en:'Streak'},st_ret:{it:'Ritenzione',en:'Retention'},st_mat:{it:'Carte mature',en:'Mature cards'},st_tostart:{it:'Da iniziare',en:'To start'},
+ st_comp:{it:'Composizione del mazzo',en:'Deck composition'},st_comp_h:{it:'Stato delle',en:'State of the'},st_comp_h2:{it:'carte.',en:'cards.'},
+ st_mastery:{it:'Padronanza per mazzo',en:'Mastery by deck'},st_mastery_h:{it:'Percentuale di carte mature per argomento.',en:'Percentage of mature cards per topic.'},
+ th_deck:{it:'Mazzo',en:'Deck'},th_cards:{it:'Carte',en:'Cards'},th_prog:{it:'Progresso',en:'Progress'},th_mature:{it:'Mature',en:'Mature'},
+ set_title:{it:'Impostazioni & backup',en:'Settings & backup'},set_newday:{it:'Nuove carte al giorno',en:'New cards per day'},set_save:{it:'Salva',en:'Save'},
+ set_h:{it:'I progressi vivono solo in questo browser. Esporta un backup per non perderli o per spostarli su un altro dispositivo.',en:'Progress lives only in this browser. Export a backup to keep it safe or move it to another device.'},
+ set_export:{it:'⬇ Esporta backup',en:'⬇ Export backup'},set_import:{it:'⬆ Importa backup',en:'⬆ Import backup'},set_reset:{it:'↺ Azzera progressi',en:'↺ Reset progress'},
+ foot:{it:'FarmacoFlash · dati dalle tue sbobine · ripetizione spaziata · i progressi restano su questo dispositivo 🐢',en:'FarmacoFlash · data from your notes · spaced repetition · progress stays on this device 🐢'},
+ t_saved:{it:'Salvato ✓',en:'Saved ✓'},t_exported:{it:'Backup esportato 💾',en:'Backup exported 💾'},t_imported:{it:'Backup importato ✓',en:'Backup imported ✓'},t_invalid:{it:'File non valido 🙈',en:'Invalid file 🙈'},t_reset:{it:'Progressi azzerati',en:'Progress reset'},
+ t_nothing:{it:'Niente da studiare qui.',en:'Nothing to study here.'},t_clear:{it:'Nessuna carta in coda — bravo! 🎉',en:'No cards in queue — nice! 🎉'},
+ confirm_reset:{it:'Azzerare TUTTI i progressi? I farmaci restano, ma riparti da zero.',en:'Reset ALL progress? The drugs stay, but you start over.'},
+ indepth:{it:'Approfondimento',en:'In depth'}
+};
+function T(k){const e=STR[k];return e?(e[LANG]||e.it):k;}
+const DECK_T_EN={A4:'Glucocorticoids',A5:'NSAIDs + Paracetamol',A6:'Antihistamines',A7:'Antimigraine + Antiemetics',A8:'Antiasthmatics / COPD',A9:'Biologics / Biosimilars / Anti-TNF-α',A10:'Diabetes / Insulin',A11:'Gastrointestinal drugs',A12:'Bone / Osteoporosis',B1:'Sedative-hypnotics & Anxiolytics',B2:'General & Local anaesthetics',B3:'Antidepressants',B4:'Bipolar disorder / Mood stabilizers',B5:'Antipsychotics',B6:'Antiparkinson',B7:"Alzheimer's & Multiple Sclerosis",B8:'Opioids / Pain therapy',B9:'Antiepileptics + Statins',B10:'Antihypertensives: sympatholytics, α-/β-blockers',B11:'RAAS',B11b:'Heart failure, Xanthines & Diuretics',B12:'Antithrombotics',B12b:'Vasodilators',B13:'Antiarrhythmics',B14:'Antineoplastics / Precision oncology','Antibiotici-2':'Antibiotics','Antibiotici-3':'Antibiotics','Beta-lattamici':'β-lactam antibiotics'};
+function deckTitle(d){return (LANG==='en'&&DECK_T_EN[d.code])?DECK_T_EN[d.code]:d.title;}
+function L(c){return (LANG==='en'&&c.en)?c.en:c;}              // contenuto card nella lingua attiva
+function matWord(m){return T('mat_'+m);}
+function gradeLbls(){return [T('g_bad'),T('g_mid'),T('g_good'),T('g_easy')];}
+function toggleLang(){LANG=(LANG==='it')?'en':'it';try{localStorage.setItem('farmaco-lang',LANG);}catch(e){}rerender();}
+function applyStaticStrings(){
+  document.documentElement.lang=LANG;
+  $$('.tab').forEach(t=>{const k='nav_'+t.dataset.v;if(STR[k])t.textContent=T(k);});
+  const bs=$('#brandSub');if(bs)bs.textContent=T('brand_sub');
+  const sk=$('#streakWrap');if(sk)sk.title=T('streak_t');
+  const lt=$('#langTog');if(lt)lt.textContent=(LANG==='it'?'EN':'IT');
+  const f=$('#foot');if(f)f.textContent=T('foot');
+  // vista Sfoglia (statica)
+  const be=$('#brEyebrow');if(be)be.textContent=T('br_eyebrow');
+  const bt=$('#brTitle');if(bt)bt.innerHTML=T('br_title_a')+' <em>'+T('br_title_b')+'</em>';
+  const bsub=$('#brSub');if(bsub)bsub.textContent=T('br_sub');
+  const se=$('#search');if(se)se.placeholder=T('br_search');
+}
+function rerender(){
+  applyStaticStrings();
+  const v=(document.querySelector('.view.active')||{}).id;
+  if(v==='v-dash')renderDash();else if(v==='v-browse')renderBrowse();else if(v==='v-stats')renderStats();
+  else if(v==='v-study'&&session){const rev=session.revealed;renderStudy();if(rev)revealCard();}
+  $('#streakN').textContent=streak();
+}
+
+/* ============================ STORE ============================ */
+const KEY='farmaco-srs-v1';
+let S=load();
+function load(){try{const r=JSON.parse(localStorage.getItem(KEY));if(r&&r.v)return migrate(r);}catch(e){}return {v:1,srs:{},log:[],settings:{newPerDay:15},daily:{date:'',newDone:0},created:todayISO()};}
+function migrate(r){r.settings=r.settings||{newPerDay:15};r.daily=r.daily||{date:'',newDone:0};return r;}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){if(!save._w){save._w=1;setTimeout(()=>toast('⚠️ Safari sta bloccando il salvataggio: Impostazioni › Privacy › togli «Blocca tutti i cookie», oppure usa Esporta backup.'),400);}}}
+
+/* ============================ DATE ============================ */
+function pad(n){return String(n).padStart(2,'0');}
+function isoOf(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function todayISO(){return isoOf(new Date());}
+function addDays(iso,n){const d=new Date(iso+'T00:00:00');d.setDate(d.getDate()+n);return isoOf(d);}
+function daysFromToday(iso){return Math.round((new Date(iso+'T00:00:00')-new Date(todayISO()+'T00:00:00'))/864e5);}
+
+/* ============================ SRS (SM-2) ============================ */
+function defState(){return {ease:2.5,iv:0,reps:0,lapses:0,due:null,state:'new',seen:0,lastG:null,lastR:null};}
+function getState(id){return S.srs[id]?Object.assign(defState(),S.srs[id]):defState();}
+function maturity(id){const st=S.srs[id];if(!st||st.state==='new')return'new';if(st.state==='learning'||st.state==='relearn')return'learning';return st.iv>=21?'mature':'young';}
+function fmtIv(d){const u=LANG==='en'?['y','mo','d']:['a','m','g'];if(d>=365)return (d/365).toFixed(1).replace('.0','')+' '+u[0];if(d>=30)return Math.round(d/30)+' '+u[1];return d+' '+u[2];}
+function preview(card){const st=getState(card.id);const isRev=(st.state==='review'||st.state==='relearn');
+  if(!isRev)return {0:'<10 min',1:'<10 min',2:fmtIv(1),3:fmtIv(4)};
+  return {0:'1 g',1:fmtIv(Math.max(Math.round(st.iv*1.2),st.iv+1)),2:fmtIv(Math.max(Math.round(st.iv*st.ease),st.iv+1)),3:fmtIv(Math.max(Math.round(st.iv*st.ease*1.3),st.iv+2))};}
+function applyGrade(card,g){
+  const st=getState(card.id),today=todayISO();const isRev=(st.state==='review'||st.state==='relearn');let rq=null;
+  if(!isRev){
+    if(g===0){st.state='learning';rq='soon';}else if(g===1){st.state='learning';rq='soon';}
+    else if(g===2){st.state='review';st.iv=1;st.due=addDays(today,1);}
+    else{st.state='review';st.iv=4;st.due=addDays(today,4);}
+  }else{
+    if(g===0){st.lapses++;st.ease=Math.max(1.3,st.ease-0.2);st.iv=1;st.due=addDays(today,1);st.state='relearn';rq='soon';}
+    else if(g===1){st.ease=Math.max(1.3,st.ease-0.15);st.iv=Math.max(Math.round(st.iv*1.2),st.iv+1);st.due=addDays(today,st.iv);st.state='review';}
+    else if(g===2){st.iv=Math.max(Math.round(st.iv*st.ease),st.iv+1);st.due=addDays(today,st.iv);st.state='review';}
+    else{st.ease=Math.min(3.2,st.ease+0.15);st.iv=Math.max(Math.round(st.iv*st.ease*1.3),st.iv+2);st.due=addDays(today,st.iv);st.state='review';}
+  }
+  st.reps++;st.seen++;st.lastG=g;st.lastR=today;S.srs[card.id]=st;S.log.push({d:today,id:card.id,g});save();return rq;
+}
+
+/* ============================ QUEUE ============================ */
+function ensureDaily(){const t=todayISO();if(S.daily.date!==t){S.daily={date:t,newDone:0};save();}}
+function dueCards(deckId){const t=todayISO();return CARDS.filter(c=>(!deckId||c.deckId===deckId)).filter(c=>{const st=S.srs[c.id];return st&&st.state!=='new'&&st.due&&st.due<=t;});}
+function newCards(deckId){return CARDS.filter(c=>(!deckId||c.deckId===deckId)).filter(c=>!S.srs[c.id]||S.srs[c.id].state==='new');}
+function buildQueue(deckId){
+  ensureDaily();const due=dueCards(deckId);
+  const allowedNew=deckId?Math.max(0,S.settings.newPerDay):Math.max(0,S.settings.newPerDay-S.daily.newDone);
+  const fresh=newCards(deckId).slice(0,allowedNew);
+  const q=[];const a=[...due],b=[...fresh];
+  while(a.length||b.length){for(let i=0;i<3&&a.length;i++)q.push(a.shift());if(b.length)q.push(b.shift());}
+  return {queue:q,dueN:due.length,newN:fresh.length};
+}
+
+/* ============================ RENDER HELPERS ============================ */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function fmtInline(s){return esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');}
+function fmt(text){
+  if(!text)return'';const lines=esc(text).split('\n');let html='',inList=false;
+  for(let ln of lines){ln=ln.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+    if(/^•\s+/.test(ln)){if(!inList){html+='<ul>';inList=true;}html+='<li>'+ln.replace(/^•\s+/,'')+'</li>';}
+    else{if(inList){html+='</ul>';inList=false;}if(ln.trim())html+='<p>'+ln+'</p>';}}
+  if(inList)html+='</ul>';return html;
+}
+const LABELMAP={"Meccanismo d'Azione":["Meccanismo d'azione","#ff6b6b","Mechanism of action"],"Meccanismo d'Azione / Target":["Meccanismo / target","#ff6b6b","Mechanism / target"],"Target Molecolare":["Target molecolare","#b07cd6","Molecular target"],"Parametri Farmacocinetici":["Farmacocinetica","#4ea8de","Pharmacokinetics"],"Indicazioni Cliniche":["Indicazioni","#5bc873","Indications"],"Reazioni Avverse Comuni (ADR)":["Reazioni avverse","#ff6b6b","Adverse reactions"],"Reazioni Avverse (ADR)":["Reazioni avverse","#ff6b6b","Adverse reactions"],"Resistenze / Limiti di Efficacia":["Resistenze / limiti","#ff9f5a","Resistance / limits"],"Associazioni Farmacologiche / Adiuvanti":["Associazioni","#ffce3a","Associations"]};
+function renderBack(card){
+  let h='';const C=L(card);
+  if(C.memo)h+=`<div class="memo-banner">${deckDoodle(card.deckId,'memo-doodle')}<span class="memo-txt">${fmtInline(C.memo)}</span></div>`;
+  {const _a=cardArtSvg(card);if(_a)h+=`<div class="diagram-box"><div class="cap">${T('howworks')}</div><div class="art">${_a}</div></div>`;}
+  const segs=C.segments||card.segments;
+  for(let i=0;i<segs.length;i++){
+    const itLab=(card.segments[i]||segs[i]).label, s=segs[i];
+    if(/Approfondimento|Goodman/i.test(itLab)){h+=`<div class="seg goodman"><div class="lab">📘 ${esc(s.label)}</div><div class="val">${fmt(s.value)}</div></div>`;continue;}
+    const map=LABELMAP[itLab],lab=map?(LANG==='en'?map[2]:map[0]):s.label,col=map?map[1]:'#a3937e';
+    const warn=/ADR|Avverse/i.test(itLab)?' warn':'';
+    h+=`<div class="seg"><div class="lab${warn}"><span class="dot" style="background:${col}"></span>${esc(lab)}</div><div class="val">${fmt(s.value)}</div></div>`;
+  }
+  const ft=C.freetext||card.freetext||[];
+  if(ft.length)h+=`<div class="seg free"><div class="val">${ft.map(f=>fmt(f)).join('')}</div></div>`;
+  if(!h)h='<div class="seg"><div class="val">'+esc(C.name||card.name)+'</div></div>';
+  return h;
+}
+function deckChip(card){const d=DECK_BY_ID[card.deckId];return `<span class="chip" style="background:${d.color}33">${esc(d.code)} · ${esc(deckTitle(d))}</span>`;}
+
+/* ---- disegni a mano esplicativi (uno per argomento) ---- */
+const DOODLES={
+  capsule:`<svg viewBox="0 0 100 100" fill="none"><rect x="20" y="40" width="60" height="22" rx="11" transform="rotate(-25 50 51)" fill="#ff6b6b" fill-opacity=".28" stroke="#3a322b" stroke-width="3"/><line x1="50" y1="35" x2="50" y2="67" transform="rotate(-25 50 51)" stroke="#3a322b" stroke-width="3"/></svg>`,
+  flame:`<svg viewBox="0 0 100 100" fill="none"><path d="M52 14 C 64 30 60 41 55 49 C 70 45 70 31 67 27 C 82 45 80 71 58 82 C 38 92 22 78 24 58 C 25 45 36 38 40 47 C 38 31 46 21 52 14 Z" fill="#ff9f5a" fill-opacity=".3" stroke="#3a322b" stroke-width="3" stroke-linejoin="round"/></svg>`,
+  synapse:`<svg viewBox="0 0 100 100" fill="none" stroke="#3a322b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 30 H 20"/><path d="M20 16 a 17 16 0 1 0 0 32 q 9 -3 9 -16 q 0 -13 -9 -16 Z" fill="#b07cd6" fill-opacity=".22"/><circle cx="18" cy="27" r="2.8" fill="#fff"/><circle cx="16" cy="37" r="2.8" fill="#fff"/><circle cx="42" cy="34" r="2.6" fill="#ff6b6b" stroke="none"/><circle cx="50" cy="43" r="2.6" fill="#ff6b6b" stroke="none"/><circle cx="44" cy="52" r="2.6" fill="#ff6b6b" stroke="none"/><path d="M66 14 V 86"/><path d="M66 33 q -10 5 0 12" stroke="#4ea8de"/><path d="M66 55 q -10 5 0 12" stroke="#4ea8de"/></svg>`,
+  brain:`<svg viewBox="0 0 100 100" fill="none" stroke="#3a322b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M34 30 C 22 30 18 44 27 50 C 18 56 23 70 35 68 C 39 80 60 80 63 68 C 75 70 80 56 71 50 C 80 44 75 30 63 33 C 60 22 39 22 38 32 Z" fill="#ff8fb1" fill-opacity=".22"/><path d="M50 32 V 70 M41 44 q 9 4 0 10 M59 42 q -9 6 0 12"/></svg>`,
+  nephron:`<svg viewBox="0 0 100 100" fill="none" stroke="#3a322b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="26" cy="24" r="11" fill="#ff6b6b" fill-opacity=".16"/><path d="M21 20 q 5 5 10 0 M21 27 q 5 5 10 0" stroke-width="1.6"/><path d="M26 35 V 44 C 26 78 58 78 58 44 V 28"/><path d="M62 60 H 71" stroke-width="2"/><path d="M78 52 q 8 10 0 17 q -8 -7 0 -17 Z" fill="#4ea8de" fill-opacity=".4" stroke="#4ea8de" stroke-width="2.4"/></svg>`,
+  microbe:`<svg viewBox="0 0 100 100" fill="none" stroke="#3a322b" stroke-linecap="round" stroke-linejoin="round"><rect x="20" y="36" width="46" height="30" rx="15" fill="#5bc873" fill-opacity=".22" stroke-width="3"/><rect x="25" y="41" width="36" height="20" rx="10" fill="none" stroke-width="1.5"/><path d="M34 51 q 6 -5 11 0 q 5 5 11 0" stroke-width="1.5"/><path d="M66 44 q 11 -3 18 -10 M66 51 q 12 0 20 -2 M66 58 q 11 3 18 10" stroke-width="2"/><path d="M33 36 l 3 6 -4 5" stroke="#ff6b6b" stroke-width="2.6"/></svg>`,
+  heart:`<svg viewBox="0 0 100 100" fill="none"><path d="M50 80 C 18 56 18 30 37 28 C 46 27 50 36 50 36 C 50 36 54 27 63 28 C 82 30 82 56 50 80 Z" fill="#ff6b6b" fill-opacity=".25" stroke="#3a322b" stroke-width="3" stroke-linejoin="round"/><path d="M26 53 h 11 l 4 -11 6 22 4 -11 h 13" stroke="#3a322b" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  lung:`<svg viewBox="0 0 100 100" fill="none" stroke="#3a322b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M50 18 V 44"/><path d="M50 36 q -4 0 -7 6 M50 36 q 4 0 7 6"/><path d="M43 42 C 30 44 26 60 28 72 C 29 80 40 82 43 74 C 46 66 44 50 43 42 Z" fill="#4ea8de" fill-opacity=".2"/><path d="M57 42 C 70 44 74 60 72 72 C 71 80 60 82 57 74 C 54 66 56 50 57 42 Z" fill="#4ea8de" fill-opacity=".2"/></svg>`,
+  stomach:`<svg viewBox="0 0 100 100" fill="none" stroke="#3a322b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M42 18 C 42 34 30 34 30 52 C 30 72 52 76 62 64 C 70 55 66 44 57 45 C 50 46 51 28 53 20" fill="#ff9f5a" fill-opacity=".22"/><path d="M44 52 l 2 7 M52 54 l 2 7" stroke="#ff6b6b"/></svg>`,
+  bone:`<svg viewBox="0 0 100 100" fill="none" stroke="#3a322b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="36" y1="64" x2="64" y2="36" stroke-width="7"/><circle cx="31" cy="62" r="7" fill="#fff"/><circle cx="39" cy="69" r="7" fill="#fff"/><circle cx="61" cy="31" r="7" fill="#fff"/><circle cx="69" cy="38" r="7" fill="#fff"/></svg>`,
+  glucose:`<svg viewBox="0 0 100 100" fill="none" stroke="#3a322b" stroke-width="3" stroke-linejoin="round"><rect x="28" y="34" width="26" height="26" rx="5" transform="rotate(-8 41 47)" fill="#ffce3a" fill-opacity=".45"/><path d="M70 36 V 64 M62 56 l 8 10 8 -10" stroke="#5bc873" stroke-linecap="round"/></svg>`,
+  sneeze:`<svg viewBox="0 0 100 100" fill="none" stroke="#3a322b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="46" cy="50" r="11" fill="#ffce3a" fill-opacity=".5"/><path d="M46 28 V 20 M46 80 V 72 M24 50 H 16 M76 50 H 68 M31 35 l -6 -6 M61 65 l 6 6 M61 35 l 6 -6 M31 65 l -6 6"/></svg>`,
+  antibody:`<svg viewBox="0 0 100 100" fill="none" stroke="#3a322b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M50 82 V 50 L 31 26 M50 50 L 69 26"/><path d="M27 22 l 8 8 M35 22 l -8 8" stroke="#b07cd6" stroke-width="3"/><path d="M65 22 l 8 8 M73 22 l -8 8" stroke="#b07cd6" stroke-width="3"/></svg>`,
+  dna:`<svg viewBox="0 0 100 100" fill="none" stroke-linecap="round"><path d="M38 16 Q 62 33 38 50 Q 62 67 38 84" stroke="#4ea8de" stroke-width="3.2"/><path d="M62 16 Q 38 33 62 50 Q 38 67 62 84" stroke="#ff6b6b" stroke-width="3.2"/><g stroke="#3a322b" stroke-width="2"><line x1="45" y1="23" x2="55" y2="23"/><line x1="40" y1="33" x2="60" y2="33"/><line x1="45" y1="42" x2="55" y2="42"/><line x1="45" y1="58" x2="55" y2="58"/><line x1="40" y1="67" x2="60" y2="67"/><line x1="45" y1="77" x2="55" y2="77"/></g></svg>`,
+  drop:`<svg viewBox="0 0 100 100" fill="none" stroke="#3a322b" stroke-width="3" stroke-linejoin="round"><path d="M50 18 C 50 18 30 46 30 60 a 20 20 0 0 0 40 0 C 70 46 50 18 50 18 Z" fill="#ff6b6b" fill-opacity=".3"/><path d="M40 58 a 10 10 0 0 0 6 12" stroke="#fff" stroke-width="2.4"/></svg>`
+};
+const CONCEPT={A4:'flame',A5:'flame',A6:'sneeze',A7:'brain',A8:'lung',A9:'antibody',A10:'glucose',A11:'stomach',A12:'bone',B1:'synapse',B2:'synapse',B3:'brain',B4:'brain',B5:'brain',B6:'brain',B7:'brain',B8:'synapse',B9:'brain',B10:'heart',B11:'heart',B11b:'nephron',B12:'drop',B12b:'heart',B13:'heart',B14:'dna','Antibiotici-2':'microbe','Antibiotici-3':'microbe','Beta-lattamici':'microbe'};
+function deckDoodle(deckId,cls){const key=CONCEPT[deckId]||'capsule';return `<div class="${cls||'topic-doodle'}" aria-hidden="true">${DOODLES[key]||DOODLES.capsule}</div>`;}
+
+/* ---- diagrammi-meccanismo disegnati a mano per le card chiave ---- */
+const DIAGRAMS={
+  eicosanoidi:`<svg viewBox="0 0 150 118" font-family="Nunito,sans-serif" fill="none"><text x="75" y="11" text-anchor="middle" font-size="8.5" font-weight="800" fill="#3a322b">Fosfolipidi di membrana</text><line x1="75" y1="16" x2="75" y2="38" stroke="#3a322b" stroke-width="2.5"/><path d="M71 33 l4 5 4 -5" stroke="#3a322b" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="80" y="29" font-size="7" font-weight="800" fill="#6f6253">PLA2</text><g stroke="#ff6b6b" stroke-width="2.4" stroke-linecap="round"><line x1="60" y1="24" x2="70" y2="33"/><line x1="70" y1="24" x2="60" y2="33"/></g><text x="33" y="30" font-size="7" font-weight="800" fill="#ff6b6b">steroidi</text><text x="75" y="49" text-anchor="middle" font-size="8.5" font-weight="800" fill="#3a322b">Acido arachidonico</text><line x1="62" y1="54" x2="40" y2="78" stroke="#3a322b" stroke-width="2.5"/><line x1="88" y1="54" x2="110" y2="78" stroke="#3a322b" stroke-width="2.5"/><path d="M38 72 l1 7 6 -2" stroke="#3a322b" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M112 72 l-1 7 -6 -2" stroke="#3a322b" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="44" y="64" font-size="7" font-weight="800" fill="#6f6253">COX</text><text x="104" y="64" font-size="7" font-weight="800" fill="#6f6253">LOX</text><g stroke="#ff6b6b" stroke-width="2.4" stroke-linecap="round"><line x1="46" y1="62" x2="56" y2="71"/><line x1="56" y1="62" x2="46" y2="71"/></g><text x="20" y="74" font-size="7" font-weight="800" fill="#ff6b6b">FANS</text><text x="38" y="92" text-anchor="middle" font-size="8" font-weight="800" fill="#5bc873">Prostaglandine</text><text x="112" y="92" text-anchor="middle" font-size="8" font-weight="800" fill="#b07cd6">Leucotrieni</text><text x="38" y="104" text-anchor="middle" font-size="6.5" font-weight="700" fill="#6f6253">dolore · febbre · flogosi</text><text x="112" y="104" text-anchor="middle" font-size="6.5" font-weight="700" fill="#6f6253">broncocostrizione</text></svg>`,
+  katp:`<svg viewBox="0 0 150 108" font-family="Nunito,sans-serif" fill="none"><text x="75" y="11" text-anchor="middle" font-size="8.5" font-weight="800" fill="#3a322b">cellula β del pancreas</text><rect x="14" y="22" width="122" height="14" rx="7" fill="#ffce3a" fill-opacity=".22" stroke="#3a322b" stroke-width="2.4"/><rect x="34" y="20" width="14" height="18" rx="3" fill="#fff" stroke="#3a322b" stroke-width="2.4"/><text x="41" y="49" text-anchor="middle" font-size="6.5" font-weight="800" fill="#3a322b">K-ATP</text><text x="41" y="16" text-anchor="middle" font-size="8" font-weight="800" fill="#4ea8de">K⁺</text><g stroke="#ff6b6b" stroke-width="2.4" stroke-linecap="round"><line x1="36" y1="22" x2="46" y2="34"/><line x1="46" y1="22" x2="36" y2="34"/></g><text x="20" y="62" text-anchor="middle" font-size="6.5" font-weight="800" fill="#ff6b6b">sulfanilurea</text><text x="20" y="71" text-anchor="middle" font-size="6.5" font-weight="800" fill="#ff6b6b">chiude SUR1</text><rect x="100" y="20" width="14" height="18" rx="3" fill="#fff" stroke="#3a322b" stroke-width="2.4"/><text x="107" y="16" text-anchor="middle" font-size="7.5" font-weight="800" fill="#ff6b6b">Ca²⁺</text><line x1="107" y1="18" x2="107" y2="40" stroke="#ff6b6b" stroke-width="2" stroke-dasharray="2 2"/><line x1="52" y1="44" x2="96" y2="44" stroke="#3a322b" stroke-width="2.4"/><path d="M92 41 l5 3 -5 3" stroke="#3a322b" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="74" y="41" text-anchor="middle" font-size="6" font-weight="800" fill="#6f6253">depolarizzazione</text><circle cx="58" cy="82" r="7" fill="#5bc873" fill-opacity=".4" stroke="#3a322b" stroke-width="2"/><circle cx="78" cy="88" r="7" fill="#5bc873" fill-opacity=".4" stroke="#3a322b" stroke-width="2"/><text x="112" y="86" font-size="8" font-weight="800" fill="#5bc873">insulina ↑</text><line x1="104" y1="54" x2="86" y2="76" stroke="#3a322b" stroke-width="2"/><path d="M85 72 l1 6 5 -2" stroke="#3a322b" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  ampk:`<svg viewBox="0 0 150 104" font-family="Nunito,sans-serif" fill="none"><text x="40" y="12" text-anchor="middle" font-size="8.5" font-weight="800" fill="#3a322b">epatocita</text><ellipse cx="40" cy="42" rx="28" ry="18" fill="#ff9f5a" fill-opacity=".2" stroke="#3a322b" stroke-width="2.4"/><path d="M24 42 q 8 -8 16 0 q 8 8 16 0" stroke="#3a322b" stroke-width="1.6" fill="none"/><text x="40" y="68" text-anchor="middle" font-size="6.5" font-weight="700" fill="#6f6253">mitocondrio · Compl. I</text><g stroke="#ff6b6b" stroke-width="2.6" stroke-linecap="round"><line x1="32" y1="35" x2="48" y2="49"/><line x1="48" y1="35" x2="32" y2="49"/></g><text x="40" y="82" text-anchor="middle" font-size="7.5" font-weight="800" fill="#ff6b6b">metformina</text><line x1="70" y1="42" x2="90" y2="42" stroke="#3a322b" stroke-width="2.4"/><path d="M86 38 l5 4 -5 4" stroke="#3a322b" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="112" y="40" text-anchor="middle" font-size="9" font-weight="800" fill="#5bc873">AMPK ↑</text><line x1="112" y1="46" x2="112" y2="62" stroke="#3a322b" stroke-width="2.4"/><path d="M108 58 l4 5 4 -5" stroke="#3a322b" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="112" y="74" text-anchor="middle" font-size="7" font-weight="800" fill="#3a322b">gluconeogenesi ↓</text><text x="112" y="90" text-anchor="middle" font-size="9" font-weight="800" fill="#4ea8de">glicemia ↓</text></svg>`,
+  sglt2:`<svg viewBox="0 0 150 98" font-family="Nunito,sans-serif" fill="none"><text x="48" y="11" text-anchor="middle" font-size="8.5" font-weight="800" fill="#3a322b">tubulo renale</text><path d="M14 24 H 86 V 74 H 14" stroke="#4ea8de" stroke-width="2.4" fill="#4ea8de" fill-opacity=".08"/><text x="42" y="52" text-anchor="middle" font-size="6.5" font-weight="700" fill="#6f6253">lume (urina)</text><rect x="80" y="38" width="14" height="18" rx="3" fill="#fff" stroke="#3a322b" stroke-width="2.4"/><text x="87" y="67" text-anchor="middle" font-size="6.5" font-weight="800" fill="#3a322b">SGLT2</text><g stroke="#ff6b6b" stroke-width="2.4" stroke-linecap="round"><line x1="82" y1="40" x2="92" y2="54"/><line x1="92" y1="40" x2="82" y2="54"/></g><text x="122" y="46" text-anchor="middle" font-size="7" font-weight="800" fill="#ff6b6b">glifozina</text><text x="122" y="56" text-anchor="middle" font-size="6" font-weight="700" fill="#6f6253">blocca riass.</text><circle cx="40" cy="34" r="5.5" fill="#ffce3a" stroke="#3a322b" stroke-width="1.6"/><text x="40" y="37" text-anchor="middle" font-size="5.5" font-weight="800">G</text><line x1="40" y1="40" x2="40" y2="78" stroke="#3a322b" stroke-width="2" stroke-dasharray="3 2"/><path d="M36 74 l4 5 4 -5" stroke="#3a322b" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="40" y="92" text-anchor="middle" font-size="8" font-weight="800" fill="#4ea8de">glucosio → pipì</text></svg>`,
+  glut4:`<svg viewBox="0 0 150 98" font-family="Nunito,sans-serif" fill="none"><text x="18" y="26" font-size="7.5" font-weight="800" fill="#5bc873">insulina</text><circle cx="14" cy="40" r="6" fill="#5bc873" fill-opacity=".5" stroke="#3a322b" stroke-width="2"/><rect x="40" y="20" width="13" height="58" rx="6" fill="#ffce3a" fill-opacity=".22" stroke="#3a322b" stroke-width="2.4"/><path d="M40 40 q -8 4 -16 0" stroke="#3a322b" stroke-width="2" fill="none"/><text x="46" y="90" text-anchor="middle" font-size="6.5" font-weight="800" fill="#3a322b">recettore</text><rect x="60" y="34" width="12" height="14" rx="3" fill="#fff" stroke="#3a322b" stroke-width="2"/><text x="66" y="58" text-anchor="middle" font-size="6.5" font-weight="800" fill="#3a322b">GLUT4</text><circle cx="102" cy="34" r="6" fill="#ffce3a" stroke="#3a322b" stroke-width="1.6"/><text x="102" y="37" text-anchor="middle" font-size="6" font-weight="800">G</text><line x1="96" y1="38" x2="76" y2="42" stroke="#3a322b" stroke-width="2"/><path d="M80 38 l-4 4 5 3" stroke="#3a322b" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="112" y="60" text-anchor="middle" font-size="7" font-weight="700" fill="#6f6253">glucosio entra</text><text x="112" y="80" text-anchor="middle" font-size="9" font-weight="800" fill="#4ea8de">glicemia ↓</text></svg>`,
+  ladder:`<svg viewBox="0 0 150 110" font-family="Nunito,sans-serif" fill="none"><rect x="8" y="80" width="44" height="22" fill="#5bc873" fill-opacity=".25" stroke="#3a322b" stroke-width="2.4"/><rect x="52" y="56" width="44" height="46" fill="#ffce3a" fill-opacity=".3" stroke="#3a322b" stroke-width="2.4"/><rect x="96" y="32" width="46" height="70" fill="#ff6b6b" fill-opacity=".22" stroke="#3a322b" stroke-width="2.4"/><text x="30" y="74" text-anchor="middle" font-size="7" font-weight="800">①</text><text x="74" y="50" text-anchor="middle" font-size="7" font-weight="800">②</text><text x="119" y="26" text-anchor="middle" font-size="7" font-weight="800">③</text><text x="30" y="94" text-anchor="middle" font-size="6.5" font-weight="800" fill="#3a322b">FANS</text><text x="74" y="76" text-anchor="middle" font-size="6.5" font-weight="800" fill="#3a322b">oppioidi</text><text x="74" y="85" text-anchor="middle" font-size="6.5" font-weight="800" fill="#3a322b">deboli</text><text x="119" y="60" text-anchor="middle" font-size="6.5" font-weight="800" fill="#3a322b">oppioidi</text><text x="119" y="69" text-anchor="middle" font-size="6.5" font-weight="800" fill="#3a322b">forti</text><text x="8" y="18" font-size="7.5" font-weight="800" fill="#6f6253">↑ intensità del dolore</text></svg>`,
+  mu:`<svg viewBox="0 0 150 96" font-family="Nunito,sans-serif" fill="none" stroke-linecap="round"><path d="M18 28 a 20 18 0 1 0 0 36 q 10 -3 10 -18 q 0 -15 -10 -18 Z" fill="#b07cd6" fill-opacity=".18" stroke="#3a322b" stroke-width="2.4"/><rect x="30" y="40" width="12" height="16" rx="3" fill="#fff" stroke="#3a322b" stroke-width="2.4"/><text x="36" y="36" text-anchor="middle" font-size="10" font-weight="800" fill="#ff6b6b">μ</text><circle cx="36" cy="24" r="4" fill="#ff6b6b" fill-opacity=".6" stroke="#3a322b" stroke-width="1.6"/><text x="62" y="20" font-size="6.5" font-weight="800" fill="#6f6253">oppioide</text><text x="78" y="42" font-size="8" font-weight="800" fill="#3a322b">Gi → cAMP ↓</text><text x="78" y="58" font-size="7.5" font-weight="800" fill="#4ea8de">K⁺ ↑   Ca²⁺ ↓</text><text x="78" y="76" font-size="8" font-weight="800" fill="#5bc873">↓ segnale dolore</text></svg>`,
+  gaba:`<svg viewBox="0 0 150 96" font-family="Nunito,sans-serif" fill="none"><text x="75" y="11" text-anchor="middle" font-size="8" font-weight="800" fill="#3a322b">recettore GABA-A (canale Cl⁻)</text><rect x="20" y="34" width="110" height="16" rx="4" fill="#ffce3a" fill-opacity=".22" stroke="#3a322b" stroke-width="2.4"/><path d="M64 30 l -6 24 M70 30 l 6 24 M80 30 l 6 24 M86 30 l -6 24" stroke="#3a322b" stroke-width="2.4" fill="none"/><text x="72" y="24" text-anchor="middle" font-size="8" font-weight="800" fill="#4ea8de">Cl⁻</text><line x1="72" y1="26" x2="72" y2="62" stroke="#4ea8de" stroke-width="2.4" stroke-dasharray="3 2"/><path d="M68 58 l4 5 4 -5" stroke="#4ea8de" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="72" y="74" text-anchor="middle" font-size="6.5" font-weight="700" fill="#6f6253">iperpolarizzazione</text><circle cx="102" cy="42" r="6" fill="#5bc873" fill-opacity=".5" stroke="#3a322b" stroke-width="2"/><text x="102" y="45" text-anchor="middle" font-size="8" font-weight="800">+</text><text x="124" y="44" text-anchor="middle" font-size="7.5" font-weight="800" fill="#5bc873">BDZ</text><text x="124" y="54" text-anchor="middle" font-size="6" font-weight="700" fill="#6f6253">potenzia</text></svg>`,
+  raas:`<svg viewBox="0 0 150 118" font-family="Nunito,sans-serif" fill="none"><text x="40" y="13" text-anchor="middle" font-size="8" font-weight="800" fill="#3a322b">Angiotensinogeno</text><line x1="40" y1="17" x2="40" y2="33" stroke="#3a322b" stroke-width="2.4"/><path d="M36 29 l4 5 4 -5" stroke="#3a322b" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="53" y="27" font-size="6.5" font-weight="800" fill="#6f6253">renina</text><text x="40" y="44" text-anchor="middle" font-size="9" font-weight="800" fill="#3a322b">Ang I</text><line x1="40" y1="48" x2="40" y2="64" stroke="#3a322b" stroke-width="2.4"/><path d="M36 60 l4 5 4 -5" stroke="#3a322b" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="53" y="58" font-size="7" font-weight="800" fill="#6f6253">ACE</text><g stroke="#ff6b6b" stroke-width="2.4" stroke-linecap="round"><line x1="32" y1="52" x2="46" y2="62"/><line x1="46" y1="52" x2="32" y2="62"/></g><text x="8" y="60" font-size="7" font-weight="800" fill="#ff6b6b">ACE-i</text><text x="40" y="76" text-anchor="middle" font-size="9" font-weight="800" fill="#3a322b">Ang II</text><line x1="52" y1="74" x2="86" y2="74" stroke="#3a322b" stroke-width="2.4"/><path d="M82 70 l5 4 -5 4" stroke="#3a322b" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="68" y="69" font-size="6.5" font-weight="800" fill="#6f6253">AT1</text><g stroke="#ff6b6b" stroke-width="2.4" stroke-linecap="round"><line x1="61" y1="68" x2="73" y2="80"/><line x1="73" y1="68" x2="61" y2="80"/></g><text x="67" y="92" font-size="7" font-weight="800" fill="#ff6b6b">sartano</text><text x="112" y="71" text-anchor="middle" font-size="7.5" font-weight="800" fill="#ff9f5a">vasocostrizione</text><text x="112" y="85" text-anchor="middle" font-size="7.5" font-weight="800" fill="#ff9f5a">aldosterone ↑</text><text x="112" y="100" text-anchor="middle" font-size="8.5" font-weight="800" fill="#3a322b">pressione ↑</text></svg>`,
+  statine:`<svg viewBox="0 0 150 96" font-family="Nunito,sans-serif" fill="none"><text x="34" y="13" text-anchor="middle" font-size="8" font-weight="800" fill="#3a322b">HMG-CoA</text><line x1="34" y1="17" x2="34" y2="35" stroke="#3a322b" stroke-width="2.4"/><path d="M30 31 l4 5 4 -5" stroke="#3a322b" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="52" y="29" font-size="6" font-weight="800" fill="#6f6253">reduttasi</text><g stroke="#ff6b6b" stroke-width="2.4" stroke-linecap="round"><line x1="27" y1="23" x2="41" y2="33"/><line x1="41" y1="23" x2="27" y2="33"/></g><text x="34" y="49" text-anchor="middle" font-size="7.5" font-weight="800" fill="#ff6b6b">statina</text><text x="34" y="64" text-anchor="middle" font-size="7.5" font-weight="800" fill="#3a322b">colesterolo ↓</text><line x1="64" y1="60" x2="84" y2="60" stroke="#3a322b" stroke-width="2.4"/><path d="M80 56 l5 4 -5 4" stroke="#3a322b" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="112" y="56" text-anchor="middle" font-size="7.5" font-weight="800" fill="#5bc873">recettori LDL ↑</text><text x="112" y="69" text-anchor="middle" font-size="6.5" font-weight="700" fill="#6f6253">catturano le LDL</text><text x="112" y="85" text-anchor="middle" font-size="8" font-weight="800" fill="#4ea8de">LDL nel sangue ↓</text></svg>`,
+  emostasi:`<svg viewBox="0 0 150 96" font-family="Nunito,sans-serif" fill="none"><text x="28" y="13" text-anchor="middle" font-size="7" font-weight="800" fill="#3a322b">tappo piastrinico</text><circle cx="20" cy="34" r="6" fill="#ff6b6b" fill-opacity=".4" stroke="#3a322b" stroke-width="1.8"/><circle cx="32" cy="38" r="6" fill="#ff6b6b" fill-opacity=".4" stroke="#3a322b" stroke-width="1.8"/><circle cx="26" cy="46" r="6" fill="#ff6b6b" fill-opacity=".4" stroke="#3a322b" stroke-width="1.8"/><text x="26" y="66" text-anchor="middle" font-size="6" font-weight="800" fill="#ff6b6b">antiaggreganti</text><line x1="44" y1="40" x2="66" y2="40" stroke="#3a322b" stroke-width="2.4"/><path d="M62 36 l5 4 -5 4" stroke="#3a322b" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M76 30 l 22 20 M98 30 l -22 20 M87 26 l 0 28 M73 40 l 28 0" stroke="#b07cd6" stroke-width="1.8" stroke-linecap="round"/><text x="87" y="66" text-anchor="middle" font-size="6.5" font-weight="800" fill="#b07cd6">fibrina</text><text x="87" y="75" text-anchor="middle" font-size="6" font-weight="800" fill="#4ea8de">anticoagulanti</text><line x1="108" y1="40" x2="128" y2="40" stroke="#3a322b" stroke-width="2.4"/><path d="M124 36 l5 4 -5 4" stroke="#3a322b" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="138" y="38" text-anchor="middle" font-size="7" font-weight="800" fill="#3a322b">trombo</text><text x="138" y="62" text-anchor="middle" font-size="5.5" font-weight="800" fill="#ff9f5a">trombolitici</text><text x="138" y="70" text-anchor="middle" font-size="5.5" font-weight="700" fill="#6f6253">lo sciolgono</text></svg>`,
+  triade:`<svg viewBox="0 0 150 112" font-family="Nunito,sans-serif" fill="none"><circle cx="55" cy="48" r="30" fill="#4ea8de" fill-opacity=".16" stroke="#3a322b" stroke-width="2.4"/><circle cx="95" cy="48" r="30" fill="#ff6b6b" fill-opacity=".16" stroke="#3a322b" stroke-width="2.4"/><circle cx="75" cy="80" r="30" fill="#5bc873" fill-opacity=".16" stroke="#3a322b" stroke-width="2.4"/><text x="40" y="42" text-anchor="middle" font-size="7.5" font-weight="800" fill="#3a322b">ipnosi</text><text x="110" y="42" text-anchor="middle" font-size="7.5" font-weight="800" fill="#3a322b">analgesia</text><text x="75" y="94" text-anchor="middle" font-size="6.8" font-weight="800" fill="#3a322b">mio-</text><text x="75" y="103" text-anchor="middle" font-size="6.8" font-weight="800" fill="#3a322b">risoluzione</text></svg>`,
+  dopavie:`<svg viewBox="0 0 150 118" font-family="Nunito,sans-serif" fill="none"><text x="75" y="11" text-anchor="middle" font-size="8" font-weight="800" fill="#3a322b">4 vie dopaminergiche</text><g stroke="#3a322b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="16" y1="30" x2="40" y2="30"/><path d="M36 27 l5 3 -5 3"/><line x1="16" y1="56" x2="40" y2="56"/><path d="M36 53 l5 3 -5 3"/><line x1="16" y1="82" x2="40" y2="82"/><path d="M36 79 l5 3 -5 3"/><line x1="16" y1="106" x2="40" y2="106"/><path d="M36 103 l5 3 -5 3"/></g><g stroke="none"><circle cx="12" cy="30" r="4" fill="#b07cd6"/><circle cx="12" cy="56" r="4" fill="#b07cd6"/><circle cx="12" cy="82" r="4" fill="#b07cd6"/><circle cx="12" cy="106" r="4" fill="#b07cd6"/></g><text x="46" y="28" font-size="7" font-weight="800" fill="#3a322b">mesolimbica</text><text x="46" y="37" font-size="6" font-weight="700" fill="#ff6b6b">↑ sintomi positivi</text><text x="46" y="54" font-size="7" font-weight="800" fill="#3a322b">mesocorticale</text><text x="46" y="63" font-size="6" font-weight="700" fill="#4ea8de">↓ sintomi negativi</text><text x="46" y="80" font-size="7" font-weight="800" fill="#3a322b">nigrostriatale</text><text x="46" y="89" font-size="6" font-weight="700" fill="#ff9f5a">movimento → EPS</text><text x="46" y="104" font-size="7" font-weight="800" fill="#3a322b">tuberoinfundib.</text><text x="46" y="113" font-size="6" font-weight="700" fill="#ff9f5a">prolattina ↑</text></svg>`,
+  vaughan:`<svg viewBox="0 0 150 108" font-family="Nunito,sans-serif" fill="none"><text x="75" y="11" text-anchor="middle" font-size="8" font-weight="800" fill="#3a322b">potenziale d'azione cardiaco</text><line x1="16" y1="92" x2="138" y2="92" stroke="#d9c9aa" stroke-width="1.5"/><line x1="16" y1="20" x2="16" y2="92" stroke="#d9c9aa" stroke-width="1.5"/><path d="M16 84 L30 84 L36 30 L44 40 L88 42 L112 84 L138 84" stroke="#ff6b6b" stroke-width="2.6" fill="none" stroke-linejoin="round" stroke-linecap="round"/><text x="33" y="26" font-size="7" font-weight="800" fill="#3a322b">I: Na⁺</text><text x="62" y="38" font-size="7" font-weight="800" fill="#3a322b">IV: Ca²⁺</text><text x="106" y="64" font-size="7" font-weight="800" fill="#3a322b">III: K⁺</text><text x="20" y="104" font-size="6" font-weight="800" fill="#6f6253">II: β-bloccanti → nodo AV / frequenza</text></svg>`,
+  ipp:`<svg viewBox="0 0 150 96" font-family="Nunito,sans-serif" fill="none"><text x="62" y="11" text-anchor="middle" font-size="8" font-weight="800" fill="#3a322b">cellula parietale gastrica</text><rect x="14" y="34" width="120" height="14" rx="7" fill="#ffce3a" fill-opacity=".22" stroke="#3a322b" stroke-width="2.4"/><rect x="60" y="32" width="16" height="18" rx="3" fill="#fff" stroke="#3a322b" stroke-width="2.4"/><text x="68" y="62" text-anchor="middle" font-size="5.5" font-weight="800" fill="#3a322b">H⁺/K⁺ ATPasi</text><text x="68" y="26" text-anchor="middle" font-size="8" font-weight="800" fill="#ff6b6b">H⁺</text><line x1="68" y1="32" x2="68" y2="20" stroke="#ff6b6b" stroke-width="2"/><g stroke="#ff6b6b" stroke-width="2.6" stroke-linecap="round"><line x1="60" y1="33" x2="76" y2="49"/><line x1="76" y1="33" x2="60" y2="49"/></g><text x="108" y="40" text-anchor="middle" font-size="8" font-weight="800" fill="#ff6b6b">IPP</text><text x="108" y="50" text-anchor="middle" font-size="6" font-weight="700" fill="#6f6253">blocco irrevers.</text><text x="68" y="82" text-anchor="middle" font-size="8.5" font-weight="800" fill="#4ea8de">acido gastrico ↓ (24-48h)</text></svg>`,
+  betalattamico:`<svg viewBox="0 0 150 100" font-family="Nunito,sans-serif" fill="none"><text x="75" y="11" text-anchor="middle" font-size="7.5" font-weight="800" fill="#3a322b">parete batterica (peptidoglicano)</text><g stroke="#3a322b" stroke-width="2.2"><rect x="20" y="28" width="22" height="12" rx="2" fill="#5bc873" fill-opacity=".25"/><rect x="50" y="28" width="22" height="12" rx="2" fill="#5bc873" fill-opacity=".25"/><rect x="35" y="46" width="22" height="12" rx="2" fill="#5bc873" fill-opacity=".25"/></g><text x="92" y="32" font-size="7" font-weight="800" fill="#3a322b">PBP</text><text x="92" y="41" font-size="5.5" font-weight="700" fill="#6f6253">transpeptidasi</text><text x="92" y="52" font-size="6" font-weight="800" fill="#b07cd6">lega D-ala-D-ala</text><rect x="20" y="68" width="15" height="15" rx="3" fill="#ff6b6b" fill-opacity=".25" stroke="#3a322b" stroke-width="2.2"/><text x="42" y="74" font-size="6.5" font-weight="800" fill="#3a322b">β-lattamico</text><text x="42" y="83" font-size="5.5" font-weight="700" fill="#ff6b6b">imita D-ala-D-ala</text><text x="120" y="78" text-anchor="middle" font-size="7.5" font-weight="800" fill="#ff6b6b">parete fragile</text><text x="120" y="88" text-anchor="middle" font-size="7.5" font-weight="800" fill="#ff6b6b">→ lisi</text></svg>`,
+  ribosoma:`<svg viewBox="0 0 150 104" font-family="Nunito,sans-serif" fill="none"><path d="M40 24 q 36 -10 70 4 q 8 4 0 8 q -36 -10 -70 4 q -8 -4 0 -16 Z" fill="#b07cd6" fill-opacity=".2" stroke="#3a322b" stroke-width="2.4"/><text x="74" y="22" text-anchor="middle" font-size="8" font-weight="800" fill="#3a322b">50S</text><ellipse cx="74" cy="56" rx="36" ry="15" fill="#4ea8de" fill-opacity=".2" stroke="#3a322b" stroke-width="2.4"/><text x="74" y="60" text-anchor="middle" font-size="8" font-weight="800" fill="#3a322b">30S</text><line x1="30" y1="44" x2="118" y2="44" stroke="#3a322b" stroke-width="1.8" stroke-dasharray="3 2"/><text x="122" y="46" font-size="5.5" font-weight="700" fill="#6f6253">mRNA</text><text x="75" y="86" text-anchor="middle" font-size="6" font-weight="800" fill="#4ea8de">30S: aminoglicosidi · tetracicline</text><text x="75" y="97" text-anchor="middle" font-size="6" font-weight="800" fill="#b07cd6">50S: macrolidi · cloramfenicolo · clinda</text></svg>`,
+  folati:`<svg viewBox="0 0 150 92" font-family="Nunito,sans-serif" fill="none"><text x="15" y="40" font-size="7.5" font-weight="800" fill="#3a322b">PABA</text><g stroke="#3a322b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="40" y1="36" x2="58" y2="36"/><path d="M54 33 l5 3 -5 3"/><line x1="86" y1="36" x2="104" y2="36"/><path d="M100 33 l5 3 -5 3"/></g><text x="50" y="28" font-size="5" font-weight="800" fill="#6f6253">DHPS</text><g stroke="#ff6b6b" stroke-width="2.2" stroke-linecap="round"><line x1="44" y1="30" x2="54" y2="42"/><line x1="54" y1="30" x2="44" y2="42"/></g><text x="49" y="52" text-anchor="middle" font-size="5.5" font-weight="800" fill="#ff6b6b">sulfamidico</text><text x="72" y="40" text-anchor="middle" font-size="7" font-weight="800" fill="#3a322b">DHF</text><text x="96" y="28" font-size="5" font-weight="800" fill="#6f6253">DHFR</text><g stroke="#ff6b6b" stroke-width="2.2" stroke-linecap="round"><line x1="90" y1="30" x2="100" y2="42"/><line x1="100" y1="30" x2="90" y2="42"/></g><text x="95" y="52" text-anchor="middle" font-size="5.5" font-weight="800" fill="#ff6b6b">trimetoprim</text><text x="120" y="40" text-anchor="middle" font-size="7" font-weight="800" fill="#3a322b">THF</text><text x="75" y="76" text-anchor="middle" font-size="6.5" font-weight="800" fill="#5bc873">blocco sequenziale → stop acidi nucleici</text></svg>`,
+  reuptake:`<svg viewBox="0 0 150 92" font-family="Nunito,sans-serif" fill="none" stroke-linecap="round"><path d="M16 24 a 18 16 0 1 0 0 34 q 9 -3 9 -17 q 0 -14 -9 -17 Z" fill="#b07cd6" fill-opacity=".18" stroke="#3a322b" stroke-width="2.4"/><rect x="28" y="36" width="11" height="14" rx="3" fill="#fff" stroke="#3a322b" stroke-width="2.4"/><text x="33" y="60" text-anchor="middle" font-size="6" font-weight="800" fill="#3a322b">SERT</text><g stroke="#ff6b6b" stroke-width="2.4" stroke-linecap="round"><line x1="29" y1="37" x2="38" y2="49"/><line x1="38" y1="37" x2="29" y2="49"/></g><text x="40" y="28" font-size="7" font-weight="800" fill="#ff6b6b">SSRI</text><g stroke="none" fill="#5bc873"><circle cx="56" cy="32" r="3"/><circle cx="66" cy="42" r="3"/><circle cx="58" cy="50" r="3"/><circle cx="72" cy="32" r="3"/></g><text x="106" y="40" text-anchor="middle" font-size="8" font-weight="800" fill="#5bc873">↑ serotonina</text><text x="106" y="51" text-anchor="middle" font-size="6" font-weight="700" fill="#6f6253">nel vallo</text><text x="75" y="82" text-anchor="middle" font-size="6.5" font-weight="700" fill="#6f6253">reuptake bloccato → più 5-HT disponibile</text></svg>`,
+  diuretici:`<svg viewBox="0 0 150 112" font-family="Nunito,sans-serif" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 20 V 42 C 22 82 58 82 58 46 V 32 C 58 24 94 24 94 42 V 72" stroke="#3a322b" stroke-width="2.6" fill="none"/><circle cx="22" cy="18" r="6" fill="#ff6b6b" fill-opacity=".18" stroke="#3a322b" stroke-width="2"/><circle cx="26" cy="32" r="3" fill="#ff9f5a" stroke="none"/><text x="32" y="28" font-size="5.5" font-weight="800" fill="#ff9f5a">prossimale: acetazolamide</text><circle cx="40" cy="72" r="3" fill="#ff6b6b" stroke="none"/><text x="20" y="96" font-size="5.5" font-weight="800" fill="#ff6b6b">ansa: furosemide (drastici)</text><circle cx="76" cy="34" r="3" fill="#4ea8de" stroke="none"/><text x="82" y="34" font-size="5.5" font-weight="800" fill="#4ea8de">distale: tiazidici</text><circle cx="94" cy="66" r="3" fill="#5bc873" stroke="none"/><text x="78" y="106" font-size="5.5" font-weight="800" fill="#5bc873">collettore: risparmiatori K⁺</text></svg>`,
+  checkpoint:`<svg viewBox="0 0 150 98" font-family="Nunito,sans-serif" fill="none"><circle cx="34" cy="48" r="20" fill="#4ea8de" fill-opacity=".2" stroke="#3a322b" stroke-width="2.4"/><text x="34" y="51" text-anchor="middle" font-size="6.5" font-weight="800" fill="#3a322b">linfocita T</text><circle cx="116" cy="48" r="20" fill="#ff6b6b" fill-opacity=".2" stroke="#3a322b" stroke-width="2.4"/><text x="116" y="51" text-anchor="middle" font-size="7" font-weight="800" fill="#3a322b">tumore</text><line x1="54" y1="44" x2="96" y2="44" stroke="#3a322b" stroke-width="2.2"/><text x="60" y="38" font-size="6" font-weight="800" fill="#6f6253">PD-1</text><text x="84" y="38" font-size="6" font-weight="800" fill="#6f6253">PD-L1</text><g stroke="#ff6b6b" stroke-width="2.6" stroke-linecap="round"><line x1="69" y1="38" x2="81" y2="50"/><line x1="81" y1="38" x2="69" y2="50"/></g><text x="75" y="64" text-anchor="middle" font-size="6" font-weight="800" fill="#ff6b6b">anti-PD-1/PD-L1</text><text x="75" y="84" text-anchor="middle" font-size="8" font-weight="800" fill="#5bc873">T attacca il tumore!</text></svg>`,
+  mab:`<svg viewBox="0 0 150 96" font-family="Nunito,sans-serif" fill="none"><text x="75" y="11" text-anchor="middle" font-size="7.5" font-weight="800" fill="#3a322b">nomenclatura mAb · umanizzazione</text><g stroke-width="3" stroke-linecap="round" fill="none"><path d="M24 56 V44 M24 44 l-7 -9 M24 44 l7 -9" stroke="#ff6b6b"/><path d="M58 56 V44 M58 44 l-7 -9 M58 44 l7 -9" stroke="#ff9f5a"/><path d="M92 56 V44 M92 44 l-7 -9 M92 44 l7 -9" stroke="#4ea8de"/><path d="M126 56 V44 M126 44 l-7 -9 M126 44 l7 -9" stroke="#5bc873"/></g><g font-size="7" font-weight="800" text-anchor="middle"><text x="24" y="70" fill="#ff6b6b">-omab</text><text x="58" y="70" fill="#ff9f5a">-ximab</text><text x="92" y="70" fill="#4ea8de">-zumab</text><text x="126" y="70" fill="#5bc873">-umab</text></g><g font-size="6" font-weight="700" text-anchor="middle" fill="#6f6253"><text x="24" y="80">topo</text><text x="58" y="80">chimerico</text><text x="92" y="80">umanizz.</text><text x="126" y="80">umano</text></g><text x="75" y="92" text-anchor="middle" font-size="6.5" font-weight="800" fill="#3a322b">← immunogenicità ↓ →</text></svg>`,
+  ambler:`<svg viewBox="0 0 150 100" font-family="Nunito,sans-serif" fill="none"><text x="75" y="11" text-anchor="middle" font-size="7.5" font-weight="800" fill="#3a322b">β-lattamasi · classi di Ambler</text><g stroke="#3a322b" stroke-width="2.2"><rect x="14" y="18" width="60" height="34" rx="5" fill="#5bc873" fill-opacity=".15"/><rect x="78" y="18" width="58" height="34" rx="5" fill="#ff6b6b" fill-opacity=".18"/><rect x="14" y="58" width="60" height="34" rx="5" fill="#ffce3a" fill-opacity=".18"/><rect x="78" y="58" width="58" height="34" rx="5" fill="#4ea8de" fill-opacity=".15"/></g><text x="20" y="32" font-size="8" font-weight="800" fill="#3a322b">A</text><text x="34" y="32" font-size="6" font-weight="700" fill="#6f6253">ESBL · KPC</text><text x="20" y="46" font-size="5.5" font-weight="800" fill="#5bc873">✓ inibitori</text><text x="84" y="32" font-size="8" font-weight="800" fill="#3a322b">B</text><text x="98" y="32" font-size="6" font-weight="700" fill="#ff6b6b">NDM/VIM</text><text x="84" y="47" font-size="5.5" font-weight="800" fill="#ff6b6b">Zn²⁺ · ✗ inibitori</text><text x="20" y="72" font-size="8" font-weight="800" fill="#3a322b">C</text><text x="34" y="72" font-size="6" font-weight="700" fill="#6f6253">AmpC</text><text x="20" y="86" font-size="5.5" font-weight="700" fill="#6f6253">cefalosporinasi</text><text x="84" y="72" font-size="8" font-weight="800" fill="#3a322b">D</text><text x="98" y="72" font-size="6" font-weight="700" fill="#6f6253">OXA</text><text x="84" y="86" font-size="5.5" font-weight="700" fill="#6f6253">anti-carbapenem.</text></svg>`,
+  levodopa:`<svg viewBox="0 0 150 96" font-family="Nunito,sans-serif" fill="none"><line x1="100" y1="16" x2="100" y2="84" stroke="#4ea8de" stroke-width="2.4" stroke-dasharray="4 3"/><text x="100" y="93" text-anchor="middle" font-size="5.5" font-weight="800" fill="#4ea8de">barriera EE</text><text x="46" y="14" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6f6253">periferia</text><text x="126" y="14" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6f6253">cervello</text><text x="34" y="40" font-size="7.5" font-weight="800" fill="#3a322b">L-DOPA</text><g stroke="#3a322b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="38" y1="46" x2="38" y2="62"/><path d="M34 58 l4 5 4 -5"/></g><text x="38" y="74" text-anchor="middle" font-size="5.5" font-weight="700" fill="#6f6253">DA periferica</text><g stroke="#ff6b6b" stroke-width="2.4" stroke-linecap="round"><line x1="31" y1="49" x2="45" y2="61"/><line x1="45" y1="49" x2="31" y2="61"/></g><text x="38" y="88" text-anchor="middle" font-size="6" font-weight="800" fill="#ff6b6b">carbidopa</text><line x1="56" y1="34" x2="96" y2="34" stroke="#3a322b" stroke-width="2.4"/><path d="M92 30 l5 4 -5 4" stroke="#3a322b" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="124" y="44" text-anchor="middle" font-size="7" font-weight="800" fill="#5bc873">DA nel cervello</text></svg>`,
+  eparina:`<svg viewBox="0 0 150 92" font-family="Nunito,sans-serif" fill="none"><text x="40" y="22" text-anchor="middle" font-size="7" font-weight="800" fill="#5bc873">eparina + ATIII</text><circle cx="40" cy="42" r="13" fill="#5bc873" fill-opacity=".25" stroke="#3a322b" stroke-width="2.2"/><text x="40" y="45" text-anchor="middle" font-size="6" font-weight="800" fill="#3a322b">ATIII</text><g stroke="#3a322b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="56" y1="36" x2="84" y2="30"/><path d="M80 27 l5 3 -3 5"/><line x1="56" y1="50" x2="84" y2="56"/><path d="M80 52 l5 4 -4 5"/></g><text x="110" y="30" text-anchor="middle" font-size="7" font-weight="800" fill="#ff6b6b">trombina IIa</text><text x="110" y="58" text-anchor="middle" font-size="7" font-weight="800" fill="#ff6b6b">fattore Xa</text><text x="110" y="44" text-anchor="middle" font-size="5.5" font-weight="700" fill="#6f6253">inattivate</text><text x="75" y="84" text-anchor="middle" font-size="6" font-weight="800" fill="#3a322b">UFH: IIa+Xa · LMWH/fonda: solo Xa</text></svg>`,
+  warfarin:`<svg viewBox="0 0 150 92" font-family="Nunito,sans-serif" fill="none"><text x="32" y="26" text-anchor="middle" font-size="7" font-weight="800" fill="#3a322b">Vitamina K</text><g stroke="#3a322b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="32" y1="30" x2="32" y2="48"/><path d="M28 44 l4 5 4 -5"/></g><text x="50" y="42" font-size="5.5" font-weight="800" fill="#6f6253">VKOR</text><g stroke="#ff6b6b" stroke-width="2.4" stroke-linecap="round"><line x1="25" y1="33" x2="39" y2="45"/><line x1="39" y1="33" x2="25" y2="45"/></g><text x="32" y="62" text-anchor="middle" font-size="6.5" font-weight="800" fill="#ff6b6b">warfarin</text><line x1="44" y1="40" x2="60" y2="40" stroke="#3a322b" stroke-width="2.4"/><path d="M56 36 l5 4 -5 4" stroke="#3a322b" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="102" y="38" text-anchor="middle" font-size="7.5" font-weight="800" fill="#3a322b">fattori II·VII·IX·X ↓</text><text x="102" y="54" text-anchor="middle" font-size="6" font-weight="700" fill="#6f6253">INR · antidoto vit K</text><text x="75" y="84" text-anchor="middle" font-size="6" font-weight="800" fill="#4ea8de">DOAC: ✕ IIa (dabigatran) o Xa (-xaban)</text></svg>`,
+  nitrati:`<svg viewBox="0 0 150 86" font-family="Nunito,sans-serif" fill="none"><text x="24" y="40" text-anchor="middle" font-size="7" font-weight="800" fill="#3a322b">nitrato</text><g stroke="#3a322b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="40" y1="36" x2="56" y2="36"/><path d="M52 32 l5 4 -5 4"/><line x1="76" y1="36" x2="92" y2="36"/><path d="M88 32 l5 4 -5 4"/></g><text x="66" y="40" text-anchor="middle" font-size="9" font-weight="800" fill="#ff9f5a">NO</text><text x="112" y="38" text-anchor="middle" font-size="8" font-weight="800" fill="#5bc873">cGMP ↑</text><text x="75" y="60" text-anchor="middle" font-size="7" font-weight="800" fill="#3a322b">rilassa la muscolatura liscia</text><text x="75" y="76" text-anchor="middle" font-size="8" font-weight="800" fill="#4ea8de">vene → ↓ precarico</text></svg>`,
+  bifosfonati:`<svg viewBox="0 0 150 96" font-family="Nunito,sans-serif" fill="none"><text x="75" y="13" text-anchor="middle" font-size="6.5" font-weight="800" fill="#3a322b">il bifosfonato si ancora → osteoclasto muore</text><rect x="14" y="62" width="122" height="22" rx="4" fill="#ffce3a" fill-opacity=".25" stroke="#3a322b" stroke-width="2.2"/><text x="75" y="77" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6f6253">osso (idrossiapatite)</text><g stroke="#3a322b" stroke-width="2"><line x1="40" y1="62" x2="40" y2="54"/><line x1="62" y1="62" x2="62" y2="54"/><line x1="104" y1="62" x2="104" y2="54"/></g><g font-size="5.5" font-weight="800" fill="#b07cd6" text-anchor="middle"><text x="40" y="50">BP</text><text x="62" y="50">BP</text><text x="104" y="50">BP</text></g><circle cx="80" cy="34" r="13" fill="#ff6b6b" fill-opacity=".2" stroke="#3a322b" stroke-width="2.2"/><text x="80" y="37" text-anchor="middle" font-size="5" font-weight="800" fill="#3a322b">osteoclasto</text><g stroke="#ff6b6b" stroke-width="2.4" stroke-linecap="round"><line x1="72" y1="27" x2="88" y2="41"/><line x1="88" y1="27" x2="72" y2="41"/></g></svg>`,
+  incretine:`<svg viewBox="0 0 150 96" font-family="Nunito,sans-serif" fill="none"><circle cx="28" cy="48" r="15" fill="#5bc873" fill-opacity=".25" stroke="#3a322b" stroke-width="2.2"/><text x="28" y="46" text-anchor="middle" font-size="7" font-weight="800" fill="#3a322b">GLP-1</text><text x="28" y="56" text-anchor="middle" font-size="4.5" font-weight="700" fill="#6f6253">agonista</text><g stroke="#3a322b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="46" y1="30" x2="66" y2="22"/><path d="M62 20 l5 2 -2 5"/><line x1="46" y1="42" x2="66" y2="42"/><path d="M62 38 l5 4 -5 4"/><line x1="46" y1="54" x2="66" y2="62"/><path d="M62 58 l5 4 -4 5"/><line x1="46" y1="66" x2="66" y2="80"/><path d="M62 75 l5 5 -6 2"/></g><g font-size="6.5" font-weight="800"><text x="70" y="24" fill="#5bc873">insulina ↑ glu-dip.</text><text x="70" y="45" fill="#3a322b">glucagone ↓</text><text x="70" y="65" fill="#3a322b">svuotam. gastrico ↓</text><text x="70" y="84" fill="#4ea8de">appetito ↓ → peso ↓</text></g></svg>`,
+  mao:`<svg viewBox="0 0 150 90" font-family="Nunito,sans-serif" fill="none"><text x="30" y="38" text-anchor="middle" font-size="7" font-weight="800" fill="#3a322b">tiramina</text><text x="30" y="48" text-anchor="middle" font-size="5" font-weight="700" fill="#6f6253">(formaggi, vino)</text><g stroke="#3a322b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="52" y1="34" x2="74" y2="34"/><path d="M70 30 l5 4 -5 4"/></g><text x="63" y="28" text-anchor="middle" font-size="6" font-weight="800" fill="#6f6253">MAO</text><g stroke="#ff6b6b" stroke-width="2.4" stroke-linecap="round"><line x1="56" y1="28" x2="70" y2="40"/><line x1="70" y1="28" x2="56" y2="40"/></g><text x="63" y="52" text-anchor="middle" font-size="6.5" font-weight="800" fill="#ff6b6b">IMAO</text><text x="108" y="30" text-anchor="middle" font-size="7" font-weight="800" fill="#3a322b">tiramina ↑↑</text><text x="108" y="48" text-anchor="middle" font-size="7.5" font-weight="800" fill="#ff6b6b">crisi ipertensiva</text><text x="75" y="78" text-anchor="middle" font-size="6.5" font-weight="800" fill="#6f6253">«cheese effect»</text></svg>`
+};
+const CARD_DIAGRAM={
+  'A4__glucocorticoidi-classe-meccanismo-effett':'eicosanoidi',
+  'A5__fans-classe-meccanismo-azioni-effetti-co':'eicosanoidi',
+  'A5__acido-acetilsalicilico-asa-aspirina':'eicosanoidi',
+  'A10__sulfaniluree-i-gen-tolbutamide-clorpropa':'katp',
+  'A10__glinidi-derivati-della-meglitinide':'katp',
+  'A10__insulina-insulina-umana-analoghi':'glut4',
+  'A10__metformina-biguanidi':'ampk',
+  'A10__inibitori-sglt2-glifozine':'sglt2',
+  'B8__terapia-del-dolore-scala-oms-e-adiuvanti':'ladder',
+  'B8__sistema-oppioidergico-recettori-e-meccan':'mu',
+  'B8__oppiacei-forti-step-3':'mu',
+  'B1__benzodiazepine-bdz':'gaba',
+  'B11__sraa-fisiologia-e-bersagli-farmacologici':'raas',
+  'B11__ace-inibitori-captopril-enalapril-ramipr':'raas',
+  'B11__sartani-losartan-valsartan-irbesartan-te':'raas',
+  'B9__statine-meccanismo-e-farmacocinetica':'statine',
+  'B12__emostasi-e-bersagli-della-terapia':'emostasi',
+  'B2__anestetici-generali-principi':'triade',
+  'B5__psicosi-schizofrenia-basi-e-vie-dopamine':'dopavie',
+  'B6__parkinson-strategia-terapeutica':'dopavie',
+  'B13__aritmie-e-strategie-antiaritmiche':'vaughan',
+  'A11__inibitori-della-pompa-protonica-ipp-omep':'ipp',
+  'Beta-lattamici__lattamici-classe-quadro-generale':'betalattamico',
+  'Antibiotici-3__aminoglicosidi-classe-meccanismo-cinetic':'ribosoma',
+  'Antibiotici-3__macrolidi-classe-eritromicina-claritromi':'ribosoma',
+  'Antibiotici-3__tetracicline':'ribosoma',
+  'Antibiotici-3__cloramfenicolo-caf':'ribosoma',
+  'Antibiotici-3__lincosamidi-clindamicina':'ribosoma',
+  'Antibiotici-3__sulfamidici':'folati',
+  'Antibiotici-3__trimetoprim':'folati',
+  'B3__antidepressivi-basi-fisiopatologiche':'reuptake',
+  'B3__ssri-citalopram-escitalopram-fluoxetina-':'reuptake',
+  'B11b__diuretici-overview-siti-e-classi':'diuretici',
+  'B14__immunoterapia-checkpoint-inhibitors-e-an':'checkpoint',
+  'A9__anticorpi-monoclonali-tipi-e-nomenclatur':'mab',
+  'Beta-lattamici__lattamasi-classificazione-di-ambler-enzi':'ambler',
+  'B6__levodopa-l-dopa-carbidopa-benserazide':'levodopa',
+  'B12__eparina-eparine-a-basso-peso-molecolare-':'eparina',
+  'B12__anticoagulanti-orali-vka-inibitori-diret':'warfarin',
+  'B12b__nitrati-nitrossidi-nitroglicerina-isosor':'nitrati',
+  'A12__bifosfonati-i-iii-generazione':'bifosfonati',
+  'A10__incretine-agonisti-del-recettore-glp-1-e':'incretine',
+  'B3__imao-inibitori-delle-monoamino-ossidasi':'mao'
+};
+const DIAGRAMS_EN=(DATA.diagramsEn)||{};
+function cardArtSvg(card){const k=CARD_DIAGRAM[card.id];if(!k)return null;return (LANG==='en'&&DIAGRAMS_EN[k])?DIAGRAMS_EN[k]:(DIAGRAMS[k]||null);}
+
+/* ============================ NAV ============================ */
+function go(v){$$('.view').forEach(s=>s.classList.remove('active'));$('#v-'+v).classList.add('active');
+  $$('.tab').forEach(t=>t.classList.toggle('active',t.dataset.v===v));
+  if(v==='dash')renderDash();if(v==='browse')renderBrowse();if(v==='stats')renderStats();window.scrollTo({top:0,behavior:'smooth'});}
+
+/* ============================ DASHBOARD ============================ */
+function studiedToday(){const t=todayISO();return new Set(S.log.filter(e=>e.d===t).map(e=>e.id)).size;}
+function todayBreak(){const t=todayISO();const o={bad:0,mid:0,good:0,easy:0};S.log.filter(e=>e.d===t).forEach(e=>{o[['bad','mid','good','easy'][e.g]]++;});return o;}
+function streak(){const set=new Set(S.log.map(e=>e.d));let s=0;const d=new Date();if(!set.has(todayISO()))d.setDate(d.getDate()-1);while(set.has(isoOf(d))){s++;d.setDate(d.getDate()-1);}return s;}
+function renderDash(){
+  ensureDaily();const q=buildQueue(null);const totalDue=q.queue.length;const br=todayBreak();const st=studiedToday();
+  $('#streakN').textContent=streak();
+  const started=CARDS.filter(c=>S.srs[c.id]&&S.srs[c.id].state!=='new').length;
+  const mature=CARDS.filter(c=>maturity(c.id)==='mature').length;const gl=gradeLbls();
+  $('#v-dash').innerHTML=`
+    <div class="eyebrow">☀️ ${prettyDate()}</div>
+    <div class="hero"><div class="hero-grid">
+      <div>
+        <div class="bignum">${totalDue}<small>${totalDue?T('due_today'):T('all_done')}</small></div>
+        <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="cta" onclick="startGlobal()" ${totalDue?'':'disabled'}>${T('start_review')}</button>
+          <button class="cta ghost" onclick="go('browse')">${T('browse_all')}</button>
+        </div>
+      </div>
+      <div>${donut([[T('m_mature'),mature,'#5bc873'],[T('m_started'),started-mature,'#ffce3a'],[T('m_new'),CARDS.length-started,'#ece1cb']],CARDS.length,T('cards'))}</div>
+    </div></div>
+    <div class="tiles">
+      <div class="tile am"><div class="k">${T('tile_due')}</div><div class="v">${q.dueN}</div></div>
+      <div class="tile"><div class="k">${T('tile_newtoday')}</div><div class="v" style="color:var(--blue)">${q.newN}</div></div>
+      <div class="tile good"><div class="k">${T('tile_studied')}</div><div class="v">${st}</div></div>
+      <div class="tile"><div class="k">${T('tile_streak')}</div><div class="v" style="color:var(--orange)">🔥 ${streak()}</div></div>
+    </div>
+    <div class="panel"><h3>${T('today_how')}</h3><div class="hint">${T('today_how_h')}</div>
+      <div class="tiles" style="margin:0">
+        <div class="tile bad"><div class="k">😖 ${gl[0]}</div><div class="v">${br.bad}</div></div>
+        <div class="tile mid"><div class="k">😐 ${gl[1]}</div><div class="v">${br.mid}</div></div>
+        <div class="tile good"><div class="k">😄 ${gl[2]}</div><div class="v">${br.good}</div></div>
+        <div class="tile"><div class="k">🌟 ${gl[3]}</div><div class="v" style="color:var(--blue)">${br.easy}</div></div>
+      </div></div>
+    <div class="panel"><h3>${T('cal_title')}</h3><div class="hint">${T('cal_h')}</div>
+      ${heatmap()}
+      <div class="heat-legend">${T('less')} <span class="cell" style="display:inline-block;width:13px;height:13px;border-radius:4px;background:#ece1cb"></span><span class="cell l1" style="display:inline-block;width:13px;height:13px;border-radius:4px"></span><span class="cell l2" style="display:inline-block;width:13px;height:13px;border-radius:4px"></span><span class="cell l3" style="display:inline-block;width:13px;height:13px;border-radius:4px"></span><span class="cell l4" style="display:inline-block;width:13px;height:13px;border-radius:4px"></span> ${T('more')}</div></div>
+    <div class="panel"><h3>${T('decks_title')}</h3><div class="hint">${T('decks_h')}</div>
+      <div class="decks">${DECKS.map(deckCardHTML).join('')}</div></div>`;
+}
+function prettyDate(){const d=new Date();return d.toLocaleDateString(LANG==='en'?'en-GB':'it-IT',{weekday:'long',day:'numeric',month:'long'});}
+function deckCardHTML(d){
+  const cs=CARDS.filter(c=>c.deckId===d.id);const n=cs.length;let mat=0,yng=0,lrn=0,due=0;const t=todayISO();
+  cs.forEach(c=>{const m=maturity(c.id);if(m==='mature')mat++;else if(m==='young')yng++;else if(m==='learning')lrn++;const s=S.srs[c.id];if(s&&s.state!=='new'&&s.due&&s.due<=t)due++;});
+  return `<div class="deckcard" onclick="openDeck('${d.id}')">
+    ${deckDoodle(d.id,'dc-ico')}
+    <span class="dc-code" style="background:${d.color}44">${esc(d.code)}</span>
+    <div class="dc-title">${esc(deckTitle(d))}</div>
+    <div class="dc-bar"><i class="mat" style="width:${mat/n*100}%"></i><i class="yng" style="width:${yng/n*100}%"></i><i class="lrn" style="width:${lrn/n*100}%"></i></div>
+    <div class="dc-meta"><span>${n} ${T('cards')}</span>${due?`<span class="dc-due">${due} ${T('dc_due')}</span>`:`<span>${mat} ${T('dc_mature')}</span>`}</div></div>`;
+}
+function donut(parts,total,label){
+  const tot=parts.reduce((a,p)=>a+p[1],0)||1;let off=0,segs='';const R=52,C=2*Math.PI*R;
+  parts.forEach(p=>{const frac=p[1]/tot;segs+=`<circle cx="80" cy="80" r="${R}" fill="none" stroke="${p[2]}" stroke-width="18" stroke-dasharray="${frac*C} ${C}" stroke-dashoffset="${-off*C}" transform="rotate(-90 80 80)"/>`;off+=frac;});
+  return `<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><svg class="donut" viewBox="0 0 160 160"><circle cx="80" cy="80" r="${R}" fill="none" stroke="#3a322b" stroke-width="20" opacity=".12"/>${segs}<text x="80" y="76" text-anchor="middle" fill="#3a322b" font-family="Shantell Sans,cursive" font-size="34" font-weight="700">${total}</text><text x="80" y="98" text-anchor="middle" fill="#a3937e" font-size="13" font-weight="800">${label}</text></svg><div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-size:.8rem;font-weight:800">${parts.map(p=>`<span style="color:var(--ink-soft)"><b style="color:${p[2]};font-size:1.2em">●</b> ${p[0]} ${p[1]}</span>`).join('')}</div></div>`;
+}
+function heatmap(){
+  const counts={};S.log.forEach(e=>counts[e.d]=(counts[e.d]||0)+1);
+  const weeks=18;const today=new Date();const start=new Date();start.setDate(today.getDate()-(weeks*7-1));
+  const dow=(start.getDay()+6)%7;start.setDate(start.getDate()-dow);let cols='';let d=new Date(start);
+  for(let w=0;w<weeks+1;w++){let cells='';for(let i=0;i<7;i++){const iso=isoOf(d);const c=counts[iso]||0;const lvl=c===0?0:c<5?1:c<12?2:c<25?3:4;const future=iso>todayISO();cells+=`<div class="cell ${lvl?'l'+lvl:''}" title="${iso}: ${c} ripassi" style="${future?'opacity:.3':''}"></div>`;d.setDate(d.getDate()+1);}cols+=`<div class="col">${cells}</div>`;}
+  return `<div class="heat">${cols}</div>`;
+}
+function openDeck(id){
+  const d=DECK_BY_ID[id];const q=buildQueue(id);const cs=CARDS.filter(c=>c.deckId===id);
+  $('#modalHead').innerHTML=`<span class="chip" style="background:${d.color}44">${esc(d.code)}</span><h2 style="margin-top:8px">${esc(deckTitle(d))}</h2><div style="color:var(--muted);font-size:.85rem;margin-top:6px;font-weight:700">${esc(d.source||'')}</div>`;
+  $('#modalBody').innerHTML=`<div style="display:flex;gap:10px;margin:0 0 18px;flex-wrap:wrap">
+      <button class="cta" onclick="studyDeck('${id}',false)" ${q.queue.length?'':'disabled'}>${T('deck_study')} (${q.queue.length})</button>
+      <button class="cta ghost" onclick="studyDeck('${id}',true)">${T('deck_all')} ${cs.length}</button></div>
+    <div class="browse-list" style="grid-template-columns:1fr">${cs.map(c=>browItem(c)).join('')}</div>`;
+  $('#modal').classList.add('show');
+}
+function studyDeck(id,all){closeModal();const d=DECK_BY_ID[id];const cards=all?CARDS.filter(c=>c.deckId===id):buildQueue(id).queue;startSession(cards,deckTitle(d)+(all?' · '+T('deck_review'):''));}
+
+/* ============================ STUDY ============================ */
+let session=null;
+function startGlobal(){const q=buildQueue(null);if(!q.queue.length){go('dash');toast(T('t_clear'));return;}startSession(q.queue,LANG==='en'?'Daily review':'Ripasso del giorno');}
+function startSession(cards,title){if(!cards||!cards.length){toast(T('t_nothing'));return;}
+  session={queue:[...cards],idx:0,title,revealed:false,total:cards.length,done:0,res:{bad:0,mid:0,good:0,easy:0}};
+  $$('.tab').forEach(t=>t.classList.toggle('active',t.dataset.v==='study'));
+  $$('.view').forEach(s=>s.classList.remove('active'));$('#v-study').classList.add('active');window.scrollTo({top:0});renderStudy();}
+function renderStudy(){
+  if(!session)return;if(session.idx>=session.queue.length)return renderDone();
+  const card=session.queue[session.idx];const C=L(card);const pv=preview(card);const mat=maturity(card.id);const gl=gradeLbls();
+  const pct=session.total?Math.min(100,session.done/session.total*100):0;
+  $('#v-study').innerHTML=`
+    <div class="study-top">
+      <button class="exit" onclick="quitSession()">${T('exit')}</button>
+      <div class="prog"><i style="width:${pct}%"></i></div>
+      <div class="study-counts"><span class="c-done">${session.done}</span>/${session.total}</div>
+    </div>
+    <div class="flash">
+      <div class="flash-head">${deckChip(card)} <span class="chip">${T('chip_'+mat)}</span></div>
+      <div class="flash-front" id="frontFace" onclick="revealCard()">
+        ${cardArtSvg(card)?`<div class="topic-diagram">${cardArtSvg(card)}</div>`:deckDoodle(card.deckId,'topic-doodle')}
+        <div class="q">${T('study_q')}</div>
+        <div class="drugname">${esc(C.nameShort||C.name)}${(C.name!==C.nameShort)?`<span class="full">${esc(C.name)}</span>`:''}</div>
+        <div class="reveal-hint">${T('reveal_hint')} <span class="kbd">${LANG==='en'?'Space':'Spazio'}</span> ${T('reveal_or')}</div>
+      </div>
+      <div class="flash-back" id="backFace">
+        <div class="back-name">${esc(C.name)}</div>
+        ${renderBack(card)}
+        <div class="grades">
+          <button class="grade g0" onclick="grade(0)"><span class="em">😖</span><span class="lb">${gl[0]}</span><span class="iv">${pv[0]}</span></button>
+          <button class="grade g1" onclick="grade(1)"><span class="em">😐</span><span class="lb">${gl[1]}</span><span class="iv">${pv[1]}</span></button>
+          <button class="grade g2" onclick="grade(2)"><span class="em">😄</span><span class="lb">${gl[2]}</span><span class="iv">${pv[2]}</span></button>
+          <button class="grade g3" onclick="grade(3)"><span class="em">🌟</span><span class="lb">${gl[3]}</span><span class="iv">${pv[3]}</span></button>
+        </div>
+      </div>
+    </div>`;
+  session.revealed=false;
+}
+function revealCard(){if(!session||session.revealed)return;session.revealed=true;$('#backFace').classList.add('show');$('#frontFace').style.display='none';}
+function grade(g){
+  if(!session||!session.revealed)return;const card=session.queue[session.idx];
+  const wasNew=(!S.srs[card.id]||S.srs[card.id].state==='new');const rq=applyGrade(card,g);
+  if(wasNew){S.daily.newDone++;save();}
+  session.res[['bad','mid','good','easy'][g]]++;session.done++;
+  if(rq==='soon'){const pos=Math.min(session.queue.length,session.idx+1+(g===0?2:4));session.queue.splice(pos,0,card);}
+  session.idx++;renderStudy();
+}
+function renderDone(){const r=session.res;const gl=gradeLbls();
+  $('#v-study').innerHTML=`<div class="flash"><div class="done-card">
+    <div class="em">${r.bad>r.good?'💪':'🎉'}</div><div class="big">${T('done_title')}</div>
+    <p style="color:var(--ink-soft);margin:8px 0 24px;font-weight:700">${session.done} ${T('done_answers')} · "${esc(session.title)}"</p>
+    <div class="tiles" style="max-width:520px;margin:0 auto 26px">
+      <div class="tile bad"><div class="k">😖 ${gl[0]}</div><div class="v">${r.bad}</div></div>
+      <div class="tile mid"><div class="k">😐 ${gl[1]}</div><div class="v">${r.mid}</div></div>
+      <div class="tile good"><div class="k">😄 ${gl[2]}</div><div class="v">${r.good}</div></div>
+      <div class="tile"><div class="k">🌟 ${gl[3]}</div><div class="v" style="color:var(--blue)">${r.easy}</div></div>
+    </div><button class="cta" onclick="go('dash')">${T('back_today')}</button></div></div>`;
+  session=null;
+}
+function quitSession(){session=null;go('dash');}
+
+/* ============================ BROWSE ============================ */
+let browseFilter=null;
+function renderBrowse(){
+  applyStaticStrings();
+  $('#deckChips').innerHTML=`<button class="fchip ${browseFilter?'':'on'}" onclick="setFilter(null)">${T('br_all')} (${CARDS.length})</button>`+
+    DECKS.map(d=>`<button class="fchip ${browseFilter===d.id?'on':''}" onclick="setFilter('${d.id}')">${esc(d.code)} · ${esc(deckTitle(d))}</button>`).join('');
+  applyBrowse();
+}
+function setFilter(id){browseFilter=id;renderBrowse();}
+function browItem(c){
+  const d=DECK_BY_ID[c.deckId];const mat=maturity(c.id);const C=L(c);
+  const mech=C.memo||(C.segments&&C.segments[0]?C.segments[0].value:(C.freetext||[]).join(' '));
+  return `<div class="brow" onclick="openCard('${c.id}')"><span class="statusdot sd-${mat}">${T('sd_'+mat)}</span>
+    <div class="bn">${esc(C.nameShort||C.name)}</div><div class="bd">${esc(d.code)} · ${esc(deckTitle(d))}</div>
+    <div class="bmech">${esc((mech||'').replace(/\*\*/g,'').replace(/\n/g,' ')).slice(0,150)}</div></div>`;
+}
+function applyBrowse(){
+  const ql=norm($('#search').value);let list=CARDS.filter(c=>!browseFilter||c.deckId===browseFilter);
+  if(ql)list=list.filter(c=>c._search.includes(ql));
+  $('#browseList').innerHTML=list.length?list.map(browItem).join(''):`<div class="empty">${T('empty')}</div>`;
+}
+function openCard(id){
+  const c=CARD_BY_ID[id],d=DECK_BY_ID[c.deckId];const mat=maturity(id);const s=S.srs[id];const C=L(c);
+  let meta=T('never');if(s&&s.due){const df=daysFromToday(s.due);meta=df<=0?T('due_now'):`${T('next_in')} ${df} ${LANG==='en'?'d':'g'}`;}
+  $('#modalHead').innerHTML=`<span class="chip" style="background:${d.color}44">${esc(d.code)} · ${esc(deckTitle(d))}</span><h2 style="margin-top:8px">${esc(C.name)}</h2><div style="color:var(--muted);font-size:.84rem;margin-top:6px;font-weight:700">${meta} · ${matWord(mat)}</div>`;
+  $('#modalBody').innerHTML=renderBack(c);
+  $('#modal').classList.add('show');
+}
+function closeModal(){$('#modal').classList.remove('show');}
+
+/* ============================ STATS ============================ */
+function renderStats(){
+  const total=CARDS.length;const cnt={new:0,learning:0,young:0,mature:0};CARDS.forEach(c=>cnt[maturity(c.id)]++);
+  const reviews=S.log.length;const days=new Set(S.log.map(e=>e.d)).size;
+  const good=S.log.filter(e=>e.g>=2).length;const retention=reviews?Math.round(good/reviews*100):0;
+  applyStaticStrings();
+  $('#v-stats').innerHTML=`
+    <div class="eyebrow">${T('st_eyebrow')}</div><h1 class="page">${T('st_title_a')} <em>${T('st_title_b')}</em></h1>
+    <p class="sub">${T('st_sub')}</p>
+    <div class="stat-grid">
+      ${statTile(T('st_reviews'),reviews,'var(--amber-2)')}${statTile(T('st_days'),days,'var(--ink)')}
+      ${statTile(T('st_streak'),streak()+' 🔥','var(--orange)')}${statTile(T('st_ret'),retention+'%',retention>=80?'var(--green-deep)':retention>=60?'var(--orange)':'var(--rose-deep)')}
+      ${statTile(T('st_mat'),cnt.mature,'var(--green-deep)')}${statTile(T('st_tostart'),cnt.new,'var(--blue)')}
+    </div>
+    <div class="panel"><h3>${T('st_comp')}</h3><div class="hint">${T('st_comp_h')} ${total} ${T('st_comp_h2')}</div>
+      ${donut([[T('m_mature'),cnt.mature,'#5bc873'],[T('m_young'),cnt.young,'#ffce3a'],[T('m_learning'),cnt.learning,'#ff9f5a'],[T('m_new'),cnt.new,'#ece1cb']],total,T('cards'))}</div>
+    <div class="panel"><h3>${T('st_mastery')}</h3><div class="hint">${T('st_mastery_h')}</div>
+      <table class="mastery"><thead><tr><th>${T('th_deck')}</th><th>${T('th_cards')}</th><th style="width:40%">${T('th_prog')}</th><th class="n">${T('th_mature')}</th></tr></thead><tbody>
+      ${DECKS.map(d=>{const cs=CARDS.filter(c=>c.deckId===d.id);const m=cs.filter(c=>maturity(c.id)==='mature').length;const y=cs.filter(c=>maturity(c.id)==='young').length;const l=cs.filter(c=>maturity(c.id)==='learning').length;const pc=Math.round(m/cs.length*100);return `<tr><td><b style="color:${d.color}">${esc(d.code)}</b> ${esc(deckTitle(d))}</td><td class="n">${cs.length}</td><td><div class="minibar"><i style="width:${m/cs.length*100}%;background:#5bc873"></i><i style="width:${y/cs.length*100}%;background:#ffce3a"></i><i style="width:${l/cs.length*100}%;background:#ff9f5a"></i></div></td><td class="n">${pc}%</td></tr>`;}).join('')}
+      </tbody></table></div>
+    <div class="panel"><h3>${T('set_title')}</h3>
+      <div class="settings-row"><label>${T('set_newday')}</label><input type="number" id="npd" min="0" max="100" value="${S.settings.newPerDay}"><button class="btn-sm" onclick="saveNPD()">${T('set_save')}</button></div>
+      <div class="hint" style="margin-top:4px">${T('set_h')}</div>
+      <div class="settings-row"><button class="btn-sm" onclick="exportData()">${T('set_export')}</button><button class="btn-sm" onclick="$('#imp').click()">${T('set_import')}</button><input type="file" id="imp" accept=".json" style="display:none" onchange="importData(this)"><button class="btn-sm danger" onclick="resetData()">${T('set_reset')}</button></div></div>`;
+}
+function statTile(k,v,col){return `<div class="tile"><div class="k">${k}</div><div class="v" style="color:${col}">${v}</div></div>`;}
+function saveNPD(){S.settings.newPerDay=Math.max(0,parseInt($('#npd').value)||0);save();toast(T('t_saved'));}
+function exportData(){const blob=new Blob([JSON.stringify(S)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='farmacoflash-progress-'+todayISO()+'.json';a.click();toast(T('t_exported'));}
+function importData(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.srs)throw 0;S=migrate(d);save();toast(T('t_imported'));renderStats();$('#streakN').textContent=streak();}catch(e){toast(T('t_invalid'));}};r.readAsText(f);}
+function resetData(){if(confirm(T('confirm_reset'))){S={v:1,srs:{},log:[],settings:S.settings,daily:{date:'',newDone:0},created:todayISO()};save();renderStats();$('#streakN').textContent=0;toast(T('t_reset'));}}
+
+/* ============================ MISC ============================ */
+let toastT;function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>e.classList.remove('show'),2200);}
+document.addEventListener('keydown',e=>{
+  const modalOpen=$('#modal').classList.contains('show');
+  if(modalOpen){if(e.key==='Escape')closeModal();return;}
+  const tag=(e.target.tagName||'').toLowerCase();if(tag==='input'||tag==='textarea')return;
+  if(!$('#v-study').classList.contains('active')||!session)return;
+  if((e.key===' '||e.key==='Enter')&&!session.revealed){e.preventDefault();revealCard();}
+  else if(session.revealed&&['1','2','3','4'].includes(e.key)){e.preventDefault();grade(+e.key-1);}
+});
+function applyHash(){const h=decodeURIComponent(location.hash.replace(/^#/,''));if(!h)return;if(h==='dash'||h==='browse'||h==='stats')go(h);else if(h==='study')startGlobal();else if(h.startsWith('front=')){const id=h.slice(6);if(CARD_BY_ID[id])startSession([CARD_BY_ID[id]],'anteprima');}else if(h.startsWith('card=')){const id=h.slice(5);if(CARD_BY_ID[id]){startSession([CARD_BY_ID[id]],'anteprima');revealCard();}}}
+window.addEventListener('hashchange',applyHash);
+$('#search').addEventListener('input',applyBrowse);
+applyStaticStrings();renderDash();$('#streakN').textContent=streak();applyHash();
+</script>
+</body>
+</html>

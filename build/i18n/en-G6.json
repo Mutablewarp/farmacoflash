@@ -1,0 +1,763 @@
+{
+ "group": "G6",
+ "entries": [
+  {
+   "id": "B9__antiepilettici-meccanismi-e-principi",
+   "name": "Antiepileptics — mechanisms and principles",
+   "nameShort": "Antiepileptics — mechanisms and principles",
+   "memo": "Stop the discharge: **block Na⁺/Ca²⁺** (excitation) or **enhance GABA** (inhibition).",
+   "segments": [
+    {
+     "label": "1st generation",
+     "value": "effective/often preferable, but ⚠️ **high teratogenicity** (not in pregnancy) and **strong CYP induction** (interactions). **2nd generation:** for lack of response/toxicity; usable in pregnancy.\n• ⚠️ If a patient is controlled by an AED **do not switch drug** (≠ statins); on resumption the same one is reused."
+    }
+   ],
+   "freetext": [
+    "**They do not cure** (↓ frequency/severity of seizures). **Mechanisms:** blockade of **Na⁺** channels (like local anesthetics); blockade of **T-type Ca²⁺** channels (absence seizures); enhancement of **GABA**; reduction of **glutamate** (few drugs)."
+   ]
+  },
+  {
+   "id": "B9__aed-i-gen-bloccanti-dei-canali-na-fenito",
+   "name": "AED 1st gen — Na⁺ channel blockers (phenytoin, carbamazepine, oxcarbazepine)",
+   "nameShort": "AED 1st gen — Na⁺ channel blockers",
+   "memo": "**Phenytoin**: **zero-order** kinetics (saturable → abrupt toxicity); gingival hyperplasia, hirsutism.",
+   "segments": [],
+   "freetext": [
+    "**Phenytoin** (hydantoin): Na⁺ blocker (also **class Ib** antiarrhythmic); **very potent metabolic inducer**; ⚠️ \"terrible\" PK: protein binding ~100% (risk of **displacement**), **zero-order elimination** (saturable kinetics). Toxicity: cerebellar/ataxia, **gingival hyperplasia**, hirsutism, peripheral neuropathy, ⚠️ **teratogenic**. Outdated.",
+    "**Carbamazepine**: Na⁺ blockade (+ K⁺, + GABA); antiepileptic/mood stabilizer/**trigeminal neuralgia**; safer but **metabolic inducer**.",
+    "**Oxcarbazepine**: like carbamazepine but **without significant metabolic induction** (preferable)."
+   ]
+  },
+  {
+   "id": "B9__aed-i-gen-gabaergici-e-altri-barbiturici",
+   "name": "AED 1st gen — GABAergic and others (barbiturates, BDZ, ethosuximide, valproic acid)",
+   "nameShort": "AED 1st gen — GABAergic and others",
+   "memo": "**Ethosuximide** blocks the **thalamic T-type Ca²⁺ channels** = gold standard for **absence seizures**.",
+   "segments": [
+    {
+     "label": "Barbiturates (phenobarbital)",
+     "value": "↑ **duration** of GABA-A Cl⁻ channel opening (TMD site → they open the channel even without GABA → overdose = **coma**); phenobarbital anticonvulsant (half-life >6h), preferable to BDZ **in children** (no cognitive slowing); **primidone** → metabolized to phenobarbital. ⚠️ tolerance, respiratory depression, ↓ renal flow.\n• **Benzodiazepines** (clonazepam, clorazepate, diazepam, lorazepam): ↑ **frequency** of GABA-A; **diazepam** = status epilepticus; clonazepam/clorazepate = long term. *(Detail: file B1.)*\n• **Ethosuximide** (succinimide): blockade of **T-type Ca²⁺** channels → **FIRST CHOICE in ABSENCE seizures**; manageable; ADR = hematologic alterations.\n• **Valproic acid**: Na blockade + Ca-T + **↑ GABA** (↑ synthesis, ↓ GAT, ↓ GABA-transaminase) + ↓ glutamate (NMDA). Partial/generalized epilepsies + bipolar. ⚠️ **teratogenic** (spina bifida, cardiac/orofacial anomalies), fulminant hepatitis, ↑ weight, alopecia, tremor."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B9__aed-ii-generazione",
+   "name": "AED 2nd generation",
+   "nameShort": "AED 2nd generation",
+   "memo": "**Gabapentin/pregabalin** (α2δ): more neuropathic pain than epilepsy; **levetiracetam** simple, **lamotrigine → rash**.",
+   "segments": [
+    {
+     "label": "Gabapentin",
+     "value": "GABA analogue (competes with GAT) + Ca²⁺ P/Q blockade (↓ glutamate); epilepsy/mood stabilizer/**pain** (adjuvant); well tolerated."
+    },
+    {
+     "label": "Lamotrigine",
+     "value": "modern version of phenytoin/carbamazepine; Na blockade (+ GABA/glutamate); usable in children (petit mal); ⚠️ allergic reactions → **Stevens-Johnson syndrome**."
+    },
+    {
+     "label": "Topiramate",
+     "value": "Na + Ca blockade + **AMPA/kainate** antagonist + **carbonic anhydrase** inhibitor; partly replaces valproic acid; ADR: drowsiness, paresthesias, anorexia/↓ weight."
+    },
+    {
+     "label": "Tiagabine",
+     "value": "GABA-mimetic (inhibits **GAT** — ≠ valproate which ↑ synthesis/↓ metabolism)."
+    },
+    {
+     "label": "Vigabatrin",
+     "value": "resistant epilepsy; ⚠️ hepatotoxic (not 1st line)."
+    },
+    {
+     "label": "Zonisamide",
+     "value": "Na + Ca + GABA; ⚠️ **the only one with neuroprotection/antioxidant**."
+    },
+    {
+     "label": "Lacosamide",
+     "value": "Na blockade with ↑ **slow inactivation** (longer effect); excellent oral bioavailability."
+    },
+    {
+     "label": "Felbamate",
+     "value": "Na + AMPA/kainate + GABA; ⚠️ **severe hepatotoxicity + aplastic anemia**."
+    },
+    {
+     "label": "Levetiracetam",
+     "value": "binds the synaptic protein **SV2A** → normalizes GABA/glutamate exocytosis; partial/generalized + children; has displaced many AEDs."
+    },
+    {
+     "label": "Brivaracetam",
+     "value": "higher SV2A affinity (overcomes polymorphisms), ↑ BBB penetration; refractory epilepsy. ⚠️ levetiracetam/brivaracetam → behavioral disturbances/psychosis in children <4 years."
+    },
+    {
+     "label": "Perampanel",
+     "value": "non-competitive **AMPA** antagonist (↓ glutamate); half-life >100h; ⚠️ ↑ aggression (boxed warning). **Retigabine:** opens K⁺ channels (withdrawn — blue pigmentation). **Cannabidiol:** ↑ 2-AG (FAAH inhibition) + CB1 inverse agonist + 5-HT1A partial agonist (anxiolytic)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B9__antiepilettici-indicazioni-per-tipo-di-c",
+   "name": "Antiepileptics — indications by seizure type",
+   "nameShort": "Antiepileptics — indications by seizure type",
+   "memo": "**Absence seizures → ethosuximide**; in **status epilepticus** the first move is an **IV benzodiazepine**.",
+   "segments": [
+    {
+     "label": "3 selection factors",
+     "value": "type of epilepsy, efficacy, safety."
+    },
+    {
+     "label": "Spasms",
+     "value": "steroids, vigabatrin. **Absence seizures:** FIRST CHOICE **ethosuximide** (also valproate/lamotrigine, less effective). **Focal:** levetiracetam, brivaracetam. **Generalized:** **valproic acid** (the most used)."
+    },
+    {
+     "label": "Pregnancy",
+     "value": "**SECOND** generation drugs.\n## 🫀 STATINS AND LIPID-LOWERING AGENTS"
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B9__statine-meccanismo-e-farmacocinetica",
+   "name": "Statins — mechanism and pharmacokinetics",
+   "nameShort": "Statins — mechanism and pharmacokinetics",
+   "memo": "They block **HMG-CoA reductase** → the liver raises LDL receptors → **↓ LDL in the blood**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "inhibition of **HMG-CoA reductase** → ↓ mevalonate → ↑ LDL receptors (via **SREBP**) → ↓ LDL and total cholesterol. **Pleiotropic effects:** ↑ endothelial NOS (vasodilation/antiplatelet), anti-inflammatory/antioxidant, **plaque stabilization** → ↓ thromboembolic events."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "HMG-CoA reductase."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "⚠️ some inhibit **CYP3A4** (atorvastatin); simvastatin/lovastatin = **prodrugs**; ⚠️ high protein binding (95%, **pravastatin 50%** = safer); **administer before sleeping** (nocturnal synthesis); hepatic excretion (**pravastatin** renal → usable in hepatic impairment). Rosuvastatin = half-life ~19h, minimal CYP metabolism."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "primary and secondary cardiovascular prevention (men >45, women >55, children >11 with familial hypercholesterolemia)."
+    },
+    {
+     "label": "Combinations",
+     "value": "+ ezetimibe, + sequestrants, + fibrates (reduce the statin by 25%)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B9__statine-classificazione-effetti-collater",
+   "name": "Statins — classification, side effects and interactions",
+   "nameShort": "Statins — classification, side effects and interactions",
+   "memo": "Risk of **myopathy/rhabdomyolysis** (↑ CK), worsened by CYP3A4 inhibitors and by **grapefruit juice**.",
+   "segments": [
+    {
+     "label": "Classification",
+     "value": "**Level I** (↓ ~30-35%: simvastatin 10-40 mg, pravastatin, fluvastatin, lovastatin); **Level II** (↓ >50%: simvastatin 80 mg, atorvastatin, rosuvastatin)."
+    },
+    {
+     "label": "Adverse Reactions (ADR)",
+     "value": "⚠️ **myalgia/RHABDOMYOLYSIS** (cerivastatin withdrawn), **hepatotoxicity** (↑ transaminases), GI discomfort, possible ↑ diabetes."
+    },
+    {
+     "label": "Interactions",
+     "value": "⚠️ **atorvastatin + erythromycin/clarithromycin** (both CYP3A4 inhibitors) → ↑ erythromycin (cardiac K⁺ blockade → **↑×6 risk of cardiac arrest**) and ↑ atorvastatin (→ **rhabdomyolysis**). Also **valproic acid** and **grapefruit juice** (CYP inhibitors) ↑ atorvastatin → rhabdomyolysis."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**rosuvastatin** = fewer interactions + ↑ HDL/↓ triglycerides (preferable but more expensive)."
+    },
+    {
+     "label": "Safety",
+     "value": "lovastatin/pravastatin/simvastatin (≤40 mg) well known; atorvastatin/simvastatin/lovastatin also in children with familial hypercholesterolemia."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B9__altri-ipolipemizzanti-fibrati-acido-nico",
+   "name": "Other lipid-lowering agents (fibrates, nicotinic acid, cholestyramine, ezetimibe)",
+   "nameShort": "Other lipid-lowering agents",
+   "memo": "**Ezetimibe** (absorption), **fibrates** (king of triglycerides), **PCSK9 inhibitors** (LDL at historic lows).",
+   "segments": [
+    {
+     "label": "Nicotinic acid (niacin)/acipimox",
+     "value": "inhibit lipolysis, **↑ HDL**; ADR = cutaneous vasodilation (acipimox better tolerated)."
+    },
+    {
+     "label": "Cholestyramine",
+     "value": "bile acid sequestrant; ⚠️ ↓ absorption of **vitamins A/D/K** (coagulation → supplement); take other drugs 1-2h before or 4-6h after; ↑ triglyceridemia; poor compliance."
+    },
+    {
+     "label": "Ezetimibe",
+     "value": "**selective** ↓ of dietary cholesterol absorption (does not interfere with vitamins); enterohepatic circulation (long duration); in combination with simvastatin."
+    }
+   ],
+   "freetext": [
+    "**Fibrates** (clofibrate, gemfibrozil): **PPAR-α** agonists → ↑ fatty acid degradation/lipolysis → **↓ triglycerides** (choice in **hypertriglyceridemia**). ADR: GI, myalgia/myositis (⚠️ ↑ with simvastatin), rhabdomyolysis, gallstones."
+   ]
+  },
+  {
+   "id": "B10__ipertensione-strategia-terapeutica",
+   "name": "Hypertension — therapeutic strategy",
+   "nameShort": "Hypertension — therapeutic strategy",
+   "memo": "Five families + thiazide diuretic; often a **fixed combination** to reach target with a single tablet.",
+   "segments": [
+    {
+     "label": "Regulatory systems (targets)",
+     "value": "**SNS** (locus coeruleus, rostral ventrolateral medulla), **RAAS** (juxtaglomerular β1 → renin), **kidney** (afferent arteriole). NSAIDs → afferent vasoconstriction → ↑ pressure."
+    },
+    {
+     "label": "Classes",
+     "value": "sympatholytics (central), RAAS inhibitors, diuretics (kidney), agents active on heart/vessels."
+    },
+    {
+     "label": "1st choice",
+     "value": "**RAAS inhibitors** (ACE-I, sartans), **calcium channel blockers**, **diuretics**, beta-blockers (in particular conditions). ⚠️ Central antihypertensives are **NOT 1st choice**.\n• **2nd choice = combinations** (diuretic+beta-blocker, diuretic+ACE-I/sartan, Ca-blocker+beta-blocker/ACE-I/diuretic…). ⚠️ If the 1st-choice drug doesn't work → **do not switch/increase but COMBINE** (different sites of attack)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B10__simpaticolitici-centrali-2-agonisti-clon",
+   "name": "Central sympatholytics — α2-agonists (clonidine, moxonidine, rilmenidine)",
+   "nameShort": "Central sympatholytics — α2-agonists",
+   "memo": "**Clonidine** = central α2 agonist (↓ sympathetic); **severe rebound** if abruptly discontinued.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**α2** agonists (presynaptic autoreceptor) → ↓ catecholamine release → ↓ vasomotor center/catecholaminergic discharge → ↓ resistance/output/pressure; ↓ renin (juxtaglomerular β1). **Clonidine/guanfacine/guanabenz** (+ imidazoline agonism); **moxonidine/rilmenidine** (2nd gen, **I1/I2** imidazoline agonists)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "α2-adrenergic; imidazoline receptors."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "clonidine IV **slow** (rapid → ⚠️ paradoxical hypertensive peak from peripheral α2); moxonidine once-daily dosing."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "hypertension (particular conditions); clonidine in **alcohol/opioid withdrawal**. **Moxonidine/rilmenidine** (I2) → ↑ renal flow/natriuresis, **↑ insulin response** (useful in the diabetic — ≠ clonidine), ↓ left ventricular hypertrophy."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "clonidine → ⚠️ **rebound hypertension** on abrupt withdrawal (α2 up-regulation); asthenia, **depression**, vivid nightmares (⚠️ contraindicated in depressed/elderly patients). Moxonidine = excellent profile (no depression)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "—"
+    },
+    {
+     "label": "Pharmacological Combinations / Adjuvants",
+     "value": "peripheral adrenergic blockers (**reserpine** — depletes vesicles, 1st antihypertensive in history; guanethidine). *Exam question: to demonstrate moxonidine's effect → give an α2 antagonist (clonidine), not an imidazoline antagonist.*"
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B10__metildopa",
+   "name": "α-methyldopa",
+   "nameShort": "α-methyldopa",
+   "memo": "False neurotransmitter: **first choice in hypertension during pregnancy** (fetal safety proven over decades).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**false neurotransmitter** → converted into **α-methyl-norepinephrine** → stimulates presynaptic α2 (like clonidine) + ↓ sympathetic tone; ↓ dopamine."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "α2-adrenergic."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "slow latency (~6h); duration ~10h."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "hypertension, ⚠️ **used in PREGNANCY**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "drowsiness, depression, **parkinsonism**, orthostatic hypotension, **gynecomastia/galactorrhea/impotence**; ⚠️ **hepatotoxicity**, **hemolytic anemia (Coombs+)**; postpartum depression (↑ cytotoxic VEGF, oxidative stress, cerebral hypoperfusion)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "slow latency."
+    },
+    {
+     "label": "Pharmacological Combinations / Adjuvants",
+     "value": "N/A specific."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B10__1-bloccanti-prazosina-doxazosina-tamsulo",
+   "name": "α1-blockers (prazosin, doxazosin, tamsulosin)",
+   "nameShort": "α1-blockers",
+   "memo": "↓ pressure + prostatic unblocking (BPH); signature ADR = **first-dose orthostatic hypotension**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "reversible competitive antagonists of **α1** receptors (Gq → IP3/DAG → Ca²⁺/vasoconstriction) → arterial/venous **vasodilation**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "**α1b** = arteriolar tone (antihypertensive → non-selective: **prazosin, doxazosin**, terazosin); **α1a** = prostate/bladder neck (BPH/LUTS → selective: **tamsulosin, silodosin, alfuzosin**)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "take **in the evening** (⚠️ orthostatic hypotension/syncope); doxazosin slow, 24h."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "hypertension (rarely 1st line, in combination); **BPH/LUTS**. Doxazosin → ↑ glucose tolerance (useful in the diabetic)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**orthostatic hypotension** (syncope), reflex tachycardia."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "rarely 1st line."
+    },
+    {
+     "label": "Pharmacological Combinations / Adjuvants",
+     "value": "in combination with other antihypertensives."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B10__bloccanti-generazioni-e-proprieta-ancill",
+   "name": "Beta-blockers — generations and ancillary properties",
+   "nameShort": "Beta-blockers — generations and ancillary properties",
+   "memo": "**β1-cardioselective** (atenolol, bisoprolol, metoprolol) → safe in the bronchi; the non-selective ones are not (asthma).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "β receptor antagonists. ⚠️ **β2** blockade impairs vasodilation/bronchodilation/insulin release/glycogenolysis."
+    },
+    {
+     "label": "Generations",
+     "value": "**I** (non-selective: **propranolol**, nadolol, timolol — ⚠️ bronchoconstriction, ↓ insulin); **II** (**β1-selective/cardioselective**: atenolol, metoprolol — usable in asthmatics/diabetics); **III non-selective** (carvedilol, labetalol — **+ α1-block**); **III selective** (celiprolol, nebivolol)."
+    },
+    {
+     "label": "Ancillary properties",
+     "value": "**cardioselectivity**; **intrinsic sympathomimetic activity (ISA)** = β1 partial agonists (pindolol — also 5-HT1A partial agonist → anxiolytic); **lipophilicity** (→ CNS effects; choice for **tremors** — DD with Parkinson); **local anesthetic/membrane-stabilizing action** (propranolol, oxprenolol, acebutolol → Na/K channels; site = AV node). **Carvedilol** (β + α1-block, antioxidant/anti-remodeling); **celiprolol** (β1-antagonist + β2-agonist → vasodilation)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "see next card."
+    },
+    {
+     "label": "Adverse Reactions / Combinations",
+     "value": "see next card. ⚠️ handled by cytochromes → interactions."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B10__bloccanti-meccanismi-avanzati-indicazion",
+   "name": "Beta-blockers — advanced mechanisms, indications and ADR",
+   "nameShort": "Beta-blockers — advanced mechanisms, indications and ADR",
+   "memo": "Life-saving **post-infarction**; in the diabetic they **mask hypoglycemia** and are never stopped abruptly.",
+   "segments": [
+    {
+     "label": "Biased agonists",
+     "value": "recruit **β-arrestins** → ERK/**eNOS** (nebivolol, carvedilol). **Inverse agonists:** inhibit the **spontaneous activity** (agonist-independent) of β1 → ⚠️ basis of use in congestive **HEART FAILURE** (also: ↓ endothelin, ↓ renin, ↓ sympathetic tone, ↓ apoptosis/oxidative stress/TNF-α)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "hypertension (**3rd line** — NICE/USA; exception: those intolerant to ACE-I/sartans, women of childbearing age, ↑ sympathetic tone); **arrhythmias** (**class II** antiarrhythmics); **angina pectoris** (↓ rate → ↓ O₂ demand + ↑ diastole/perfusion); **secondary prevention of MI**; hypertrophic cardiomyopathy; **heart failure**; **migraine prophylaxis** (timolol/propranolol, triptan-like effect)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "hypotensive crises, ⚠️ **AV block/asystole** (site = AV node), ↓ inotropism, ⚠️ **asthma** (non-selective), ↑ triglycerides/↓ HDL (β3), **↓ symptoms of hypoglycemia**, CNS effects (lipophilic: fatigue, ↓ libido, depression → not in young males); ⚠️ **withdrawal syndrome** (up-regulation → gradual discontinuation)."
+    },
+    {
+     "label": "Contraindications",
+     "value": "nodal dysfunction, bradycardia/AV block, heart failure (decompensated), **pheochromocytoma**, diabetes, young males, elderly African Americans."
+    },
+    {
+     "label": "Pharmacological Combinations / Adjuvants",
+     "value": "⚠️ interactions via CYP (maintain constant concentrations)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B11__sraa-fisiologia-e-bersagli-farmacologici",
+   "name": "RAAS — physiology and pharmacological targets",
+   "nameShort": "RAAS — physiology and pharmacological targets",
+   "memo": "Renin → ACE → angiotensin II cascade; four blocking points: renin, ACE, AT1 receptor, aldosterone.",
+   "segments": [
+    {
+     "label": "Cascade",
+     "value": "**renin** (kidney; stimulated by **β1** and by ↓ Na of the **macula densa**) → angiotensinogen (hepatic) → **Angiotensin I** → **ACE** → **Angiotensin II**. Alternative pathways (**chymase**)."
+    },
+    {
+     "label": "Ang II receptors",
+     "value": "**AT1** (heart, vessels, kidney, adrenal → vasoconstriction, **aldosterone**); **AT2** (beneficial effects/vasodilation)."
+    },
+    {
+     "label": "ACE2",
+     "value": "converts Ang II → **Angiotensin 1-7** (cardioprotective, opposite effects to Ang II); it is the entry receptor of **SARS-CoV-2** (↓ Ang 1-7 → cardiovascular damage in COVID)."
+    },
+    {
+     "label": "Bradykinins",
+     "value": "substrate of ACE → its inhibition ↑ them (vasodilation via eNOS/NO if endothelium intact; cough/angioedema)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B11__ace-inibitori-captopril-enalapril-ramipr",
+   "name": "ACE inhibitors (captopril, enalapril, ramipril…)",
+   "nameShort": "ACE inhibitors",
+   "memo": "↓ angiotensin II + ↑ bradykinin → signature ADR = **dry cough** and rare angioedema; **teratogenic**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "inhibition of **ACE** → ↓ Ang II → ↓ aldosterone; **↑ bradykinins** → vasodilation. ⚠️ In the long run ↓ response (chymase + loss of negative feedback → ↑ renin/Ang I)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "ACE (zinc-containing site)."
+    },
+    {
+     "label": "Classes",
+     "value": "sulfhydryl (**captopril** — first, short half-life, rapid peak; zofenopril); **carboxyl** (**enalapril** [prodrug→enalaprilat], lisinopril, quinapril, **ramipril** — half-life ~24h); phosphorus (fosinopril)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "captopril/fosinopril → ↓ bioavailability with food; quinapril/ramipril → slow absorption, 24h (preferable). **Renal** elimination."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "hypertension (**1st line**), heart failure, post-MI, **↓ proteinuria in the diabetic** (nephroprotection)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **dry cough + angioedema** (bradykinins); **hyperkalemia**; captopril → **lupus-like syndrome**, loss of taste, glycosuria."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "⚠️ **PREGNANCY** (teratogenic: oligohydramnios, cranial hypoplasia, fetal death); ⚠️ **CKD** (hyperkalemia + renal elimination → prefer sartans); bilateral renal artery stenosis, severe aortic stenosis, obstructive cardiomyopathy."
+    },
+    {
+     "label": "Pharmacological Combinations / Adjuvants",
+     "value": "+ thiazides (offset hyperkalemia and the restart of RAAS); + beta-blockers (post-MI); ⚠️ **Perindopril + Amlodipine** (\"overused\" combination). In pregnancy: α-methyldopa, propranolol."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B11__sartani-losartan-valsartan-irbesartan-te",
+   "name": "Sartans (losartan, valsartan, irbesartan, telmisartan, candesartan)",
+   "nameShort": "Sartans",
+   "memo": "**AT1** antagonists: same efficacy as ACE inhibitors but **without the cough**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**competitive antagonists of the AT1 receptor** → they block the Ang II signal on AT1; Ang II remains free → **negative feedback on renin**, binding to **AT2** (vasodilation), conversion to **Ang 1-7** (beneficial). **They do NOT involve bradykinins** → no cough/angioedema."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "AT1 receptor."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**hepatic** metabolism/elimination → usable in CKD."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "hypertension, heart failure, post-MI; mild **uricosuric** effect. They replace ACE-I when ineffective or due to their side effects."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "GI pain, headache; ⚠️ **teratogenic** (fetal toxicity). **NO cough/angioedema**."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "more expensive than ACE-I."
+    },
+    {
+     "label": "Pharmacological Combinations / Adjuvants",
+     "value": "other RAAS inhibitors: beta-blockers (β1 → ↓ renin), aldosterone antagonists (spironolactone/canrenone → file B11b)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B11__inibitori-della-renina-aliskiren",
+   "name": "Renin inhibitors (aliskiren)",
+   "nameShort": "Renin inhibitors",
+   "memo": "**Aliskiren** blocks the initial step, but **should not be combined** with ACE-i/sartans (worsens outcomes).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**false substrates** modeled on angiotensinogen → they bind competitively to the active site of renin without being cleaved."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "renin."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "enalkiren/zankiren = low half-life/bioavailability (not used); **aliskiren** (FDA 2007) = higher half-life/bioavailability."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "hypertension (monotherapy or combination)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "N/A specific in the documents."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "⚠️ less effective than the other RAAS classes."
+    },
+    {
+     "label": "Pharmacological Combinations / Adjuvants",
+     "value": "N/A specific."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B11__calcio-antagonisti-diidropiridine-verapa",
+   "name": "Calcium channel blockers (dihydropyridines, verapamil, diltiazem)",
+   "nameShort": "Calcium channel blockers",
+   "memo": "**-dipines to the vessels** (ankle edema), **verapamil to the heart** (never with a beta-blocker → complete AV block).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "they block **voltage-dependent L-type Ca²⁺** channels (α1C subunit; different binding sites). **Dihydropyridines** (nifedipine, **amlodipine**, felodipine, nisoldipine): selective for the **VESSELS** (vessel:heart tissue-selectivity — amlodipine 10:1, nisoldipine 1000:1); **voltage-dependent** blockade; vasodilation; **not negatively chronotropic**. **Verapamil** (phenylalkylamine): predominant **CARDIAC** activity; **frequency-dependent** blockade → nodal → **negatively chronotropic**; ↓ intracellular Ca mobilization. **Diltiazem** (benzothiazepine): heart + vessels, negatively chronotropic."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "L-type Ca²⁺ channel (α1C)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "amlodipine = slow absorption → no reflex tachycardia."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**hypertension** (dihydropyridines only, except electrical alterations), **angina pectoris** (all 3 classes → coronary vasodilation), **arrhythmias** (verapamil/diltiazem = **class IV** antiarrhythmics)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "dihydropyridines → **edema, headache, reflex tachycardia** (nifedipine; amlodipine no); verapamil/diltiazem → ⚠️ **bradycardia/AV block**, ↓ inotropism."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "—"
+    },
+    {
+     "label": "Pharmacological Combinations / Adjuvants",
+     "value": "⚠️ **dihydropyridines + ACE-I** (the ACE-I counteracts reflex tachycardia and the restart of RAAS — e.g. Perindopril+Amlodipine)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B11b__insufficienza-cardiaca-basi-fisiopatolog",
+   "name": "Heart failure — pathophysiological bases",
+   "nameShort": "Heart failure — pathophysiological bases",
+   "memo": "The **neurohormonal damage is blocked**: ACE-i + beta-blocker + anti-aldosterone + SGLT2-i (the 'fab 4').",
+   "segments": [
+    {
+     "label": "β-arrestins",
+     "value": "they shift the G protein, excluding it from transduction → adrenaline binds β1 but does not ↑ cAMP → ↓ contraction → rationale for **beta-blockers** in heart failure."
+    },
+    {
+     "label": "Calcium",
+     "value": "incorrect release/timing from the stores → excitation-contraction coupling fails. **Na⁺/Ca²⁺ antiporter** (extrudes Ca²⁺; Na⁺ enters along the gradient) whose drive is provided by the **Na⁺/K⁺-ATPase** pump."
+    },
+    {
+     "label": "Strategy",
+     "value": "↓ cardiac activity (beta-blockers), ↓ weight/pressure/Na⁺/water; then ↑ contraction with **digitalis glycosides**."
+    }
+   ],
+   "freetext": [
+    "**Deficit of myocardial contractility** (remodeling, infarcted areas, hypertrophic/dilated cardiomyopathies); molecular mechanism not entirely known."
+   ]
+  },
+  {
+   "id": "B11b__digitale-digossina",
+   "name": "Digitalis / digoxin",
+   "nameShort": "Digitalis / digoxin",
+   "memo": "Blocks the Na⁺/K⁺-ATPase → **↑ contractility**; very narrow window → **xanthopsia (sees yellow)**, arrhythmias. Antidote: Digibind.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "binds the **Na⁺/K⁺-ATPase** pump (E2-P state) competing with **K⁺** → ↑ intracellular Na⁺ → the Na/Ca exchanger **reverses** → **↑ Ca²⁺** → **positive inotrope**. ⚠️ hypokalemia ↑ effect (more free sites), hyperkalemia ↓ effect."
+    },
+    {
+     "label": "Negative chronotrope",
+     "value": "↑ vagal discharge (**M2** at the AV node → βγ dimer → opening of K⁺ channels, ↓ Ca²⁺ entry)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "Na⁺/K⁺-ATPase (α2/α3 muscle-cardiac-CNS isoforms; α1 renal not to be bound)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "chronic heart failure; **antiarrhythmic** (↑ atrial rate → converts flutter→AF + block at the AV node)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **CNS toxicity = first sign** (confusion/disorientation → **drug holiday**); reentry arrhythmias (shorter potentials), AV block/asystole. Never ventricular tachycardia."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**digoxin** (preferred: poorly metabolized, reduced first-pass) vs **digitoxin** (⚠️ half-life >100h, accumulation, high protein binding → displacement) vs **ouabain** (parenteral, emergencies)."
+    },
+    {
+     "label": "Combinations / inotropic alternatives",
+     "value": "⚠️ **dobutamine** (β1-agonist, acute only — too forceful) and PDE inhibitors (**amrinone, milrinone**); ACE-I, spironolactone, diuretics, nitrates."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B11b__teofillina-e-xantine",
+   "name": "Theophylline and xanthines",
+   "nameShort": "Theophylline and xanthines",
+   "memo": "Bronchodilator with mild cardiac effect; today marginal due to narrow window and CYP1A2 interactions.",
+   "segments": [
+    {
+     "label": "Mechanism of Action (positive inotrope)",
+     "value": "1) **PDE inhibition** (sympathomimetic, ↑ effect of catecholamines); 2) **adenosine antagonism** (→ ↑ all cardiac properties, including rate); 3) **bronchodilation** (↑ cAMP); 4) effects on Ca²⁺ transport."
+    },
+    {
+     "label": "Molecules",
+     "value": "caffeine, theobromine, **theophylline** (base of **aminophylline**, longer half-life); purine derivatives."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **cardiotoxic** (positive inotrope/chronotrope) → tea/coffee not advised in cardiac patients."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B11b__diuretici-overview-siti-e-classi",
+   "name": "Diuretics — overview (sites and classes)",
+   "nameShort": "Diuretics — overview",
+   "memo": "Each class at a **nephron stop**: the more upstream you act, the more diuresis (but the more electrolytes lost).",
+   "segments": [
+    {
+     "label": "Na⁺ reabsorption",
+     "value": "proximal tubule **60%**, loop of Henle **25-30%**, distal tubule **7-10%**, collecting duct **2-6%** (aldosterone)."
+    },
+    {
+     "label": "Classes/sites",
+     "value": "carbonic anhydrase inhibitors (proximal); **drastic/loop diuretics** (thick ascending limb); **thiazides** (distal); **K⁺-sparing** (collecting duct: Na channel inhibitors = amiloride/triamterene; aldosterone antagonists = spironolactone).\n• ⚠️ **Key rule:** from **carbonic anhydrase inhibitors to thiazides → LOSS of K⁺**; **Na channel inhibitors + aldosterone antagonists → ↑ K⁺**."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B11b__inibitori-dell-anidrasi-carbonica-acetaz",
+   "name": "Carbonic anhydrase inhibitors (acetazolamide, methazolamide)",
+   "nameShort": "Carbonic anhydrase inhibitors",
+   "memo": "**Carbonic anhydrase** inhibitor: glaucoma and **mountain sickness** (the acidosis drives hyperventilation).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "inhibition of carbonic anhydrase in the **proximal tubule** → ↓ Na⁺ reabsorption (coupled to bicarbonate) → ↑ excretion of **bicarbonate**, **alkalinization of the urine**, **hypokalemic metabolic acidosis**."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**glaucoma** (↓ aqueous humor), **epilepsy** (direct anticonvulsant + acidosis), prophylaxis of **mountain sickness**, edema, correction of diuretic-induced metabolic alkalosis, in combination (resistance to monotherapy)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **renal stones** (precipitation of Ca phosphate in alkaline urine), myelosuppression, cutaneous toxicity, allergic reactions, drowsiness, metabolic acidosis."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B11b__diuretici-osmotici-mannitolo",
+   "name": "Osmotic diuretics (mannitol)",
+   "nameShort": "Osmotic diuretics",
+   "memo": "**Osmotic diuretic**: pulls water out of tissues → **cerebral edema** and intracranial hypertension.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "osmotic force in the lumen → ↓ reabsorption of the ultrafiltrate → ↑ elimination of Na⁺/water; acts on the **descending limb of the loop**; extracts water from the eye/brain."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "glaucoma, **cerebral edema**, dialysis disequilibrium syndrome, children (also as laxative)."
+    },
+    {
+     "label": "Adverse Reactions / Contraindications",
+     "value": "⚠️ **congestive heart failure** (they draw water → pulmonary edema), anuria, cranial hemorrhage, hepatic hypofunction. *(Slide topic — not covered in lecture.)*"
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B11b__diuretici-dell-ansa-drastici-furosemide-",
+   "name": "Loop / drastic diuretics (furosemide, bumetanide, ethacrynic acid, torasemide)",
+   "nameShort": "Loop / drastic diuretics",
+   "memo": "**Lasix = 'lasts six'**: life-saving in pulmonary edema, but it carries away **K⁺, Ca²⁺, Mg²⁺** (+ ototoxicity).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "inhibition of the **Na⁺/K⁺/2Cl⁻** symporter (thick ascending limb of the loop) → **global ion excretion** (Na⁺, K⁺, Cl⁻, Ca²⁺, Mg²⁺); ↑ renal flow (prostaglandins), ↑ renin/RAAS."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**acute pulmonary edema** (\"white bloodletting\"), chronic heart failure, hypertension, edema (nephrotic syndrome/cirrhosis/ascites), **hypercalcemia**, forced diuresis."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **hypokalemia/hypocalcemia/hypomagnesemia → arrhythmias**, hypochloremic alkalosis, **reversible ototoxicity/tinnitus** (ethacrynic acid > others), hyperuricemia, hyperglycemia, ↑ LDL-triglycerides/↓ HDL (metabolic syndrome), hyponatremia/hypovolemia."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "⚠️ only **attack therapy** (max 3-4 weeks → tolerance); not for chronic hypertension."
+    },
+    {
+     "label": "Combinations / Interactions (⚠️ exam question)",
+     "value": "aminoglycosides/cisplatin (ototoxicity), anticoagulants (furosemide **fibrinolytic**), digitalis glycosides (arrhythmias from ↓ K/Ca), lithium/propranolol (↑ levels), sulfonylureas (hyperglycemia), NSAIDs (prostacyclin antagonism → contraindicated), amphotericin B (nephrotoxicity), probenecid (↓ excretion). Spironolactone = cardioprotective addition."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B11b__diuretici-tiazidici-e-risparmiatori-di-k",
+   "name": "Thiazide and K⁺-sparing diuretics",
+   "nameShort": "Thiazide and K⁺-sparing diuretics",
+   "memo": "**They retain calcium** (useful in osteoporosis); the 'hypers' (glycemia, uricemia, lipids). Spironolactone → **gynecomastia**.",
+   "segments": [
+    {
+     "label": "Ca²⁺ peculiarity",
+     "value": "in the long term **↓ Ca²⁺ excretion** (+ action on **PTH**) → ⚠️ **perfect for hypertensive postmenopausal women** (protection from osteoporosis — **≠ furosemide** which loses Ca²⁺); hypomagnesemia."
+    },
+    {
+     "label": "Antihypertensive mechanism",
+     "value": "↓ volemia/preload → then compensation (SNS/RAAS) but maintenance of cardiac output; **direct vasodilatory effect** (HCTZ opens KCa channels; indapamide Ca-blocker-like). Antihypertensive activity **> drastic diuretics**; **profibrinic** effect (≠ furosemide fibrinolytic)."
+    },
+    {
+     "label": "K⁺-sparing agents",
+     "value": "**amiloride/triamterene** (Na⁺ channel inhibitors); **spironolactone/canrenone** (competitive antagonists of **aldosterone**, cardioprotective).\n### 📎 Appendix — Calcium channel blockers (completion of molecules)\n• **Nicardipine** (selective for the coronaries, antianginal); **nimodipine** (lipophilic → **cerebral vasospasm after hemorrhage**); **mibefradil** (inhibitor of **L + T** channels; ⚠️ inhibits **P-gp/CYP3A4** → interactions)."
+    },
+    {
+     "label": "Active metabolites",
+     "value": "norverapamil (renal elimination), deacyldiltiazem (hepatic). **Sublingual nifedipine** (Nifedicor) in emergencies.\n• ⚠️ **Verapamil/diltiazem + beta-blockers = NO** (additive negative chronotrope); **dihydropyridines + beta-blockers/diuretics = OK**."
+    }
+   ],
+   "freetext": [
+    "**Thiazides** (hydrochlorothiazide/HCTZ, chlorthalidone, indapamide): inhibition of the **Na⁺/Cl⁻** symporter (distal tubule); ⚠️ **↓ K⁺** (more distal Na⁺ → more exchange with K⁺)."
+   ]
+  }
+ ]
+}

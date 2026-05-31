@@ -1,0 +1,949 @@
+{
+ "group": "G3",
+ "entries": [
+  {
+   "id": "A10__insulina-insulina-umana-analoghi",
+   "name": "Insulin (human insulin + analogues)",
+   "nameShort": "Insulin",
+   "memo": "Nothing lowers blood glucose like it, nothing makes it crash so fast: **hypoglycemia**. Ultra-rapid at meals, **slow basal without a peak**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "peptide hormone → **replacement therapy**. α + β chains joined by 2 inter-disulfide bridges + 1 intra (from pre-proinsulin → proinsulin → cleavage of C-peptide)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "insulin receptor (tyrosine kinase)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**very short half-life (5-6 min)**; hepatic degradation (receptor-mediated endocytosis), renal, muscular. **Parenteral** route (sc/IV; not oral). Duration principle: **zinc/protamine/pH** → ↓ solubility → ↑ duration.\n• **Regular** (rapid): low zinc, unmodified pH → onset 30-45 min, peak 1.5-4h, duration ≤8h.\n• **Isophane/NPH** (intermediate): phosphate + **protamine** → delayed onset, longer peak/duration.\n• **Lente/ultralente**: ↑ zinc ± protamine → onset 4-6h, peak 16-18h, duration 36h (risk of nocturnal hypoglycemia).\n• **Ultra-rapid analogues**: **lispro** (Lys-Pro B28-29 inversion), **aspart** (Asp at B28), **glulisine** → no polymerization → rapid and short action (unchanged receptor affinity).\n• **Slow analogues**: **glargine** (↓ solubility at pH 7.4 → depot), **detemir** (myristoylation → ↑ protein binding), **degludec** (fatty acid → ↑ lipophilicity/binding) → long duration, **no peak**."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "T1DM (replacement); **gestational diabetes** (does not cross the placental barrier → safe); uncontrolled T2DM. **Four-injection** regimen (rapid at meals + slow basal)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **HYPOGLYCEMIA** (<70 mg/dl; counter-regulation: adrenaline/noradrenaline, glucagon, GH, cortisol; symptoms: sweating, hunger, palpitations, tremor, neuroglycopenia → loss of consciousness); **lipoatrophy** (immunological), **lipohypertrophy/lipodystrophy** (insulin = growth factor → adipose accumulation at the site → ↓ absorption; prevention: rotate site/needle); allergy."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "insulin resistance."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "+ metformin (synergy, ↓ insulin requirement)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A10__sulfaniluree-i-gen-tolbutamide-clorpropa",
+   "name": "Sulfonylureas (1st gen: tolbutamide, chlorpropamide, tolazamide; 2nd gen: glibenclamide, glipizide, glimepiride)",
+   "nameShort": "Sulfonylureas",
+   "memo": "They close the **K-ATP channel (SUR1)** → they always secrete insulin, even when fasting → **hypoglycemia** (β-cells required).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**insulin secretagogues**; they block the **SUR1 subunit of the K-ATP channel** → ↓ K⁺ conductance → depolarization → voltage-dependent Ca²⁺ entry → insulin exocytosis. They also ↓ hepatic insulin clearance."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "K-ATP channel (**SUR1** subunit) of the β-cell."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "2nd gen → **30 min before the meal**; absorption 100%; **protein binding 90-99%** (albumin); hepatic metabolism, renal excretion. (Glycated albumin ↓ binding → ↑ effect.)"
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "T2DM (requires β-cell → **not T1DM**); **2nd line + metformin**; predominant **fasting** hyperglycemia."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **hypoglycemia** (especially elderly, CRF/hepatic failure, 1st gen); nausea, vomiting, hypersensitivity; **cardiovascular risks** (interaction with other K channels → arrhythmias)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "1st gen (long half-life, ↑ hypoglycemia) rarely used. **Contraindicated** in hepatic/renal failure (glimepiride usable in mild-moderate forms)."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "⚠️ **do NOT combine with glinides** (same target); + metformin ok; beware of displacement by albumin-bound drugs."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A10__glinidi-derivati-della-meglitinide",
+   "name": "Glinides (meglitinide derivatives)",
+   "nameShort": "Glinides",
+   "memo": "Rapid and short sulfonylureas: they target the **postprandial peak**, less hypoglycemia.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**insulin secretagogues**; closure of the K-ATP channel (binding at the SU site **+ their own site**)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "K-ATP channel of the β-cell."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**faster** absorption and secretion, **short half-life** → more frequent dosing (before each meal, 0.5-1 mg up to 4 mg). ↓ HbA1c by 0.5-1%."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "T2DM; predominant **postprandial** hyperglycemia; 2nd line + metformin; usable in **mild/moderate CRF**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**fewer hypoglycemic episodes** than SUs; lower cardiovascular risks; they better reproduce \"pulsatile\" secretion."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "contraindicated in hepatic failure and **severe CRF**."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "⚠️ **NOT with sulfonylureas** (same target); + metformin ok."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A10__metformina-biguanidi",
+   "name": "Metformin (biguanides)",
+   "nameShort": "Metformin",
+   "memo": "**First line in T2DM**: it activates AMPK and shuts down hepatic gluconeogenesis. It stops only in the face of **lactic acidosis**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**insulin sensitizer**; activates **AMPK** (hepatic/muscular). It accumulates in the mitochondrion (2 basic centers → + charge) → inhibits **mitochondrial complex I** → ↓ ATP/↑ AMP → ↑ AMPK → ↑ glycolysis (anaerobic → lactate). Hepatic: ↓ gluconeogenesis/glycogenolysis, ↓ ACC, ↓ SREBP-1, ↓ triglycerides. Muscle: ↑ GLUT-4. Potentiates insulin (synergy → ↓ requirement)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "AMPK; mitochondrial complex I."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "peak 4h; **unchanged renal elimination** (liver not involved). Oral 500/850/1000 mg, 2-3 times/day with meals; controlled-release formulations are better tolerated."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "⚠️ **FIRST-LINE AGENT in T2DM** (mono or combination); metabolic syndrome; obese and normal-weight patients; fasting hyperglycemia; combinable with all OHAs and insulin."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**dose-dependent GI** disturbances (diarrhea, nausea, vomiting, abdominal pain, anorexia)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "⚠️ **contraindicated** in conditions that favor hypoxia/**lactic acidosis**: renal failure, heart failure, respiratory failure, hypoxia. (Phenformin withdrawn for lactic acidosis.)"
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "+ SU/glinides/insulin (but **NOT SU + glinides** together)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A10__glitazoni-tiazolidinedioni-pioglitazone-",
+   "name": "Glitazones (thiazolidinediones — pioglitazone; rosiglitazone withdrawn)",
+   "nameShort": "Glitazones",
+   "memo": "**PPAR-γ** agonists: they rewrite adipocyte transcription (slow effect); fluid retention and weight gain.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**insulin sensitizers**; **agonists of the nuclear receptor PPAR-γ** (transcription factor, carbohydrate/lipid metabolism genes, expressed in adipocytes) → differentiation of fibroblasts into small adipocytes that are more insulin-sensitive; ↑ glucose uptake (↑ GLUT-4), ↑ triglycerides, ↓ lipolysis, ↓ FFA, ↓ gluconeogenesis."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "PPAR-γ."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "oral bioavailability 99%; protein binding; hepatic metabolism; renal excretion 63% (caution in CRF) + 23% feces/bile; half-life 3-4h."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "T2DM; postprandial hyperglycemia; mono or + metformin (if insufficient) or + SU/glinides (if metformin not tolerated)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **rosiglitazone withdrawn (2010)** for cardiovascular risk + hepatic toxicity; **weight gain**; fluid retention/edema."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**NOT first choice**. Contraindicated in hepatic failure (no if **ALT >2.5× ULN**), heart failure (↑ preload), peripheral edema."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "+ metformin/SU/glinides."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A10__acarbosio-inibitore-dell-glucosidasi",
+   "name": "Acarbose (α-glucosidase inhibitor)",
+   "nameShort": "Acarbose",
+   "memo": "They block intestinal **α-glucosidase**: they cut the postprandial peak, no hypoglycemia, lots of flatulence.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "inhibits **intestinal α-glucosidase** → ↓ cleavage of complex carbohydrates → ↓ intestinal glucose absorption."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "intestinal α-glucosidase."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "oral with meals; 50-100 mg."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "↓ **postprandial** blood glucose (proportional to dietary carbohydrates); well tolerated, **does NOT cause hypoglycemia**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "dose-dependent malabsorption, **flatulence**, abdominal bloating (↑ luminal osmolarity → water recall → ↑ peristalsis)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "—"
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "—"
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A10__incretine-agonisti-del-recettore-glp-1-e",
+   "name": "Incretins — GLP-1 receptor agonists (exenatide, liraglutide, lixisenatide, dulaglutide)",
+   "nameShort": "Incretins — GLP-1 receptor agonists",
+   "memo": "**Glucose-dependent** insulin (no hypoglycemia), they slow the stomach, **cause weight loss** and protect the heart.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**GLP-1 receptor agonists** (Gs → ↑ cAMP → PKA) → ↑ **glucose-dependent** insulin secretion. **Pleiotropic**: pancreas (↑ insulin secretion/biosynthesis, ↓ glucagon, ↑ β-cell proliferation/↓ apoptosis), stomach (slows emptying), muscle/adipose (↑ sensitivity), liver (↓ gluconeogenesis), heart (cardioprotection), CNS (↓ appetite). **Exenatide** = analogue of exendin-4 (*Gila monster* lizard), resistant to DPP-4; **liraglutide** = human analogue (97% homology)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "GLP-1 receptor."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**parenteral** (sc; peptides); exenatide peak 2h, renal elimination."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "T2DM (growing relevance); **↓ weight**, ↓ CV diseases; mono or + metformin/glitazones."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**NO hypoglycemia** (glucose-dependent mechanism); nausea, vomiting, loss of appetite, abdominal pain (↑ peristalsis), headache, asthenia; ⚠️ **risk of pancreatitis**."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "**lixisenatide contraindicated in gastroparesis**."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "+ metformin/glitazones. (**Suliqua** = glargine + lixisenatide.)"
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A10__incretine-inibitori-della-dpp-4-gliptine",
+   "name": "Incretins — DPP-4 inhibitors (gliptins: sitagliptin, vildagliptin, saxagliptin, linagliptin)",
+   "nameShort": "Incretins — DPP-4 inhibitors",
+   "memo": "They block the enzyme that degrades GLP-1 → incretin effect **by the oral route**, weight-neutral, low risk of hypoglycemia.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "they inhibit **dipeptidyl-peptidase-4** (for 24h) → ↑ endogenous GLP-1 (2-3× normal levels) → ↑ incretin effects."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "DPP-4 enzyme."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "⚠️ **ORAL route** (advantage); sitagliptin 100 mg/day, vildagliptin 50 mg/day."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "T2DM; mono (+ physical exercise) or + metformin/TZD/insulin; ↓ HbA1c ~1% **without hypoglycemia**; they maintain **normal weight**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "well tolerated, **low risk of hypoglycemia**, fewer side effects."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "—"
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "+ metformin (greater potency). (**Janumet** = sitagliptin + metformin.)"
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A10__inibitori-sglt2-glifozine",
+   "name": "SGLT2 inhibitors (gliflozins)",
+   "nameShort": "SGLT2 inhibitors",
+   "memo": "They dump glucose into the urine: ↓ weight and blood pressure, **cardio- and nephroprotection**; the price: genitourinary infections.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "reversible inhibitors of the renal **sodium-glucose co-transporter 2 (SGLT2)** → ↓ renal glucose reabsorption → **↑ glycosuria**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "SGLT2 (nephron)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "efficacy dependent on **GFR**."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "T2DM; **cardiovascular protective effect** (osmotic diuretic); useful in the hypertensive patient with edema; ↓ body weight."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **genital/urinary infections** (especially fungal, from glycosuria); GI effects, drowsiness, constipation."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "efficacy depends on GFR."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "—"
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A10__iperglicemizzanti-glucagone-octreotide-d",
+   "name": "Hyperglycemic agents (glucagon, octreotide, diazoxide)",
+   "nameShort": "Hyperglycemic agents",
+   "memo": "**Glucagon** = the antidote to severe hypoglycemia: it mobilizes hepatic glycogen in a few minutes.",
+   "segments": [
+    {
+     "label": "Glucagon",
+     "value": "peptide hormone (α-cells) → **hepatic** hyperglycemic agent (↑ gluconeogenesis/glycogenolysis, ↓ glycogen synthesis/glucose oxidation). **1 mg parenteral**."
+    },
+    {
+     "label": "Octreotide",
+     "value": "long-acting **somatostatin** analogue (somatostatin inhibits many hormones, incl. insulin) → used in **pituitary tumors**."
+    },
+    {
+     "label": "Diazoxide",
+     "value": "antihypertensive/antidiuretic/vasodilator but markedly **hyperglycemic**; it acts on **SUR1** preventing/delaying the closure of Kir6.2 channels → ↓ insulin release; rarely used (nausea, vomiting, sodium retention)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A11__antiacidi-sali-di-alluminio-magnesio",
+   "name": "Antacids (aluminium / magnesium salts)",
+   "nameShort": "Antacids",
+   "memo": "**Aluminium constipates, Magnesium loosens**: combined they balance out. They buffer the acid, they do not block the pump.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**nonspecific acid-base** action (no receptor); they bind protons → neutralization of HCl."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "gastric HCl (chemical neutralization)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**short** effect (longer on a full stomach); they alter gastric, intestinal **and** urinary pH."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "acidity/heartburn; ⚠️ **usable in pregnancy** (unlike the other anti-ulcer drugs)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**Al** salts → **constipation**; **Mg** salts → **diarrhea** (often combined)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "do not combine different antacids together."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "⚠️ **space out** from other oral drugs (they alter absorption, e.g. antibiotics); urine alkalinization interferes with elimination. (Gaviscon = alginic acid + NaHCO₃ + Al(OH)₃ + Mg trisilicate.)"
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A11__antagonisti-dei-recettori-h2-famotidina-",
+   "name": "H2 receptor antagonists (famotidine, nizatidine, roxatidine) — *see also file A6*",
+   "nameShort": "H2 receptor antagonists",
+   "memo": "They block the **parietal H2** → less HCl; useful for occasional cases, surpassed by PPIs in serious ones.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "selective antagonists of the **H2** receptor on the parietal cell → ↓ stimulation of the proton pump (also by gastrin/ACh). **They do not compromise vitamin B12 absorption** (unlike PPIs)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "gastric H2 receptor."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "good oral bioavailability; hepatic first pass; **renal tubular secretion** (↓ dose in CRF). Cimetidine = CYP inhibitor."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "stress ulcer (IV), duodenal ulcer (**80-90% healing**) and gastric ulcer (more resistant, **50-60%**, up to 16 weeks), reflux, Zollinger-Ellison, *H. pylori* eradication (with antibiotics)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "generally mild (headache, dizziness, nausea); rare idiosyncratic hematological effects; cimetidine → gynecomastia/galactorrhea/impotence, CYP inhibition."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "⚠️ **tolerance** (receptor adaptation → ↑ doses) + ↑ gastrin with **rebound effect** on discontinuation. Ranitidine withdrawn (nitrosamines)."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "cimetidine = enzyme inhibitor (see A6)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A11__antimuscarinici-gastrici-pirenzepina-tel",
+   "name": "Gastric antimuscarinics (pirenzepine, telenzepine)",
+   "nameShort": "Gastric antimuscarinics",
+   "memo": "They block **M1** → less acid with few systemic effects; historical, supplanted by PPIs.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "they block ACh on **M3** receptors; **pirenzepine** is selective for **M1** (food-induced acid secretion, postganglionic cholinergic input). Protonatable tertiary amines → **no BBB** (peripheral effects)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "muscarinic M1 (M3) receptors."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "peripheral distribution."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**ulcers resistant to anti-H2 agents**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "related to M2/M3 (nausea, vomiting, xerostomia)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "niche use."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "N/A specific."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A11__inibitori-della-pompa-protonica-ipp-omep",
+   "name": "Proton pump inhibitors – PPIs (omeprazole, lansoprazole, pantoprazole, rabeprazole)",
+   "nameShort": "Proton pump inhibitors – PPIs",
+   "memo": "They bind **irreversibly to the H⁺/K⁺-ATPase pump**: acid blockade for 24-48h. Long-term: ↓ B12, ↓ Mg, osteoporosis.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "liposoluble **prodrugs**; in the **acidic** environment of the canaliculi → rearrangement to **sulfenamide** → **covalent** binding (disulfide bridge) to the **SH** groups (cysteines) of the **H⁺/K⁺-ATPase** → **definitive inhibition** (must wait for resynthesis)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "proton pump H⁺/K⁺-ATPase (parietal cell)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**gastro-resistant tablets** (they must concentrate in the acidic canaliculi → local trapping/reactivation); take **with meals** (pump exposed → ↑ efficacy); persistent dose-dependent effect (up to 3 days); high protein binding; metabolism **CYP2C19 + CYP3A4**. **Rabeprazole** = non-cytochromial metabolism (safer)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "gastric/duodenal ulcer, reflux, Zollinger-Ellison; ***H. pylori* eradication** (triple: clarithromycin + amoxicillin + PPI; quadruple: tetracycline + metronidazole + bismuth + PPI, 7-14 days); prevention of NSAID-induced ulcer. **Superior efficacy to anti-H2 agents**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "GI (nausea, vomiting, diarrhea); xerostomia, hypersensitivity, hepatopathies. ⚠️ **Long-term**: ↓ absorption of **Ca/B12/iron** → **bone fractures**, **hypomagnesemia**, ↑ respiratory infections."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "frequent **misuse** → do not use prophylactically without risk factors."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "⚠️ **omeprazole + clopidogrel = FORBIDDEN** (blocks CYP2C19 → clopidogrel not bioactivated → prothrombotic risk); interference with warfarin, valproic acid, NSAIDs, benzodiazepines, phenytoin; omeprazole inhibits P-gp → ↑ digoxin."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A11__protettori-della-mucosa-misoprostolo-suc",
+   "name": "Mucosal protectants (misoprostol, sucralfate, bismuth)",
+   "nameShort": "Mucosal protectants",
+   "memo": "They build a **shield** (sucralfate, bismuth); **misoprostol** replaces the PGs lost to NSAIDs, but it is abortive.",
+   "segments": [
+    {
+     "label": "Misoprostol",
+     "value": "**PG** analogue (resistant to metabolism, duration 3h) → **EP3** agonist → ↑ mucus, ↓ HCl. Oral, hepatic first pass, renal elimination. Indicated **in combination with NSAIDs**. ADR: ↑ peristalsis (diarrhea), **↑ uterine contractility** → ⚠️ **contraindicated in pregnancy** (abortion/premature labor) and in IBD."
+    },
+    {
+     "label": "Sucralfate",
+     "value": "polymer of sucrose octasulfate + polyaluminium hydroxide → **sticky gel** that adheres to the ulcer crater (+ charges) → barrier; stimulates endogenous PGs. ADR: constipation (2%), **Al accumulation in CRF**; interference with the absorption of phenytoin, digoxin, cimetidine, ketoconazole, fluoroquinolones."
+    },
+    {
+     "label": "Bismuth",
+     "value": "chelates the proteins of the lesion → barrier; ↑ mucus, ↓ pepsin, **antibacterial** (*H. pylori* quadruple therapy). ADR: **brown tongue**; ⚠️ **encephalopathy in CRF**."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A11__procinetici-neostigmina-domperidone-meto",
+   "name": "Prokinetics (neostigmine, domperidone, metoclopramide, erythromycin)",
+   "nameShort": "Prokinetics",
+   "memo": "They speed up the stomach; in the parkinsonian patient use **domperidone** (peripheral), never metoclopramide (EPS).",
+   "segments": [
+    {
+     "label": "Principle",
+     "value": "they modulate the enteric nervous system for coordinated propulsions (upstream excitatory motor neuron = **ACh**; downstream inhibitory = NO/VIP/ATP). Indications: gastroparesis, functional dyspepsia, gastric stasis, reflux, nausea/vomiting."
+    },
+    {
+     "label": "Cholinomimetics – Neostigmine",
+     "value": "indirect AChE inhibitor, no BBB; uncoordinated contraction → **not first choice**; cholinergic ADR (bradycardia, sialorrhea, nausea, fasciculations, bronchospasm)."
+    },
+    {
+     "label": "Antidopaminergics – Domperidone",
+     "value": "**D2** antagonist (blocks the dopaminergic inhibition of the cholinergic motor neuron) → ↑ gastric/duodenal peristalsis, ↓ pyloric tone, ↑ esophageal sphincter pressure. No BBB; oral bioavailability 15%. ADR: hyperprolactinemia, ⚠️ **QT prolongation**. *(See also A7.)*"
+    },
+    {
+     "label": "Serotoninergics/mixed – Metoclopramide",
+     "value": "**D2** antagonist + **5-HT4** agonist + **5-HT3** antagonist → prokinetic + antiemetic. Crosses the BBB → sedation, ⚠️ **irreversible extrapyramidal effects**. **Cisapride withdrawn** (QT). *(See also A7.)*"
+    },
+    {
+     "label": "Motilin-like – Erythromycin",
+     "value": "agonist of the **motilin** receptor (at **sub-MIC** concentrations) → migrating motor complexes. IV in **acute diabetic gastroparesis**, facilitation of intubation. ⚠️ Not long-term (resistance; CYP3A4 inhibitor + ↑ QT → cardiac deaths with statins/QT drugs)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A11__antidiarroici-loperamide",
+   "name": "Antidiarrheals (loperamide)",
+   "nameShort": "Antidiarrheals",
+   "memo": "**Loperamide**: a peripheral opioid kept out of the brain by **P-gp**; at megadoses it becomes cardiotoxic.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**Loperamide** = agonist of **peripheral μ** opioid receptors (enkephalinergic neurons inhibit ACh release) → ↓ motility + ↓ secretions (Gi inhibits epithelial transport) + ↑ sphincter tone."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "μ opioid receptor (peripheral)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**no BBB** (no central effects, no abuse); oral; peak 3-5h; 4 mg initial + 2 mg after each stool (max 16 mg/day; less in children)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "diarrhea with risk of dehydration; alternatives: bismuth salicylate (antisecretory/antimicrobial), probiotics (*Lactobacilli, Saccharomyces boulardii*)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "constipation; in children (BBB) → drowsiness, CNS depression."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "⚠️ **NOT in infectious diarrhea** (it retains the pathogen); contraindicated **<2 years** and in **IBD**."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "+ antibiotics when infection and risk of dehydration coexist."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A11__lassativi-stipsi-da-oppiacei",
+   "name": "Laxatives (+ opioid-induced constipation)",
+   "nameShort": "Laxatives",
+   "memo": "Osmotic, stimulant, emollient; for opioid-induced constipation the **PAMORAs** unblock the bowel without removing the analgesia.",
+   "segments": [
+    {
+     "label": "Classes",
+     "value": "**bulk-forming** (methylcellulose, fibers, psyllium → ↑ volume/water retention); **emollients/lubricants** (glycerin, mineral oils); **osmotic** (Mg salts, **lactulose**); **irritant/stimulant** (senna, cascara, bisacodyl, castor oil → release of PG/histamine/serotonin + **inhibition of the basolateral Na⁺/K⁺-ATPase pump** → ↓ reabsorption → water recall + ↑ peristalsis).\n• **Anthraquinone glycosides** (senna/cascara): not absorbed, **bioactivated by the flora** into quinones. ⚠️ **Abuse** (for weight loss) → **hypokalemia**, nephropathies, secondary hyperaldosteronism, arrhythmias.\n• **Opioid-induced constipation** (fibers/laxatives ineffective): **peripheral μ antagonists** → oxycodone + **naloxone** (extensive hepatic metabolism → topical effect; IV for intoxication); **methylnaltrexone** (more lipophilic, sc, rapid). **Lubiprostone** (prostanoid-like, **EP4** agonist → ↑ secretions/peristalsis; opioid-induced constipation, chronic constipation, IBS-C; ADR nausea/diarrhea/headache)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A11__ibd-antinfiammatori-5-asa-mesalazina-sul",
+   "name": "IBD — 5-ASA anti-inflammatories (mesalazine, sulfasalazine, olsalazine, balsalazide)",
+   "nameShort": "IBD — 5-ASA anti-inflammatories",
+   "memo": "A 'gentle' aspirin that acts **topically on the colon**: first line in mild-moderate IBD.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "derivatives of **5-amino-salicylic acid**; anti-inflammatory (↓ cytokines, NF-κB, PPAR-γ) with a not fully clarified mechanism that **does NOT involve COX** (inhibiting it would worsen things)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "mediators of intestinal inflammation (not COX)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**topical / modified-release** use (pH-sensitive **eudragit** S/L polymers); prodrugs (sulfasalazine, olsalazine, balsalazide) **bioactivated by bacterial azoreductases** → release of 5-ASA."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**first line** in mild-moderate ulcerative colitis."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**Sulfasalazine** → releases 5-ASA **+ sulfapyridine** (antibacterial); ⚠️ sulfonic group → hypersensitivity; phase II metabolism by **acetylation** (polymorphisms: slow acetylators → adverse reactions **10-45%**: rash, fever, **Stevens-Johnson**, agranulocytosis, hepatitis, hemolytic anemia, interstitial nephritis)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "N/A specific."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "**Olsalazine** = 2 molecules of 5-ASA joined; **Balsalazide** = neutral carrier."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A11__ibd-immunosoppressori-e-biologici",
+   "name": "IBD — immunosuppressants and biologics",
+   "nameShort": "IBD — immunosuppressants and biologics",
+   "memo": "When 5-ASA and steroids are not enough: thiopurines, **anti-TNF**, and **vedolizumab** (gut-selective).",
+   "segments": [
+    {
+     "label": "Glucocorticoids",
+     "value": "**remission of the acute phase** (NOT chronic); systemic (prednisone oral; methylprednisolone/hydrocortisone IV in severe ulcerative colitis); topical/modified-release (**budesonide, beclomethasone dipropionate**; enemas/foams/suppositories). Response within ~7 days (otherwise a resistant patient)."
+    },
+    {
+     "label": "Immunosuppressants (chronic)",
+     "value": "purine analogues **azathioprine** (prodrug)/**6-mercaptopurine**; **methotrexate** (folic acid analogue → inhibits dihydrofolate reductase, Crohn). ADR: bone marrow suppression, hepatotoxicity, ↑ infections/lymphomas; idiosyncratic pancreatitis/rash.\n• **Anti-TNF-α biologics** (infliximab, adalimumab): ADR → infusion reactions (→ anaphylaxis), ↑ infections, **TB/hepatitis reactivation**, cardiac worsening, ↑ lymphomas/tumors, **anti-drug antibodies** (more frequent with the chimeric one). *(See file A9.)*"
+    },
+    {
+     "label": "Anti-integrins",
+     "value": "**Natalizumab** (anti-integrin **α4** → blocks lymphocyte migration; Crohn; ⚠️ **JC virus reactivation → progressive multifocal leukoencephalopathy** → not long-term); **Vedolizumab** (anti-integrin **α4β7** with GI-selective expression; moderate-severe ulcerative colitis and Crohn; **no CNS effects**)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A12__osso-regolazione-del-calcio-e-basi-della",
+   "name": "Bone — calcium regulation and basis of therapy",
+   "nameShort": "Bone — calcium regulation and basis of therapy",
+   "memo": "Osteoblast-osteoclast balance: either you **brake reabsorption** (bisphosphonates, denosumab, SERMs) or you **build** (teriparatide).",
+   "segments": [
+    {
+     "label": "Factors on turnover",
+     "value": "pro-reabsorption (IL-1, IL-6, TNF-α, PGE2); protective (**osteoprotegerin**, **estrogens**). Menopause → ↓ estrogens → ↑ turnover → osteoporosis."
+    },
+    {
+     "label": "Osteopenic drugs",
+     "value": "**glucocorticoids** (↓ osteoblasts, ↓ osteoprotegerin/IGF-1); **anticonvulsants** (phenytoin/phenobarbital → ↓ Ca absorption → mandibular fractures); **immunosuppressants** (azathioprine/cyclosporine/tacrolimus → ↓ osteoprotegerin)."
+    },
+    {
+     "label": "Prevention",
+     "value": "reach the **peak bone mass** (<30 years), calcium + vit D, physical exercise."
+    }
+   ],
+   "freetext": [
+    "**PTH** (parathyroids, in hypocalcemia): ↑ Ca reabsorption (intestine via calcitriol, kidney), ↑ bone release (stimulates osteoblasts to produce osteoclast-activating factors — e.g. **PGE2** → hydroxyapatite dissolution), kidney (↑ Ca absorption/phosphate excretion, ↑ calcitriol via **1-α-hydroxylase**).",
+    "**Calcitriol** (active vit D): from dietary vit D or **7-dehydrocholesterol** (photoconversion); **2 hydroxylations** (liver + kidney); ↑ Ca/phosphate reabsorption (intestine/kidney). Deficiency → rickets, hypocalcemia.",
+    "**Calcitonin** (thyroid C cells, in hypercalcemia): inhibits osteoclasts, stimulates osteoblasts (anabolic), ↑ Ca excretion; **analgesic**."
+   ]
+  },
+  {
+   "id": "A12__calcio-vitamina-d",
+   "name": "Calcium + Vitamin D",
+   "nameShort": "Calcium + Vitamin D",
+   "memo": "The **building blocks**: without calcium and vitamin D no other bone drug can work.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "supplementation/replacement; vit D → calcitriol → ↑ intestinal Ca absorption."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "intracellular vit D receptor; calcium pool."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "oral."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**prevention** and mild forms of reduced bone mass; **all other drugs must prove superior** to calcium + vit D."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "N/A specific in the documents."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "limited efficacy in advanced forms."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "basis of every osteoporosis therapy."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A12__estrogeni-17-estradiolo",
+   "name": "Estrogens (17-β estradiol)",
+   "nameShort": "Estrogens",
+   "memo": "They brake bone reabsorption, but replacement therapy raises **thrombosis and tumors** → only for vasomotor symptoms, short-term.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "they modulate osteoclast activity toward osteoblasts; **↑ osteoprotegerin**; ↓ IL-6."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "estrogen receptor."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "oral or transdermal (creams 50 µg/day, sustained-release patches)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**post-menopausal** osteoporosis."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ effects on **breast and uterus** (estrogen receptors) → endometrial proliferation, risk of uterine carcinoma."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "unfavorable risk profile unless managed."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "**+ progestin** (↓ endometrial proliferation and risk of uterine carcinoma)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A12__serm-raloxifene-tamoxifene",
+   "name": "SERMs (raloxifene, tamoxifen)",
+   "nameShort": "SERMs",
+   "memo": "Same molecule, **agonist in bone and antagonist in breast** (raloxifene): opposite face depending on the tissue.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**Selective Estrogen Receptor Modulators** → tissue-specific action. **Tamoxifen** = antagonist in breast (breast cancer chemotherapeutic), **partial agonist** in bone and endometrium (→ not optimal because of the endometrial effect). **Raloxifene** (2nd gen) = selective for **bone** (and liver), **no effect on breast/endometrium**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "estrogen receptor (tissue-selective)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "oral."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "post-menopausal osteoporosis; raloxifene → ↓ bone turnover (premenopausal levels), ↓ LDL and total cholesterol."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "raloxifene → hot flushes, lower-limb cramps, ⚠️ **↑ thromboembolic risk**."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "tamoxifen not optimal for osteoporosis (endometrial action)."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "N/A specific."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A12__calcitonina",
+   "name": "Calcitonin",
+   "nameShort": "Calcitonin",
+   "memo": "It inhibits the osteoclast + an **analgesic** effect on vertebral fractures; the **salmon** one is 40× more potent.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "peptide hormone (disulfide bridge) → inhibits osteoclasts, stimulates osteoblasts → bone deposition; **analgesic** (modulates pain sensitivity)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "calcitonin receptor on osteoclasts."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "peptide; extractive (**eel/salmon**, more potent but risk of hypersensitivity) or human biosynthetic; cutaneous/im/**nasal spray** route."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "post-menopausal osteoporosis **when estrogens are contraindicated**; hypercalcemia, hyperparathyroidism, **Paget**, tumors; pain from osteopenia. It reduces vertebral fractures."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "hypersensitivity (rash, sweating, vomiting, nausea, facial flushing, abdominal cramps, urticaria)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "⚠️ **sensitization** long-term (anti-calcitonin antibodies, receptor downregulation) → use acutely or in **spaced-out intermittent cycles**."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "N/A specific."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A12__bifosfonati-i-iii-generazione",
+   "name": "Bisphosphonates (1st-3rd generation)",
+   "nameShort": "Bisphosphonates",
+   "memo": "They **anchor to the bone** and kill the osteoclast; fasting and standing for 30 min. Risks: **mandibular osteonecrosis** and atypical fractures.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**stable analogues of pyrophosphate** (2 phosphoric groups + carbon chain); high affinity for **Ca** → they concentrate in the bone (long half-life); resistant to osteoclasts → **they prevent hydroxyapatite dissolution**. The most effective reabsorption inhibitors.\n• **1st gen** (clodronate, etidronate): taken up by the osteoclast → **apoptosis** (poorly soluble ATP analogue).\n• **2nd gen** (aminobisphosphonates: **alendronate**, pamidronate, ibandronate; 10-100× more potent): they inhibit **farnesyl-pyrophosphate synthase** (mevalonate pathway) → ↓ geranyl-geranyl-pyrophosphate → ↓ ruffled border (no apoptosis).\n• **3rd gen** (nitrogen + heterocyclic ring: **zoledronic acid**, risedronate): very potent, more side effects."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "mineral matrix (Ca); osteoclast (apoptosis 1st gen / farnesyl-PP synthase 2nd-3rd gen)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "⚠️ **poor oral bioavailability** (1-10%, poorly soluble) → take **fasting, with plenty of water, in an upright position**; many interactions with food."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "osteoporosis (menopausal/glucocorticoid-induced), **Paget**; bone metastases/calcifications (clodronate/pamidronate/zoledronate → breast/prostate carcinoma, multiple myeloma). **Alendronate** → ↓ vertebral/non-vertebral/long-bone fractures."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "GI (cramps, pain, vomiting, **erosion of the esophageal mucosa**); ⚠️ long-term (>5 years) permanent inhibition of remodeling → microdamage → **spontaneous fractures**; ⚠️ **osteonecrosis of the jaw** (zoledronate/pamidronate — screening of the oral cavity before dental procedures)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "limited duration (alendronate 70 mg/week ≤2-3 years; risedronate 35 mg/week ≤5 years)."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "on a basis of calcium + vit D."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A12__denosumab",
+   "name": "Denosumab",
+   "nameShort": "Denosumab",
+   "memo": "**Anti-RANKL** antibody, two injections a year; **do not stop it abruptly** → rebound with multiple fractures.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**humanized** monoclonal antibody with high affinity → binds **RANKL** → interrupts the pathway → ↓ osteoclast activity → ↑ bone mass, ↓ turnover."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "**RANKL**."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**sc every 6 months**."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "osteoporosis."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **osteonecrosis of the jaw** (incidence similar to bisphosphonates)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "N/A specific."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "on a basis of calcium + vit D."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "A12__teriparatide-pth-intermittente-fluoruri",
+   "name": "Teriparatide (intermittent PTH) + Fluorides",
+   "nameShort": "Teriparatide",
+   "memo": "**PTH in small doses builds** bone (continuous it destroys it): the true anabolic, maximum 24 months.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**Teriparatide** = N-terminal analogue of **PTH**; **intermittent** administration (≠ continuous) → **↑ osteoblast activity** (via **Wnt**), counteracts osteoclasts → ↓ fractures **by up to 70%**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "PTH receptor (Wnt pathway)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "peptide."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**second choice** (severity or failure of previous therapies). **Fluorides** = another strategy mentioned."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "hypersensitivity."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "very **expensive**; ⚠️ contraindicated in **Paget** and **bone metastases**."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "N/A specific."
+    }
+   ],
+   "freetext": []
+  }
+ ]
+}

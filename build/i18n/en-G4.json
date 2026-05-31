@@ -1,0 +1,922 @@
+{
+ "group": "G4",
+ "entries": [
+  {
+   "id": "B1__benzodiazepine-bdz",
+   "name": "Benzodiazepines (BDZ)",
+   "nameShort": "Benzodiazepines",
+   "memo": "They **modulate** GABA-A (they do not open it on their own): the tetrad anxiolysis-hypnosis-muscle relaxation-anticonvulsant. Pitfall: **dependence**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**positive allosteric modulators** of the **GABA-A** receptor; ↑ **FREQUENCY of opening** of the Cl⁻ channel (**only in the presence of GABA**). Extracellular binding site (ECD), between the α and γ subunits (γ2 the most abundant)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "GABA-A receptor (BDZ site). **Subunit selectivity → effects**: **α1** = sedation/hypnosis (BZ1/ω1) + amnesia; **α2** = anxiolytic + muscle relaxant; **α3** = muscle relaxant; **α5** = amnesia. BZ3 (peripheral) → stimulates neurosteroids."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "oral (complete absorption), im (variable), **IV** (emergency/anaesthesia), rectal (children). High protein binding; **high Vd** (lipophilic; ↑ in the obese/elderly); they cross the placenta/milk. **Two-compartment** kinetics: **T/2α** (distribution, 2-10h) and **T/2β** (elimination, 2-100h). **Phase I** metabolism (oxidation → **active** metabolites) + **phase II** (glucuronoconjugation → inactive metabolites). **Classes by T/2β**: ① **intermediate-long** (nitro-BDZ: flunitrazepam, clonazepam, nitrazepam; **pronordiazepam-like**: diazepam → active metabolites, accumulation → ⚠️ not advised in the elderly/hepatopathic patient); ② **short** (**oxazepam-like**: lorazepam, oxazepam, temazepam → direct conjugation, **no active metabolites/accumulation** → preferred in the elderly); ③ **triazolo-BDZ** (alprazolam ~8h hypnoprotective, triazolam 3-4h hypnoinductive, midazolam)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "anxiety, insomnia, **alcohol withdrawal**, **status epilepticus**, premedication/balanced anaesthesia, sedation for procedures, central **spasticity**. **NOT analgesics** (only adjuvants in pain)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "therapeutic doses (sedation, asthenia, ↓ psychomotor performance, hangover, **anterograde amnesia** — \"date rape drug\"); toxic doses (orthostatic hypotension, hypothermia, confusion; ⚠️ **lethal with other CNS depressants**); the elderly (confusion, ataxia, **paradoxical effects**); ⚠️ **pregnancy** (teratogenic, neonatal withdrawal)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "⚠️ **tolerance** (GABA-A down-regulation; marked for hypnosis/anticonvulsant, **not** for the anxiolytic effect); ⚠️ **dependence** (withdrawal 15-44%: ANS hyperactivity, anxiety, tremors, convulsions; more severe with short half-life/high intrinsic activity). Therapy **max ~6 days**; discontinuation **always tapered** (rebound)."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "⚠️ **NEVER with alcohol** (synergy → depression of the vital centres); **+ opioids → apnoea/death**; metabolic inhibitors (cimetidine, SSRI, propranolol, oral contraceptives, erythromycin, atorvastatin) → ↑ half-life of the active metabolites."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B1__flumazenil",
+   "name": "Flumazenil",
+   "nameShort": "Flumazenil",
+   "memo": "**Antagonist** of the BDZ site: antidote for overdose, but short half-life → the benzodiazepine can **re-enter**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**competitive antagonist** of the BDZ receptor."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "GABA-A receptor (BDZ site)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**IV only**; rapid distribution (1-2 min); hepatic metabolism; low protein binding; **half-life ~1h** (effect 60 min-2h). Dose 0.1-0.2 mg repeated up to 3 mg (titration)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**antidote for BDZ overdose**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "nausea/vomiting, agitation, convulsions, hypotension/arrhythmia, panic attacks."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "short half-life → possible resedation."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "N/A specific."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B1__barbiturici-fenobarbital-secobarbital-pe",
+   "name": "Barbiturates (phenobarbital, secobarbital, pentobarbital)",
+   "nameShort": "Barbiturates",
+   "memo": "**They open the GABA-A channel on their own** → no ceiling effect → lethal in overdose. For this reason supplanted by the BDZs.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "modulators of **GABA-A**; ↑ **DURATION of opening** of the Cl⁻ channel (≠ frequency of the BDZs); the α and β subunits suffice (not γ). They potentiate the binding of GABA and of the BDZs. Ancillary: blockade of **Na⁺** channels (anaesthesia) and **K⁺** channels (high doses), **AMPA** antagonism → ↓ excitatory transmission."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "GABA-A receptor (barbiturate site) + Na/K channels + AMPA."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "N/A details in the documents."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "antiepileptics, **pharmacological coma** (head trauma → puts the electrical activity at rest), anaesthesia."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ **low therapeutic index** (linear dose-coma risk); ⚠️ **they increase pain perception** (NOT analgesics → contraindicated in pain); lethal synergy with alcohol."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "narrow therapeutic window."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "⚠️ **NEVER with alcohol** (synergy → depression of the vital centres)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B1__z-compounds-zaleplon-zolpidem",
+   "name": "Z-compounds (zaleplon, zolpidem)",
+   "nameShort": "Z-compounds",
+   "memo": "GABA-A **α1-selective**: hypnotics only, no anxiolysis; signature ADR = **sleepwalking**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**BDZ-like**, they act on a site **near** the BDZ site of GABA-A; **selective hypnotic** effect (no anxiolytic, no generalized sedation)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "GABA-A receptor (site near the BDZ site)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "N/A details in the documents."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**insomnia** (they revolutionized sleep therapy)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "reduced compared to the BDZs; **no physical dependence, no withdrawal**."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "better safety profile than the BDZs."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "N/A specific."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B1__etifoxina",
+   "name": "Etifoxine",
+   "nameShort": "Etifoxine",
+   "memo": "**Non-BDZ** anxiolytic (via TSPO/neurosteroids): less dependence, but **hepatotoxicity**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**non-benzodiazepine** compound; allosteric modulator of GABA-A; it binds the **translocator protein (TSPO)** → ↑ synthesis of neurosteroids → modulates GABA in a physiological manner. Pleiotropic activity."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "GABA-A + TSPO."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "N/A details in the documents."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "anxiolytic (non-inferior to lorazepam); ⚠️ inhibition of neuroinflammation, **suppression of neuropathic pain** → **adjuvant in pain therapy**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "no dependence/withdrawal/rebound anxiety on discontinuation."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "—"
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "N/A specific."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B1__buspirone-e-serotoninergici-ansia-cronic",
+   "name": "Buspirone and serotonergics (chronic anxiety)",
+   "nameShort": "Buspirone and serotonergics",
+   "memo": "Partial **5-HT1A** agonist: no dependence or sedation, but it acts **after 2-4 weeks** → only chronic GAD.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**Buspirone** = partial agonist of the post-synaptic **5-HT1A** receptor (acts in the presence of serotonin). **SSRI** → ↑ serotonin in the cleft → **5-HT1A down-regulation** → ↓ anxiety; ↑ **allopregnanolone** (positive allosteric modulator of GABA). *(Distinction: acute anxiety → GABA/BDZ; chronic anxiety → serotonin.)*"
+    },
+    {
+     "label": "Molecular Target",
+     "value": "5-HT1A receptor; serotonin transporter (SSRI)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "long-term administration; **delayed** anxiolytic effect (≠ rapid effect of the BDZs)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**chronic anxiety**; SSRI in anxiety disorders associated with depression."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "SSRI → stimulation of 5-HT3/4/7 (sexual disturbances), 5-HT2A/2C (agitation)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "long onset latency."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "see file B3 (antidepressants)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B1__neurosteroidi-steroidi-neuroattivi",
+   "name": "Neurosteroids (neuroactive steroids)",
+   "nameShort": "Neurosteroids",
+   "memo": "**Endogenous GABA-A modulators**; IV brexanolone treats **postpartum depression**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "produced in the CNS from **progesterone** (allopregnanolone, dehydroepiandrosterone, pregnenolone); **positive allosteric modulators** of GABA-A."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "GABA-A receptor (TMD site)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "N/A details in the documents."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "anxiolytic, anticonvulsant, sedative effect; target of drugs that modulate their synthesis (etifoxine, SSRI)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "deficiency → ↑ anxious state."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "—"
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "SSRI ↑ allopregnanolone."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B2__anestetici-generali-principi",
+   "name": "General anaesthetics — principles",
+   "nameShort": "General anaesthetics — principles",
+   "memo": "Anaesthesia = **three goals together**: hypnosis + analgesia + muscle relaxation. A single drug is not enough.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "potentiation of **GABAergic** transmission + ↓ **glutamatergic** transmission (and nicotinic ACh). Central sites: thalamus, reticular formation, cortex, hippocampus."
+    },
+    {
+     "label": "Triad of anaesthesia",
+     "value": "abolition of consciousness, **analgesia**, muscle relaxation."
+    },
+    {
+     "label": "Stages",
+     "value": "I = analgesia/sensory; **II = excitation/cortical irritation** (critical passage, must be extremely rapid — slow onset → disinhibition/aggressiveness); III = surgical anaesthesia (muscle relaxation); IV = **bulbar paralysis/death** (depression of the respiratory/vasomotor centre)."
+    },
+    {
+     "label": "Pre-anaesthesia",
+     "value": "barbiturates, **BDZ** (midazolam → amnesia/sedation pre-endoscopy), **anticholinergics** (scopolamine → ↓ secretions), muscle relaxants, **opioids** (fentanyl → analgesia), **anti-H2** (ranitidine → ↓ reflux), **antiemetics** (5-HT3 antagonists; D2 antagonists droperidol/metoclopramide — NOT domperidone, peripheral)."
+    },
+    {
+     "label": "Muscle relaxants (induction)",
+     "value": "nicotinic blockers → **vecuronium/atracurium** (competitive non-depolarizing), **succinylcholine** (tubocurarine obsolete). **Baclofen** = **GABA-B** agonist (analgesic + central muscle relaxant)."
+    },
+    {
+     "label": "Extra-CNS effects / ADR",
+     "value": "heart (⚠️ sensitization to catecholamines → arrhythmias, especially halogenated agents), hypothermia, nausea/vomiting (CTZ), **hepatotoxicity**. ⚠️ Caesarean section: **no diazepam**. Awakening = redistribution from the site of action (lipophilic anaesthetics)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B2__anestetici-inalatori-volatili-alotano-is",
+   "name": "Inhalational / volatile anaesthetics (halothane, isoflurane, desflurane, sevoflurane, nitrous oxide, enflurane)",
+   "nameShort": "Inhalational / volatile anaesthetics",
+   "memo": "Potency measured in **MAC**; they modulate GABA/NMDA. Rare but fatal emergency: **malignant hyperthermia** → dantrolene.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "potentiation of GABA-A, ↓ glutamate; halothane-sensitive K⁺ channels (**TREK**, two-pore)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "GABA-A; TREK channels."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**MAC** (minimum alveolar concentration — lower = more potent; halothane **0.8** vs nitrous oxide **100**); **blood/gas coefficient** (low = rapid onset/recovery; halothane 2.3 slow vs nitrous oxide 0.4 rapid); high oil/gas coefficient = crosses the BBB. Onset also influenced by cardiac output/perfusion."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "maintenance of anaesthesia. **Desflurane/sevoflurane** = more advanced (no respiratory irritation, rapid onset/recovery; desflurane requires a vaporizer); **nitrous oxide** = rapid but **incomplete anaesthesia** (no relaxation → + muscle relaxant)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "**halothane** (⚠️ arrhythmogenic, sensitizes the heart to catecholamines; **hepatotoxic**); **enflurane** (⚠️ epileptiform-like convulsions); **isoflurane** (⚠️ myocardial ischaemia in patients with coronary artery disease, respiratory irritation)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "halothane now superseded (toxicity)."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "nitrous oxide + muscle relaxant (for the missing relaxation)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B2__anestetici-endovenosi-tiopentale-propofo",
+   "name": "Intravenous anaesthetics (thiopental, propofol, etomidate, ketamine, fentanyl)",
+   "nameShort": "Intravenous anaesthetics",
+   "memo": "**Propofol** = rapid and clean induction; **ketamine** = dissociative NMDA-antagonist and bronchodilator.",
+   "segments": [],
+   "freetext": [
+    "**Thiopental** (barbiturate): potent anaesthetic, **immediate onset/recovery** (lipophilic) → manageable; ↓ cerebral metabolism (ischaemia risk in predisposed patients); ↓ respiration; can cause **laryngospasm**; **NO analgesia/relaxation**. (Other barbiturates not used in anaesthesia: long duration.)",
+    "**Propofol**: GABA-mimetic (barbiturate/BDZ-like); anaesthetic + poor analgesia; **very high manageability, the most widely used**; ↓ cerebral metabolism.",
+    "**Etomidate**: barbiturate-like, potentiates GABA.",
+    "**Ketamine**: **NMDA antagonist** + ↑ outward K⁺ current (hyperpolarization); anaesthetic (veterinary/children, safe); ⚠️ **dissociative anaesthesia**, dysphoria/hallucinations; today a **rapid antidepressant** (SSRI add-on).",
+    "**Fentanyl** (opioid): good **analgesia**; used in maintenance; ⚠️ post-anaesthetic **emesis**."
+   ]
+  },
+  {
+   "id": "B2__anestetici-locali-meccanismo-e-farmacoci",
+   "name": "Local anaesthetics — mechanism and pharmacokinetics",
+   "nameShort": "Local anaesthetics — mechanism and pharmacokinetics",
+   "memo": "They block the **Na⁺ channel from the inside** → no action potential; in **acidosis/abscess** they work less.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "they block the **voltage-gated Na⁺ channels** (segment 6 of domains I, III, IV) → they stabilize the **inactivated state** → ↓ generation/propagation of the impulse. ⚠️ **USE-DEPENDENCE** (they reach the site with the channel open). **Not analgesics**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "voltage-gated Na⁺ channel."
+    },
+    {
+     "label": "Structure",
+     "value": "lipophilic pole + hydrophilic pole with an **ESTER** bond (procaine, tetracaine, cocaine, benzocaine → metabolism by **plasma esterases**, short duration, more hypersensitivity → topical) or **AMIDE** bond (lidocaine, articaine, mepivacaine, prilocaine, bupivacaine, ropivacaine → **hepatic metabolism**, longer duration; binding to **α1-acid glycoprotein**)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "the **non-ionized** form crosses the membranes, the **protonated** form binds the channel → ⚠️ **acidic pH (inflammation) → ineffective anaesthesia**. **Onset** ~ pKa (procaine pKa 9 → 20 min; lidocaine ~7.4 → 4 min). **Potency** ~ lipophilicity (too lipophilic → sequestration). **Duration** ~ protein binding (bupivacaine 96% → 10h)."
+    },
+    {
+     "label": "Target fibres",
+     "value": "unmyelinated **C** fibres (pain/temperature → most sensitive), A-δ (myelinated), **A-α motor** (less sensitive — last blocked, first to recover). For myelinated fibres 3-5 covered nodes are required.\n• **Intrinsic vasodilatory activity** (via NO) → ↑ systemic absorption, ↓ duration, ↑ ADR (lidocaine high; mepivacaine/articaine lower)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B2__anestetici-locali-singole-molecole",
+   "name": "Local anaesthetics — individual molecules",
+   "nameShort": "Local anaesthetics — individual molecules",
+   "memo": "**Esters** (1 'i' in the name, cholinesterases, more allergies) vs **amides** (2 'i', hepatic metabolism, safer).",
+   "segments": [],
+   "freetext": [
+    "**Lidocaine** (amino-amide): rapid onset, intermediate duration, ⚠️ significant intrinsic vasodilation → rapid absorption/ADR; hepatic metabolism; spray for surface anaesthesia.",
+    "**Articaine** (amino-amide + ester group): among the most rapid; dual metabolism (hepatic + esterases) → short duration; **dental use**.",
+    "**Mepivacaine**: intermediate duration; ⚠️ **NOT in labour analgesia** (protonation in the neonate → neonatal toxicity); infiltrations/nerve blocks.",
+    "**Prilocaine**: lower vasodilation, high Vd; ⚠️ toxic metabolite **ortho-toluidine → methaemoglobinaemia**; dental use.",
+    "**Bupivacaine**: high lipophilicity → high potency; extensive protein binding → long duration (10h); used in **labour**; hepatic metabolism (CYP3A4); ⚠️ more significant **cardiac toxicity**.",
+    "**Ropivacaine** (amide): **less cardiotoxic** (S enantiomer); preferential block of sensory fibres; epidural/regional anaesthesia, duration > bupivacaine.",
+    "**Tetracaine** (amino-ester): more hypersensitivity; long-duration local anaesthesias.",
+    "**Cocaine** (historical): first Na⁺ channel blocker; abandoned due to toxicity."
+   ]
+  },
+  {
+   "id": "B2__anestetici-locali-adr-e-associazione-con",
+   "name": "Local anaesthetics — ADR and association with vasoconstrictor",
+   "nameShort": "Local anaesthetics — ADR and association with vasoconstrictor",
+   "memo": "Toxicity **first CNS then cardiac** (bupivacaine the worst); with **adrenaline** they last longer, **never in terminal districts**.",
+   "segments": [
+    {
+     "label": "ADR (from systemic absorption → Na⁺ channels in CNS/heart/muscle)",
+     "value": "• **CNS** (lower doses, appear first): low doses → tinnitus, taste/vision alterations; higher doses → euphoria (↓ inhibitory interneurons) → drowsiness → **depression of the respiratory centre → death**.\n• **Cardiovascular** (higher doses): initial tachycardia (vasodilation → reflex) → conduction block → **asystole**. Most frequent cause: **accidental intravascular injection**.\n• **Haematological:** **methaemoglobinaemia** (prilocaine, lidocaine, benzocaine → o-toluidine).\n• Idiosyncrasy (1st exposure), hypersensitivity (anaphylaxis, histamine release); local tissue damage at high doses.\n• **Association with vasoconstrictor** (adrenaline, α1): ↓ systemic absorption, ↓ ADR, **↑ duration**, ↓ bleeding. ⚠️ adrenaline → systemic effects (hypertension, tachycardia, fibrillation); slows wound healing (not in regions with poor collateral circulation); ⚠️ patients on **non-selective β-blockers** (propranolol) → blood pressure rise/cardiac arrest (no problem with **metoprolol** cardioselective)."
+    },
+    {
+     "label": "Contraindications",
+     "value": "absolute = **pregnancy**; relative = dysionias/electrolyte alterations, contraindications to vasoconstrictors."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B3__antidepressivi-basi-fisiopatologiche",
+   "name": "Antidepressants — pathophysiological basis",
+   "nameShort": "Antidepressants — pathophysiological basis",
+   "memo": "↑ monoamines within days, but the clinical effect arrives **after 2-4 weeks** (synaptic plasticity is required).",
+   "segments": [
+    {
+     "label": "Catecholaminergic hypothesis",
+     "value": "**reserpine** blocks the vesicular transporter → ↓ catecholamines → experimental model of depression (Brodie)."
+    },
+    {
+     "label": "Receptor theory",
+     "value": "↓ serotonin → receptor up-regulation. **5-HT** ↔ feeding, sleep-wake, sexuality, impulsivity, OCD (5-HT2A); **NA** (Locus Coeruleus) ↔ energy."
+    },
+    {
+     "label": "Key receptor post-synaptic 5-HT1A",
+     "value": "**silent/uncoupled from Gi → depression**; over-excited → anxiety."
+    },
+    {
+     "label": "NA ↔ 5-HT \"entangled\"",
+     "value": "**α1** (Gq) ↑ firing/synthesis; **α2** (Gi) = autoreceptor (LC → ↓ NA release) or heteroreceptor (serotonergic terminal → ↓ 5-HT release)."
+    },
+    {
+     "label": "Onset latency",
+     "value": "**3-4 weeks** (initial side effects from up-regulation). Only rapid one (hours): **esketamine/ketamine**."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B3__antidepressivi-triciclici-tca",
+   "name": "Tricyclic antidepressants (TCA)",
+   "nameShort": "Tricyclic antidepressants",
+   "memo": "They block SERT+NET but also M1/H1/α1; dangerous overdose: the **3 Cs — Coma, Convulsions, Cardiotoxicity** (wide QRS).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "inhibition of the reuptake carriers of **NA and 5-HT**. **Tertiary amines** (amitriptyline, imipramine, doxepin, clomipramine → NA+5-HT, broad); **secondary amines** (nortriptyline, desipramine, amoxapine → predominantly NA)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "NA/5-HT transporters; **α1, M1, H1** antagonism; blockade of Na⁺/Ca²⁺ channels."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "N/A details in the documents."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "depression (effective but **not first-line**); **adjuvants in pain** (they potentiate the descending inhibitory NA/5-HT pathways) — **NOT analgesics**."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "anti-M1 (blurred vision, ↓ digestion, constipation), anti-α1 (**orthostatic hypotension**), dizziness, sexual disturbances, **weight gain** (anti-H1); 5-HT2 up-regulation → hallucinations; ⚠️ blockade of Na/Ca channels → **cardiotoxicity** (arrhythmias, AV block); ADR last 6-7 weeks."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "⚠️ contraindicated in arrhythmias/AV block/bundle branch block and with β-blockers."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "⚠️ **serotonin syndrome** with other serotonergics."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B3__imao-inibitori-delle-monoamino-ossidasi",
+   "name": "MAOI (monoamine oxidase inhibitors)",
+   "nameShort": "MAOI",
+   "memo": "They block MAO → **hypertensive crisis from tyramine** (cheeses, wine): the classic 'cheese effect'.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "inhibition of **MAO-A** (MAO-B → dopamine/Parkinson). 1st generation = **irreversible** inhibitors; **moclobemide** = reversible (can be discontinued)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "MAO-A."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "N/A details in the documents."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "depression (1st generation no longer used today)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ atropine-like effects; ⚠️ **cheese effect** (the **tyramine** in cheeses is not degraded → severe hypertensive crises)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "serious interactions → limited use."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "⚠️ serious dietary (tyramine) and pharmacological interactions."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B3__sindrome-serotoninergica",
+   "name": "Serotonin syndrome",
+   "nameShort": "Serotonin syndrome",
+   "memo": "Too much 5-HT: **altered mental state + autonomic hyperactivity + clonus**. **Clonus** distinguishes it from NMS. Antidote: cyproheptadine.",
+   "segments": [
+    {
+     "label": "Cause",
+     "value": "**simultaneous intake of multiple serotonergic drugs** (e.g. TCA + SSRI + buspirone)."
+    },
+    {
+     "label": "Clinical picture",
+     "value": "agitation, tremor, sweating, muscle contractions, GI disturbances; ⚠️ **coma and death**."
+    },
+    {
+     "label": "Prevention",
+     "value": "do not combine a second serotonergic (e.g. an analgesic) with a TCA used as an adjuvant."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B3__ssri-citalopram-escitalopram-fluoxetina-",
+   "name": "SSRI (citalopram, escitalopram, fluoxetine, fluvoxamine, sertraline, paroxetine)",
+   "nameShort": "SSRI",
+   "memo": "They block the **SERT**: first-line for depression/anxiety. Signature ADR = **sexual dysfunction**; gradual discontinuation.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**potent and selective inhibition of serotonin reuptake** (SERT). Sequence: ↓ somatodendritic reuptake → ↑ 5-HT → stimulates 5-HT1A autoreceptors → **down-regulation** of autoreceptors → ↑ firing → ↑ axonal release; after 5-HT2A down-regulation, the **post-synaptic 5-HT1A** (prefrontal cortex) signals → improvement."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "SERT (and 5-HT1A indirectly)."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "latency **3-4 weeks**; ⚠️ many are **metabolic inhibitors** (fluoxetine, fluvoxamine, sertraline → CYP)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "depression (**FIRST LINE**, manageable), anxiety, OCD, eating disorders (anorexia, binge eating). **Peculiarities**: paroxetine/fluoxetine (also ↓ NA reuptake → for asthenic patients); sertraline (↓ DAT → ↓ anhedonia); fluvoxamine (adenosine antagonist); **citalopram** (the most selective → choice in **chronic anxiety**)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "akathisia (5-HT2 via nigrostriatal pathway → ↓ dopamine), OCD, anxiety, ↑ appetite/bulimia, nausea/vomiting (5-HT3), diarrhoea/cramps (5-HT4), ↓ libido. **NO** weight gain/anti-M1/anti-α1 effects (≠ TCA)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "long latency."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "⚠️ with β-blockers (propranolol) and contraceptives; ⚠️ serotonin syndrome."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B3__reboxetina-nri-inibitore-reuptake-noradr",
+   "name": "Reboxetine (NRI — noradrenaline reuptake inhibitor)",
+   "nameShort": "Reboxetine",
+   "memo": "**Pure noradrenaline** (NET): for depression with psychomotor retardation and apathy.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "selective inhibitor of **noradrenaline** reuptake."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "NET."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "N/A details in the documents."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "depression with **noradrenergic** symptomatology (fatigue, apathy, psychomotor/cognitive retardation, attention deficit)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ not indicated in hypertensive patients/rhythm disturbances/cardiocirculatory risk."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "—"
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "related: **atomoxetine** (NRI) → paediatric ADHD (≠ dextroamphetamines, which cause dependence)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B3__bupropione-dri-inibitore-reuptake-dopami",
+   "name": "Bupropion (DRI — dopamine reuptake inhibitor)",
+   "nameShort": "Bupropion",
+   "memo": "**Dopamine + noradrenaline, zero serotonin** → no sexual dysfunction; helps with **smoking cessation** (↓ seizure threshold).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "selective inhibitor of **dopamine** reuptake (+ ↑ NA)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "DAT."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "N/A details in the documents."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**nicotine dependence** (↑ mesolimbic dopamine → ↓ craving); cocaine addicts; antidepressant effect not potent."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ ↑ NA → cardiovascular risk in smokers."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "—"
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "related: **varenicline** (partial nicotinic α4β2 agonist) — today preferred for nicotine dependence."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B3__venlafaxina-snri",
+   "name": "Venlafaxine (SNRI)",
+   "nameShort": "Venlafaxine",
+   "memo": "Dose-dependent: low = SSRI, high = **+ noradrenaline** (↑ blood pressure); useful in neuropathic pain.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "inhibitor of the reuptake of **serotonin and noradrenaline** (first 5-HT, then NA). \"Synthesis between citalopram and reboxetine\"; like a secondary amine **without** anti-α1/M1/H1 effects."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "SERT + NET."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "**does not interact with the cytochromes** → very manageable."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "**SECOND LINE** depression (resistance to SSRIs)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "better profile than the TCAs (N/A specific in the documents)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "second-line drug."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "N/A specific."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B3__nassa-mirtazapina",
+   "name": "NaSSA (mirtazapine)",
+   "nameShort": "NaSSA",
+   "memo": "**Mirtazapine**: its 'side effects' — sleep and appetite — are the **therapy** for depression with insomnia and weight loss.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**α2 antagonist** (auto- and hetero-receptors) → ↑ release of NA and 5-HT (↑ serotonergic firing via α1); antagonist of **5-HT3** (antiemetic), **5-HT2A**, **5-HT2C**, **H1**. The released 5-HT binds predominantly to 5-HT1."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "α2, 5-HT3/2A/2C, H1."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "administer **before sleep** (sedation)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "depression; useful in **depressed males with sexual dysfunction** (5-HT2A blockade)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ ↑ NA harmful in cardiac patients (angina, vasospasm); anti-H1 → **weight gain + sedation**."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "—"
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "N/A specific."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B3__sari-trazodone-nefazodone",
+   "name": "SARI (trazodone, nefazodone)",
+   "nameShort": "SARI",
+   "memo": "**Trazodone**: at low doses a hypnotic without dependence; rare but serious: **priapism**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "strong **5-HT2A inhibition** (> mirtazapine) → they potentiate 5-HT1; + inhibition of serotonin reuptake. More **rapid** action (they directly block 5-HT2A)."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "5-HT2A; SERT."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "N/A details in the documents."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "depression."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "N/A specific in the documents."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "—"
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "peculiarities: **nefazodone** (also ↓ NA reuptake); **trazodone** (anti-H1)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B4__disturbo-bipolare-basi",
+   "name": "Bipolar disorder — basis",
+   "nameShort": "Bipolar disorder — basis",
+   "memo": "**Mood stabilizers** continuously; the antidepressant given alone risks a **manic switch**.",
+   "segments": [
+    {
+     "label": "Picture",
+     "value": "alternation of **manic/hypomanic and depressive** episodes (also mixed episode); seasonal cyclicity; ↓ executive functions/decision making, sleep disturbances; ⚠️ ~¼ of patients attempt suicide."
+    },
+    {
+     "label": "Etiopathogenesis",
+     "value": "alteration of the circadian rhythm, catecholaminergic/serotonergic dysregulation, **↑ GSK3β** (glycogen synthase kinase-3β → pharmacological target).\n• ⚠️ **Do not treat with antidepressants alone**: in the manic phase there is a risk of **psychotic switch**. Biological basis different from depression."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B4__litio-sali-di-litio",
+   "name": "Lithium (lithium salts)",
+   "nameShort": "Lithium",
+   "memo": "Gold standard, but **very narrow therapeutic window**: tremor, polyuria, hypothyroidism, teratogenic (Ebstein's anomaly).",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "**GOLD STANDARD** of bipolar disorder; \"mood/membrane stabilizer\" (competition with **Na⁺**). Mechanism not fully known: it alters the **G proteins** and the coupling of the signal with membrane phospholipids/**IP3** → depresses transduction; **blocks GSK3β** → ↑ neuroprotection, ↓ neuroinflammation."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "G proteins / IP3; GSK3β."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "⚠️ **narrow therapeutic window** → constant monitoring of **LITHAEMIA** (checks every 2-3 weeks; more frequent if renal deficit). **Lithium carbonate** (classic, extensive literature) vs **lithium orotate** (greater BBB permeability/lipophilicity → lower doses, lower toxicity/better compliance; but possible greater renal toxicity, few data)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "bipolar disorder — **prevention of relapses and cycling**; effective in **acute mania/hypomania** (≠ antidepressants)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "toxicity (competition with Na⁺) **renal, thyroid** (hypo-/hyper-), **cardiac** (conduction), neural. Severe in the long term (~10 years): **cognitive impairment, nephrotoxicity, hypothyroidism, hyperparathyroidism**. ⚠️ pregnancy/puerperium can worsen it."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "narrow therapeutic window, critical compliance."
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "N/A specific."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B4__acido-valproico-valproato-sodico-come-st",
+   "name": "Valproic acid (sodium valproate) — as a mood stabilizer",
+   "nameShort": "Valproic acid",
+   "memo": "Effective stabilizer but a **potent teratogen** → never in a woman of childbearing potential without safe contraception.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "blockade of **Na⁺** channels (membrane stabilizer) + blockade of **Ca²⁺** channels (↓ glutamate) + **NMDA** blockade (neuroprotection) + **↑ GABA** (↑ GAD, ↓ GABA transaminase, ↓ reuptake) = GABA-mimetic."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "Na/Ca channels, NMDA, GABA system."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "⚠️ **metabolic inhibitor** (like some SSRIs)."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "bipolar disorder (undisputed mood stabilizer); epilepsy (see B9)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "⚠️ significant **TERATOGENIC** effect (severe malformations, especially in the 1st trimester)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "—"
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "⚠️ metabolic inhibitor → with **atorvastatin** → **rhabdomyolysis**; with anticoagulants/antiplatelet agents → haemorrhagic effect (except clopidogrel = no event)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B4__carbamazepina-come-stabilizzante-dell-um",
+   "name": "Carbamazepine — as a mood stabilizer",
+   "nameShort": "Carbamazepine — as a mood stabilizer",
+   "memo": "It blocks Na⁺ channels and is an **autoinducer** (CYP); risk of **Stevens-Johnson** (HLA-B*1502) and hyponatraemia.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "blockade of **Na⁺** channels (membrane/mood stabilizer) + **↑ GABAergic activity**."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "Na⁺ channels; GABA."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "⚠️ **metabolic INDUCER** (↑ CYP synthesis) — like phenytoin."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "bipolar disorder; epilepsy (see B9); **trigeminal neuralgia** (analgesic)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "N/A specific in the documents (see B9)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "—"
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "⚠️ inducer → ↓ efficacy of co-administered drugs (e.g. anticoagulants/antiplatelet agents → thrombotic risk)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "B4__lamotrigina",
+   "name": "Lamotrigine",
+   "nameShort": "Lamotrigine",
+   "memo": "The stabilizer of the **depressive pole** of bipolar disorder; **very slow titration** or **rash up to SJS**.",
+   "segments": [
+    {
+     "label": "Mechanism of Action",
+     "value": "a reworking of carbamazepine **without its pharmacokinetic effects** (induction); significant blockade of **Na⁺** channels."
+    },
+    {
+     "label": "Molecular Target",
+     "value": "Na⁺ channels."
+    },
+    {
+     "label": "Pharmacokinetic Parameters",
+     "value": "absence of the inducing effect of carbamazepine."
+    },
+    {
+     "label": "Clinical Indications",
+     "value": "bipolar disorder; epilepsy (see B9)."
+    },
+    {
+     "label": "Common Adverse Reactions (ADR)",
+     "value": "N/A specific in the documents (see B9)."
+    },
+    {
+     "label": "Resistance / Efficacy Limits",
+     "value": "—"
+    },
+    {
+     "label": "Pharmacological Associations / Adjuvants",
+     "value": "N/A specific."
+    }
+   ],
+   "freetext": []
+  }
+ ]
+}

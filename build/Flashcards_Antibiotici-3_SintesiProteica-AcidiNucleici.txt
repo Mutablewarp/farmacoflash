@@ -1,0 +1,129 @@
+💊 FLASHCARDS — ANTIBIOTICI (3): INIBITORI DI ACIDI NUCLEICI E SINTESI PROTEICA
+Fonte: sbobine 🅱 Modulo I – docente, Lezione 17 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
+
+
+💊 Sulfamidici
+Meccanismo d'Azione: analoghi dell'acido para-aminobenzoico (PABA); inibiscono la diidropteroato sintetasi (fusione PABA + pteridina → acido diidropteroico) nella via dei folati → bloccano la sintesi de novo dell'acido tetraidrofolico. Batteriostatici.
+Target Molecolare: diidropteroato sintetasi.
+Parametri Farmacocinetici: distinzione per cinetica. Sulfadiazina/sulfametossazolo/sulfisossazolo: rapido assorbimento os, metabolismo epatico per acetilazione, rapida escrezione renale → alte concentrazioni urinarie. Sulfadossina: lunga durata. Sulfaguanidina: protonata in ambiente gastrico → biodisponibilità bassissima → topico intestinale. Sulfadiazina argentica: topica. Elevato legame proteine plasmatiche.
+Indicazioni Cliniche: ampio spettro (Gram+/Gram- aerobi; via dei folati comune). Storicamente infezioni urinarie (oggi sostituiti); tratto respiratorio e GI. Sulfadossina + pirimetamina → malaria (terapia/profilassi). Sulfametossazolo + trimetoprim → nocardiosi, toxoplasmosi. Basso costo → Paesi in via di sviluppo.
+Reazioni Avverse Comuni (ADR): cristalluria (metaboliti acetilati insolubili → danno epitelio renale); tossicità ematopoietica severa; ipersensibilità (somiglianza col PABA) fino a necrosi epiteliale e sindrome di Stevens-Johnson; epatopatie, nausea, vomito, diarrea, cefalea.
+Resistenze / Limiti di Efficacia: sostituiti da farmaci a minore tossicità.
+Associazioni Farmacologiche / Adiuvanti: + trimetoprim (sinergia, blocco sequenziale della via dei folati → cotrimossazolo / Bactrim®). ⚠️ spiazzamento di warfarin, FANS, antiepilettici (alto legame proteico).
+
+
+💊 Trimetoprim
+Meccanismo d'Azione: inibisce la diidrofolato reduttasi (reazione a valle) → blocca la sintesi dell'acido tetraidrofolico.
+Target Molecolare: diidrofolato reduttasi.
+Parametri Farmacocinetici: N/D dettagli (impiegato in associazione).
+Indicazioni Cliniche: spesso + sulfamidico (Bactrim®); cistiti (alternativa indicata dall'EMA ai fluorochinoloni).
+Reazioni Avverse Comuni (ADR): da carenza di folati → anemia megaloblastica, leucopenia, granulocitopenia (risolvibili con acido tetraidrofolico).
+Resistenze / Limiti di Efficacia: N/D specifici nei documenti.
+Associazioni Farmacologiche / Adiuvanti: + sulfamidici (cotrimossazolo); supplementazione di folati in caso di tossicità midollare.
+
+
+💊 Chinoloni e Fluorochinoloni
+Meccanismo d'Azione: inibiscono gli enzimi che tagliano/superavvolgono il cromosoma batterico → topoisomerasi IV (Gram+) e DNA-girasi (Gram-), impedendo i superavvolgimenti necessari alla duplicazione. Ampio spettro.
+Target Molecolare: topoisomerasi IV (Gram+) / DNA-girasi (Gram-).
+Parametri Farmacocinetici: i fluorochinoloni sono la II generazione dei chinoloni (capostipite acido nalidissico, oggi senza AIC). Il fluoro → ottima biodisponibilità/distribuzione (anche tessuti difficili), alto Vd intracellulare, accumulo nei fagociti. Metabolismo epatico, escrezione prevalentemente renale (ridurre dose in IRC/anziani; moxifloxacina tollerata in IRC). Concentrazione-dipendenti, parametro AUC/MIC (>50% per il successo). Generazioni: nalidissico → norfloxacina → cipro/levofloxacina → moxifloxacina (copre anche atipici: clamidie, legionella, micoplasma, micobatterio TBC).
+Indicazioni Cliniche: infezioni respiratorie (bronchiti, sinusiti, polmoniti), a trasmissione sessuale, prostatiti, genito-urinarie non complicate, osso (perfloxacina), tessuti molli, GI; inpatient e outpatient.
+Reazioni Avverse Comuni (ADR): CONTROINDICATI < 12 anni (tossicità del connettivo, alterazione β1-integrine) e cautela negli anziani (artropatie, tendiniti, rottura del tendine d'Achille); GI nel 20% (incl. colite pseudomembranosa da C. difficile); SNC (sonnolenza, confusione, delirio, cefalea, abbassamento della soglia pro-convulsivante — spiazzano il GABA); allungamento QT/torsione di punta (max moxifloxacina, min ciprofloxacina); alterazione canali K ATP-dipendenti e glicemia; fototossicità; ipersensibilità/idiosincrasiche (meno dei β-lattamici).
+Resistenze / Limiti di Efficacia: restrizioni EMA 2018 (no profilassi; no se disponibili alternative più sicure; no infezioni lievi/moderate salvo ipersensibilità ad altri; no infezioni non batteriche).
+Associazioni Farmacologiche / Adiuvanti: interazione con teofillina e FANS (legame proteico; teofillina + FQ → effetti SNC). II scelta nella TBC (cfr. file Antibiotici-2).
+
+
+💊 Rifampicina (integrazione Lez 17 — profilo antitubercolare completo nel file Antibiotici-2)
+Meccanismo d'Azione: inibisce la RNA-polimerasi DNA-dipendente → inibizione della sintesi dell'RNA. Batteriostatico.
+Target Molecolare: RNA-polimerasi DNA-dipendente.
+Parametri Farmacocinetici: induttore del metabolismo (CYP) → riduce l'emivita di digossina, verapamil, ketoconazolo, corticosteroidi, barbiturici, contraccettivi orali; colora di rosso le secrezioni.
+Indicazioni Cliniche: ampio spettro (Gram+, Gram-, meningococco, meningiti da Haemophilus influenzae); TBC in associazione con isoniazide.
+Reazioni Avverse Comuni (ADR): nausea, vomito, eruzione cutanea, epatopatie.
+Resistenze / Limiti di Efficacia: aumento delle resistenze (cfr. file Antibiotici-2).
+Associazioni Farmacologiche / Adiuvanti: ⚠️ potente induttore enzimatico → interazioni con molti substrati dei citocromi.
+
+
+💊 Macrolidi (classe — eritromicina, claritromicina, roxitromicina, azitromicina)
+Meccanismo d'Azione: si legano alla subunità ribosomiale 50S → impediscono il legame dell'aminoacido al sito accettore → ostacolano l'allungamento della catena polipeptidica.
+Target Molecolare: subunità ribosomiale 50S.
+Origine/struttura: eritromicina (naturale), claritromicina/roxitromicina (semisintetici), azitromicina (sintetico). Macrociclo a 14 C (azitromicina 15 C).
+Parametri Farmacocinetici: vedi singole molecole.
+Indicazioni Cliniche: vedi singole molecole.
+Reazioni Avverse Comuni (ADR): vedi singole; ipersensibilità rara.
+Resistenze / Limiti di Efficacia: modifica del sito bersaglio ribosomiale; resistenza CROCIATA con lincosamidi (clindamicina) e streptogramine (siti d'azione vicini).
+Associazioni Farmacologiche / Adiuvanti: vedi singole (interazioni CYP/glicoproteina-P).
+
+
+💊 Eritromicina
+Meccanismo d'Azione: macrolide (50S).
+Parametri Farmacocinetici: bassa biodisponibilità orale, sensibile al pH acido → esteri (etilsuccinato, estolato, stearato) con biodisponibilità elevata os. Tempo-dipendente. Importante inibitore del CYP3A4.
+Indicazioni Cliniche: spettro ristretto, selettivo Gram+; effetto motilino-simile (↑ peristalsi).
+Reazioni Avverse Comuni (ADR): frequenti effetti GI; epatotossicità (soprattutto estolato); interferenza con le correnti del K⁺ → morte cardiaca improvvisa (più frequente che con amoxicillina), soprattutto se + inibitori del CYP3A4 (es. statine); sordità transitoria (alte dosi/uso prolungato/anziani/IR/IE).
+Resistenze / Limiti di Efficacia: resistenza crociata macrolidi–lincosamidi–streptogramine.
+Associazioni Farmacologiche / Adiuvanti: ⚠️ inibitore CYP3A4 → ↑ concentrazioni di corticosteroidi, digossina, benzodiazepine; rischio con statine.
+
+
+💊 Azitromicina
+Meccanismo d'Azione: macrolide (50S); 15 atomi di C, struttura dibasica.
+Parametri Farmacocinetici: biodisponibilità 37% (struttura dibasica) ma stabile in ambiente acido, lipofila; emivita lunga, ottimo Vd, ottima distribuzione nei leucociti polimorfonucleati; fenomeno di trapping (due centri basici → protonata e intrappolata a pH acido intracellulare → si concentra nei neutrofili) → effetto post-antibiotico (rilascio per degranulazione al sito d'infezione) → efficace anche su batteri intracellulari (clamidie); effetto fino a 5 giorni dopo la prima dose. Concentrazione-dipendente. NON biotrasformata dal fegato; eliminazione renale 10%, 90% immodificata.
+Indicazioni Cliniche: spettro più ampio dell'eritromicina; S. aureus, S. pyogenes, S. pneumoniae, Moraxella catarrhalis, micoplasma, intracellulari; più efficace vs Haemophilus influenzae, Neisseriae, clamidia → infezioni genito-urinarie e IST. Effetti sub-MIC immunomodulatori (pan-bronchioliti, asma, infezioni respiratorie, otiti, fibrosi cistica; usata in COVID-19 per la tempesta citochinica — caratteristica unica). Posologia: 500 mg/die × 3 gg o 1 g monosomministrazione (IST).
+Reazioni Avverse Comuni (ADR): minore tossicità GI rispetto agli altri (ma effetti motilino-simili: turbe GI, pesantezza epigastrica, nausea, vomito, diarrea); NON dà gli effetti su K⁺/CYP dell'eritromicina.
+Resistenze / Limiti di Efficacia: aumento MIC → ridotto successo; resistenza crociata di classe.
+Associazioni Farmacologiche / Adiuvanti: assenza delle interazioni CYP/cardiache dell'eritromicina.
+
+
+💊 Claritromicina (nota)
+Meccanismo d'Azione: macrolide semisintetico (50S).
+Parametri Farmacocinetici: biodisponibilità 55%; può interferire (meno dell'eritromicina) con le correnti del K⁺.
+Associazioni Farmacologiche / Adiuvanti: ⚠️ inibisce la glicoproteina-P → ↑ concentrazioni dei substrati P-gp (es. digossina).
+Altri campi: come da classe macrolidi.
+
+
+💊 Lincosamidi (Clindamicina)
+Meccanismo d'Azione: si lega alla subunità 50S; derivato semisintetico della lincomicina.
+Target Molecolare: subunità ribosomiale 50S.
+Parametri Farmacocinetici: intenso metabolismo epatico, eliminazione con le feci; penetra nei granulociti polimorfonucleati → raggiunge tessuti difficili (ossa). Formulazioni topiche (gel/creme) per l'acne.
+Indicazioni Cliniche: spettro intermedio (Gram+, Gram-), attiva sugli anaerobi (clostridi); NON attiva su Gram- aerobi (non attraversa la membrana esterna); osteomieliti (es. da streptococchi).
+Reazioni Avverse Comuni (ADR): NON attiva su C. difficile, anzi ne può causare la colite pseudomembranosa (selezione nel 10%); nausea, vomito; blocco della placca neuromuscolare (attenzione in miastenia gravis).
+Resistenze / Limiti di Efficacia: resistenza crociata con macrolidi/streptogramine; controindicata in alterazioni epatiche/renali e diarrea.
+Associazioni Farmacologiche / Adiuvanti: uso sistemico poco frequente; N/D associazioni specifiche.
+
+
+💊 Cloramfenicolo (CAF)
+Meccanismo d'Azione: interferisce con la subunità 50S → impedisce il legame del tRNA al sito accettore → blocca l'allungamento.
+Target Molecolare: subunità ribosomiale 50S.
+Parametri Farmacocinetici: ottima distribuzione (incl. cerebrale → ascessi cerebrali); metabolismo per glicuronazione (carente nei neonati).
+Indicazioni Cliniche: spettro ampio (Gram+, Gram-, rickettsie, micoplasmi, clamidie; battericida su Haemophilus, Neisseriae, S. pneumoniae); febbre tifoide, meningiti batteriche, ascessi cerebrali, anaerobi, brucellosi, rickettsiosi, linfogranuloma venereo. Riservato a germi difficili / quando alternative più sicure (tetracicline, FQ, β-lattamici) non sono utilizzabili.
+Reazioni Avverse Comuni (ADR): tossicità mitocondriale; tossicità ematopoietica (anemia ipocromica, aplasia midollare); sindrome del bambino grigio (neonati, ridotta glicuronazione → accumulo; mortalità 40%); nausea, vomito, diarrea, ipersensibilità, edema angioneurotico, nevriti periferiche, neurite ottica, disturbi psichici.
+Resistenze / Limiti di Efficacia: poco maneggevole; controindicato in depressione midollare e allattamento.
+Associazioni Farmacologiche / Adiuvanti: ⚠️ inibisce il CYP450 → altera dicumarolo, fenobarbitale, fenitoina; gli induttori dei CYP ne riducono l'efficacia.
+
+
+💊 Aminoglicosidi (classe — meccanismo, cinetica e tossicità)
+Meccanismo d'Azione: si legano alla subunità 30S con duplice azione → inibiscono l'inizio della sintesi proteica E favoriscono proteine aberranti (misfolded/incomplete) che si inseriscono in membrana/parete → alterano la permeabilità → lisi. BATTERICIDI.
+Target Molecolare: subunità ribosomiale 30S.
+Parametri Farmacocinetici: idrofili; concentrazione-dipendenti per antonomasia; attraversano le porine dei Gram- (più facile a 4-5× MIC); ingresso ATP- e O₂-dipendente (→ solo aerobi; non entrano nelle cellule eucariotiche → inefficaci sugli intracellulari). Scarso assorbimento os (→ topico intestinale); buona distribuzione nei liquidi interstiziali (ascitico, sinoviale, pleurico); uso sistemico = parenterale. Non biotrasformati, 90% escreto immodificato per via renale; basso legame proteico; emivita breve. Strategia: unico picco giornaliero alto e intermittente → massimizza efficacia e riduce accumulo/tossicità; effetto post-antibiotico.
+Indicazioni Cliniche: prevalentemente Gram- (Pseudomonas aeruginosa, Klebsiella, Enterobacteriaceae, Proteus, E. coli); stafilococchi produttori di β-lattamasi sensibili; streptococchi resistenti. (Singoli farmaci → card dedicata.)
+Reazioni Avverse Comuni (ADR): basso indice terapeutico. OTOTOSSICITÀ (accumulo in endolinfa/perilinfa → VIII paio: tossicità vestibolare precoce — vertigini, nausea, vomito, nistagmo; cocleare subdola — prima alte poi basse frequenze → sordità bilaterale irreversibile; tinnito = segno precoce). NEFROTOSSICITÀ (accumulo corticale → danno tubulare/IRA; 10% delle IRA da farmaci; neomicina la peggiore; reversibile). Blocco placca neuromuscolare (↓ rilascio acetilcolina → attenzione in miastenia gravis). Ipersensibilità.
+Resistenze / Limiti di Efficacia: enzimi modificanti (acetil-, fosfo-, adenil-transferasi), acquisiti via plasmidi; i semisintetici (netilmicina, amikacina) resistono alle acetil-transferasi.
+Associazioni Farmacologiche / Adiuvanti: + β-lattamici/penicilline (indeboliscono la parete Gram+ → favoriscono l'ingresso; es. endocardite). ⚠️ evitare con altri ototossici e diuretici dell'ansa (furosemide, acido etacrinico); sinergismo nefrotossico con FANS, ACE-inibitori, ciclosporina, cisplatino.
+
+
+💊 Aminoglicosidi — singoli farmaci
+Origine naturale: streptomicina, gentamicina, tobramicina, kanamicina, neomicina. Semisintetici: netilmicina, amikacina.
+Streptomicina / gentamicina: setticemie, infezioni alte vie urinarie, endocarditi (+ β-lattamico), brucellosi, peste.
+Streptomicina: principale anti-TBC.
+Gentamicina: peritoniti, meningiti, polmoniti, infezioni Gram+ (+ penicillina).
+Tobramicina: NON con penicilline nelle endocarditi (incompatibilità); attiva su Pseudomonas aeruginosa; collirio oftalmico (± glucocorticoidi).
+Neomicina / paromomicina: topico (non assorbiti) → infezioni enteriche, preparazione intestinale pre-chirurgica, ↓ ammoniemia nel coma epatico; neomicina = grave nefrotossicità → non sistemica.
+Amikacina / netilmicina: resistenti alle acetil-transferasi → batteri gentamicina-resistenti, infezioni nosocomiali.
+
+
+💊 Tetracicline
+Meccanismo d'Azione: si inseriscono nella subunità 30S → impediscono il legame del tRNA al sito accettore. Struttura a 4 anelli con motivo chelante cationi bivalenti.
+Target Molecolare: subunità ribosomiale 30S.
+Parametri Farmacocinetici: chelazione di cationi bivalenti (Ca, Mg) → precipitati insolubili in ambiente gastrico → biodisponibilità nulla (attenzione a latticini/caseari/antiacidi); tropismo osseo (chelano il Ca tissutale). Naturali: tetraciclina, ossitetraciclina, clortetraciclina, demeclociclina; semisintetiche: doxiciclina, minociclina.
+Indicazioni Cliniche: ampio spettro (Gram+, Gram-, aerobi, anaerobi, protozoi, spirochete, rickettsie, ureaplasmi, micoplasmi, clamidie); rickettsiosi, intracellulari, brucellosi/colera, cocchi, genito-urinario, acne (Propionibacterium acnes), H. pylori (in associazione).
+Reazioni Avverse Comuni (ADR): CONTROINDICATE < 12 anni e in gravidanza/allattamento (discromie/ipoplasia dentale irreversibili, ↓ resistenza ossea; nei neonati ↑ pressione endocranica); tossicità GI diretta (esofagiti, erosioni/ulcere, pancreatiti, epatiti, colite pseudomembranosa); tossicità renale (nefrite interstiziale, IRA — minore degli aminoglicosidi; ⚠️ tetracicline scadute = nefrotossiche); ipersensibilità rara (rash, angioedema); tromboflebiti, fotosensibilità; minociclina → disturbi vestibolari transitori.
+Resistenze / Limiti di Efficacia: diffusa e facile da indurre — pompe di efflusso (geni Tet, plasmidi), protezione ribosomiale, ridotta penetrazione, inibizione enzimatica.
+Associazioni Farmacologiche / Adiuvanti: ❌ mai con cationi bivalenti (latticini, antiacidi); + altri farmaci nella terapia di H. pylori.
+

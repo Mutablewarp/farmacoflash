@@ -1,0 +1,169 @@
+💊 FLASHCARDS — ANTIBIOTICI β-LATTAMICI
+Fonte: sbobine 🅱 Modulo I – docente, Lezione 16 "Gli antibiotici" (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
+
+
+💊 β-lattamici (classe — quadro generale)
+Meccanismo d'Azione: analoghi rigidi del dimero D-alanina–D-alanina; ingannano le transpeptidasi sostituendosi al substrato e bloccano in modo irreversibile la formazione dei legami crociati (transpeptidazione) del peptidoglicano → parete debole → lisi. Battericidi.
+Target Molecolare: Penicillin Binding Proteins (PBP) ad attività transpeptidasica; l'anello β-lattamico (reattivo per la tensione del ciclo a 4 termini) subisce attacco nucleofilo verso la serina catalitica (-OH) della PBP.
+Parametri Farmacocinetici: spettro/penetrazione dipendono da dimensione (piccole molecole), lipofilia e carica. Gram+ (spesso peptidoglicano → accesso allo spazio periplasmatico); Gram- (membrana esterna fosfolipidica → necessarie porine per molecole idrofile piccole). Parametri specifici → vedi sottoclassi.
+Indicazioni Cliniche: variabili per molecola → vedi card di sottoclasse.
+Reazioni Avverse Comuni (ADR): ipersensibilità → vedi singole classi.
+Resistenze / Limiti di Efficacia: 2 meccanismi principali — (1) β-lattamasi (idrolizzano l'anello = farmacoforo; le amidasi scindono la catena laterale ma l'anello resta integro); (2) pompe di efflusso (soprattutto Gram-). Anche alterazione del target (PBP). Localizzazione β-lattamasi: Gram+ nel peptidoglicano, Gram- nello spazio periplasmatico.
+Associazioni Farmacologiche / Adiuvanti: inibitori delle β-lattamasi (vedi card dedicate); classificazione enzimi secondo Ambler (vedi card β-lattamasi).
+
+
+💊 Penicilline naturali — Penicillina G (benzilpenicillina) / Penicillina V (fenossimetilpenicillina)
+Meccanismo d'Azione: β-lattamico (inibizione transpeptidasi); primi β-lattamici scoperti; derivati dell'acido 6-aminopenicillanico.
+Target Molecolare: PBP/transpeptidasi.
+Parametri Farmacocinetici (Pen G): non idrofila → non attraversa le porine dei Gram-; fragile in ambiente acido gastrico (idrolisi) → solo parenterale, in modo ripetuto; emivita breve (30 min); eliminazione renale (filtrazione 10% + secrezione 85%). Pen V: N/D dettagli farmacocinetici nei documenti.
+Indicazioni Cliniche: spettro ristretto a cocchi Gram+ e alcuni aerobi/anaerobi: Streptococchi, Stafilococco (se non produttore di β-lattamasi), Neisseria meningitidis (attraversa le meningi infiammate); sifilide (treponema sensibile, formulazione con benzatina).
+Reazioni Avverse Comuni (ADR): ipersensibilità (IgE-mediata → shock anafilattico; reazioni ritardate/rash, simil-malattia da siero); discomfort GI; selezione flora → colite pseudomembranosa; ↓ vitamina K → disordini coagulazione (con warfarin).
+Resistenze / Limiti di Efficacia: β-lattamasi (S. aureo da ~90% sensibile nel '46 a ~5% nel '98); idrolisi acida.
+Associazioni Farmacologiche / Adiuvanti: probenecid (blocca il trasportatore tubulare renale per gli acidi → ↑ concentrazione/emivita); benzatina (forma-deposito a bassa solubilità → rilascio prolungato, mono-somministrazione, es. sifilide). Ambler: β-lattamasi di classe A (penicillinasi).
+
+
+💊 Penicilline resistenti alle β-lattamasi (meticillina; isossazolil-penicilline: oxacillina, cloxacillina, dicloxacillina; nafcillina)
+Meccanismo d'Azione: β-lattamico; gruppo laterale ingombrante → minore sensibilità alle β-lattamasi.
+Target Molecolare: PBP.
+Parametri Farmacocinetici: isossazolil-penicilline → alto legame proteine plasmatiche, eliminazione renale; non idrofile → non attraversano le porine dei Gram-. Nafcillina: eliminazione biliare.
+Indicazioni Cliniche: meticillina → in origine S. aureus ("antistafilococciche") e streptococchi; isossazolil-penicilline → Gram+ produttori di β-lattamasi (tratto respiratorio, pelle, tessuti molli, genito-urinario).
+Reazioni Avverse Comuni (ADR): meticillina → nefrotossicità; isossazolil-penicilline → minore nefrotossicità rispetto alla meticillina.
+Resistenze / Limiti di Efficacia: S. aureus meticillino-resistente (MRSA) per alterazione del target (PBP); meticillina oggi superata.
+Associazioni Farmacologiche / Adiuvanti: N/D nei documenti forniti.
+
+
+💊 Aminopenicilline (amoxicillina, ampicillina)
+Meccanismo d'Azione: β-lattamico; aggiunta del gruppo aminico.
+Target Molecolare: PBP.
+Parametri Farmacocinetici: idrofilia → attraversano le porine → ampio spettro Gram+/Gram-; resistenza all'acido gastrico (azoto laterale stabilizza la carica e protegge l'anello dall'idrolisi) → via orale; basso legame proteine plasmatiche; eliminazione renale rapida; buona diffusione (SNC se meningi infiammate, placenta). Tempo-dipendenti (mantenere C > MIC per > 50% del tempo); 3-4 somministrazioni/die da 250-500 mg os. Amoxicillina sicura in gravidanza.
+Indicazioni Cliniche: infezioni vie aeree, genito-urinarie, dermatologiche, tessuti molli (germi non produttori di β-lattamasi); E. coli, Proteus, Shigella; Neisserie.
+Reazioni Avverse Comuni (ADR): ipersensibilità; discomfort GI (quota orale residua nel tratto GI → effetto topico → selezione flora → colite pseudomembranosa); ↓ vitamina K → coagulazione (warfarin).
+Resistenze / Limiti di Efficacia: sensibili alle β-lattamasi (apertura dell'anello).
+Associazioni Farmacologiche / Adiuvanti: amoxicillina + acido clavulanico (os; ↑ disponibilità orale vs ampicillina); ampicillina + sulbactam (anche parenterale). Ambler: protezione vs classe A.
+
+
+💊 Carbossipenicilline (carbenicillina, ticarcillina)
+Meccanismo d'Azione: β-lattamico; sostituzione "carbossi" → ampliamento spettro.
+Target Molecolare: PBP.
+Parametri Farmacocinetici: ampio spettro; NON resistenti ad acido gastrico né a β-lattamasi → parenterale; eliminazione renale; emivita 1 h; tempo-dipendenti (ticarcillina); legame proteine plasmatiche ~45%.
+Indicazioni Cliniche: Gram+ (streptococchi) e Gram- (Proteus, E. coli sensibili); infezioni vie aeree, urogenitale, dermatologiche, tessuti molli.
+Reazioni Avverse Comuni (ADR): comuni alle penicilline (ipersensibilità, discomfort GI); specifiche di classe N/D nei documenti forniti.
+Resistenze / Limiti di Efficacia: sensibili alle β-lattamasi.
+Associazioni Farmacologiche / Adiuvanti: N/D nei documenti forniti.
+
+
+💊 Ureidopenicilline (piperacillina, mezlocillina, azlocillina)
+Meccanismo d'Azione: β-lattamico; gruppo ureidico → ↑ idrofilia → selettività verso Gram-.
+Target Molecolare: PBP.
+Parametri Farmacocinetici: spettro traslato verso Gram- (anti-Pseudomonas); basso legame proteine plasmatiche; eliminazione renale; polisomministrazione 3-4 g × 3/die (mantenere C > MIC).
+Indicazioni Cliniche: Gram- difficili/nosocomiali — Haemophilus influenzae, Klebsiella, Pseudomonas aeruginosa; polmoniti, infezioni intra-addominali, cute, tessuti molli, piede diabetico.
+Reazioni Avverse Comuni (ADR): ipersensibilità (struttura simile a dipeptide; IgE → anafilassi; reazioni ritardate/rash, simil-malattia da siero, cutanee gravi 0-5%); discomfort GI; ↓ vitamina K → coagulazione.
+Resistenze / Limiti di Efficacia: sensibili alle β-lattamasi.
+Associazioni Farmacologiche / Adiuvanti: piperacillina + tazobactam (tazobactam = inibitore β-lattamasi di I generazione). Ambler: protezione vs classe A.
+
+
+💊 Cefalosporine (classe — quadro generale)
+Meccanismo d'Azione: identico alle penicilline (stesso anello β-lattamico → inibizione transpeptidazione); molecola un po' più resistente alle β-lattamasi. Struttura: derivati dell'acido 7-aminocefalosporanico, anello β-lattamico fuso ad anello a 6 con zolfo (un atomo in più rispetto alle penicilline).
+Target Molecolare: PBP/transpeptidasi.
+Parametri Farmacocinetici: classificazione in 4 generazioni per SPETTRO (non per cronologia): I → prevalentemente Gram+ → progressione verso Gram- (III) → IV riamplia Gram+ e Gram-.
+Indicazioni Cliniche: per generazione → vedi card.
+Reazioni Avverse Comuni (ADR): ipersensibilità crociata con le penicilline (apteni simili → allergico alle penicilline ≈ allergico alle cefalosporine); alterazione ematocrito con emolisi; nefrotossicità da necrosi tubulare; reazione disulfiram-simile (gruppo "sulfa" → inibizione aldeide deidrogenasi → accumulo acetaldeide con alcol → nausea, vomito, incoordinazione); discomfort GI; interazione con anticoagulanti orali.
+Resistenze / Limiti di Efficacia: variabili per generazione (III resistenti alle β-lattamasi).
+Associazioni Farmacologiche / Adiuvanti: combinazioni con inibitori β-lattamasi (es. ceftolozano+tazobactam; cefalosporine III/II gen + avibactam/vaborbactam). Ambler: classi C/D colpiscono le cefalosporine.
+
+
+💊 Cefalosporine di I generazione (cefazolina, cefalexina)
+Meccanismo d'Azione / Target: come classe (PBP).
+Parametri Farmacocinetici: spettro orientato verso Gram+ (alcuni Gram- e anaerobi sensibili); emivita 1-2 h; filtrazione glomerulare importante; cefalexina os (1-3 g × 4/die), cefazolina parenterale; polisomministrazione.
+Indicazioni Cliniche: infezioni vie aeree, otorinolaringoiatriche, tessuti molli (germi sensibili).
+Reazioni Avverse Comuni (ADR): vedi classe (ipersensibilità crociata, disulfiram-simile, ecc.).
+Resistenze / Limiti di Efficacia: N/D specifici nei documenti.
+Associazioni Farmacologiche / Adiuvanti: N/D nei documenti forniti.
+
+
+💊 Cefalosporine di II generazione (cefoxitina, cefamandolo, cefuroxime, cefaclor, cefprozil)
+Meccanismo d'Azione / Target: come classe (PBP).
+Parametri Farmacocinetici: spettro ampliato verso Gram- e anaerobi; cefuroxime parenterale (include Haemophilus influenzae), cefaclor (sciroppo pediatrico) e cefprozil os; t½ basso; elevata filtrazione glomerulare; polisomministrazione 1-2 g più volte/die.
+Indicazioni Cliniche: infezioni vie aeree e tessuti molli.
+Reazioni Avverse Comuni (ADR): vedi classe.
+Resistenze / Limiti di Efficacia: Pseudomonas aeruginosa NON sensibile.
+Associazioni Farmacologiche / Adiuvanti: combinabili con avibactam/vaborbactam (II gen inibitori). Ambler: N/D specifico per la generazione.
+
+
+💊 Cefalosporine di III generazione (cefotaxima, ceftazidima, cefoperazone, ceftriaxone; os: ceftibuten, cefpodoxime proxetil*)
+*profarmaco
+
+Meccanismo d'Azione / Target: come classe (PBP).
+Parametri Farmacocinetici: shift selettivo verso Gram-, include Pseudomonas aeruginosa (soprattutto ceftazidima, cefoperazone); resistenti alle β-lattamasi; prevalentemente parenterale + polisomministrazione. Ceftriaxone: ↑ lipofilia + alto legame proteine plasmatiche (>75%) → mono-somministrazione/die (↑ compliance; unica in mono-dose tra cefalosporine e penicilline); dolore al sito → spesso + anestetico.
+Indicazioni Cliniche: infezioni vie aeree, tessuti molli, genito-urinarie, immunocompromessi, nosocomiali, germi difficili.
+Reazioni Avverse Comuni (ADR): vedi classe.
+Resistenze / Limiti di Efficacia: resistenti alle β-lattamasi; protezione ulteriore via avibactam/vaborbactam.
+Associazioni Farmacologiche / Adiuvanti: III gen + avibactam/vaborbactam; ceftolozano + tazobactam (nuova ceph simile a III). Ambler: avibactam → classi A + C.
+
+
+💊 Cefalosporine di IV generazione (cefepime)
+Meccanismo d'Azione / Target: come classe (PBP).
+Parametri Farmacocinetici: spettro molto ampio (Neisseria meningitidis, Haemophilus influenzae, Pseudomonas, di nuovo Gram+); ottima distribuzione anche nel SNC; t½ basso; 2 g × 2/die parenterale.
+Indicazioni Cliniche: infezioni moderate-gravi vie aeree, tessuti molli, genito-urinarie, immunocompromessi (battericida), nosocomiali, germi difficili, peritoniti, infezioni biliari, meningiti.
+Reazioni Avverse Comuni (ADR): vedi classe.
+Resistenze / Limiti di Efficacia: N/D specifici nei documenti.
+Associazioni Farmacologiche / Adiuvanti: N/D nei documenti forniti (per cefepime).
+
+
+💊 Nuove cefalosporine (ceftolozano, ceftarolina)
+Nota: non si definisce una "V generazione" (nessuna alterazione significativa dello spettro); le nuove molecole si rifanno alle generazioni esistenti.
+Ceftolozano: parenterale; spettro simile alla III gen, attività anti-Pseudomonas; infezioni intra-addominali e genito-urinarie complicate; in combinazione con tazobactam.
+Ceftarolina: parenterale; spettro simile alla IV gen; attività su MRSA (S. aureus meticillino-resistente); infezioni complicate di cute e tessuti molli.
+Reazioni Avverse Comuni (ADR): vedi classe.
+Resistenze / Limiti di Efficacia: N/D specifici nei documenti.
+Associazioni Farmacologiche / Adiuvanti: ceftolozano + tazobactam.
+
+
+💊 Carbapenemici (imipenem, ertapenem, doripenem, meropenem)
+Meccanismo d'Azione: β-lattamico (stesso meccanismo); -COOH nell'eterociclo a 5 (più semplice, senza eteroatomi nell'anello fuso) → ulteriore resistenza alle β-lattamasi.
+Target Molecolare: PBP.
+Parametri Farmacocinetici: spettro ULTRA ampio; imipenem → emivita breve, scarso legame proteine plasmatiche, eliminazione renale; ertapenem → emivita più lunga; uso ospedaliero (non ambulatoriale).
+Indicazioni Cliniche: infezioni tratto genito-urinario, osseo, respiratorio, cute e tessuti molli; ambito ospedaliero.
+Reazioni Avverse Comuni (ADR): discomfort GI (nausea, vomito, diarrea); ipersensibilità; convulsioni in predisposti; interazioni importanti con antiepilettici.
+Resistenze / Limiti di Efficacia: INDUTTORI di resistenza (β-lattamasi) → limitarne l'uso; vulnerabili a carbapenemasi (serina carbapenemasi di classe A di Klebsiella; metallo-β-lattamasi di classe B).
+Associazioni Farmacologiche / Adiuvanti: imipenem + cilastatina (cilastatina = inibitore delle dipeptidasi renali che metabolizzano il legame → ↑ permanenza/emivita; adiuvante cinetico, NON inibitore di β-lattamasi); meropenem + vaborbactam; imipenem + relebactam. Ambler: meropenem+vaborbactam attivo su carbapenemasi (KPC) di Klebsiella.
+
+
+💊 Monobattamici (Aztreonam)
+Meccanismo d'Azione: β-lattamico con persistenza esclusiva dell'anello β-lattamico (massima semplificazione, nessun anello fuso); meccanismo identico agli altri β-lattamici.
+Target Molecolare: PBP.
+Parametri Farmacocinetici: spettro selettivo verso Gram- (germi difficili); utilissimo vs Pseudomonas aeruginosa; parenterale ogni 6 h; uso inalatorio nella fibrosi cistica.
+Indicazioni Cliniche: infezioni tratto genito-urinario, respiratorio, setticemie; fibrosi cistica (inalatorio, per Pseudomonas/Gram- difficili).
+Reazioni Avverse Comuni (ADR): NON dà ipersensibilità crociata con altri β-lattamici (manca l'eterociclo fuso responsabile); può dare ipersensibilità per componenti diversi; raramente pancitopenia, disordini coagulazione, alterazioni cutanee, convulsioni; (da slide) nausea, vomito, diarrea.
+Resistenze / Limiti di Efficacia: resistente alle metallo-β-lattamasi (classe B) — le metallo-β-lattamasi sono "il killer di tutti i β-lattamici tranne l'Aztreonam".
+Associazioni Farmacologiche / Adiuvanti: N/D nei documenti forniti.
+
+
+💊 β-lattamasi — classificazione di Ambler (enzimi di resistenza)
+Definizione: enzimi che idrolizzano il farmacoforo (anello β-lattamico) delle β-lattamine.
+Classe A: le più comuni; scindono penicilline a spettro esteso e ristretto (= penicillinasi, classe A di primo tipo); alcuni derivati attaccano anche le cefalosporine. Sottocategoria: serina carbapenemasi (agiscono sui carbapenemi; le più preoccupanti = Klebsiella pneumoniae / KPC, infezioni nosocomiali).
+Classe B: metallo-β-lattamasi — "killer di tutti i β-lattamici tranne l'Aztreonam".
+Classe C e D: enzimi litici che riconoscono cefalosporine, oxacillina e congeneri.
+Localizzazione: Gram+ nel peptidoglicano; Gram- nello spazio periplasmatico.
+Rilevanza: bersaglio degli inibitori delle β-lattamasi (vedi card seguenti).
+
+
+💊 Inibitori delle β-lattamasi — I generazione (acido clavulanico, sulbactam, tazobactam)
+Meccanismo d'Azione: analoghi strutturali delle β-lattamine; legano il sito attivo delle β-lattamasi e, una volta idrolizzati, lo bloccano IRREVERSIBILMENTE ("si immolano" al posto dell'antibiotico); nessuna attività antibiotica propria (non agiscono sulle transpeptidasi) → solo in associazione.
+Target Molecolare: sito attivo delle β-lattamasi.
+Parametri Farmacocinetici: acido clavulanico attivo per os (tazobactam/sulbactam non per os, come da sbobina); la farmacocinetica deve essere identica a quella del β-lattamico associato (stesso Cmax/eliminazione/emivita) per raggiungere insieme il sito d'infezione.
+Indicazioni Cliniche (spettro inibitorio): attivi verso le penicillinasi → classe A di Ambler (spettro esteso). Nessun effetto verso carbapenemasi di classe A (Klebsiella), classe B (metallo), classe C, classe D.
+Reazioni Avverse Comuni (ADR): N/D nei documenti forniti.
+Resistenze / Limiti di Efficacia: azione solo su classe A; formulazioni in associazione fissa (rapporto fisso, nessuna scelta libera del partner).
+Associazioni Farmacologiche / Adiuvanti: amoxicillina + acido clavulanico (os); ampicillina + sulbactam (parenterale); piperacillina + tazobactam.
+
+
+💊 Inibitori delle β-lattamasi — II generazione e nuovi (avibactam, vaborbactam, relebactam; non-β-lattamici: zidebactam, nacubactam)
+Meccanismo d'Azione: componenti molecolari diverse (NON analoghi delle β-lattamine); non idrolizzati dalle β-lattamasi → inibizione senza inattivazione → "riciclabili", azione più duratura.
+Target Molecolare: β-lattamasi di classe A (come la I gen) + classe C; vaborbactam anche carbapenemasi di Klebsiella (KPC). Zidebactam/nacubactam: anche PBP (attività antibiotica intrinseca) → potenziale vs metallo-β-lattamasi classe B (oggi non targetizzabile); inibitori non-β-lattamici anche classe D carbapenemasi.
+Parametri Farmacocinetici: appaiamento col β-lattamico su base farmacocinetica (eliminazione/emivita/distribuzione simili).
+Indicazioni Cliniche: in associazione con cefalosporine III gen o meropenem (contesti difficili/nosocomiali; anche cefalosporine II gen). Meropenem + vaborbactam → infezioni complicate vie urinarie (incl. pielonefrite), intra-addominali, polmoniti nosocomiali associate a ventilazione. Imipenem + relebactam (vantaggio cinetico).
+Reazioni Avverse Comuni (ADR): N/D nei documenti forniti.
+Resistenze / Limiti di Efficacia: le associazioni fisse non garantiscono efficacia per tutte le β-lattamasi presenti (limite delle associazioni fisse).
+Associazioni Farmacologiche / Adiuvanti: avibactam/vaborbactam + cefalosporine III (o II) gen / meropenem; relebactam + imipenem.
+
