@@ -6219,7 +6219,7 @@
     "indications": "ipertensione (condizioni particolari); clonidina nell'**astinenza da alcol/oppiacei**. **Moxonidina/rilmenidina** (I2) → ↑ flusso renale/natriuresi, **↑ risposta insulinica** (utile nel diabetico — ≠ clonidina), ↓ ipertrofia ventricolare sx.",
     "adr": "clonidina → ⚠️ **ipertensione da rimbalzo** alla sospensione brusca (up-regulation α2); astenia, **depressione**, incubi vividi (⚠️ controindicata in depressi/anziani). Moxonidina = ottimo profilo (no depressione).",
     "resistance": "—",
-    "associations": "bloccanti adrenergici periferici (**reserpina** — depleta le vescicole, 1° antiipertensivo della storia; guanetidina). *Domanda d'esame: per dimostrare l'effetto della moxonidina → dare un antagonista α2 (clonidina), non un antagonista imidazolinico.*"
+    "associations": "bloccanti adrenergici periferici (**reserpina** — depleta le vescicole, 1° antiipertensivo della storia; guanetidina). *Domanda d'esame: per dimostrare l'effetto della moxonidina → dare un **antagonista α2** (es. yohimbina), non un antagonista imidazolinico (l'effetto residuo = imidazolinico).*"
    },
    "segments": [
     {
@@ -6248,7 +6248,7 @@
     },
     {
      "label": "Associazioni Farmacologiche / Adiuvanti",
-     "value": "bloccanti adrenergici periferici (**reserpina** — depleta le vescicole, 1° antiipertensivo della storia; guanetidina). *Domanda d'esame: per dimostrare l'effetto della moxonidina → dare un antagonista α2 (clonidina), non un antagonista imidazolinico.*"
+     "value": "bloccanti adrenergici periferici (**reserpina** — depleta le vescicole, 1° antiipertensivo della storia; guanetidina). *Domanda d'esame: per dimostrare l'effetto della moxonidina → dare un **antagonista α2** (es. yohimbina), non un antagonista imidazolinico (l'effetto residuo = imidazolinico).*"
     }
    ],
    "freetext": [],
@@ -7119,7 +7119,7 @@
     "mechanism": "**eparina** = lega l'**antitrombina** potenziandone l'effetto (inibizione della trombina). Alto peso molecolare → ⚠️ risposta immune (shock anafilattico).",
     "pk": "sottocutanea, escrezione renale minima, **NON attraversa la placenta** → ⚠️ **usabile in GRAVIDANZA**.",
     "indications": "TVP, embolia polmonare, angina instabile, angioplastica, bypass cardio-polmonare.",
-    "adr": "⚠️ **trombocitopenia (HIT, 1-2% dopo 4-5 gg, IgG anti-eparina/PF4)**, ↑ transaminasi, osteoporosi/ipercalcemia (>6 mesi). **ANTIDOTO = protamina.**\n• **LMWH** (enoxaparina, dalteparina, nadroparina, reviparina): minore attività anti-Xa; tromboembolismo venoso/SCA; SC ogni 12-24h; ⚠️ protamina poco efficace.\n• **Derivati sintetici** (pentasaccaridi: **fondaparinux**, idraparinux, idrabiotaparinux): forte azione su **Xa**; emivita lunga (fondaparinux 17-20h; idrabiotaparinux 120h, antidoto **avidina** via biotina); ⚠️ **fondaparinux attraversa la placenta** (no in gravidanza)."
+    "adr": "⚠️ **trombocitopenia (HIT, 1-2% dopo 4-5 gg, IgG anti-eparina/PF4)**, ↑ transaminasi, osteoporosi/ipercalcemia (>6 mesi). **ANTIDOTO = protamina.**\n• **LMWH** (enoxaparina, dalteparina, nadroparina, reviparina): catene corte → **prevale l'azione anti-Xa, minore attività anti-IIa (antitrombina)**; tromboembolismo venoso/SCA; SC ogni 12-24h; ⚠️ protamina poco efficace.\n• **Derivati sintetici** (pentasaccaridi: **fondaparinux**, idraparinux, idrabiotaparinux): forte azione su **Xa**; emivita lunga (fondaparinux 17-20h; idrabiotaparinux 120h, antidoto **avidina** via biotina); ⚠️ **fondaparinux attraversa la placenta** (no in gravidanza)."
    },
    "segments": [
     {
@@ -7136,7 +7136,7 @@
     },
     {
      "label": "Reazioni Avverse Comuni (ADR)",
-     "value": "⚠️ **trombocitopenia (HIT, 1-2% dopo 4-5 gg, IgG anti-eparina/PF4)**, ↑ transaminasi, osteoporosi/ipercalcemia (>6 mesi). **ANTIDOTO = protamina.**\n• **LMWH** (enoxaparina, dalteparina, nadroparina, reviparina): minore attività anti-Xa; tromboembolismo venoso/SCA; SC ogni 12-24h; ⚠️ protamina poco efficace.\n• **Derivati sintetici** (pentasaccaridi: **fondaparinux**, idraparinux, idrabiotaparinux): forte azione su **Xa**; emivita lunga (fondaparinux 17-20h; idrabiotaparinux 120h, antidoto **avidina** via biotina); ⚠️ **fondaparinux attraversa la placenta** (no in gravidanza)."
+     "value": "⚠️ **trombocitopenia (HIT, 1-2% dopo 4-5 gg, IgG anti-eparina/PF4)**, ↑ transaminasi, osteoporosi/ipercalcemia (>6 mesi). **ANTIDOTO = protamina.**\n• **LMWH** (enoxaparina, dalteparina, nadroparina, reviparina): catene corte → **prevale l'azione anti-Xa, minore attività anti-IIa (antitrombina)**; tromboembolismo venoso/SCA; SC ogni 12-24h; ⚠️ protamina poco efficace.\n• **Derivati sintetici** (pentasaccaridi: **fondaparinux**, idraparinux, idrabiotaparinux): forte azione su **Xa**; emivita lunga (fondaparinux 17-20h; idrabiotaparinux 120h, antidoto **avidina** via biotina); ⚠️ **fondaparinux attraversa la placenta** (no in gravidanza)."
     }
    ],
    "freetext": [],
