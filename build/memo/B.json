@@ -6,7 +6,7 @@
     { "id": "B1__barbiturici-fenobarbital-secobarbital-pe", "memo": "**Aprono il canale GABA-A da soli** → niente effetto tetto → letali in overdose. Per questo soppiantati dalle BDZ." },
     { "id": "B1__z-compounds-zaleplon-zolpidem", "memo": "GABA-A **α1-selettivi**: solo ipnotici, niente ansiolisi; ADR firma = **sonnambulismo**." },
     { "id": "B1__etifoxina", "memo": "Ansiolitico **non-BDZ** (via TSPO/neurosteroidi): meno dipendenza, ma **epatotossicità**." },
-    { "id": "B1__buspirone-e-serotoninergici-ansia-cronic", "memo": "Agonista parziale **5-HT1A**: niente dipendenza né sedazione, ma agisce **dopo 2-4 settimane** → solo GAD cronico." },
+    { "id": "B1__buspirone-e-serotoninergici-ansia-cronic", "memo": "Agonista parziale **5-HT1A**: niente dipendenza né sedazione, ma effetto **ritardato (≈1-2 settimane)** → inutile al bisogno, solo GAD cronico." },
     { "id": "B1__neurosteroidi-steroidi-neuroattivi", "memo": "**Modulatori GABA-A endogeni**; il brexanolone EV cura la **depressione post-partum**." },
 
     { "id": "B2__anestetici-generali-principi", "memo": "Anestesia = **tre obiettivi insieme**: ipnosi + analgesia + miorisoluzione. Un farmaco solo non basta." },

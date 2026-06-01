@@ -5231,7 +5231,7 @@
     "indications": "Parkinson (**gold standard**; grande miglioramento motorio).",
     "adr": "⚠️ **discinesia tardiva** (80% a lungo termine, dose-dipendente, coreiforme; più nei giovani; via D1/dinorfina); ⚠️ **fenomeno on/off** (OFF = acinesia; ON = mobilità con discinesia); periodo **\"honeymoon\"** iniziale (~1 anno); nausea/vomito, anoressia, ipotensione, confusione, insonnia, incubi; effetti comportamentali (**well-being, \"dirty old man\"**), **allucinazioni/psicosi** (DA → neuroni serotoninergici → 5-HT); cardiovascolare (β1 periferico); ulcera peptica.",
     "resistance": "perdita di efficacia nel tempo (esaurimento dei neuroni dopaminergici).",
-    "associations": "**+ carbidopa/benserazide** (obbligatorio); **+ MAO-B/COMT-inibitori** (omogeneizzano la L-DOPA nelle fasi avanzate); psicosi da L-DOPA → **primavanserina** (agonista inverso 5-HT2A); disturbo comportamentale → **aripiprazolo** (agonista parziale D2)."
+    "associations": "**+ carbidopa/benserazide** (obbligatorio); **+ MAO-B/COMT-inibitori** (omogeneizzano la L-DOPA nelle fasi avanzate); psicosi da L-DOPA → **pimavanserina** (agonista inverso 5-HT2A); disturbo comportamentale → **aripiprazolo** (agonista parziale D2)."
    },
    "segments": [
     {
@@ -5260,7 +5260,7 @@
     },
     {
      "label": "Associazioni Farmacologiche / Adiuvanti",
-     "value": "**+ carbidopa/benserazide** (obbligatorio); **+ MAO-B/COMT-inibitori** (omogeneizzano la L-DOPA nelle fasi avanzate); psicosi da L-DOPA → **primavanserina** (agonista inverso 5-HT2A); disturbo comportamentale → **aripiprazolo** (agonista parziale D2)."
+     "value": "**+ carbidopa/benserazide** (obbligatorio); **+ MAO-B/COMT-inibitori** (omogeneizzano la L-DOPA nelle fasi avanzate); psicosi da L-DOPA → **pimavanserina** (agonista inverso 5-HT2A); disturbo comportamentale → **aripiprazolo** (agonista parziale D2)."
     }
    ],
    "freetext": [],
@@ -5277,9 +5277,9 @@
    "name": "Dopamino-agonisti",
    "nameShort": "Dopamino-agonisti",
    "fields": {
-    "mechanism": "stimolano **direttamente** i recettori dopaminergici postsinaptici (bypassano il neurone). **Ergot** (segale cornuta): **bromocriptina** (D1-selettivo — efficace come L-DOPA ma fluttuazioni motorie rapide), pergolide. **Non-ergot**: **pramipexolo** (D2/D3/D4 — Parkinson avanzato, levo-protettivo vs stress ossidativo), **ropinirolo** (D2/D1 — fasi iniziali, ritarda le discinesie conservando il D1), rotigotina (os), **apomorfina** (TUTTI i recettori DA, sc con penna — per i fenomeni **off**).",
+    "mechanism": "stimolano **direttamente** i recettori dopaminergici postsinaptici (bypassano il neurone). **Ergot** (segale cornuta): **bromocriptina** (D1-selettivo — efficace come L-DOPA ma fluttuazioni motorie rapide), pergolide. **Non-ergot**: **pramipexolo** (D2/D3/D4 — Parkinson avanzato, levo-protettivo vs stress ossidativo), **ropinirolo** (D2/D1 — fasi iniziali, ritarda le discinesie conservando il D1), rotigotina (cerotto transdermico), **apomorfina** (TUTTI i recettori DA, sc con penna — per i fenomeni **off**).",
     "target": "recettori dopaminergici (selettività variabile).",
-    "pk": "rotigotina/pergolide os (biodisponibilità variabile); apomorfina **sc**.",
+    "pk": "rotigotina **transdermica** (cerotto, livelli plasmatici stabili 24 h); pergolide os; apomorfina **sc**.",
     "indications": "Parkinson (iniziale: ropinirolo; avanzato: pramipexolo; off: apomorfina).",
     "adr": "discinesia, nausea, sudorazione, ipotensione; ⚠️ **pramipexolo → discontrollo degli impulsi/gambling**; bromocriptina/pergolide (D1) → discinesia tardiva.",
     "resistance": "meno efficaci della L-DOPA.",
@@ -5288,7 +5288,7 @@
    "segments": [
     {
      "label": "Meccanismo d'Azione",
-     "value": "stimolano **direttamente** i recettori dopaminergici postsinaptici (bypassano il neurone). **Ergot** (segale cornuta): **bromocriptina** (D1-selettivo — efficace come L-DOPA ma fluttuazioni motorie rapide), pergolide. **Non-ergot**: **pramipexolo** (D2/D3/D4 — Parkinson avanzato, levo-protettivo vs stress ossidativo), **ropinirolo** (D2/D1 — fasi iniziali, ritarda le discinesie conservando il D1), rotigotina (os), **apomorfina** (TUTTI i recettori DA, sc con penna — per i fenomeni **off**)."
+     "value": "stimolano **direttamente** i recettori dopaminergici postsinaptici (bypassano il neurone). **Ergot** (segale cornuta): **bromocriptina** (D1-selettivo — efficace come L-DOPA ma fluttuazioni motorie rapide), pergolide. **Non-ergot**: **pramipexolo** (D2/D3/D4 — Parkinson avanzato, levo-protettivo vs stress ossidativo), **ropinirolo** (D2/D1 — fasi iniziali, ritarda le discinesie conservando il D1), rotigotina (cerotto transdermico), **apomorfina** (TUTTI i recettori DA, sc con penna — per i fenomeni **off**)."
     },
     {
      "label": "Target Molecolare",
@@ -5296,7 +5296,7 @@
     },
     {
      "label": "Parametri Farmacocinetici",
-     "value": "rotigotina/pergolide os (biodisponibilità variabile); apomorfina **sc**."
+     "value": "rotigotina **transdermica** (cerotto, livelli plasmatici stabili 24 h); pergolide os; apomorfina **sc**."
     },
     {
      "label": "Indicazioni Cliniche",
@@ -5444,7 +5444,7 @@
     },
     {
      "label": "Accessori",
-     "value": "**primavanserina** (agonista inverso 5-HT2A → psicosi/allucinazioni da L-DOPA); **droxidopa** (ipotensione ortostatica neurogena); **rivastigmina** (anticolinesterasico → demenza nel Parkinson, vedi file B7)."
+     "value": "**pimavanserina** (agonista inverso 5-HT2A → psicosi/allucinazioni da L-DOPA); **droxidopa** (ipotensione ortostatica neurogena); **rivastigmina** (anticolinesterasico → demenza nel Parkinson, vedi file B7)."
     }
    ],
    "freetext": [],
