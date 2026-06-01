@@ -261,7 +261,7 @@
    "name": "Glucocorticoidi (classe — meccanismo, effetti sistemici, ADR, interazioni)",
    "nameShort": "Glucocorticoidi",
    "fields": {
-    "mechanism": "lipofili (struttura sterolica, come il colesterolo). Legano **recettori intracellulari**: **GR** (glucocorticoid receptor, attivato ad **alte** concentrazioni) e **MR** (mineralcorticoide, **alta affinità**, attivato a basse conc). Recettore complessato a **HSP** nel citosol → al legame si libera, **dimerizza**, va nel nucleo, lega i **GRE** (glucocorticoid responsive element) → modula la **trascrizione genica**. **Azione antinfiammatoria:** inibizione del **NF-κB** (↑ inibitori, ↓ espressione; meccanismo genomico e non-genomico) → ↓ COX-2, iNOS, citochine; **↑ annessina-1** → inibizione **fosfolipasi A2** → ↓ acido arachidonico → ↓ **prostaglandine E leucotrieni**.",
+    "mechanism": "lipofili (struttura sterolica, come il colesterolo). Legano **recettori intracellulari**: **GR** (glucocorticoid receptor, attivato ad **alte** concentrazioni) e **MR** (mineralcorticoide, **alta affinità**, attivato a basse conc). Recettore complessato a **HSP** nel citosol → al legame si libera, **dimerizza**, va nel nucleo, lega i **GRE** (glucocorticoid responsive element) → modula la **trascrizione genica**. **Azione antinfiammatoria:** inibizione del **NF-κB** (↑ inibitori, ↓ espressione; meccanismo genomico e non-genomico) → ↓ COX-2, iNOS, citochine; **↑ annessina-1** → inibizione **fosfolipasi A2** → ↓ acido arachidonico → ↓ **prostaglandine e leucotrieni**.",
     "target": "recettori GR e MR (fattori di trascrizione intracellulari).",
     "indications": "**terapia sostitutiva** (insufficienza surrenalica → idrocortisone); **risposta immunitaria anormale** (immunosoppressione nel trapianto; autoimmuni: asma, artrite reumatoide, lupus, BPCO; ipersensibilità/allergie); **oncologia** (leucemie, linfomi — azione selettiva sui linfociti T, + chemioterapici); **edema** (cerebrale, traumi). Effetti su elementi figurati: ↓ eosinofili/linfociti T/macrofagi/dendritiche/mastociti; **↑ PMN in circolo** (demarginazione + blocco migrazione tissutale); scarsi su linfociti B (immunità cellulare > umorale).",
     "adr": "riflettono gli effetti sistemici fisiologici. Metabolismo: **iperglicemia** (↑ gluconeogenesi/glucosio-6-fosfatasi; insulino-resistenza), catabolismo proteico → **miopatia steroidea**, ridistribuzione adipe → **facies lunare/cushingoide**. Idro-salino (MR): **ipertensione, edema**; ↑ escrezione Ca → **osteoporosi**. CV: ↑ sensibilità alle catecolamine (↑ β1/α1) + SRAA. Gastrico: ↓ prostaglandine → **ulcera peptica**. SNC: disturbi del comportamento/umore, alterazione ritmo sonno-veglia. Alterazioni endocrine; **↓ GH nei bambini**; cataratta/disturbi vista; **immunosoppressione → infezioni**. ⚠️ **Da sospensione brusca** → **insufficienza surrenalica acuta** (asse soppresso) → **sospensione graduale a scalare** (preferire breve emivita e/o giorni alterni).",
@@ -271,7 +271,7 @@
    "segments": [
     {
      "label": "Meccanismo d'Azione",
-     "value": "lipofili (struttura sterolica, come il colesterolo). Legano **recettori intracellulari**: **GR** (glucocorticoid receptor, attivato ad **alte** concentrazioni) e **MR** (mineralcorticoide, **alta affinità**, attivato a basse conc). Recettore complessato a **HSP** nel citosol → al legame si libera, **dimerizza**, va nel nucleo, lega i **GRE** (glucocorticoid responsive element) → modula la **trascrizione genica**. **Azione antinfiammatoria:** inibizione del **NF-κB** (↑ inibitori, ↓ espressione; meccanismo genomico e non-genomico) → ↓ COX-2, iNOS, citochine; **↑ annessina-1** → inibizione **fosfolipasi A2** → ↓ acido arachidonico → ↓ **prostaglandine E leucotrieni**."
+     "value": "lipofili (struttura sterolica, come il colesterolo). Legano **recettori intracellulari**: **GR** (glucocorticoid receptor, attivato ad **alte** concentrazioni) e **MR** (mineralcorticoide, **alta affinità**, attivato a basse conc). Recettore complessato a **HSP** nel citosol → al legame si libera, **dimerizza**, va nel nucleo, lega i **GRE** (glucocorticoid responsive element) → modula la **trascrizione genica**. **Azione antinfiammatoria:** inibizione del **NF-κB** (↑ inibitori, ↓ espressione; meccanismo genomico e non-genomico) → ↓ COX-2, iNOS, citochine; **↑ annessina-1** → inibizione **fosfolipasi A2** → ↓ acido arachidonico → ↓ **prostaglandine e leucotrieni**."
     },
     {
      "label": "Target Molecolare",
@@ -1320,7 +1320,7 @@
    "name": "Anti-H1 di III generazione (desloratadina, levocetirizina, fexofenadina; topici: azelastina, levocabastina, ketotifene)",
    "nameShort": "Anti-H1 di III generazione",
    "fields": {
-    "mechanism": "**stereoisomeri attivi purificati** della II generazione (**desloratadina** = destrogiro della loratadina; **levocetirizina** = levogiro della cetirizina) → dosi inferiori, ↓ effetti collaterali. **Fexofenadina** = profarmaco con metaboliti attivi.",
+    "mechanism": "**stereoisomeri/metaboliti attivi purificati** della II generazione (**levocetirizina** = levogiro della cetirizina; **desloratadina** = **metabolita attivo** della loratadina) → dosi inferiori, ↓ effetti collaterali. **Fexofenadina** = **metabolita attivo della terfenadina** (è la terfenadina a essere il profarmaco).",
     "target": "recettore H1 (periferico).",
     "pk": "dosi ridotte; **non attraversano la BEE** → no sedazione → somministrabili al **mattino**.",
     "indications": "reazioni allergiche in sicurezza (anche durante l'attività lavorativa). **Topici** (azelastina, levocabastina, ketotifene): preparati dermatologici/orticaria, profilassi dell'attacco d'asma. **Ketotifene**: stabilizzazione della membrana mastocitaria (simile ai cromoni).",
@@ -1331,7 +1331,7 @@
    "segments": [
     {
      "label": "Meccanismo d'Azione",
-     "value": "**stereoisomeri attivi purificati** della II generazione (**desloratadina** = destrogiro della loratadina; **levocetirizina** = levogiro della cetirizina) → dosi inferiori, ↓ effetti collaterali. **Fexofenadina** = profarmaco con metaboliti attivi."
+     "value": "**stereoisomeri/metaboliti attivi purificati** della II generazione (**levocetirizina** = levogiro della cetirizina; **desloratadina** = **metabolita attivo** della loratadina) → dosi inferiori, ↓ effetti collaterali. **Fexofenadina** = **metabolita attivo della terfenadina** (è la terfenadina a essere il profarmaco)."
     },
     {
      "label": "Target Molecolare",
