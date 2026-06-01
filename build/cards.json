@@ -7762,10 +7762,10 @@
   {
    "id": "Antibiotici-2__glicopeptidi-classe-vancomicina-teicopla",
    "deckId": "Antibiotici-2",
-   "name": "Glicopeptidi (classe — vancomicina, teicoplanina, daptomicina)",
+   "name": "Glicopeptidi (classe — vancomicina, teicoplanina) e daptomicina (lipopeptide)",
    "nameShort": "Glicopeptidi",
    "fields": {
-    "mechanism": "peptidi ciclici complessi; si legano direttamente al dimero D-alanina–D-alanina → impediscono il riconoscimento del target da parte degli enzimi (bloccano la transglicosidasi). Battericidi.",
+    "mechanism": "peptidi ciclici complessi; si legano direttamente al dimero D-alanina–D-alanina → impediscono il riconoscimento del target da parte degli enzimi (bloccano la transglicosilasi). Battericidi.",
     "target": "dimero D-alanina–D-alanina (substrato).",
     "pk": "vedi singole molecole.",
     "indications": "Gram+: S. aureus meticillino-resistente (MRSA), Enterococchi, Bacillus anthracis, Clostridium difficile.",
@@ -7776,7 +7776,7 @@
    "segments": [
     {
      "label": "Meccanismo d'Azione",
-     "value": "peptidi ciclici complessi; si legano direttamente al dimero D-alanina–D-alanina → impediscono il riconoscimento del target da parte degli enzimi (bloccano la transglicosidasi). Battericidi."
+     "value": "peptidi ciclici complessi; si legano direttamente al dimero D-alanina–D-alanina → impediscono il riconoscimento del target da parte degli enzimi (bloccano la transglicosilasi). Battericidi."
     },
     {
      "label": "Target Molecolare",
@@ -8326,7 +8326,7 @@
    "name": "Rifampicina (integrazione Lez 17 — profilo antitubercolare completo nel file Antibiotici-2)",
    "nameShort": "Rifampicina",
    "fields": {
-    "mechanism": "inibisce la RNA-polimerasi DNA-dipendente → inibizione della sintesi dell'RNA. Batteriostatico.",
+    "mechanism": "inibisce la RNA-polimerasi DNA-dipendente → inibizione della sintesi dell'RNA. Battericida.",
     "target": "RNA-polimerasi DNA-dipendente.",
     "pk": "induttore del metabolismo (CYP) → riduce l'emivita di digossina, verapamil, ketoconazolo, corticosteroidi, barbiturici, contraccettivi orali; colora di rosso le secrezioni.",
     "indications": "ampio spettro (Gram+, Gram-, meningococco, meningiti da Haemophilus influenzae); TBC in associazione con isoniazide.",
@@ -8337,7 +8337,7 @@
    "segments": [
     {
      "label": "Meccanismo d'Azione",
-     "value": "inibisce la RNA-polimerasi DNA-dipendente → inibizione della sintesi dell'RNA. Batteriostatico."
+     "value": "inibisce la RNA-polimerasi DNA-dipendente → inibizione della sintesi dell'RNA. Battericida."
     },
     {
      "label": "Target Molecolare",
@@ -8743,7 +8743,7 @@
     "target": "subunità ribosomiale 30S.",
     "pk": "chelazione di cationi bivalenti (Ca, Mg) → precipitati insolubili in ambiente gastrico → biodisponibilità nulla (attenzione a latticini/caseari/antiacidi); tropismo osseo (chelano il Ca tissutale). Naturali: tetraciclina, ossitetraciclina, clortetraciclina, demeclociclina; semisintetiche: doxiciclina, minociclina.",
     "indications": "ampio spettro (Gram+, Gram-, aerobi, anaerobi, protozoi, spirochete, rickettsie, ureaplasmi, micoplasmi, clamidie); rickettsiosi, intracellulari, brucellosi/colera, cocchi, genito-urinario, acne (Propionibacterium acnes), H. pylori (in associazione).",
-    "adr": "CONTROINDICATE < 12 anni e in gravidanza/allattamento (discromie/ipoplasia dentale irreversibili, ↓ resistenza ossea; nei neonati ↑ pressione endocranica); tossicità GI diretta (esofagiti, erosioni/ulcere, pancreatiti, epatiti, colite pseudomembranosa); tossicità renale (nefrite interstiziale, IRA — minore degli aminoglicosidi; ⚠️ tetracicline scadute = nefrotossiche); ipersensibilità rara (rash, angioedema); tromboflebiti, fotosensibilità; minociclina → disturbi vestibolari transitori.",
+    "adr": "CONTROINDICATE < 8 anni e in gravidanza/allattamento (discromie/ipoplasia dentale irreversibili, ↓ resistenza ossea; nei neonati ↑ pressione endocranica); tossicità GI diretta (esofagiti, erosioni/ulcere, pancreatiti, epatiti, colite pseudomembranosa); tossicità renale (nefrite interstiziale, IRA — minore degli aminoglicosidi; ⚠️ tetracicline scadute = nefrotossiche); ipersensibilità rara (rash, angioedema); tromboflebiti, fotosensibilità; minociclina → disturbi vestibolari transitori.",
     "resistance": "diffusa e facile da indurre — pompe di efflusso (geni Tet, plasmidi), protezione ribosomiale, ridotta penetrazione, inibizione enzimatica.",
     "associations": "❌ mai con cationi bivalenti (latticini, antiacidi); + altri farmaci nella terapia di H. pylori."
    },
@@ -8766,7 +8766,7 @@
     },
     {
      "label": "Reazioni Avverse Comuni (ADR)",
-     "value": "CONTROINDICATE < 12 anni e in gravidanza/allattamento (discromie/ipoplasia dentale irreversibili, ↓ resistenza ossea; nei neonati ↑ pressione endocranica); tossicità GI diretta (esofagiti, erosioni/ulcere, pancreatiti, epatiti, colite pseudomembranosa); tossicità renale (nefrite interstiziale, IRA — minore degli aminoglicosidi; ⚠️ tetracicline scadute = nefrotossiche); ipersensibilità rara (rash, angioedema); tromboflebiti, fotosensibilità; minociclina → disturbi vestibolari transitori."
+     "value": "CONTROINDICATE < 8 anni e in gravidanza/allattamento (discromie/ipoplasia dentale irreversibili, ↓ resistenza ossea; nei neonati ↑ pressione endocranica); tossicità GI diretta (esofagiti, erosioni/ulcere, pancreatiti, epatiti, colite pseudomembranosa); tossicità renale (nefrite interstiziale, IRA — minore degli aminoglicosidi; ⚠️ tetracicline scadute = nefrotossiche); ipersensibilità rara (rash, angioedema); tromboflebiti, fotosensibilità; minociclina → disturbi vestibolari transitori."
     },
     {
      "label": "Resistenze / Limiti di Efficacia",
