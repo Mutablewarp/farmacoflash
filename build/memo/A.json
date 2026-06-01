@@ -17,7 +17,7 @@
     { "id": "A5__indometacina-derivato-dell-acido-acetico", "memo": "Potente e tossico; si sfrutta il blocco della PGE2 per **chiudere il dotto di Botallo** nel pretermine." },
     { "id": "A5__ketorolac-toradol-derivato-dell-acido-ac", "memo": "Analgesia da FANS **paragonabile agli oppioidi**, ma **massimo 5 giorni**: oltre, il rene cede." },
     { "id": "A5__nimesulide-aulin", "memo": "COX-2 preferenziale (stomaco protetto) ma **epatotossico**: massimo 15 giorni." },
-    { "id": "A5__oxicam-piroxicam-meloxicam", "memo": "**Emivita lunga (24h)**, una dose al giorno per il circolo enteroepatico; prezzo: marcata **gastrolesività**." },
+    { "id": "A5__oxicam-piroxicam-meloxicam", "memo": "**Emivita molto lunga** (piroxicam t½ ~50 h), una dose al giorno; prezzo: marcata **gastrolesività**." },
     { "id": "A5__coxib-celecoxib-valdecoxib-rofecoxib", "memo": "**Selettivi COX-2**: salvano lo stomaco ma sbilanciano verso la **trombosi** (il rofecoxib fu ritirato per gli infarti)." },
     { "id": "A5__paracetamolo-fans-atipico", "memo": "Sicuro fino a una soglia, poi il **NAPQI** esaurisce il glutatione → necrosi epatica. Antidoto: **N-acetilcisteina**." },
 

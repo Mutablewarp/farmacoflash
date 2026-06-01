@@ -10,6 +10,7 @@ build/_*.js
 build/*.tmp
 build/i18n/src-*.json
 build/batches/
+build/sources/
 screenshots/_*.png
 *.tmp
 *.log
