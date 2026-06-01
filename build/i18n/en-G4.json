@@ -190,7 +190,7 @@
    "id": "B1__buspirone-e-serotoninergici-ansia-cronic",
    "name": "Buspirone and serotonergics (chronic anxiety)",
    "nameShort": "Buspirone and serotonergics",
-   "memo": "Partial **5-HT1A** agonist: no dependence or sedation, but it acts **after 2-4 weeks** → only chronic GAD.",
+   "memo": "Partial **5-HT1A** agonist: no dependence or sedation, but it has a **delayed effect (≈1-2 weeks)** → useless as-needed, only chronic GAD.",
    "segments": [
     {
      "label": "Mechanism of Action",

@@ -190,7 +190,7 @@
    "id": "A4__betametasone-e-desametasone-fluorurati",
    "name": "Betamethasone and Dexamethasone (fluorinated)",
    "nameShort": "Betamethasone and Dexamethasone",
-   "memo": "The **9α-fluoro** makes them up to **30× cortisol**, long duration, zero mineralocorticoid: dexamethasone of the cytokine storm.",
+   "memo": "The **9α-fluoro** makes them **~25× cortisol**, long duration, zero mineralocorticoid: dexamethasone of the cytokine storm.",
    "segments": [
     {
      "label": "Mechanism of Action",
@@ -766,7 +766,7 @@
    "segments": [
     {
      "label": "Mechanism of Action",
-     "value": "**purified active stereoisomers** of the 2nd generation (**desloratadine** = dextrorotatory form of loratadine; **levocetirizine** = levorotatory form of cetirizine) → lower doses, ↓ side effects. **Fexofenadine** = prodrug with active metabolites."
+     "value": "**purified active stereoisomers/metabolites** of the 2nd generation (**levocetirizine** = levorotatory form of cetirizine; **desloratadine** = **active metabolite** of loratadine) → lower doses, ↓ side effects. **Fexofenadine** = **active metabolite of terfenadine** (it is terfenadine that is the prodrug)."
     },
     {
      "label": "Molecular Target",

@@ -114,13 +114,13 @@
   },
   {
    "id": "Antibiotici-2__glicopeptidi-classe-vancomicina-teicopla",
-   "name": "Glycopeptides (class — vancomycin, teicoplanin, daptomycin)",
+   "name": "Glycopeptides (class — vancomycin, teicoplanin) and daptomycin (lipopeptide)",
    "nameShort": "Glycopeptides",
    "memo": "Latch onto **D-ala-D-ala** (not the enzyme); for **resistant Gram+**. VanA resistance = D-ala-D-lactate.",
    "segments": [
     {
      "label": "Mechanism of Action",
-     "value": "complex cyclic peptides; bind directly to the D-alanine–D-alanine dimer → prevent target recognition by the enzymes (blocking transglycosidase). Bactericidal."
+     "value": "complex cyclic peptides; bind directly to the D-alanine–D-alanine dimer → prevent target recognition by the enzymes (blocking transglycosylase). Bactericidal."
     },
     {
      "label": "Molecular Target",
@@ -517,7 +517,7 @@
    "segments": [
     {
      "label": "Mechanism of Action",
-     "value": "inhibits DNA-dependent RNA polymerase → inhibition of RNA synthesis. Bacteriostatic."
+     "value": "inhibits DNA-dependent RNA polymerase → inhibition of RNA synthesis. Bactericidal."
     },
     {
      "label": "Molecular Target",
@@ -825,7 +825,7 @@
     },
     {
      "label": "Common Adverse Reactions (ADRs)",
-     "value": "CONTRAINDICATED < 12 years and in pregnancy/breastfeeding (irreversible dental discoloration/hypoplasia, ↓ bone strength; in newborns ↑ intracranial pressure); direct GI toxicity (esophagitis, erosions/ulcers, pancreatitis, hepatitis, pseudomembranous colitis); renal toxicity (interstitial nephritis, acute renal failure — less than aminoglycosides; ⚠️ expired tetracyclines = nephrotoxic); hypersensitivity rare (rash, angioedema); thrombophlebitis, photosensitivity; minocycline → transient vestibular disturbances."
+     "value": "CONTRAINDICATED < 8 years and in pregnancy/breastfeeding (irreversible dental discoloration/hypoplasia, ↓ bone strength; in newborns ↑ intracranial pressure); direct GI toxicity (esophagitis, erosions/ulcers, pancreatitis, hepatitis, pseudomembranous colitis); renal toxicity (interstitial nephritis, acute renal failure — less than aminoglycosides; ⚠️ expired tetracyclines = nephrotoxic); hypersensitivity rare (rash, angioedema); thrombophlebitis, photosensitivity; minocycline → transient vestibular disturbances."
     },
     {
      "label": "Resistance / Efficacy Limits",

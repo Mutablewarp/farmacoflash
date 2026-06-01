@@ -135,7 +135,7 @@
     },
     {
      "label": "Common Adverse Reactions (ADR)",
-     "value": "⚠️ **thrombocytopenia (HIT, 1-2% after 4-5 days, IgG anti-heparin/PF4)**, ↑ transaminases, osteoporosis/hypercalcaemia (>6 months). **ANTIDOTE = protamine.**\n• **LMWH** (enoxaparin, dalteparin, nadroparin, reviparin): lower anti-Xa activity; venous thromboembolism/ACS; SC every 12-24h; ⚠️ protamine poorly effective.\n• **Synthetic derivatives** (pentasaccharides: **fondaparinux**, idraparinux, idrabiotaparinux): strong action on **Xa**; long half-life (fondaparinux 17-20h; idrabiotaparinux 120h, antidote **avidin** via biotin); ⚠️ **fondaparinux crosses the placenta** (not in pregnancy)."
+     "value": "⚠️ **thrombocytopenia (HIT, 1-2% after 4-5 days, IgG anti-heparin/PF4)**, ↑ transaminases, osteoporosis/hypercalcaemia (>6 months). **ANTIDOTE = protamine.**\n• **LMWH** (enoxaparin, dalteparin, nadroparin, reviparin): short chains → **predominant anti-Xa action, lower anti-IIa (antithrombin) activity**; venous thromboembolism/ACS; SC every 12-24h; ⚠️ protamine poorly effective.\n• **Synthetic derivatives** (pentasaccharides: **fondaparinux**, idraparinux, idrabiotaparinux): strong action on **Xa**; long half-life (fondaparinux 17-20h; idrabiotaparinux 120h, antidote **avidin** via biotin); ⚠️ **fondaparinux crosses the placenta** (not in pregnancy)."
     }
    ],
    "freetext": []
