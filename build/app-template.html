@@ -374,6 +374,7 @@ const STR={
  brand_sub:{it:'flashcard di farmacologia',en:'pharmacology flashcards'},streak_t:{it:'Giorni di studio di fila',en:'Day study streak'},
  due_today:{it:'carte da ripassare oggi 🎒',en:'cards due today 🎒'},all_done:{it:'tutto fatto, sei in pari! 🎉',en:"all done, you're up to date! 🎉"},
  start_review:{it:'▶ Inizia il ripasso',en:'▶ Start review'},browse_all:{it:'Sfoglia tutto',en:'Browse all'},table_btn:{it:'📋 Tabella dei nomi',en:'📋 Names table'},cards:{it:'carte',en:'cards'},
+ sess_lab:{it:'Sessione:',en:'Session:'},sess_both:{it:'Entrambe',en:'Both'},sess_new:{it:'🆕 Solo nuove',en:'🆕 New only'},sess_due:{it:'🔁 Solo ripasso',en:'🔁 Review only'},start_session:{it:'▶ Inizia',en:'▶ Start'},sess_lbl_both:{it:'in coda oggi (nuove + ripasso) 🎒',en:'queued today (new + review) 🎒'},sess_lbl_new:{it:'carte nuove da studiare 🆕',en:'new cards to study 🆕'},sess_lbl_due:{it:'carte da ripassare 🔁',en:'cards to review 🔁'},
  m_mature:{it:'Mature',en:'Mature'},m_started:{it:'Avviate',en:'Started'},m_new:{it:'Nuove',en:'New'},m_young:{it:'Giovani',en:'Young'},m_learning:{it:'In appr.',en:'Learning'},
  tile_due:{it:'Da ripassare',en:'Due'},tile_newtoday:{it:'Nuove oggi',en:'New today'},tile_studied:{it:'Studiate oggi',en:'Studied today'},tile_streak:{it:'Costanza',en:'Streak'},
  today_how:{it:"Com'è andata oggi",en:'How it went today'},today_how_h:{it:'Cosa ricordi bene, così così, male.',en:'What you remember well, so-so, badly.'},
@@ -442,8 +443,8 @@ function rerender(){
 /* ============================ STORE ============================ */
 const KEY='farmaco-srs-v1';
 let S=load();
-function load(){try{const r=JSON.parse(localStorage.getItem(KEY));if(r&&r.v)return migrate(r);}catch(e){}return {v:1,srs:{},log:[],settings:{newPerDay:15,shuffle:false},daily:{date:'',newDone:0},created:todayISO()};}
-function migrate(r){r.settings=r.settings||{newPerDay:15};if(typeof r.settings.shuffle!=='boolean')r.settings.shuffle=false;r.daily=r.daily||{date:'',newDone:0};return r;}
+function load(){try{const r=JSON.parse(localStorage.getItem(KEY));if(r&&r.v)return migrate(r);}catch(e){}return {v:1,srs:{},log:[],settings:{newPerDay:15,shuffle:false,sessMode:'both'},daily:{date:'',newDone:0},created:todayISO()};}
+function migrate(r){r.settings=r.settings||{newPerDay:15};if(typeof r.settings.shuffle!=='boolean')r.settings.shuffle=false;if(!r.settings.sessMode)r.settings.sessMode='both';r.daily=r.daily||{date:'',newDone:0};return r;}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){if(!save._w){save._w=1;setTimeout(()=>toast('⚠️ Safari sta bloccando il salvataggio: Impostazioni › Privacy › togli «Blocca tutti i cookie», oppure usa Esporta backup.'),400);}}}
 
 /* ============================ DATE ============================ */
@@ -480,10 +481,11 @@ function applyGrade(card,g){
 function ensureDaily(){const t=todayISO();if(S.daily.date!==t){S.daily={date:t,newDone:0};save();}}
 function dueCards(deckId){const t=todayISO();return CARDS.filter(c=>(!deckId||c.deckId===deckId)).filter(c=>{const st=S.srs[c.id];return st&&st.state!=='new'&&st.due&&st.due<=t;});}
 function newCards(deckId){return CARDS.filter(c=>(!deckId||c.deckId===deckId)).filter(c=>!S.srs[c.id]||S.srs[c.id].state==='new');}
-function buildQueue(deckId){
-  ensureDaily();const due=dueCards(deckId);
+function buildQueue(deckId,mode){
+  mode=mode||'both';
+  ensureDaily();const due=mode==='new'?[]:dueCards(deckId);
   const allowedNew=deckId?Math.max(0,S.settings.newPerDay):Math.max(0,S.settings.newPerDay-S.daily.newDone);
-  const fresh=newCards(deckId).slice(0,allowedNew);
+  const fresh=mode==='due'?[]:newCards(deckId).slice(0,allowedNew);
   const q=[];const a=[...due],b=[...fresh];
   while(a.length||b.length){for(let i=0;i<3&&a.length;i++)q.push(a.shift());if(b.length)q.push(b.shift());}
   return {queue:q,dueN:due.length,newN:fresh.length};
@@ -633,7 +635,9 @@ function studiedToday(){const t=todayISO();return new Set(S.log.filter(e=>e.d===
 function todayBreak(){const t=todayISO();const o={bad:0,mid:0,good:0,easy:0};S.log.filter(e=>e.d===t).forEach(e=>{o[['bad','mid','good','easy'][e.g]]++;});return o;}
 function streak(){const set=new Set(S.log.map(e=>e.d));let s=0;const d=new Date();if(!set.has(todayISO()))d.setDate(d.getDate()-1);while(set.has(isoOf(d))){s++;d.setDate(d.getDate()-1);}return s;}
 function renderDash(){
-  ensureDaily();const q=buildQueue(null);const totalDue=q.queue.length;const br=todayBreak();const st=studiedToday();
+  ensureDaily();const sm=S.settings.sessMode||'both';const q=buildQueue(null,sm);const sessCount=q.queue.length;const br=todayBreak();const st=studiedToday();
+  const allowedNew=Math.max(0,S.settings.newPerDay-S.daily.newDone);
+  const dueAll=dueCards(null).length, newAll=Math.min(newCards(null).length,allowedNew);
   $('#streakN').textContent=streak();
   const started=CARDS.filter(c=>S.srs[c.id]&&S.srs[c.id].state!=='new').length;
   const mature=CARDS.filter(c=>maturity(c.id)==='mature').length;const gl=gradeLbls();
@@ -641,9 +645,10 @@ function renderDash(){
     <div class="eyebrow">☀️ ${prettyDate()}</div>
     <div class="hero"><div class="hero-grid">
       <div>
-        <div class="bignum">${totalDue}<small>${totalDue?T('due_today'):T('all_done')}</small></div>
-        <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
-          <button class="cta" onclick="startGlobal()" ${totalDue?'':'disabled'}>${T('start_review')}</button>
+        <div class="bignum">${sessCount}<small>${sessCount?sessLbl(sm):T('all_done')}</small></div>
+        <div class="npd-row" style="margin-top:14px">${sessChips()}</div>
+        <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="cta" onclick="startGlobal()" ${sessCount?'':'disabled'}>${T('start_session')}</button>
           <button class="cta ghost" onclick="go('browse')">${T('browse_all')}</button>
           <button class="cta ghost" onclick="location.href='Tabella-Farmaci.html'">${T('table_btn')}</button>
         </div>
@@ -653,8 +658,8 @@ function renderDash(){
       <div>${donut([[T('m_mature'),mature,'#5bc873'],[T('m_started'),started-mature,'#ffce3a'],[T('m_new'),CARDS.length-started,'#ece1cb']],CARDS.length,T('cards'))}</div>
     </div></div>
     <div class="tiles">
-      <div class="tile am"><div class="k">${T('tile_due')}</div><div class="v">${q.dueN}</div></div>
-      <div class="tile"><div class="k">${T('tile_newtoday')}</div><div class="v" style="color:var(--blue)">${q.newN}</div></div>
+      <div class="tile am"><div class="k">${T('tile_due')}</div><div class="v">${dueAll}</div></div>
+      <div class="tile"><div class="k">${T('tile_newtoday')}</div><div class="v" style="color:var(--blue)">${newAll}</div></div>
       <div class="tile good"><div class="k">${T('tile_studied')}</div><div class="v">${st}</div></div>
       <div class="tile"><div class="k">${T('tile_streak')}</div><div class="v" style="color:var(--orange)">🔥 ${streak()}</div></div>
     </div>
@@ -706,7 +711,8 @@ function studyDeck(id,all){closeModal();const d=DECK_BY_ID[id];const cards=all?C
 
 /* ============================ STUDY ============================ */
 let session=null;
-function startGlobal(){const q=buildQueue(null);if(!q.queue.length){go('dash');toast(T('t_clear'));return;}startSession(q.queue,LANG==='en'?'Daily review':'Ripasso del giorno');}
+function sessTitle(m){return m==='new'?(LANG==='en'?'New cards':'Carte nuove'):m==='due'?(LANG==='en'?'Review':'Ripasso'):(LANG==='en'?'Daily review':'Ripasso del giorno');}
+function startGlobal(){const m=S.settings.sessMode||'both';const q=buildQueue(null,m);if(!q.queue.length){go('dash');toast(T('t_clear'));return;}startSession(q.queue,sessTitle(m));}
 function startSession(cards,title){if(!cards||!cards.length){toast(T('t_nothing'));return;}
   session={queue:(S.settings.shuffle?shuffleArr([...cards]):[...cards]),idx:0,title,revealed:false,total:cards.length,done:0,res:{bad:0,mid:0,good:0,easy:0}};
   $$('.tab').forEach(t=>t.classList.toggle('active',t.dataset.v==='study'));
@@ -826,6 +832,9 @@ function statTile(k,v,col){return `<div class="tile"><div class="k">${k}</div><d
 function npdChips(){const cur=S.settings.newPerDay,opts=[10,15,20,30,50,999];return `<span class="npd-lab">${T('npd_set')}</span>`+opts.map(n=>{const lab=n>=999?T('npd_all'):n,on=(cur===n||(n>=999&&cur>=999))?' on':'';return `<button class="fchip npd-chip${on}" onclick="setNPD(${n})">${lab}</button>`;}).join('');}
 function setNPD(n){S.settings.newPerDay=n;save();renderDash();toast(n>=999?T('npd_all')+' ✓':T('npd_set')+' '+n);}
 function shuffleToggle(){return `<button class="fchip npd-chip${S.settings.shuffle?' on':''}" onclick="toggleShuffle()">🔀 ${T('shuffle_label')}</button>`;}
+function sessChips(){const m=S.settings.sessMode||'both';const opts=[['both',T('sess_both')],['due',T('sess_due')],['new',T('sess_new')]];return `<span class="npd-lab">${T('sess_lab')}</span>`+opts.map(([k,lab])=>`<button class="fchip npd-chip${m===k?' on':''}" onclick="setSessMode('${k}')">${lab}</button>`).join('');}
+function setSessMode(m){S.settings.sessMode=m;save();renderDash();}
+function sessLbl(m){return m==='new'?T('sess_lbl_new'):m==='due'?T('sess_lbl_due'):T('sess_lbl_both');}
 function toggleShuffle(){S.settings.shuffle=!S.settings.shuffle;save();renderDash();toast(S.settings.shuffle?T('shuffle_on'):T('shuffle_off'));}
 function shuffleRest(){if(!session)return;const head=session.queue.slice(0,session.idx);const rest=shuffleArr(session.queue.slice(session.idx));session.queue=head.concat(rest);session.revealed=false;renderStudy();window.scrollTo(0,0);toast(T('shuffle_on'));}
 function saveNPD(){S.settings.newPerDay=Math.min(999,Math.max(0,parseInt($('#npd').value)||0));save();toast(T('t_saved'));}
