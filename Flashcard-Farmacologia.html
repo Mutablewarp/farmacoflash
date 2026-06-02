@@ -392,6 +392,7 @@ const STR={
  tile_due:{it:'Da ripassare',en:'Due'},tile_newtoday:{it:'Nuove oggi',en:'New today'},tile_studied:{it:'Studiate oggi',en:'Studied today'},tile_streak:{it:'Costanza',en:'Streak'},
  today_how:{it:"Com'è andata oggi",en:'How it went today'},today_how_h:{it:'Cosa ricordi bene, così così, male.',en:'What you remember well, so-so, badly.'},
  today_tap:{it:'tocca un volto per rivedere quelle carte',en:'tap a face to review those cards'},review_these:{it:'Ripassa queste',en:'Review these'},grade_drill_hint:{it:'Tocca una carta per studiarla, o ripassale tutte.',en:'Tap a card to study it, or review them all.'},today_lc:{it:'oggi',en:'today'},card_one:{it:'carta',en:'card'},
+ sess_weak:{it:'🔥 Difficili',en:'🔥 Hard'},sess_lbl_weak:{it:'carte difficili da rinforzare 🔥',en:'hard cards to reinforce 🔥'},reinforce_title:{it:'Da rinforzare',en:'Reinforce'},reinforce_h:{it:'Le carte su cui inciampi: ripassale a parte finché restano.',en:'The cards you stumble on: drill them until they stick.'},weak_lbl:{it:'A rischio',en:'At risk'},immature_lbl:{it:'Mai mature',en:'Never mature'},
  g_bad:{it:'Male',en:'Again'},g_mid:{it:'Così così',en:'Hard'},g_good:{it:'Bene',en:'Good'},g_easy:{it:'Facile',en:'Easy'},
  cal_title:{it:'Calendario dello studio',en:'Study calendar'},cal_h:{it:'Ogni quadratino è un giorno; più è verde, più hai ripassato.',en:'Each square is a day; greener = more reviews.'},
  less:{it:'meno',en:'less'},more:{it:'più',en:'more'},
@@ -472,6 +473,8 @@ function daysFromToday(iso){return Math.round((new Date(iso+'T00:00:00')-new Dat
 function defState(){return {ease:2.5,iv:0,reps:0,lapses:0,due:null,state:'new',seen:0,lastG:null,lastR:null};}
 function getState(id){return S.srs[id]?Object.assign(defState(),S.srs[id]):defState();}
 function maturity(id){const st=S.srs[id];if(!st||st.state==='new')return'new';if(st.state==='learning'||st.state==='relearn')return'learning';return st.iv>=21?'mature':'young';}
+function weakCards(){return CARDS.filter(c=>{const st=S.srs[c.id];return st&&st.state!=='new'&&((st.lapses||0)>=1||(st.ease||2.5)<2.0||(st.lastG!=null&&st.lastG<=1)||st.state==='relearn');});}
+function startedNotMature(){return CARDS.filter(c=>{const st=S.srs[c.id];return st&&st.state!=='new'&&maturity(c.id)!=='mature';});}
 function fmtIv(d){const u=LANG==='en'?['y','mo','d']:['a','m','g'];if(d>=365)return (d/365).toFixed(1).replace('.0','')+' '+u[0];if(d>=30)return Math.round(d/30)+' '+u[1];return d+' '+u[2];}
 function preview(card){const st=getState(card.id);const isRev=(st.state==='review'||st.state==='relearn');
   if(!isRev)return {0:'<10 min',1:'<10 min',2:fmtIv(1),3:fmtIv(4)};
@@ -650,7 +653,7 @@ function todayBreak(){const t=todayISO();const o={bad:0,mid:0,good:0,easy:0};S.l
 function todayCardsByGrade(){const t=todayISO();const last={};for(const e of S.log)if(e.d===t)last[e.id]=e.g;const o=[[],[],[],[]];for(const id in last)if(CARD_BY_ID[id])o[last[id]].push(id);return o;}
 function streak(){const set=new Set(S.log.map(e=>e.d));let s=0;const d=new Date();if(!set.has(todayISO()))d.setDate(d.getDate()-1);while(set.has(isoOf(d))){s++;d.setDate(d.getDate()-1);}return s;}
 function renderDash(){
-  ensureDaily();const sm=S.settings.sessMode||'both';const q=buildQueue(null,sm);const sessCount=q.queue.length;const br=todayBreak();const tc=todayCardsByGrade();const st=studiedToday();
+  ensureDaily();const sm=S.settings.sessMode||'both';const q=sm==='weak'?{queue:weakCards(),dueN:0,newN:0}:buildQueue(null,sm);const sessCount=q.queue.length;const br=todayBreak();const tc=todayCardsByGrade();const st=studiedToday();
   const allowedNew=Math.max(0,S.settings.newPerDay-S.daily.newDone);
   const dueAll=dueCards(null).length, newAll=Math.min(newCards(null).length,allowedNew);
   $('#streakN').textContent=streak();
@@ -726,8 +729,8 @@ function studyDeck(id,all){closeModal();const d=DECK_BY_ID[id];const cards=all?C
 
 /* ============================ STUDY ============================ */
 let session=null;
-function sessTitle(m){return m==='new'?(LANG==='en'?'New cards':'Carte nuove'):m==='due'?(LANG==='en'?'Review':'Ripasso'):(LANG==='en'?'Daily review':'Ripasso del giorno');}
-function startGlobal(){const m=S.settings.sessMode||'both';const q=buildQueue(null,m);if(!q.queue.length){go('dash');toast(T('t_clear'));return;}startSession(q.queue,sessTitle(m));}
+function sessTitle(m){return m==='new'?(LANG==='en'?'New cards':'Carte nuove'):m==='due'?(LANG==='en'?'Review':'Ripasso'):m==='weak'?(LANG==='en'?'Hard cards':'Carte difficili'):(LANG==='en'?'Daily review':'Ripasso del giorno');}
+function startGlobal(){const m=S.settings.sessMode||'both';const cs=m==='weak'?weakCards():buildQueue(null,m).queue;if(!cs.length){go('dash');toast(T('t_clear'));return;}startSession(cs,sessTitle(m));}
 function startSession(cards,title){if(!cards||!cards.length){toast(T('t_nothing'));return;}
   session={queue:(S.settings.shuffle?shuffleArr([...cards]):[...cards]),idx:0,title,revealed:false,total:cards.length,done:0,res:{bad:0,mid:0,good:0,easy:0}};
   $$('.tab').forEach(t=>t.classList.toggle('active',t.dataset.v==='study'));
@@ -805,19 +808,19 @@ function browItem(c,act){
     <div class="bn">${esc(C.nameShort||C.name)}</div><div class="bd">${esc(d.code)} · ${esc(deckTitle(d))}</div>
     <div class="bmech">${esc((mech||'').replace(/\*\*/g,'').replace(/\n/g,' ')).slice(0,150)}</div></div>`;
 }
-let gradeSelIds=[];
-function showGradeCards(g){
-  const ids=todayCardsByGrade()[g]||[];gradeSelIds=ids.slice();
+let setSelIds=[];
+function showCardSet(emoji,label,ids,hint){
+  setSelIds=ids.slice();
   const cards=ids.map(id=>CARD_BY_ID[id]).filter(Boolean);
-  const gl=gradeLbls(),emo=['😖','😐','😄','🌟'][g];
-  $('#modalHead').innerHTML=`<span class="chip">${emo} ${esc(gl[g])}</span><h2 style="margin-top:8px">${cards.length} ${cards.length===1?T('card_one'):T('cards')} · ${T('today_lc')}</h2><div style="color:var(--muted);font-size:.84rem;margin-top:6px;font-weight:700">${T('grade_drill_hint')}</div>`;
+  $('#modalHead').innerHTML=`<span class="chip">${emoji} ${esc(label)}</span><h2 style="margin-top:8px">${cards.length} ${cards.length===1?T('card_one'):T('cards')}</h2><div style="color:var(--muted);font-size:.84rem;margin-top:6px;font-weight:700">${esc(hint||T('grade_drill_hint'))}</div>`;
   const list=cards.length?cards.map(c=>browItem(c,'study')).join(''):`<div class="empty">${T('empty')}</div>`;
-  const btn=cards.length?`<button class="cta" style="margin:0 0 16px" onclick="studyGradeSel()">🔁 ${T('review_these')} (${cards.length})</button>`:'';
+  const btn=cards.length?`<button class="cta" style="margin:0 0 16px" onclick="studySetSel()">🔁 ${T('review_these')} (${cards.length})</button>`:'';
   $('#modalBody').innerHTML=btn+`<div class="browse-list" style="grid-template-columns:1fr">${list}</div>`;
   $('#modal').classList.add('show');document.body.style.overflow='hidden';
 }
+function showGradeCards(g){const gl=gradeLbls(),emo=['😖','😐','😄','🌟'][g];showCardSet(emo,gl[g]+' · '+T('today_lc'),todayCardsByGrade()[g]||[]);}
 function studyCardId(id){const c=CARD_BY_ID[id];if(!c)return;closeModal();startSession([c],L(c).nameShort||L(c).name);}
-function studyGradeSel(){const cs=gradeSelIds.map(id=>CARD_BY_ID[id]).filter(Boolean);if(!cs.length)return;closeModal();startSession(cs,T('review_these'));}
+function studySetSel(){const cs=setSelIds.map(id=>CARD_BY_ID[id]).filter(Boolean);if(!cs.length)return;closeModal();startSession(cs,T('review_these'));}
 function applyBrowse(){
   const ql=norm($('#search').value);let list=CARDS.filter(c=>!browseFilter||c.deckId===browseFilter);
   if(ql)list=list.filter(c=>c._search.includes(ql));
@@ -835,6 +838,7 @@ function closeModal(){$('#modal').classList.remove('show');document.body.style.o
 /* ============================ STATS ============================ */
 function renderStats(){
   const total=CARDS.length;const cnt={new:0,learning:0,young:0,mature:0};CARDS.forEach(c=>cnt[maturity(c.id)]++);
+  const weak=weakCards(),nm=startedNotMature();
   const reviews=S.log.length;const days=new Set(S.log.map(e=>e.d)).size;
   const good=S.log.filter(e=>e.g>=2).length;const retention=reviews?Math.round(good/reviews*100):0;
   applyStaticStrings();
@@ -846,6 +850,11 @@ function renderStats(){
       ${statTile(T('st_streak'),streak()+' 🔥','var(--orange)')}${statTile(T('st_ret'),retention+'%',retention>=80?'var(--green-deep)':retention>=60?'var(--orange)':'var(--rose-deep)')}
       ${statTile(T('st_mat'),cnt.mature,'var(--green-deep)')}${statTile(T('st_tostart'),cnt.new,'var(--blue)')}
     </div>
+    <div class="panel"><h3>🔥 ${T('reinforce_title')}</h3><div class="hint">${T('reinforce_h')}</div>
+      <div class="tiles" style="margin:0">
+        <div class="tile bad${weak.length?' clk':''}"${weak.length?` onclick="showCardSet('🔥','${T('weak_lbl')}',weakCards().map(c=>c.id))"`:''}><div class="k">⚠️ ${T('weak_lbl')}</div><div class="v">${weak.length}</div></div>
+        <div class="tile mid${nm.length?' clk':''}"${nm.length?` onclick="showCardSet('🌱','${T('immature_lbl')}',startedNotMature().map(c=>c.id))"`:''}><div class="k">🌱 ${T('immature_lbl')}</div><div class="v">${nm.length}</div></div>
+      </div></div>
     <div class="panel"><h3>${T('st_comp')}</h3><div class="hint">${T('st_comp_h')} ${total} ${T('st_comp_h2')}</div>
       ${donut([[T('m_mature'),cnt.mature,'#5bc873'],[T('m_young'),cnt.young,'#ffce3a'],[T('m_learning'),cnt.learning,'#ff9f5a'],[T('m_new'),cnt.new,'#ece1cb']],total,T('cards'))}</div>
     <div class="panel"><h3>${T('st_mastery')}</h3><div class="hint">${T('st_mastery_h')}</div>
@@ -861,9 +870,9 @@ function statTile(k,v,col){return `<div class="tile"><div class="k">${k}</div><d
 function npdChips(){const cur=S.settings.newPerDay,opts=[10,15,20,30,50,999];return `<span class="npd-lab">${T('npd_set')}</span>`+opts.map(n=>{const lab=n>=999?T('npd_all'):n,on=(cur===n||(n>=999&&cur>=999))?' on':'';return `<button class="fchip npd-chip${on}" onclick="setNPD(${n})">${lab}</button>`;}).join('');}
 function setNPD(n){S.settings.newPerDay=n;save();renderDash();toast(n>=999?T('npd_all')+' ✓':T('npd_set')+' '+n);}
 function shuffleToggle(){return `<button class="fchip npd-chip${S.settings.shuffle?' on':''}" onclick="toggleShuffle()">🔀 ${T('shuffle_label')}</button>`;}
-function sessChips(){const m=S.settings.sessMode||'both';const opts=[['both',T('sess_both')],['due',T('sess_due')],['new',T('sess_new')]];return `<span class="npd-lab">${T('sess_lab')}</span>`+opts.map(([k,lab])=>`<button class="fchip npd-chip${m===k?' on':''}" onclick="setSessMode('${k}')">${lab}</button>`).join('');}
+function sessChips(){const m=S.settings.sessMode||'both';const opts=[['both',T('sess_both')],['due',T('sess_due')],['new',T('sess_new')],['weak',T('sess_weak')]];return `<span class="npd-lab">${T('sess_lab')}</span>`+opts.map(([k,lab])=>`<button class="fchip npd-chip${m===k?' on':''}" onclick="setSessMode('${k}')">${lab}</button>`).join('');}
 function setSessMode(m){S.settings.sessMode=m;save();renderDash();}
-function sessLbl(m){return m==='new'?T('sess_lbl_new'):m==='due'?T('sess_lbl_due'):T('sess_lbl_both');}
+function sessLbl(m){return m==='new'?T('sess_lbl_new'):m==='due'?T('sess_lbl_due'):m==='weak'?T('sess_lbl_weak'):T('sess_lbl_both');}
 function toggleShuffle(){S.settings.shuffle=!S.settings.shuffle;save();renderDash();toast(S.settings.shuffle?T('shuffle_on'):T('shuffle_off'));}
 function shuffleRest(){if(!session)return;const head=session.queue.slice(0,session.idx);const rest=shuffleArr(session.queue.slice(session.idx));session.queue=head.concat(rest);session.revealed=false;renderStudy();window.scrollTo(0,0);toast(T('shuffle_on'));}
 function saveNPD(){S.settings.newPerDay=Math.min(999,Math.max(0,parseInt($('#npd').value)||0));save();toast(T('t_saved'));}
