@@ -45,6 +45,15 @@
 2. Su iPhone: AirDrop del file → aprilo in Safari → **Condividi › Aggiungi a Home**.
 3. I progressi sono salvati nel browser. Per spostarli su un altro dispositivo usa **Esporta backup** in *Statistiche* e poi **Importa** sull'altro.
 
+### 📲 Installa come app (PWA, offline, privata)
+
+Sia `Flashcard-Farmacologia.html` sia `Tabella-Farmaci.html` sono **app installabili**: icona dedicata 💊, schermo intero (senza barre del browser), funzionano **offline** e restano **private** (nessun server, nessun account).
+
+- **iPhone (Safari):** trasferisci il file (AirDrop / app File) → aprilo → **Condividi › Aggiungi a Home**. Parte come app a schermo intero con la sua icona. *(Per un'installazione PWA "piena" con cache offline garantita, apri il file una volta da un indirizzo locale del Mac sulla stessa rete — es. `python3 -m http.server` nella cartella — poi Aggiungi a Home: da lì funziona offline.)*
+- **Android/desktop (Chrome):** apri il file → menu ⋮ → **Installa app / Aggiungi a schermata Home**.
+
+> Le due app sono collegate: dalla **Tabella** tocchi un farmaco → si apre la sua **scheda di studio** in FarmacoFlash; dalla dashboard di FarmacoFlash il pulsante **📋 Tabella dei nomi** riapre la tabella. Tienile **nella stessa cartella** perché i collegamenti funzionino offline.
+
 ### Deep-link (utile per condividere/screenshot)
 `…Flashcard-Farmacologia.html#dash` · `#browse` · `#stats` · `#card=<id>` · `#front=<id>`
 

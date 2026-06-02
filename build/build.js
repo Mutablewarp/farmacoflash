@@ -6,6 +6,7 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
+const { pwaHead } = require('./pwa-head');
 
 const BUILD = __dirname;
 const ROOT = path.resolve(BUILD, '..');
@@ -76,7 +77,9 @@ if (enrich && enrich.entries) {
 
 const tpl = fs.readFileSync(path.join(BUILD, 'app-template.html'), 'utf8');
 const b64 = Buffer.from(JSON.stringify(data), 'utf8').toString('base64');
-fs.writeFileSync(OUT, tpl.replace('__DATA_B64__', b64));
+fs.writeFileSync(OUT, tpl
+  .replace('__PWA_HEAD__', pwaHead({ name: 'FarmacoFlash · Flashcard di Farmacologia', title: 'FarmacoFlash' }))
+  .replace('__DATA_B64__', b64));
 
 const sizeMB = (fs.statSync(OUT).size / 1024 / 1024).toFixed(2);
 console.log(`✓ Scritto ${path.basename(OUT)}  (${sizeMB} MB)`);

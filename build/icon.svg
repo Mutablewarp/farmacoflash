@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#fff8ec"/>
+  <g stroke="rgba(140,110,60,.10)" stroke-width="2">
+    <path d="M0 128H512M0 256H512M0 384H512M128 0V512M256 0V512M384 0V512"/>
+  </g>
+  <rect x="26" y="26" width="460" height="460" rx="92" fill="none" stroke="#3a322b" stroke-width="9" stroke-dasharray="2 20" stroke-linecap="round" opacity=".5"/>
+  <!-- capsula -->
+  <g transform="rotate(-28 256 262)">
+    <rect x="116" y="208" width="280" height="108" rx="54" fill="#ff6b6b" stroke="#3a322b" stroke-width="15"/>
+    <line x1="256" y1="208" x2="256" y2="316" stroke="#3a322b" stroke-width="15"/>
+    <ellipse cx="186" cy="246" rx="34" ry="16" fill="#fff" opacity=".35"/>
+  </g>
+  <!-- scintille doodle -->
+  <g stroke="#ffce3a" stroke-width="11" stroke-linecap="round">
+    <path d="M398 150 v34 M381 167 h34"/>
+  </g>
+  <g stroke="#4ea8de" stroke-width="9" stroke-linecap="round" fill="none">
+    <path d="M104 372 q14 -16 28 0 q14 16 28 0"/>
+  </g>
+</svg>
