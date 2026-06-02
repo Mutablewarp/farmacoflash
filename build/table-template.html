@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tabella Farmaci · FarmacoFlash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@500;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fff8ec; --paper-2:#fffdf7; --grid:rgba(140,110,60,.09);
+  --ink:#3a322b; --ink-soft:#6f6253; --muted:#a3937e;
+  --red:#ff6b6b; --yellow:#ffce3a; --blue:#4ea8de; --green:#5bc873; --purple:#b07cd6; --orange:#ff9f5a; --pink:#ff8fb1;
+  --font-display:'Shantell Sans','Comic Sans MS',cursive; --font-body:'Nunito',system-ui,-apple-system,sans-serif;
+  --shadow:3px 3px 0 rgba(58,50,43,.16); --spring:cubic-bezier(.34,1.52,.64,1);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--font-body);font-weight:700;color:var(--ink);
+  background:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:26px 26px;
+  -webkit-text-size-adjust:100%;padding-bottom:40px}
+header{position:sticky;top:0;z-index:30;background:rgba(255,248,236,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:2.5px dashed var(--ink);padding:14px max(16px,env(safe-area-inset-left)) 12px}
+.hwrap{max-width:1180px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:12px}
+.mk{width:40px;height:40px;flex:0 0 auto}
+h1{font-family:var(--font-display);font-weight:800;font-size:1.5rem;margin:0;line-height:1}
+.sub{font-family:var(--font-body);font-weight:800;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+main{max-width:1180px;margin:0 auto;padding:18px max(16px,env(safe-area-inset-left)) 0}
+.search{width:100%;background:var(--paper-2);border:2.5px solid var(--ink);border-radius:16px 11px 15px 11px/11px 15px 11px 16px;padding:13px 16px;color:var(--ink);font-size:1.02rem;font-family:var(--font-body);font-weight:700;box-shadow:var(--shadow)}
+.search::placeholder{color:var(--faint,#c2b39a)}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:14px 0 6px}
+.lab{font-family:var(--font-display);font-weight:700;font-size:.82rem;color:var(--ink-soft);margin-right:2px}
+.chip{background:var(--paper-2);border:2.5px solid var(--ink);color:var(--ink);padding:5px 12px;border-radius:12px;font-size:.82rem;font-weight:800;cursor:pointer;transition:transform .15s var(--spring);box-shadow:2px 2px 0 rgba(58,50,43,.14);white-space:nowrap}
+.chip:hover{transform:translateY(-1px)}
+.chip.on{background:var(--yellow)}
+.chip.dk{font-size:.78rem;padding:4px 10px}
+.deckchips{max-height:104px;overflow:auto;padding:2px;gap:6px}
+.count{font-family:var(--font-display);font-weight:700;color:var(--ink-soft);margin-left:auto;font-size:.9rem}
+.tbl-wrap{margin-top:12px;border:2.5px solid var(--ink);border-radius:18px;overflow:auto;background:var(--paper-2);box-shadow:var(--shadow);max-height:calc(100vh - 250px)}
+table{border-collapse:collapse;width:100%;min-width:880px}
+thead th{position:sticky;top:0;z-index:2;background:#f3e7cd;border-bottom:2.5px solid var(--ink);text-align:left;font-family:var(--font-display);font-weight:800;font-size:.84rem;padding:11px 13px;color:var(--ink);cursor:pointer;user-select:none;white-space:nowrap}
+thead th .ar{opacity:.4;font-size:.75rem}
+thead th.s .ar{opacity:1;color:var(--red)}
+tbody td{border-bottom:1.5px dotted #d9c9aa;padding:10px 13px;font-size:.9rem;vertical-align:top;line-height:1.32}
+tbody tr:hover{background:#fffaf0}
+.c-cls{white-space:nowrap}
+.dchip{display:inline-block;font-family:var(--font-display);font-weight:800;font-size:.72rem;padding:2px 8px;border-radius:9px;border:2px solid var(--ink);color:var(--ink);margin-right:6px}
+.c-cls small{color:var(--muted);font-weight:800;font-size:.74rem;display:block;margin-top:3px;max-width:160px;white-space:normal}
+.c-name{font-family:var(--font-display);font-weight:700;font-size:.98rem;color:var(--ink);min-width:180px;max-width:250px}
+.c-mecc,.c-ind,.c-adr{color:var(--ink-soft);font-weight:600;max-width:235px}
+.mod-pill{display:inline-block;font-size:.66rem;font-weight:800;padding:1px 6px;border-radius:7px;border:1.5px solid var(--ink);margin-left:6px;color:var(--ink)}
+.mod-I{background:#e7f0ff}.mod-II{background:#ffe9f1}
+.empty{padding:40px;text-align:center;color:var(--muted);font-family:var(--font-display);font-weight:700;font-size:1.05rem}
+mark{background:var(--yellow);color:var(--ink);border-radius:3px;padding:0 1px}
+/* modalità compatta: nasconde le colonne di dettaglio */
+body.compatta .col-d{display:none}
+body.compatta table{min-width:0}
+body.compatta .c-name{max-width:none}
+.foot{max-width:1180px;margin:14px auto 0;padding:0 16px;color:var(--muted);font-weight:700;font-size:.78rem;text-align:center}
+@media(max-width:560px){
+  h1{font-size:1.25rem} .tbl-wrap{max-height:calc(100vh - 290px)}
+  thead th,tbody td{padding:9px 10px}
+}
+</style>
+</head>
+<body>
+<header><div class="hwrap">
+  <div class="brand">
+    <svg class="mk" viewBox="0 0 44 44" fill="none"><rect x="7" y="16" width="30" height="14" rx="7" transform="rotate(-30 22 22)" fill="#ff6b6b" stroke="#3a322b" stroke-width="2.6"/><line x1="15" y1="26" x2="29" y2="18" stroke="#3a322b" stroke-width="2.6"/></svg>
+    <div><h1>Tabella Farmaci</h1><div class="sub">FarmacoFlash · da imparare a memoria</div></div>
+  </div>
+</div></header>
+<main>
+  <input class="search" id="q" type="search" autocomplete="off" placeholder="🔎 cerca un farmaco, una classe, un meccanismo…">
+  <div class="row" id="modRow"><span class="lab">Modulo:</span></div>
+  <div class="row"><span class="lab">Vista:</span>
+    <button class="chip" id="compBtn">🧠 Compatta (solo nomi)</button>
+    <button class="chip" id="clrBtn">↺ Azzera filtri</button>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="row deckchips" id="deckRow"><span class="lab">Classe:</span></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th data-k="o" id="thCls">Classe <span class="ar">▾</span></th>
+        <th data-k="name">Farmaco <span class="ar">▾</span></th>
+        <th class="col-d" data-k="mecc">Meccanismo <span class="ar">▾</span></th>
+        <th class="col-d" data-k="ind">Indicazioni <span class="ar">▾</span></th>
+        <th class="col-d" data-k="adr">Reazioni avverse <span class="ar">▾</span></th>
+      </tr></thead>
+      <tbody id="tb"></tbody>
+    </table>
+  </div>
+  <div class="foot" id="foot"></div>
+</main>
+<script>
+const DATA = __DATA__;
+const DECKS = __DECKS__;
+const $ = s=>document.querySelector(s);
+let state = { q:'', mod:null, deck:null, sort:{k:'o',dir:1} };
+
+function esc(s){return String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function hi(s){ const q=state.q.trim(); if(!q) return esc(s); try{const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');return esc(s).replace(re,'<mark>$1</mark>');}catch(e){return esc(s);} }
+function norm(s){return (s||'').toLowerCase();}
+
+function deckColor(id){const d=DECKS.find(x=>x.id===id);return d&&d.color?d.color:'#ece1cb';}
+function deckTitle(id){const d=DECKS.find(x=>x.id===id);return d?d.title:id;}
+
+function filtered(){
+  const q=norm(state.q);
+  let r=DATA.filter(x=>{
+    if(state.mod && x.mod!==state.mod) return false;
+    if(state.deck && x.deck!==state.deck) return false;
+    if(q && !x._s.includes(q)) return false;
+    return true;
+  });
+  const {k,dir}=state.sort;
+  r=r.slice().sort((a,b)=>{
+    let va=a[k], vb=b[k];
+    if(k==='o'){ if(va!==vb) return (va-vb); return a.name.localeCompare(b.name,'it'); }
+    return String(va).localeCompare(String(vb),'it')*dir;
+  });
+  return r;
+}
+
+function render(){
+  const rows=filtered();
+  $('#count').textContent = rows.length+' / '+DATA.length+' farmaci';
+  if(!rows.length){ $('#tb').innerHTML='<tr><td colspan="5" class="empty">Nessun farmaco trovato 🐢</td></tr>'; return; }
+  $('#tb').innerHTML = rows.map(x=>{
+    const code = (DECKS.find(d=>d.id===x.deck)||{}).code || x.deck;
+    return '<tr>'+
+      '<td class="c-cls"><span class="dchip" style="background:'+deckColor(x.deck)+'44">'+esc(code)+'</span><span class="mod-pill mod-'+x.mod+'">Mod '+x.mod+'</span><small>'+esc(deckTitle(x.deck))+'</small></td>'+
+      '<td class="c-name">'+hi(x.name)+'</td>'+
+      '<td class="c-mecc col-d">'+hi(x.mecc)+'</td>'+
+      '<td class="c-ind col-d">'+hi(x.ind)+'</td>'+
+      '<td class="c-adr col-d">'+hi(x.adr)+'</td>'+
+    '</tr>';
+  }).join('');
+}
+
+function buildChips(){
+  // modulo
+  const mr=$('#modRow');
+  [['Tutti',null],['Modulo I',  'I'],['Modulo II','II']].forEach(([t,v])=>{
+    const b=document.createElement('button'); b.className='chip'+((state.mod===v)?' on':''); b.textContent=t;
+    b.onclick=()=>{ state.mod=v; refreshChips(); render(); }; b.dataset.mod=String(v); mr.appendChild(b);
+  });
+  // classi
+  const dr=$('#deckRow');
+  DECKS.forEach(d=>{
+    const b=document.createElement('button'); b.className='chip dk'; b.dataset.deck=d.id;
+    b.style.background=d.color?d.color+'33':''; b.textContent=(d.code||d.id);
+    b.title=d.title;
+    b.onclick=()=>{ state.deck = (state.deck===d.id)?null:d.id; refreshChips(); render(); };
+    dr.appendChild(b);
+  });
+}
+function refreshChips(){
+  document.querySelectorAll('#modRow .chip').forEach(b=>b.classList.toggle('on', b.dataset.mod===String(state.mod)));
+  document.querySelectorAll('#deckRow .chip').forEach(b=>b.classList.toggle('on', b.dataset.deck===state.deck));
+}
+
+$('#q').addEventListener('input', e=>{ state.q=e.target.value; render(); });
+$('#compBtn').addEventListener('click', ()=>{ document.body.classList.toggle('compatta'); $('#compBtn').classList.toggle('on'); });
+$('#clrBtn').addEventListener('click', ()=>{ state.q=''; state.mod=null; state.deck=null; $('#q').value=''; refreshChips(); render(); });
+document.querySelectorAll('thead th').forEach(th=>{
+  th.addEventListener('click', ()=>{
+    const k=th.dataset.k;
+    if(state.sort.k===k) state.sort.dir*=-1; else state.sort={k,dir:1};
+    document.querySelectorAll('thead th').forEach(t=>t.classList.remove('s'));
+    th.classList.add('s');
+    render();
+  });
+});
+
+buildChips();
+$('#foot').textContent = DATA.length+' farmaci · '+DECKS.length+' classi · Moduli I–II · dati dalle tue carte FarmacoFlash';
+render();
+</script>
+</body>
+</html>
