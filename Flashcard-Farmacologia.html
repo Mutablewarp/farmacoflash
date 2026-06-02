@@ -136,6 +136,10 @@ h1.page em::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height
 .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px}
 @media(max-width:720px){.tiles{grid-template-columns:repeat(2,1fr)}}
 .tile{border:2.5px solid var(--ink);border-radius:var(--sk);padding:16px 17px;background:var(--paper-2);box-shadow:var(--shadow)}
+.tile.clk{cursor:pointer;transition:transform .14s var(--spring),box-shadow .14s}
+.tile.clk:hover{transform:translateY(-3px) rotate(-.5deg);box-shadow:var(--shadow-lg)}
+.tile.clk:active{transform:translateY(0)}
+.tile.clk::after{content:"👆";float:right;font-size:.9rem;opacity:.5;margin-top:-2px}
 .tile:nth-child(2n){transform:rotate(.6deg)} .tile:nth-child(3n){transform:rotate(-.7deg)}
 .tile .k{font-size:.76rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:800}
 .tile .v{font-family:var(--font-display);font-size:2rem;font-weight:700;margin-top:3px;color:var(--ink)}
@@ -387,6 +391,7 @@ const STR={
  m_mature:{it:'Mature',en:'Mature'},m_started:{it:'Avviate',en:'Started'},m_new:{it:'Nuove',en:'New'},m_young:{it:'Giovani',en:'Young'},m_learning:{it:'In appr.',en:'Learning'},
  tile_due:{it:'Da ripassare',en:'Due'},tile_newtoday:{it:'Nuove oggi',en:'New today'},tile_studied:{it:'Studiate oggi',en:'Studied today'},tile_streak:{it:'Costanza',en:'Streak'},
  today_how:{it:"Com'è andata oggi",en:'How it went today'},today_how_h:{it:'Cosa ricordi bene, così così, male.',en:'What you remember well, so-so, badly.'},
+ today_tap:{it:'tocca un volto per rivedere quelle carte',en:'tap a face to review those cards'},review_these:{it:'Ripassa queste',en:'Review these'},grade_drill_hint:{it:'Tocca una carta per studiarla, o ripassale tutte.',en:'Tap a card to study it, or review them all.'},today_lc:{it:'oggi',en:'today'},card_one:{it:'carta',en:'card'},
  g_bad:{it:'Male',en:'Again'},g_mid:{it:'Così così',en:'Hard'},g_good:{it:'Bene',en:'Good'},g_easy:{it:'Facile',en:'Easy'},
  cal_title:{it:'Calendario dello studio',en:'Study calendar'},cal_h:{it:'Ogni quadratino è un giorno; più è verde, più hai ripassato.',en:'Each square is a day; greener = more reviews.'},
  less:{it:'meno',en:'less'},more:{it:'più',en:'more'},
@@ -642,9 +647,10 @@ function go(v){$$('.view').forEach(s=>s.classList.remove('active'));$('#v-'+v).c
 /* ============================ DASHBOARD ============================ */
 function studiedToday(){const t=todayISO();return new Set(S.log.filter(e=>e.d===t).map(e=>e.id)).size;}
 function todayBreak(){const t=todayISO();const o={bad:0,mid:0,good:0,easy:0};S.log.filter(e=>e.d===t).forEach(e=>{o[['bad','mid','good','easy'][e.g]]++;});return o;}
+function todayCardsByGrade(){const t=todayISO();const last={};for(const e of S.log)if(e.d===t)last[e.id]=e.g;const o=[[],[],[],[]];for(const id in last)if(CARD_BY_ID[id])o[last[id]].push(id);return o;}
 function streak(){const set=new Set(S.log.map(e=>e.d));let s=0;const d=new Date();if(!set.has(todayISO()))d.setDate(d.getDate()-1);while(set.has(isoOf(d))){s++;d.setDate(d.getDate()-1);}return s;}
 function renderDash(){
-  ensureDaily();const sm=S.settings.sessMode||'both';const q=buildQueue(null,sm);const sessCount=q.queue.length;const br=todayBreak();const st=studiedToday();
+  ensureDaily();const sm=S.settings.sessMode||'both';const q=buildQueue(null,sm);const sessCount=q.queue.length;const br=todayBreak();const tc=todayCardsByGrade();const st=studiedToday();
   const allowedNew=Math.max(0,S.settings.newPerDay-S.daily.newDone);
   const dueAll=dueCards(null).length, newAll=Math.min(newCards(null).length,allowedNew);
   $('#streakN').textContent=streak();
@@ -672,12 +678,12 @@ function renderDash(){
       <div class="tile good"><div class="k">${T('tile_studied')}</div><div class="v">${st}</div></div>
       <div class="tile"><div class="k">${T('tile_streak')}</div><div class="v" style="color:var(--orange)">🔥 ${streak()}</div></div>
     </div>
-    <div class="panel"><h3>${T('today_how')}</h3><div class="hint">${T('today_how_h')}</div>
+    <div class="panel"><h3>${T('today_how')}</h3><div class="hint">${T('today_how_h')} · ${T('today_tap')}</div>
       <div class="tiles" style="margin:0">
-        <div class="tile bad"><div class="k">😖 ${gl[0]}</div><div class="v">${br.bad}</div></div>
-        <div class="tile mid"><div class="k">😐 ${gl[1]}</div><div class="v">${br.mid}</div></div>
-        <div class="tile good"><div class="k">😄 ${gl[2]}</div><div class="v">${br.good}</div></div>
-        <div class="tile"><div class="k">🌟 ${gl[3]}</div><div class="v" style="color:var(--blue)">${br.easy}</div></div>
+        <div class="tile bad${tc[0].length?' clk':''}"${tc[0].length?' onclick="showGradeCards(0)"':''}><div class="k">😖 ${gl[0]}</div><div class="v">${tc[0].length}</div></div>
+        <div class="tile mid${tc[1].length?' clk':''}"${tc[1].length?' onclick="showGradeCards(1)"':''}><div class="k">😐 ${gl[1]}</div><div class="v">${tc[1].length}</div></div>
+        <div class="tile good${tc[2].length?' clk':''}"${tc[2].length?' onclick="showGradeCards(2)"':''}><div class="k">😄 ${gl[2]}</div><div class="v">${tc[2].length}</div></div>
+        <div class="tile${tc[3].length?' clk':''}"${tc[3].length?' onclick="showGradeCards(3)"':''}><div class="k">🌟 ${gl[3]}</div><div class="v" style="color:var(--blue)">${tc[3].length}</div></div>
       </div></div>
     <div class="panel"><h3>${T('cal_title')}</h3><div class="hint">${T('cal_h')}</div>
       ${heatmap()}
@@ -791,13 +797,27 @@ function renderBrowse(){
   applyBrowse();
 }
 function setFilter(id){browseFilter=id;renderBrowse();}
-function browItem(c){
+function browItem(c,act){
   const d=DECK_BY_ID[c.deckId];const mat=maturity(c.id);const C=L(c);
   const mech=C.memo||(C.segments&&C.segments[0]?C.segments[0].value:(C.freetext||[]).join(' '));
-  return `<div class="brow" onclick="openCard('${c.id}')"><span class="statusdot sd-${mat}">${T('sd_'+mat)}</span>
+  const oc=act==='study'?'studyCardId':'openCard';
+  return `<div class="brow" onclick="${oc}('${c.id}')"><span class="statusdot sd-${mat}">${T('sd_'+mat)}</span>
     <div class="bn">${esc(C.nameShort||C.name)}</div><div class="bd">${esc(d.code)} · ${esc(deckTitle(d))}</div>
     <div class="bmech">${esc((mech||'').replace(/\*\*/g,'').replace(/\n/g,' ')).slice(0,150)}</div></div>`;
 }
+let gradeSelIds=[];
+function showGradeCards(g){
+  const ids=todayCardsByGrade()[g]||[];gradeSelIds=ids.slice();
+  const cards=ids.map(id=>CARD_BY_ID[id]).filter(Boolean);
+  const gl=gradeLbls(),emo=['😖','😐','😄','🌟'][g];
+  $('#modalHead').innerHTML=`<span class="chip">${emo} ${esc(gl[g])}</span><h2 style="margin-top:8px">${cards.length} ${cards.length===1?T('card_one'):T('cards')} · ${T('today_lc')}</h2><div style="color:var(--muted);font-size:.84rem;margin-top:6px;font-weight:700">${T('grade_drill_hint')}</div>`;
+  const list=cards.length?cards.map(c=>browItem(c,'study')).join(''):`<div class="empty">${T('empty')}</div>`;
+  const btn=cards.length?`<button class="cta" style="margin:0 0 16px" onclick="studyGradeSel()">🔁 ${T('review_these')} (${cards.length})</button>`:'';
+  $('#modalBody').innerHTML=btn+`<div class="browse-list" style="grid-template-columns:1fr">${list}</div>`;
+  $('#modal').classList.add('show');document.body.style.overflow='hidden';
+}
+function studyCardId(id){const c=CARD_BY_ID[id];if(!c)return;closeModal();startSession([c],L(c).nameShort||L(c).name);}
+function studyGradeSel(){const cs=gradeSelIds.map(id=>CARD_BY_ID[id]).filter(Boolean);if(!cs.length)return;closeModal();startSession(cs,T('review_these'));}
 function applyBrowse(){
   const ql=norm($('#search').value);let list=CARDS.filter(c=>!browseFilter||c.deckId===browseFilter);
   if(ql)list=list.filter(c=>c._search.includes(ql));
