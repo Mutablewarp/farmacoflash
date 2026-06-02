@@ -75,6 +75,13 @@ tr.exp td{background:#fffdf5;border-bottom:2px solid var(--ink)}
 body.m-nomi tr.exp.open .eff{display:block}
 body.m-effetti tr.exp.open .nm{display:block}
 .hint{max-width:1180px;margin:1px auto 0;padding:0 16px;color:var(--blue);font-weight:800;font-size:.84rem;min-height:1.1em}
+/* collegamento alla scheda di studio in FarmacoFlash */
+.namelink{color:inherit;text-decoration:none}
+body.m-all .c-name .namelink:hover,.exp .namelink:hover{color:var(--blue);text-decoration:underline}
+body.m-all tbody tr.dr{cursor:pointer}
+body.m-all tbody tr.dr:hover{background:#fff3d6}
+.studia{display:inline-block;margin-top:11px;font-family:var(--font-display);font-weight:800;font-size:.86rem;color:var(--ink);background:var(--green);border:2.5px solid var(--ink);border-radius:12px 8px 11px 8px/8px 11px 8px 12px;padding:7px 15px;text-decoration:none;box-shadow:2px 2px 0 rgba(58,50,43,.2);transition:transform .14s var(--spring)}
+.studia:hover{transform:translate(-1px,-2px);background:#6fd488}
 .foot{max-width:1180px;margin:14px auto 0;padding:0 16px;color:var(--muted);font-weight:700;font-size:.78rem;text-align:center}
 @media(max-width:560px){
   h1{font-size:1.25rem} .tbl-wrap{max-height:calc(100vh - 290px)}
@@ -152,20 +159,22 @@ function render(){
   $('#tb').innerHTML = rows.map(x=>{
     const code = (DECKS.find(d=>d.id===x.deck)||{}).code || x.deck;
     const cls='<span class="dchip" style="background:'+deckColor(x.deck)+'44">'+esc(code)+'</span><span class="mod-pill mod-'+x.mod+'">Mod '+x.mod+'</span><small>'+esc(deckTitle(x.deck))+'</small>';
-    return '<tr class="dr">'+
+    const href='Flashcard-Farmacologia.html#front='+esc(x.id||'');
+    return '<tr class="dr" data-id="'+esc(x.id||'')+'">'+
       '<td class="c-cls">'+cls+'</td>'+
-      '<td class="c-name hN">'+hi(x.name)+'</td>'+
+      '<td class="c-name hN"><a class="namelink" href="'+href+'">'+hi(x.name)+'</a></td>'+
       '<td class="c-mecc col-d">'+hi(x.mecc||'—')+'</td>'+
       '<td class="c-ind col-d">'+hi(x.ind||'—')+'</td>'+
       '<td class="c-adr col-d">'+hi(x.adr||'—')+'</td>'+
     '</tr>'+
     '<tr class="exp"><td colspan="5"><div class="exp-in">'+
-      '<div class="nm"><span class="exp-lab">Farmaco</span>'+hi(x.name)+'</div>'+
+      '<div class="nm"><span class="exp-lab">Farmaco</span><a class="namelink" href="'+href+'">'+hi(x.name)+'</a></div>'+
       '<div class="eff">'+
         '<div><span class="exp-lab">Meccanismo</span>'+hi(x.mecc||'—')+'</div>'+
         '<div><span class="exp-lab">Indicazioni</span>'+hi(x.ind||'—')+'</div>'+
         '<div><span class="exp-lab">Reazioni avverse</span>'+hi(x.adr||'—')+'</div>'+
       '</div>'+
+      '<a class="studia" href="'+href+'">↗ Studia in FarmacoFlash</a>'+
     '</div></td></tr>';
   }).join('');
 }
@@ -201,13 +210,16 @@ function setMode(m){
   document.querySelectorAll('.chip.mode').forEach(b=>b.classList.toggle('on', b.dataset.mode===m));
   document.querySelectorAll('tr.open').forEach(t=>t.classList.remove('open'));
   $('#hint').textContent = m==='nomi' ? '👆 Tocca un farmaco per vedere a cosa serve'
-    : m==='effetti' ? '👆 Leggi gli effetti e prova a indovinare: tocca per scoprire il farmaco' : '';
+    : m==='effetti' ? '👆 Leggi gli effetti e prova a indovinare: tocca per scoprire il farmaco'
+    : '👆 Tocca una riga per aprirla nello studio di FarmacoFlash';
 }
 document.querySelectorAll('.chip.mode').forEach(b=> b.addEventListener('click', ()=>setMode(b.dataset.mode)) );
 $('#tb').addEventListener('click', e=>{
-  if(mode==='all') return;
-  const tr=e.target.closest('tr.dr'); if(!tr) return;
-  const exp=tr.nextElementSibling, open=tr.classList.toggle('open');
+  const dr=e.target.closest('tr.dr');
+  if(!dr) return;                 // click nel pannello (i link navigano di default)
+  if(mode==='all'){ location.href='Flashcard-Farmacologia.html#front='+dr.dataset.id; return; }
+  e.preventDefault();             // modalità studio: rivela, non navigare
+  const exp=dr.nextElementSibling, open=dr.classList.toggle('open');
   if(exp && exp.classList.contains('exp')) exp.classList.toggle('open', open);
 });
 $('#clrBtn').addEventListener('click', ()=>{ state.q=''; state.mod=null; state.deck=null; $('#q').value=''; refreshChips(); render(); });
