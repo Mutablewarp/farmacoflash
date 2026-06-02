@@ -473,7 +473,8 @@ function daysFromToday(iso){return Math.round((new Date(iso+'T00:00:00')-new Dat
 function defState(){return {ease:2.5,iv:0,reps:0,lapses:0,due:null,state:'new',seen:0,lastG:null,lastR:null};}
 function getState(id){return S.srs[id]?Object.assign(defState(),S.srs[id]):defState();}
 function maturity(id){const st=S.srs[id];if(!st||st.state==='new')return'new';if(st.state==='learning'||st.state==='relearn')return'learning';return st.iv>=21?'mature':'young';}
-function weakCards(){return CARDS.filter(c=>{const st=S.srs[c.id];return st&&st.state!=='new'&&((st.lapses||0)>=1||(st.ease||2.5)<2.0||(st.lastG!=null&&st.lastG<=1)||st.state==='relearn');});}
+function weakCards(){return CARDS.filter(c=>{const st=S.srs[c.id];if(!st||st.state==='new')return false;
+  return st.state==='relearn'||(st.lastG!=null&&st.lastG<=1)||(st.ease||2.5)<2.0||((st.lapses||0)>=2&&(st.iv||0)<21);});}
 function startedNotMature(){return CARDS.filter(c=>{const st=S.srs[c.id];return st&&st.state!=='new'&&maturity(c.id)!=='mature';});}
 function fmtIv(d){const u=LANG==='en'?['y','mo','d']:['a','m','g'];if(d>=365)return (d/365).toFixed(1).replace('.0','')+' '+u[0];if(d>=30)return Math.round(d/30)+' '+u[1];return d+' '+u[2];}
 function preview(card){const st=getState(card.id);const isRev=(st.state==='review'||st.state==='relearn');
