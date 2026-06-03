@@ -52,9 +52,23 @@ tbody tr:hover{background:#fffaf0}
 .c-name{font-family:var(--font-display);font-weight:700;font-size:.98rem;color:var(--ink);min-width:180px;max-width:250px}
 .drugtags{display:flex;flex-wrap:wrap;gap:5px 6px;margin-top:8px}
 body.m-nomi .drugtags{gap:7px 8px;margin-top:10px}
-.dtag{font-weight:700;font-size:.8rem;background:var(--yellow);color:var(--ink);border:1.6px solid rgba(58,50,43,.3);border-radius:9px 6px 8px 7px/7px 8px 6px 9px;padding:2px 9px;line-height:1.35;white-space:nowrap;box-shadow:1px 1px 0 rgba(58,50,43,.12)}
+.dtag{font-weight:700;font-size:.8rem;background:var(--yellow);color:var(--ink);border:1.6px solid rgba(58,50,43,.3);border-radius:9px 6px 8px 7px/7px 8px 6px 9px;padding:2px 9px;line-height:1.35;white-space:nowrap;box-shadow:1px 1px 0 rgba(58,50,43,.12);text-decoration:none;cursor:pointer;transition:transform .12s var(--spring),background .12s}
+.dtag:hover{background:#ffd23f;border-color:var(--ink);transform:translate(-1px,-1px);box-shadow:2px 2px 0 rgba(58,50,43,.2)}
 body.m-nomi .dtag{font-size:.92rem;padding:3px 11px}
 .dtag mark{background:#ffcf2e;padding:0;border-radius:0}
+/* ---- vista rubrica A→Z ---- */
+#rubrica{display:none}
+body.m-rubrica .tbl-wrap{max-height:none;overflow:visible;border:none;box-shadow:none;background:transparent;margin-top:6px}
+body.m-rubrica .tbl-wrap table{display:none}
+body.m-rubrica #rubrica{display:block;column-width:330px;column-gap:34px;padding:6px 2px 24px}
+.rb-group{break-inside:avoid;margin:0 0 12px}
+.rb-letter{font-family:var(--font-display);font-weight:800;font-size:1.2rem;color:var(--red);margin:4px 0 5px;border-bottom:2px dotted #d9c9aa;break-after:avoid}
+.rb-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:4px 3px;border-bottom:1.5px dotted #e3d6ba;break-inside:avoid}
+.rb-name{font-family:var(--font-display);font-weight:700;font-size:.96rem;color:var(--ink);background:var(--yellow);border-radius:6px 4px 6px 5px/5px 6px 4px 6px;padding:1px 7px}
+.rb-name mark{background:#ffcf2e;padding:0}
+.rb-cls-wrap{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.rb-cls{font-family:var(--font-display);font-weight:800;font-size:.7rem;padding:1px 7px;border-radius:7px;border:2px solid var(--ink);color:var(--ink);text-decoration:none;white-space:nowrap;transition:transform .12s}
+.rb-cls:hover{transform:translateY(-1px);background:#fff3d6}
 .c-mecc,.c-ind,.c-adr{color:var(--ink-soft);font-weight:600;max-width:235px}
 .mod-pill{display:inline-block;font-size:.66rem;font-weight:800;padding:1px 6px;border-radius:7px;border:1.5px solid var(--ink);margin-left:6px;color:var(--ink)}
 .mod-I{background:#e7f0ff}.mod-II{background:#ffe9f1}
@@ -148,6 +162,7 @@ body.m-all tbody tr.dr:hover{background:#fff3d6}
     <button class="chip mode on" data-mode="all">📖 Tutto</button>
     <button class="chip mode" data-mode="nomi">🧠 Solo nomi</button>
     <button class="chip mode" data-mode="effetti">💊 Solo effetti</button>
+    <button class="chip mode" data-mode="rubrica">🔤 A→Z</button>
     <button class="chip quizbtn" onclick="quizStart('mc')">🎯 Quiz (scelta)</button>
     <button class="chip quizbtn" onclick="quizStart('write')">✍️ Scrivi i nomi</button>
     <button class="chip" onclick="quizErrors()">📊 Errori</button>
@@ -167,6 +182,7 @@ body.m-all tbody tr.dr:hover{background:#fff3d6}
       </tr></thead>
       <tbody id="tb"></tbody>
     </table>
+    <div id="rubrica"></div>
   </div>
   <div class="foot" id="foot"></div>
   <div class="quiz" id="quiz" hidden>
@@ -212,6 +228,7 @@ function filtered(){
 }
 
 function render(){
+  if(document.body.classList.contains('m-rubrica')) return renderRubrica();
   const rows=filtered();
   const nd=new Set(); rows.forEach(x=>(x.drugs||[]).forEach(d=>nd.add(d)));
   $('#count').textContent = nd.size+' farmaci · '+rows.length+'/'+DATA.length+' schede';
@@ -222,7 +239,7 @@ function render(){
     const href='Flashcard-Farmacologia.html#front='+esc(x.id||'');
     return '<tr class="dr" data-id="'+esc(x.id||'')+'">'+
       '<td class="c-cls">'+cls+'</td>'+
-      '<td class="c-name hN"><a class="namelink" href="'+href+'">'+dnHi(x.name,x.drugs)+'</a>'+(x.drugs&&x.drugs.length?'<div class="drugtags">'+x.drugs.map(dn=>'<span class="dtag">'+hi(dn)+'</span>').join('')+'</div>':'')+'</td>'+
+      '<td class="c-name hN"><a class="namelink" href="'+href+'">'+dnHi(x.name,x.drugs)+'</a>'+(x.drugs&&x.drugs.length?'<div class="drugtags">'+x.drugs.map(dn=>'<a class="dtag" href="'+href+'">'+hi(dn)+'</a>').join('')+'</div>':'')+'</td>'+
       '<td class="c-mecc col-d">'+hi(x.mecc||'—')+'</td>'+
       '<td class="c-ind col-d">'+hi(x.ind||'—')+'</td>'+
       '<td class="c-adr col-d">'+hi(x.adr||'—')+'</td>'+
@@ -236,6 +253,39 @@ function render(){
       '</div>'+
       '<a class="studia" href="'+href+'">↗ Studia in FarmacoFlash</a>'+
     '</div></td></tr>';
+  }).join('');
+}
+
+let _DIDX=null;
+function drugIndex(){
+  if(_DIDX) return _DIDX;
+  const m=new Map();
+  DATA.forEach(x=>(x.drugs||[]).forEach(dn=>{
+    if(!m.has(dn)) m.set(dn,[]);
+    m.get(dn).push({id:x.id,deck:x.deck,code:(DECKS.find(d=>d.id===x.deck)||{}).code||x.deck,title:deckTitle(x.deck),mod:x.mod});
+  }));
+  _DIDX=m; return m;
+}
+function renderRubrica(){
+  const q=norm(state.q), m=drugIndex();
+  const sel=dn=>{ let r=m.get(dn); if(state.mod) r=r.filter(o=>o.mod===state.mod); if(state.deck) r=r.filter(o=>o.deck===state.deck); return r; };
+  let names=[...m.keys()].filter(dn=>{
+    const refs=sel(dn); if(!refs.length) return false;
+    if(q){ const hay=norm(dn+' '+refs.map(r=>r.code+' '+r.title).join(' ')); if(!hay.includes(q)) return false; }
+    return true;
+  });
+  names.sort((a,b)=>a.localeCompare(b,'it'));
+  $('#count').textContent = names.length+' farmaci (A→Z)';
+  if(!names.length){ $('#rubrica').innerHTML='<div class="empty">Nessun farmaco trovato 🐢</div>'; return; }
+  const groups={}, order=[];
+  names.forEach(dn=>{ let i=(dn[0]||'#').toUpperCase(); if(!/[A-Z]/.test(i)) i='#'; if(!groups[i]){groups[i]=[];order.push(i);} groups[i].push(dn); });
+  $('#rubrica').innerHTML = order.map(letter=>{
+    const rows=groups[letter].map(dn=>{
+      const seen={}, chips=sel(dn).filter(r=>seen[r.code]?false:(seen[r.code]=1))
+        .map(r=>'<a class="rb-cls" href="Flashcard-Farmacologia.html#front='+esc(r.id)+'" style="background:'+deckColor(r.deck)+'33" title="'+esc(r.title)+'">'+esc(r.code)+'</a>').join('');
+      return '<div class="rb-row"><span class="rb-name">'+hi(dn)+'</span><span class="rb-cls-wrap">'+chips+'</span></div>';
+    }).join('');
+    return '<div class="rb-group"><div class="rb-letter">'+esc(letter)+'</div>'+rows+'</div>';
   }).join('');
 }
 
@@ -265,13 +315,15 @@ $('#q').addEventListener('input', e=>{ state.q=e.target.value; render(); });
 let mode='all';
 function setMode(m){
   mode=m;
-  document.body.classList.remove('m-all','m-nomi','m-effetti');
+  document.body.classList.remove('m-all','m-nomi','m-effetti','m-rubrica');
   document.body.classList.add('m-'+m);
   document.querySelectorAll('.chip.mode').forEach(b=>b.classList.toggle('on', b.dataset.mode===m));
   document.querySelectorAll('tr.open').forEach(t=>t.classList.remove('open'));
   $('#hint').textContent = m==='nomi' ? '👆 Tocca un farmaco per vedere a cosa serve'
     : m==='effetti' ? '👆 Leggi gli effetti e prova a indovinare: tocca per scoprire il farmaco'
+    : m==='rubrica' ? '🔤 Tutti i farmaci in ordine alfabetico — tocca un codice classe per studiarlo'
     : '👆 Tocca una riga per aprirla nello studio di FarmacoFlash';
+  render();
 }
 document.querySelectorAll('.chip.mode').forEach(b=> b.addEventListener('click', ()=>setMode(b.dataset.mode)) );
 $('#tb').addEventListener('click', e=>{

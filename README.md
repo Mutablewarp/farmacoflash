@@ -27,8 +27,8 @@
    - in **Statistiche** trovi **🔥 A rischio** e **🌱 Mai mature**: toccale per ripassarle.
 7. **Cerca un farmaco:** tocca **Sfoglia** e scrivi il nome (o un meccanismo, un effetto). Tocca una card per leggerla.
 8. **Impara i nomi a memoria:** tocca **📋 Tabella dei nomi**. Tre modi:
-   **Tutto** · **🧠 Solo nomi** (tocchi un nome → vedi *a cosa serve*) · **💊 Solo effetti** (leggi gli effetti → indovini il farmaco).
-   Tocca un farmaco → si apre la sua **scheda di studio**.
+   **Tutto** · **🧠 Solo nomi** (tocchi un nome → vedi *a cosa serve*) · **💊 Solo effetti** (leggi gli effetti → indovini il farmaco) · **🔤 A→Z** (tutti i farmaci in ordine alfabetico).
+   Ogni riga mostra **tutti i nomi reali** dei farmaci (chip gialli): toccane uno → si apre la sua **scheda di studio**.
    **Allenati con il quiz dei nomi:** **🎯 Quiz (scelta)** oppure **✍️ Scrivi i nomi** (ti corregge i refusi, ti chiede sempre nomi **nuovi**, puoi tornare **← Indietro**). **📊 Errori** raccoglie i nomi che sbagli di più, per ripassarli a colpo sicuro.
 9. **Guarda i tuoi progressi:** **Statistiche** (quanto ricordi, la tua **costanza** 🔥).
 10. **Cambia lingua** con il pulsante **IT/EN** in alto.
@@ -64,6 +64,11 @@ Funziona **senza internet**, senza account, senza abbonamenti — i tuoi dati re
 | Tutto | 🧠 Solo nomi (→ a cosa serve) | 💊 Solo effetti (→ indovina) |
 |---|---|---|
 | ![Tabella tutto](screenshots/09-tabella-tutto.png) | ![Solo nomi](screenshots/10-tabella-solo-nomi.png) | ![Solo effetti](screenshots/11-tabella-solo-effetti.png) |
+
+**Tutti i farmaci in ordine alfabetico (🔤 A→Z)** — la rubrica completa: tocca il codice classe per studiarlo.
+
+| ![Rubrica A→Z](screenshots/14-tabella-rubrica.png) |
+|:--:|
 
 **Quiz dei nomi** — per impararli a memoria (ti corregge e non ti fa ripetere i nomi):
 
