@@ -112,6 +112,14 @@ body.m-all tbody tr.dr:hover{background:#fff3d6}
 .q-opt.ok{background:#cdeecd;border-color:#3da85a}
 .q-opt.no{background:#ffd9d9;border-color:var(--red)}
 .q-next{margin-top:15px;text-align:center;color:#6f6253;font-weight:800;font-size:.9rem;min-height:1.1em}
+.q-in{width:100%;box-sizing:border-box;margin-top:18px;background:#fff;border:2.5px solid var(--ink);border-radius:13px;padding:14px 16px;font-family:var(--font-body);font-weight:800;font-size:1.15rem;color:var(--ink);box-shadow:inset 1px 1px 0 rgba(58,50,43,.08)}
+.q-in:focus{outline:none;border-color:var(--blue)}
+.q-in.ok{border-color:#3da85a;background:#eafaea}
+.q-in.no{border-color:var(--red);background:#fff1f1}
+.q-go{margin-top:14px;font-family:var(--font-display);font-weight:800;font-size:1rem;color:var(--ink);background:var(--green);border:2.5px solid var(--ink);border-radius:13px 9px 12px 9px/9px 12px 9px 13px;padding:11px 22px;cursor:pointer;box-shadow:2px 2px 0 rgba(58,50,43,.2)}
+.q-go:hover{transform:translate(-1px,-2px)}
+.q-members{margin-top:12px;font-weight:700;color:#6f6253;font-size:.9rem;line-height:1.6}
+.q-members b{color:var(--ink);background:linear-gradient(transparent 60%, #ffe08a 60%);padding:0 2px;border-radius:2px}
 @media(max-width:560px){
   h1{font-size:1.25rem} .tbl-wrap{max-height:calc(100vh - 290px)}
   thead th,tbody td{padding:9px 10px}
@@ -132,7 +140,8 @@ body.m-all tbody tr.dr:hover{background:#fff3d6}
     <button class="chip mode on" data-mode="all">📖 Tutto</button>
     <button class="chip mode" data-mode="nomi">🧠 Solo nomi</button>
     <button class="chip mode" data-mode="effetti">💊 Solo effetti</button>
-    <button class="chip quizbtn" onclick="quizStart()">🎯 Quiz nomi</button>
+    <button class="chip quizbtn" onclick="quizStart('mc')">🎯 Quiz (scelta)</button>
+    <button class="chip quizbtn" onclick="quizStart('write')">✍️ Scrivi i nomi</button>
     <button class="chip" id="clrBtn">↺ Azzera filtri</button>
     <span class="count" id="count"></span>
   </div>
@@ -281,10 +290,11 @@ let quiz=null;
 function shuf(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function sample(arr,n,not){const o=[];for(const v of shuf(arr)){if(o.length>=n)break;if(not&&v===not)continue;if(o.indexOf(v)<0)o.push(v);}return o;}
 function qPool(){const p=ALLDRUGS.filter(d=>(!state.mod||d.mod===state.mod)&&(!state.deck||d.deck===state.deck));return p.length?p:ALLDRUGS;}
-function quizStart(){ if(ALLDRUGS.length<4)return; quiz={score:0,total:0,streak:0,best:0,wrong:[],pool:qPool(),answered:false}; $('#quiz').hidden=false; document.body.style.overflow='hidden'; quizNext(); }
+function quizStart(kind){ if(ALLDRUGS.length<4)return; quiz={kind:kind||'mc',score:0,total:0,streak:0,best:0,wrong:[],pool:qPool(),answered:false}; $('#quiz').hidden=false; document.body.style.overflow='hidden'; quizNext(); }
 function quizExit(){ $('#quiz').hidden=true; document.body.style.overflow=''; }
 function quizNext(){
   quiz.answered=false;
+  if(quiz.kind==='write') return quizWrite();
   const it=quiz.pool[Math.floor(Math.random()*quiz.pool.length)];
   const type=Math.random()<0.5?'cls':'drug'; let kicker,prompt,sub='',answer,options;
   if(type==='cls'){ kicker='A che classe appartiene?'; prompt='<span class="dn">'+esc(it.drug)+'</span>'; answer=it.cls; options=shuf([answer,...sample(ALLCLS,3,answer)]); }
@@ -302,6 +312,31 @@ function quizAnswer(i){
   $('#qNext').textContent= ok?'Giusto! 🎉':'Risposta: '+quiz.cur.answer;
   setTimeout(quizNext, ok?700:1450);
 }
+function nrm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();}
+function lev(a,b){const m=a.length,n=b.length,d=[];for(let i=0;i<=m;i++)d[i]=[i];for(let j=0;j<=n;j++)d[0][j]=j;for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n];}
+function quizWrite(){
+  const it=quiz.pool[Math.floor(Math.random()*quiz.pool.length)];
+  const members=[...new Set(ALLDRUGS.filter(d=>d.cls===it.cls).map(d=>d.drug))];
+  quiz.cur={cls:it.cls,members,use:it.use};
+  $('#qScore').textContent='✔ '+quiz.score+'/'+quiz.total; $('#qStreak').textContent='🔥 '+quiz.streak;
+  $('#qCard').innerHTML='<div class="q-kicker">✍️ Scrivi un farmaco di questa classe</div><div class="q-prompt">'+esc(it.cls)+'</div>'+(it.use?'<div class="q-sub">'+esc(it.use).slice(0,110)+'</div>':'')+'<input class="q-in" id="qIn" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="scrivi qui il nome…" onkeydown="if(event.key===&quot;Enter&quot;)quizEnter()"><button class="q-go" id="qGo" onclick="quizSubmit()">Verifica</button><div class="q-next" id="qNext"></div>';
+  const el=$('#qIn'); if(el) el.focus();
+}
+function quizSubmit(){
+  if(quiz.answered)return; const el=$('#qIn'); const v=el?el.value:''; if(!nrm(v))return; quiz.answered=true;
+  const members=quiz.cur.members, nv=nrm(v);
+  const exact=members.find(m=>nrm(m)===nv);
+  const near=exact?null:members.find(m=>{const nm=nrm(m);return Math.abs(nm.length-nv.length)<=2 && lev(nm,nv)<=1;});
+  quiz.total++; if(el) el.disabled=true;
+  let msg;
+  if(exact){quiz.score++;quiz.streak++;quiz.best=Math.max(quiz.best,quiz.streak);if(el)el.classList.add('ok');msg='✓ Giusto: <b>'+esc(exact)+'</b>';}
+  else if(near){quiz.score++;quiz.streak++;if(el)el.classList.add('ok');msg='Quasi! Si scrive: <b>'+esc(near)+'</b>';}
+  else{quiz.streak=0;quiz.wrong.push(quiz.cur);if(el)el.classList.add('no');msg='✗ Si scrive, per es.: <b>'+esc(members[0])+'</b>';}
+  $('#qScore').textContent='✔ '+quiz.score+'/'+quiz.total; $('#qStreak').textContent='🔥 '+quiz.streak;
+  $('#qNext').innerHTML=msg+'<div class="q-members">Tutti i nomi: <b>'+members.map(esc).join('</b> · <b>')+'</b></div>';
+  const go=$('#qGo'); if(go){go.textContent='Avanti →';go.onclick=quizNext;}
+}
+function quizEnter(){ if(!quiz.answered) quizSubmit(); else quizNext(); }
 
 buildChips();
 setMode('all');
