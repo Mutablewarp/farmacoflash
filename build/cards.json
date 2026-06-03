@@ -1804,7 +1804,7 @@
     "indications": "broncodilatatore (asma/BPCO); **basso costo** → utile in contesti di scarse risorse.",
     "adr": "SNC (insonnia, irritabilità, cefalea), GI (↑ peristalsi, ↑ secrezione acida, ulcera), tremori, cardiaci. **>30 µg/ml**: alterazioni acido-base, vasocostrizione cerebrale, ipotensione, **arresto cardiaco, convulsioni, danni cerebrali**.",
     "resistance": "stretta finestra; controindicati in patologie cardiovascolari, IBD, ipersecrezione gastrica, ulcera.",
-    "associations": "⚠️ **induttori** (fenitoina, barbiturici, fumo, rifampicina) → ↓ concentrazioni; **inibitori** (acido valproico) → ↑ concentrazioni oltre il range."
+    "associations": "⚠️ **induttori** (fenitoina, barbiturici, fumo, rifampicina) → ↓ concentrazioni; **inibitori** (cimetidina, ciprofloxacina, fluvoxamina, macrolidi) → ↑ concentrazioni oltre il range."
    },
    "segments": [
     {
@@ -1833,7 +1833,7 @@
     },
     {
      "label": "Associazioni Farmacologiche / Adiuvanti",
-     "value": "⚠️ **induttori** (fenitoina, barbiturici, fumo, rifampicina) → ↓ concentrazioni; **inibitori** (acido valproico) → ↑ concentrazioni oltre il range."
+     "value": "⚠️ **induttori** (fenitoina, barbiturici, fumo, rifampicina) → ↓ concentrazioni; **inibitori** (cimetidina, ciprofloxacina, fluvoxamina, macrolidi) → ↑ concentrazioni oltre il range."
     }
    ],
    "freetext": [],
@@ -1904,7 +1904,7 @@
    "fields": {
     "mechanism": "recettore **GR** → trascrizione (↓ citochine proinfiammatorie, **↑ annessina-1** → inibisce fosfolipasi A2 → ↓ acido arachidonico **a monte** → ↓ prostanoidi *e* leucotrieni; ↑ inibitore **NF-κB**). A differenza dei FANS, nessuno shunt verso la lipossigenasi.",
     "target": "recettore dei glucocorticoidi (GR); NF-κB; fosfolipasi A2 (via annessina-1).",
-    "pk": "**sistemici** → metilprednisolone (attivo, **EV nell'attacco severo ogni 6h**), prednisone/metilprednisone (forme chetoniche → bioattivazione epatica, os). **Inalatori** → **beclometasone, ciclesonide** (bioattivati da esterasi polmonari), **budesonide, fluticasone** (intenso primo passaggio epatico → inattivazione).",
+    "pk": "**sistemici** → metilprednisolone (attivo, **EV nell'attacco severo ogni 6h**), prednisone (forma chetonica → bioattivazione epatica a prednisolone, os). **Inalatori** → **beclometasone, ciclesonide** (bioattivati da esterasi polmonari), **budesonide, fluticasone** (intenso primo passaggio epatico → inattivazione).",
     "indications": "**pilastro dell'asma** (+ β2-agonista, sinergia); attacco severo (metilprednisolone EV); cicli brevi orali (prednisone **5 giorni**) per esacerbazioni; preferiti **inalatori**.",
     "adr": "**sistemici** → *vedi file A4* (soppressione asse HPA, iperglicemia, ipertensione/edema, osteoporosi, ulcera, cataratta, psicosi, **ritardo di crescita** → sistemici **da NON usare in pediatria**). **Inalatori**: candidosi orale, **disfonia** (atrofia corde vocali); minimi effetti sistemici (budesonide sicura fino 1500 µg/die).",
     "resistance": "terapia >5 giorni → **scalare** (rischio di insufficienza surrenalica acuta).",
@@ -1921,7 +1921,7 @@
     },
     {
      "label": "Parametri Farmacocinetici",
-     "value": "**sistemici** → metilprednisolone (attivo, **EV nell'attacco severo ogni 6h**), prednisone/metilprednisone (forme chetoniche → bioattivazione epatica, os). **Inalatori** → **beclometasone, ciclesonide** (bioattivati da esterasi polmonari), **budesonide, fluticasone** (intenso primo passaggio epatico → inattivazione)."
+     "value": "**sistemici** → metilprednisolone (attivo, **EV nell'attacco severo ogni 6h**), prednisone (forma chetonica → bioattivazione epatica a prednisolone, os). **Inalatori** → **beclometasone, ciclesonide** (bioattivati da esterasi polmonari), **budesonide, fluticasone** (intenso primo passaggio epatico → inattivazione)."
     },
     {
      "label": "Indicazioni Cliniche",
@@ -3606,7 +3606,7 @@
    "name": "Denosumab",
    "nameShort": "Denosumab",
    "fields": {
-    "mechanism": "anticorpo monoclonale **umanizzato** ad alta affinità → lega **RANKL** → interrompe il pathway → ↓ attività degli osteoclasti → ↑ massa ossea, ↓ turnover.",
+    "mechanism": "anticorpo monoclonale **completamente umano** ad alta affinità → lega **RANKL** → interrompe il pathway → ↓ attività degli osteoclasti → ↑ massa ossea, ↓ turnover.",
     "target": "**RANKL**.",
     "pk": "**sc ogni 6 mesi**.",
     "indications": "osteoporosi.",
@@ -3617,7 +3617,7 @@
    "segments": [
     {
      "label": "Meccanismo d'Azione",
-     "value": "anticorpo monoclonale **umanizzato** ad alta affinità → lega **RANKL** → interrompe il pathway → ↓ attività degli osteoclasti → ↑ massa ossea, ↓ turnover."
+     "value": "anticorpo monoclonale **completamente umano** ad alta affinità → lega **RANKL** → interrompe il pathway → ↓ attività degli osteoclasti → ↑ massa ossea, ↓ turnover."
     },
     {
      "label": "Target Molecolare",
@@ -5277,7 +5277,7 @@
    "name": "Dopamino-agonisti",
    "nameShort": "Dopamino-agonisti",
    "fields": {
-    "mechanism": "stimolano **direttamente** i recettori dopaminergici postsinaptici (bypassano il neurone). **Ergot** (segale cornuta): **bromocriptina** (D1-selettivo — efficace come L-DOPA ma fluttuazioni motorie rapide), pergolide. **Non-ergot**: **pramipexolo** (D2/D3/D4 — Parkinson avanzato, levo-protettivo vs stress ossidativo), **ropinirolo** (D2/D1 — fasi iniziali, ritarda le discinesie conservando il D1), rotigotina (cerotto transdermico), **apomorfina** (TUTTI i recettori DA, sc con penna — per i fenomeni **off**).",
+    "mechanism": "stimolano **direttamente** i recettori dopaminergici postsinaptici (bypassano il neurone). **Ergot** (segale cornuta): **bromocriptina** (agonista D2 — efficace come L-DOPA ma fluttuazioni motorie rapide), pergolide. **Non-ergot**: **pramipexolo** (D2/D3/D4 — Parkinson avanzato, levo-protettivo vs stress ossidativo), **ropinirolo** (D2/D1 — fasi iniziali, ritarda le discinesie conservando il D1), rotigotina (cerotto transdermico), **apomorfina** (TUTTI i recettori DA, sc con penna — per i fenomeni **off**).",
     "target": "recettori dopaminergici (selettività variabile).",
     "pk": "rotigotina **transdermica** (cerotto, livelli plasmatici stabili 24 h); pergolide os; apomorfina **sc**.",
     "indications": "Parkinson (iniziale: ropinirolo; avanzato: pramipexolo; off: apomorfina).",
@@ -5288,7 +5288,7 @@
    "segments": [
     {
      "label": "Meccanismo d'Azione",
-     "value": "stimolano **direttamente** i recettori dopaminergici postsinaptici (bypassano il neurone). **Ergot** (segale cornuta): **bromocriptina** (D1-selettivo — efficace come L-DOPA ma fluttuazioni motorie rapide), pergolide. **Non-ergot**: **pramipexolo** (D2/D3/D4 — Parkinson avanzato, levo-protettivo vs stress ossidativo), **ropinirolo** (D2/D1 — fasi iniziali, ritarda le discinesie conservando il D1), rotigotina (cerotto transdermico), **apomorfina** (TUTTI i recettori DA, sc con penna — per i fenomeni **off**)."
+     "value": "stimolano **direttamente** i recettori dopaminergici postsinaptici (bypassano il neurone). **Ergot** (segale cornuta): **bromocriptina** (agonista D2 — efficace come L-DOPA ma fluttuazioni motorie rapide), pergolide. **Non-ergot**: **pramipexolo** (D2/D3/D4 — Parkinson avanzato, levo-protettivo vs stress ossidativo), **ropinirolo** (D2/D1 — fasi iniziali, ritarda le discinesie conservando il D1), rotigotina (cerotto transdermico), **apomorfina** (TUTTI i recettori DA, sc con penna — per i fenomeni **off**)."
     },
     {
      "label": "Target Molecolare",
@@ -5616,7 +5616,7 @@
     },
     {
      "label": "Glucocorticoidi di sintesi (attacco ACUTO)",
-     "value": "**Meccanismo** = inibizione di **NF-kB** → ↓ attivazione/sopravvivenza/proliferazione dei linfociti T; lisi/redistribuzione dei linfociti, ↓ chemiotassi/passaggio BEE (utilità immunosoppressiva > antinfiammatoria). **Molecole:** prednisone→prednisolone, metilprednisone→metilprednisolone (os), **desametasone** (più potente); EV nelle esacerbazioni."
+     "value": "**Meccanismo** = inibizione di **NF-kB** → ↓ attivazione/sopravvivenza/proliferazione dei linfociti T; lisi/redistribuzione dei linfociti, ↓ chemiotassi/passaggio BEE (utilità immunosoppressiva > antinfiammatoria). **Molecole:** prednisone→prednisolone, metilprednisolone (os), **desametasone** (più potente); EV nelle esacerbazioni."
     },
     {
      "label": "ADR (uso cronico → ipercortisolismo)",
@@ -6130,7 +6130,7 @@
     },
     {
      "label": "Interazioni",
-     "value": "⚠️ **atorvastatina + eritromicina/claritromicina** (entrambi inibitori CYP3A4) → ↑ eritromicina (blocco K⁺ cardiaco → **↑×6 rischio di arresto cardiaco**) e ↑ atorvastatina (→ **rabdomiolisi**). Anche **acido valproico** e **succo di pompelmo** (inibitori CYP) ↑ atorvastatina → rabdomiolisi."
+     "value": "⚠️ **atorvastatina + eritromicina/claritromicina** (entrambi inibitori CYP3A4) → ↑ eritromicina (blocco K⁺ cardiaco → **↑×6 rischio di arresto cardiaco**) e ↑ atorvastatina (→ **rabdomiolisi**). Anche il **succo di pompelmo** (inibitore del CYP3A4) ↑ atorvastatina → rabdomiolisi."
     },
     {
      "label": "Resistenze / Limiti di Efficacia",
@@ -8277,7 +8277,7 @@
     "mechanism": "inibiscono gli enzimi che tagliano/superavvolgono il cromosoma batterico → topoisomerasi IV (Gram+) e DNA-girasi (Gram-), impedendo i superavvolgimenti necessari alla duplicazione. Ampio spettro.",
     "target": "topoisomerasi IV (Gram+) / DNA-girasi (Gram-).",
     "pk": "i fluorochinoloni sono la II generazione dei chinoloni (capostipite acido nalidissico, oggi senza AIC). Il fluoro → ottima biodisponibilità/distribuzione (anche tessuti difficili), alto Vd intracellulare, accumulo nei fagociti. Metabolismo epatico, escrezione prevalentemente renale (ridurre dose in IRC/anziani; moxifloxacina tollerata in IRC). Concentrazione-dipendenti, parametro AUC/MIC (>50% per il successo). Generazioni: nalidissico → norfloxacina → cipro/levofloxacina → moxifloxacina (copre anche atipici: clamidie, legionella, micoplasma, micobatterio TBC).",
-    "indications": "infezioni respiratorie (bronchiti, sinusiti, polmoniti), a trasmissione sessuale, prostatiti, genito-urinarie non complicate, osso (perfloxacina), tessuti molli, GI; inpatient e outpatient.",
+    "indications": "infezioni respiratorie (bronchiti, sinusiti, polmoniti), a trasmissione sessuale, prostatiti, genito-urinarie non complicate, osso (pefloxacina), tessuti molli, GI; inpatient e outpatient.",
     "adr": "CONTROINDICATI < 12 anni (tossicità del connettivo, alterazione β1-integrine) e cautela negli anziani (artropatie, tendiniti, rottura del tendine d'Achille); GI nel 20% (incl. colite pseudomembranosa da C. difficile); SNC (sonnolenza, confusione, delirio, cefalea, abbassamento della soglia pro-convulsivante — spiazzano il GABA); allungamento QT/torsione di punta (max moxifloxacina, min ciprofloxacina); alterazione canali K ATP-dipendenti e glicemia; fototossicità; ipersensibilità/idiosincrasiche (meno dei β-lattamici).",
     "resistance": "restrizioni EMA 2018 (no profilassi; no se disponibili alternative più sicure; no infezioni lievi/moderate salvo ipersensibilità ad altri; no infezioni non batteriche).",
     "associations": "interazione con teofillina e FANS (legame proteico; teofillina + FQ → effetti SNC). II scelta nella TBC (cfr. file Antibiotici-2)."
@@ -8297,7 +8297,7 @@
     },
     {
      "label": "Indicazioni Cliniche",
-     "value": "infezioni respiratorie (bronchiti, sinusiti, polmoniti), a trasmissione sessuale, prostatiti, genito-urinarie non complicate, osso (perfloxacina), tessuti molli, GI; inpatient e outpatient."
+     "value": "infezioni respiratorie (bronchiti, sinusiti, polmoniti), a trasmissione sessuale, prostatiti, genito-urinarie non complicate, osso (pefloxacina), tessuti molli, GI; inpatient e outpatient."
     },
     {
      "label": "Reazioni Avverse Comuni (ADR)",

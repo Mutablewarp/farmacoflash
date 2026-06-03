@@ -153,7 +153,6 @@
  "A8__glucocorticoidi-sistemici-inalatori": [
   "metilprednisolone",
   "prednisone",
-  "metilprednisone",
   "beclometasone",
   "ciclesonide",
   "budesonide",
@@ -500,7 +499,6 @@
  "B7__sm-basi-e-glucocorticoidi-attacco-acuto": [
   "prednisone",
   "prednisolone",
-  "metilprednisone",
   "metilprednisolone",
   "desametasone"
  ],
@@ -838,7 +836,7 @@
   "ciprofloxacina",
   "levofloxacina",
   "moxifloxacina",
-  "perfloxacina"
+  "pefloxacina"
  ],
  "Antibiotici-3__rifampicina-integrazione-lez-17-profilo-": [
   "rifampicina"

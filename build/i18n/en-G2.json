@@ -304,7 +304,7 @@
     },
     {
      "label": "Drug Combinations / Adjuvants",
-     "value": "⚠️ **inducers** (phenytoin, barbiturates, smoking, rifampicin) → ↓ concentrations; **inhibitors** (valproic acid) → ↑ concentrations above the range."
+     "value": "⚠️ **inducers** (phenytoin, barbiturates, smoking, rifampicin) → ↓ concentrations; **inhibitors** (cimetidine, ciprofloxacin, fluvoxamine, macrolides) → ↑ concentrations above the range."
     }
    ],
    "freetext": []
@@ -362,7 +362,7 @@
     },
     {
      "label": "Pharmacokinetic Parameters",
-     "value": "**systemic** → methylprednisolone (active, **IV in severe attack every 6h**), prednisone/methylprednisone (ketone forms → hepatic bioactivation, oral). **Inhaled** → **beclometasone, ciclesonide** (bioactivated by pulmonary esterases), **budesonide, fluticasone** (intense hepatic first-pass → inactivation)."
+     "value": "**systemic** → methylprednisolone (active, **IV in severe attack every 6h**), prednisone (ketone form → hepatic bioactivation to prednisolone, oral). **Inhaled** → **beclometasone, ciclesonide** (bioactivated by pulmonary esterases), **budesonide, fluticasone** (intense hepatic first-pass → inactivation)."
     },
     {
      "label": "Clinical Indications",

@@ -160,7 +160,7 @@
     },
     {
      "label": "Interactions",
-     "value": "⚠️ **atorvastatin + erythromycin/clarithromycin** (both CYP3A4 inhibitors) → ↑ erythromycin (cardiac K⁺ blockade → **↑×6 risk of cardiac arrest**) and ↑ atorvastatin (→ **rhabdomyolysis**). Also **valproic acid** and **grapefruit juice** (CYP inhibitors) ↑ atorvastatin → rhabdomyolysis."
+     "value": "⚠️ **atorvastatin + erythromycin/clarithromycin** (both CYP3A4 inhibitors) → ↑ erythromycin (cardiac K⁺ blockade → **↑×6 risk of cardiac arrest**) and ↑ atorvastatin (→ **rhabdomyolysis**). Also **grapefruit juice** (CYP3A4 inhibitor) ↑ atorvastatin → rhabdomyolysis."
     },
     {
      "label": "Resistance / Efficacy Limits",
