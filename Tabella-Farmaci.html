@@ -59,6 +59,11 @@ tbody tr:hover{background:#fffaf0}
 .dchip{display:inline-block;font-family:var(--font-display);font-weight:800;font-size:.72rem;padding:2px 8px;border-radius:9px;border:2px solid var(--ink);color:var(--ink);margin-right:6px}
 .c-cls small{color:var(--muted);font-weight:800;font-size:.74rem;display:block;margin-top:3px;max-width:160px;white-space:normal}
 .c-name{font-family:var(--font-display);font-weight:700;font-size:.98rem;color:var(--ink);min-width:180px;max-width:250px}
+.drugtags{display:flex;flex-wrap:wrap;gap:5px 6px;margin-top:8px}
+body.m-nomi .drugtags{gap:7px 8px;margin-top:10px}
+.dtag{font-weight:700;font-size:.8rem;background:var(--yellow);color:var(--ink);border:1.6px solid rgba(58,50,43,.3);border-radius:9px 6px 8px 7px/7px 8px 6px 9px;padding:2px 9px;line-height:1.35;white-space:nowrap;box-shadow:1px 1px 0 rgba(58,50,43,.12)}
+body.m-nomi .dtag{font-size:.92rem;padding:3px 11px}
+.dtag mark{background:#ffcf2e;padding:0;border-radius:0}
 .c-mecc,.c-ind,.c-adr{color:var(--ink-soft);font-weight:600;max-width:235px}
 .mod-pill{display:inline-block;font-size:.66rem;font-weight:800;padding:1px 6px;border-radius:7px;border:1.5px solid var(--ink);margin-left:6px;color:var(--ink)}
 .mod-I{background:#e7f0ff}.mod-II{background:#ffe9f1}
@@ -217,7 +222,8 @@ function filtered(){
 
 function render(){
   const rows=filtered();
-  $('#count').textContent = rows.length+' / '+DATA.length+' farmaci';
+  const nd=new Set(); rows.forEach(x=>(x.drugs||[]).forEach(d=>nd.add(d)));
+  $('#count').textContent = nd.size+' farmaci · '+rows.length+'/'+DATA.length+' schede';
   if(!rows.length){ $('#tb').innerHTML='<tr><td colspan="5" class="empty">Nessun farmaco trovato 🐢</td></tr>'; return; }
   $('#tb').innerHTML = rows.map(x=>{
     const code = (DECKS.find(d=>d.id===x.deck)||{}).code || x.deck;
@@ -225,7 +231,7 @@ function render(){
     const href='Flashcard-Farmacologia.html#front='+esc(x.id||'');
     return '<tr class="dr" data-id="'+esc(x.id||'')+'">'+
       '<td class="c-cls">'+cls+'</td>'+
-      '<td class="c-name hN"><a class="namelink" href="'+href+'">'+dnHi(x.name,x.drugs)+'</a></td>'+
+      '<td class="c-name hN"><a class="namelink" href="'+href+'">'+dnHi(x.name,x.drugs)+'</a>'+(x.drugs&&x.drugs.length?'<div class="drugtags">'+x.drugs.map(dn=>'<span class="dtag">'+hi(dn)+'</span>').join('')+'</div>':'')+'</td>'+
       '<td class="c-mecc col-d">'+hi(x.mecc||'—')+'</td>'+
       '<td class="c-ind col-d">'+hi(x.ind||'—')+'</td>'+
       '<td class="c-adr col-d">'+hi(x.adr||'—')+'</td>'+
