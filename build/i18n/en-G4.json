@@ -360,7 +360,7 @@
     },
     {
      "label": "Structure",
-     "value": "lipophilic pole + hydrophilic pole with an **ESTER** bond (procaine, tetracaine, cocaine, benzocaine → metabolism by **plasma esterases**, short duration, more hypersensitivity → topical) or **AMIDE** bond (lidocaine, articaine, mepivacaine, prilocaine, bupivacaine, ropivacaine → **hepatic metabolism**, longer duration; binding to **α1-acid glycoprotein**)."
+     "value": "lipophilic pole + hydrophilic pole with an **ESTER** bond (procaine, tetracaine, cocaine, benzocaine → metabolism by **plasma esterases**, short duration, more hypersensitivity → topical) or **AMIDE** bond (lidocaine, articaine, mepivacaine, prilocaine, bupivacaine, ropivacaine → **hepatic metabolism via CYP** (N-dealkylation; lidocaine **CYP1A2 + CYP3A4**, bupivacaine **CYP3A4**), longer duration; binding to **α1-acid glycoprotein**)."
     },
     {
      "label": "Pharmacokinetic Parameters",
@@ -547,7 +547,7 @@
     },
     {
      "label": "Pharmacokinetic Parameters",
-     "value": "latency **3-4 weeks**; ⚠️ many are **metabolic inhibitors** (fluoxetine, fluvoxamine, sertraline → CYP)."
+     "value": "latency **3-4 weeks**; ⚠️ heterogeneous enzyme inhibition: **fluoxetine and paroxetine = strong CYP2D6 inhibitors**; **fluvoxamine = strong CYP1A2 + CYP2C19 inhibitor** (and CYP3A4 with fluoxetine); **sertraline, citalopram, escitalopram = weak inhibitors**."
     },
     {
      "label": "Clinical Indications",
@@ -897,7 +897,7 @@
     },
     {
      "label": "Pharmacokinetic Parameters",
-     "value": "absence of the inducing effect of carbamazepine."
+     "value": "**NOT metabolized by CYPs** → eliminated mainly by **glucuronidation** (UGT). ⚠️ **valproate inhibits glucuronidation (UGT1A4)** → ↑ lamotrigine (slow titration, rash/Stevens-Johnson risk); inducers (carbamazepine, phenytoin, phenobarbital) ↓ lamotrigine."
     },
     {
      "label": "Clinical Indications",

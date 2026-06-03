@@ -352,7 +352,7 @@
     },
     {
      "label": "Adverse Reactions / Combinations",
-     "value": "see next card. ⚠️ handled by cytochromes → interactions."
+     "value": "see next card. ⚠️ **lipophilic** β-blockers (metoprolol, carvedilol, timolol, propranolol) are handled by hepatic **CYP2D6** (propranolol also **CYP1A2**; carvedilol also CYP2C9) → interactions and polymorphism-related variability; **hydrophilic** β-blockers (atenolol, nadolol, sotalol) escape the CYP because excreted **unchanged renally**."
     }
    ],
    "freetext": []
@@ -381,7 +381,7 @@
     },
     {
      "label": "Pharmacological Combinations / Adjuvants",
-     "value": "⚠️ interactions via CYP (maintain constant concentrations)."
+     "value": "⚠️ interactions via **CYP2D6** for the lipophilic β-blockers (metoprolol, carvedilol, timolol, propranolol — the latter also **CYP1A2**): CYP2D6 inhibitors/inducers and the polymorphism (poor metabolizers ~7%) alter plasma levels → maintain constant concentrations; the hydrophilic β-blockers (atenolol, nadolol, sotalol) are exempt (**renal** elimination unchanged)."
     }
    ],
    "freetext": []

@@ -1378,7 +1378,7 @@
     "indications": "**sindrome di Zollinger-Ellison**, ulcera gastrica/duodenale, ulcera da *H. pylori* (terapia multipla), reflusso gastroesofageo, ulcera da stress.",
     "adr": "scarsa attività antimuscarinica/antidopaminergica/antiserotoninergica/anti-α/antiallergica. Aspecifici: cefalea, vertigini, nausea, eritemi, prurito, effetti ematologici (↓ attività midollare). ⚠️ **Cimetidina**: lega il recettore degli androgeni, interferisce con estradiolo/prolattina → **perdita di libido, impotenza, ginecomastia** (uomo), alterazioni del ciclo mestruale.",
     "resistance": "**cimetidina** (interazioni) e **ranitidina** (contaminazione da **nitrosammine** cancerogene) **non più in commercio**.",
-    "associations": "⚠️ **Cimetidina = potente inibitore del CYP450** → ↑ concentrazioni di barbiturici, benzodiazepine, antidepressivi, antipsicotici, calcio-antagonisti, sulfaniluree (le altre molecole non condividono questa inibizione)."
+    "associations": "⚠️ **Cimetidina = potente inibitore di più CYP — CYP1A2, CYP2C9, CYP2D6** → ↑ concentrazioni di barbiturici, benzodiazepine, antidepressivi, antipsicotici, calcio-antagonisti, sulfaniluree (la ranitidina inibisce gli stessi CYP ma con affinità ~10% della cimetidina; famotidina e nizatidina non condividono questa inibizione)."
    },
    "segments": [
     {
@@ -1407,7 +1407,7 @@
     },
     {
      "label": "Associazioni Farmacologiche / Adiuvanti",
-     "value": "⚠️ **Cimetidina = potente inibitore del CYP450** → ↑ concentrazioni di barbiturici, benzodiazepine, antidepressivi, antipsicotici, calcio-antagonisti, sulfaniluree (le altre molecole non condividono questa inibizione)."
+     "value": "⚠️ **Cimetidina = potente inibitore di più CYP — CYP1A2, CYP2C9, CYP2D6** → ↑ concentrazioni di barbiturici, benzodiazepine, antidepressivi, antipsicotici, calcio-antagonisti, sulfaniluree (la ranitidina inibisce gli stessi CYP ma con affinità ~10% della cimetidina; famotidina e nizatidina non condividono questa inibizione)."
     }
    ],
    "freetext": [],
@@ -4204,7 +4204,7 @@
     },
     {
      "label": "Struttura",
-     "value": "polo lipofilo + polo idrofilo con legame **ESTERE** (procaina, tetracaina, cocaina, benzocaina → metabolismo da **esterasi plasmatiche**, durata breve, più ipersensibilità → topico) o **AMIDE** (lidocaina, articaina, mepivacaina, prilocaina, bupivacaina, ropivacaina → **metabolismo epatico**, durata più lunga; legame all'**α1-glicoproteina acida**)."
+     "value": "polo lipofilo + polo idrofilo con legame **ESTERE** (procaina, tetracaina, cocaina, benzocaina → metabolismo da **esterasi plasmatiche**, durata breve, più ipersensibilità → topico) o **AMIDE** (lidocaina, articaina, mepivacaina, prilocaina, bupivacaina, ropivacaina → **metabolismo epatico via CYP** (N-dealchilazione; lidocaina **CYP1A2 + CYP3A4**, bupivacaina **CYP3A4**), durata più lunga; legame all'**α1-glicoproteina acida**)."
     },
     {
      "label": "Parametri Farmacocinetici",
@@ -4447,7 +4447,7 @@
    "fields": {
     "mechanism": "inibizione **potente e selettiva del reuptake della serotonina** (SERT). Sequenza: ↓ reuptake somato-dendritico → ↑ 5-HT → stimola autorecettori 5-HT1A → **down-regulation** autorecettori → ↑ firing → ↑ rilascio assonale; dopo down-regulation di 5-HT2A, il **5-HT1A post-sinaptico** (corteccia prefrontale) segnala → miglioramento.",
     "target": "SERT (e 5-HT1A indiretto).",
-    "pk": "latenza **3-4 settimane**; ⚠️ molti sono **inibitori metabolici** (fluoxetina, fluvoxamina, sertralina → CYP).",
+    "pk": "latenza **3-4 settimane**; ⚠️ inibizione enzimatica eterogenea: **fluoxetina e paroxetina = forti inibitori CYP2D6**; **fluvoxamina = forte inibitore CYP1A2 + CYP2C19** (e CYP3A4 con la fluoxetina); **sertralina, citalopram, escitalopram = inibitori deboli**.",
     "indications": "depressione (**PRIMA LINEA**, maneggevoli), ansia, DOC, disturbi del comportamento alimentare (anoressia, binge eating). **Peculiarità**: paroxetina/fluoxetina (anche ↓ reuptake NA → astenici); sertralina (↓ DAT → ↓ anedonia); fluvoxamina (antagonista adenosina); **citalopram** (il più selettivo → scelta nell'**ansia cronica**).",
     "adr": "acatisia (5-HT2 via nigrostriatale → ↓ dopamina), DOC, ansia, ↑ appetito/bulimia, nausea/vomito (5-HT3), diarrea/crampi (5-HT4), ↓ libido. **NO** aumento ponderale/effetti anti-M1/anti-α1 (≠ TCA).",
     "resistance": "latenza lunga.",
@@ -4464,7 +4464,7 @@
     },
     {
      "label": "Parametri Farmacocinetici",
-     "value": "latenza **3-4 settimane**; ⚠️ molti sono **inibitori metabolici** (fluoxetina, fluvoxamina, sertralina → CYP)."
+     "value": "latenza **3-4 settimane**; ⚠️ inibizione enzimatica eterogenea: **fluoxetina e paroxetina = forti inibitori CYP2D6**; **fluvoxamina = forte inibitore CYP1A2 + CYP2C19** (e CYP3A4 con la fluoxetina); **sertralina, citalopram, escitalopram = inibitori deboli**."
     },
     {
      "label": "Indicazioni Cliniche",
@@ -4939,7 +4939,7 @@
    "fields": {
     "mechanism": "rivisitazione della carbamazepina **senza i suoi effetti farmacocinetici** (induzione); blocco importante dei canali **Na⁺**.",
     "target": "canali Na⁺.",
-    "pk": "assenza dell'effetto induttore della carbamazepina.",
+    "pk": "**NON metabolizzata dai CYP** → eliminata principalmente per **glucuronidazione** (UGT). ⚠️ il **valproato inibisce la glucuronidazione (UGT1A4)** → ↑ lamotrigina (titolazione lenta, rischio rash/Stevens-Johnson); gli induttori (carbamazepina, fenitoina, fenobarbital) ↓ lamotrigina.",
     "indications": "disturbo bipolare; epilessia (vedi B9).",
     "adr": "N/D specifiche nei documenti (vedi B9).",
     "resistance": "—",
@@ -4956,7 +4956,7 @@
     },
     {
      "label": "Parametri Farmacocinetici",
-     "value": "assenza dell'effetto induttore della carbamazepina."
+     "value": "**NON metabolizzata dai CYP** → eliminata principalmente per **glucuronidazione** (UGT). ⚠️ il **valproato inibisce la glucuronidazione (UGT1A4)** → ↑ lamotrigina (titolazione lenta, rischio rash/Stevens-Johnson); gli induttori (carbamazepina, fenitoina, fenobarbital) ↓ lamotrigina."
     },
     {
      "label": "Indicazioni Cliniche",
@@ -5857,15 +5857,15 @@
    "segments": [
     {
      "label": "Morfina",
-     "value": "agonista **puro μ**; poco lipofila; **riferimento** della potenza analgesica; metaboliti **M6-glucuronide** (attivo/terapeutico) e **M3-glucuronide** (effetti indesiderati); onset rapido EV, durata 3-4h. Non raccomandata come entry drug."
+     "value": "agonista **puro μ**; poco lipofila; **riferimento** della potenza analgesica; **glucuronazione epatica (UGT2B7)** → **M6-glucuronide** (attivo/terapeutico, ~2× la morfina, eliminato per via renale → accumula nell'insufficienza renale) e **M3-glucuronide** (neuroeccitatorio); onset rapido EV, durata 3-4h. Non raccomandata come entry drug."
     },
     {
      "label": "Ossicodone",
-     "value": "agonista **μ + κ** → analgesia spinale importante; più lipofilo della morfina; rilascio controllato; **+ naltrexone** (↓ stipsi).\n• **Fentanyl/fentanili** (remifentanil, alfentanil, sufentanil): **elevata potenza, estrema lipofilia**; preparazioni transmucosali (15-30 min); ⚠️ principale causa di morti da overdose in USA.\n• **Buprenorfina** (Temgesic): **agonista parziale μ + antagonista κ** → ↑ analgesia sovraspinale; **depressione respiratoria ridotta/più lenta**; usata nella **dissuefazione** (sostituisce il metadone); **+ naloxone = Suboxone** (impedisce l'abuso EV)."
+     "value": "agonista **μ + κ** → analgesia spinale importante; più lipofilo della morfina; rilascio controllato; **+ naltrexone** (↓ stipsi).\n• **Fentanyl/fentanili** (remifentanil, alfentanil, sufentanil): **elevata potenza, estrema lipofilia**; **metabolismo via CYP3A4** (a norfentanil → interazioni con inibitori/induttori 3A4); preparazioni transmucosali (15-30 min); ⚠️ principale causa di morti da overdose in USA.\n• **Buprenorfina** (Temgesic): **agonista parziale μ + antagonista κ** → ↑ analgesia sovraspinale; **depressione respiratoria ridotta/più lenta**; usata nella **dissuefazione** (sostituisce il metadone); **+ naloxone = Suboxone** (impedisce l'abuso EV)."
     },
     {
      "label": "Metadone",
-     "value": "os; ⚠️ **emivita lunga e variabile** → accumulo, **prolungamento QT, torsione di punta**, apnea notturna; biodisponibilità non ottimale; usato nella dissuefazione."
+     "value": "os; ⚠️ **emivita lunga e variabile** → accumulo, **prolungamento QT, torsione di punta**, apnea notturna; biodisponibilità non ottimale; **metabolismo epatico per N-demetilazione (substrato del CYP3A4** → interazioni con induttori/inibitori 3A4 che alterano il QT); usato nella dissuefazione."
     },
     {
      "label": "Idromorfone",
@@ -6391,7 +6391,7 @@
     },
     {
      "label": "Reazioni Avverse / Associazioni",
-     "value": "vedi scheda successiva. ⚠️ rimaneggiati dai citocromi → interazioni."
+     "value": "vedi scheda successiva. ⚠️ i β-bloccanti **lipofili** (metoprololo, carvedilolo, timololo, propranololo) sono rimaneggiati dal **CYP2D6** epatico (propranololo anche **CYP1A2**; carvedilolo anche CYP2C9) → interazioni e variabilità da polimorfismo; i β-bloccanti **idrofili** (atenololo, nadololo, sotalolo) sfuggono al CYP perché escreti **immodificati per via renale**."
     }
    ],
    "freetext": [],
@@ -6410,7 +6410,7 @@
    "fields": {
     "indications": "ipertensione (**3ª linea** — NICE/USA; eccezione: intolleranti ad ACE-I/sartani, donne in età fertile, ↑ tono simpatico); **aritmie** (antiaritmici **classe II**); **angina pectoris** (↓ frequenza → ↓ fabbisogno O₂ + ↑ diastole/perfusione); **prevenzione 2ª dell'IMA**; cardiomiopatia ipertrofica; **scompenso cardiaco**; **profilassi dell'emicrania** (timololo/propranololo, effetto triptano-simile).",
     "adr": "crisi ipotensive, ⚠️ **blocco AV/asistolia** (sede = nodo AV), ↓ inotropismo, ⚠️ **asma** (non selettivi), ↑ trigliceridi/↓ HDL (β3), **↓ sintomi dell'ipoglicemia**, effetti SNC (lipofili: affaticamento, ↓ libido, depressione → no nei maschi giovani); ⚠️ **sindrome da sospensione** (up-regulation → interruzione graduale).",
-    "associations": "⚠️ interazioni via CYP (mantenere concentrazioni costanti)."
+    "associations": "⚠️ interazioni via **CYP2D6** per i β-bloccanti lipofili (metoprololo, carvedilolo, timololo, propranololo — quest'ultimo anche **CYP1A2**): inibitori/induttori del CYP2D6 e il polimorfismo (metabolizzatori lenti ~7%) alterano i livelli plasmatici → mantenere concentrazioni costanti; i β-bloccanti idrofili (atenololo, nadololo, sotalolo) ne sono esenti (escrezione **renale** immodificata)."
    },
    "segments": [
     {
@@ -6431,7 +6431,7 @@
     },
     {
      "label": "Associazioni Farmacologiche / Adiuvanti",
-     "value": "⚠️ interazioni via CYP (mantenere concentrazioni costanti)."
+     "value": "⚠️ interazioni via **CYP2D6** per i β-bloccanti lipofili (metoprololo, carvedilolo, timololo, propranololo — quest'ultimo anche **CYP1A2**): inibitori/induttori del CYP2D6 e il polimorfismo (metabolizzatori lenti ~7%) alterano i livelli plasmatici → mantenere concentrazioni costanti; i β-bloccanti idrofili (atenololo, nadololo, sotalolo) ne sono esenti (escrezione **renale** immodificata)."
     }
    ],
    "freetext": [],
