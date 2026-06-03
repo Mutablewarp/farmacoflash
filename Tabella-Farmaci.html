@@ -120,6 +120,8 @@ body.m-all tbody tr.dr:hover{background:#fff3d6}
 .q-go:hover{transform:translate(-1px,-2px)}
 .q-members{margin-top:12px;font-weight:700;color:#6f6253;font-size:.9rem;line-height:1.6}
 .q-members b{color:var(--ink);background:linear-gradient(transparent 60%, #ffe08a 60%);padding:0 2px;border-radius:2px}
+.q-hint{margin-top:7px;font-family:var(--font-display);font-weight:800;color:var(--blue);font-size:1rem}
+.q-hint b{font-size:1.15rem}
 @media(max-width:560px){
   h1{font-size:1.25rem} .tbl-wrap{max-height:calc(100vh - 290px)}
   thead th,tbody td{padding:9px 10px}
@@ -317,21 +319,34 @@ function lev(a,b){const m=a.length,n=b.length,d=[];for(let i=0;i<=m;i++)d[i]=[i]
 function quizWrite(){
   const it=quiz.pool[Math.floor(Math.random()*quiz.pool.length)];
   const members=[...new Set(ALLDRUGS.filter(d=>d.cls===it.cls).map(d=>d.drug))];
-  quiz.cur={cls:it.cls,members,use:it.use};
+  const wtype=(Math.random()<0.5)?'target':'member'; let kicker,hint='';
+  if(wtype==='target'){ const t=it.drug, ini=((t.match(/[A-Za-zÀ-ÿ]/)||[''])[0]).toUpperCase(), nl=t.replace(/\s/g,'').length;
+    quiz.cur={wtype,cls:it.cls,members,use:it.use,target:t};
+    kicker='✍️ Scrivi il farmaco preciso'; hint='<div class="q-hint">inizia per <b>'+ini+'</b> · '+nl+' lettere</div>'; }
+  else{ quiz.cur={wtype,cls:it.cls,members,use:it.use}; kicker='✍️ Scrivi un farmaco di questa classe'; }
   $('#qScore').textContent='✔ '+quiz.score+'/'+quiz.total; $('#qStreak').textContent='🔥 '+quiz.streak;
-  $('#qCard').innerHTML='<div class="q-kicker">✍️ Scrivi un farmaco di questa classe</div><div class="q-prompt">'+esc(it.cls)+'</div>'+(it.use?'<div class="q-sub">'+esc(it.use).slice(0,110)+'</div>':'')+'<input class="q-in" id="qIn" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="scrivi qui il nome…" onkeydown="if(event.key===&quot;Enter&quot;)quizEnter()"><button class="q-go" id="qGo" onclick="quizSubmit()">Verifica</button><div class="q-next" id="qNext"></div>';
+  $('#qCard').innerHTML='<div class="q-kicker">'+kicker+'</div><div class="q-prompt">'+esc(it.cls)+'</div>'+(it.use?'<div class="q-sub">'+esc(it.use).slice(0,110)+'</div>':'')+hint+'<input class="q-in" id="qIn" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="scrivi qui il nome…" onkeydown="if(event.key===&quot;Enter&quot;)quizEnter()"><button class="q-go" id="qGo" onclick="quizSubmit()">Verifica</button><div class="q-next" id="qNext"></div>';
   const el=$('#qIn'); if(el) el.focus();
 }
 function quizSubmit(){
   if(quiz.answered)return; const el=$('#qIn'); const v=el?el.value:''; if(!nrm(v))return; quiz.answered=true;
-  const members=quiz.cur.members, nv=nrm(v);
-  const exact=members.find(m=>nrm(m)===nv);
-  const near=exact?null:members.find(m=>{const nm=nrm(m);return Math.abs(nm.length-nv.length)<=2 && lev(nm,nv)<=1;});
-  quiz.total++; if(el) el.disabled=true;
-  let msg;
-  if(exact){quiz.score++;quiz.streak++;quiz.best=Math.max(quiz.best,quiz.streak);if(el)el.classList.add('ok');msg='✓ Giusto: <b>'+esc(exact)+'</b>';}
-  else if(near){quiz.score++;quiz.streak++;if(el)el.classList.add('ok');msg='Quasi! Si scrive: <b>'+esc(near)+'</b>';}
-  else{quiz.streak=0;quiz.wrong.push(quiz.cur);if(el)el.classList.add('no');msg='✗ Si scrive, per es.: <b>'+esc(members[0])+'</b>';}
+  const members=quiz.cur.members, nv=nrm(v); quiz.total++; if(el) el.disabled=true;
+  const near1=a=>{const na=nrm(a);return Math.abs(na.length-nv.length)<=2 && lev(na,nv)<=1;};
+  let good=false,msg='';
+  if(quiz.cur.wtype==='target'){
+    const t=quiz.cur.target;
+    if(nrm(t)===nv){good=true;msg='✓ Giusto: <b>'+esc(t)+'</b>';}
+    else if(near1(t)){good=true;msg='Quasi! Si scrive: <b>'+esc(t)+'</b>';}
+    else if(members.some(m=>nrm(m)===nv)){good=true;msg='Giusto, ma cercavo: <b>'+esc(t)+'</b>';}
+    else{msg='✗ Era: <b>'+esc(t)+'</b>';}
+  }else{
+    const exact=members.find(m=>nrm(m)===nv), near=exact?null:members.find(near1);
+    if(exact){good=true;msg='✓ Giusto: <b>'+esc(exact)+'</b>';}
+    else if(near){good=true;msg='Quasi! Si scrive: <b>'+esc(near)+'</b>';}
+    else{msg='✗ Si scrive, per es.: <b>'+esc(members[0])+'</b>';}
+  }
+  if(good){quiz.score++;quiz.streak++;quiz.best=Math.max(quiz.best,quiz.streak);if(el)el.classList.add('ok');}
+  else{quiz.streak=0;quiz.wrong.push(quiz.cur);if(el)el.classList.add('no');}
   $('#qScore').textContent='✔ '+quiz.score+'/'+quiz.total; $('#qStreak').textContent='🔥 '+quiz.streak;
   $('#qNext').innerHTML=msg+'<div class="q-members">Tutti i nomi: <b>'+members.map(esc).join('</b> · <b>')+'</b></div>';
   const go=$('#qGo'); if(go){go.textContent='Avanti →';go.onclick=quizNext;}
