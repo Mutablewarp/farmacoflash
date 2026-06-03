@@ -84,6 +84,25 @@ body.m-all tbody tr.dr:hover{background:#fff3d6}
 .studia{display:inline-block;margin-top:11px;font-family:var(--font-display);font-weight:800;font-size:.86rem;color:var(--ink);background:var(--green);border:2.5px solid var(--ink);border-radius:12px 8px 11px 8px/8px 11px 8px 12px;padding:7px 15px;text-decoration:none;box-shadow:2px 2px 0 rgba(58,50,43,.2);transition:transform .14s var(--spring)}
 .studia:hover{transform:translate(-1px,-2px);background:#6fd488}
 .foot{max-width:1180px;margin:14px auto 0;padding:0 16px;color:var(--muted);font-weight:700;font-size:.78rem;text-align:center}
+/* nomi farmaco evidenziati */
+.dn{font-weight:800;background:linear-gradient(transparent 58%, #ffe08a 58%);border-radius:2px;padding:0 1px}
+/* quiz nomi */
+.quizbtn{background:var(--green);border-color:var(--ink)}
+.quiz[hidden]{display:none}
+.quiz{position:fixed;inset:0;z-index:60;background:var(--paper);display:flex;flex-direction:column;padding:14px max(16px,env(safe-area-inset-left)) calc(20px + env(safe-area-inset-bottom));overflow:auto}
+.quiz-top{display:flex;align-items:center;gap:12px;max-width:680px;margin:0 auto;width:100%}
+.quiz-score{font-family:var(--font-display);font-weight:800;color:#3da85a}
+.quiz-streak{font-family:var(--font-display);font-weight:800;color:var(--orange);margin-left:auto}
+.quiz-card{max-width:680px;margin:22px auto 0;width:100%;border:3px solid var(--ink);border-radius:22px 16px 24px 16px/16px 24px 16px 22px;background:var(--paper-2);box-shadow:var(--shadow);padding:24px 22px}
+.q-kicker{font-family:var(--font-display);font-weight:800;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.q-prompt{font-family:var(--font-display);font-weight:700;font-size:1.55rem;line-height:1.2;margin:6px 0 2px;color:var(--ink)}
+.q-sub{color:#6f6253;font-weight:700;font-size:.92rem;margin-top:4px}
+.q-opts{display:grid;gap:11px;margin-top:18px}
+.q-opt{text-align:left;background:var(--paper);border:2.5px solid var(--ink);border-radius:14px 9px 13px 9px/9px 13px 9px 14px;padding:13px 16px;font-family:var(--font-body);font-weight:800;font-size:1.04rem;color:var(--ink);cursor:pointer;box-shadow:2px 2px 0 rgba(58,50,43,.16);transition:transform .12s var(--spring)}
+.q-opt:hover{transform:translate(-1px,-2px)}
+.q-opt.ok{background:#cdeecd;border-color:#3da85a}
+.q-opt.no{background:#ffd9d9;border-color:var(--red)}
+.q-next{margin-top:15px;text-align:center;color:#6f6253;font-weight:800;font-size:.9rem;min-height:1.1em}
 @media(max-width:560px){
   h1{font-size:1.25rem} .tbl-wrap{max-height:calc(100vh - 290px)}
   thead th,tbody td{padding:9px 10px}
@@ -104,6 +123,7 @@ body.m-all tbody tr.dr:hover{background:#fff3d6}
     <button class="chip mode on" data-mode="all">📖 Tutto</button>
     <button class="chip mode" data-mode="nomi">🧠 Solo nomi</button>
     <button class="chip mode" data-mode="effetti">💊 Solo effetti</button>
+    <button class="chip quizbtn" onclick="quizStart()">🎯 Quiz nomi</button>
     <button class="chip" id="clrBtn">↺ Azzera filtri</button>
     <span class="count" id="count"></span>
   </div>
@@ -122,6 +142,14 @@ body.m-all tbody tr.dr:hover{background:#fff3d6}
     </table>
   </div>
   <div class="foot" id="foot"></div>
+  <div class="quiz" id="quiz" hidden>
+    <div class="quiz-top">
+      <button class="chip" onclick="quizExit()">✕ Esci</button>
+      <span class="quiz-score" id="qScore"></span>
+      <span class="quiz-streak" id="qStreak"></span>
+    </div>
+    <div class="quiz-card" id="qCard"></div>
+  </div>
 </main>
 <script>
 const DATA = __DATA__;
@@ -132,6 +160,9 @@ let state = { q:'', mod:null, deck:null, sort:{k:'o',dir:1} };
 function esc(s){return String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 function hi(s){ const q=state.q.trim(); if(!q) return esc(s); try{const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');return esc(s).replace(re,'<mark>$1</mark>');}catch(e){return esc(s);} }
 function norm(s){return (s||'').toLowerCase();}
+function dnHi(name, drugs){ let h=esc(name);
+  (drugs||[]).slice().sort((a,b)=>b.length-a.length).forEach(d=>{ const e=esc(d).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); if(!e) return; h=h.replace(new RegExp(e,'gi'),'\x01$&\x02'); });
+  return h.replace(/\x01/g,'<span class="dn">').replace(/\x02/g,'</span>'); }
 
 function deckColor(id){const d=DECKS.find(x=>x.id===id);return d&&d.color?d.color:'#ece1cb';}
 function deckTitle(id){const d=DECKS.find(x=>x.id===id);return d?d.title:id;}
@@ -163,7 +194,7 @@ function render(){
     const href='Flashcard-Farmacologia.html#front='+esc(x.id||'');
     return '<tr class="dr" data-id="'+esc(x.id||'')+'">'+
       '<td class="c-cls">'+cls+'</td>'+
-      '<td class="c-name hN"><a class="namelink" href="'+href+'">'+hi(x.name)+'</a></td>'+
+      '<td class="c-name hN"><a class="namelink" href="'+href+'">'+dnHi(x.name,x.drugs)+'</a></td>'+
       '<td class="c-mecc col-d">'+hi(x.mecc||'—')+'</td>'+
       '<td class="c-ind col-d">'+hi(x.ind||'—')+'</td>'+
       '<td class="c-adr col-d">'+hi(x.adr||'—')+'</td>'+
@@ -233,6 +264,35 @@ document.querySelectorAll('thead th').forEach(th=>{
     render();
   });
 });
+
+/* ===== QUIZ NOMI ===== */
+const ALLDRUGS=[]; DATA.forEach(x=>(x.drugs||[]).forEach(dn=>ALLDRUGS.push({drug:dn,deck:x.deck,mod:x.mod,cls:deckTitle(x.deck),use:x.ind||x.mecc||''})));
+const ALLCLS=[...new Set(ALLDRUGS.map(d=>d.cls))];
+let quiz=null;
+function shuf(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function sample(arr,n,not){const o=[];for(const v of shuf(arr)){if(o.length>=n)break;if(not&&v===not)continue;if(o.indexOf(v)<0)o.push(v);}return o;}
+function qPool(){const p=ALLDRUGS.filter(d=>(!state.mod||d.mod===state.mod)&&(!state.deck||d.deck===state.deck));return p.length?p:ALLDRUGS;}
+function quizStart(){ if(ALLDRUGS.length<4)return; quiz={score:0,total:0,streak:0,best:0,wrong:[],pool:qPool(),answered:false}; $('#quiz').hidden=false; document.body.style.overflow='hidden'; quizNext(); }
+function quizExit(){ $('#quiz').hidden=true; document.body.style.overflow=''; }
+function quizNext(){
+  quiz.answered=false;
+  const it=quiz.pool[Math.floor(Math.random()*quiz.pool.length)];
+  const type=Math.random()<0.5?'cls':'drug'; let kicker,prompt,sub='',answer,options;
+  if(type==='cls'){ kicker='A che classe appartiene?'; prompt='<span class="dn">'+esc(it.drug)+'</span>'; answer=it.cls; options=shuf([answer,...sample(ALLCLS,3,answer)]); }
+  else{ kicker='Quale farmaco è di questa classe?'; prompt=esc(it.cls); sub=it.use?esc(it.use).slice(0,110):''; answer=it.drug; options=shuf([answer,...sample(ALLDRUGS.filter(d=>d.cls!==it.cls).map(d=>d.drug),3,answer)]); }
+  quiz.cur={answer,options,it};
+  $('#qScore').textContent='✔ '+quiz.score+'/'+quiz.total; $('#qStreak').textContent='🔥 '+quiz.streak;
+  $('#qCard').innerHTML='<div class="q-kicker">'+kicker+'</div><div class="q-prompt">'+prompt+'</div>'+(sub?'<div class="q-sub">'+sub+'</div>':'')+'<div class="q-opts">'+options.map((o,i)=>'<button class="q-opt" onclick="quizAnswer('+i+')">'+esc(o)+'</button>').join('')+'</div><div class="q-next" id="qNext"></div>';
+}
+function quizAnswer(i){
+  if(quiz.answered)return; quiz.answered=true;
+  const ok=quiz.cur.options[i]===quiz.cur.answer; quiz.total++;
+  if(ok){quiz.score++;quiz.streak++;quiz.best=Math.max(quiz.best,quiz.streak);}else{quiz.streak=0;quiz.wrong.push(quiz.cur.it);}
+  document.querySelectorAll('.q-opt').forEach((b,bi)=>{b.disabled=true;if(quiz.cur.options[bi]===quiz.cur.answer)b.classList.add('ok');else if(bi===i)b.classList.add('no');});
+  $('#qScore').textContent='✔ '+quiz.score+'/'+quiz.total; $('#qStreak').textContent='🔥 '+quiz.streak;
+  $('#qNext').textContent= ok?'Giusto! 🎉':'Risposta: '+quiz.cur.answer;
+  setTimeout(quizNext, ok?700:1450);
+}
 
 buildChips();
 setMode('all');
