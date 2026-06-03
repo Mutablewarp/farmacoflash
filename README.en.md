@@ -59,6 +59,12 @@ Works **without internet**, no account, no subscription — your data stays on t
 |---|---|---|
 | ![Table all](screenshots/09-tabella-tutto.png) | ![Names only](screenshots/10-tabella-solo-nomi.png) | ![Effects only](screenshots/11-tabella-solo-effetti.png) |
 
+**Name quiz** — to drill them in (it corrects you and never lets you repeat a name):
+
+| ✍️ Type the names (fixes typos, reveals the whole class) | 📊 Your mistakes (targeted review over time) |
+|---|---|
+| ![Quiz type](screenshots/12-quiz-scrivi-nomi.png) | ![Quiz mistakes](screenshots/13-quiz-errori.png) |
+
 ---
 
 ## ✨ Features in brief

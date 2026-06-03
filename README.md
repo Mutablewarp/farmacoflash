@@ -65,6 +65,12 @@ Funziona **senza internet**, senza account, senza abbonamenti — i tuoi dati re
 |---|---|---|
 | ![Tabella tutto](screenshots/09-tabella-tutto.png) | ![Solo nomi](screenshots/10-tabella-solo-nomi.png) | ![Solo effetti](screenshots/11-tabella-solo-effetti.png) |
 
+**Quiz dei nomi** — per impararli a memoria (ti corregge e non ti fa ripetere i nomi):
+
+| ✍️ Scrivi i nomi (corregge i refusi, svela tutta la classe) | 📊 I tuoi errori (ripasso mirato nel tempo) |
+|---|---|
+| ![Quiz scrivi](screenshots/12-quiz-scrivi-nomi.png) | ![Quiz errori](screenshots/13-quiz-errori.png) |
+
 ---
 
 ## ✨ Funzioni in breve
