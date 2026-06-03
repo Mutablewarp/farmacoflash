@@ -23,7 +23,7 @@
 5. **Choose what to study** (**Session** box): **Both** · **🆕 New only** · **🔁 Review only** · **🔥 Hard** (the cards you miss most).
 6. **Fix mistakes precisely:** on **Today**, under *“How it went today”*, **tap a face** (e.g. 😐) → see exactly those cards → **Review these**. In **Stats** you'll find **🔥 At risk** and **🌱 Never mature**.
 7. **Search a drug:** tap **Browse** and type a name (or a mechanism, an effect). Tap a card to read it.
-8. **Memorize the names:** tap **📋 Names table**. Three modes: **All** · **🧠 Names only** (tap → see *what it's for*) · **💊 Effects only** (read effects → guess the drug). Tap a drug → its study card opens.
+8. **Memorize the names:** tap **📋 Names table**. Three modes: **All** · **🧠 Names only** (tap → see *what it's for*) · **💊 Effects only** (read effects → guess the drug). Tap a drug → its study card opens. **Train with the name quiz:** **🎯 Quiz (choice)** or **✍️ Type the names** (fixes typos, always asks for **new** names, you can go **← Back**); **📊 Mistakes** collects the names you miss most for targeted review.
 9. **See your progress:** **Stats** (how much you remember, your **streak** 🔥).
 10. **Switch language** with the **IT/EN** button at the top.
 11. **Don't lose progress:** *Stats › **⬇ Export backup***. On another device: **⬆ Import**.
@@ -69,6 +69,7 @@ Works **without internet**, no account, no subscription — your data stays on t
 - **Memo-line** + **in-depth note 📘** verified against *Goodman & Gilman 14th ed.* (PMIDs cited).
 - **30 hand-drawn mechanism diagrams** on 43 key cards.
 - **Browse & full-text search**, **Names table** (search/filters/3 study modes, linked to cards), **Stats** (retention, streak, cards to reinforce).
+- **Name quiz** (in the table) — **multiple-choice** or **type-in**: fixes typos, never accepts an already-used name (always new), **← Back / Next →** navigation, and a persistent **mistakes log** 📊 for targeted review.
 - **Bilingual IT / EN**, **backup** export/import, **installable offline** PWA, private.
 
 ## 🔒 Privacy

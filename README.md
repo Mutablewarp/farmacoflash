@@ -29,6 +29,7 @@
 8. **Impara i nomi a memoria:** tocca **📋 Tabella dei nomi**. Tre modi:
    **Tutto** · **🧠 Solo nomi** (tocchi un nome → vedi *a cosa serve*) · **💊 Solo effetti** (leggi gli effetti → indovini il farmaco).
    Tocca un farmaco → si apre la sua **scheda di studio**.
+   **Allenati con il quiz dei nomi:** **🎯 Quiz (scelta)** oppure **✍️ Scrivi i nomi** (ti corregge i refusi, ti chiede sempre nomi **nuovi**, puoi tornare **← Indietro**). **📊 Errori** raccoglie i nomi che sbagli di più, per ripassarli a colpo sicuro.
 9. **Guarda i tuoi progressi:** **Statistiche** (quanto ricordi, la tua **costanza** 🔥).
 10. **Cambia lingua** con il pulsante **IT/EN** in alto.
 11. **Non perdere i progressi:** *Statistiche › **⬇ Esporta backup*** (salva un file). Su un altro dispositivo: **⬆ Importa**.
@@ -75,6 +76,7 @@ Funziona **senza internet**, senza account, senza abbonamenti — i tuoi dati re
 - **30 diagrammi-meccanismo disegnati a mano** su 43 card chiave (COX/eicosanoidi, K-ATP, GLUT4, RAAS, Vaughan-Williams, ribosoma 30S/50S, μ-recettore, GABA-A, statine, eparina/warfarin…).
 - **Sfoglia & cerca** per nome, meccanismo, target, reazione avversa.
 - **Tabella dei nomi** con ricerca, filtri e 3 viste di studio, collegata alle schede.
+- **Quiz dei nomi** (nella tabella) — a **scelta multipla** o **a digitazione**: corregge i refusi, non accetta nomi già usati (sempre nomi nuovi), navigazione **← Indietro / Nuova →**, e **storico degli errori** 📊 per il ripasso mirato.
 - **Statistiche** — ritenzione, costanza 🔥, carte mature, **carte da rinforzare**.
 - **Bilingue IT / EN** (interfaccia, domande, risposte, diagrammi).
 - **Backup** export/import in JSON · **app installabile offline**, privata.
