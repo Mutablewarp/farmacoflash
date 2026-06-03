@@ -5655,7 +5655,7 @@
     },
     {
      "label": "Molecole",
-     "value": "**azatioprina** (antimetabolita), **cladribina** (antimetabolita purinico), **methotrexate** (antifolato), **ciclofosfamide** (alchilante), **teriflunomide** (inibitore sintesi pirimidine)."
+     "value": "**azatioprina** (antimetabolita), **cladribina** (antimetabolita purinico), **metotressato** (antifolato), **ciclofosfamide** (alchilante), **teriflunomide** (inibitore sintesi pirimidine)."
     },
     {
      "label": "Indicazioni Cliniche",
@@ -5719,7 +5719,7 @@
    "segments": [
     {
      "label": "Antispastici",
-     "value": "**baclofen** (agonista **GABA-B** midollare → ↓ spasticità); **dalfampridina** (bloccante dei canali **K⁺** voltaggio-dipendenti → facilita la trasmissione nel neurone demielinizzato → ↑ capacità motoria)."
+     "value": "**baclofen** (agonista **GABA-B** midollare → ↓ spasticità); **fampridina** (bloccante dei canali **K⁺** voltaggio-dipendenti → facilita la trasmissione nel neurone demielinizzato → ↑ capacità motoria)."
     },
     {
      "label": "Cannabinoidi",
@@ -5861,7 +5861,7 @@
     },
     {
      "label": "Ossicodone",
-     "value": "agonista **μ + κ** → analgesia spinale importante; più lipofilo della morfina; rilascio controllato; **+ naltrexone** (↓ stipsi).\n• **Fentanyl/fentanili** (remifentanil, alfentanil, sufentanil): **elevata potenza, estrema lipofilia**; **metabolismo via CYP3A4** (a norfentanil → interazioni con inibitori/induttori 3A4); preparazioni transmucosali (15-30 min); ⚠️ principale causa di morti da overdose in USA.\n• **Buprenorfina** (Temgesic): **agonista parziale μ + antagonista κ** → ↑ analgesia sovraspinale; **depressione respiratoria ridotta/più lenta**; usata nella **dissuefazione** (sostituisce il metadone); **+ naloxone = Suboxone** (impedisce l'abuso EV)."
+     "value": "agonista **μ + κ** → analgesia spinale importante; più lipofilo della morfina; rilascio controllato; **+ naltrexone** (↓ stipsi).\n• **Fentanil/fentanili** (remifentanil, alfentanil, sufentanil): **elevata potenza, estrema lipofilia**; **metabolismo via CYP3A4** (a norfentanil → interazioni con inibitori/induttori 3A4); preparazioni transmucosali (15-30 min); ⚠️ principale causa di morti da overdose in USA.\n• **Buprenorfina** (Temgesic): **agonista parziale μ + antagonista κ** → ↑ analgesia sovraspinale; **depressione respiratoria ridotta/più lenta**; usata nella **dissuefazione** (sostituisce il metadone); **+ naloxone = Suboxone** (impedisce l'abuso EV)."
     },
     {
      "label": "Metadone",
@@ -7939,7 +7939,7 @@
   {
    "id": "Antibiotici-2__isoniazide-ini",
    "deckId": "Antibiotici-2",
-   "name": "Isoniazide (INI)",
+   "name": "Isoniazide (INH)",
    "nameShort": "Isoniazide",
    "fields": {
     "mechanism": "inibisce gli enzimi della biosintesi dell'acido micolico → azione selettiva sul micobatterio; battericida.",
@@ -8378,7 +8378,7 @@
    "name": "Macrolidi (classe — eritromicina, claritromicina, roxitromicina, azitromicina)",
    "nameShort": "Macrolidi",
    "fields": {
-    "mechanism": "si legano alla subunità ribosomiale 50S → impediscono il legame dell'aminoacido al sito accettore → ostacolano l'allungamento della catena polipeptidica.",
+    "mechanism": "si legano alla subunità ribosomiale 50S (vicino al tunnel di uscita del peptide) → bloccano la traslocazione e l'allungamento della catena polipeptidica nascente.",
     "target": "subunità ribosomiale 50S.",
     "pk": "vedi singole molecole.",
     "indications": "vedi singole molecole.",
@@ -8389,7 +8389,7 @@
    "segments": [
     {
      "label": "Meccanismo d'Azione",
-     "value": "si legano alla subunità ribosomiale 50S → impediscono il legame dell'aminoacido al sito accettore → ostacolano l'allungamento della catena polipeptidica."
+     "value": "si legano alla subunità ribosomiale 50S (vicino al tunnel di uscita del peptide) → bloccano la traslocazione e l'allungamento della catena polipeptidica nascente."
     },
     {
      "label": "Target Molecolare",

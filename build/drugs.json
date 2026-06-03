@@ -380,7 +380,18 @@
   "bupivacaina",
   "ropivacaina"
  ],
- "B2__anestetici-locali-singole-molecole": [],
+ "B2__anestetici-locali-singole-molecole": [
+  "procaina",
+  "tetracaina",
+  "benzocaina",
+  "cocaina",
+  "lidocaina",
+  "mepivacaina",
+  "prilocaina",
+  "bupivacaina",
+  "ropivacaina",
+  "articaina"
+ ],
  "B2__anestetici-locali-adr-e-associazione-con": [],
  "B3__antidepressivi-basi-fisiopatologiche": [],
  "B3__antidepressivi-triciclici-tca": [
@@ -505,7 +516,7 @@
  "B7__sm-immunosoppressori-aspecifici": [
   "azatioprina",
   "cladribina",
-  "methotrexate",
+  "metotressato",
   "ciclofosfamide",
   "teriflunomide"
  ],
@@ -523,7 +534,7 @@
  ],
  "B7__sm-farmaci-adiuvanti-sintomatici": [
   "baclofen",
-  "dalfampridina",
+  "fampridina",
   "cannabidiolo",
   "dronabinolo",
   "nabilone"
@@ -538,7 +549,7 @@
  "B8__oppiacei-forti-step-3": [
   "morfina",
   "ossicodone",
-  "fentanyl",
+  "fentanil",
   "remifentanil",
   "alfentanil",
   "sufentanil",
@@ -799,7 +810,13 @@
  "Antibiotici-2__teicoplanina": [
   "teicoplanina"
  ],
- "Antibiotici-2__antimicobatterici-quadro-generale-terapi": [],
+ "Antibiotici-2__antimicobatterici-quadro-generale-terapi": [
+  "isoniazide",
+  "rifampicina",
+  "pirazinamide",
+  "etambutolo",
+  "streptomicina"
+ ],
  "Antibiotici-2__isoniazide-ini": [
   "isoniazide"
  ],
@@ -867,7 +884,15 @@
   "netilmicina",
   "amikacina"
  ],
- "Antibiotici-3__aminoglicosidi-singoli-farmaci": [],
+ "Antibiotici-3__aminoglicosidi-singoli-farmaci": [
+  "streptomicina",
+  "gentamicina",
+  "tobramicina",
+  "amikacina",
+  "kanamicina",
+  "neomicina",
+  "netilmicina"
+ ],
  "Antibiotici-3__tetracicline": [
   "tetraciclina",
   "ossitetraciclina",

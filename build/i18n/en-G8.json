@@ -239,7 +239,7 @@
   },
   {
    "id": "Antibiotici-2__isoniazide-ini",
-   "name": "Isoniazid (INI)",
+   "name": "Isoniazid (INH)",
    "nameShort": "Isoniazid",
    "memo": "Blocks **mycolic acids**; always give **vitamin B6** (prevents neuropathy); hepatotoxic.",
    "segments": [
@@ -554,7 +554,7 @@
    "segments": [
     {
      "label": "Mechanism of Action",
-     "value": "bind to the 50S ribosomal subunit → prevent the binding of the amino acid to the acceptor site → hinder elongation of the polypeptide chain."
+     "value": "bind to the 50S ribosomal subunit (near the peptide exit tunnel) → block translocation and elongation of the nascent polypeptide chain."
     },
     {
      "label": "Molecular Target",
