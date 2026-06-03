@@ -113,6 +113,16 @@ body.m-all tbody tr.dr:hover{background:#fff3d6}
 .q-members b{color:var(--ink);background:linear-gradient(transparent 60%, #ffe08a 60%);padding:0 2px;border-radius:2px}
 .q-hint{margin-top:7px;font-family:var(--font-display);font-weight:800;color:var(--blue);font-size:1rem}
 .q-hint b{font-size:1.15rem}
+.q-nav{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.q-back,.q-fwd{font-family:var(--font-display);font-weight:800;font-size:.95rem;border:2.5px solid var(--ink);border-radius:12px 8px 11px 8px/8px 11px 8px 12px;padding:9px 16px;cursor:pointer;box-shadow:2px 2px 0 rgba(58,50,43,.18)}
+.q-back{background:var(--paper-2);color:var(--ink)}
+.q-fwd{background:var(--green);color:var(--ink)}
+.q-back[disabled]{opacity:.4;cursor:default;box-shadow:none}
+.q-back:hover:not([disabled]),.q-fwd:hover{transform:translate(-1px,-2px)}
+.q-warn{color:var(--orange);font-weight:800}
+.q-errlist{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;max-height:46vh;overflow:auto}
+.q-err{background:#ffe7e7;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;font-weight:800;font-size:.9rem}
+.q-err b{color:#e85555}
 @media(max-width:560px){
   h1{font-size:1.25rem} .tbl-wrap{max-height:calc(100vh - 290px)}
   thead th,tbody td{padding:9px 10px}
@@ -135,6 +145,7 @@ body.m-all tbody tr.dr:hover{background:#fff3d6}
     <button class="chip mode" data-mode="effetti">💊 Solo effetti</button>
     <button class="chip quizbtn" onclick="quizStart('mc')">🎯 Quiz (scelta)</button>
     <button class="chip quizbtn" onclick="quizStart('write')">✍️ Scrivi i nomi</button>
+    <button class="chip" onclick="quizErrors()">📊 Errori</button>
     <button class="chip" id="clrBtn">↺ Azzera filtri</button>
     <span class="count" id="count"></span>
   </div>
@@ -279,70 +290,109 @@ document.querySelectorAll('thead th').forEach(th=>{
 /* ===== QUIZ NOMI ===== */
 const ALLDRUGS=[]; DATA.forEach(x=>(x.drugs||[]).forEach(dn=>ALLDRUGS.push({drug:dn,deck:x.deck,mod:x.mod,cls:deckTitle(x.deck),use:x.ind||x.mecc||''})));
 const ALLCLS=[...new Set(ALLDRUGS.map(d=>d.cls))];
+const QKEY='farmaco-quiz-v1';
+let qstore=(()=>{try{return JSON.parse(localStorage.getItem(QKEY))||{};}catch(e){return {};}})();
+qstore.wrong=qstore.wrong||{}; qstore.answered=qstore.answered||0; qstore.correct=qstore.correct||0;
+function qsave(){try{localStorage.setItem(QKEY,JSON.stringify(qstore));}catch(e){}}
 let quiz=null;
 function shuf(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function sample(arr,n,not){const o=[];for(const v of shuf(arr)){if(o.length>=n)break;if(not&&v===not)continue;if(o.indexOf(v)<0)o.push(v);}return o;}
-function qPool(){const p=ALLDRUGS.filter(d=>(!state.mod||d.mod===state.mod)&&(!state.deck||d.deck===state.deck));return p.length?p:ALLDRUGS;}
-function quizStart(kind){ if(ALLDRUGS.length<4)return; quiz={kind:kind||'mc',score:0,total:0,streak:0,best:0,wrong:[],pool:qPool(),answered:false}; $('#quiz').hidden=false; document.body.style.overflow='hidden'; quizNext(); }
-function quizExit(){ $('#quiz').hidden=true; document.body.style.overflow=''; }
-function quizNext(){
-  quiz.answered=false;
-  if(quiz.kind==='write') return quizWrite();
-  const it=quiz.pool[Math.floor(Math.random()*quiz.pool.length)];
-  const type=Math.random()<0.5?'cls':'drug'; let kicker,prompt,sub='',answer,options;
-  if(type==='cls'){ kicker='A che classe appartiene?'; prompt='<span class="dn">'+esc(it.drug)+'</span>'; answer=it.cls; options=shuf([answer,...sample(ALLCLS,3,answer)]); }
-  else{ kicker='Quale farmaco è di questa classe?'; prompt=esc(it.cls); sub=it.use?esc(it.use).slice(0,110):''; answer=it.drug; options=shuf([answer,...sample(ALLDRUGS.filter(d=>d.cls!==it.cls).map(d=>d.drug),3,answer)]); }
-  quiz.cur={answer,options,it};
-  $('#qScore').textContent='✔ '+quiz.score+'/'+quiz.total; $('#qStreak').textContent='🔥 '+quiz.streak;
-  $('#qCard').innerHTML='<div class="q-kicker">'+kicker+'</div><div class="q-prompt">'+prompt+'</div>'+(sub?'<div class="q-sub">'+sub+'</div>':'')+'<div class="q-opts">'+options.map((o,i)=>'<button class="q-opt" onclick="quizAnswer('+i+')">'+esc(o)+'</button>').join('')+'</div><div class="q-next" id="qNext"></div>';
-}
-function quizAnswer(i){
-  if(quiz.answered)return; quiz.answered=true;
-  const ok=quiz.cur.options[i]===quiz.cur.answer; quiz.total++;
-  if(ok){quiz.score++;quiz.streak++;quiz.best=Math.max(quiz.best,quiz.streak);}else{quiz.streak=0;quiz.wrong.push(quiz.cur.it);}
-  document.querySelectorAll('.q-opt').forEach((b,bi)=>{b.disabled=true;if(quiz.cur.options[bi]===quiz.cur.answer)b.classList.add('ok');else if(bi===i)b.classList.add('no');});
-  $('#qScore').textContent='✔ '+quiz.score+'/'+quiz.total; $('#qStreak').textContent='🔥 '+quiz.streak;
-  $('#qNext').textContent= ok?'Giusto! 🎉':'Risposta: '+quiz.cur.answer;
-  setTimeout(quizNext, ok?700:1450);
-}
 function nrm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();}
 function lev(a,b){const m=a.length,n=b.length,d=[];for(let i=0;i<=m;i++)d[i]=[i];for(let j=0;j<=n;j++)d[0][j]=j;for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n];}
-function quizWrite(){
-  const it=quiz.pool[Math.floor(Math.random()*quiz.pool.length)];
+function qPool(){const p=ALLDRUGS.filter(d=>(!state.mod||d.mod===state.mod)&&(!state.deck||d.deck===state.deck));return p.length?p:ALLDRUGS;}
+function quizStart(kind, errorsOnly){
+  if(ALLDRUGS.length<4)return;
+  let pool=qPool();
+  if(errorsOnly){ const ew=Object.keys(qstore.wrong).filter(k=>qstore.wrong[k]>0); const p=ALLDRUGS.filter(d=>ew.indexOf(d.drug)>=0); if(p.length) pool=p; }
+  quiz={kind:kind||'mc',errorsOnly:!!errorsOnly,score:0,total:0,streak:0,best:0,pool:pool,used:new Set(),hist:[],hidx:-1};
+  $('#quiz').hidden=false; document.body.style.overflow='hidden'; quizNext();
+}
+function quizExit(){ $('#quiz').hidden=true; document.body.style.overflow=''; }
+function topBar(){ $('#qScore').textContent='✔ '+quiz.score+'/'+quiz.total; $('#qStreak').textContent='🔥 '+quiz.streak; }
+function buildQ(){
+  let avail=quiz.pool.filter(d=>!quiz.used.has(d.drug)); if(!avail.length){ quiz.used.clear(); avail=quiz.pool; }
+  const it=avail[Math.floor(Math.random()*avail.length)];
   const members=[...new Set(ALLDRUGS.filter(d=>d.cls===it.cls).map(d=>d.drug))];
-  const wtype=(Math.random()<0.5)?'target':'member'; let kicker,hint='';
-  if(wtype==='target'){ const t=it.drug, ini=((t.match(/[A-Za-zÀ-ÿ]/)||[''])[0]).toUpperCase(), nl=t.replace(/\s/g,'').length;
-    quiz.cur={wtype,cls:it.cls,members,use:it.use,target:t};
-    kicker='✍️ Scrivi il farmaco preciso'; hint='<div class="q-hint">inizia per <b>'+ini+'</b> · '+nl+' lettere</div>'; }
-  else{ quiz.cur={wtype,cls:it.cls,members,use:it.use}; kicker='✍️ Scrivi un farmaco di questa classe'; }
-  $('#qScore').textContent='✔ '+quiz.score+'/'+quiz.total; $('#qStreak').textContent='🔥 '+quiz.streak;
-  $('#qCard').innerHTML='<div class="q-kicker">'+kicker+'</div><div class="q-prompt">'+esc(it.cls)+'</div>'+(it.use?'<div class="q-sub">'+esc(it.use).slice(0,110)+'</div>':'')+hint+'<input class="q-in" id="qIn" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="scrivi qui il nome…" onkeydown="if(event.key===&quot;Enter&quot;)quizEnter()"><button class="q-go" id="qGo" onclick="quizSubmit()">Verifica</button><div class="q-next" id="qNext"></div>';
-  const el=$('#qIn'); if(el) el.focus();
+  if(quiz.kind==='write'){
+    const wtype=(members.length>1 && Math.random()<0.5)?'target':'member';
+    const q={mode:'write',wtype:wtype,members:members,target:it.drug,focus:it.drug,prompt:esc(it.cls),sub:it.use?esc(it.use).slice(0,110):'',hint:'',done:false};
+    if(wtype==='target'){ const t=it.drug, ini=((t.match(/[A-Za-zÀ-ÿ]/)||[''])[0]).toUpperCase(), nl=t.replace(/\s/g,'').length;
+      q.kicker='✍️ Scrivi il farmaco preciso'; q.hint='<div class="q-hint">inizia per <b>'+ini+'</b> · '+nl+' lettere</div>'; }
+    else q.kicker='✍️ Scrivi un farmaco di questa classe (nuovo)';
+    return q;
+  }
+  const type=Math.random()<0.5?'cls':'drug';
+  if(type==='cls') return {mode:'mc',type:type,answer:it.cls,focus:it.drug,kicker:'A che classe appartiene?',prompt:'<span class="dn">'+esc(it.drug)+'</span>',sub:'',options:shuf([it.cls,...sample(ALLCLS,3,it.cls)]),done:false};
+  return {mode:'mc',type:type,answer:it.drug,focus:it.drug,kicker:'Quale farmaco è di questa classe?',prompt:esc(it.cls),sub:it.use?esc(it.use).slice(0,110):'',options:shuf([it.drug,...sample(ALLDRUGS.filter(d=>d.cls!==it.cls).map(d=>d.drug),3,it.drug)]),done:false};
+}
+function qNav(){
+  const cur=quiz.hist[quiz.hidx];
+  const fwd=(cur&&cur.done)?'<button class="q-fwd" onclick="quizNext()">'+(quiz.hidx<quiz.hist.length-1?'Avanti →':'Nuova →')+'</button>':'';
+  return '<div class="q-nav"><button class="q-back"'+(quiz.hidx>0?'':' disabled')+' onclick="quizBack()">← Indietro</button>'+fwd+'</div>';
+}
+function renderQ(q){
+  topBar();
+  let b='<div class="q-kicker">'+q.kicker+'</div><div class="q-prompt">'+q.prompt+'</div>'+(q.sub?'<div class="q-sub">'+q.sub+'</div>':'')+(q.hint||'');
+  if(q.mode==='mc'){
+    b+='<div class="q-opts">'+q.options.map((o,i)=>{let c='q-opt';if(q.done){if(o===q.answer)c+=' ok';else if(o===q.chosen)c+=' no';}return '<button class="'+c+'"'+(q.done?' disabled':'')+' onclick="quizAnswer('+i+')">'+esc(o)+'</button>';}).join('')+'</div>';
+    b+='<div class="q-next" id="qNext">'+(q.done?(q.feedback||''):'')+'</div>';
+  }else{
+    b+='<input class="q-in'+(q.done?(q.wasCorrect?' ok':' no'):'')+'" id="qIn" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="scrivi qui il nome…"'+(q.done?' value="'+esc(q.chosen||'')+'" disabled':'')+' onkeydown="if(event.key===&quot;Enter&quot;)quizEnter()">'+(q.done?'':'<button class="q-go" id="qGo" onclick="quizSubmit()">Verifica</button>')+'<div class="q-next" id="qNext">'+(q.done?(q.feedback||''):'')+'</div>';
+  }
+  b+=qNav();
+  $('#qCard').innerHTML=b;
+  if(!q.done && q.mode==='write'){ const el=$('#qIn'); if(el) el.focus(); }
+}
+function quizNext(){
+  if(quiz.hidx<quiz.hist.length-1){ quiz.hidx++; renderQ(quiz.hist[quiz.hidx]); return; }
+  const q=buildQ(); quiz.hist.push(q); quiz.hidx=quiz.hist.length-1; renderQ(q);
+}
+function quizBack(){ if(quiz.hidx>0){ quiz.hidx--; renderQ(quiz.hist[quiz.hidx]); } }
+function scoreQ(q,canon){
+  quiz.total++; qstore.answered++;
+  if(q.wasCorrect){ quiz.score++; quiz.streak++; quiz.best=Math.max(quiz.best,quiz.streak); qstore.correct++; quiz.used.add(canon||q.focus); }
+  else { quiz.streak=0; qstore.wrong[q.focus]=(qstore.wrong[q.focus]||0)+1; }
+  qsave();
+}
+function quizAnswer(i){
+  const q=quiz.hist[quiz.hidx]; if(!q||q.done||q.mode!=='mc')return;
+  q.done=true; q.chosen=q.options[i]; q.wasCorrect=(q.chosen===q.answer);
+  scoreQ(q); q.feedback=q.wasCorrect?'Giusto! 🎉':'Risposta: <b>'+esc(q.answer)+'</b>';
+  renderQ(q);
 }
 function quizSubmit(){
-  if(quiz.answered)return; const el=$('#qIn'); const v=el?el.value:''; if(!nrm(v))return; quiz.answered=true;
-  const members=quiz.cur.members, nv=nrm(v); quiz.total++; if(el) el.disabled=true;
-  const near1=a=>{const na=nrm(a);return Math.abs(na.length-nv.length)<=2 && lev(na,nv)<=1;};
-  let good=false,msg='';
-  if(quiz.cur.wtype==='target'){
-    const t=quiz.cur.target;
-    if(nrm(t)===nv){good=true;msg='✓ Giusto: <b>'+esc(t)+'</b>';}
-    else if(near1(t)){good=true;msg='Quasi! Si scrive: <b>'+esc(t)+'</b>';}
-    else if(members.some(m=>nrm(m)===nv)){good=true;msg='Giusto, ma cercavo: <b>'+esc(t)+'</b>';}
-    else{msg='✗ Era: <b>'+esc(t)+'</b>';}
-  }else{
-    const exact=members.find(m=>nrm(m)===nv), near=exact?null:members.find(near1);
-    if(exact){good=true;msg='✓ Giusto: <b>'+esc(exact)+'</b>';}
-    else if(near){good=true;msg='Quasi! Si scrive: <b>'+esc(near)+'</b>';}
-    else{msg='✗ Si scrive, per es.: <b>'+esc(members[0])+'</b>';}
+  const q=quiz.hist[quiz.hidx]; if(!q||q.done||q.mode!=='write')return;
+  const el=$('#qIn'); const v=el?el.value:''; if(!nrm(v))return;
+  const members=q.members, nv=nrm(v), near1=a=>{const na=nrm(a);return Math.abs(na.length-nv.length)<=2 && lev(na,nv)<=1;};
+  if(q.wtype==='member'){ const hit=members.find(m=>nrm(m)===nv); if(hit&&quiz.used.has(hit)){ $('#qNext').innerHTML='<span class="q-warn">⚠️ <b>'+esc(hit)+'</b> già usato — scrivine uno <b>nuovo</b>!</span>'; el.value=''; el.focus(); return; } }
+  q.done=true; q.chosen=v; let good=false,msg='',canon='';
+  if(q.wtype==='target'){ const t=q.target;
+    if(nrm(t)===nv){good=true;canon=t;msg='✓ Giusto: <b>'+esc(t)+'</b>';}
+    else if(near1(t)){good=true;canon=t;msg='Quasi! Si scrive: <b>'+esc(t)+'</b>';}
+    else if(members.some(m=>nrm(m)===nv)){good=true;canon=members.find(m=>nrm(m)===nv);msg='Giusto, ma cercavo: <b>'+esc(t)+'</b>';}
+    else msg='✗ Era: <b>'+esc(t)+'</b>';
+  }else{ const exact=members.find(m=>nrm(m)===nv), near=exact?null:members.find(near1);
+    if(exact){good=true;canon=exact;msg='✓ Giusto: <b>'+esc(exact)+'</b>';}
+    else if(near){good=true;canon=near;msg='Quasi! Si scrive: <b>'+esc(near)+'</b>';}
+    else msg='✗ Si scrive, per es.: <b>'+esc(members[0])+'</b>';
   }
-  if(good){quiz.score++;quiz.streak++;quiz.best=Math.max(quiz.best,quiz.streak);if(el)el.classList.add('ok');}
-  else{quiz.streak=0;quiz.wrong.push(quiz.cur);if(el)el.classList.add('no');}
-  $('#qScore').textContent='✔ '+quiz.score+'/'+quiz.total; $('#qStreak').textContent='🔥 '+quiz.streak;
-  $('#qNext').innerHTML=msg+'<div class="q-members">Tutti i nomi: <b>'+members.map(esc).join('</b> · <b>')+'</b></div>';
-  const go=$('#qGo'); if(go){go.textContent='Avanti →';go.onclick=quizNext;}
+  q.wasCorrect=good; scoreQ(q,canon);
+  q.feedback=msg+'<div class="q-members">Tutti i nomi: <b>'+members.map(esc).join('</b> · <b>')+'</b></div>';
+  renderQ(q);
 }
-function quizEnter(){ if(!quiz.answered) quizSubmit(); else quizNext(); }
+function quizEnter(){ const q=quiz.hist[quiz.hidx]; if(q&&!q.done) quizSubmit(); else quizNext(); }
+function quizErrors(){
+  $('#quiz').hidden=false; document.body.style.overflow='hidden';
+  const ent=Object.keys(qstore.wrong).filter(k=>qstore.wrong[k]>0).map(k=>[k,qstore.wrong[k]]).sort((a,b)=>b[1]-a[1]);
+  $('#qScore').textContent='Risposte: '+qstore.answered; $('#qStreak').textContent='✔ '+qstore.correct;
+  let b='<div class="q-kicker">📊 I tuoi errori (nel tempo)</div>';
+  if(!ent.length){ b+='<div class="q-prompt" style="font-size:1.2rem">Nessun errore registrato 🎉</div><div class="q-nav"><button class="q-back" onclick="quizExit()">Chiudi</button></div>'; }
+  else{ b+='<div class="q-sub">'+ent.length+' nomi da rivedere (i più sbagliati in alto).</div><div class="q-errlist">'+ent.slice(0,80).map(e=>'<span class="q-err"><b>'+esc(e[0])+'</b> ×'+e[1]+'</span>').join('')+'</div>';
+    b+='<div class="q-nav"><button class="q-fwd" onclick="quizStart(&quot;write&quot;,true)">✍️ Riscrivi gli errori</button><button class="q-fwd" onclick="quizStart(&quot;mc&quot;,true)">🎯 Ripassa (scelta)</button></div>';
+    b+='<div class="q-nav"><button class="q-back" onclick="qClearErr()">🗑 Azzera</button><button class="q-back" onclick="quizExit()">Chiudi</button></div>'; }
+  $('#qCard').innerHTML=b;
+}
+function qClearErr(){ if(confirm('Azzerare lo storico degli errori del quiz?')){ qstore.wrong={}; qsave(); quizErrors(); } }
 
 buildChips();
 setMode('all');

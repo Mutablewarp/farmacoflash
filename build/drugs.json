@@ -1,638 +1,957 @@
 {
-  "A4__glucocorticoidi-classe-meccanismo-effett": [],
-  "A4__idrocortisone-cortisolo-cortisone": [
-    "idrocortisone",
-    "cortisolo",
-    "cortisone"
-  ],
-  "A4__prednisone-prednisolone": [
-    "prednisone",
-    "prednisolone"
-  ],
-  "A4__metilprednisolone": [
-    "metilprednisolone"
-  ],
-  "A4__triamcinolone": [
-    "triamcinolone"
-  ],
-  "A4__betametasone-e-desametasone-fluorurati": [
-    "betametasone",
-    "desametasone"
-  ],
-  "A4__fludrocortisone": [
-    "fludrocortisone"
-  ],
-  "A4__glucocorticoidi-topici-e-inalatori-beclo": [
-    "beclometasone",
-    "ciclesonide",
-    "budesonide",
-    "fluticasone"
-  ],
-  "A5__fans-classe-meccanismo-azioni-effetti-co": [],
-  "A5__acido-acetilsalicilico-asa-aspirina": [
-    "acido acetilsalicilico",
-    "ASA",
-    "Aspirina"
-  ],
-  "A5__derivati-dell-acido-propionico-ibuprofen": [
-    "ibuprofene",
-    "ketoprofene",
-    "naprossene",
-    "flurbiprofene",
-    "fenoprofene"
-  ],
-  "A5__diclofenac-derivato-dell-acido-acetico": [
-    "diclofenac"
-  ],
-  "A5__indometacina-derivato-dell-acido-acetico": [
-    "indometacina"
-  ],
-  "A5__ketorolac-toradol-derivato-dell-acido-ac": [
-    "ketorolac",
-    "Toradol"
-  ],
-  "A5__nimesulide-aulin": [
-    "nimesulide",
-    "Aulin"
-  ],
-  "A5__oxicam-piroxicam-meloxicam": [
-    "piroxicam",
-    "meloxicam"
-  ],
-  "A5__coxib-celecoxib-valdecoxib-rofecoxib": [
-    "celecoxib",
-    "valdecoxib",
-    "rofecoxib"
-  ],
-  "A5__paracetamolo-fans-atipico": [
-    "paracetamolo"
-  ],
-  "A6__istamina-recettori-e-strategie-farmacolo": [],
-  "A6__anti-h1-di-i-generazione-clorfeniramina-": [
-    "clorfeniramina",
-    "difenidramina",
-    "idrossizina",
-    "prometazina"
-  ],
-  "A6__anti-h1-di-ii-generazione-loratadina-cet": [
-    "loratadina",
-    "cetirizina",
-    "terfenadina",
-    "astemizolo"
-  ],
-  "A6__anti-h1-di-iii-generazione-desloratadina": [
-    "desloratadina",
-    "levocetirizina",
-    "fexofenadina",
-    "azelastina",
-    "levocabastina",
-    "ketotifene"
-  ],
-  "A6__anti-h2-cimetidina-ranitidina-famotidina": [
-    "cimetidina",
-    "ranitidina",
-    "famotidina",
-    "nizatidina",
-    "roxatidina"
-  ],
-  "A7__emicrania-terapia-dell-attacco-acuto-fan": [],
-  "A7__derivati-dell-ergot-ergotamina-diidroerg": [
-    "ergotamina",
-    "diidroergotamina"
-  ],
-  "A7__triptani-sumatriptan-ii-generazione": [
-    "sumatriptan"
-  ],
-  "A7__nuove-classi-anti-emicrania-ditani-gepan": [],
-  "A7__emicrania-terapia-profilattica": [],
-  "A7__antiemetici-centro-del-vomito-e-classi": [],
-  "A7__domperidone-e-metoclopramide": [
-    "domperidone",
-    "metoclopramide"
-  ],
-  "A8__asma-bpco-basi-e-strategia-terapeutica": [],
-  "A8__2-agonisti-saba-laba-ultra-laba": [],
-  "A8__xantine-teofillinici-teofillina-aminofil": [
-    "teofillina",
-    "aminofillina"
-  ],
-  "A8__antimuscarinici-sama-lama": [],
-  "A8__glucocorticoidi-sistemici-inalatori": [],
-  "A8__cromoni-cromoglicato-di-sodio": [
-    "cromoglicato di sodio"
-  ],
-  "A8__antileucotrienici-zileuton-montelukast-z": [
-    "zileuton",
-    "montelukast",
-    "zafirlukast",
-    "pranlukast"
-  ],
-  "A8__biotecnologici-omalizumab-anti-il5": [
-    "omalizumab"
-  ],
-  "A9__farmaci-biologici-proteine-terapeutiche-": [],
-  "A9__anticorpi-monoclonali-tipi-e-nomenclatur": [],
-  "A9__anti-tnf-classe": [],
-  "A9__infliximab": [
-    "infliximab"
-  ],
-  "A9__adalimumab": [
-    "adalimumab"
-  ],
-  "A9__etanercept": [
-    "etanercept"
-  ],
-  "A9__biosimilari-concetti": [],
-  "A10__insulina-insulina-umana-analoghi": [
-    "insulina"
-  ],
-  "A10__sulfaniluree-i-gen-tolbutamide-clorpropa": [
-    "tolbutamide",
-    "clorpropamide",
-    "tolazamide",
-    "glibenclamide",
-    "glipizide",
-    "glimepiride"
-  ],
-  "A10__glinidi-derivati-della-meglitinide": [],
-  "A10__metformina-biguanidi": [
-    "metformina"
-  ],
-  "A10__glitazoni-tiazolidinedioni-pioglitazone-": [
-    "pioglitazone",
-    "rosiglitazone"
-  ],
-  "A10__acarbosio-inibitore-dell-glucosidasi": [
-    "acarbosio"
-  ],
-  "A10__incretine-agonisti-del-recettore-glp-1-e": [
-    "exenatide",
-    "liraglutide",
-    "lixisenatide",
-    "dulaglutide"
-  ],
-  "A10__incretine-inibitori-della-dpp-4-gliptine": [
-    "sitagliptin",
-    "vildagliptin",
-    "saxagliptin",
-    "linagliptin"
-  ],
-  "A10__inibitori-sglt2-glifozine": [],
-  "A10__iperglicemizzanti-glucagone-octreotide-d": [
-    "glucagone",
-    "octreotide",
-    "diazossido"
-  ],
-  "A11__antiacidi-sali-di-alluminio-magnesio": [],
-  "A11__antagonisti-dei-recettori-h2-famotidina-": [
-    "famotidina",
-    "nizatidina",
-    "roxatidina"
-  ],
-  "A11__antimuscarinici-gastrici-pirenzepina-tel": [
-    "pirenzepina",
-    "telenzepina"
-  ],
-  "A11__inibitori-della-pompa-protonica-ipp-omep": [
-    "omeprazolo",
-    "lansoprazolo",
-    "pantoprazolo",
-    "rabeprazolo"
-  ],
-  "A11__protettori-della-mucosa-misoprostolo-suc": [
-    "misoprostolo",
-    "sucralfato",
-    "bismuto"
-  ],
-  "A11__procinetici-neostigmina-domperidone-meto": [
-    "neostigmina",
-    "domperidone",
-    "metoclopramide",
-    "eritromicina"
-  ],
-  "A11__antidiarroici-loperamide": [
-    "loperamide"
-  ],
-  "A11__lassativi-stipsi-da-oppiacei": [],
-  "A11__ibd-antinfiammatori-5-asa-mesalazina-sul": [
-    "mesalazina",
-    "sulfasalazina",
-    "olsalazina",
-    "balsalazide"
-  ],
-  "A11__ibd-immunosoppressori-e-biologici": [],
-  "A12__osso-regolazione-del-calcio-e-basi-della": [],
-  "A12__calcio-vitamina-d": [
-    "calcio",
-    "vitamina D"
-  ],
-  "A12__estrogeni-17-estradiolo": [
-    "17-β estradiolo"
-  ],
-  "A12__serm-raloxifene-tamoxifene": [
-    "raloxifene",
-    "tamoxifene"
-  ],
-  "A12__calcitonina": [
-    "calcitonina"
-  ],
-  "A12__bifosfonati-i-iii-generazione": [],
-  "A12__denosumab": [
-    "denosumab"
-  ],
-  "A12__teriparatide-pth-intermittente-fluoruri": [
-    "teriparatide"
-  ],
-  "B1__benzodiazepine-bdz": [],
-  "B1__flumazenil": [
-    "flumazenil"
-  ],
-  "B1__barbiturici-fenobarbital-secobarbital-pe": [
-    "fenobarbital",
-    "secobarbital",
-    "pentobarbital"
-  ],
-  "B1__z-compounds-zaleplon-zolpidem": [
-    "zaleplon",
-    "zolpidem"
-  ],
-  "B1__etifoxina": [
-    "etifoxina"
-  ],
-  "B1__buspirone-e-serotoninergici-ansia-cronic": [
-    "buspirone"
-  ],
-  "B1__neurosteroidi-steroidi-neuroattivi": [],
-  "B2__anestetici-generali-principi": [],
-  "B2__anestetici-inalatori-volatili-alotano-is": [
-    "alotano",
-    "isoflurano",
-    "desflurano",
-    "sevoflurano",
-    "protossido d'azoto",
-    "enflurano"
-  ],
-  "B2__anestetici-endovenosi-tiopentale-propofo": [
-    "tiopentale",
-    "propofol",
-    "etomidato",
-    "ketamina",
-    "fentanil"
-  ],
-  "B2__anestetici-locali-meccanismo-e-farmacoci": [],
-  "B2__anestetici-locali-singole-molecole": [],
-  "B2__anestetici-locali-adr-e-associazione-con": [],
-  "B3__antidepressivi-basi-fisiopatologiche": [],
-  "B3__antidepressivi-triciclici-tca": [],
-  "B3__imao-inibitori-delle-monoamino-ossidasi": [],
-  "B3__sindrome-serotoninergica": [],
-  "B3__ssri-citalopram-escitalopram-fluoxetina-": [
-    "citalopram",
-    "escitalopram",
-    "fluoxetina",
-    "fluvoxamina",
-    "sertralina",
-    "paroxetina"
-  ],
-  "B3__reboxetina-nri-inibitore-reuptake-noradr": [
-    "reboxetina"
-  ],
-  "B3__bupropione-dri-inibitore-reuptake-dopami": [
-    "bupropione"
-  ],
-  "B3__venlafaxina-snri": [
-    "venlafaxina"
-  ],
-  "B3__nassa-mirtazapina": [
-    "mirtazapina"
-  ],
-  "B3__sari-trazodone-nefazodone": [
-    "trazodone",
-    "nefazodone"
-  ],
-  "B4__disturbo-bipolare-basi": [],
-  "B4__litio-sali-di-litio": [
-    "litio"
-  ],
-  "B4__acido-valproico-valproato-sodico-come-st": [
-    "acido valproico",
-    "valproato sodico"
-  ],
-  "B4__carbamazepina-come-stabilizzante-dell-um": [
-    "carbamazepina"
-  ],
-  "B4__lamotrigina": [
-    "lamotrigina"
-  ],
-  "B5__psicosi-schizofrenia-basi-e-vie-dopamine": [],
-  "B5__antipsicotici-tipici-1-generazione-neuro": [],
-  "B5__antipsicotici-atipici-2-generazione": [],
-  "B5__aripiprazolo-3-generazione": [
-    "aripiprazolo"
-  ],
-  "B5__antipsicotici-effetti-indesiderati-e-for": [],
-  "B6__parkinson-strategia-terapeutica": [],
-  "B6__levodopa-l-dopa-carbidopa-benserazide": [
-    "levodopa",
-    "L-DOPA",
-    "carbidopa",
-    "benserazide"
-  ],
-  "B6__dopamino-agonisti": [],
-  "B6__imao-b-selegilina-rasagilina-safinamide": [
-    "selegilina",
-    "rasagilina",
-    "safinamide"
-  ],
-  "B6__comt-inibitori-entacapone-opicapone-tolc": [
-    "entacapone",
-    "opicapone",
-    "tolcapone"
-  ],
-  "B6__amantadina-antimuscarinici-e-farmaci-acc": [
-    "amantadina"
-  ],
-  "B7__alzheimer-strategia-terapeutica": [],
-  "B7__inibitori-dell-acetilcolinesterasi-donep": [
-    "donepezil",
-    "rivastigmina",
-    "galantamina"
-  ],
-  "B7__memantina": [
-    "memantina"
-  ],
-  "B7__alzheimer-terapie-accessorie-e-prospetti": [],
-  "B7__sm-basi-e-glucocorticoidi-attacco-acuto": [],
-  "B7__sm-immunosoppressori-aspecifici": [],
-  "B7__sm-disease-modifying-treatments-dmt": [],
-  "B7__sm-farmaci-adiuvanti-sintomatici": [],
-  "B8__terapia-del-dolore-scala-oms-e-adiuvanti": [],
-  "B8__sistema-oppioidergico-recettori-e-meccan": [],
-  "B8__oppioidi-effetti-tolleranza-e-dipendenza": [],
-  "B8__oppiacei-deboli-codeina-tramadolo-step-2": [
-    "codeina",
-    "tramadolo"
-  ],
-  "B8__oppiacei-forti-step-3": [],
-  "B8__antagonisti-paracetamolo-e-cannabinoidi": [
-    "paracetamolo"
-  ],
-  "B9__antiepilettici-meccanismi-e-principi": [],
-  "B9__aed-i-gen-bloccanti-dei-canali-na-fenito": [
-    "fenitoina",
-    "carbamazepina",
-    "oxcarbazepina"
-  ],
-  "B9__aed-i-gen-gabaergici-e-altri-barbiturici": [
-    "etosuccimide",
-    "acido valproico"
-  ],
-  "B9__aed-ii-generazione": [],
-  "B9__antiepilettici-indicazioni-per-tipo-di-c": [],
-  "B9__statine-meccanismo-e-farmacocinetica": [],
-  "B9__statine-classificazione-effetti-collater": [],
-  "B9__altri-ipolipemizzanti-fibrati-acido-nico": [
-    "acido nicotinico",
-    "colestiramina",
-    "ezetimibe"
-  ],
-  "B10__ipertensione-strategia-terapeutica": [],
-  "B10__simpaticolitici-centrali-2-agonisti-clon": [
-    "clonidina",
-    "moxonidina",
-    "rilmenidina"
-  ],
-  "B10__metildopa": [
-    "metildopa"
-  ],
-  "B10__1-bloccanti-prazosina-doxazosina-tamsulo": [
-    "prazosina",
-    "doxazosina",
-    "tamsulosina"
-  ],
-  "B10__bloccanti-generazioni-e-proprieta-ancill": [],
-  "B10__bloccanti-meccanismi-avanzati-indicazion": [],
-  "B11__sraa-fisiologia-e-bersagli-farmacologici": [],
-  "B11__ace-inibitori-captopril-enalapril-ramipr": [
-    "captopril",
-    "enalapril",
-    "ramipril"
-  ],
-  "B11__sartani-losartan-valsartan-irbesartan-te": [
-    "losartan",
-    "valsartan",
-    "irbesartan",
-    "telmisartan",
-    "candesartan"
-  ],
-  "B11__inibitori-della-renina-aliskiren": [
-    "aliskiren"
-  ],
-  "B11__calcio-antagonisti-diidropiridine-verapa": [
-    "verapamil",
-    "diltiazem"
-  ],
-  "B11b__insufficienza-cardiaca-basi-fisiopatolog": [],
-  "B11b__digitale-digossina": [
-    "digossina"
-  ],
-  "B11b__teofillina-e-xantine": [
-    "teofillina"
-  ],
-  "B11b__diuretici-overview-siti-e-classi": [],
-  "B11b__inibitori-dell-anidrasi-carbonica-acetaz": [
-    "acetazolamide",
-    "metazolamide"
-  ],
-  "B11b__diuretici-osmotici-mannitolo": [
-    "mannitolo"
-  ],
-  "B11b__diuretici-dell-ansa-drastici-furosemide-": [
-    "furosemide",
-    "bumetanide",
-    "acido etacrinico",
-    "torasemide"
-  ],
-  "B11b__diuretici-tiazidici-e-risparmiatori-di-k": [],
-  "B12__emostasi-e-bersagli-della-terapia": [],
-  "B12__aspirina-e-inibitori-reversibili-della-c": [
-    "Aspirina"
-  ],
-  "B12__antagonisti-del-recettore-p2y12-ticlopid": [
-    "ticlopidina",
-    "clopidogrel",
-    "prasugrel",
-    "ticagrelor"
-  ],
-  "B12__antagonisti-della-gp-iib-iiia-e-altri-an": [],
-  "B12__eparina-eparine-a-basso-peso-molecolare-": [
-    "eparina"
-  ],
-  "B12__anticoagulanti-orali-vka-inibitori-diret": [],
-  "B12__fibrinolitici-e-antitrombotico-ideale": [],
-  "B12b__vasodilatatori-overview-e-antagonisti-de": [
-    "bosentan"
-  ],
-  "B12b__nitrati-nitrossidi-nitroglicerina-isosor": [
-    "nitroglicerina",
-    "isosorbide",
-    "nitroprussiato"
-  ],
-  "B12b__attivatori-dei-canali-k-atp-e-idralazina": [
-    "idralazina"
-  ],
-  "B13__aritmie-e-strategie-antiaritmiche": [],
-  "B13__classe-i-bloccanti-dei-canali-del-na-ia-": [],
-  "B13__classe-ii-bloccanti": [],
-  "B13__classe-iii-bloccanti-dei-canali-del-k": [],
-  "B13__classe-iv-ca-antagonisti-adenosina-e-pot": [
-    "adenosina",
-    "potassio"
-  ],
-  "B14__antitumorali-strategie-e-principi": [],
-  "B14__target-therapy-e-biomarcatori": [],
-  "B14__parp-inibitori-e-letalita-sintetica": [],
-  "B14__immunoterapia-checkpoint-inhibitors-e-an": [],
-  "Antibiotici-2__fosfomicina": [
-    "fosfomicina"
-  ],
-  "Antibiotici-2__cicloserina": [
-    "cicloserina"
-  ],
-  "Antibiotici-2__bacitracina": [
-    "bacitracina"
-  ],
-  "Antibiotici-2__glicopeptidi-classe-vancomicina-teicopla": [
-    "vancomicina",
-    "teicoplanina",
-    "daptomicina"
-  ],
-  "Antibiotici-2__vancomicina": [
-    "vancomicina"
-  ],
-  "Antibiotici-2__teicoplanina": [
-    "teicoplanina"
-  ],
-  "Antibiotici-2__antimicobatterici-quadro-generale-terapi": [],
-  "Antibiotici-2__isoniazide-ini": [
-    "isoniazide"
-  ],
-  "Antibiotici-2__etambutolo": [
-    "etambutolo"
-  ],
-  "Antibiotici-2__rifampicina": [
-    "rifampicina"
-  ],
-  "Antibiotici-2__pirazinamide": [
-    "pirazinamide"
-  ],
-  "Antibiotici-2__antitubercolari-di-ii-scelta": [],
-  "Antibiotici-3__sulfamidici": [],
-  "Antibiotici-3__trimetoprim": [
-    "trimetoprim"
-  ],
-  "Antibiotici-3__chinoloni-e-fluorochinoloni": [],
-  "Antibiotici-3__rifampicina-integrazione-lez-17-profilo-": [
-    "rifampicina"
-  ],
-  "Antibiotici-3__macrolidi-classe-eritromicina-claritromi": [
-    "eritromicina",
-    "claritromicina",
-    "roxitromicina",
-    "azitromicina"
-  ],
-  "Antibiotici-3__eritromicina": [
-    "eritromicina"
-  ],
-  "Antibiotici-3__azitromicina": [
-    "azitromicina"
-  ],
-  "Antibiotici-3__claritromicina-nota": [
-    "claritromicina"
-  ],
-  "Antibiotici-3__lincosamidi-clindamicina": [
-    "clindamicina"
-  ],
-  "Antibiotici-3__cloramfenicolo-caf": [
-    "cloramfenicolo"
-  ],
-  "Antibiotici-3__aminoglicosidi-classe-meccanismo-cinetic": [],
-  "Antibiotici-3__aminoglicosidi-singoli-farmaci": [],
-  "Antibiotici-3__tetracicline": [],
-  "Beta-lattamici__lattamici-classe-quadro-generale": [],
-  "Beta-lattamici__penicilline-naturali-penicillina-g-benzi": [
-    "penicillina G",
-    "benzilpenicillina",
-    "penicillina V",
-    "fenossimetilpenicillina"
-  ],
-  "Beta-lattamici__penicilline-resistenti-alle-lattamasi-me": [
-    "meticillina",
-    "oxacillina",
-    "cloxacillina",
-    "dicloxacillina",
-    "nafcillina"
-  ],
-  "Beta-lattamici__aminopenicilline-amoxicillina-ampicillin": [
-    "amoxicillina",
-    "ampicillina"
-  ],
-  "Beta-lattamici__carbossipenicilline-carbenicillina-ticar": [
-    "carbenicillina",
-    "ticarcillina"
-  ],
-  "Beta-lattamici__ureidopenicilline-piperacillina-mezlocil": [
-    "piperacillina",
-    "mezlocillina",
-    "azlocillina"
-  ],
-  "Beta-lattamici__cefalosporine-classe-quadro-generale": [],
-  "Beta-lattamici__cefalosporine-di-i-generazione-cefazolin": [
-    "cefazolina",
-    "cefalexina"
-  ],
-  "Beta-lattamici__cefalosporine-di-ii-generazione-cefoxiti": [
-    "cefoxitina",
-    "cefamandolo",
-    "cefuroxime",
-    "cefaclor",
-    "cefprozil"
-  ],
-  "Beta-lattamici__cefalosporine-di-iii-generazione-cefotax": [
-    "cefotaxima",
-    "ceftazidima",
-    "cefoperazone",
-    "ceftriaxone",
-    "ceftibuten",
-    "cefpodoxime proxetil"
-  ],
-  "Beta-lattamici__cefalosporine-di-iv-generazione-cefepime": [
-    "cefepime"
-  ],
-  "Beta-lattamici__nuove-cefalosporine-ceftolozano-ceftarol": [
-    "ceftolozano",
-    "ceftarolina"
-  ],
-  "Beta-lattamici__carbapenemici-imipenem-ertapenem-doripen": [
-    "imipenem",
-    "ertapenem",
-    "doripenem",
-    "meropenem"
-  ],
-  "Beta-lattamici__monobattamici-aztreonam": [
-    "aztreonam"
-  ],
-  "Beta-lattamici__lattamasi-classificazione-di-ambler-enzi": [],
-  "Beta-lattamici__inibitori-delle-lattamasi-i-generazione-": [
-    "acido clavulanico",
-    "sulbactam",
-    "tazobactam"
-  ],
-  "Beta-lattamici__inibitori-delle-lattamasi-ii-generazione": [
-    "avibactam",
-    "vaborbactam",
-    "relebactam",
-    "zidebactam",
-    "nacubactam"
-  ]
+ "A4__glucocorticoidi-classe-meccanismo-effett": [],
+ "A4__idrocortisone-cortisolo-cortisone": [
+  "idrocortisone",
+  "cortisolo",
+  "cortisone"
+ ],
+ "A4__prednisone-prednisolone": [
+  "prednisone",
+  "prednisolone"
+ ],
+ "A4__metilprednisolone": [
+  "metilprednisolone"
+ ],
+ "A4__triamcinolone": [
+  "triamcinolone"
+ ],
+ "A4__betametasone-e-desametasone-fluorurati": [
+  "betametasone",
+  "desametasone"
+ ],
+ "A4__fludrocortisone": [
+  "fludrocortisone"
+ ],
+ "A4__glucocorticoidi-topici-e-inalatori-beclo": [
+  "beclometasone",
+  "ciclesonide",
+  "budesonide",
+  "fluticasone"
+ ],
+ "A5__fans-classe-meccanismo-azioni-effetti-co": [],
+ "A5__acido-acetilsalicilico-asa-aspirina": [
+  "acido acetilsalicilico",
+  "ASA",
+  "Aspirina"
+ ],
+ "A5__derivati-dell-acido-propionico-ibuprofen": [
+  "ibuprofene",
+  "ketoprofene",
+  "naprossene",
+  "flurbiprofene",
+  "fenoprofene"
+ ],
+ "A5__diclofenac-derivato-dell-acido-acetico": [
+  "diclofenac"
+ ],
+ "A5__indometacina-derivato-dell-acido-acetico": [
+  "indometacina"
+ ],
+ "A5__ketorolac-toradol-derivato-dell-acido-ac": [
+  "ketorolac",
+  "Toradol"
+ ],
+ "A5__nimesulide-aulin": [
+  "nimesulide",
+  "Aulin"
+ ],
+ "A5__oxicam-piroxicam-meloxicam": [
+  "piroxicam",
+  "meloxicam"
+ ],
+ "A5__coxib-celecoxib-valdecoxib-rofecoxib": [
+  "celecoxib",
+  "valdecoxib",
+  "rofecoxib"
+ ],
+ "A5__paracetamolo-fans-atipico": [
+  "paracetamolo"
+ ],
+ "A6__istamina-recettori-e-strategie-farmacolo": [],
+ "A6__anti-h1-di-i-generazione-clorfeniramina-": [
+  "clorfeniramina",
+  "difenidramina",
+  "idrossizina",
+  "prometazina"
+ ],
+ "A6__anti-h1-di-ii-generazione-loratadina-cet": [
+  "loratadina",
+  "cetirizina",
+  "terfenadina",
+  "astemizolo"
+ ],
+ "A6__anti-h1-di-iii-generazione-desloratadina": [
+  "desloratadina",
+  "levocetirizina",
+  "fexofenadina",
+  "azelastina",
+  "levocabastina",
+  "ketotifene"
+ ],
+ "A6__anti-h2-cimetidina-ranitidina-famotidina": [
+  "cimetidina",
+  "ranitidina",
+  "famotidina",
+  "nizatidina",
+  "roxatidina"
+ ],
+ "A7__emicrania-terapia-dell-attacco-acuto-fan": [],
+ "A7__derivati-dell-ergot-ergotamina-diidroerg": [
+  "ergotamina",
+  "diidroergotamina"
+ ],
+ "A7__triptani-sumatriptan-ii-generazione": [
+  "sumatriptan"
+ ],
+ "A7__nuove-classi-anti-emicrania-ditani-gepan": [],
+ "A7__emicrania-terapia-profilattica": [
+  "propranololo",
+  "acido valproico",
+  "topiramato",
+  "amitriptilina",
+  "verapamil"
+ ],
+ "A7__antiemetici-centro-del-vomito-e-classi": [
+  "scopolamina",
+  "prometazina",
+  "ciclizina",
+  "doxilamina succinato",
+  "piridossina",
+  "droperidolo",
+  "domperidone",
+  "metoclopramide",
+  "ondansetron",
+  "granisetron",
+  "tropisetron",
+  "dolasetron",
+  "diazepam",
+  "lorazepam",
+  "desametasone",
+  "metilprednisolone",
+  "nabilone"
+ ],
+ "A7__domperidone-e-metoclopramide": [
+  "domperidone",
+  "metoclopramide"
+ ],
+ "A8__asma-bpco-basi-e-strategia-terapeutica": [],
+ "A8__2-agonisti-saba-laba-ultra-laba": [
+  "salbutamolo",
+  "terbutalina",
+  "salmeterolo",
+  "formoterolo"
+ ],
+ "A8__xantine-teofillinici-teofillina-aminofil": [
+  "teofillina",
+  "aminofillina"
+ ],
+ "A8__antimuscarinici-sama-lama": [
+  "ipratropio bromuro",
+  "tiotropio bromuro",
+  "glicopirronio bromuro"
+ ],
+ "A8__glucocorticoidi-sistemici-inalatori": [
+  "metilprednisolone",
+  "prednisone",
+  "metilprednisone",
+  "beclometasone",
+  "ciclesonide",
+  "budesonide",
+  "fluticasone"
+ ],
+ "A8__cromoni-cromoglicato-di-sodio": [
+  "cromoglicato di sodio"
+ ],
+ "A8__antileucotrienici-zileuton-montelukast-z": [
+  "zileuton",
+  "montelukast",
+  "zafirlukast",
+  "pranlukast"
+ ],
+ "A8__biotecnologici-omalizumab-anti-il5": [
+  "omalizumab"
+ ],
+ "A9__farmaci-biologici-proteine-terapeutiche-": [],
+ "A9__anticorpi-monoclonali-tipi-e-nomenclatur": [],
+ "A9__anti-tnf-classe": [
+  "infliximab",
+  "adalimumab",
+  "etanercept",
+  "certolizumab pegol",
+  "golimumab"
+ ],
+ "A9__infliximab": [
+  "infliximab"
+ ],
+ "A9__adalimumab": [
+  "adalimumab"
+ ],
+ "A9__etanercept": [
+  "etanercept"
+ ],
+ "A9__biosimilari-concetti": [],
+ "A10__insulina-insulina-umana-analoghi": [
+  "insulina"
+ ],
+ "A10__sulfaniluree-i-gen-tolbutamide-clorpropa": [
+  "tolbutamide",
+  "clorpropamide",
+  "tolazamide",
+  "glibenclamide",
+  "glipizide",
+  "glimepiride"
+ ],
+ "A10__glinidi-derivati-della-meglitinide": [],
+ "A10__metformina-biguanidi": [
+  "metformina"
+ ],
+ "A10__glitazoni-tiazolidinedioni-pioglitazone-": [
+  "pioglitazone",
+  "rosiglitazone"
+ ],
+ "A10__acarbosio-inibitore-dell-glucosidasi": [
+  "acarbosio"
+ ],
+ "A10__incretine-agonisti-del-recettore-glp-1-e": [
+  "exenatide",
+  "liraglutide",
+  "lixisenatide",
+  "dulaglutide"
+ ],
+ "A10__incretine-inibitori-della-dpp-4-gliptine": [
+  "sitagliptin",
+  "vildagliptin",
+  "saxagliptin",
+  "linagliptin"
+ ],
+ "A10__inibitori-sglt2-glifozine": [],
+ "A10__iperglicemizzanti-glucagone-octreotide-d": [
+  "glucagone",
+  "octreotide",
+  "diazossido"
+ ],
+ "A11__antiacidi-sali-di-alluminio-magnesio": [],
+ "A11__antagonisti-dei-recettori-h2-famotidina-": [
+  "famotidina",
+  "nizatidina",
+  "roxatidina"
+ ],
+ "A11__antimuscarinici-gastrici-pirenzepina-tel": [
+  "pirenzepina",
+  "telenzepina"
+ ],
+ "A11__inibitori-della-pompa-protonica-ipp-omep": [
+  "omeprazolo",
+  "lansoprazolo",
+  "pantoprazolo",
+  "rabeprazolo"
+ ],
+ "A11__protettori-della-mucosa-misoprostolo-suc": [
+  "misoprostolo",
+  "sucralfato",
+  "bismuto"
+ ],
+ "A11__procinetici-neostigmina-domperidone-meto": [
+  "neostigmina",
+  "domperidone",
+  "metoclopramide",
+  "eritromicina"
+ ],
+ "A11__antidiarroici-loperamide": [
+  "loperamide"
+ ],
+ "A11__lassativi-stipsi-da-oppiacei": [
+  "metilcellulosa",
+  "psillio",
+  "glicerina",
+  "lattulosio",
+  "senna",
+  "cascara",
+  "bisacodile",
+  "olio di ricino",
+  "metilnaltrexone",
+  "lubiprostone"
+ ],
+ "A11__ibd-antinfiammatori-5-asa-mesalazina-sul": [
+  "mesalazina",
+  "sulfasalazina",
+  "olsalazina",
+  "balsalazide"
+ ],
+ "A11__ibd-immunosoppressori-e-biologici": [
+  "prednisone",
+  "metilprednisolone",
+  "idrocortisone",
+  "budesonide",
+  "beclometasone dipropionato",
+  "azatioprina",
+  "6-mercaptopurina",
+  "metotrexate",
+  "infliximab",
+  "adalimumab",
+  "natalizumab",
+  "vedolizumab"
+ ],
+ "A12__osso-regolazione-del-calcio-e-basi-della": [],
+ "A12__calcio-vitamina-d": [
+  "calcio",
+  "vitamina D"
+ ],
+ "A12__estrogeni-17-estradiolo": [
+  "17-β estradiolo"
+ ],
+ "A12__serm-raloxifene-tamoxifene": [
+  "raloxifene",
+  "tamoxifene"
+ ],
+ "A12__calcitonina": [
+  "calcitonina"
+ ],
+ "A12__bifosfonati-i-iii-generazione": [
+  "clodronato",
+  "etidronato",
+  "alendronato",
+  "pamidronato",
+  "ibandronato",
+  "acido zoledronico",
+  "risedronato"
+ ],
+ "A12__denosumab": [
+  "denosumab"
+ ],
+ "A12__teriparatide-pth-intermittente-fluoruri": [
+  "teriparatide"
+ ],
+ "B1__benzodiazepine-bdz": [
+  "flunitrazepam",
+  "clonazepam",
+  "nitrazepam",
+  "diazepam",
+  "lorazepam",
+  "oxazepam",
+  "temazepam",
+  "alprazolam",
+  "triazolam",
+  "midazolam"
+ ],
+ "B1__flumazenil": [
+  "flumazenil"
+ ],
+ "B1__barbiturici-fenobarbital-secobarbital-pe": [
+  "fenobarbital",
+  "secobarbital",
+  "pentobarbital"
+ ],
+ "B1__z-compounds-zaleplon-zolpidem": [
+  "zaleplon",
+  "zolpidem"
+ ],
+ "B1__etifoxina": [
+  "etifoxina"
+ ],
+ "B1__buspirone-e-serotoninergici-ansia-cronic": [
+  "buspirone"
+ ],
+ "B1__neurosteroidi-steroidi-neuroattivi": [],
+ "B2__anestetici-generali-principi": [],
+ "B2__anestetici-inalatori-volatili-alotano-is": [
+  "alotano",
+  "isoflurano",
+  "desflurano",
+  "sevoflurano",
+  "protossido d'azoto",
+  "enflurano"
+ ],
+ "B2__anestetici-endovenosi-tiopentale-propofo": [
+  "tiopentale",
+  "propofol",
+  "etomidato",
+  "ketamina",
+  "fentanil"
+ ],
+ "B2__anestetici-locali-meccanismo-e-farmacoci": [
+  "procaina",
+  "tetracaina",
+  "cocaina",
+  "benzocaina",
+  "lidocaina",
+  "articaina",
+  "mepivacaina",
+  "prilocaina",
+  "bupivacaina",
+  "ropivacaina"
+ ],
+ "B2__anestetici-locali-singole-molecole": [],
+ "B2__anestetici-locali-adr-e-associazione-con": [],
+ "B3__antidepressivi-basi-fisiopatologiche": [],
+ "B3__antidepressivi-triciclici-tca": [
+  "amitriptilina",
+  "imipramina",
+  "doxepina",
+  "clomipramina",
+  "nortriptilina",
+  "desipramina",
+  "amoxapina"
+ ],
+ "B3__imao-inibitori-delle-monoamino-ossidasi": [
+  "moclobemide"
+ ],
+ "B3__sindrome-serotoninergica": [],
+ "B3__ssri-citalopram-escitalopram-fluoxetina-": [
+  "citalopram",
+  "escitalopram",
+  "fluoxetina",
+  "fluvoxamina",
+  "sertralina",
+  "paroxetina"
+ ],
+ "B3__reboxetina-nri-inibitore-reuptake-noradr": [
+  "reboxetina"
+ ],
+ "B3__bupropione-dri-inibitore-reuptake-dopami": [
+  "bupropione"
+ ],
+ "B3__venlafaxina-snri": [
+  "venlafaxina"
+ ],
+ "B3__nassa-mirtazapina": [
+  "mirtazapina"
+ ],
+ "B3__sari-trazodone-nefazodone": [
+  "trazodone",
+  "nefazodone"
+ ],
+ "B4__disturbo-bipolare-basi": [],
+ "B4__litio-sali-di-litio": [
+  "litio"
+ ],
+ "B4__acido-valproico-valproato-sodico-come-st": [
+  "acido valproico",
+  "valproato sodico"
+ ],
+ "B4__carbamazepina-come-stabilizzante-dell-um": [
+  "carbamazepina"
+ ],
+ "B4__lamotrigina": [
+  "lamotrigina"
+ ],
+ "B5__psicosi-schizofrenia-basi-e-vie-dopamine": [],
+ "B5__antipsicotici-tipici-1-generazione-neuro": [
+  "clorpromazina",
+  "perfenazina",
+  "flufenazina",
+  "aloperidolo",
+  "droperidolo"
+ ],
+ "B5__antipsicotici-atipici-2-generazione": [
+  "risperidone",
+  "clozapina",
+  "olanzapina",
+  "quetiapina",
+  "ziprasidone",
+  "sertindolo",
+  "paliperidone",
+  "iloperidone",
+  "asenapina",
+  "lurasidone"
+ ],
+ "B5__aripiprazolo-3-generazione": [
+  "aripiprazolo"
+ ],
+ "B5__antipsicotici-effetti-indesiderati-e-for": [],
+ "B6__parkinson-strategia-terapeutica": [],
+ "B6__levodopa-l-dopa-carbidopa-benserazide": [
+  "levodopa",
+  "L-DOPA",
+  "carbidopa",
+  "benserazide"
+ ],
+ "B6__dopamino-agonisti": [
+  "bromocriptina",
+  "pergolide",
+  "pramipexolo",
+  "ropinirolo",
+  "rotigotina",
+  "apomorfina"
+ ],
+ "B6__imao-b-selegilina-rasagilina-safinamide": [
+  "selegilina",
+  "rasagilina",
+  "safinamide"
+ ],
+ "B6__comt-inibitori-entacapone-opicapone-tolc": [
+  "entacapone",
+  "opicapone",
+  "tolcapone"
+ ],
+ "B6__amantadina-antimuscarinici-e-farmaci-acc": [
+  "amantadina"
+ ],
+ "B7__alzheimer-strategia-terapeutica": [],
+ "B7__inibitori-dell-acetilcolinesterasi-donep": [
+  "donepezil",
+  "rivastigmina",
+  "galantamina"
+ ],
+ "B7__memantina": [
+  "memantina"
+ ],
+ "B7__alzheimer-terapie-accessorie-e-prospetti": [],
+ "B7__sm-basi-e-glucocorticoidi-attacco-acuto": [
+  "prednisone",
+  "prednisolone",
+  "metilprednisone",
+  "metilprednisolone",
+  "desametasone"
+ ],
+ "B7__sm-immunosoppressori-aspecifici": [
+  "azatioprina",
+  "cladribina",
+  "methotrexate",
+  "ciclofosfamide",
+  "teriflunomide"
+ ],
+ "B7__sm-disease-modifying-treatments-dmt": [
+  "interferone-β",
+  "glatiramer acetato",
+  "ocrelizumab",
+  "rituximab",
+  "alemtuzumab",
+  "natalizumab",
+  "mitoxantrone",
+  "fingolimod",
+  "teriflunomide",
+  "dimetilfumarato"
+ ],
+ "B7__sm-farmaci-adiuvanti-sintomatici": [
+  "baclofen",
+  "dalfampridina",
+  "cannabidiolo",
+  "dronabinolo",
+  "nabilone"
+ ],
+ "B8__terapia-del-dolore-scala-oms-e-adiuvanti": [],
+ "B8__sistema-oppioidergico-recettori-e-meccan": [],
+ "B8__oppioidi-effetti-tolleranza-e-dipendenza": [],
+ "B8__oppiacei-deboli-codeina-tramadolo-step-2": [
+  "codeina",
+  "tramadolo"
+ ],
+ "B8__oppiacei-forti-step-3": [
+  "morfina",
+  "ossicodone",
+  "fentanyl",
+  "remifentanil",
+  "alfentanil",
+  "sufentanil",
+  "buprenorfina",
+  "metadone",
+  "idromorfone",
+  "tapentadolo"
+ ],
+ "B8__antagonisti-paracetamolo-e-cannabinoidi": [
+  "paracetamolo"
+ ],
+ "B9__antiepilettici-meccanismi-e-principi": [],
+ "B9__aed-i-gen-bloccanti-dei-canali-na-fenito": [
+  "fenitoina",
+  "carbamazepina",
+  "oxcarbazepina"
+ ],
+ "B9__aed-i-gen-gabaergici-e-altri-barbiturici": [
+  "etosuccimide",
+  "acido valproico"
+ ],
+ "B9__aed-ii-generazione": [
+  "gabapentina",
+  "lamotrigina",
+  "topiramato",
+  "tiagabina",
+  "vigabatrin",
+  "zonisamide",
+  "lacosamide",
+  "felbamato",
+  "levetiracetam",
+  "brivaracetam",
+  "perampanel",
+  "retigabina",
+  "cannabidiolo"
+ ],
+ "B9__antiepilettici-indicazioni-per-tipo-di-c": [],
+ "B9__statine-meccanismo-e-farmacocinetica": [
+  "atorvastatina",
+  "simvastatina",
+  "lovastatina",
+  "pravastatina",
+  "rosuvastatina"
+ ],
+ "B9__statine-classificazione-effetti-collater": [
+  "simvastatina",
+  "pravastatina",
+  "fluvastatina",
+  "lovastatina",
+  "atorvastatina",
+  "rosuvastatina",
+  "cerivastatina"
+ ],
+ "B9__altri-ipolipemizzanti-fibrati-acido-nico": [
+  "acido nicotinico",
+  "colestiramina",
+  "ezetimibe"
+ ],
+ "B10__ipertensione-strategia-terapeutica": [],
+ "B10__simpaticolitici-centrali-2-agonisti-clon": [
+  "clonidina",
+  "moxonidina",
+  "rilmenidina"
+ ],
+ "B10__metildopa": [
+  "metildopa"
+ ],
+ "B10__1-bloccanti-prazosina-doxazosina-tamsulo": [
+  "prazosina",
+  "doxazosina",
+  "tamsulosina"
+ ],
+ "B10__bloccanti-generazioni-e-proprieta-ancill": [
+  "propranololo",
+  "nadololo",
+  "timololo",
+  "atenololo",
+  "metoprololo",
+  "carvedilolo",
+  "labetalolo",
+  "celiprololo",
+  "nebivololo",
+  "pindololo",
+  "oxprenololo",
+  "acebutololo",
+  "sotalolo"
+ ],
+ "B10__bloccanti-meccanismi-avanzati-indicazion": [
+  "nebivololo",
+  "carvedilolo",
+  "metoprololo",
+  "timololo",
+  "propranololo",
+  "atenololo",
+  "nadololo",
+  "sotalolo"
+ ],
+ "B11__sraa-fisiologia-e-bersagli-farmacologici": [],
+ "B11__ace-inibitori-captopril-enalapril-ramipr": [
+  "captopril",
+  "enalapril",
+  "ramipril"
+ ],
+ "B11__sartani-losartan-valsartan-irbesartan-te": [
+  "losartan",
+  "valsartan",
+  "irbesartan",
+  "telmisartan",
+  "candesartan"
+ ],
+ "B11__inibitori-della-renina-aliskiren": [
+  "aliskiren"
+ ],
+ "B11__calcio-antagonisti-diidropiridine-verapa": [
+  "verapamil",
+  "diltiazem"
+ ],
+ "B11b__insufficienza-cardiaca-basi-fisiopatolog": [],
+ "B11b__digitale-digossina": [
+  "digossina"
+ ],
+ "B11b__teofillina-e-xantine": [
+  "teofillina"
+ ],
+ "B11b__diuretici-overview-siti-e-classi": [],
+ "B11b__inibitori-dell-anidrasi-carbonica-acetaz": [
+  "acetazolamide",
+  "metazolamide"
+ ],
+ "B11b__diuretici-osmotici-mannitolo": [
+  "mannitolo"
+ ],
+ "B11b__diuretici-dell-ansa-drastici-furosemide-": [
+  "furosemide",
+  "bumetanide",
+  "acido etacrinico",
+  "torasemide"
+ ],
+ "B11b__diuretici-tiazidici-e-risparmiatori-di-k": [
+  "HCTZ",
+  "indapamide",
+  "amiloride",
+  "triamterene",
+  "spironolattone",
+  "canrenone",
+  "nicardipina",
+  "nimodipina",
+  "mibefradil",
+  "nifedipina"
+ ],
+ "B12__emostasi-e-bersagli-della-terapia": [],
+ "B12__aspirina-e-inibitori-reversibili-della-c": [
+  "Aspirina"
+ ],
+ "B12__antagonisti-del-recettore-p2y12-ticlopid": [
+  "ticlopidina",
+  "clopidogrel",
+  "prasugrel",
+  "ticagrelor"
+ ],
+ "B12__antagonisti-della-gp-iib-iiia-e-altri-an": [
+  "abciximab",
+  "eptifibatide",
+  "tirofiban",
+  "cilostazolo",
+  "dipiridamolo",
+  "terutroban"
+ ],
+ "B12__eparina-eparine-a-basso-peso-molecolare-": [
+  "eparina"
+ ],
+ "B12__anticoagulanti-orali-vka-inibitori-diret": [
+  "warfarin",
+  "cumarina",
+  "rivaroxaban",
+  "apixaban",
+  "edoxaban",
+  "dabigatran",
+  "razaxaban",
+  "otamixaban",
+  "drotrecogin α"
+ ],
+ "B12__fibrinolitici-e-antitrombotico-ideale": [],
+ "B12b__vasodilatatori-overview-e-antagonisti-de": [
+  "bosentan"
+ ],
+ "B12b__nitrati-nitrossidi-nitroglicerina-isosor": [
+  "nitroglicerina",
+  "isosorbide",
+  "nitroprussiato"
+ ],
+ "B12b__attivatori-dei-canali-k-atp-e-idralazina": [
+  "idralazina"
+ ],
+ "B13__aritmie-e-strategie-antiaritmiche": [],
+ "B13__classe-i-bloccanti-dei-canali-del-na-ia-": [
+  "chinidina",
+  "procainamide",
+  "disopiramide",
+  "lidocaina",
+  "mexiletina",
+  "tocainide",
+  "fenitoina",
+  "flecainide",
+  "propafenone",
+  "encainide",
+  "moricizina"
+ ],
+ "B13__classe-ii-bloccanti": [
+  "propranololo",
+  "atenololo",
+  "metoprololo",
+  "acebutololo",
+  "labetalolo",
+  "carvedilolo",
+  "nadololo",
+  "pindololo",
+  "timololo"
+ ],
+ "B13__classe-iii-bloccanti-dei-canali-del-k": [
+  "ibutilide",
+  "dofetilide",
+  "sotalolo",
+  "bretilio",
+  "amiodarone"
+ ],
+ "B13__classe-iv-ca-antagonisti-adenosina-e-pot": [
+  "adenosina",
+  "potassio"
+ ],
+ "B14__antitumorali-strategie-e-principi": [],
+ "B14__target-therapy-e-biomarcatori": [
+  "imatinib",
+  "larotrectinib",
+  "entrectinib"
+ ],
+ "B14__parp-inibitori-e-letalita-sintetica": [],
+ "B14__immunoterapia-checkpoint-inhibitors-e-an": [
+  "nivolumab"
+ ],
+ "Antibiotici-2__fosfomicina": [
+  "fosfomicina"
+ ],
+ "Antibiotici-2__cicloserina": [
+  "cicloserina"
+ ],
+ "Antibiotici-2__bacitracina": [
+  "bacitracina"
+ ],
+ "Antibiotici-2__glicopeptidi-classe-vancomicina-teicopla": [
+  "vancomicina",
+  "teicoplanina",
+  "daptomicina"
+ ],
+ "Antibiotici-2__vancomicina": [
+  "vancomicina"
+ ],
+ "Antibiotici-2__teicoplanina": [
+  "teicoplanina"
+ ],
+ "Antibiotici-2__antimicobatterici-quadro-generale-terapi": [],
+ "Antibiotici-2__isoniazide-ini": [
+  "isoniazide"
+ ],
+ "Antibiotici-2__etambutolo": [
+  "etambutolo"
+ ],
+ "Antibiotici-2__rifampicina": [
+  "rifampicina"
+ ],
+ "Antibiotici-2__pirazinamide": [
+  "pirazinamide"
+ ],
+ "Antibiotici-2__antitubercolari-di-ii-scelta": [
+  "cicloserina",
+  "capreomicina",
+  "kanamicina",
+  "amikacina",
+  "streptomicina"
+ ],
+ "Antibiotici-3__sulfamidici": [
+  "sulfadiazina",
+  "sulfametossazolo",
+  "sulfisossazolo",
+  "sulfadossina",
+  "sulfaguanidina",
+  "sulfadiazina argentica"
+ ],
+ "Antibiotici-3__trimetoprim": [
+  "trimetoprim"
+ ],
+ "Antibiotici-3__chinoloni-e-fluorochinoloni": [
+  "acido nalidissico",
+  "norfloxacina",
+  "ciprofloxacina",
+  "levofloxacina",
+  "moxifloxacina",
+  "perfloxacina"
+ ],
+ "Antibiotici-3__rifampicina-integrazione-lez-17-profilo-": [
+  "rifampicina"
+ ],
+ "Antibiotici-3__macrolidi-classe-eritromicina-claritromi": [
+  "eritromicina",
+  "claritromicina",
+  "roxitromicina",
+  "azitromicina"
+ ],
+ "Antibiotici-3__eritromicina": [
+  "eritromicina"
+ ],
+ "Antibiotici-3__azitromicina": [
+  "azitromicina"
+ ],
+ "Antibiotici-3__claritromicina-nota": [
+  "claritromicina"
+ ],
+ "Antibiotici-3__lincosamidi-clindamicina": [
+  "clindamicina"
+ ],
+ "Antibiotici-3__cloramfenicolo-caf": [
+  "cloramfenicolo"
+ ],
+ "Antibiotici-3__aminoglicosidi-classe-meccanismo-cinetic": [
+  "neomicina",
+  "netilmicina",
+  "amikacina"
+ ],
+ "Antibiotici-3__aminoglicosidi-singoli-farmaci": [],
+ "Antibiotici-3__tetracicline": [
+  "tetraciclina",
+  "ossitetraciclina",
+  "clortetraciclina",
+  "demeclociclina",
+  "doxiciclina",
+  "minociclina"
+ ],
+ "Beta-lattamici__lattamici-classe-quadro-generale": [],
+ "Beta-lattamici__penicilline-naturali-penicillina-g-benzi": [
+  "penicillina G",
+  "benzilpenicillina",
+  "penicillina V",
+  "fenossimetilpenicillina"
+ ],
+ "Beta-lattamici__penicilline-resistenti-alle-lattamasi-me": [
+  "meticillina",
+  "oxacillina",
+  "cloxacillina",
+  "dicloxacillina",
+  "nafcillina"
+ ],
+ "Beta-lattamici__aminopenicilline-amoxicillina-ampicillin": [
+  "amoxicillina",
+  "ampicillina"
+ ],
+ "Beta-lattamici__carbossipenicilline-carbenicillina-ticar": [
+  "carbenicillina",
+  "ticarcillina"
+ ],
+ "Beta-lattamici__ureidopenicilline-piperacillina-mezlocil": [
+  "piperacillina",
+  "mezlocillina",
+  "azlocillina"
+ ],
+ "Beta-lattamici__cefalosporine-classe-quadro-generale": [],
+ "Beta-lattamici__cefalosporine-di-i-generazione-cefazolin": [
+  "cefazolina",
+  "cefalexina"
+ ],
+ "Beta-lattamici__cefalosporine-di-ii-generazione-cefoxiti": [
+  "cefoxitina",
+  "cefamandolo",
+  "cefuroxime",
+  "cefaclor",
+  "cefprozil"
+ ],
+ "Beta-lattamici__cefalosporine-di-iii-generazione-cefotax": [
+  "cefotaxima",
+  "ceftazidima",
+  "cefoperazone",
+  "ceftriaxone",
+  "ceftibuten",
+  "cefpodoxime proxetil"
+ ],
+ "Beta-lattamici__cefalosporine-di-iv-generazione-cefepime": [
+  "cefepime"
+ ],
+ "Beta-lattamici__nuove-cefalosporine-ceftolozano-ceftarol": [
+  "ceftolozano",
+  "ceftarolina"
+ ],
+ "Beta-lattamici__carbapenemici-imipenem-ertapenem-doripen": [
+  "imipenem",
+  "ertapenem",
+  "doripenem",
+  "meropenem"
+ ],
+ "Beta-lattamici__monobattamici-aztreonam": [
+  "aztreonam"
+ ],
+ "Beta-lattamici__lattamasi-classificazione-di-ambler-enzi": [],
+ "Beta-lattamici__inibitori-delle-lattamasi-i-generazione-": [
+  "acido clavulanico",
+  "sulbactam",
+  "tazobactam"
+ ],
+ "Beta-lattamici__inibitori-delle-lattamasi-ii-generazione": [
+  "avibactam",
+  "vaborbactam",
+  "relebactam",
+  "zidebactam",
+  "nacubactam"
+ ]
 }

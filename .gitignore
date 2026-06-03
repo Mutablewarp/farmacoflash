@@ -29,3 +29,4 @@ credentials.json
 # note interne di lavoro (non nel repo)
 task_plan.md
 notes.md
+build/drugs-extra.json
