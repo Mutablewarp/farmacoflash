@@ -160,7 +160,7 @@ body.m-all tbody tr.dr:hover{background:#fff3d6}
   <a class="backapp" href="Flashcard-Farmacologia.html" title="Torna a FarmacoFlash">← FarmacoFlash</a>
 </div></header>
 <main>
-  <input class="search" id="q" type="search" autocomplete="off" placeholder="🔎 cerca un farmaco, una classe, un meccanismo…">
+  <input class="search" id="q" type="search" autocomplete="off" placeholder="🔎 cerca: nome, nome commerciale, classe, meccanismo… (anche più parole)">
   <div class="row" id="modRow"><span class="lab">Modulo:</span></div>
   <div class="row"><span class="lab">Vista:</span>
     <button class="chip mode on" data-mode="all">📖 Tutto</button>
@@ -205,8 +205,8 @@ const $ = s=>document.querySelector(s);
 let state = { q:'', mod:null, deck:null, sort:{k:'o',dir:1} };
 
 function esc(s){return String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
-function hi(s){ const q=state.q.trim(); if(!q) return esc(s); try{const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');return esc(s).replace(re,'<mark>$1</mark>');}catch(e){return esc(s);} }
-function norm(s){return (s||'').toLowerCase();}
+function hi(s){ const toks=state.q.trim().split(/\s+/).filter(Boolean); if(!toks.length) return esc(s); let h=esc(s); try{const re=new RegExp('('+toks.map(t=>t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')+')','ig'); h=h.replace(re,'<mark>$1</mark>'); }catch(e){} return h; }
+function norm(s){const GK={'α':'alfa','β':'beta','γ':'gamma','δ':'delta','ε':'epsilon','κ':'kappa','λ':'lambda','μ':'mu','π':'pi','σ':'sigma','τ':'tau','φ':'phi','ω':'omega'};return String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[αβγδεκλμπστφω]/g,m=>' '+(GK[m]||'')+' ').replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();}
 function dnHi(name, drugs){ let h=esc(name);
   (drugs||[]).slice().sort((a,b)=>b.length-a.length).forEach(d=>{ const e=esc(d).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); if(!e) return; h=h.replace(new RegExp(e,'gi'),'\x01$&\x02'); });
   return h.replace(/\x01/g,'<span class="dn">').replace(/\x02/g,'</span>'); }
@@ -215,11 +215,11 @@ function deckColor(id){const d=DECKS.find(x=>x.id===id);return d&&d.color?d.colo
 function deckTitle(id){const d=DECKS.find(x=>x.id===id);return d?d.title:id;}
 
 function filtered(){
-  const q=norm(state.q);
+  const toks=norm(state.q).split(' ').filter(Boolean);
   let r=DATA.filter(x=>{
     if(state.mod && x.mod!==state.mod) return false;
     if(state.deck && x.deck!==state.deck) return false;
-    if(q && !x._s.includes(q)) return false;
+    if(toks.length && !toks.every(t=>x._s.includes(t))) return false;
     return true;
   });
   const {k,dir}=state.sort;
@@ -271,11 +271,11 @@ function drugIndex(){
   _DIDX=m; return m;
 }
 function renderRubrica(){
-  const q=norm(state.q), m=drugIndex();
+  const toks=norm(state.q).split(' ').filter(Boolean), m=drugIndex();
   const sel=dn=>{ let r=m.get(dn); if(state.mod) r=r.filter(o=>o.mod===state.mod); if(state.deck) r=r.filter(o=>o.deck===state.deck); return r; };
   let names=[...m.keys()].filter(dn=>{
     const refs=sel(dn); if(!refs.length) return false;
-    if(q){ const hay=norm(dn+' '+refs.map(r=>r.code+' '+r.title).join(' ')); if(!hay.includes(q)) return false; }
+    if(toks.length){ const hay=norm(dn+' '+refs.map(r=>r.code+' '+r.title).join(' ')); if(!toks.every(t=>hay.includes(t))) return false; }
     return true;
   });
   names.sort((a,b)=>a.localeCompare(b,'it'));
