@@ -283,6 +283,15 @@ h1.page em::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height
 .brow .bd{font-size:.78rem;color:var(--muted);margin-top:5px;font-weight:800}
 .brow .bmech{font-size:.86rem;color:var(--ink-soft);margin-top:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-weight:600}
 .statusdot{position:absolute;top:13px;right:13px;font-family:var(--font-display);font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:9px;border:2px solid var(--ink)}
+.pickrow{padding-left:48px}
+.pickrow .bn{padding-right:8px}
+.pickrow .pickbox{position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:1.4rem;line-height:1;color:var(--ink)}
+.pickrow.on{background:#fff3d6}
+.pick-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 16px}
+.ghostchip{font-family:var(--font-display);font-weight:800;font-size:.85rem;background:var(--paper-2);color:var(--ink);border:2.5px solid var(--ink);border-radius:11px 8px 10px 8px/8px 10px 8px 11px;padding:8px 13px;cursor:pointer;box-shadow:2px 2px 0 rgba(58,50,43,.15);transition:transform .12s var(--spring)}
+.ghostchip:hover{transform:translate(-1px,-1px)}
+.pick-link{margin-top:9px;background:none;border:0;color:var(--blue);font-family:var(--font-display);font-weight:800;font-size:.92rem;cursor:pointer;padding:2px 0}
+.pick-link:hover{color:var(--ink)}
 .sd-new{background:#e2f2fb}.sd-learning{background:#fff0d2}.sd-young{background:#fff0cf}.sd-mature{background:#e6f7df}
 .empty{text-align:center;color:var(--muted);padding:48px;font-family:var(--font-display);font-weight:700;font-size:1.1rem}
 
@@ -391,7 +400,7 @@ const STR={
  m_mature:{it:'Mature',en:'Mature'},m_started:{it:'Avviate',en:'Started'},m_new:{it:'Nuove',en:'New'},m_young:{it:'Giovani',en:'Young'},m_learning:{it:'In appr.',en:'Learning'},
  tile_due:{it:'Da ripassare',en:'Due'},tile_newtoday:{it:'Nuove oggi',en:'New today'},tile_studied:{it:'Studiate oggi',en:'Studied today'},tile_streak:{it:'Costanza',en:'Streak'},
  today_how:{it:"Com'è andata oggi",en:'How it went today'},today_how_h:{it:'Cosa ricordi bene, così così, male.',en:'What you remember well, so-so, badly.'},
- today_tap:{it:'tocca un volto per rivedere quelle carte',en:'tap a face to review those cards'},review_these:{it:'Ripassa queste',en:'Review these'},grade_drill_hint:{it:'Tocca una carta per studiarla, o ripassale tutte.',en:'Tap a card to study it, or review them all.'},today_lc:{it:'oggi',en:'today'},card_one:{it:'carta',en:'card'},
+ today_tap:{it:'tocca un volto per rivedere quelle carte',en:'tap a face to review those cards'},review_these:{it:'Ripassa queste',en:'Review these'},pick_title:{it:'Scegli cosa ripassare',en:'Pick what to review'},pick_hint:{it:'Tocca le carte che vuoi ripassare ora, poi avvia.',en:'Tap the cards you want to review now, then start.'},review_sel:{it:'Ripassa le selezionate',en:'Review selected'},pick_all:{it:'Tutte',en:'All'},pick_none:{it:'Nessuna',en:'None'},hero_pick:{it:'🗂 scegli quali ripassare',en:'🗂 choose which to review'},grade_drill_hint:{it:'Tocca una carta per studiarla, o ripassale tutte.',en:'Tap a card to study it, or review them all.'},today_lc:{it:'oggi',en:'today'},card_one:{it:'carta',en:'card'},
  sess_weak:{it:'🔥 Difficili',en:'🔥 Hard'},sess_lbl_weak:{it:'carte difficili da rinforzare 🔥',en:'hard cards to reinforce 🔥'},reinforce_title:{it:'Da rinforzare',en:'Reinforce'},reinforce_h:{it:'Le carte su cui inciampi: ripassale a parte finché restano.',en:'The cards you stumble on: drill them until they stick.'},weak_lbl:{it:'A rischio',en:'At risk'},immature_lbl:{it:'Mai mature',en:'Never mature'},
  g_bad:{it:'Male',en:'Again'},g_mid:{it:'Così così',en:'Hard'},g_good:{it:'Bene',en:'Good'},g_easy:{it:'Facile',en:'Easy'},
  cal_title:{it:'Calendario dello studio',en:'Study calendar'},cal_h:{it:'Ogni quadratino è un giorno; più è verde, più hai ripassato.',en:'Each square is a day; greener = more reviews.'},
@@ -662,9 +671,10 @@ function renderDash(){
   const mature=CARDS.filter(c=>maturity(c.id)==='mature').length;const gl=gradeLbls();
   $('#v-dash').innerHTML=`
     <div class="eyebrow">☀️ ${prettyDate()}</div>
-    <div class="hero"><div class="hero-grid">
+    <div class="hero" onclick="heroClick(event)"><div class="hero-grid">
       <div>
-        <div class="bignum">${sessCount}<small>${sessCount?sessLbl(sm):T('all_done')}</small></div>
+        <div class="bignum"${sessCount?' onclick="event.stopPropagation();chooseReview()" style="cursor:pointer"':''}>${sessCount}<small>${sessCount?sessLbl(sm):T('all_done')}</small></div>
+        ${sessCount?`<button class="pick-link" onclick="chooseReview()">${T('hero_pick')}</button>`:''}
         <div class="npd-row" style="margin-top:14px">${sessChips()}</div>
         <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap">
           <button class="cta" onclick="startGlobal()" ${sessCount?'':'disabled'}>${T('start_session')}</button>
@@ -809,19 +819,29 @@ function browItem(c,act){
     <div class="bn">${esc(C.nameShort||C.name)}</div><div class="bd">${esc(d.code)} · ${esc(deckTitle(d))}</div>
     <div class="bmech">${esc((mech||'').replace(/\*\*/g,'').replace(/\n/g,' ')).slice(0,150)}</div></div>`;
 }
-let setSelIds=[];
-function showCardSet(emoji,label,ids,hint){
-  setSelIds=ids.slice();
+let setSelIds=[],setAllIds=[];
+function showCardSet(emoji,label,ids,hint,selectable){
+  setSelIds=ids.slice(); setAllIds=ids.slice();
   const cards=ids.map(id=>CARD_BY_ID[id]).filter(Boolean);
   $('#modalHead').innerHTML=`<span class="chip">${emoji} ${esc(label)}</span><h2 style="margin-top:8px">${cards.length} ${cards.length===1?T('card_one'):T('cards')}</h2><div style="color:var(--muted);font-size:.84rem;margin-top:6px;font-weight:700">${esc(hint||T('grade_drill_hint'))}</div>`;
-  const list=cards.length?cards.map(c=>browItem(c,'study')).join(''):`<div class="empty">${T('empty')}</div>`;
-  const btn=cards.length?`<button class="cta" style="margin:0 0 16px" onclick="studySetSel()">🔁 ${T('review_these')} (${cards.length})</button>`:'';
+  const list=cards.length?cards.map(c=>selectable?pickItem(c):browItem(c,'study')).join(''):`<div class="empty">${T('empty')}</div>`;
+  const btn=cards.length?(selectable
+    ?`<div class="pick-bar"><button class="cta" id="pickGo" style="margin:0" onclick="studySetSel()">🔁 ${T('review_sel')} (<span id="pickN">${setSelIds.length}</span>)</button><button class="ghostchip" onclick="pickAll(1)">${T('pick_all')}</button><button class="ghostchip" onclick="pickAll(0)">${T('pick_none')}</button></div>`
+    :`<button class="cta" style="margin:0 0 16px" onclick="studySetSel()">🔁 ${T('review_these')} (${cards.length})</button>`):'';
   $('#modalBody').innerHTML=btn+`<div class="browse-list" style="grid-template-columns:1fr">${list}</div>`;
   $('#modal').classList.add('show');document.body.style.overflow='hidden';
 }
 function showGradeCards(g){const gl=gradeLbls(),emo=['😖','😐','😄','🌟'][g];showCardSet(emo,gl[g]+' · '+T('today_lc'),todayCardsByGrade()[g]||[]);}
 function studyCardId(id){const c=CARD_BY_ID[id];if(!c)return;closeModal();startSession([c],L(c).nameShort||L(c).name);}
 function studySetSel(){const cs=setSelIds.map(id=>CARD_BY_ID[id]).filter(Boolean);if(!cs.length)return;closeModal();startSession(cs,T('review_these'));}
+function pickItem(c){const C=L(c),d=DECK_BY_ID[c.deckId],on=setSelIds.indexOf(c.id)>=0;
+  return `<div class="brow pickrow${on?' on':''}" data-id="${c.id}" onclick="togglePick(this)"><span class="pickbox">${on?'☑':'☐'}</span><div class="bn">${esc(C.nameShort||C.name)}</div><div class="bd">${esc(d.code)} · ${esc(deckTitle(d))}</div></div>`;}
+function togglePick(row){const id=row.dataset.id,i=setSelIds.indexOf(id);if(i>=0)setSelIds.splice(i,1);else setSelIds.push(id);
+  const on=setSelIds.indexOf(id)>=0;row.classList.toggle('on',on);row.querySelector('.pickbox').textContent=on?'☑':'☐';
+  const n=$('#pickN');if(n)n.textContent=setSelIds.length;const g=$('#pickGo');if(g)g.disabled=!setSelIds.length;}
+function pickAll(on){setSelIds=on?setAllIds.slice():[];document.querySelectorAll('.pickrow').forEach(row=>{const sel=setSelIds.indexOf(row.dataset.id)>=0;row.classList.toggle('on',sel);row.querySelector('.pickbox').textContent=sel?'☑':'☐';});const n=$('#pickN');if(n)n.textContent=setSelIds.length;const g=$('#pickGo');if(g)g.disabled=!setSelIds.length;}
+function chooseReview(){const m=S.settings.sessMode||'both';const cs=m==='weak'?weakCards():buildQueue(null,m).queue;if(!cs.length){toast(T('t_clear'));return;}showCardSet('🎒',T('pick_title'),cs.map(c=>c.id),T('pick_hint'),true);}
+function heroClick(e){if(e&&e.target&&e.target.closest('button,a,input,select,label'))return;chooseReview();}
 function applyBrowse(){
   const ql=norm($('#search').value);let list=CARDS.filter(c=>!browseFilter||c.deckId===browseFilter);
   if(ql)list=list.filter(c=>c._search.includes(ql));

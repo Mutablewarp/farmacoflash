@@ -20,7 +20,7 @@
    - 🌟 **Easy** → in **a long time**
 
    👉 Do a few cards **every day**: that's how the memory forms.
-5. **Choose what to study** (**Session** box): **Both** · **🆕 New only** · **🔁 Review only** · **🔥 Hard** (the cards you miss most).
+5. **Choose what to study** (**Session** box): **Both** · **🆕 New only** · **🔁 Review only** · **🔥 Hard** (the cards you miss most). 👉 Want to **hand-pick** them? Tap the **yellow box** at the top (**🗂 choose which to review**): tick only the cards you want and start just **those**.
 6. **Fix mistakes precisely:** on **Today**, under *“How it went today”*, **tap a face** (e.g. 😐) → see exactly those cards → **Review these**. In **Stats** you'll find **🔥 At risk** and **🌱 Never mature**.
 7. **Search a drug:** tap **Browse** and type a name (or a mechanism, an effect). Tap a card to read it.
 8. **Memorize the names:** tap **📋 Names table**. Four views: **All** · **🧠 Names only** (tap → see *what it's for*) · **💊 Effects only** (read effects → guess the drug) · **🔤 A→Z** (every drug alphabetically). Every row shows **all the real drug names** (yellow chips): tap one → its study card opens. **Train with the name quiz:** **🎯 Quiz (choice)** or **✍️ Type the names** (fixes typos, always asks for **new** names, you can go **← Back**); **📊 Mistakes** collects the names you miss most for targeted review.
@@ -52,6 +52,11 @@ Works **without internet**, no account, no subscription — your data stays on t
 | Review today's mistakes | Hand-drawn mechanism diagrams |
 |---|---|
 | ![Targeted review](screenshots/07-oggi-ripasso-mirato.png) | ![Diagram](screenshots/08-diagramma.png) |
+
+**Hand-pick what to review** — tap the yellow box and tick the cards:
+
+| ![Pick what to review](screenshots/15-scegli-ripasso.png) |
+|:--:|
 
 **Names table** — to memorize, in three modes:
 

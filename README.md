@@ -22,6 +22,7 @@
    👉 Fai un po' di card **ogni giorno**: è così che il ricordo si fissa.
 5. **Scegli cosa studiare** (riquadro **Sessione**):
    **Entrambe** (nuove + ripasso) · **🆕 Solo nuove** · **🔁 Solo ripasso** · **🔥 Difficili** (le carte che sbagli di più).
+   👉 Vuoi sceglierle **a mano**? Tocca il **riquadro giallo** in alto (**🗂 scegli quali ripassare**): spunti solo le carte che vuoi e avvii **quelle**.
 6. **Rivedi gli errori in modo mirato:**
    - nella schermata **Oggi**, sotto *“Com'è andata oggi”*, **tocca un faccino** (es. 😐) → vedi **proprio quelle** carte → **Ripassa queste**;
    - in **Statistiche** trovi **🔥 A rischio** e **🌱 Mai mature**: toccale per ripassarle.
@@ -58,6 +59,11 @@ Funziona **senza internet**, senza account, senza abbonamenti — i tuoi dati re
 | Rivedi gli errori del giorno | Diagrammi del meccanismo (disegnati a mano) |
 |---|---|
 | ![Ripasso mirato](screenshots/07-oggi-ripasso-mirato.png) | ![Diagramma](screenshots/08-diagramma.png) |
+
+**Scegli a mano cosa ripassare** — tocca il riquadro giallo e spunti le carte:
+
+| ![Scegli cosa ripassare](screenshots/15-scegli-ripasso.png) |
+|:--:|
 
 **Tabella dei nomi** — per memorizzare, in tre modi:
 
