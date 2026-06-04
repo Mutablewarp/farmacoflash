@@ -142,6 +142,8 @@ body.m-all tbody tr.dr:hover{background:#fff3d6}
 .q-go:hover{transform:translate(-1px,-2px)}
 .q-members{margin-top:12px;font-weight:700;color:#6f6253;font-size:.9rem;line-height:1.6}
 .q-members b{color:var(--ink);background:linear-gradient(transparent 60%, #ffe08a 60%);padding:0 2px;border-radius:2px}
+.q-study{display:block;width:fit-content;margin:16px auto 0;font-family:var(--font-display);font-weight:800;font-size:.95rem;color:var(--ink);background:var(--green);border:2.5px solid var(--ink);border-radius:13px 9px 12px 9px/9px 12px 9px 13px;padding:10px 18px;text-decoration:none;box-shadow:2px 2px 0 rgba(58,50,43,.2);transition:transform .14s var(--spring)}
+.q-study:hover{transform:translate(-1px,-2px);background:#6fd488}
 .q-hint{margin-top:7px;font-family:var(--font-display);font-weight:800;color:var(--blue);font-size:1rem}
 .q-hint b{font-size:1.15rem}
 .q-nav{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
@@ -359,7 +361,7 @@ document.querySelectorAll('thead th').forEach(th=>{
 });
 
 /* ===== QUIZ NOMI ===== */
-const ALLDRUGS=[]; DATA.forEach(x=>(x.drugs||[]).forEach(dn=>ALLDRUGS.push({drug:dn,deck:x.deck,mod:x.mod,cls:deckTitle(x.deck),use:x.ind||x.mecc||''})));
+const ALLDRUGS=[]; DATA.forEach(x=>(x.drugs||[]).forEach(dn=>ALLDRUGS.push({drug:dn,id:x.id,deck:x.deck,mod:x.mod,cls:deckTitle(x.deck),use:x.ind||x.mecc||''})));
 const ALLCLS=[...new Set(ALLDRUGS.map(d=>d.cls))];
 const QKEY='farmaco-quiz-v1';
 let qstore=(()=>{try{return JSON.parse(localStorage.getItem(QKEY))||{};}catch(e){return {};}})();
@@ -386,15 +388,15 @@ function buildQ(){
   const members=[...new Set(ALLDRUGS.filter(d=>d.cls===it.cls).map(d=>d.drug))];
   if(quiz.kind==='write'){
     const wtype=(members.length>1 && Math.random()<0.5)?'target':'member';
-    const q={mode:'write',wtype:wtype,members:members,target:it.drug,focus:it.drug,prompt:esc(it.cls),sub:it.use?esc(it.use).slice(0,110):'',hint:'',done:false};
+    const q={mode:'write',wtype:wtype,members:members,target:it.drug,focus:it.drug,cardId:it.id,prompt:esc(it.cls),sub:it.use?esc(it.use).slice(0,110):'',hint:'',done:false};
     if(wtype==='target'){ const t=it.drug, ini=((t.match(/[A-Za-zÀ-ÿ]/)||[''])[0]).toUpperCase(), nl=t.replace(/\s/g,'').length;
       q.kicker='✍️ Scrivi il farmaco preciso'; q.hint='<div class="q-hint">inizia per <b>'+ini+'</b> · '+nl+' lettere</div>'; }
     else q.kicker='✍️ Scrivi un farmaco di questa classe (nuovo)';
     return q;
   }
   const type=Math.random()<0.5?'cls':'drug';
-  if(type==='cls') return {mode:'mc',type:type,answer:it.cls,focus:it.drug,kicker:'A che classe appartiene?',prompt:'<span class="dn">'+esc(it.drug)+'</span>',sub:'',options:shuf([it.cls,...sample(ALLCLS,3,it.cls)]),done:false};
-  return {mode:'mc',type:type,answer:it.drug,focus:it.drug,kicker:'Quale farmaco è di questa classe?',prompt:esc(it.cls),sub:it.use?esc(it.use).slice(0,110):'',options:shuf([it.drug,...sample(ALLDRUGS.filter(d=>d.cls!==it.cls).map(d=>d.drug),3,it.drug)]),done:false};
+  if(type==='cls') return {mode:'mc',type:type,answer:it.cls,focus:it.drug,cardId:it.id,kicker:'A che classe appartiene?',prompt:'<span class="dn">'+esc(it.drug)+'</span>',sub:'',options:shuf([it.cls,...sample(ALLCLS,3,it.cls)]),done:false};
+  return {mode:'mc',type:type,answer:it.drug,focus:it.drug,cardId:it.id,kicker:'Quale farmaco è di questa classe?',prompt:esc(it.cls),sub:it.use?esc(it.use).slice(0,110):'',options:shuf([it.drug,...sample(ALLDRUGS.filter(d=>d.cls!==it.cls).map(d=>d.drug),3,it.drug)]),done:false};
 }
 function qNav(){
   const cur=quiz.hist[quiz.hidx];
@@ -410,6 +412,7 @@ function renderQ(q){
   }else{
     b+='<input class="q-in'+(q.done?(q.wasCorrect?' ok':' no'):'')+'" id="qIn" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="scrivi qui il nome…"'+(q.done?' value="'+esc(q.chosen||'')+'" disabled':'')+' onkeydown="if(event.key===&quot;Enter&quot;)quizEnter()">'+(q.done?'':'<button class="q-go" id="qGo" onclick="quizSubmit()">Verifica</button>')+'<div class="q-next" id="qNext">'+(q.done?(q.feedback||''):'')+'</div>';
   }
+  if(q.done && q.cardId) b+='<a class="q-study" href="Flashcard-Farmacologia.html#front='+esc(q.cardId)+'">📖 Studia questa scheda</a>';
   b+=qNav();
   $('#qCard').innerHTML=b;
   if(!q.done && q.mode==='write'){ const el=$('#qIn'); if(el) el.focus(); }
