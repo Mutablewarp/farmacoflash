@@ -282,6 +282,10 @@
      "value": "ottimo assorbimento per **tutte le vie** (anche sistemico da intrarticolare/topico/inalatorio). Cortisolo → **transcortina** + albumina; i sintetici legano **principalmente l'albumina**. **Esteso metabolismo epatico di primo passaggio** (attenzione negli epatopatici); coniugazione glucuronide/solfato → eliminazione renale. ⚠️ **Picco non immediato** → **non adatti alle emergenze acute**. Classificazione per potenza/durata (vedi singoli)."
     },
     {
+     "label": "🕒 Classificazione per durata d’azione",
+     "value": "Più lunga la durata → maggiore potenza antinfiammatoria **ma** maggiore soppressione dell’asse HPA; attività mineralcorticoide cala da idrocortisone a desametasone.\n• **Breve (t½ biologico 8–12 h)**: idrocortisone (= cortisolo), cortisone → stress/sostitutivo; maggiore attività mineralcorticoide.\n• **Intermedia (12–36 h)**: prednisone, prednisolone, metilprednisolone, triamcinolone → antinfiammatori da corso; nel cronico **a giorni alterni**.\n• **Lunga (36–72 h)**: betametasone, desametasone → massima potenza glucocorticoide, mineralcorticoide ~0 → test di soppressione, edema cerebrale, maturazione polmonare fetale; ⚠️ massima soppressione HPA. (G&G14, tab. 50-2)"
+    },
+    {
      "label": "Indicazioni Cliniche",
      "value": "**terapia sostitutiva** (insufficienza surrenalica → idrocortisone); **risposta immunitaria anormale** (immunosoppressione nel trapianto; autoimmuni: asma, artrite reumatoide, lupus, BPCO; ipersensibilità/allergie); **oncologia** (leucemie, linfomi — azione selettiva sui linfociti T, + chemioterapici); **edema** (cerebrale, traumi). Effetti su elementi figurati: ↓ eosinofili/linfociti T/macrofagi/dendritiche/mastociti; **↑ PMN in circolo** (demarginazione + blocco migrazione tissutale); scarsi su linfociti B (immunità cellulare > umorale)."
     },
@@ -3730,6 +3734,10 @@
     {
      "label": "Parametri Farmacocinetici",
      "value": "os (assorbimento completo), im (variabile), **EV** (emergenza/anestesia), rettale (bambini). Alto legame proteico; **alto Vd** (lipofile; ↑ in obesi/anziani); passano placenta/latte. Cinetica **bicompartimentale**: **T/2α** (distribuzione, 2-10h) e **T/2β** (eliminazione, 2-100h). Metabolismo **fase I** (ossidazione → metaboliti **attivi**) + **fase II** (glucuronoconiugazione → metaboliti inattivi). **Classi per T/2β**: ① **medio-lunga** (nitro-BDZ: flunitrazepam, clonazepam, nitrazepam; **pronordiazepam-simili**: diazepam → metaboliti attivi, accumulo → ⚠️ sconsigliate in anziano/epatopatico); ② **breve** (**oxazepam-simili**: lorazepam, oxazepam, temazepam → coniugazione diretta, **no metaboliti attivi/accumulo** → preferite nell'anziano); ③ **triazolo-BDZ** (alprazolam ~8h ipnoprotettore, triazolam 3-4h ipnoinduttore, midazolam)."
+    },
+    {
+     "label": "🕒 Classificazione per emivita",
+     "value": "• **Breve durata (t½ <6 h)**: triazolam, midazolam → induzione del sonno, sedazione procedurale; ⚠️ insonnia di rimbalzo, amnesia.\n• **Intermedia (6–24 h)**: lorazepam, oxazepam, temazepam, alprazolam, flunitrazepam → ansia, insonnia di mantenimento. **LOT** (lorazepam/oxazepam/temazepam) = sola glucuronazione → preferite in **anziano/epatopatico**.\n• **Lunga (>24 h, metaboliti attivi)**: diazepam (→ nordiazepam), clonazepam, nitrazepam → ansia persistente, stato di male, astinenza da alcol; ⚠️ accumulo e sedazione diurna nell’anziano. (G&G14)"
     },
     {
      "label": "Indicazioni Cliniche",
