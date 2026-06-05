@@ -1532,7 +1532,7 @@
     "target": "recettori **5-HT1B / 5-HT1D** (+ 1F per i lipofili).",
     "pk": "sumatriptan (I gen, biodisponibilità os **14%**, onset 60 min); II gen → biodisponibilità maggiore (~40%), onset 30-45 min, più lipofili (eletriptan, naratriptan); vie os/spray nasale/**sc** (sc sumatriptan = risposta migliore). Metabolismo **MAO**. **Somministrazione precoce** (durante aura/inizio attacco) → ↓ sensibilizzazione centrale (allodinia se risposta inadeguata a 2 h).",
     "indications": "crisi acute moderate-severe; efficaci anche su **sintomi associati** (fotofobia, fonofobia, nausea, vomito); **no tolleranza**.",
-    "adr": "parestesie periferiche; **spasmo coronarie (4%)**, respiro corto, pesantezza, ansia, palpitazioni, dolore toracico. **NON** effetti centrali (no 5-HT2 → no allucinazioni); basso rischio di sindrome serotoninergica.",
+    "adr": "parestesie periferiche; **spasmo coronarico (4%)**, respiro corto, pesantezza, ansia, palpitazioni, dolore toracico. **NON** effetti centrali (no 5-HT2 → no allucinazioni); basso rischio di sindrome serotoninergica.",
     "resistance": "**controindicati** in coronaropatie, ipertensione, alterazioni cardiache; ⚠️ **NON con alcaloidi dell'ergot**. **Gruppo solfonammidico** (sumatriptan, naratriptan, eletriptan, almotriptan) → ipersensibilità crociata con sulfamidici → preferire **zolmitriptan, rizatriptan, frovatriptan** (privi di SH).",
     "associations": "⚠️ **MAO inibitori** (↑ serotonina → sindrome serotoninergica); spesso + antiemetici (**metoclopramide**, attraversa la BEE)."
    },
@@ -1555,7 +1555,7 @@
     },
     {
      "label": "Reazioni Avverse Comuni (ADR)",
-     "value": "parestesie periferiche; **spasmo coronarie (4%)**, respiro corto, pesantezza, ansia, palpitazioni, dolore toracico. **NON** effetti centrali (no 5-HT2 → no allucinazioni); basso rischio di sindrome serotoninergica."
+     "value": "parestesie periferiche; **spasmo coronarico (4%)**, respiro corto, pesantezza, ansia, palpitazioni, dolore toracico. **NON** effetti centrali (no 5-HT2 → no allucinazioni); basso rischio di sindrome serotoninergica."
     },
     {
      "label": "Resistenze / Limiti di Efficacia",
@@ -3970,7 +3970,7 @@
    "name": "Buspirone e serotoninergici (ansia cronica)",
    "nameShort": "Buspirone e serotoninergici",
    "fields": {
-    "mechanism": "**Buspirone** = agonista parziale del recettore **5-HT1A** post-sinaptico (agisce in presenza di serotonina). **SSRI** → ↑ serotonina nella cleft → **down-regulation 5-HT1A** → ↓ ansia; ↑ **allopregnanolone** (modulatore allosterico positivo del GABA). *(Distinzione: ansia acuta → GABA/BDZ; ansia cronica → serotonina.)*",
+    "mechanism": "**Buspirone** = agonista parziale del recettore **5-HT1A** post-sinaptico (agisce in presenza di serotonina). **SSRI** → ↑ serotonina nella fessura sinaptica → **down-regulation 5-HT1A** → ↓ ansia; ↑ **allopregnanolone** (modulatore allosterico positivo del GABA). *(Distinzione: ansia acuta → GABA/BDZ; ansia cronica → serotonina.)*",
     "target": "recettore 5-HT1A; trasportatore della serotonina (SSRI).",
     "pk": "somministrazione a lungo termine; effetto ansiolitico **ritardato** (≠ rapido delle BDZ).",
     "indications": "**ansia cronica**; SSRI nei disturbi d'ansia associati a depressione.",
@@ -3981,7 +3981,7 @@
    "segments": [
     {
      "label": "Meccanismo d'Azione",
-     "value": "**Buspirone** = agonista parziale del recettore **5-HT1A** post-sinaptico (agisce in presenza di serotonina). **SSRI** → ↑ serotonina nella cleft → **down-regulation 5-HT1A** → ↓ ansia; ↑ **allopregnanolone** (modulatore allosterico positivo del GABA). *(Distinzione: ansia acuta → GABA/BDZ; ansia cronica → serotonina.)*"
+     "value": "**Buspirone** = agonista parziale del recettore **5-HT1A** post-sinaptico (agisce in presenza di serotonina). **SSRI** → ↑ serotonina nella fessura sinaptica → **down-regulation 5-HT1A** → ↓ ansia; ↑ **allopregnanolone** (modulatore allosterico positivo del GABA). *(Distinzione: ansia acuta → GABA/BDZ; ansia cronica → serotonina.)*"
     },
     {
      "label": "Target Molecolare",
@@ -5481,7 +5481,7 @@
    "name": "Inibitori dell'acetilcolinesterasi (donepezil, rivastigmina, galantamina)",
    "nameShort": "Inibitori dell'acetilcolinesterasi",
    "fields": {
-    "mechanism": "inibizione (reversibile/pseudoirreversibile) dell'**AChE** → ↑ persistenza dell'ACh nella cleft → recupero cognitivo. **PRIMA LINEA** (grado lieve-moderato). **Donepezil** (Aricept): lunga durata (1/die), lipofilo (tropismo cerebrale), selettivo. **Rivastigmina** (Exelon): pseudoirreversibile, inibisce anche le **butirril-colinesterasi** (↓ APP/β-amiloide), 2/die o **cerotto transdermico**, meglio tollerata. **Galantamina**: naturale, inibitore reversibile + **modulatore allosterico positivo dei recettori nicotinici**; metabolismo epatico (CYP450).",
+    "mechanism": "inibizione (reversibile/pseudoirreversibile) dell'**AChE** → ↑ persistenza dell'ACh nella fessura sinaptica → recupero cognitivo. **PRIMA LINEA** (grado lieve-moderato). **Donepezil** (Aricept): lunga durata (1/die), lipofilo (tropismo cerebrale), selettivo. **Rivastigmina** (Exelon): pseudoirreversibile, inibisce anche le **butirril-colinesterasi** (↓ APP/β-amiloide), 2/die o **cerotto transdermico**, meglio tollerata. **Galantamina**: naturale, inibitore reversibile + **modulatore allosterico positivo dei recettori nicotinici**; metabolismo epatico (CYP450).",
     "target": "AChE (+ butirrilcolinesterasi rivastigmina; + nAChR galantamina).",
     "pk": "donepezil os 1/die; rivastigmina os 2/die o transdermica; galantamina epatica/renale.",
     "indications": "Alzheimer lieve-moderato (prima linea, piano terapeutico).",
@@ -5492,7 +5492,7 @@
    "segments": [
     {
      "label": "Meccanismo d'Azione",
-     "value": "inibizione (reversibile/pseudoirreversibile) dell'**AChE** → ↑ persistenza dell'ACh nella cleft → recupero cognitivo. **PRIMA LINEA** (grado lieve-moderato). **Donepezil** (Aricept): lunga durata (1/die), lipofilo (tropismo cerebrale), selettivo. **Rivastigmina** (Exelon): pseudoirreversibile, inibisce anche le **butirril-colinesterasi** (↓ APP/β-amiloide), 2/die o **cerotto transdermico**, meglio tollerata. **Galantamina**: naturale, inibitore reversibile + **modulatore allosterico positivo dei recettori nicotinici**; metabolismo epatico (CYP450)."
+     "value": "inibizione (reversibile/pseudoirreversibile) dell'**AChE** → ↑ persistenza dell'ACh nella fessura sinaptica → recupero cognitivo. **PRIMA LINEA** (grado lieve-moderato). **Donepezil** (Aricept): lunga durata (1/die), lipofilo (tropismo cerebrale), selettivo. **Rivastigmina** (Exelon): pseudoirreversibile, inibisce anche le **butirril-colinesterasi** (↓ APP/β-amiloide), 2/die o **cerotto transdermico**, meglio tollerata. **Galantamina**: naturale, inibitore reversibile + **modulatore allosterico positivo dei recettori nicotinici**; metabolismo epatico (CYP450)."
     },
     {
      "label": "Target Molecolare",
@@ -6772,7 +6772,7 @@
    "name": "Teofillina e xantine",
    "nameShort": "Teofillina e xantine",
    "fields": {
-    "adr": "⚠️ **cardiotossiche** (inotrope/cronotrope positive) → the/caffè sconsigliati ai cardiopatici."
+    "adr": "⚠️ **cardiotossiche** (inotrope/cronotrope positive) → tè/caffè sconsigliati ai cardiopatici."
    },
    "segments": [
     {
@@ -6785,7 +6785,7 @@
     },
     {
      "label": "Reazioni Avverse Comuni (ADR)",
-     "value": "⚠️ **cardiotossiche** (inotrope/cronotrope positive) → the/caffè sconsigliati ai cardiopatici."
+     "value": "⚠️ **cardiotossiche** (inotrope/cronotrope positive) → tè/caffè sconsigliati ai cardiopatici."
     }
    ],
    "freetext": [],
@@ -8847,7 +8847,7 @@
     "target": "PBP/transpeptidasi.\nParametri Farmacocinetici (Pen G): non idrofila → non attraversa le porine dei Gram-; fragile in ambiente acido gastrico (idrolisi) → solo parenterale, in modo ripetuto; emivita breve (30 min); eliminazione renale (filtrazione 10% + secrezione 85%). Pen V: N/D dettagli farmacocinetici nei documenti.",
     "indications": "spettro ristretto a cocchi Gram+ e alcuni aerobi/anaerobi: Streptococchi, Stafilococco (se non produttore di β-lattamasi), Neisseria meningitidis (attraversa le meningi infiammate); sifilide (treponema sensibile, formulazione con benzatina).",
     "adr": "ipersensibilità (IgE-mediata → shock anafilattico; reazioni ritardate/rash, simil-malattia da siero); discomfort GI; selezione flora → colite pseudomembranosa; ↓ vitamina K → disordini coagulazione (con warfarin).",
-    "resistance": "β-lattamasi (S. aureo da ~90% sensibile nel '46 a ~5% nel '98); idrolisi acida.",
+    "resistance": "β-lattamasi (S. aureus da ~90% sensibile nel '46 a ~5% nel '98); idrolisi acida.",
     "associations": "probenecid (blocca il trasportatore tubulare renale per gli acidi → ↑ concentrazione/emivita); benzatina (forma-deposito a bassa solubilità → rilascio prolungato, mono-somministrazione, es. sifilide). Ambler: β-lattamasi di classe A (penicillinasi)."
    },
    "segments": [
@@ -8869,7 +8869,7 @@
     },
     {
      "label": "Resistenze / Limiti di Efficacia",
-     "value": "β-lattamasi (S. aureo da ~90% sensibile nel '46 a ~5% nel '98); idrolisi acida."
+     "value": "β-lattamasi (S. aureus da ~90% sensibile nel '46 a ~5% nel '98); idrolisi acida."
     },
     {
      "label": "Associazioni Farmacologiche / Adiuvanti",
