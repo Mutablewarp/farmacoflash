@@ -459,10 +459,22 @@ function quizErrors(){
 }
 function qClearErr(){ if(confirm('Azzerare lo storico degli errori del quiz?')){ qstore.wrong={}; qsave(); quizErrors(); } }
 
+function applyUrlState(){
+  try{
+    const p=new URLSearchParams(location.search||''); const h=new URLSearchParams((location.hash||'').replace(/^#/,''));
+    const get=k=>p.get(k)||h.get(k);
+    const q=get('q'); if(q){ state.q=q; const el=$('#q'); if(el) el.value=q; }
+    const dk=get('deck'); if(dk && DECKS.some(d=>d.id===dk)) state.deck=dk;
+    const md=get('mod'); if(md==='I'||md==='II') state.mod=md;
+    refreshChips();
+    const v=get('vista')||get('view'); if(v && ['nomi','effetti','rubrica'].indexOf(v)>=0) return v;
+  }catch(e){}
+  return null;
+}
 buildChips();
-setMode('all');
+const _initView=applyUrlState();
 $('#foot').textContent = DATA.length+' farmaci · '+DECKS.length+' classi · Moduli I–II · dati dalle tue carte FarmacoFlash';
-render();
+setMode(_initView||'all');
 </script>
 </body>
 </html>

@@ -232,6 +232,8 @@ h1.page em::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height
 .seg .val{color:var(--ink-soft);font-size:.98rem;font-weight:600}
 .seg .val p{margin:.25em 0}.seg .val strong{color:var(--ink);font-weight:800}
 .seg .val ul{margin:.3em 0 .3em 1.1em}.seg .val li{margin:.15em 0}
+.tablink{display:inline-flex;align-items:center;gap:7px;margin-top:20px;font-family:var(--font-display);font-weight:800;font-size:.92rem;color:var(--ink);background:var(--blue);border:2.5px solid var(--ink);border-radius:13px 9px 12px 9px/9px 12px 9px 13px;padding:9px 16px;text-decoration:none;box-shadow:2px 2px 0 rgba(58,50,43,.2);transition:transform .14s var(--spring)}
+.tablink:hover{transform:translate(-1px,-2px);background:#74c0e8}
 .seg.free .val p{margin:.5em 0;padding-left:13px;border-left:3px solid var(--yellow)}
 .seg.goodman{background:#eef6ff;border:2.5px solid var(--blue);border-radius:var(--sk);padding:14px 16px;margin-top:10px}
 .seg.goodman .lab{color:var(--blue)}
@@ -386,7 +388,7 @@ const STR={
  nav_dash:{it:'Oggi',en:'Today'},nav_study:{it:'Studia',en:'Study'},nav_browse:{it:'Sfoglia',en:'Browse'},nav_stats:{it:'Statistiche',en:'Stats'},
  brand_sub:{it:'flashcard di farmacologia',en:'pharmacology flashcards'},streak_t:{it:'Giorni di studio di fila',en:'Day study streak'},
  due_today:{it:'carte da ripassare oggi 🎒',en:'cards due today 🎒'},all_done:{it:'tutto fatto, sei in pari! 🎉',en:"all done, you're up to date! 🎉"},
- start_review:{it:'▶ Inizia il ripasso',en:'▶ Start review'},browse_all:{it:'Sfoglia tutto',en:'Browse all'},table_btn:{it:'📋 Tabella dei nomi',en:'📋 Names table'},cards:{it:'carte',en:'cards'},
+ start_review:{it:'▶ Inizia il ripasso',en:'▶ Start review'},browse_all:{it:'Sfoglia tutto',en:'Browse all'},table_btn:{it:'📋 Tabella dei nomi',en:'📋 Names table'},tab_class:{it:'Questa classe nella Tabella dei nomi',en:'This class in the Names table'},tab_deck:{it:'📋 Tutti i nomi (Tabella)',en:'📋 All names (Table)'},cards:{it:'carte',en:'cards'},
  sess_lab:{it:'Sessione:',en:'Session:'},sess_both:{it:'Entrambe',en:'Both'},sess_new:{it:'🆕 Solo nuove',en:'🆕 New only'},sess_due:{it:'🔁 Solo ripasso',en:'🔁 Review only'},start_session:{it:'▶ Inizia',en:'▶ Start'},sess_lbl_both:{it:'in coda oggi (nuove + ripasso) 🎒',en:'queued today (new + review) 🎒'},sess_lbl_new:{it:'carte nuove da studiare 🆕',en:'new cards to study 🆕'},sess_lbl_due:{it:'carte da ripassare 🔁',en:'cards to review 🔁'},
  m_mature:{it:'Mature',en:'Mature'},m_started:{it:'Avviate',en:'Started'},m_new:{it:'Nuove',en:'New'},m_young:{it:'Giovani',en:'Young'},m_learning:{it:'In appr.',en:'Learning'},
  tile_due:{it:'Da ripassare',en:'Due'},tile_newtoday:{it:'Nuove oggi',en:'New today'},tile_studied:{it:'Studiate oggi',en:'Studied today'},tile_streak:{it:'Costanza',en:'Streak'},
@@ -537,6 +539,7 @@ function renderBack(card){
   const ft=C.freetext||card.freetext||[];
   if(ft.length)h+=`<div class="seg free"><div class="val">${ft.map(f=>fmt(f)).join('')}</div></div>`;
   if(!h)h='<div class="seg"><div class="val">'+esc(C.name||card.name)+'</div></div>';
+  h+=`<a class="tablink" href="Tabella-Farmaci.html#deck=${esc(card.deckId)}">📋 ${T('tab_class')} →</a>`;
   return h;
 }
 function deckChip(card){const d=DECK_BY_ID[card.deckId];return `<span class="chip" style="background:${d.color}33">${esc(d.code)} · ${esc(deckTitle(d))}</span>`;}
@@ -723,7 +726,8 @@ function openDeck(id){
   $('#modalHead').innerHTML=`<span class="chip" style="background:${d.color}44">${esc(d.code)}</span><h2 style="margin-top:8px">${esc(deckTitle(d))}</h2><div style="color:var(--muted);font-size:.85rem;margin-top:6px;font-weight:700">${esc(d.source||'')}</div>`;
   $('#modalBody').innerHTML=`<div style="display:flex;gap:10px;margin:0 0 18px;flex-wrap:wrap">
       <button class="cta" onclick="studyDeck('${id}',false)" ${q.queue.length?'':'disabled'}>${T('deck_study')} (${q.queue.length})</button>
-      <button class="cta ghost" onclick="studyDeck('${id}',true)">${T('deck_all')} ${cs.length}</button></div>
+      <button class="cta ghost" onclick="studyDeck('${id}',true)">${T('deck_all')} ${cs.length}</button>
+      <button class="cta ghost" onclick="location.href='Tabella-Farmaci.html#deck=${id}'">${T('tab_deck')}</button></div>
     <div class="browse-list" style="grid-template-columns:1fr">${cs.map(c=>browItem(c)).join('')}</div>`;
   $('#modal').classList.add('show');document.body.style.overflow='hidden';
 }
