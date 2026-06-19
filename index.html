@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="it" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Farmacologia · UniPa — Studio integrato</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f5f7; --bg2:#ededf1; --panel:#ffffff; --line:#e6e6ec; --line2:#d3d3da;
+  --ink:#1d1d1f; --ink-dim:#48484c; --ink-faint:#86868b;
+  --gold:#835c14; --gold-bright:#a9772b; --gold-line:#e7d4ac; --gold-soft:#fbf3e3;
+  --teal:#1f7a6b; --blue:#1a5e96;
+  --sh-1:0 1px 2px rgba(20,24,40,.06);
+  --sh-2:0 14px 34px -18px rgba(20,24,40,.16);
+  --sh-3:0 40px 80px -44px rgba(20,24,40,.26);
+  --sys:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display','Archivo',system-ui,sans-serif;
+  --r:20px;
+}
+:root[data-theme="dark"]{
+  --bg:#0a0b11; --bg2:#0f111a; --panel:#14161f; --line:#242634; --line2:#333648;
+  --ink:#edeef6; --ink-dim:#a9acc0; --ink-faint:#74778e;
+  --gold:#e9b873; --gold-bright:#f3cf9b; --gold-line:#5a4a23; --gold-soft:#241a0c;
+  --teal:#5fd0bb; --blue:#7ec1ef;
+  --sh-1:0 1px 2px rgba(0,0,0,.5);
+  --sh-2:0 16px 40px -22px rgba(0,0,0,.7);
+  --sh-3:0 40px 90px -46px rgba(0,0,0,.85);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:var(--sys); color:var(--ink); line-height:1.55;
+  letter-spacing:-.006em; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  background:
+    radial-gradient(900px 520px at 80% -12%, rgba(233,184,115,.12), transparent 60%),
+    radial-gradient(820px 520px at 4% -8%, rgba(78,168,222,.09), transparent 60%),
+    var(--bg) fixed;
+  display:flex; flex-direction:column; min-height:100%;
+}
+.wrap{max-width:1080px; width:100%; margin:0 auto; padding:34px 26px 40px; flex:1}
+/* top bar */
+.top{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:54px}
+.kicker{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--gold); text-transform:uppercase}
+.tctl{display:flex; gap:8px}
+.tbtn{font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.04em; padding:7px 12px; border:1px solid var(--line2); border-radius:10px; background:var(--panel); color:var(--ink-dim); cursor:pointer; transition:.18s cubic-bezier(.2,.7,.3,1)}
+.tbtn:hover{border-color:var(--gold); color:var(--ink); transform:translateY(-1px)}
+.tbtn:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+/* hero */
+.hero{max-width:42ch; margin-bottom:46px}
+.hero h1{font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:clamp(34px,6vw,62px); line-height:1.02; letter-spacing:-.028em; margin:.1em 0 .3em; text-wrap:balance}
+.hero h1 em{font-style:italic; color:var(--gold-bright)}
+.hero p{font-size:clamp(15px,2.2vw,18px); color:var(--ink-dim); max-width:60ch; text-wrap:pretty; margin:0}
+/* tool cards */
+.tools{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px}
+.tool{display:flex; flex-direction:column; background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:28px 26px 26px; box-shadow:var(--sh-2); text-decoration:none; color:inherit; position:relative; transition:transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s, border-color .2s}
+.tool:hover{transform:translateY(-4px); box-shadow:var(--sh-3); border-color:var(--line2)}
+.tool:focus-visible{outline:2px solid var(--gold); outline-offset:3px}
+.tool .ic{font-size:30px; width:58px; height:58px; display:grid; place-items:center; border-radius:16px; background:var(--gold-soft); border:1px solid var(--gold-line); margin-bottom:18px}
+.tool.flash .ic{background:color-mix(in srgb, var(--teal) 14%, transparent); border-color:color-mix(in srgb, var(--teal) 40%, transparent)}
+.tool h2{font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:24px; letter-spacing:-.018em; margin:0 0 8px}
+.tool .desc{font-size:14px; color:var(--ink-dim); margin:0 0 18px; line-height:1.55; flex:1}
+.tool ul{margin:0 0 20px; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:6px}
+.tool li{font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.02em; color:var(--ink-faint); border:1px solid var(--line2); border-radius:999px; padding:3px 9px}
+.cta{display:inline-flex; align-items:center; gap:8px; align-self:flex-start; font-size:13.5px; font-weight:600; padding:10px 16px; border-radius:11px; background:var(--gold-soft); border:1px solid var(--gold-line); color:var(--gold); transition:.18s cubic-bezier(.2,.7,.3,1)}
+.tool:hover .cta{background:var(--gold); color:#fff; border-color:var(--gold)}
+:root[data-theme="dark"] .tool:hover .cta{color:#1a130a}
+.tool.flash .cta{background:color-mix(in srgb,var(--teal) 12%,transparent); border-color:color-mix(in srgb,var(--teal) 40%,transparent); color:var(--teal)}
+.tool.flash:hover .cta{background:var(--teal); color:#fff; border-color:var(--teal)}
+.arrow{transition:transform .25s cubic-bezier(.2,.7,.3,1)}
+.tool:hover .arrow{transform:translateX(4px)}
+footer{max-width:1080px; width:100%; margin:0 auto; padding:18px 26px 30px; color:var(--ink-faint); font-size:12px; font-family:'JetBrains Mono',monospace; letter-spacing:.02em}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <span class="kicker" data-it="Farmacologia · Corso Integrato · UniPa" data-en="Pharmacology · Integrated Course · UniPa">Farmacologia · Corso Integrato · UniPa</span>
+      <div class="tctl">
+        <button class="tbtn" id="theme" type="button" title="Tema chiaro / scuro">☾</button>
+        <button class="tbtn" id="lang" type="button" title="Italiano / English">EN</button>
+      </div>
+    </div>
+
+    <section class="hero">
+      <h1 data-it="Studia la <em>farmacologia</em>" data-en="Study <em>pharmacology</em>">Studia la <em>farmacologia</em></h1>
+      <p data-it="Due strumenti collegati in un unico studio: l'esploratore 3D dei canali e dei recettori di membrana e le flashcard a ripetizione spaziata. Da ogni farmaco salti alla sua scheda; da ogni scheda torni al modello 3D."
+         data-en="Two connected tools in one place: the 3D explorer of membrane channels and receptors, and spaced-repetition flashcards. From any drug jump to its card; from any card return to the 3D model.">Due strumenti collegati in un unico studio: l'esploratore 3D dei canali e dei recettori di membrana e le flashcard a ripetizione spaziata. Da ogni farmaco salti alla sua scheda; da ogni scheda torni al modello 3D.</p>
+    </section>
+
+    <div class="tools">
+      <a class="tool d3" href="Canali-e-Recettori-3D.html">
+        <div class="ic">🧬</div>
+        <h2 data-it="Bersagli &amp; Farmaci in 3D" data-en="Targets &amp; Drugs in 3D">Bersagli &amp; Farmaci in 3D</h2>
+        <p class="desc" data-it="Canali ionici e recettori di membrana in modelli 3D ruotabili, con i farmaci che agiscono su ogni bersaglio, le animazioni dei meccanismi e 62 classificazioni d'esame con le linee guida aggiornate."
+           data-en="Ion channels and membrane receptors as rotatable 3D models, with the drugs acting on each target, mechanism animations and 62 exam classifications with up-to-date guidelines.">Canali ionici e recettori di membrana in modelli 3D ruotabili, con i farmaci che agiscono su ogni bersaglio, le animazioni dei meccanismi e 62 classificazioni d'esame con le linee guida aggiornate.</p>
+        <ul>
+          <li data-it="81 bersagli" data-en="81 targets">81 bersagli</li>
+          <li data-it="modelli 3D" data-en="3D models">modelli 3D</li>
+          <li data-it="62 classificazioni" data-en="62 classifications">62 classificazioni</li>
+        </ul>
+        <span class="cta"><span data-it="Apri l'esploratore 3D" data-en="Open the 3D explorer">Apri l'esploratore 3D</span> <span class="arrow">→</span></span>
+      </a>
+
+      <a class="tool flash" href="Flashcard-Farmacologia.html">
+        <div class="ic">📇</div>
+        <h2>FarmacoFlash</h2>
+        <p class="desc" data-it="Flashcard di farmacologia con ripetizione spaziata: studia per mazzi, sfoglia il formulario per nome, meccanismo o reazione avversa e tieni traccia dei progressi giorno per giorno."
+           data-en="Pharmacology flashcards with spaced repetition: study by deck, browse the formulary by name, mechanism or adverse reaction, and track your daily progress.">Flashcard di farmacologia con ripetizione spaziata: studia per mazzi, sfoglia il formulario per nome, meccanismo o reazione avversa e tieni traccia dei progressi giorno per giorno.</p>
+        <ul>
+          <li data-it="ripetizione spaziata" data-en="spaced repetition">ripetizione spaziata</li>
+          <li data-it="formulario" data-en="formulary">formulario</li>
+          <li data-it="progressi" data-en="progress">progressi</li>
+        </ul>
+        <span class="cta"><span data-it="Apri FarmacoFlash" data-en="Open FarmacoFlash">Apri FarmacoFlash</span> <span class="arrow">→</span></span>
+      </a>
+    </div>
+  </div>
+  <footer data-it="Strumento di studio · non è supporto decisionale clinico · Materiale: sbobine Brancato &amp; Cannizzaro" data-en="Study tool · not clinical decision support · Material: Brancato &amp; Cannizzaro lectures">Strumento di studio · non è supporto decisionale clinico · Materiale: sbobine Brancato &amp; Cannizzaro</footer>
+<script>
+  const root=document.documentElement;
+  // theme (shared key with the 3D app)
+  function applyTheme(t){ root.dataset.theme=t; document.getElementById('theme').textContent=(t==='light'?'☀':'☾'); try{localStorage.setItem('cr-theme',t);}catch(e){} }
+  (function(){ let t='light'; try{ t=localStorage.getItem('cr-theme')||'light'; }catch(e){} applyTheme(t); })();
+  document.getElementById('theme').onclick=()=>applyTheme(root.dataset.theme==='light'?'dark':'light');
+  // language
+  function applyLang(l){ root.lang=l; document.getElementById('lang').textContent=(l==='it'?'EN':'IT');
+    document.querySelectorAll('[data-it]').forEach(el=>{ const v=el.getAttribute(l==='en'?'data-en':'data-it'); if(v!=null) el.innerHTML=v; });
+    try{localStorage.setItem('cr-lang',l);}catch(e){} }
+  (function(){ let l='it'; try{ l=localStorage.getItem('cr-lang')||'it'; }catch(e){} applyLang(l); })();
+  document.getElementById('lang').onclick=()=>applyLang(root.lang==='it'?'en':'it');
+</script>
+</body>
+</html>
