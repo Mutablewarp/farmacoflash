@@ -28,10 +28,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Prepara il sito (app come index.html + screenshot)
+      - name: Prepara il sito (app unificata: index.html = home con le due app)
         run: |
           mkdir -p _site
-          cp "Flashcard-Farmacologia.html" _site/index.html
+          cp index.html _site/index.html
+          cp "Canali-e-Recettori-3D.html" _site/
+          cp "Flashcard-Farmacologia.html" _site/
+          cp "Tabella-Farmaci.html" _site/ 2>/dev/null || true
           cp -r screenshots _site/screenshots 2>/dev/null || true
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

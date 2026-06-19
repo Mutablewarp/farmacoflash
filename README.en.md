@@ -1,103 +1,92 @@
-# 💊 FarmacoFlash
+# 🧬💊 Pharmacology · UniPa — integrated study app
 
 🇬🇧 English (this file) · 🇮🇹 **[Versione italiana → README.md](README.md)**
 
-**Pharmacology flashcards that actually make things stick.** You study cards, say whether you knew them, and the app brings back the ones you forget at the right time — until they stay. All in **one file**, works **offline**, your data stays **only on your device**.
+**One app to study pharmacology.** Two linked tools, in the same window, with the same look:
 
-> 214 cards · 28 decks · extracted from lecture notes (Modules I–II) · every card has an **in-depth note** verified against *Goodman & Gilman, 14th ed.* (and PubMed)
+| | Tool | What it does |
+|---|---|---|
+| 🧬 | **Targets & Drugs in 3D** | Explore channels and receptors as **rotatable 3D models**, see the **drugs** for each target, mechanism **animations** and **62 exam classifications** with guidelines. |
+| 📇 | **FarmacoFlash** | **Spaced-repetition flashcards**: 214 cards, 28 decks, each with an in-depth note verified against *Goodman & Gilman 14th ed.* + PubMed. |
+
+Switch between them with the **tabs at the top**; from any drug in 3D, **jump to its flashcard** in one click. Runs **in the browser**, your data stays **only on your device**.
 
 ---
 
-## 🚀 How to use it (in plain words)
+## 🚀 First run (after you download the repo)
 
-1. **Open the app.** Tap the 💊 icon. You start on the **Today** screen.
-2. **Press ▶ Start.** A **drug name** appears: think of the answer.
-3. **Flip the card.** Tap the screen: the explanation shows up.
-4. **Say how it went** with a face — the app decides **on its own** when to show it again:
-   - 😖 **Again** (didn't know it) → comes back **now**
-   - 😐 **Hard** → comes back **soon**
-   - 😄 **Good** → in **a few days**
-   - 🌟 **Easy** → in **a long time**
+Nothing to install — these are web pages that open in your browser.
 
-   👉 Do a few cards **every day**: that's how the memory forms.
-5. **Choose what to study** (**Session** box): **Both** · **🆕 New only** · **🔁 Review only** · **🔥 Hard** (the cards you miss most). 👉 Want to **hand-pick** them? Tap the **yellow box** at the top (**🗂 choose which to review**): tick only the cards you want and start just **those**.
-6. **Fix mistakes precisely:** on **Today**, under *“How it went today”*, **tap a face** (e.g. 😐) → see exactly those cards → **Review these**. In **Stats** you'll find **🔥 At risk** and **🌱 Never mature**.
-7. **Search a drug:** tap **Browse** and type a name (or a mechanism, an effect). Tap a card to read it.
-8. **Memorize the names:** tap **📋 Names table**. Four views: **All** · **🧠 Names only** (tap → see *what it's for*) · **💊 Effects only** (read effects → guess the drug) · **🔤 A→Z** (every drug alphabetically). Every row shows **all the real drug names** (yellow chips): tap one → its study card opens. **Train with the name quiz:** **🎯 Quiz (choice)** or **✍️ Type the names** (fixes typos, always asks for **new** names, you can go **← Back**); **📊 Mistakes** collects the names you miss most for targeted review.
-9. **See your progress:** **Stats** (how much you remember, your **streak** 🔥).
-10. **Switch language** with the **IT/EN** button at the top.
-11. **Don't lose progress:** *Stats › **⬇ Export backup***. On another device: **⬆ Import**.
+1. **Download the repo.** On GitHub: green **`Code` → Download ZIP**.
+   *(Or, in a terminal: `git clone https://github.com/Mutablewarp/farmacoflash.git`)*
+2. **Unzip it** (double-click the downloaded file).
+3. **Open `index.html`** (double-click): it opens in your browser (Safari, Chrome, Firefox…).
+4. **Done.** The top bar has two tabs: **🧬 Targets & Drugs 3D** and **📇 FarmacoFlash**. Tap a tab to switch. The **☀/☾** (theme) and **IT/EN** (language) buttons apply to both.
 
-## 📲 Install it as an app (offline)
+> ⚠️ **Keep all files in the same folder.** `index.html` loads the others (`Canali-e-Recettori-3D.html`, `Flashcard-Farmacologia.html`, `Tabella-Farmaci.html`): moving them breaks the links.
 
-Works **without internet**, no account, no subscription — your data stays on the device.
+> 🌐 **Do I need internet the first time?** The **3D models** and **fonts** are fetched online, so 3D needs a connection. The **flashcards work offline**. After the first load the browser caches the content.
 
-- **iPhone:** get the file (e.g. AirDrop), open it in **Safari** → **Share** → **Add to Home Screen**. The 💊 icon appears: open it like any app.
-- **Android / desktop (Chrome):** open the file → **⋮** menu → **Install app**.
-
-> The two apps are **linked**: from the **Table** tap a drug → its **study card** opens; from **Today**, the **📋 Names table** button reopens the table. Keep them **in the same folder**.
+> 💻 **Prefer a link?** You can publish it on GitHub Pages (see *Developers*): it becomes a site at `https://mutablewarp.github.io/farmacoflash/`.
 
 ---
 
-## 📸 What you can do
+## 🧬 Targets & Drugs in 3D
 
-| Today | Study: flip the card | Answer + you rate it |
-|---|---|---|
-| ![Today](screenshots/01-oggi.png) | ![Study front](screenshots/02-studio-fronte.png) | ![Answer](screenshots/03-studio-risposta.png) |
+- **Explorer**: ion channels and receptors grouped by family (voltage-gated, nicotinic, glutamate, GPCRs…). Tap a target → **360° rotatable 3D model**, description, and the **drugs** acting on it.
+- **Mechanism animations**, **comparison table**, **Gs/Gi/Gq ligands**, **CYP450 interactions**, **antibiotics** map, **drugs** view.
+- **Classifications**: 62 expandable exam classifications with **up-to-date guidelines** (📋) and key points (★), grounded in the Brancato & Cannizzaro lectures.
+- From any drug, the **📇** button opens its **flashcard** in FarmacoFlash.
 
-| Browse & search | Stats + “Reinforce” | Targeted review 🔥 |
-|---|---|---|
-| ![Browse](screenshots/04-sfoglia.png) | ![Stats](screenshots/05-statistiche.png) | ![At risk](screenshots/06-rinforzo.png) |
+## 📇 FarmacoFlash — how to use
 
-| Review today's mistakes | Hand-drawn mechanism diagrams |
-|---|---|
-| ![Targeted review](screenshots/07-oggi-ripasso-mirato.png) | ![Diagram](screenshots/08-diagramma.png) |
+1. **▶ Start** from the **Today** screen: a drug name appears, think of the answer.
+2. **Flip the card** (tap) → read the explanation.
+3. **Rate it**: 😖 Bad → comes back now · 😐 So-so → soon · 😄 Good → in a few days · 🌟 Easy → much later. *(The app schedules reviews for you — Anki-style spaced repetition.)*
+4. **Session** your way: Both · 🆕 New only · 🔁 Review only · 🔥 Hard. Or tap **🗂 choose what to review** to pick by hand.
+5. **Browse** to search a drug (name, mechanism, effect). **📋 Names table** to memorize them (🧠 Names only / 💊 Effects only / 🔤 A→Z views + quizzes).
+6. **Stats**: retention, streak 🔥, cards to reinforce. **⬇ Export backup** to move progress to another device (**⬆ Import**).
 
-**Hand-pick what to review** — tap the yellow box and tick the cards:
+## 📲 Install as an app (offline)
 
-| ![Pick what to review](screenshots/15-scegli-ripasso.png) |
-|:--:|
+Flashcards work without internet, no account.
 
-**Names table** — to memorize, in three modes:
-
-| All | 🧠 Names only (→ what it's for) | 💊 Effects only (→ guess) |
-|---|---|---|
-| ![Table all](screenshots/09-tabella-tutto.png) | ![Names only](screenshots/10-tabella-solo-nomi.png) | ![Effects only](screenshots/11-tabella-solo-effetti.png) |
-
-**All drugs A→Z (🔤)** — the full alphabetical index: tap a class code to study it.
-
-| ![A→Z index](screenshots/14-tabella-rubrica.png) |
-|:--:|
-
-**Name quiz** — to drill them in (it corrects you and never lets you repeat a name):
-
-| ✍️ Type the names (fixes typos, reveals the whole class) | 📊 Your mistakes (targeted review over time) |
-|---|---|
-| ![Quiz type](screenshots/12-quiz-scrivi-nomi.png) | ![Quiz mistakes](screenshots/13-quiz-errori.png) |
+- **iPhone:** open the file in **Safari** → **Share** → **Add to Home Screen**.
+- **Android / Chrome:** open the file → **⋮** menu → **Install app**.
 
 ---
-
-## ✨ Features in brief
-
-- **Spaced repetition (SM-2, Anki-style)** — the app schedules each card for you.
-- **Tailored sessions** — new / review / both / **🔥 hard**; new-per-day; **🔀 shuffle**.
-- **Surgical review** — open *exactly* the cards you got wrong (from today's faces and Stats).
-- **Memo-line** + **in-depth note 📘** verified against *Goodman & Gilman 14th ed.* (PMIDs cited).
-- **30 hand-drawn mechanism diagrams** on 43 key cards.
-- **Browse & full-text search**, **Names table** (search/filters/3 study modes, linked to cards), **Stats** (retention, streak, cards to reinforce).
-- **Name quiz** (in the table) — **multiple-choice** or **type-in**: fixes typos, never accepts an already-used name (always new), **← Back / Next →** navigation, and a persistent **mistakes log** 📊 for targeted review.
-- **Bilingual IT / EN**, **backup** export/import, **installable offline** PWA, private.
 
 ## 🔒 Privacy
 
-Private repo. Study data lives **only in your browser/device** (no server, no account). Use **Export/Import** to move it.
-⚠️ Free GitHub Pages is **public** even for a private repo: the included Pages workflow is **manual** and never runs on its own.
+Study data lives **only in your browser/device** (no server, no account). Move it with **Export/Import backup**.
+⚠️ GitHub Pages on the free plan is **public** even with a private repo: the included Pages workflow is **manual** and does not run on its own.
 
-## 🛠️ Rebuild (developers)
+## 📁 Structure
+
+```
+index.html                    ← OPEN THIS — single home with both apps (tabbed shell)
+Canali-e-Recettori-3D.html    ← Targets & Drugs in 3D
+Flashcard-Farmacologia.html   ← FarmacoFlash (single-file, offline, installable)
+Tabella-Farmaci.html          ← names table (linked to the flashcards)
+Flashcards_*.md / *.rtf       ← card sources (lecture notes)
+screenshots/                  ← images for this README
+build/                        ← templates, data, build scripts
+```
+
+> The apps share theme and language and open inside `index.html`; they also still work if opened individually.
+
+## 🛠️ Developers
 
 ```bash
 node build/build.js          # → Flashcard-Farmacologia.html
 node build/_gen-table.js     # → Tabella-Farmaci.html
 ```
 
-🤖 Built with [Claude Code](https://claude.com/claude-code)
+`build/`: `app-template.html`, `table-template.html`, `cards.json`, `memo/*.json`, `enrichments.json` (+ `-en`), `i18n/`, `pwa-head.js`, icons. Data injected as base64 (single-file).
+
+**Publish online (GitHub Pages):** Settings → Pages → Source: *GitHub Actions*, then Actions → *Deploy FarmacoFlash (Pages)* → *Run workflow*. It publishes `index.html` (the unified home) with both apps.
+
+## ⚠️ Notes
+
+- For **personal study only**. Mnemonics and notes are summaries: they do **not** replace the textbook or clinical judgment.
+- Notes cite *Goodman & Gilman, 14th ed.* and PubMed (PMIDs checked). When in doubt, **verify in the book**.

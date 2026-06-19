@@ -1,132 +1,104 @@
-# 💊 FarmacoFlash
+# 🧬💊 Farmacologia · UniPa — studio integrato
 
 🇮🇹 Italiano (questo file) · 🇬🇧 **[English version → README.en.md](README.en.md)**
 
-**Flashcard di Farmacologia che ti aiutano a ricordare davvero.** Studi le card, dici se le sai, e l'app ti rifà al momento giusto quelle che dimentichi — finché restano in testa. Tutto in **un unico file**, funziona **senza internet**, i tuoi dati restano **solo sul tuo dispositivo**.
+**Un'unica app per studiare farmacologia.** Due strumenti collegati, nella stessa finestra, con la stessa grafica:
 
-> 214 card · 28 mazzi · estratte dalle sbobine (Moduli I–II) · ogni card ha un **approfondimento verificato** sul *Goodman & Gilman, 14ª ed.* (e PubMed)
+| | Strumento | A cosa serve |
+|---|---|---|
+| 🧬 | **Bersagli & Farmaci in 3D** | Esplori canali e recettori in **modelli 3D ruotabili**, vedi i **farmaci** per ogni bersaglio, le **animazioni** dei meccanismi e **62 classificazioni** d'esame con linee guida. |
+| 📇 | **FarmacoFlash** | **Flashcard** a ripetizione spaziata: 214 card, 28 mazzi, ognuna con un approfondimento verificato (*Goodman & Gilman 14ª ed.* + PubMed). |
 
----
-
-## 🚀 Come si usa (in parole semplici)
-
-1. **Apri l'app.** Tocca l'icona 💊. Parti dalla schermata **Oggi**.
-2. **Premi ▶ Inizia.** Compare il **nome di un farmaco**: pensa alla risposta.
-3. **Gira la card.** Tocca lo schermo: compare la spiegazione.
-4. **Dì com'è andata** con un faccino — e l'app decide **da sola** quando rifartela:
-   - 😖 **Male** (non la sapevi) → torna **subito**
-   - 😐 **Così così** → torna **presto**
-   - 😄 **Bene** → torna tra **qualche giorno**
-   - 🌟 **Facile** → torna tra **molto tempo**
-
-   👉 Fai un po' di card **ogni giorno**: è così che il ricordo si fissa.
-5. **Scegli cosa studiare** (riquadro **Sessione**):
-   **Entrambe** (nuove + ripasso) · **🆕 Solo nuove** · **🔁 Solo ripasso** · **🔥 Difficili** (le carte che sbagli di più).
-   👉 Vuoi sceglierle **a mano**? Tocca il **riquadro giallo** in alto (**🗂 scegli quali ripassare**): spunti solo le carte che vuoi e avvii **quelle**.
-6. **Rivedi gli errori in modo mirato:**
-   - nella schermata **Oggi**, sotto *“Com'è andata oggi”*, **tocca un faccino** (es. 😐) → vedi **proprio quelle** carte → **Ripassa queste**;
-   - in **Statistiche** trovi **🔥 A rischio** e **🌱 Mai mature**: toccale per ripassarle.
-7. **Cerca un farmaco:** tocca **Sfoglia** e scrivi il nome (o un meccanismo, un effetto). Tocca una card per leggerla.
-8. **Impara i nomi a memoria:** tocca **📋 Tabella dei nomi**. Tre modi:
-   **Tutto** · **🧠 Solo nomi** (tocchi un nome → vedi *a cosa serve*) · **💊 Solo effetti** (leggi gli effetti → indovini il farmaco) · **🔤 A→Z** (tutti i farmaci in ordine alfabetico).
-   Ogni riga mostra **tutti i nomi reali** dei farmaci (chip gialli): toccane uno → si apre la sua **scheda di studio**.
-   **Allenati con il quiz dei nomi:** **🎯 Quiz (scelta)** oppure **✍️ Scrivi i nomi** (ti corregge i refusi, ti chiede sempre nomi **nuovi**, puoi tornare **← Indietro**). **📊 Errori** raccoglie i nomi che sbagli di più, per ripassarli a colpo sicuro.
-9. **Guarda i tuoi progressi:** **Statistiche** (quanto ricordi, la tua **costanza** 🔥).
-10. **Cambia lingua** con il pulsante **IT/EN** in alto.
-11. **Non perdere i progressi:** *Statistiche › **⬇ Esporta backup*** (salva un file). Su un altro dispositivo: **⬆ Importa**.
-
-## 📲 Installala come app sul telefono (offline)
-
-Funziona **senza internet**, senza account, senza abbonamenti — i tuoi dati restano sul telefono.
-
-- **iPhone:** ricevi il file (es. AirDrop), aprilo in **Safari** → **Condividi** → **Aggiungi a Home**. Comparirà l'icona 💊: aprila come una normale app.
-- **Android / computer (Chrome):** apri il file → menù **⋮** → **Installa app**.
-
-> Le due app sono **collegate**: dalla **Tabella** tocchi un farmaco → si apre la sua **scheda di studio**; dalla schermata **Oggi**, il pulsante **📋 Tabella dei nomi** riapre la tabella. Tienile **nella stessa cartella**.
+Passi da uno all'altro con le **linguette in alto**; da un farmaco nel 3D **salti alla sua flashcard** con un clic. Funziona **nel browser**, i tuoi dati restano **solo sul tuo dispositivo**.
 
 ---
 
-## 📸 Cosa puoi fare
+## 🚀 Come iniziare la prima volta (dopo aver scaricato la repo)
 
-| Oggi (la tua giornata) | Studio: gira la card | Risposta + valuti |
+Non c'è niente da installare: sono pagine web che si aprono nel browser.
+
+1. **Scarica la repo.** Su GitHub: pulsante verde **`Code` → Download ZIP**.
+   *(In alternativa, da terminale: `git clone https://github.com/Mutablewarp/farmacoflash.git`)*
+2. **Estrai lo ZIP** (doppio clic sul file scaricato).
+3. **Apri `index.html`** con un doppio clic: si apre nel browser (Safari, Chrome, Firefox…).
+4. **Fatto.** Vedi la barra in alto con le due linguette: **🧬 Bersagli & Farmaci 3D** e **📇 FarmacoFlash**. Tocca una linguetta per cambiare strumento. I pulsanti **☀/☾** (tema) e **IT/EN** (lingua) valgono per entrambi.
+
+> ⚠️ **Tieni tutti i file nella stessa cartella.** `index.html` carica gli altri file (`Canali-e-Recettori-3D.html`, `Flashcard-Farmacologia.html`, `Tabella-Farmaci.html`): se li sposti, i collegamenti si rompono.
+
+> 🌐 **Serve internet la prima volta?** I **modelli 3D** e i **caratteri** si scaricano da internet, quindi per il 3D serve connessione. Le **flashcard funzionano anche offline**. Una volta caricato, il browser tiene in cache i contenuti.
+
+> 💻 **Preferisci aprirla da un link?** Puoi pubblicarla su GitHub Pages (vedi *Sviluppatori*): diventa un sito da aprire all'indirizzo `https://mutablewarp.github.io/farmacoflash/`.
+
+---
+
+## 🧬 Bersagli & Farmaci in 3D
+
+- **Esploratore**: canali ionici e recettori raggruppati per famiglia (voltaggio-dipendenti, nicotinici, glutammato, GPCR…). Tocca un bersaglio → **modello 3D ruotabile a 360°**, descrizione, e i **farmaci** che ci agiscono.
+- **Animazioni · meccanismi**, **Tabella comparativa**, **Liganti Gs/Gi/Gq**, **Interazioni · CYP450**, **Antibiotici** (mappa), **Farmaci**.
+- **Classificazioni**: 62 classificazioni d'esame espandibili, con **linee guida aggiornate** (📋) e i punti-chiave (★), basate sulle sbobine Brancato & Cannizzaro.
+- Da ogni farmaco, il pulsante **📇** apre la **flashcard** corrispondente in FarmacoFlash.
+
+## 📇 FarmacoFlash — come si usa
+
+1. **▶ Inizia** dalla schermata **Oggi**: compare il nome di un farmaco, pensa la risposta.
+2. **Gira la card** (tocca) → leggi la spiegazione.
+3. **Valuta** con un faccino: 😖 Male → torna subito · 😐 Così così → presto · 😄 Bene → tra qualche giorno · 🌟 Facile → tra molto. *(L'app decide da sola quando rifartela — ripetizione spaziata stile Anki.)*
+4. **Sessione** su misura: Entrambe · 🆕 Solo nuove · 🔁 Solo ripasso · 🔥 Difficili. Oppure tocca il riquadro **🗂 scegli quali ripassare** per selezionarle a mano.
+5. **Sfoglia** per cercare un farmaco (nome, meccanismo, effetto). **📋 Tabella dei nomi** per memorizzarli (viste 🧠 Solo nomi / 💊 Solo effetti / 🔤 A→Z + quiz).
+6. **Statistiche**: ritenzione, costanza 🔥, carte da rinforzare. **⬇ Esporta backup** per spostare i progressi su un altro dispositivo (**⬆ Importa**).
+
+## 📲 Installa come app sul telefono (offline)
+
+Le flashcard funzionano senza internet, senza account.
+
+- **iPhone:** apri il file in **Safari** → **Condividi** → **Aggiungi a Home**.
+- **Android / Chrome:** apri il file → menù **⋮** → **Installa app**.
+
+---
+
+## 📸 Schermate (FarmacoFlash)
+
+| Oggi | Studio: gira la card | Risposta + valuti |
 |---|---|---|
 | ![Oggi](screenshots/01-oggi.png) | ![Studio fronte](screenshots/02-studio-fronte.png) | ![Risposta](screenshots/03-studio-risposta.png) |
 
-| Sfoglia & cerca | Statistiche + “Da rinforzare” | Ripasso mirato 🔥 |
+| Sfoglia & cerca | Statistiche | Tabella dei nomi |
 |---|---|---|
-| ![Sfoglia](screenshots/04-sfoglia.png) | ![Statistiche](screenshots/05-statistiche.png) | ![A rischio](screenshots/06-rinforzo.png) |
-
-| Rivedi gli errori del giorno | Diagrammi del meccanismo (disegnati a mano) |
-|---|---|
-| ![Ripasso mirato](screenshots/07-oggi-ripasso-mirato.png) | ![Diagramma](screenshots/08-diagramma.png) |
-
-**Scegli a mano cosa ripassare** — tocca il riquadro giallo e spunti le carte:
-
-| ![Scegli cosa ripassare](screenshots/15-scegli-ripasso.png) |
-|:--:|
-
-**Tabella dei nomi** — per memorizzare, in tre modi:
-
-| Tutto | 🧠 Solo nomi (→ a cosa serve) | 💊 Solo effetti (→ indovina) |
-|---|---|---|
-| ![Tabella tutto](screenshots/09-tabella-tutto.png) | ![Solo nomi](screenshots/10-tabella-solo-nomi.png) | ![Solo effetti](screenshots/11-tabella-solo-effetti.png) |
-
-**Tutti i farmaci in ordine alfabetico (🔤 A→Z)** — la rubrica completa: tocca il codice classe per studiarlo.
-
-| ![Rubrica A→Z](screenshots/14-tabella-rubrica.png) |
-|:--:|
-
-**Quiz dei nomi** — per impararli a memoria (ti corregge e non ti fa ripetere i nomi):
-
-| ✍️ Scrivi i nomi (corregge i refusi, svela tutta la classe) | 📊 I tuoi errori (ripasso mirato nel tempo) |
-|---|---|
-| ![Quiz scrivi](screenshots/12-quiz-scrivi-nomi.png) | ![Quiz errori](screenshots/13-quiz-errori.png) |
-
----
-
-## ✨ Funzioni in breve
-
-- **Ripetizione spaziata (SM-2, stile Anki)** — l'app calcola da sola quando rivedere ogni card.
-- **Sessioni su misura** — nuove / ripasso / entrambe / **🔥 difficili**; quante nuove al giorno; **🔀 ordine casuale**.
-- **Ripasso chirurgico** — apri *esattamente* le carte sbagliate (dai faccini di “oggi” e dalle Statistiche).
-- **Memofrase** su post-it + **approfondimento 📘** verificato su *Goodman & Gilman 14ª ed.* (PMID citati).
-- **30 diagrammi-meccanismo disegnati a mano** su 43 card chiave (COX/eicosanoidi, K-ATP, GLUT4, RAAS, Vaughan-Williams, ribosoma 30S/50S, μ-recettore, GABA-A, statine, eparina/warfarin…).
-- **Sfoglia & cerca** per nome, meccanismo, target, reazione avversa.
-- **Tabella dei nomi** con ricerca, filtri e 3 viste di studio, collegata alle schede.
-- **Quiz dei nomi** (nella tabella) — a **scelta multipla** o **a digitazione**: corregge i refusi, non accetta nomi già usati (sempre nomi nuovi), navigazione **← Indietro / Nuova →**, e **storico degli errori** 📊 per il ripasso mirato.
-- **Statistiche** — ritenzione, costanza 🔥, carte mature, **carte da rinforzare**.
-- **Bilingue IT / EN** (interfaccia, domande, risposte, diagrammi).
-- **Backup** export/import in JSON · **app installabile offline**, privata.
+| ![Sfoglia](screenshots/04-sfoglia.png) | ![Statistiche](screenshots/05-statistiche.png) | ![Tabella](screenshots/09-tabella-tutto.png) |
 
 ---
 
 ## 🔒 Privacy
 
-Repo **privato**. I dati di studio vivono **solo nel tuo browser/telefono** (nessun server, nessun account). Per spostarli usa **Esporta/Importa backup**.
+I dati di studio vivono **solo nel tuo browser/dispositivo** (nessun server, nessun account). Per spostarli usa **Esporta/Importa backup**.
 ⚠️ GitHub Pages su piano gratuito è **pubblico** anche con repo privato: il workflow Pages incluso è **manuale** e non parte da solo.
 
-## 🛠️ Rigenerare l'app (per sviluppatori)
+## 📁 Struttura
+
+```
+index.html                    ← APRI QUESTO — home unica con le due app (shell a linguette)
+Canali-e-Recettori-3D.html    ← Bersagli & Farmaci in 3D
+Flashcard-Farmacologia.html   ← FarmacoFlash (single-file, offline, installabile)
+Tabella-Farmaci.html          ← tabella dei nomi (collegata alle flashcard)
+Flashcards_*.md / *.rtf       ← sorgenti delle card (sbobine)
+screenshots/                  ← immagini di questo README
+build/                        ← template, dati, script di build
+```
+
+> Le app condividono tema e lingua e si aprono dentro `index.html`; restano comunque utilizzabili anche aprendole singolarmente.
+
+## 🛠️ Sviluppatori
 
 ```bash
 node build/build.js          # → Flashcard-Farmacologia.html
 node build/_gen-table.js     # → Tabella-Farmaci.html
 ```
 
-`build/`: `app-template.html`, `table-template.html`, `cards.json`, `memo/*.json`, `enrichments.json` (+ `-en`), `i18n/`, `pwa-head.js` (meta+icona), `icon.svg`/`icon-*.png`. Dati iniettati in base64 (single-file).
+`build/`: `app-template.html`, `table-template.html`, `cards.json`, `memo/*.json`, `enrichments.json` (+ `-en`), `i18n/`, `pwa-head.js`, icone. Dati iniettati in base64 (single-file).
 
-## 📁 Struttura
-
-```
-Flashcard-Farmacologia.html   ← l'app (single-file, offline, installabile)
-Tabella-Farmaci.html          ← tabella dei nomi (collegata all'app)
-Flashcards_*.md / *.rtf       ← sorgenti delle card (sbobine)
-screenshots/                  ← immagini di questo README
-build/                        ← template, dati, script di build
-```
+**Pubblicare online (GitHub Pages):** Settings → Pages → Source: *GitHub Actions*, poi Actions → *Deploy FarmacoFlash (Pages)* → *Run workflow*. Pubblica `index.html` (la home unificata) con le due app.
 
 ## ⚠️ Note
 
 - Materiale a **uso personale di studio**. Memofrasi e approfondimenti sono sintesi: **non** sostituiscono il libro né il giudizio clinico.
-- Gli approfondimenti citano *Goodman & Gilman, 14ª ed.* e PubMed (PMID controllati uno a uno; alcune citazioni sono di contesto). In caso di dubbio, **verifica sul libro**.
-
-🤖 Costruita con [Claude Code](https://claude.com/claude-code)
+- Gli approfondimenti citano *Goodman & Gilman, 14ª ed.* e PubMed (PMID controllati). In caso di dubbio, **verifica sul libro**.

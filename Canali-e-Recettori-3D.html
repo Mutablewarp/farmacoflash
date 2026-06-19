@@ -4141,6 +4141,30 @@ document.addEventListener('click',function(e){
   if(e.target.id==='drug-modal' || e.target.closest('#dm-close')){ closeDrugModal(); }
 });
 document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDrugModal(); });
+
+/* ===== Modalita embed: dentro lo shell unificato (index.html) ===== */
+(function(){
+  if(!/[?&]embed=1/.test(location.search)) return;
+  var st=document.createElement('style');
+  st.textContent='.embed .hdr-ctl{display:none!important}';
+  (document.head||document.documentElement).appendChild(st);
+  document.documentElement.classList.add('embed');
+  function send(m){ try{ parent.postMessage(m,'*'); }catch(_){ } }
+  window.addEventListener('message', function(e){
+    var d=e.data||{}; if(!d||!d.__fusion) return;
+    if(d.__fusion==='theme'){ try{ applyTheme(d.value); }catch(_){ } }
+    else if(d.__fusion==='lang'){ try{ setLang(d.value); }catch(_){ } }
+  });
+  document.addEventListener('click', function(e){
+    var a=e.target&&e.target.closest&&e.target.closest('a#dm-flash, a.ff-link, a.ff-mini');
+    if(!a) return;
+    e.preventDefault(); e.stopPropagation();
+    var href=a.getAttribute('href')||''; var m=href.match(/[#&]card=([^&]+)/);
+    send({__fusion:'open-flashcard', card: m?decodeURIComponent(m[1]):null});
+  }, true);
+  send({__fusion:'ready', app:'canali'});
+})();
+
 </script>
 </body>
 </html>
