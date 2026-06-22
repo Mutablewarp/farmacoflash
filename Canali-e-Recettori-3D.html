@@ -976,6 +976,9 @@ html[data-theme="dark"]{ background:#13110d!important }
     #13110d fixed !important;
 }
 </style>
+<style>/* harmonize: 3D card = page warm-white */
+.viewer-card{background:var(--bg)!important}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3820,7 +3823,7 @@ Object.assign(RECDRUGS,{"il6r": [{"role": ["Antagonisti (anti-IL-6R)", "Antagoni
 let C=C_IT, DIFFS=DIFFS_IT, EXAM=EXAM_IT;
 /* ===== i18n: helper + applicazione lingua, e tema chiaro/scuro ===== */
 function t(a){return a[LANG==='en'?1:0];}
-function applyTheme(th){ document.documentElement.dataset.theme=th; const b=document.getElementById('btn-theme'); if(b) b.textContent=(th==='light'?'☀':'☾'); try{localStorage.setItem('cr-theme',th);}catch(e){} const _li=(th==='light'); if(typeof scene!=='undefined'&&scene){ if(scene.fog){ scene.fog.color.set(_li?0xd6deec:0x070810); scene.fog.density=_li?0.008:0.019; } scene.background = _li ? new THREE.Color(0xe7ebf3) : null; } if(typeof renderer!=='undefined'&&renderer) renderer.toneMappingExposure = _li?0.7:0.82; if(typeof mgIon!=='undefined'&&mgIon){ mgIon.material.emissiveIntensity=_li?1.15:0.75; } }
+function applyTheme(th){ document.documentElement.dataset.theme=th; const b=document.getElementById('btn-theme'); if(b) b.textContent=(th==='light'?'☀':'☾'); try{localStorage.setItem('cr-theme',th);}catch(e){} const _li=(th==='light'); if(typeof scene!=='undefined'&&scene){ const _bg=_li?'#f3f0e9':'#13110d'; if(scene.fog){ scene.fog.color.set(_bg); scene.fog.density=_li?0.006:0.016; } scene.background=new THREE.Color(_bg); } if(typeof renderer!=='undefined'&&renderer) renderer.toneMappingExposure = _li?0.7:0.82; if(typeof mgIon!=='undefined'&&mgIon){ mgIon.material.emissiveIntensity=_li?1.15:0.75; } }
 /* ===================== INTERAZIONI: CYP450 + farmaco-farmaco ===================== */
 function buildInteractions(){
   const CYP=[
