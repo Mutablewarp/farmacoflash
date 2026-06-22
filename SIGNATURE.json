@@ -1,0 +1,12 @@
+{
+  "author": "giorgiom250698",
+  "author_sha256": "7e89b191a704024f69214d2e5be7e71b95a3d374165994eb77a8021abb59ea6d",
+  "date": "2026-06-22",
+  "statement": "These files embed a hidden authorship watermark for giorgiom250698.",
+  "files": {
+    "index.html": "a6c142e78d9c89dd69e2c3b3be9faa9242d0d19a3237be679eed0b6c0c481e33",
+    "Canali-e-Recettori-3D.html": "19e1e4671d8dcb738c4fcd2c4852667b27fcf56cffa4ae8de5953163613b7252",
+    "Flashcard-Farmacologia.html": "eccbcbed40a3599900439826ebf648da0d3a57f226ccd0ae25951dc3706c08b1"
+  },
+  "combined_sha256": "7222d023c019da68fb75bce16c30612b89a9642ce1630d8b651dc707160f7c2b"
+}
