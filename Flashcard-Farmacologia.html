@@ -394,6 +394,11 @@ header{border-bottom:1px solid var(--line)!important; background:color-mix(in sr
   --amber:#e3bd80; --amber-2:#e3bd80; --amber-deep:#f0d3a0;
 }
 </style>
+<style>/* dark fixes: donut + diagrammi leggibili */
+.donut{color:var(--ink)}
+:root[data-theme="dark"] .diagram-box{background:#f4ecd8!important;color:#3a322b!important;border-color:#d9c89f!important}
+:root[data-theme="dark"] .tile.am{background:#2a2212!important}
+</style>
 </head>
 <body>
 <div class="doodles" aria-hidden="true">
@@ -793,7 +798,7 @@ function deckCardHTML(d){
 function donut(parts,total,label){
   const tot=parts.reduce((a,p)=>a+p[1],0)||1;let off=0,segs='';const R=52,C=2*Math.PI*R;
   parts.forEach(p=>{const frac=p[1]/tot;segs+=`<circle cx="80" cy="80" r="${R}" fill="none" stroke="${p[2]}" stroke-width="18" stroke-dasharray="${frac*C} ${C}" stroke-dashoffset="${-off*C}" transform="rotate(-90 80 80)"/>`;off+=frac;});
-  return `<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><svg class="donut" viewBox="0 0 160 160"><circle cx="80" cy="80" r="${R}" fill="none" stroke="#3a322b" stroke-width="20" opacity=".12"/>${segs}<text x="80" y="76" text-anchor="middle" fill="#3a322b" font-family="Shantell Sans,cursive" font-size="34" font-weight="700">${total}</text><text x="80" y="98" text-anchor="middle" fill="#a3937e" font-size="13" font-weight="800">${label}</text></svg><div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-size:.8rem;font-weight:800">${parts.map(p=>`<span style="color:var(--ink-soft)"><b style="color:${p[2]};font-size:1.2em">●</b> ${p[0]} ${p[1]}</span>`).join('')}</div></div>`;
+  return `<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><svg class="donut" viewBox="0 0 160 160"><circle cx="80" cy="80" r="${R}" fill="none" stroke="currentColor" stroke-width="20" opacity=".14"/>${segs}<text x="80" y="76" text-anchor="middle" fill="currentColor" font-family="Fraunces,Georgia,serif" font-size="34" font-weight="700">${total}</text><text x="80" y="98" text-anchor="middle" fill="currentColor" opacity=".55" font-size="13" font-weight="800">${label}</text></svg><div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-size:.8rem;font-weight:800">${parts.map(p=>`<span style="color:var(--ink-soft)"><b style="color:${p[2]};font-size:1.2em">●</b> ${p[0]} ${p[1]}</span>`).join('')}</div></div>`;
 }
 function heatmap(){
   const counts={};S.log.forEach(e=>counts[e.d]=(counts[e.d]||0)+1);
