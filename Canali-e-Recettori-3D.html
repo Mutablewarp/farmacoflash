@@ -1587,12 +1587,12 @@ function initThree(){
   try{ const pmrem=new THREE.PMREMGenerator(renderer); envTex=pmrem.fromScene(new RoomEnvironment(),0.04).texture; scene.environment=envTex; pmrem.dispose(); }catch(e){ envTex=null; }
 
   // illuminazione cinematografica (key + due rim + fill)
-  scene.add(new THREE.HemisphereLight(0xf1e7d2,0x14100a,0.55));
-  scene.add(new THREE.AmbientLight(0xdacaac,0.28));
-  const key=new THREE.DirectionalLight(0xffffff,1.45); key.position.set(7,11,8); scene.add(key);
+  scene.add(new THREE.HemisphereLight(0xfff6e6,0x3a3226,0.62));
+  scene.add(new THREE.AmbientLight(0xece5d6,0.42));
+  const key=new THREE.DirectionalLight(0xffffff,1.75); key.position.set(7,11,8); scene.add(key);
   const rim=new THREE.DirectionalLight(0xffb784,0.7); rim.position.set(-9,3,-7); scene.add(rim);
-  const rim2=new THREE.DirectionalLight(0xf3d199,0.5); rim2.position.set(8,-3,-8); scene.add(rim2);
-  const fill=new THREE.PointLight(0xcb9c5c,0.5,70); fill.position.set(0,-6,5); scene.add(fill);
+  const rim2=new THREE.DirectionalLight(0xdfe8ff,0.5); rim2.position.set(8,-3,-8); scene.add(rim2);
+  const fill=new THREE.PointLight(0xf1ead9,0.55,70); fill.position.set(0,-6,5); scene.add(fill);
 
   // pozza di luce sotto il modello → profondità e ancoraggio
   const floor=new THREE.Mesh(new THREE.PlaneGeometry(20,20),
@@ -1807,7 +1807,7 @@ function mat(color,opts={}){
   return new THREE.MeshPhysicalMaterial({
     color:new THREE.Color(color),
     roughness:opts.rough??0.34, metalness:opts.metal??0.0,
-    clearcoat:opts.clear??0.6, clearcoatRoughness:opts.ccr??0.3,
+    clearcoat:opts.clear??0.28, clearcoatRoughness:opts.ccr??0.3,
     envMapIntensity:opts.env??0.9,
     transparent:!!opts.transparent, opacity:opts.opacity??1,
     emissive:new THREE.Color(hasEm?opts.emissive:color),
@@ -1851,14 +1851,14 @@ function buildMembrane(){
   membraneGroup=new THREE.Group();
   // doppio strato lipidico — lastra traslucida
   const slab=new THREE.Mesh(new THREE.CylinderGeometry(5.4,5.4,MEM_TOP-MEM_BOT,64,1,true),
-    new THREE.MeshStandardMaterial({color:0x2f2a20,transparent:true,opacity:0.13,side:THREE.DoubleSide,roughness:1,emissive:0x15110a,emissiveIntensity:0.22}));
+    new THREE.MeshStandardMaterial({color:0x705529,transparent:true,opacity:0.12,side:THREE.DoubleSide,roughness:1,emissive:0x2a1d09,emissiveIntensity:0.2}));
   membraneGroup.add(slab);
   // teste fosfolipidiche: due anelli di perline ai bordi del bilayer
   const N=34;
-  [[MEM_TOP,0x8c7e60],[MEM_BOT,0x6f6552]].forEach(pair=>{
+  [[MEM_TOP,0xd2a04a],[MEM_BOT,0xb07f30]].forEach(pair=>{
     const y=pair[0], col=pair[1];
     for(let i=0;i<N;i++){const a=i/N*Math.PI*2;
-      const head=new THREE.Mesh(new THREE.SphereGeometry(0.135,12,12),mat(col,{rough:0.55,emissive:col,ei:0.16}));
+      const head=new THREE.Mesh(new THREE.SphereGeometry(0.15,14,14),mat(col,{rough:0.55,emissive:col,ei:0.16}));
       head.position.set(Math.cos(a)*5.4,y,Math.sin(a)*5.4); membraneGroup.add(head);
     }
   });
@@ -3823,7 +3823,7 @@ Object.assign(RECDRUGS,{"il6r": [{"role": ["Antagonisti (anti-IL-6R)", "Antagoni
 let C=C_IT, DIFFS=DIFFS_IT, EXAM=EXAM_IT;
 /* ===== i18n: helper + applicazione lingua, e tema chiaro/scuro ===== */
 function t(a){return a[LANG==='en'?1:0];}
-function applyTheme(th){ document.documentElement.dataset.theme=th; const b=document.getElementById('btn-theme'); if(b) b.textContent=(th==='light'?'☀':'☾'); try{localStorage.setItem('cr-theme',th);}catch(e){} const _li=(th==='light'); if(typeof scene!=='undefined'&&scene){ const _bg=_li?'#f3f0e9':'#13110d'; if(scene.fog){ scene.fog.color.set(_bg); scene.fog.density=_li?0.006:0.016; } scene.background=new THREE.Color(_bg); } if(typeof renderer!=='undefined'&&renderer) renderer.toneMappingExposure = _li?0.7:0.82; if(typeof mgIon!=='undefined'&&mgIon){ mgIon.material.emissiveIntensity=_li?1.15:0.75; } }
+function applyTheme(th){ document.documentElement.dataset.theme=th; const b=document.getElementById('btn-theme'); if(b) b.textContent=(th==='light'?'☀':'☾'); try{localStorage.setItem('cr-theme',th);}catch(e){} const _li=(th==='light'); if(typeof scene!=='undefined'&&scene){ const _bg=_li?'#f3f0e9':'#13110d'; if(scene.fog){ scene.fog.color.set(_bg); scene.fog.density=_li?0.006:0.016; } scene.background=new THREE.Color(_bg); } if(typeof renderer!=='undefined'&&renderer) renderer.toneMappingExposure = _li?1.0:0.82; if(typeof bloomPass!=='undefined'&&bloomPass){ bloomPass.strength=_li?0.14:0.55; bloomPass.threshold=_li?0.62:0.85; } if(typeof mgIon!=='undefined'&&mgIon){ mgIon.material.emissiveIntensity=_li?1.15:0.75; } }
 /* ===================== INTERAZIONI: CYP450 + farmaco-farmaco ===================== */
 function buildInteractions(){
   const CYP=[
