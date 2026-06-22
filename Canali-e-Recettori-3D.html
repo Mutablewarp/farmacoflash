@@ -1567,7 +1567,7 @@ function initThree(){
     return false;
   }
   scene=new THREE.Scene();
-  scene.fog=new THREE.FogExp2(0x070810,0.019);
+  scene.fog=new THREE.FogExp2(0x0e0b07,0.017);
   const w=host.clientWidth,h=host.clientHeight;
   camera=new THREE.PerspectiveCamera(42,w/h,0.1,200);
   camera.position.copy(HOME_POS);
@@ -1584,16 +1584,16 @@ function initThree(){
   try{ const pmrem=new THREE.PMREMGenerator(renderer); envTex=pmrem.fromScene(new RoomEnvironment(),0.04).texture; scene.environment=envTex; pmrem.dispose(); }catch(e){ envTex=null; }
 
   // illuminazione cinematografica (key + due rim + fill)
-  scene.add(new THREE.HemisphereLight(0xc6d6ff,0x0a0e18,0.5));
-  scene.add(new THREE.AmbientLight(0x9fb4d6,0.26));
+  scene.add(new THREE.HemisphereLight(0xf1e7d2,0x14100a,0.55));
+  scene.add(new THREE.AmbientLight(0xdacaac,0.28));
   const key=new THREE.DirectionalLight(0xffffff,1.45); key.position.set(7,11,8); scene.add(key);
-  const rim=new THREE.DirectionalLight(0xff9a86,0.72); rim.position.set(-9,3,-7); scene.add(rim);
-  const rim2=new THREE.DirectionalLight(0x8fd6ff,0.62); rim2.position.set(8,-3,-8); scene.add(rim2);
-  const fill=new THREE.PointLight(0x6ab0e6,0.55,70); fill.position.set(0,-6,5); scene.add(fill);
+  const rim=new THREE.DirectionalLight(0xffb784,0.7); rim.position.set(-9,3,-7); scene.add(rim);
+  const rim2=new THREE.DirectionalLight(0xf3d199,0.5); rim2.position.set(8,-3,-8); scene.add(rim2);
+  const fill=new THREE.PointLight(0xcb9c5c,0.5,70); fill.position.set(0,-6,5); scene.add(fill);
 
   // pozza di luce sotto il modello → profondità e ancoraggio
   const floor=new THREE.Mesh(new THREE.PlaneGeometry(20,20),
-    new THREE.MeshBasicMaterial({map:glowTex('80,120,196'),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,opacity:0.16}));
+    new THREE.MeshBasicMaterial({map:glowTex('182,144,78'),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,opacity:0.18}));
   floor.rotation.x=-Math.PI/2; floor.position.y=MEM_BOT-2.6; scene.add(floor);
 
   raycaster=new THREE.Raycaster(); pointer=new THREE.Vector2();
@@ -1635,12 +1635,12 @@ function makeEnv(){
   const s=new THREE.Scene();
   const geo=new THREE.SphereGeometry(60,40,24);
   const m=new THREE.ShaderMaterial({side:THREE.BackSide,
-    uniforms:{a:{value:new THREE.Color(0x6a7eb4)},b:{value:new THREE.Color(0x202d4e)},c:{value:new THREE.Color(0x0a0f1c)}},
+    uniforms:{a:{value:new THREE.Color(0xb7a279)},b:{value:new THREE.Color(0x2f2820)},c:{value:new THREE.Color(0x14110b)}},
     vertexShader:'varying vec3 vP;void main(){vP=normalize(position);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
     fragmentShader:'varying vec3 vP;uniform vec3 a;uniform vec3 b;uniform vec3 c;void main(){float h=vP.y*0.5+0.5;vec3 col=mix(c,b,smoothstep(0.0,0.55,h));col=mix(col,a,smoothstep(0.55,1.0,h));gl_FragColor=vec4(col,1.0);}'});
   s.add(new THREE.Mesh(geo,m));
   const spot=(x,y,z,col,r)=>{const e=new THREE.Mesh(new THREE.SphereGeometry(r,16,16),new THREE.MeshBasicMaterial({color:col}));e.position.set(x,y,z);s.add(e);};
-  spot(24,30,18,0xffffff,13); spot(-30,12,-14,0xaaccff,11); spot(12,-20,22,0xffe0bc,8);
+  spot(24,30,18,0xffffff,13); spot(-30,12,-14,0xe9d4a9,11); spot(12,-20,22,0xffe7c6,8);
   const t=pmrem.fromScene(s,0.05).texture; pmrem.dispose(); return t;
 }
 function onResize(){
@@ -1680,7 +1680,7 @@ function hoverAt(clientX,clientY){
 function setHover(subId){
   if(subId===hoverSubId)return; clearHover(); hoverSubId=subId;
   if(subId===selected)return;
-  modelGroup.traverse(o=>{ if(o.isMesh&&o.userData.subId===subId){ o.material.emissive.setHex(0x7fb0ff); o.material.emissiveIntensity=0.16; hoverMeshes.push(o); } });
+  modelGroup.traverse(o=>{ if(o.isMesh&&o.userData.subId===subId){ o.material.emissive.setHex(0xffcf8a); o.material.emissiveIntensity=0.18; hoverMeshes.push(o); } });
 }
 function clearHover(){
   hoverMeshes.forEach(o=>{ if(o.userData.subId!==selected){ o.material.emissive.setHex(o.userData._em||0); o.material.emissiveIntensity=(o.userData._ei!==undefined?o.userData._ei:0); } });
@@ -1829,7 +1829,7 @@ function regMesh(mesh,subId){mesh.userData.subId=subId;}
 function collectMeshes(g,subId){g.traverse(o=>{if(o.isMesh)regMesh(o,subId);});}
 
 /* ---- text sprite labels (always face camera) ---- */
-function makeLabel(text,color="#e9eaf2",scale=1){
+function makeLabel(text,color="#efe9db",scale=1){
   const cv=document.createElement('canvas');const ctx=cv.getContext('2d');
   const fs=64; ctx.font=`700 ${fs}px 'JetBrains Mono', monospace`;
   const w=ctx.measureText(text).width; cv.width=w+40; cv.height=fs+30;
@@ -1848,19 +1848,19 @@ function buildMembrane(){
   membraneGroup=new THREE.Group();
   // doppio strato lipidico — lastra traslucida
   const slab=new THREE.Mesh(new THREE.CylinderGeometry(5.4,5.4,MEM_TOP-MEM_BOT,64,1,true),
-    new THREE.MeshStandardMaterial({color:0x223052,transparent:true,opacity:0.12,side:THREE.DoubleSide,roughness:1,emissive:0x0e1626,emissiveIntensity:0.22}));
+    new THREE.MeshStandardMaterial({color:0x2f2a20,transparent:true,opacity:0.13,side:THREE.DoubleSide,roughness:1,emissive:0x15110a,emissiveIntensity:0.22}));
   membraneGroup.add(slab);
   // teste fosfolipidiche: due anelli di perline ai bordi del bilayer
   const N=34;
-  [[MEM_TOP,0x55669f],[MEM_BOT,0x44507c]].forEach(pair=>{
+  [[MEM_TOP,0x8c7e60],[MEM_BOT,0x6f6552]].forEach(pair=>{
     const y=pair[0], col=pair[1];
     for(let i=0;i<N;i++){const a=i/N*Math.PI*2;
       const head=new THREE.Mesh(new THREE.SphereGeometry(0.135,12,12),mat(col,{rough:0.55,emissive:col,ei:0.16}));
       head.position.set(Math.cos(a)*5.4,y,Math.sin(a)*5.4); membraneGroup.add(head);
     }
   });
-  const lo=makeLabel("EXTRACELLULARE","#7f93c0",1.0); lo.position.set(0,MEM_TOP+3.0,0); membraneGroup.add(lo); labelSprites.push(lo);
-  const li=makeLabel("INTRACELLULARE","#6b6e87",1.0); li.position.set(0,MEM_BOT-3.0,0); membraneGroup.add(li); labelSprites.push(li);
+  const lo=makeLabel("EXTRACELLULARE","#9c8b64",1.0); lo.position.set(0,MEM_TOP+3.0,0); membraneGroup.add(lo); labelSprites.push(lo);
+  const li=makeLabel("INTRACELLULARE","#7c715d",1.0); li.position.set(0,MEM_BOT-3.0,0); membraneGroup.add(li); labelSprites.push(li);
   scene.add(membraneGroup);
   membraneGroup.visible=showMem;
 }
@@ -2617,13 +2617,13 @@ document.getElementById('honesty-note').innerHTML='<b>Trasparenza sui dati:</b> 
 const FM='font-family="JetBrains Mono, monospace"';
 function svgWrap(inner,h){const H=h||440;return `<svg class="anim-svg" viewBox="0 0 760 ${H}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="abg" cx="50%" cy="36%" r="85%"><stop offset="0%" stop-color="#151b2e"/><stop offset="58%" stop-color="#0c0e17"/><stop offset="100%" stop-color="#070810"/></radialGradient>
+    <radialGradient id="abg" cx="50%" cy="36%" r="85%"><stop offset="0%" stop-color="#231e14"/><stop offset="58%" stop-color="#15110b"/><stop offset="100%" stop-color="#0e0b07"/></radialGradient>
     <filter id="aglow" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="3.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <linearGradient id="amem" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(120,150,210,0.18)"/><stop offset="50%" stop-color="rgba(70,92,145,0.05)"/><stop offset="100%" stop-color="rgba(120,150,210,0.18)"/></linearGradient>
+    <linearGradient id="amem" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(190,160,102,0.16)"/><stop offset="50%" stop-color="rgba(150,124,86,0.05)"/><stop offset="100%" stop-color="rgba(190,160,102,0.16)"/></linearGradient>
   </defs>
   <rect x="0" y="0" width="760" height="${H}" fill="url(#abg)"/>
   ${inner}</svg>`;}
-function memBand(yT,h){return `<rect x="0" y="${yT}" width="760" height="${h}" fill="url(#amem)"/><line x1="0" y1="${yT}" x2="760" y2="${yT}" stroke="#46527a" stroke-width="1.4" opacity="0.85"/><line x1="0" y1="${yT+h}" x2="760" y2="${yT+h}" stroke="#3a4566" stroke-width="1.4" opacity="0.85"/><text x="13" y="${yT-9}" fill="#8aa0cc" font-size="11" ${FM}>${t(['EXTRACELLULARE','EXTRACELLULAR'])}</text><text x="13" y="${yT+h+18}" fill="#7a7e96" font-size="11" ${FM}>${t(['INTRACELLULARE','INTRACELLULAR'])}</text>`;}
+function memBand(yT,h){return `<rect x="0" y="${yT}" width="760" height="${h}" fill="url(#amem)"/><line x1="0" y1="${yT}" x2="760" y2="${yT}" stroke="#6e6450" stroke-width="1.4" opacity="0.85"/><line x1="0" y1="${yT+h}" x2="760" y2="${yT+h}" stroke="#574e3c" stroke-width="1.4" opacity="0.85"/><text x="13" y="${yT-9}" fill="#9c8b64" font-size="11" ${FM}>${t(['EXTRACELLULARE','EXTRACELLULAR'])}</text><text x="13" y="${yT+h+18}" fill="#7c715d" font-size="11" ${FM}>${t(['INTRACELLULARE','INTRACELLULAR'])}</text>`;}
 function step(n,html){return `<div class="anim-step"><span class="n">${n}</span>${html}</div>`;}
 
 /* ---------- ciclo GPCR ---------- */
