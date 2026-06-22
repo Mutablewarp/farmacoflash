@@ -35,7 +35,7 @@ Nothing to install — these are web pages that open in your browser.
 
 - **Explorer**: ion channels and receptors grouped by family (voltage-gated, nicotinic, glutamate, GPCRs…). Tap a target → **360° rotatable 3D model**, description, and the **drugs** acting on it.
 - **Mechanism animations**, **comparison table**, **Gs/Gi/Gq ligands**, **CYP450 interactions**, **antibiotics** map, **drugs** view.
-- **Classifications**: 62 expandable exam classifications with **up-to-date guidelines** (📋) and key points (★), grounded in the Brancato & Cannizzaro lectures.
+- **Classifications**: 62 expandable exam classifications with **up-to-date guidelines** (📋) and key points (★), grounded in the course lectures.
 - From any drug, the **📇** button opens its **flashcard** in FarmacoFlash.
 
 ## 📇 FarmacoFlash — how to use

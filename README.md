@@ -35,7 +35,7 @@ Non c'è niente da installare: sono pagine web che si aprono nel browser.
 
 - **Esploratore**: canali ionici e recettori raggruppati per famiglia (voltaggio-dipendenti, nicotinici, glutammato, GPCR…). Tocca un bersaglio → **modello 3D ruotabile a 360°**, descrizione, e i **farmaci** che ci agiscono.
 - **Animazioni · meccanismi**, **Tabella comparativa**, **Liganti Gs/Gi/Gq**, **Interazioni · CYP450**, **Antibiotici** (mappa), **Farmaci**.
-- **Classificazioni**: 62 classificazioni d'esame espandibili, con **linee guida aggiornate** (📋) e i punti-chiave (★), basate sulle sbobine Brancato & Cannizzaro.
+- **Classificazioni**: 62 classificazioni d'esame espandibili, con **linee guida aggiornate** (📋) e i punti-chiave (★), basate sulle sbobine del corso.
 - Da ogni farmaco, il pulsante **📇** apre la **flashcard** corrispondente in FarmacoFlash.
 
 ## 📇 FarmacoFlash — come si usa
