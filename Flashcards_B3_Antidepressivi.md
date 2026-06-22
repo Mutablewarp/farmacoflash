@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — ANTIDEPRESSIVI
-**Fonte:** sbobine 🅲 Parte B – docente, Lezione 06 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
+**Fonte:** sbobine 🅲 Speciale – docente, Lezione 06 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
 
 ---
 

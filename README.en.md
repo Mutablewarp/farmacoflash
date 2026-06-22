@@ -1,15 +1,34 @@
-# 🧬💊 Pharmacology — integrated study app
+<div align="center">
 
-🇬🇧 English (this file) · 🇮🇹 **[Versione italiana → README.md](README.md)**
+# 🧬💊 Pharmacology
+### Integrated study — 3D + Flashcards
 
-**One app to study pharmacology.** Two linked tools, in the same window, with the same look:
+Explore drug targets in **3D** and lock them into memory with **spaced‑repetition flashcards**. Two tools, one window, one look.
 
-| | Tool | What it does |
-|---|---|---|
-| 🧬 | **Targets & Drugs in 3D** | Explore channels and receptors as **rotatable 3D models**, see the **drugs** for each target, mechanism **animations** and **62 exam classifications** with guidelines. |
-| 📇 | **FarmacoFlash** | **Spaced-repetition flashcards**: 214 cards, 28 decks, each with an in-depth note verified against *Goodman & Gilman 14th ed.* + PubMed. |
+🇬🇧 **English** · 🇮🇹 [Italiano](README.md)
 
-Switch between them with the **tabs at the top**; from any drug in 3D, **jump to its flashcard** in one click. Runs **in the browser**, your data stays **only on your device**.
+![single‑file](https://img.shields.io/badge/single--file-HTML-835c14?style=flat-square)
+![offline](https://img.shields.io/badge/offline-yes-2f7d5f?style=flat-square)
+![language](https://img.shields.io/badge/language-IT%20%C2%B7%20EN-4a4a4a?style=flat-square)
+![data](https://img.shields.io/badge/data-on%20device%20only-4a4a4a?style=flat-square)
+![3D](https://img.shields.io/badge/WebGL-Three.js-835c14?style=flat-square)
+
+</div>
+
+<p align="center">
+  <img src="screenshots/01-oggi.png" alt="FarmacoFlash — Today screen" width="86%">
+</p>
+
+---
+
+## ✨ Two tools, one window
+
+|  | Tool | What it does |
+|:--:|---|---|
+| 🧬 | **Targets & Drugs in 3D** | Channels and receptors as **rotatable 3D models**, the **drugs** per target, mechanism **animations** and **62 exam classifications** with up‑to‑date guidelines. |
+| 📇 | **FarmacoFlash** | **214 spaced‑repetition flashcards**, each with a **verified in‑depth note** (*Goodman & Gilman 14th ed.* + PubMed). |
+
+Switch with the **tabs at the top**; from any drug in 3D, **jump to its flashcard** in one click. Theme and language apply to both.
 
 ---
 
@@ -17,76 +36,68 @@ Switch between them with the **tabs at the top**; from any drug in 3D, **jump to
 
 Nothing to install — these are web pages that open in your browser.
 
-1. **Download the repo.** On GitHub: green **`Code` → Download ZIP**.
-   *(Or, in a terminal: `git clone https://github.com/Mutablewarp/farmacoflash.git`)*
-2. **Unzip it** (double-click the downloaded file).
-3. **Open `index.html`** (double-click): it opens in your browser (Safari, Chrome, Firefox…).
-4. **Done.** The top bar has two tabs: **🧬 Targets & Drugs 3D** and **📇 FarmacoFlash**. Tap a tab to switch. The **☀/☾** (theme) and **IT/EN** (language) buttons apply to both.
+1. **Download** — green **`Code → Download ZIP`** (or `git clone`).
+2. **Unzip** it.
+3. **Open `index.html`** (double‑click). Done. ✦
 
-> ⚠️ **Keep all files in the same folder.** `index.html` loads the others (`Canali-e-Recettori-3D.html`, `Flashcard-Farmacologia.html`, `Tabella-Farmaci.html`): moving them breaks the links.
+> [!TIP]
+> Keep all files **in the same folder**: `index.html` loads the others.
+> **3D** and **fonts** are fetched online on first run; **flashcards work offline**.
 
-> 🌐 **Do I need internet the first time?** The **3D models** and **fonts** are fetched online, so 3D needs a connection. The **flashcards work offline**. After the first load the browser caches the content.
+<details>
+<summary><b>🧬 Inside the 3D explorer</b></summary>
 
-> 💻 **Prefer a link?** You can publish it on GitHub Pages (see *Developers*): it becomes a site at `https://mutablewarp.github.io/farmacoflash/`.
+- **Explorer** by family (voltage‑gated, nicotinic, glutamate, GPCRs…): tap a target → **360° 3D model**, description and drugs.
+- **Mechanism animations**, **comparison table**, **Gs/Gi/Gq ligands**, **CYP450 interactions**, **antibiotics** map.
+- **62 expandable classifications** with **guidelines** (📋) and key points (★).
+</details>
 
----
+<details>
+<summary><b>📇 Using the flashcards</b></summary>
 
-## 🧬 Targets & Drugs in 3D
+1. **▶ Start** from **Today**: a drug appears, think of the answer.
+2. **Flip** and **rate** (😖 / 😐 / 😄 / 🌟): the app reschedules it (Anki‑style spaced repetition).
+3. **Browse & search** by name, mechanism or effect; **📋 Names table** to memorize; **Stats** for progress.
+4. **⬇ Export backup** to move data to another device.
+</details>
 
-- **Explorer**: ion channels and receptors grouped by family (voltage-gated, nicotinic, glutamate, GPCRs…). Tap a target → **360° rotatable 3D model**, description, and the **drugs** acting on it.
-- **Mechanism animations**, **comparison table**, **Gs/Gi/Gq ligands**, **CYP450 interactions**, **antibiotics** map, **drugs** view.
-- **Classifications**: 62 expandable exam classifications with **up-to-date guidelines** (📋) and key points (★), grounded in the course lectures.
-- From any drug, the **📇** button opens its **flashcard** in FarmacoFlash.
+<details>
+<summary><b>📲 Install as an app (offline)</b></summary>
 
-## 📇 FarmacoFlash — how to use
-
-1. **▶ Start** from the **Today** screen: a drug name appears, think of the answer.
-2. **Flip the card** (tap) → read the explanation.
-3. **Rate it**: 😖 Bad → comes back now · 😐 So-so → soon · 😄 Good → in a few days · 🌟 Easy → much later. *(The app schedules reviews for you — Anki-style spaced repetition.)*
-4. **Session** your way: Both · 🆕 New only · 🔁 Review only · 🔥 Hard. Or tap **🗂 choose what to review** to pick by hand.
-5. **Browse** to search a drug (name, mechanism, effect). **📋 Names table** to memorize them (🧠 Names only / 💊 Effects only / 🔤 A→Z views + quizzes).
-6. **Stats**: retention, streak 🔥, cards to reinforce. **⬇ Export backup** to move progress to another device (**⬆ Import**).
-
-## 📲 Install as an app (offline)
-
-Flashcards work without internet, no account.
-
-- **iPhone:** open the file in **Safari** → **Share** → **Add to Home Screen**.
-- **Android / Chrome:** open the file → **⋮** menu → **Install app**.
+- **iPhone:** open in **Safari** → **Share** → **Add to Home Screen**.
+- **Android / Chrome:** **⋮** menu → **Install app**.
+</details>
 
 ---
 
-## 🔒 Privacy
+## 🖼️ Preview
 
-Study data lives **only in your browser/device** (no server, no account). Move it with **Export/Import backup**.
-⚠️ GitHub Pages on the free plan is **public** even with a private repo: the included Pages workflow is **manual** and does not run on its own.
+| Today | Study | Stats |
+|:--:|:--:|:--:|
+| ![Today](screenshots/01-oggi.png) | ![Study](screenshots/02-studio-fronte.png) | ![Stats](screenshots/05-statistiche.png) |
+
+---
 
 ## 📁 Structure
 
 ```
-index.html                    ← OPEN THIS — single home with both apps (tabbed shell)
+index.html                    ← OPEN THIS · home with both apps
 Canali-e-Recettori-3D.html    ← Targets & Drugs in 3D
-Flashcard-Farmacologia.html   ← FarmacoFlash (single-file, offline, installable)
-Tabella-Farmaci.html          ← names table (linked to the flashcards)
-Flashcards_*.md / *.rtf       ← card sources (lecture notes)
-screenshots/                  ← images for this README
-build/                        ← templates, data, build scripts
+Flashcard-Farmacologia.html   ← FarmacoFlash (single‑file, offline, installable)
+Tabella-Farmaci.html          ← names table
+screenshots/ · build/         ← images · sources and scripts
 ```
 
-> The apps share theme and language and open inside `index.html`; they also still work if opened individually.
+## 🔒 Privacy
+Study data stays **only in your browser** (no server, no account). Move it with **Export/Import backup**.
 
 ## 🛠️ Developers
-
 ```bash
 node build/build.js          # → Flashcard-Farmacologia.html
 node build/_gen-table.js     # → Tabella-Farmaci.html
 ```
 
-`build/`: `app-template.html`, `table-template.html`, `cards.json`, `memo/*.json`, `enrichments.json` (+ `-en`), `i18n/`, `pwa-head.js`, icons. Data injected as base64 (single-file).
-
-**Publish online (GitHub Pages):** Settings → Pages → Source: *GitHub Actions*, then Actions → *Deploy FarmacoFlash (Pages)* → *Run workflow*. It publishes `index.html` (the unified home) with both apps.
-
 ## ⚠️ Notes
+For **personal study only**: notes are summaries (citing *Goodman & Gilman 14th ed.* + PubMed) and do **not** replace the textbook or clinical judgment.
 
-- For **personal study only**. Mnemonics and notes are summaries: they do **not** replace the textbook or clinical judgment.
-- Notes cite *Goodman & Gilman, 14th ed.* and PubMed (PMIDs checked). When in doubt, **verify in the book**.
+<div align="center"><sub>Study tool · not clinical decision support</sub></div>

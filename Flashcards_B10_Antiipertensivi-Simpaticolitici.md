@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — ANTIIPERTENSIVI: SIMPATICOLITICI, α- e β-BLOCCANTI
-**Fonte:** sbobine 🅲 Parte B – docente, Lezione 12 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
+**Fonte:** sbobine 🅲 Speciale – docente, Lezione 12 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
 
 ---
 

@@ -6,8 +6,8 @@ product
 
 ## Users
 A medical student (and peers) studying pharmacology — membrane drug targets
-(ion channels, GPCRs, receptors) for the integrated Pharmacology course (Parte A, Parte B
-Parte B). Context: exam preparation at a desk, mostly on macOS/Safari, switching between deep study
+(ion channels, GPCRs, receptors) for the integrated Pharmacology course (Generale, Speciale
+Speciale). Context: exam preparation at a desk, mostly on macOS/Safari, switching between deep study
 (reading a target's mechanism, rotating a 3D model) and fast review (scanning drug tables and
 classifications, jumping to FarmacoFlash flashcards). Bilingual: Italian primary, English available.
 

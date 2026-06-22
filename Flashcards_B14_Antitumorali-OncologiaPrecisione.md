@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — ANTITUMORALI / ONCOLOGIA DI PRECISIONE
-**Fonte:** sbobine 🅲 Parte B – docente (Lezione 15; estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
+**Fonte:** sbobine 🅲 Speciale – docente (Lezione 15; estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
 ⚠️ *Nota: la lezione è concettuale (oncologia di precisione). Le classi chemioterapiche classiche del programma — alchilanti, antimetaboliti, alcaloidi della vinca, inibitori delle topoisomerasi — NON sono trattate sistematicamente nelle sbobine; vengono solo citate.*
 
 ---

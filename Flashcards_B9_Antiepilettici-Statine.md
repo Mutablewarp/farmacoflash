@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — ANTIEPILETTICI + STATINE/IPOLIPEMIZZANTI
-**Fonte:** sbobine 🅲 Parte B – docente, Lezione 11 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
+**Fonte:** sbobine 🅲 Speciale – docente, Lezione 11 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
 
 ---
 

@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — ANTITROMBOTICI (ANTIAGGREGANTI, ANTICOAGULANTI, FIBRINOLITICI)
-**Fonte:** sbobine 🅲 Parte B – docente (Lezione 14; estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente). *Vasodilatatori → file B12b.*
+**Fonte:** sbobine 🅲 Speciale – docente (Lezione 14; estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente). *Vasodilatatori → file B12b.*
 
 ---
 
