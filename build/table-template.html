@@ -300,7 +300,7 @@ function renderRubrica(){
 function buildChips(){
   // modulo
   const mr=$('#modRow');
-  [['Tutti',null],['Modulo I',  'I'],['Modulo II','II']].forEach(([t,v])=>{
+  [['Tutti',null],['Parte A',  'I'],['Parte B','II']].forEach(([t,v])=>{
     const b=document.createElement('button'); b.className='chip'+((state.mod===v)?' on':''); b.textContent=t;
     b.onclick=()=>{ state.mod=v; refreshChips(); render(); }; b.dataset.mod=String(v); mr.appendChild(b);
   });

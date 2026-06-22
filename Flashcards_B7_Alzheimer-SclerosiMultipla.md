@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — ALZHEIMER E SCLEROSI MULTIPLA
-**Fonte:** sbobine 🅲 Modulo II – docente, Lezione 09 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
+**Fonte:** sbobine 🅲 Parte B – docente, Lezione 09 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
 
 ---
 

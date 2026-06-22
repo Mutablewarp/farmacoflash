@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — SEDATIVO-IPNOTICI E ANSIOLITICI
-**Fonte:** sbobine 🅲 Modulo II – docente, Lezione 05 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
+**Fonte:** sbobine 🅲 Parte B – docente, Lezione 05 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
 
 ---
 

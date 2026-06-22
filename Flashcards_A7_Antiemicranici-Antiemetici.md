@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — ANTIEMICRANICI + ANTIEMETICI
-**Fonte:** sbobine 🅱 Modulo I – docente, Lezione 11 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
+**Fonte:** sbobine 🅱 Parte A – docente, Lezione 11 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
 
 ---
 

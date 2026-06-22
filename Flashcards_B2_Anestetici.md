@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — ANESTETICI GENERALI E LOCALI
-**Fonte:** sbobine 🅲 Modulo II – docente (sezione "Anestetici generali e locali"; estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
+**Fonte:** sbobine 🅲 Parte B – docente (sezione "Anestetici generali e locali"; estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
 
 ---
 

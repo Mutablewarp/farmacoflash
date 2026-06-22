@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — RAAS (ACE-INIBITORI, SARTANI) E CALCIO-ANTAGONISTI
-**Fonte:** sbobine 🅲 Modulo II – docente, Lezione 13 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente). *Scompenso/digitale e diuretici → file B11b.*
+**Fonte:** sbobine 🅲 Parte B – docente, Lezione 13 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente). *Scompenso/digitale e diuretici → file B11b.*
 
 ---
 

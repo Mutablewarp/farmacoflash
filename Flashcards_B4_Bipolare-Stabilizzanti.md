@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — DISTURBO BIPOLARE / STABILIZZANTI DELL'UMORE
-**Fonte:** sbobine 🅲 Modulo II – docente, Lezione 07 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente). *Valproato, carbamazepina e lamotrigina sono anche antiepilettici → dettaglio in file B9.*
+**Fonte:** sbobine 🅲 Parte B – docente, Lezione 07 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente). *Valproato, carbamazepina e lamotrigina sono anche antiepilettici → dettaglio in file B9.*
 
 ---
 

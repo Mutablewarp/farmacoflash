@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — ANTIARITMICI (classificazione di Vaughan-Williams)
-**Fonte:** sbobine 🅲 Modulo II – docente (Lezione 15; estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
+**Fonte:** sbobine 🅲 Parte B – docente (Lezione 15; estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
 
 ---
 
