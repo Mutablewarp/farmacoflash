@@ -1,4 +1,4 @@
-# 🧬💊 Pharmacology · UniPa — integrated study app
+# 🧬💊 Pharmacology — integrated study app
 
 🇬🇧 English (this file) · 🇮🇹 **[Versione italiana → README.md](README.md)**
 

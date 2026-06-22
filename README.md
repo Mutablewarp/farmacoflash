@@ -1,4 +1,4 @@
-# 🧬💊 Farmacologia · UniPa — studio integrato
+# 🧬💊 Farmacologia — studio integrato
 
 🇮🇹 Italiano (questo file) · 🇬🇧 **[English version → README.en.md](README.en.md)**
 
