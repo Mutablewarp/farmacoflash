@@ -62,6 +62,16 @@ iframe[hidden]{display:none}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 <style>/* © giorgiom250698 */:root{--author:"giorgiom250698";--author-sha256:"7e89b191a704024f69214d2e5be7e71b95a3d374165994eb77a8021abb59ea6d"}</style>
+<style>/* micro-polish UI: rendering · selezione · scrollbar · scroll fluido */
+html{scroll-behavior:smooth}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+::selection{background:var(--line2);color:var(--ink)}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--line2);border-radius:9px;border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:var(--ink-faint,var(--faint,#8a8278));background-clip:padding-box}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
   <header class="bar">

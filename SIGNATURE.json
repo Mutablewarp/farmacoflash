@@ -4,9 +4,9 @@
   "date": "2026-06-22",
   "statement": "These files embed a hidden authorship watermark for giorgiom250698.",
   "files": {
-    "index.html": "a6c142e78d9c89dd69e2c3b3be9faa9242d0d19a3237be679eed0b6c0c481e33",
-    "Canali-e-Recettori-3D.html": "d8875f0a15fc6a359eea8f8fd72c00f92d19e1616fde0df705532b0285e67357",
-    "Flashcard-Farmacologia.html": "62513e669b8f94543923573ea6af715f5d688e2919fd15e31d25edcd4fae934e"
+    "index.html": "36a2888bcbc9b09cf3a45fbf87168f7feef46001b1bcf9be786e8d72b2c30b83",
+    "Canali-e-Recettori-3D.html": "03e2dfe273e4161aacd8e1ec3dd2ce766c1a9fe7a6656acdee22e5dcd9939518",
+    "Flashcard-Farmacologia.html": "78507c3995b244bd032873de15a25e39d5c2ae8e31b4849adc26557d0823e06f"
   },
-  "combined_sha256": "b044ef8c92ef0f9cb2851b44f62a82d6ff379fc19d2672081733530a16443ece"
+  "combined_sha256": "de75b697fe15c5951ec7a2d8e3749a90e6750c8c5f77fc9c2329d0028e46abcc"
 }
