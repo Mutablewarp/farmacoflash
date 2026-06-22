@@ -1,0 +1,45 @@
+PROPRIETARY LICENSE — All rights reserved
+Licenza proprietaria — Tutti i diritti riservati
+
+Copyright (c) 2026 The author. All rights reserved.
+
+This software — the "Farmacologia" study application (index.html,
+Canali-e-Recettori-3D.html, Flashcard-Farmacologia.html, Tabella-Farmaci.html,
+and related files) — is the original work of its author.
+
+AUTHORSHIP IS CRYPTOGRAPHICALLY PROVABLE.
+The files embed a hidden, tamper-evident authorship watermark, and SIGNATURE.json
+(with its OpenTimestamps proof SIGNATURE.json.ots) anchors this work to a verifiable
+date on a public blockchain. See SIGNATURE.md for how to verify it.
+
+GRANTED
+- Free use for personal study.
+
+NOT GRANTED (without the prior written permission of the author)
+- Redistribution or publication of this software, in whole or in part.
+- Commercial use.
+- Any claim of authorship over this work or works derived from it.
+- Removal or alteration of the authorship watermark.
+
+NO WARRANTY
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+It is a study aid and is NOT clinical decision support; it does not replace the
+textbook or clinical judgment.
+
+--------------------------------------------------------------------------------
+Italiano (sintesi)
+
+Copyright (c) 2026 L'autore. Tutti i diritti riservati.
+
+Quest'opera — l'applicazione di studio "Farmacologia" e i relativi file — è opera
+originale del suo autore. La paternità è dimostrabile crittograficamente: i file
+contengono una firma d'autore nascosta e a prova di manomissione, e SIGNATURE.json
+(con la marca temporale SIGNATURE.json.ots su blockchain) ne fissa la data certa.
+
+Consentito: uso libero per studio personale.
+Vietati, senza permesso scritto dell'autore: ridistribuzione, pubblicazione, uso
+commerciale, qualunque attribuzione di paternità a terzi, e la rimozione o
+alterazione della firma d'autore.
+
+Software fornito "così com'è", senza garanzie. È uno strumento di studio e NON è
+supporto decisionale clinico.
