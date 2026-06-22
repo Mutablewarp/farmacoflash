@@ -396,8 +396,11 @@ header{border-bottom:1px solid var(--line)!important; background:color-mix(in sr
 </style>
 <style>/* dark fixes: donut + diagrammi leggibili */
 .donut{color:var(--ink)}
-:root[data-theme="dark"] .diagram-box{background:#f4ecd8!important;color:#3a322b!important;border-color:#d9c89f!important}
 :root[data-theme="dark"] .tile.am{background:#2a2212!important}
+</style>
+<style>/* dark fixes: rimuovi nastro decorativo + pill bianche su scuro */
+.flash::before{display:none!important}
+:root[data-theme="dark"] .chip,:root[data-theme="dark"] .kbd{background:var(--surface)!important;color:var(--ink)!important;border:1px solid var(--line2)!important;box-shadow:none!important}
 </style>
 </head>
 <body>
