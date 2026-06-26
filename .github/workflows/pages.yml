@@ -1,4 +1,4 @@
-# Pubblica FarmacoFlash su GitHub Pages — SOLO manuale (workflow_dispatch).
+# Pubblica su GitHub Pages: automatico a ogni push su main (+ avvio manuale).
 #
 # ⚠️ PRIVACY: su un account GitHub gratuito un sito Pages è PUBBLICO anche se il
 # repository è privato. Per un sito Pages *privato* (accesso solo agli utenti
@@ -9,6 +9,8 @@
 
 name: Deploy FarmacoFlash (Pages)
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
