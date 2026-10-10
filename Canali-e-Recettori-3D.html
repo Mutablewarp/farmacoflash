@@ -1093,6 +1093,65 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 <!-- ─ -->
 <style data-slot="classif">
 /* slot classif: CSS di questa funzione (solo il suo agente) */
+/* separatori per sistema con icone + mini-nav sticky */
+#view-classif{
+  --cls-band:var(--panel);
+  --cls-band:color-mix(in srgb,var(--gold) 7%,var(--panel));
+  --cls-sh:0 10px 24px -18px rgba(28,22,10,.45);
+}
+:root[data-theme="dark"] #view-classif{
+  --cls-band:color-mix(in srgb,var(--gold) 6%,var(--panel));
+  --cls-sh:0 12px 26px -18px rgba(0,0,0,.8);
+}
+/* mini-nav dei sistemi: barra sticky agganciata sotto la tab bar */
+#view-classif .cl-nav{position:sticky;top:var(--cl-nav-top,0px);z-index:29;margin:18px 0 0;padding:5px;border:1px solid var(--line);border-radius:var(--r-lg,16px);background:var(--panel);transition:box-shadow .2s ease-out,border-color .2s ease-out}
+#view-classif .cl-nav[hidden]{display:none}
+#view-classif .cl-nav.is-stuck{border-color:var(--line2);box-shadow:var(--cls-sh)}
+#view-classif .cl-nav-in{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:4px}
+#view-classif .cl-nav-a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:0;min-height:56px;padding:6px 4px;border:1px solid transparent;border-radius:12px;color:var(--ink-dim);font-family:'Archivo',system-ui,sans-serif;font-size:12px;font-weight:500;line-height:1.2;white-space:nowrap;text-decoration:none;transition:border-color .18s ease-out,background-color .18s ease-out,color .18s ease-out}
+#view-classif .cl-nav-a span{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+#view-classif .cl-nav-a[hidden]{display:none}
+#view-classif .cl-nav-ic{width:22px;height:22px;flex:none;color:var(--gold)}
+#view-classif .cl-nav-a:hover{background:var(--panel2);color:var(--ink)}
+#view-classif .cl-nav-a[aria-current="true"]{background:var(--gold-soft);border-color:var(--gold-line);color:var(--ink);font-weight:600}
+#view-classif .cl-nav-a:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+/* desktop, barra agganciata: chip più basse (44px) per rubare meno schermo; il margine compensa i 16px persi, così il contenuto non salta */
+@media(min-width:1101px){
+  #view-classif .cl-nav.is-stuck{padding:3px}
+  #view-classif .cl-nav.is-stuck .cl-nav-a{min-height:44px;gap:2px;padding:3px 4px}
+  #view-classif .cl-nav.is-stuck .cl-nav-ic{width:18px;height:18px}
+  #view-classif .cl-nav.is-stuck+.cl-cat.cl-sys{margin-top:44px}
+}
+@media(max-width:1100px){
+  #view-classif .cl-nav-in{display:flex;overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scroll-padding-inline:4px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 24px),transparent);padding-right:20px}
+  #view-classif .cl-nav-in::-webkit-scrollbar{height:0}
+  #view-classif .cl-nav-a{flex:none;flex-direction:row;gap:7px;min-height:44px;padding:0 13px 0 10px;font-size:13px;scroll-snap-align:start}
+  #view-classif .cl-nav-ic{width:20px;height:20px}
+}
+/* separatore di sistema */
+#view-classif .cl-cat.cl-sys{margin:64px 0 8px;scroll-margin-top:calc(var(--cl-nav-top,0px) + var(--cl-nav-h,60px) + 14px)}
+#view-classif .cl-nav+.cl-cat.cl-sys{margin-top:28px}
+#view-classif .cl-sys-h{position:relative;display:flex;align-items:center;gap:22px;margin:0 0 18px;padding:26px 28px;border:1px solid var(--gold-line);border-radius:var(--r-lg,18px);background:var(--cls-band);overflow:hidden;isolation:isolate}
+#view-classif .cl-sys-ic{flex:none;display:grid;place-items:center;width:76px;height:76px;border-radius:22px;background:var(--panel);border:1px solid var(--gold-line);color:var(--gold);box-shadow:var(--cls-sh)}
+#view-classif .cl-sys-ic svg{width:46px;height:46px}
+#view-classif .cl-sys-wm{position:absolute;z-index:-1;right:-26px;top:50%;width:188px;height:188px;transform:translateY(-50%) rotate(-8deg);color:var(--gold);opacity:.09;pointer-events:none}
+#view-classif .cl-sys-tx{flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;padding-right:110px}
+#view-classif .cl-sys-t{margin:0;font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:clamp(26px,3.4vw,36px);line-height:1.08;letter-spacing:-.02em;color:var(--ink);outline:none}
+#view-classif .cl-sys-t:focus-visible{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:6px}
+#view-classif .cl-sys-cnt{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:0;color:var(--ink-dim);white-space:nowrap}
+@media(max-width:640px){
+  #view-classif .cl-nav{margin-left:-4px;margin-right:-4px;padding-left:4px;padding-right:4px}
+  #view-classif .cl-cat.cl-sys{margin-top:48px}
+  #view-classif .cl-sys-h{gap:16px;padding:18px 16px}
+  #view-classif .cl-sys-ic{width:56px;height:56px;border-radius:16px}
+  #view-classif .cl-sys-ic svg{width:34px;height:34px}
+  #view-classif .cl-sys-tx{padding-right:44px;gap:2px 10px}
+  #view-classif .cl-sys-t{font-size:25px}
+  #view-classif .cl-sys-wm{width:132px;height:132px;right:-34px;opacity:.07}
+}
+@media(prefers-reduced-motion:reduce){
+  #view-classif .cl-nav,#view-classif .cl-nav-a{transition:none}
+}
 </style>
 <!-- ─ -->
 </head>
@@ -4068,6 +4127,7 @@ function classifSearch(e){
     const any=[...g.querySelectorAll('.cl-card')].some(c=>c.style.display!=='none');
     g.style.display=any?'':'none';
   });
+  clSysSync();
 }
 function buildClassif(){
   const v=document.getElementById('view-classif'); if(!v||typeof CLASSIF==='undefined') return;
@@ -4076,8 +4136,9 @@ function buildClassif(){
   let h=`<div class="subhead">⏱ ${t(['Classificazioni — tutte le classi farmacologiche','Classifications — all drug classes'])}</div>`;
   h+=`<p class="lead">${t(['Tutte le classificazioni d\'esame dei Moduli 1 e 2, espandibili: clicca un titolo per aprirlo, oppure usa la ricerca o «Espandi tutto». I farmaci con scheda sono collegati a FarmacoFlash; il riquadro \u{1F4CB} riporta l\u2019orientamento delle linee guida aggiornate (verifica sempre la versione pi\u00f9 recente).','All exam classifications from Modules 1 and 2, expandable: click a title to open it, or use search or "Expand all". Drugs with a card link to FarmacoFlash; the \u{1F4CB} box gives current guideline direction (always check the latest version).'])}</p>`;
   h+=`<div class="fam-ctl"><button class="fam-allbtn" id="cl-expand">${t(['⊞ Espandi tutto','⊞ Expand all'])}</button><button class="fam-allbtn" id="cl-collapse">${t(['⊟ Comprimi tutto','⊟ Collapse all'])}</button><input class="fam-search" id="cl-search" type="search" placeholder="${t(['cerca una classe o un farmaco…','search a class or drug…'])}"></div>`;
+  h+=clSysNav(cats,byCat);
   cats.forEach(cat=>{
-    h+=`<div class="cl-cat"><div class="cl-cat-h">${t(cat)}</div>`;
+    h+=clSysOpen(cat,byCat[cat[0]]);
     byCat[cat[0]].forEach(c=>{
       const open=openClassif.has(c.id);
       const cols=c.cols.map(x=>`<th>${t(x)}</th>`).join('');
@@ -4087,14 +4148,15 @@ function buildClassif(){
       const guide=c.guide?`<div class="cl-guide"><span class="cl-guide-h">\u{1F4CB} ${t(['Linee guida aggiornate','Updated guidelines'])}</span> ${t(c.guide)}</div>`:'';
       h+=`<div class="cl-card${open?'':' collapsed'}" data-id="${c.id}"><div class="cl-head"><span class="cl-chev">▸</span><span class="cl-title">${t(c.t)}</span></div><div class="cl-body">${lead}<div class="gwrap"><table class="gt"><thead><tr>${cols}</tr></thead><tbody>${rows}</tbody></table></div>${guide}${key}</div></div>`;
     });
-    h+=`</div>`;
+    h+=`</section>`;
   });
   v.innerHTML=h;
+  clSysWire(v);
   v.querySelectorAll('.cl-head').forEach(hd=>hd.onclick=()=>{const card=hd.closest('.cl-card');const col=card.classList.toggle('collapsed');if(col)openClassif.delete(card.dataset.id);else openClassif.add(card.dataset.id);});
   const be=document.getElementById('cl-expand'); if(be)be.onclick=()=>{CLASSIF.forEach(c=>openClassif.add(c.id));v.querySelectorAll('.cl-card').forEach(c=>c.classList.remove('collapsed'));};
   const bc=document.getElementById('cl-collapse'); if(bc)bc.onclick=()=>{openClassif.clear();v.querySelectorAll('.cl-card').forEach(c=>c.classList.add('collapsed'));};
   const sr=document.getElementById('cl-search'); if(sr)sr.oninput=classifSearch;
-  if(typeof linkifyDrugsIn==='function') linkifyDrugsIn(v);
+  clSysLinkify(v);
 }
 function buildDrugTable(){
   const order=Object.keys(CHDRUGS);
@@ -4479,6 +4541,179 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDrugM
 /* ═══ slot antibiotics: fine ═══ */
 // ·
 /* ═══ slot classif: inizio (solo il suo agente) ═══ */
+/* Separatori per sistema con icone + mini-nav sticky (vista Classificazioni).
+   Questo slot gira DOPO la buildClassif() dell'avvio: qui solo dichiarazioni di funzione
+   (sollevate a inizio modulo). Niente const/let a livello di modulo: sarebbero ancora in TDZ. */
+function clSysL(){
+  const L={
+    it:{nav:'Vai a un sistema',n1:'classificazione',nn:'classificazioni',of:'di'},
+    en:{nav:'Jump to a system',n1:'classification',nn:'classifications',of:'of'}
+  };
+  return L[LANG==='en'?'en':'it'];
+}
+/* icone 24×24, tratto 1.75, estremi arrotondati */
+function clSysIcons(){ return {
+  brain:'<path d="M12 5a3 3 0 1 0-6 .13 4 4 0 0 0-2.52 5.77 4 4 0 0 0 .55 6.59A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 6 .13 4 4 0 0 1 2.52 5.77 4 4 0 0 1-.55 6.59A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.6 6.5a3 3 0 0 0 .4-1.37"/><path d="M6 5.13a3 3 0 0 0 .4 1.37"/><path d="M6 18a4 4 0 0 1-1.97-.52"/><path d="M19.97 17.48A4 4 0 0 1 18 18"/>',
+  heart:'<path d="M19 14c1.5-1.46 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.3 12h6.2l.5-1 2 4.5 2-7 1.5 3.5h5.2"/>',
+  lungs:'<path d="M12 3.5V11"/><path d="M12 11c-.9.9-2 1.3-2.8 1.3M12 11c.9.9 2 1.3 2.8 1.3"/><path d="M8.6 7.2C5.9 7.7 3.5 11.8 3.5 16.4c0 2.1 1.2 3.1 2.8 3.1 2 0 3.8-1.3 3.8-3.7V8.7c0-1-.7-1.6-1.5-1.5Z"/><path d="M15.4 7.2c2.7.5 5.1 4.6 5.1 9.2 0 2.1-1.2 3.1-2.8 3.1-2 0-3.8-1.3-3.8-3.7V8.7c0-1 .7-1.6 1.5-1.5Z"/>',
+  /* stomaco: sacco a J con fondo sopra il cardias, esofago in alto, duodeno che esce a destra e scende */
+  stomach:'<path d="M11 2v4.6C9.8 4.4 8.2 3.2 6.4 3.2 4 3.2 2.6 5.7 2.6 9.3c0 6.8 4.5 11.5 10.1 11.5 3.1 0 5.4-1.2 6.6-3.4V22"/><path d="M14 2v5.6c0 2.8 1.4 4.5 3.3 4.7 2.6.2 4.6 1.9 4.6 4.6V22"/>',
+  /* tiroide: due lobi a farfalla uniti dall'istmo */
+  thyroid:'<path d="M10.1 14.3C9.9 10.2 8.4 5.8 5.9 4.1 4 2.8 2.9 6.5 3 10.6c.1 5.1 1.6 9.6 4.6 9.6 1.3 0 2.1-1 2.5-2.6h3.8c.4 1.6 1.2 2.6 2.5 2.6 3 0 4.5-4.5 4.6-9.6.1-4.1-1-7.8-2.9-6.5-2.5 1.7-4 6.1-4.2 10.2Z"/>',
+  shield:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 17.2v-4.6M12 12.6 9.4 9.6M12 12.6l2.6-3"/>',
+  /* batterio: bastoncello con doppia parete e due flagelli ondulati */
+  bacterium:'<rect x="2.2" y="6.8" width="13.4" height="10.4" rx="5.2"/><rect x="5" y="9.6" width="7.8" height="4.8" rx="2.4" stroke-width="1.15"/><path d="M15.4 9.4c1-1.5 2-1.8 2.9-.8s1.9.7 2.5-.7.9-2.1 1.5-2.2"/><path d="M15.4 14.6c1 1.5 2 1.8 2.9.8s1.9-.7 2.5.7.9 2.1 1.5 2.2"/>',
+  bone:'<path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/>',
+  /* autonomo: neurone pregangliare → sinapsi nel ganglio → neurone postgangliare con bottoni terminali */
+  ans:'<circle cx="5.6" cy="8.8" r="2.8"/><path d="M3.6 6.8 2.2 5.4M5.6 6V4M7.6 6.8 9 5.4"/><path d="M5.6 11.6V14c0 1.3 1 2.4 2.4 2.4h2"/><circle cx="11.3" cy="16.4" r="1" fill="currentColor"/><circle cx="15" cy="16.4" r="2.8"/><path d="M17.8 16.4h1.5"/><path d="M19.3 16.4l1.9-2.4M19.3 16.4l1.9 2.4"/><circle cx="21.7" cy="13.5" r=".6" fill="currentColor"/><circle cx="21.7" cy="19.3" r=".6" fill="currentColor"/>',
+  drop:'<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/><path d="M8.8 15.4a3.2 3.2 0 0 0 2.7 3"/>',
+  cell:'<path d="M7 5.5c2-1.6 5-1.8 7.2-.8 1.8.8 2.6 2.4 4.2 3.2 1.9 1 2.4 3.4 1.6 5.4-.7 1.8-.4 3.6-1.8 5-1.7 1.7-4.4 1.6-6.4 2.2-2.4.7-5 .2-6.7-1.6-1.5-1.7-1.6-4.1-1.3-6.3.3-2.6 1.4-5.4 3.4-7.1Z"/><circle cx="11" cy="11.6" r="3.3"/><path d="M11.9 10.7h.01M16.8 8.4h.01M16.4 15.8h.01M6.9 16.2h.01"/>',
+  pill:'<path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/>'
+}; }
+/* chiave del gruppo (cat[0] del dato CLASSIF) → icona + nome breve per la mini-nav */
+function clSysMap(){ return {
+  'SNC':{ic:'brain',s:['SNC','CNS']},
+  'Cardiovascolare':{ic:'heart',s:['Cardiovascolare','Cardiovascular']},
+  'Endocrino-metabolico':{ic:'thyroid',s:['Endocrino','Endocrine']},
+  'Infiammazione e immunità':{ic:'shield',s:['Infiammazione','Inflammation']},
+  'Respiratorio':{ic:'lungs',s:['Respiratorio','Respiratory']},
+  'Gastrointestinale':{ic:'stomach',s:['Gastro','GI']},
+  'Antimicrobici':{ic:'bacterium',s:['Antimicrobici','Antimicrobials']},
+  'Osso':{ic:'bone',s:['Osso','Bone']},
+  'Sistema autonomo':{ic:'ans',s:['Autonomo','Autonomic']},
+  'Ematologia':{ic:'drop',s:['Ematologia','Hematology']},
+  'Oncologia':{ic:'cell',s:['Oncologia','Oncology']}
+}; }
+/* stato condiviso, creato al primo uso */
+function clSysSt(){ return window.__clSysSt||(window.__clSysSt={raf:0,pin:'',pinT:0,pinTo:0,on:false}); }
+function clSysReduce(){ return !!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches); }
+function clSysSlug(k){ return 'cl-sys-'+String(k).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+function clSysEsc(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function clSysSvg(k,cls){
+  const m=clSysMap()[k]; const ic=clSysIcons(); const d=ic[m?m.ic:'pill']||ic.pill;
+  return `<svg${cls?` class="${cls}"`:''} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${d}</svg>`;
+}
+function clSysCount(n,tot){ const L=clSysL(); const w=tot===1?L.n1:L.nn; return n===tot?`${tot} ${w}`:`${n} ${L.of} ${tot} ${w}`; }
+function clSysNav(cats,byCat){
+  const L=clSysL(); const map=clSysMap();
+  const items=cats.map(cat=>{
+    const id=clSysSlug(cat[0]); const m=map[cat[0]]; const name=t(cat); const short=m?t(m.s):name;
+    return `<a class="cl-nav-a" href="#${id}" data-sys="${id}" title="${clSysEsc(name)} · ${byCat[cat[0]].length}">${clSysSvg(cat[0],'cl-nav-ic')}<span>${clSysEsc(short)}</span></a>`;
+  }).join('');
+  return `<nav class="cl-nav" aria-label="${clSysEsc(L.nav)}"><div class="cl-nav-in">${items}</div></nav>`;
+}
+/* apre la <section> del gruppo: va chiusa da buildClassif dopo le card */
+function clSysOpen(cat,list){
+  const n=list.length; const id=clSysSlug(cat[0]);
+  return `<section class="cl-cat cl-sys" id="${id}" data-sys="${id}" aria-labelledby="${id}-h">`+
+    `<header class="cl-sys-h">${clSysSvg(cat[0],'cl-sys-wm')}`+
+    `<span class="cl-sys-ic">${clSysSvg(cat[0],'')}</span>`+
+    `<div class="cl-sys-tx"><h2 class="cl-sys-t" id="${id}-h" tabindex="-1">${clSysEsc(t(cat))}</h2>`+
+    `<span class="cl-sys-cnt" data-n="${n}">${clSysCount(n,n)}</span></div></header>`;
+}
+/* link ai farmaci solo dentro le card; «Calcio-antagonisti» non è il calcio (+ vitamina D) */
+function clSysLinkify(v){
+  if(typeof linkifyDrugsIn!=='function') return;
+  v.querySelectorAll('.cl-card').forEach(c=>linkifyDrugsIn(c));
+  v.querySelectorAll('a.ff-link').forEach(a=>{
+    const nx=a.nextSibling;
+    if(/^calcio$/i.test(a.textContent.trim())&&nx&&nx.nodeType===3&&/^[-‐‑]/.test(nx.nodeValue)) a.replaceWith(document.createTextNode(a.textContent));
+  });
+}
+function clSysNavH(){ const nav=document.querySelector('#view-classif .cl-nav'); return nav?nav.getBoundingClientRect().height:0; }
+/* la mini-nav si aggancia sotto la tab bar (anch'essa sticky): misura entrambe */
+function clSysSetH(){
+  const v=document.getElementById('view-classif'); if(!v) return;
+  const tb=document.querySelector('.tabs'); let top=0;
+  if(tb){ const cs=getComputedStyle(tb); if(cs.position==='sticky'||cs.position==='fixed') top=(parseFloat(cs.top)||0)+tb.getBoundingClientRect().height+6; }
+  v.style.setProperty('--cl-nav-top',Math.ceil(top)+'px');
+  const h=clSysNavH(); if(h) v.style.setProperty('--cl-nav-h',Math.ceil(h)+'px');
+}
+function clSysMark(){
+  const st=clSysSt(); st.raf=0;
+  const v=document.getElementById('view-classif'); if(!v||!v.classList.contains('active')) return;
+  const nav=v.querySelector('.cl-nav'); if(!nav||nav.hidden) return;
+  const stuck=window.scrollY>0&&nav.getBoundingClientRect().top<=(parseFloat(getComputedStyle(nav).top)||0)+1;
+  if(stuck!==nav.classList.contains('is-stuck')){ nav.classList.toggle('is-stuck',stuck); v.style.setProperty('--cl-nav-h',Math.ceil(clSysNavH())+'px'); }
+  const off=nav.getBoundingClientRect().bottom+48;
+  const secs=[...v.querySelectorAll('.cl-sys')].filter(s=>s.style.display!=='none');
+  const onScreen=s=>{ const r=s.getBoundingClientRect(); return r.top<innerHeight-40&&r.bottom>off; };
+  let cur=secs[0]||null;
+  secs.forEach(s=>{ if(s.getBoundingClientRect().top<=off) cur=s; });
+  /* in fondo alla pagina le ultime sezioni non arrivano sotto la barra: vale l'ultima a schermo */
+  const atEnd=window.scrollY+innerHeight>=document.documentElement.scrollHeight-2;
+  if(atEnd) secs.forEach(s=>{ if(onScreen(s)) cur=s; });
+  let id=cur?cur.dataset.sys:'';
+  /* sezione scelta dalla nav: resta marcata durante lo scorrimento (1,6 s) o, in fondo, finché è a schermo */
+  if(st.pin){ const ps=document.getElementById(st.pin);
+    if(ps&&ps.style.display!=='none'&&(performance.now()-st.pinT<1600||(atEnd&&onScreen(ps)))) id=st.pin; else st.pin=''; }
+  nav.querySelectorAll('.cl-nav-a').forEach(a=>{
+    const on=a.dataset.sys===id;
+    if(on===(a.getAttribute('aria-current')==='true')) return;
+    if(on){ a.setAttribute('aria-current','true'); clSysReveal(nav.querySelector('.cl-nav-in'),a); }
+    else a.removeAttribute('aria-current');
+  });
+}
+/* riga scorrevole (≤1100px): porta la chip attiva al centro, lontano dalla sfumatura a destra */
+function clSysReveal(row,a){
+  if(!row||row.scrollWidth<=row.clientWidth) return;
+  const x=a.offsetLeft-row.offsetLeft-(row.clientWidth-a.offsetWidth)/2;
+  row.scrollTo({left:Math.max(0,x),behavior:clSysReduce()?'auto':'smooth'});
+}
+function clSysSched(){ const st=clSysSt(); if(!st.raf) st.raf=requestAnimationFrame(clSysMark); }
+/* dopo la ricerca: chip e conteggi dei gruppi visibili («N di M» mentre si cerca) */
+function clSysSync(){
+  const v=document.getElementById('view-classif'); if(!v) return;
+  let any=false;
+  v.querySelectorAll('.cl-sys').forEach(s=>{
+    const shown=s.style.display!=='none'; if(shown) any=true;
+    const cards=[...s.querySelectorAll('.cl-card')];
+    const cnt=s.querySelector('.cl-sys-cnt');
+    if(cnt) cnt.textContent=clSysCount(cards.filter(c=>c.style.display!=='none').length,cards.length);
+    const a=v.querySelector(`.cl-nav-a[data-sys="${s.dataset.sys}"]`); if(a) a.hidden=!shown;
+  });
+  const nav=v.querySelector('.cl-nav'); if(nav) nav.hidden=!any;
+  clSysSched();
+}
+function clSysGo(id,focus){
+  const s=document.getElementById(id); if(!s||!s.classList.contains('cl-sys')||s.style.display==='none') return false;
+  const st=clSysSt();
+  clSysSetH(); st.pin=id; st.pinT=performance.now();
+  clearTimeout(st.pinTo); st.pinTo=setTimeout(clSysSched,1700); // a finestra chiusa ricalcola la sezione corrente
+  clSysSched();
+  s.scrollIntoView({behavior:clSysReduce()?'auto':'smooth',block:'start'});
+  if(focus){ const h=s.querySelector('.cl-sys-t'); if(h) h.focus({preventScroll:true}); }
+  return true;
+}
+/* link diretto …html#cl-sys-oncologia (anche da «apri in una nuova scheda») */
+function clSysHash(){
+  const h=location.hash||''; if(!/^#cl-sys-[a-z0-9-]{1,60}$/.test(h)) return;
+  const id=h.slice(1); if(!document.getElementById(id)) return;
+  if(typeof switchView==='function') switchView('classif');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ clSysSetH(); clSysGo(id,false); }));
+}
+function clSysWire(v){
+  clSysSetH();
+  v.querySelectorAll('.cl-nav-a').forEach(a=>a.addEventListener('click',e=>{
+    if(e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return; // nuova scheda/finestra: ci pensa clSysHash all'apertura
+    if(clSysGo(a.dataset.sys,true)) e.preventDefault();
+  }));
+  const st=clSysSt();
+  if(!st.on){
+    st.on=true;
+    window.addEventListener('scroll',clSysSched,{passive:true});
+    window.addEventListener('resize',()=>{ clSysSetH(); clSysSched(); },{passive:true});
+    /* l'utente che scorre da sé vince sulla sezione appena scelta dalla nav */
+    const drop=()=>{ const s=clSysSt(); if(s.pin){ s.pin=''; clSysSched(); } };
+    window.addEventListener('wheel',drop,{passive:true});
+    window.addEventListener('touchstart',drop,{passive:true});
+    window.addEventListener('keydown',e=>{ if(/^(PageUp|PageDown|Home|End|ArrowUp|ArrowDown| )$/.test(e.key)) drop(); });
+    window.addEventListener('hashchange',clSysHash);
+    document.querySelectorAll('.tab[data-view="classif"]').forEach(tb=>tb.addEventListener('click',()=>setTimeout(()=>{ clSysSetH(); clSysSched(); },30)));
+  }
+  clSysSched();
+}
+clSysHash();
 /* ═══ slot classif: fine ═══ */
 // ·
 </script>
