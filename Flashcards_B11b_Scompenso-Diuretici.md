@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — SCOMPENSO/DIGITALE, XANTINE E DIURETICI
-**Fonte:** sbobine 🅲 Speciale – docente, Lezione 13 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente). *RAAS e Ca-antagonisti → file B11.*
+**Fonte:** appunti delle lezioni 🅲 Speciale, Lezione 13 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente). *RAAS e Ca-antagonisti → file B11.*
 
 ---
 

@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — FANS + PARACETAMOLO
-**Fonte:** sbobine 🅱 Generale – docente, Lezione 09 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
+**Fonte:** appunti delle lezioni 🅱 Generale, Lezione 09 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
 
 ---
 

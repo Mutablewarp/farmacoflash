@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — ANTITROMBOTICI (ANTIAGGREGANTI, ANTICOAGULANTI, FIBRINOLITICI)
-**Fonte:** sbobine 🅲 Speciale – docente (Lezione 14; estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente). *Vasodilatatori → file B12b.*
+**Fonte:** appunti delle lezioni 🅲 Speciale (Lezione 14; estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente). *Vasodilatatori → file B12b.*
 
 ---
 
@@ -52,7 +52,7 @@
 ### 💊 Anticoagulanti orali (VKA, inibitori diretti del fattore Xa e della trombina)
 * **VKA (warfarin, cumarina):** antagonisti della **vitamina K** → ↓ proteine vitamina K-dipendenti. ⚠️ azione **lenta**, finestra terapeutica stretta/basso indice terapeutico → **monitoraggio costante (INR)**, bassa compliance, interazioni con cibi/farmaci, rischio emorragico 3-4%, ⚠️ **necrosi cutanea** (carenza proteina C/S); non per emergenze.
 * **Inibitori diretti del fattore Xa (rivaroxaban, apixaban, edoxaban):** legame diretto al sito attivo di Xa (indipendente dall'antitrombina), orali. **Rivaroxaban:** nessun effetto sull'aggregazione, biodisponibilità 80-100%, alto legame proteico (92-95%), basso potenziale di interazioni, **escrezione mista renale/fecale** (utile in compromissione renale); ⚠️ controindicato in gravidanza/allattamento/epatopatie con coagulopatia.
-* **Inibitori diretti della trombina (dabigatran):** profarmaco (dabigatran etexilato), selettivo/reversibile; biodisponibilità 7%, **eliminazione renale 80%** (⚠️ valutare funzione renale), emivita 7-17h, no interazioni coi citocromi; *secondo il documento "assenza dell'antidoto"* (N.B. esterno alle sbobine: oggi esiste idarucizumab).
+* **Inibitori diretti della trombina (dabigatran):** profarmaco (dabigatran etexilato), selettivo/reversibile; biodisponibilità 7%, **eliminazione renale 80%** (⚠️ valutare funzione renale), emivita 7-17h, no interazioni coi citocromi; *secondo il documento "assenza dell'antidoto"* (N.B. integrazione: oggi esiste idarucizumab).
 * **Nuovissimi:** razaxaban/apixaban/otamixaban (anti-Xa); trombomodulina solubile; proteina C attivata/drotrecogin α.
 * **Vantaggi NAO:** rapida comparsa, effetto prevedibile, no restrizioni dietetiche, poche interazioni → ↑ compliance.
 

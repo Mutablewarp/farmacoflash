@@ -6,7 +6,7 @@
    "code": "G1",
    "title": "PRINCIPI · ASSORBIMENTO E BIODISPONIBILITÀ",
    "slug": "principi-assorbimento-e-biodisponibilita",
-   "source": "sbobine 🅱 Generale – docente, Lezione 01 (farmacocinetica: assorbimento, vie di somministrazione, biodisponibilità; contenuto rielaborato e verificato su Goodman & Gilman 14ª ed.).",
+   "source": "Lezione 01 (farmacocinetica: assorbimento, vie di somministrazione, biodisponibilità) · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 6
   },
@@ -15,7 +15,7 @@
    "code": "G2",
    "title": "PRINCIPI · DISTRIBUZIONE E METABOLISMO",
    "slug": "principi-distribuzione-e-metabolismo",
-   "source": "sbobine 🅱 Generale – docente, Lezione 02 (distribuzione, volume di distribuzione, biotrasformazione, citocromi P450, polimorfismi; ripresa dei polimorfismi all'inizio della Lezione 03; contenuto rielaborato e verificato su Goodman & Gilman 14ª ed.).",
+   "source": "Lezione 02 (distribuzione, volume di distribuzione, biotrasformazione, citocromi P450, polimorfismi; ripresa dei polimorfismi all'inizio della Lezione 03) · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 7
   },
@@ -24,7 +24,7 @@
    "code": "G3",
    "title": "PRINCIPI · ELIMINAZIONE E PARAMETRI CINETICI",
    "slug": "principi-eliminazione-e-parametri-cineti",
-   "source": "sbobine 🅱 Generale – docente, Lezione 03 (vie di eliminazione, circolo entero-epatico, rene, cinetiche di eliminazione, clearance, emivita, steady state, dose di carico; contenuto rielaborato e verificato su Goodman & Gilman 14ª ed.).",
+   "source": "Lezione 03 (vie di eliminazione, circolo entero-epatico, rene, cinetiche di eliminazione, clearance, emivita, steady state, dose di carico) · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 5
   },
@@ -33,7 +33,7 @@
    "code": "G4",
    "title": "PRINCIPI · FARMACODINAMICA",
    "slug": "principi-farmacodinamica",
-   "source": "sbobine 🅱 Generale – docente, Lezioni 03–04 (curve dose-risposta, potenza ed efficacia, indice terapeutico, agonisti e antagonisti, modulatori allosterici, adattamenti e interazioni; contenuto rielaborato e verificato su Goodman & Gilman 14ª ed.).",
+   "source": "Lezioni 03–04 (curve dose-risposta, potenza ed efficacia, indice terapeutico, agonisti e antagonisti, modulatori allosterici, adattamenti e interazioni) · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 7
   },
@@ -42,7 +42,7 @@
    "code": "G5",
    "title": "BERSAGLI · CANALI, POMPE E TRASPORTATORI",
    "slug": "bersagli-canali-pompe-e-trasportatori",
-   "source": "sbobine 🅱 Generale – docente, Lezioni 04–05 (canali Na⁺, Ca²⁺ e K⁺ voltaggio-dipendenti, canali K-ATP e accoppiati a proteine G, pompe ATPasi, trasportatori epiteliali e neurotrasportatori; contenuto rielaborato e verificato su Goodman & Gilman 14ª ed.).",
+   "source": "Lezioni 04–05 (canali Na⁺, Ca²⁺ e K⁺ voltaggio-dipendenti, canali K-ATP e accoppiati a proteine G, pompe ATPasi, trasportatori epiteliali e neurotrasportatori) · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 5
   },
@@ -51,7 +51,7 @@
    "code": "G6",
    "title": "BERSAGLI · RECETTORI E TRASDUZIONE",
    "slug": "bersagli-recettori-e-trasduzione",
-   "source": "sbobine 🅱 Generale – docente, Lezione 06 (superfamiglie recettoriali, recettori-canale, glutammato, proteine G, muscarinici, adrenergici, dopaminergici, recettori intracellulari; integrato con 🅲 Speciale – docente, Lezioni 01, 02 e 04; contenuto rielaborato e verificato su Goodman & Gilman 14ª ed.).",
+   "source": "Lezione 06 (superfamiglie recettoriali, recettori-canale, glutammato, proteine G, muscarinici, adrenergici, dopaminergici, recettori intracellulari; integrato con le lezioni 01, 02 e 04 di Speciale) · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 5
   },
@@ -60,7 +60,7 @@
    "code": "A4",
    "title": "GLUCOCORTICOIDI",
    "slug": "glucocorticoidi",
-   "source": "sbobine 🅱 Generale – docente, Lezione 07 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 07 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 8
   },
@@ -69,7 +69,7 @@
    "code": "A5",
    "title": "FANS + PARACETAMOLO",
    "slug": "fans-paracetamolo",
-   "source": "sbobine 🅱 Generale – docente, Lezione 09 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 09 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 10
   },
@@ -78,7 +78,7 @@
    "code": "A6",
    "title": "ANTISTAMINICI",
    "slug": "antistaminici",
-   "source": "sbobine 🅱 Generale – docente, Lezione 10 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 10 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 5
   },
@@ -87,7 +87,7 @@
    "code": "A7",
    "title": "ANTIEMICRANICI + ANTIEMETICI",
    "slug": "antiemicranici-antiemetici",
-   "source": "sbobine 🅱 Generale – docente, Lezione 11 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 11 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 7
   },
@@ -96,7 +96,7 @@
    "code": "A8",
    "title": "ANTIASMATICI / BPCO",
    "slug": "antiasmatici-bpco",
-   "source": "sbobine 🅱 Generale – docente, Lezione 13 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 13 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 8
   },
@@ -105,7 +105,7 @@
    "code": "A9",
    "title": "FARMACI BIOLOGICI / BIOSIMILARI / ANTI-TNF-α",
    "slug": "farmaci-biologici-biosimilari-anti-tnf",
-   "source": "sbobine 🅱 Generale – docente, Lezione 08 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 08 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 7
   },
@@ -114,7 +114,7 @@
    "code": "A10",
    "title": "DIABETE / INSULINA",
    "slug": "diabete-insulina",
-   "source": "sbobine 🅱 Generale – docente, Lezione 12 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 12 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 10
   },
@@ -123,7 +123,7 @@
    "code": "A11",
    "title": "FARMACI GASTROINTESTINALI",
    "slug": "farmaci-gastrointestinali",
-   "source": "sbobine 🅱 Generale – docente, Lezione 14 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 14 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 10
   },
@@ -132,7 +132,7 @@
    "code": "A12",
    "title": "OSSO / OSTEOPOROSI",
    "slug": "osso-osteoporosi",
-   "source": "sbobine 🅱 Generale – docente, Lezione 15 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente). *(Il resto della Lez 15 tratta principi generali di antibioticoterapia → i farmaci antibiotici sono nei file A1-A3.)*",
+   "source": "Lezione 15 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 8
   },
@@ -141,7 +141,7 @@
    "code": "G7",
    "title": "NEUROFARMACOLOGIA MOLECOLARE",
    "slug": "neurofarmacologia-molecolare",
-   "source": "sbobine 🅲 Speciale – docente, Lezioni 01–04 (sinapsi e neurotrasmettitori, asse HPA e CRH, angina iatrogena, nicotina e dipendenza, sistemi monoaminergici, glutammato e omeostasi del calcio; contenuto rielaborato e verificato su Goodman & Gilman 14ª ed.).",
+   "source": "Lezioni 01–04 (sinapsi e neurotrasmettitori, asse HPA e CRH, angina iatrogena, nicotina e dipendenza, sistemi monoaminergici, glutammato e omeostasi del calcio) · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 6
   },
@@ -150,7 +150,7 @@
    "code": "B1",
    "title": "SEDATIVO-IPNOTICI E ANSIOLITICI",
    "slug": "sedativo-ipnotici-e-ansiolitici",
-   "source": "sbobine 🅲 Speciale – docente, Lezione 05 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 05 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 7
   },
@@ -159,7 +159,7 @@
    "code": "B2",
    "title": "ANESTETICI GENERALI E LOCALI",
    "slug": "anestetici-generali-e-locali",
-   "source": "sbobine 🅲 Speciale – docente (sezione \"Anestetici generali e locali\"; estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Sezione \"Anestetici generali e locali\" · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 6
   },
@@ -168,7 +168,7 @@
    "code": "B3",
    "title": "ANTIDEPRESSIVI",
    "slug": "antidepressivi",
-   "source": "sbobine 🅲 Speciale – docente, Lezione 06 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 06 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 10
   },
@@ -177,7 +177,7 @@
    "code": "B4",
    "title": "DISTURBO BIPOLARE / STABILIZZANTI DELL'UMORE",
    "slug": "disturbo-bipolare-stabilizzanti-dell-umo",
-   "source": "sbobine 🅲 Speciale – docente, Lezione 07 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente). *Valproato, carbamazepina e lamotrigina sono anche antiepilettici → dettaglio in file B9.*",
+   "source": "Lezione 07 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 5
   },
@@ -186,7 +186,7 @@
    "code": "B5",
    "title": "ANTIPSICOTICI",
    "slug": "antipsicotici",
-   "source": "sbobine 🅲 Speciale – docente, Lezione 07 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 07 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 5
   },
@@ -195,7 +195,7 @@
    "code": "B6",
    "title": "ANTIPARKINSON",
    "slug": "antiparkinson",
-   "source": "sbobine 🅲 Speciale – docente, Lezione 08 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 08 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 6
   },
@@ -204,7 +204,7 @@
    "code": "B7",
    "title": "ALZHEIMER E SCLEROSI MULTIPLA",
    "slug": "alzheimer-e-sclerosi-multipla",
-   "source": "sbobine 🅲 Speciale – docente, Lezione 09 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 09 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 8
   },
@@ -213,7 +213,7 @@
    "code": "B8",
    "title": "OPPIOIDI / TERAPIA DEL DOLORE",
    "slug": "oppioidi-terapia-del-dolore",
-   "source": "sbobine 🅲 Speciale – docente, Lezione 10 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 10 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 6
   },
@@ -222,7 +222,7 @@
    "code": "B9",
    "title": "ANTIEPILETTICI + STATINE/IPOLIPEMIZZANTI",
    "slug": "antiepilettici-statine-ipolipemizzanti",
-   "source": "sbobine 🅲 Speciale – docente, Lezione 11 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 11 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 8
   },
@@ -231,7 +231,7 @@
    "code": "B10",
    "title": "ANTIIPERTENSIVI: SIMPATICOLITICI, α- e β-BLOCCANTI",
    "slug": "antiipertensivi-simpaticolitici-e-blocca",
-   "source": "sbobine 🅲 Speciale – docente, Lezione 12 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 12 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 6
   },
@@ -240,7 +240,7 @@
    "code": "B11",
    "title": "RAAS",
    "slug": "raas",
-   "source": "sbobine 🅲 Speciale – docente, Lezione 13 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente). *Scompenso/digitale e diuretici → file B11b.*",
+   "source": "Lezione 13 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 5
   },
@@ -249,7 +249,7 @@
    "code": "B11b",
    "title": "SCOMPENSO/DIGITALE, XANTINE E DIURETICI",
    "slug": "scompenso-digitale-xantine-e-diuretici",
-   "source": "sbobine 🅲 Speciale – docente, Lezione 13 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente). *RAAS e Ca-antagonisti → file B11.*",
+   "source": "Lezione 13 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 8
   },
@@ -258,7 +258,7 @@
    "code": "B12",
    "title": "ANTITROMBOTICI",
    "slug": "antitrombotici",
-   "source": "sbobine 🅲 Speciale – docente (Lezione 14; estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente). *Vasodilatatori → file B12b.*",
+   "source": "Lezione 14 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 7
   },
@@ -267,7 +267,7 @@
    "code": "B12b",
    "title": "VASODILATATORI",
    "slug": "vasodilatatori",
-   "source": "sbobine 🅲 Speciale – docente (Lezione 14; estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 14 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 3
   },
@@ -276,7 +276,7 @@
    "code": "B13",
    "title": "ANTIARITMICI",
    "slug": "antiaritmici",
-   "source": "sbobine 🅲 Speciale – docente (Lezione 15; estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 15 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 5
   },
@@ -285,7 +285,7 @@
    "code": "B14",
    "title": "ANTITUMORALI / ONCOLOGIA DI PRECISIONE",
    "slug": "antitumorali-oncologia-di-precisione",
-   "source": "sbobine 🅲 Speciale – docente (Lezione 15; estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 15 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "II",
    "count": 4
   },
@@ -294,7 +294,7 @@
    "code": "Antibiotici-2",
    "title": "ANTIBIOTICI",
    "slug": "antibiotici",
-   "source": "sbobine 🅱 Generale – docente, Lezione 16 \"Gli antibiotici\" (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 16 \"Gli antibiotici\" · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 12
   },
@@ -303,7 +303,7 @@
    "code": "Antibiotici-3",
    "title": "ANTIBIOTICI",
    "slug": "antibiotici",
-   "source": "sbobine 🅱 Generale – docente, Lezione 17 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 17 · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 13
   },
@@ -312,7 +312,7 @@
    "code": "Beta-lattamici",
    "title": "ANTIBIOTICI β-LATTAMICI",
    "slug": "antibiotici-lattamici",
-   "source": "sbobine 🅱 Generale – docente, Lezione 16 \"Gli antibiotici\" (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente).",
+   "source": "Lezione 16 \"Gli antibiotici\" · materiali personali + Goodman & Gilman, con integrazioni",
    "module": "I",
    "count": 17
   }
@@ -8863,7 +8863,7 @@
     },
     {
      "label": "Inibitori diretti della trombina (dabigatran)",
-     "value": "profarmaco (dabigatran etexilato), selettivo/reversibile; biodisponibilità 7%, **eliminazione renale 80%** (⚠️ valutare funzione renale), emivita 7-17h, no interazioni coi citocromi; *secondo il documento \"assenza dell'antidoto\"* (N.B. esterno alle sbobine: oggi esiste idarucizumab)."
+     "value": "profarmaco (dabigatran etexilato), selettivo/reversibile; biodisponibilità 7%, **eliminazione renale 80%** (⚠️ valutare funzione renale), emivita 7-17h, no interazioni coi citocromi; *secondo il documento \"assenza dell'antidoto\"* (N.B. integrazione: oggi esiste idarucizumab)."
     },
     {
      "label": "Nuovissimi",
@@ -11201,7 +11201,7 @@
    "fields": {
     "mechanism": "analoghi strutturali delle β-lattamine; legano il sito attivo delle β-lattamasi e, una volta idrolizzati, lo bloccano IRREVERSIBILMENTE (\"si immolano\" al posto dell'antibiotico); nessuna attività antibiotica propria (non agiscono sulle transpeptidasi) → solo in associazione.",
     "target": "sito attivo delle β-lattamasi.",
-    "pk": "acido clavulanico attivo per os (tazobactam/sulbactam non per os, come da sbobina); la farmacocinetica deve essere identica a quella del β-lattamico associato (stesso Cmax/eliminazione/emivita) per raggiungere insieme il sito d'infezione.\nIndicazioni Cliniche (spettro inibitorio): attivi verso le penicillinasi → classe A di Ambler (spettro esteso). Nessun effetto verso carbapenemasi di classe A (Klebsiella), classe B (metallo), classe C, classe D.",
+    "pk": "acido clavulanico attivo per os (tazobactam/sulbactam non per os, come visto a lezione); la farmacocinetica deve essere identica a quella del β-lattamico associato (stesso Cmax/eliminazione/emivita) per raggiungere insieme il sito d'infezione.\nIndicazioni Cliniche (spettro inibitorio): attivi verso le penicillinasi → classe A di Ambler (spettro esteso). Nessun effetto verso carbapenemasi di classe A (Klebsiella), classe B (metallo), classe C, classe D.",
     "adr": "N/D nei documenti forniti.",
     "resistance": "azione solo su classe A; formulazioni in associazione fissa (rapporto fisso, nessuna scelta libera del partner).",
     "associations": "amoxicillina + acido clavulanico (os); ampicillina + sulbactam (parenterale); piperacillina + tazobactam."
@@ -11217,7 +11217,7 @@
     },
     {
      "label": "Parametri Farmacocinetici",
-     "value": "acido clavulanico attivo per os (tazobactam/sulbactam non per os, come da sbobina); la farmacocinetica deve essere identica a quella del β-lattamico associato (stesso Cmax/eliminazione/emivita) per raggiungere insieme il sito d'infezione.\nIndicazioni Cliniche (spettro inibitorio): attivi verso le penicillinasi → classe A di Ambler (spettro esteso). Nessun effetto verso carbapenemasi di classe A (Klebsiella), classe B (metallo), classe C, classe D."
+     "value": "acido clavulanico attivo per os (tazobactam/sulbactam non per os, come visto a lezione); la farmacocinetica deve essere identica a quella del β-lattamico associato (stesso Cmax/eliminazione/emivita) per raggiungere insieme il sito d'infezione.\nIndicazioni Cliniche (spettro inibitorio): attivi verso le penicillinasi → classe A di Ambler (spettro esteso). Nessun effetto verso carbapenemasi di classe A (Klebsiella), classe B (metallo), classe C, classe D."
     },
     {
      "label": "Reazioni Avverse Comuni (ADR)",

@@ -3,7 +3,7 @@
 Questa guida riguarda la nuova versione locale. Il sito online non è ancora stato aggiornato.
 
 1. **Oggi** — scegli quante carte nuove affrontare. Puoi studiare solo nuove, solo ripasso oppure entrambe.
-2. **Cerca** — scrivi il nome del farmaco. Seleziona un argomento per restringere l'elenco. “A→Z” aiuta a ripassare i nomi. L'elenco è quello delle schede del corso, non ancora tutto il registro AIFA.
+2. **Cerca** — scrivi il nome del farmaco. Seleziona un argomento per restringere l'elenco. “A→Z” aiuta a ripassare i nomi. L'elenco è quello delle schede di studio, non ancora tutto il registro AIFA.
 3. **Studia** — prova a rispondere senza guardare. Mostra la risposta e valuta sinceramente ciò che ricordi. Puoi scorrere fino all'ultima riga; i pulsanti restano in basso.
 4. **Scrivi i nomi**, nella tabella — digita il nome richiesto. Dopo un errore, riscrivilo correttamente. L'errore iniziale resta nello storico: correggersi non cancella ciò che serve ripassare. “Studia questa scheda” apre la spiegazione; **Cerca** riporta al quiz lasciato aperto.
 5. **Esplora** — scegli un bersaglio e leggi come funziona. Il modello è uno schema didattico. Se il 3D non si carica, puoi ancora leggere i contenuti e consultare le animazioni 2D.

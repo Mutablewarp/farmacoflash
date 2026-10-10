@@ -1,5 +1,5 @@
 💊 FLASHCARDS — ANTIBIOTICI β-LATTAMICI
-Fonte: sbobine 🅱 Generale – docente, Lezione 16 "Gli antibiotici" (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
+Fonte: appunti delle lezioni 🅱 Generale, Lezione 16 "Gli antibiotici" (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
 
 
 💊 β-lattamici (classe — quadro generale)
@@ -151,7 +151,7 @@ Rilevanza: bersaglio degli inibitori delle β-lattamasi (vedi card seguenti).
 💊 Inibitori delle β-lattamasi — I generazione (acido clavulanico, sulbactam, tazobactam)
 Meccanismo d'Azione: analoghi strutturali delle β-lattamine; legano il sito attivo delle β-lattamasi e, una volta idrolizzati, lo bloccano IRREVERSIBILMENTE ("si immolano" al posto dell'antibiotico); nessuna attività antibiotica propria (non agiscono sulle transpeptidasi) → solo in associazione.
 Target Molecolare: sito attivo delle β-lattamasi.
-Parametri Farmacocinetici: acido clavulanico attivo per os (tazobactam/sulbactam non per os, come da sbobina); la farmacocinetica deve essere identica a quella del β-lattamico associato (stesso Cmax/eliminazione/emivita) per raggiungere insieme il sito d'infezione.
+Parametri Farmacocinetici: acido clavulanico attivo per os (tazobactam/sulbactam non per os, come visto a lezione); la farmacocinetica deve essere identica a quella del β-lattamico associato (stesso Cmax/eliminazione/emivita) per raggiungere insieme il sito d'infezione.
 Indicazioni Cliniche (spettro inibitorio): attivi verso le penicillinasi → classe A di Ambler (spettro esteso). Nessun effetto verso carbapenemasi di classe A (Klebsiella), classe B (metallo), classe C, classe D.
 Reazioni Avverse Comuni (ADR): N/D nei documenti forniti.
 Resistenze / Limiti di Efficacia: azione solo su classe A; formulazioni in associazione fissa (rapporto fisso, nessuna scelta libera del partner).

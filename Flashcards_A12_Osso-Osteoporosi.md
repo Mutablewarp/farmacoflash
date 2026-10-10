@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — OSSO / OSTEOPOROSI
-**Fonte:** sbobine 🅱 Generale – docente, Lezione 15 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente). *(Il resto della Lez 15 tratta principi generali di antibioticoterapia → i farmaci antibiotici sono nei file A1-A3.)*
+**Fonte:** appunti delle lezioni 🅱 Generale, Lezione 15 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente). *(Il resto della Lez 15 tratta principi generali di antibioticoterapia → i farmaci antibiotici sono nei file A1-A3.)*
 
 ---
 

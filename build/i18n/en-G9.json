@@ -518,7 +518,7 @@
     },
     {
      "label": "Pharmacokinetic Parameters",
-     "value": "clavulanic acid active orally (tazobactam/sulbactam not orally, as per the lecture notes); the pharmacokinetics must be identical to that of the associated β-lactam (same Cmax/elimination/half-life) in order to reach the site of infection together.\nClinical Indications (inhibitory spectrum): active toward the penicillinases → Ambler class A (extended spectrum). No effect toward class A carbapenemases (Klebsiella), class B (metallo), class C, class D."
+     "value": "clavulanic acid active orally (tazobactam/sulbactam not orally, as covered in class); the pharmacokinetics must be identical to that of the associated β-lactam (same Cmax/elimination/half-life) in order to reach the site of infection together.\nClinical Indications (inhibitory spectrum): active toward the penicillinases → Ambler class A (extended spectrum). No effect toward class A carbapenemases (Klebsiella), class B (metallo), class C, class D."
     },
     {
      "label": "Common Adverse Reactions (ADR)",

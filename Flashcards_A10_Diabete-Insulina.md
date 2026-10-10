@@ -1,5 +1,5 @@
 # 💊 FLASHCARDS — DIABETE / INSULINA
-**Fonte:** sbobine 🅱 Generale – docente, Lezione 12 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
+**Fonte:** appunti delle lezioni 🅱 Generale, Lezione 12 (estrazione esclusiva dal documento; "N/D nei documenti forniti" dove il dato non è presente).
 
 ---
 
