@@ -1071,32 +1071,56 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 /* slot explorer: CSS di questa funzione (solo il suo agente) */
 /* barra del cassetto: bottone a tutta larghezza, chevron triplo + bersaglio in vista */
 .ex-bar{margin:2px 0 0}
+/* elenco aperto: la barra resta ferma sotto la tab bar (--ex-stick dal JS), così si chiude senza risalire la pagina */
+.ex-bar.is-open{position:sticky;top:var(--ex-stick,12px);z-index:20}
+/* striscia nello spazio tra tab bar e barra: i chip che scorrono sotto non spuntano nella fessura */
+.ex-bar.is-open::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:12px;background:var(--bg);pointer-events:none}
 .ex-toggle{display:grid;grid-template-columns:auto auto auto minmax(0,1fr);align-items:center;gap:6px 12px;width:100%;min-height:58px;padding:9px 18px 9px 10px;
   border:1px solid var(--line2);border-radius:var(--r-md);background:var(--panel);color:var(--ink);box-shadow:var(--sh-1);
   font:500 14.5px/1.3 var(--ui);text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;
   transition:border-color .18s ease-out,box-shadow .18s ease-out,background-color .18s ease-out}
-.ex-toggle:hover{border-color:var(--gold)}
 .ex-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.ex-toggle[aria-expanded="true"]{border-color:var(--gold-line);background:var(--panel2)}
-.ex-chev{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;border:1px solid var(--gold-line);background:var(--gold-soft);color:var(--gold)}
+.ex-toggle[aria-expanded="true"]{border-color:var(--gold-line);background:var(--panel2);box-shadow:var(--sh-2)}
+.ex-chev{display:grid;place-items:center;width:40px;height:40px;border-radius:11px;border:1px solid var(--gold-line);background:var(--gold-soft);color:var(--gold)}
 .ex-chev svg{display:block;transition:transform .22s ease-out}
-.ex-chev path:nth-child(2){opacity:.68}
-.ex-chev path:nth-child(3){opacity:.4}
-.ex-toggle:hover .ex-chev svg{transform:translateY(2px)}
+.ex-chev path:nth-child(2){opacity:.75}
+.ex-chev path:nth-child(3){opacity:.5}
 .ex-toggle[aria-expanded="true"] .ex-chev svg{transform:rotate(180deg)}
-.ex-toggle[aria-expanded="true"]:hover .ex-chev svg{transform:rotate(180deg) translateY(2px)}
+/* hover solo con puntatore fine: su touch :hover resta attivo dopo il tocco */
+@media(hover:hover) and (pointer:fine){
+  .ex-toggle:hover{border-color:var(--gold)}
+  .ex-toggle:hover .ex-chev svg{transform:translateY(2px)}
+  .ex-toggle[aria-expanded="true"]:hover .ex-chev svg{transform:rotate(180deg) translateY(2px)}
+}
 .ex-lbl{font-weight:600;letter-spacing:-.005em}
 .ex-count{font:500 11.5px/1 'JetBrains Mono',ui-monospace,monospace;color:var(--ink-dim);padding:5px 8px;border:1px solid var(--line);border-radius:999px;background:var(--bg)}
 .ex-count[hidden]{display:none}
-.ex-now{justify-self:end;display:flex;align-items:center;gap:7px;min-width:0;max-width:100%;color:var(--ink-dim);font-size:13.5px;white-space:nowrap}
-.ex-now b{color:var(--ink);font-weight:600}
-.ex-now-fam{min-width:0;overflow:hidden;text-overflow:ellipsis}
-.ex-now-dot{width:9px;height:9px;border-radius:50%;flex:none;box-shadow:0 0 0 3px var(--bg)}
+/* «In vista»: il nome si accorcia con i puntini (mai più largo del bottone); la famiglia cede per prima */
+.ex-now{justify-self:end;display:flex;align-items:center;gap:7px;min-width:0;max-width:100%;overflow:hidden;color:var(--ink-dim);font-size:13.5px;white-space:nowrap}
+.ex-now-k,.ex-now-dot{flex:none}
+.ex-now b{min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--ink);font-weight:600}
+.ex-now-fam{flex:0 1000 auto;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.ex-now-fam:empty{display:none}
+.ex-now-dot{width:9px;height:9px;border-radius:50%;box-shadow:0 0 0 3px var(--bg)}
 @media(max-width:640px){
   .ex-toggle{grid-template-columns:auto minmax(0,1fr) auto;gap:4px 12px;padding:9px 14px 10px 10px}
-  .ex-now{grid-column:2/-1;justify-self:start;font-size:13px}
+  /* telefono: il nome va a capo (massimo 2 righe), senza allargare la pagina */
+  .ex-now{grid-column:2/-1;justify-self:start;align-items:flex-start;font-size:13px;white-space:normal}
+  .ex-now-dot{margin-top:4px}
+  .ex-now b{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow-wrap:anywhere}
   .ex-now-fam{display:none}
 }
+/* elenco: il bersaglio in vista è marcato in oro (in entrambi i temi; prima, nel tema chiaro, era uguale agli altri) */
+#chip-zone .chip.sel{border-color:var(--gold);background:var(--gold-soft);box-shadow:0 0 0 1px var(--gold) inset,var(--sh-1)}
+#chip-zone .chip.sel .tag{color:var(--ink-dim)}
+/* fondo dell'elenco: chiudi senza dover risalire */
+.ex-foot{display:flex;justify-content:center;padding:10px 0 4px}
+.ex-close{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border:1px solid var(--line2);border-radius:999px;
+  background:var(--panel);color:var(--ink-dim);font:600 13.5px/1 var(--ui);cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:border-color .18s ease-out,color .18s ease-out}
+.ex-close svg{flex:none;color:var(--gold)}
+.ex-close:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media(hover:hover) and (pointer:fine){ .ex-close:hover{border-color:var(--gold);color:var(--ink)} }
 /* cassetto: altezza (grid 0fr → 1fr) + opacità, 240 ms; chiuso = inert e invisibile */
 .ex-drawer{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;
   transition:grid-template-rows .24s ease-out,opacity .2s ease-out,visibility 0s linear .24s}
@@ -1108,6 +1132,12 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 .ex-drawer.ex-instant,.ex-drawer.ex-instant *{transition:none!important}
 #view-explorer .dl-bar{margin-top:10px}
 #view-explorer .stage{margin-top:14px}
+/* desktop: altezza del modello calcolata dal JS (--ex-cv, 440–580 px) perché barra + card + toolbar stiano nello schermo
+   quando la barra è sotto la tab bar; il pannello accanto ha la stessa altezza */
+@media(min-width:901px){
+  #view-explorer #canvas-host{height:var(--ex-cv,580px)}
+  #view-explorer .stage .panel{max-height:calc(var(--ex-cv,580px) + 2px)}
+}
 @media(max-width:640px){
   .ex-drawer #chip-zone{padding:12px 10px 2px}
   /* modello su telefono: niente sovrapposizioni nella card (la topologia resta nel pannello, riga «topologia») */
@@ -1116,7 +1146,7 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
   .viewer-card .hint{display:none}
 }
 @media(prefers-reduced-motion:reduce){
-  .ex-drawer,.ex-drawer.open,.ex-toggle,.ex-chev svg{transition:none}
+  .ex-drawer,.ex-drawer.open,.ex-toggle,.ex-chev svg,.ex-close{transition:none}
   .ex-toggle:hover .ex-chev svg{transform:none}
   .ex-toggle[aria-expanded="true"] .ex-chev svg,.ex-toggle[aria-expanded="true"]:hover .ex-chev svg{transform:rotate(180deg)}
 }
@@ -1182,15 +1212,16 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
     <!-- elenco di canali e recettori in un cassetto: all'apertura si vede subito il modello 3D -->
     <div class="ex-bar" id="ex-bar">
       <button type="button" class="ex-toggle" id="ex-toggle" aria-expanded="false" aria-controls="ex-drawer">
-        <span class="ex-chev" aria-hidden="true"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5l5 3.5 5-3.5"/><path d="M5 8.5l5 3.5 5-3.5"/><path d="M5 13.5l5 3.5 5-3.5"/></svg></span>
+        <span class="ex-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l6 4 6-4"/><path d="M6 10l6 4 6-4"/><path d="M6 16l6 4 6-4"/></svg></span>
         <span class="ex-lbl" id="ex-lbl">Guarda canali e recettori</span>
         <span class="ex-count" id="ex-count" aria-hidden="true"></span>
-        <span class="ex-now" id="ex-now"><span class="ex-now-dot" id="ex-now-dot"></span><span class="ex-now-k" id="ex-now-k">In vista:</span><b id="ex-now-name">—</b><span class="ex-now-fam" id="ex-now-fam"></span></span>
+        <span class="ex-now" id="ex-now"><span class="ex-now-dot" id="ex-now-dot"></span><span class="ex-now-k" id="ex-now-k">In vista:</span><b id="ex-now-name">Na⁺ (Naᵥ)</b><span class="ex-now-fam" id="ex-now-fam"></span></span>
       </button>
     </div>
     <div class="ex-drawer" id="ex-drawer" inert>
       <div class="ex-drawer-in">
         <div id="chip-zone"></div>
+        <div class="ex-foot"><button type="button" class="ex-close" id="ex-close" aria-controls="ex-drawer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 14l6-4 6 4"/></svg><span id="ex-close-l">Chiudi elenco</span></button></div>
       </div>
     </div>
     <!-- deep link (#card= / #target= / #q=): contesto, bersagli rapidi o avviso -->
@@ -2328,7 +2359,7 @@ function buildSinglePass(cfg){
 function buildModel(id){
   stopTour();
   current=id; selected=null;
-  if(!renderer){document.getElementById('vt-name').textContent=C[id].name;document.getElementById('vt-sub').textContent=C[id].topo;showOverview(id);return;}
+  if(!renderer){document.getElementById('vt-name').textContent=C[id].name;document.getElementById('vt-sub').textContent=C[id].topo;showOverview(id);exAfterModel(id);return;}
   clearModel();
   const cfg=C[id];
   buildMembrane();
@@ -4404,7 +4435,7 @@ function dlOpen(id){
   buildModel(id);
   document.querySelectorAll('#chip-zone .chip').forEach(ch=>ch.classList.toggle('sel',ch.dataset.id===id));
   dlRender(); dlMark(true);
-  dlScrollTo(dl?document.getElementById('dl-bar'):document.querySelector('#view-explorer .stage'));
+  exDlScroll(dl?document.getElementById('dl-bar'):document.querySelector('#view-explorer .stage')); // slot explorer: barra «In vista» visibile se c'è spazio
 }
 function dlNotice(){ closeDrugModal(); switchView('explorer'); dlRender(); dlScrollTo(document.getElementById('dl-bar')); }
 /* #q: testo nella ricerca dei bersagli; se nessun chip corrisponde, cerca tra i nomi dei farmaci */
@@ -4528,27 +4559,66 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDrugM
 /* ═══ slot explorer: inizio (solo il suo agente) ═══ */
 /* Esploratore: all'apertura si vede subito il modello 3D; l'elenco di canali e recettori
    (#chip-zone, ricerca, Espandi/Comprimi) sta in un cassetto aperto dal bottone #ex-toggle.
-   exAfterModel / exDrawer / exIsOpen sono chiamate anche da buildModel, dlOpen, dlQuery e navStep,
+   exAfterModel / exDrawer / exIsOpen / exDlScroll sono chiamate anche da buildModel, dlOpen, dlQuery e navStep,
    a volte prima che questo slot sia eseguito: per questo lo stato usa var e niente const in TDZ. */
 var exReady=false;
 var EX_KEY='cr-ex-last';
+var exSelT=0;
 var EX_L={
-  it:{open:'Guarda canali e recettori',close:'Nascondi canali e recettori',now:'In vista:',count:' bersagli'},
-  en:{open:'Browse channels & receptors',close:'Hide channels & receptors',now:'Viewing:',count:' targets'}
+  it:{open:'Guarda canali e recettori',close:'Nascondi canali e recettori',now:'In vista:',count:' bersagli',closeList:'Chiudi elenco'},
+  en:{open:'Browse channels & receptors',close:'Hide channels & receptors',now:'Viewing:',count:' targets',closeList:'Close list'}
 };
 function exT(k){ const L=EX_L[LANG==='en'?'en':'it']||EX_L.it; return L[k]; }
 function exIsOpen(){ const d=document.getElementById('ex-drawer'); return !!(d&&d.classList.contains('open')); }
+function exLive(){ const v=document.getElementById('view-explorer'); return !!(v&&v.classList.contains('active')); }
 function exReduced(){ try{ return matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(_){ return false; } }
-/* apre/chiude il cassetto; instant = senza transizione (deep link, misure di scroll affidabili) */
+/* dove si ferma la barra sotto la tab bar sticky (stesso scarto di dlScrollTo: top della tab bar + altezza + 12) */
+function exStickTop(){
+  const tabs=document.querySelector('.tabs'); if(!tabs) return 12;
+  const cs=getComputedStyle(tabs); if(cs.position!=='sticky'&&cs.position!=='fixed') return 12;
+  return Math.round((parseFloat(cs.top)||0)+tabs.getBoundingClientRect().height+12);
+}
+function exSyncStick(){ const bar=document.getElementById('ex-bar'); if(bar) bar.style.setProperty('--ex-stick',exStickTop()+'px'); }
+/* desktop (≥901 px): il canvas si accorcia (fino a 440 px) quanto basta perché, con la barra ferma sotto la tab bar,
+   card e toolbar entrino interi nello schermo. 2 = margine della barra, 14 = margine dello stage, 2 = bordi, 10 = respiro */
+function exFitCanvas(){
+  const v=document.getElementById('view-explorer'); if(!v) return;
+  if(innerWidth<901){ v.style.removeProperty('--ex-cv'); return; }
+  const bar=document.getElementById('ex-bar'), bh=(bar&&bar.offsetHeight)||60;
+  const h=Math.round(Math.min(580,Math.max(440,innerHeight-exStickTop()-bh-2-14-2-10)));
+  v.style.setProperty('--ex-cv',h+'px');
+}
+/* scroll della finestra; istantaneo anche con html{scroll-behavior:smooth} */
+function exScrollTo(y,smooth){
+  y=Math.max(0,Math.round(y));
+  if(smooth){ window.scrollTo({top:y,behavior:'smooth'}); return; }
+  const root=document.documentElement, prev=root.style.scrollBehavior; root.style.scrollBehavior='auto'; window.scrollTo(0,y); root.style.scrollBehavior=prev;
+}
+/* apre/chiude il cassetto; instant = senza transizione (deep link, cambio di vista, misure di scroll affidabili) */
 function exDrawer(open,instant){
-  const d=document.getElementById('ex-drawer'), b=document.getElementById('ex-toggle'); if(!d||!b) return;
+  const d=document.getElementById('ex-drawer'), b=document.getElementById('ex-toggle'), bar=document.getElementById('ex-bar'); if(!d||!b) return;
   open=!!open; if(open===exIsOpen()) return;
+  const live=exLive(), prevTop=(!open&&live&&bar)?bar.getBoundingClientRect().top:null;
   if(instant) d.classList.add('ex-instant');
-  d.classList.toggle('open',open); b.setAttribute('aria-expanded',String(open));
+  if(open) exSyncStick();
+  d.classList.toggle('open',open); b.setAttribute('aria-expanded',String(open)); if(bar) bar.classList.toggle('is-open',open);
   if(open){ d.removeAttribute('inert'); exRevealSel(); }
-  else { if(d.contains(document.activeElement)) b.focus({preventScroll:true}); d.setAttribute('inert',''); }
+  else {
+    clearTimeout(exSelT);
+    if(d.contains(document.activeElement)) b.focus({preventScroll:true});
+    d.setAttribute('inert','');
+    if(prevTop!==null) exKeepBar(prevTop);
+  }
   if(instant){ void d.offsetHeight; d.classList.remove('ex-instant'); }
   if(exReady) exSyncLabel();
+}
+/* alla chiusura la barra smette di essere sticky: la pagina scorre (istantaneo) perché resti dov'era sullo schermo,
+   e il modello sale subito sotto di lei. Se era fuori vista, torna sotto la tab bar. */
+function exKeepBar(prevTop){
+  const bar=document.getElementById('ex-bar'); if(!bar) return;
+  const top=bar.getBoundingClientRect().top;
+  const want=(prevTop>=0&&prevTop<=innerHeight-80)?prevTop:exStickTop();
+  if(Math.abs(top-want)>1) exScrollTo(window.scrollY+top-want,false);
 }
 /* all'apertura mostra il chip del modello in vista: espande la sua famiglia (non durante una ricerca) */
 function exRevealSel(){
@@ -4558,13 +4628,28 @@ function exRevealSel(){
   row.classList.remove('collapsed'); if(row.dataset.fam) openFams.add(row.dataset.fam);
   const h=row.querySelector('.acc-head'); if(h) h.setAttribute('aria-expanded','true');
 }
+/* apertura dal bottone: se il chip in vista è sotto il bordo dello schermo, la pagina scende fin lì (a cassetto già aperto) */
+function exScrollSel(){
+  clearTimeout(exSelT);
+  const s=document.getElementById('fam-search'); if(s&&s.value.trim()) return;
+  exSelT=setTimeout(()=>{
+    if(!exIsOpen()||!exLive()) return;
+    const ch=document.querySelector('#chip-zone .chip[data-id="'+current+'"]'); if(!ch||!ch.offsetParent) return;
+    const r=ch.getBoundingClientRect(); if(r.bottom<=innerHeight-24) return;
+    exScrollTo(window.scrollY+r.bottom-innerHeight+Math.min(innerHeight*0.3,200),!exReduced());
+  },exReduced()?0:260);
+}
 function exSyncLabel(){
   const open=exIsOpen();
   const l=document.getElementById('ex-lbl'); if(l) l.textContent=exT(open?'close':'open');
   const n=document.querySelectorAll('#chip-zone .chip').length;
   const c=document.getElementById('ex-count'); if(c){ c.textContent=n?String(n):''; c.hidden=!n; }
-  const b=document.getElementById('ex-toggle'); if(b) b.title=n?(n+exT('count')):'';
+  const t=C[current], nm=t?(t.short||t.name):'';
+  const b=document.getElementById('ex-toggle'); if(b) b.title=[nm?exT('now')+' '+nm:'',n?n+exT('count'):''].filter(Boolean).join(' · '); // nome completo anche se la barra lo accorcia
   const k=document.getElementById('ex-now-k'); if(k) k.textContent=exT('now');
+  const x=document.getElementById('ex-close-l'); if(x) x.textContent=exT('closeList');
+  if(open) exSyncStick();
+  exFitCanvas(); // le etichette delle tab (lingua) possono cambiare l'altezza della tab bar
 }
 function exSyncNow(){
   const c=C[current]; if(!c) return;
@@ -4572,33 +4657,62 @@ function exSyncNow(){
   const nm=document.getElementById('ex-now-name'); if(nm) nm.textContent=c.short||c.name;
   const fm=document.getElementById('ex-now-fam'); if(fm) fm.textContent=c.fam?('· '+famLabel(c.fam)):'';
 }
-/* chiamata alla fine di buildModel: aggiorna la barra e ricorda l'ultimo bersaglio visto */
+/* chiamata alla fine di buildModel (anche senza 3D): chip in vista marcato, barra aggiornata, ultimo bersaglio ricordato */
 function exAfterModel(id){
+  document.querySelectorAll('#chip-zone .chip').forEach(ch=>{
+    const on=ch.dataset.id===id; ch.classList.toggle('sel',on);
+    if(on) ch.setAttribute('aria-current','true'); else ch.removeAttribute('aria-current');
+  });
   if(!exReady) return;
   exSyncNow(); exSyncLabel();
   try{ localStorage.setItem(EX_KEY,id); }catch(_){ }
 }
-/* dopo la scelta di un chip: se la barra è uscita dalla vista, riporta su barra + modello */
-function exBringModel(){
-  const bar=document.getElementById('ex-bar'); if(!bar) return;
-  const tabs=document.querySelector('.tabs'); const off=(tabs?tabs.getBoundingClientRect().height+10:0)+12;
-  const top=bar.getBoundingClientRect().top;
+/* posizione nel documento senza i transform dell'animazione d'ingresso della vista (viewIn sposta di qualche px) */
+function exDocTop(el){ let y=0; for(let e=el;e;e=e.offsetParent) y+=e.offsetTop; return y; }
+/* dopo un cambio di modello: se la barra non è in vista, riporta su barra + modello */
+function exBringModel(instant){
+  const bar=document.getElementById('ex-bar'); if(!bar||!exLive()) return;
+  const off=exStickTop(), y=exDocTop(bar), top=y-window.scrollY;
   if(top>=off-1&&top<innerHeight*0.5) return;
-  window.scrollTo({top:Math.max(0,top+window.scrollY-off),behavior:exReduced()?'auto':'smooth'});
+  exScrollTo(y-off,!instant&&!exReduced());
+}
+/* deep link #card / #target: se barra «In vista», avviso e card del modello stanno insieme sotto la tab bar, si scorre
+   alla barra; altrimenti al bersaglio scelto da dlOpen (avviso o modello). Sempre sotto la tab bar sticky. */
+function exDlScroll(el){
+  exFitCanvas(); // al primo avvio dlOpen gira prima di questo slot: altezza del canvas già quella finale
+  const bar=document.getElementById('ex-bar'), card=document.querySelector('#view-explorer .viewer-card');
+  if(bar&&card&&exDocTop(card)+card.offsetHeight-exDocTop(bar)<=innerHeight-exStickTop()) el=bar;
+  if(!el) return;
+  exScrollTo(exDocTop(el)-exStickTop(),false);
 }
 (function exInit(){
   const b=document.getElementById('ex-toggle'), d=document.getElementById('ex-drawer'), zone=document.getElementById('chip-zone');
   if(!b||!d||!zone) return;
-  b.addEventListener('click',()=>exDrawer(!exIsOpen()));
+  b.addEventListener('click',()=>{ const o=!exIsOpen(); exDrawer(o); if(o) exScrollSel(); });
+  const x=document.getElementById('ex-close'); if(x) x.addEventListener('click',()=>exDrawer(false));
   /* scelta di un chip (il suo onclick ha già caricato il modello): il cassetto si chiude, il modello resta in vista */
   zone.addEventListener('click',e=>{ const ch=e.target.closest&&e.target.closest('button.chip'); if(!ch) return; exDrawer(false); exBringModel(); });
   document.addEventListener('keydown',e=>{
     if(e.key!=='Escape'||!exIsOpen()) return;
     const dm=document.getElementById('drug-modal'); if(dm&&!dm.hidden) return;
-    const ex=document.getElementById('view-explorer'); if(!ex||!ex.classList.contains('active')) return;
+    if(!exLive()) return;
     if(e.target&&e.target.id==='fam-search'&&e.target.value) return; // Esc nella ricerca: prima svuota il campo
     exDrawer(false); b.focus({preventScroll:true});
   });
+  /* si lascia l'esploratore: l'elenco si chiude, al ritorno si vede di nuovo il modello */
+  document.querySelectorAll('.tab[data-view]').forEach(t=>t.addEventListener('click',()=>{ if(t.dataset.view!=='explorer') exDrawer(false,true); }));
+  /* riga della Tabella comparativa o «Apri in 3D» della scheda farmaco: cassetto chiuso (fase di cattura, prima del loro
+     handler) e, dopo il cambio di modello, barra + modello in vista */
+  document.addEventListener('click',e=>{
+    const hit=e.target&&e.target.closest&&e.target.closest('#tbl-body tr,#dm-open'); if(!hit) return;
+    exDrawer(false,true);
+    setTimeout(()=>exBringModel(true),0);
+  },true);
+  /* altezza della finestra o della tab bar (font caricati, lingua, righe di tab) → canvas e barra sticky */
+  const refit=()=>{ exFitCanvas(); if(exIsOpen()) exSyncStick(); };
+  addEventListener('resize',refit);
+  const tabsEl=document.querySelector('.tabs');
+  if(tabsEl&&typeof ResizeObserver==='function') new ResizeObserver(refit).observe(tabsEl);
   /* ultimo bersaglio visto (salvo deep link #card= / #target=, che hanno già scelto il modello) */
   let restore=true;
   try{ const p=new URLSearchParams((location.hash||'').replace(/^#/,'')); if(p.has('card')||p.has('target')) restore=false; }catch(_){ }
@@ -4608,7 +4722,7 @@ function exBringModel(){
     if(last&&last!==current&&C[last]&&allTargetIds().indexOf(last)>=0) buildModel(last);
   }
   else if(C[current]){ try{ localStorage.setItem(EX_KEY,current); }catch(_){ } } // anche il bersaglio aperto da deep link conta come «ultimo visto»
-  exSyncLabel(); exSyncNow();
+  exAfterModel(current);
   /* il renderer segue le dimensioni reali di #canvas-host (cassetto, griglia, rotazione del telefono) */
   const host=document.getElementById('canvas-host');
   if(host&&typeof ResizeObserver==='function'){

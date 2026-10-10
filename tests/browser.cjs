@@ -64,11 +64,25 @@ const {chromium}=require('playwright');
  assert.equal(await explore.locator('#chip-zone button.chip').count(),81);
  assert.match(await explore.locator('#canvas-host').innerText(),/unavailable/);
  await explore.locator('#chip-zone button.chip').first().click();
+ // Without 3D the "In vista" bar must still follow the chosen target (not only the first one, already current).
+ await explore.locator('#ex-toggle').click();
+ await explore.locator('#chip-zone button.chip[data-id="gabaa"]').click();
+ assert.match(await explore.locator('#ex-now-name').innerText(),/GABA-A/);
+ assert.equal(await explore.locator('#ex-toggle').getAttribute('aria-expanded'),'false','Picking a target closes the list');
+ // Long target names in the bar must never widen the page on phones.
+ for(const width of [320,375]){
+   await page.setViewportSize({width,height:844});
+   const wide=await explore.evaluate(()=>{const t=document.getElementById('ex-toggle'),out=[];
+     for(const ch of document.querySelectorAll('#chip-zone button.chip')){ if(t.getAttribute('aria-expanded')!=='true') t.click(); ch.click(); if(document.documentElement.scrollWidth>innerWidth) out.push(ch.dataset.id); }
+     return out;});
+   assert.deepEqual(wide,[],'Explorer wider than the viewport at '+width+'px: '+wide.join(' '));
+ }
+ await page.setViewportSize({width:390,height:844});
  assert.equal(errors.length,0,errors.join('\n'));
  await page.evaluate(async()=>{await Promise.all(document.getAnimations().filter(a=>a.effect?.getTiming().iterations!==Infinity).map(a=>a.finished.catch(()=>{})));});
  await page.screenshot({path:'implementation/mobile-verified.png'});
  await page.reload();
  assert.equal(await page.locator('#tour:not([hidden])').count(),0,'Skipped tutorial must not repeat');
  await page.locator('#help').click();await page.locator('#tour-next').click();assert.match(await page.locator('#tour-n').innerText(),/^2 /);
- await browser.close();console.log('6 viewport widths, navigation, strict quiz, no-repeat, backup roundtrip/rejection, retained session, fixed bar, tutorial replay and CDN fallback passed');
+ await browser.close();console.log('6 viewport widths, navigation, strict quiz, no-repeat, backup roundtrip/rejection, retained session, fixed bar, tutorial replay, CDN fallback and explorer bar (target, 320/375 px overflow) passed');
 })().catch(e=>{console.error(e);process.exit(1);});
