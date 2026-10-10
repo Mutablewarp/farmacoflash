@@ -6,6 +6,7 @@ Icon?
 
 # log di sessione / file temporanei
 .claude/logs/
+.claude/worktrees/
 build/_*.js
 build/_*.py
 build/*.tmp

@@ -8,7 +8,7 @@ Lingua dei contenuti: italiano (inglese secondario). Design: `PRODUCT.md`.
 1. **Anonimato.** Nessun nome di docente, università o persona reale in file versionati, commit, screenshot,
    messaggi o pagine. L'unico riferimento ammesso è la parola anonima "docente". Prima di ogni commit:
    `npm run privacy` (cerca i termini del file locale `.privacy-terms`, non versionato).
-2. **Copyright.** `build/sources/` (testo del Goodman & Gilman, approfondimenti grezzi) e le sbobine restano locali
+2. **Copyright.** `build/sources/` (testo del Goodman & Gilman, approfondimenti grezzi) e gli appunti delle lezioni restano locali
    e gitignored. Nelle carte si parafrasa e si cita la pagina, mai copia estesa.
 3. **Contenuto clinico mai automatico.** Il feed Novità (`novita.json`) elenca link a fonti ufficiali; le carte si
    correggono solo a mano, dopo verifica sulla fonte.
