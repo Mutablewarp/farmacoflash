@@ -1069,6 +1069,57 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 <!-- ─ -->
 <style data-slot="explorer">
 /* slot explorer: CSS di questa funzione (solo il suo agente) */
+/* barra del cassetto: bottone a tutta larghezza, chevron triplo + bersaglio in vista */
+.ex-bar{margin:2px 0 0}
+.ex-toggle{display:grid;grid-template-columns:auto auto auto minmax(0,1fr);align-items:center;gap:6px 12px;width:100%;min-height:58px;padding:9px 18px 9px 10px;
+  border:1px solid var(--line2);border-radius:var(--r-md);background:var(--panel);color:var(--ink);box-shadow:var(--sh-1);
+  font:500 14.5px/1.3 var(--ui);text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:border-color .18s ease-out,box-shadow .18s ease-out,background-color .18s ease-out}
+.ex-toggle:hover{border-color:var(--gold)}
+.ex-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.ex-toggle[aria-expanded="true"]{border-color:var(--gold-line);background:var(--panel2)}
+.ex-chev{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;border:1px solid var(--gold-line);background:var(--gold-soft);color:var(--gold)}
+.ex-chev svg{display:block;transition:transform .22s ease-out}
+.ex-chev path:nth-child(2){opacity:.68}
+.ex-chev path:nth-child(3){opacity:.4}
+.ex-toggle:hover .ex-chev svg{transform:translateY(2px)}
+.ex-toggle[aria-expanded="true"] .ex-chev svg{transform:rotate(180deg)}
+.ex-toggle[aria-expanded="true"]:hover .ex-chev svg{transform:rotate(180deg) translateY(2px)}
+.ex-lbl{font-weight:600;letter-spacing:-.005em}
+.ex-count{font:500 11.5px/1 'JetBrains Mono',ui-monospace,monospace;color:var(--ink-dim);padding:5px 8px;border:1px solid var(--line);border-radius:999px;background:var(--bg)}
+.ex-count[hidden]{display:none}
+.ex-now{justify-self:end;display:flex;align-items:center;gap:7px;min-width:0;max-width:100%;color:var(--ink-dim);font-size:13.5px;white-space:nowrap}
+.ex-now b{color:var(--ink);font-weight:600}
+.ex-now-fam{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.ex-now-dot{width:9px;height:9px;border-radius:50%;flex:none;box-shadow:0 0 0 3px var(--bg)}
+@media(max-width:640px){
+  .ex-toggle{grid-template-columns:auto minmax(0,1fr) auto;gap:4px 12px;padding:9px 14px 10px 10px}
+  .ex-now{grid-column:2/-1;justify-self:start;font-size:13px}
+  .ex-now-fam{display:none}
+}
+/* cassetto: altezza (grid 0fr → 1fr) + opacità, 240 ms; chiuso = inert e invisibile */
+.ex-drawer{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;
+  transition:grid-template-rows .24s ease-out,opacity .2s ease-out,visibility 0s linear .24s}
+.ex-drawer.open{grid-template-rows:1fr;opacity:1;visibility:visible;
+  transition:grid-template-rows .24s ease-out,opacity .2s ease-out,visibility 0s linear 0s}
+.ex-drawer-in{min-height:0;overflow:hidden}
+.ex-drawer #chip-zone{margin:8px 0 2px;padding:16px 16px 4px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--panel)}
+.ex-drawer .fam-ctl{margin-top:0}
+.ex-drawer.ex-instant,.ex-drawer.ex-instant *{transition:none!important}
+#view-explorer .dl-bar{margin-top:10px}
+#view-explorer .stage{margin-top:14px}
+@media(max-width:640px){
+  .ex-drawer #chip-zone{padding:12px 10px 2px}
+  /* modello su telefono: niente sovrapposizioni nella card (la topologia resta nel pannello, riga «topologia») */
+  .viewer-card .viewer-title .sub{display:none}
+  .viewer-card .viewer-title .nm{font-size:19px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .viewer-card .hint{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .ex-drawer,.ex-drawer.open,.ex-toggle,.ex-chev svg{transition:none}
+  .ex-toggle:hover .ex-chev svg{transform:none}
+  .ex-toggle[aria-expanded="true"] .ex-chev svg,.ex-toggle[aria-expanded="true"]:hover .ex-chev svg{transform:rotate(180deg)}
+}
 </style>
 <!-- ─ -->
 <style data-slot="anim">
@@ -1128,7 +1179,20 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 
   <!-- ========== VIEW: EXPLORER ========== -->
   <section class="view active" id="view-explorer">
-    <div id="chip-zone"></div>
+    <!-- elenco di canali e recettori in un cassetto: all'apertura si vede subito il modello 3D -->
+    <div class="ex-bar" id="ex-bar">
+      <button type="button" class="ex-toggle" id="ex-toggle" aria-expanded="false" aria-controls="ex-drawer">
+        <span class="ex-chev" aria-hidden="true"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5l5 3.5 5-3.5"/><path d="M5 8.5l5 3.5 5-3.5"/><path d="M5 13.5l5 3.5 5-3.5"/></svg></span>
+        <span class="ex-lbl" id="ex-lbl">Guarda canali e recettori</span>
+        <span class="ex-count" id="ex-count" aria-hidden="true"></span>
+        <span class="ex-now" id="ex-now"><span class="ex-now-dot" id="ex-now-dot"></span><span class="ex-now-k" id="ex-now-k">In vista:</span><b id="ex-now-name">—</b><span class="ex-now-fam" id="ex-now-fam"></span></span>
+      </button>
+    </div>
+    <div class="ex-drawer" id="ex-drawer" inert>
+      <div class="ex-drawer-in">
+        <div id="chip-zone"></div>
+      </div>
+    </div>
     <!-- deep link (#card= / #target= / #q=): contesto, bersagli rapidi o avviso -->
     <div id="dl-bar" class="dl-bar" hidden>
       <p class="dl-msg" id="dl-msg" role="status" aria-live="polite"></p>
@@ -1812,7 +1876,7 @@ function showTip(label,clientX,clientY){ const tip=document.getElementById('cv-t
 function hideTip(){ const tip=document.getElementById('cv-tip'); if(tip)tip.hidden=true; }
 /* ---- navigazione tra bersagli (← →) ---- */
 function allTargetIds(){ return FAMS.reduce((a,F)=>a.concat(F.chans||[]),[]); }
-function navStep(dir){ if(!modelGroup)return; const ids=allTargetIds(); let i=ids.indexOf(current); if(i<0)i=0; i=(i+dir+ids.length)%ids.length; buildModel(ids[i]); flyHome(); const ch=document.querySelector('.chip[data-id="'+ids[i]+'"]'); if(ch&&ch.scrollIntoView)ch.scrollIntoView({block:'nearest',inline:'center'}); }
+function navStep(dir){ if(!modelGroup)return; const ids=allTargetIds(); let i=ids.indexOf(current); if(i<0)i=0; i=(i+dir+ids.length)%ids.length; buildModel(ids[i]); flyHome(); const ch=document.querySelector('.chip[data-id="'+ids[i]+'"]'); if(ch&&ch.scrollIntoView&&exIsOpen())ch.scrollIntoView({block:'nearest',inline:'center'}); }
 function ease(x){return x<0.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;}
 function flyTo(point,dist){
   if(!controls)return;
@@ -2287,6 +2351,7 @@ function buildModel(id){
   document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('sel',c.dataset.id===id));
   // bottone Mg²⁺ solo per il modello NMDA/glutammato
   const mgb=document.getElementById('btn-mg'); if(mgb){ mgb.style.display=(id==='glu')?'':'none'; mgb.classList.toggle('on',mgPlay); }
+  exAfterModel(id); // barra del cassetto: bersaglio in vista + ultimo visto (slot explorer)
 }
 
 /* ---- explode ---- */
@@ -4334,7 +4399,7 @@ function dlScrollTo(el){
 /* apre il bersaglio come un clic sul suo chip */
 function dlOpen(id){
   if(!C[id]) return;
-  closeDrugModal(); switchView('explorer');
+  closeDrugModal(); switchView('explorer'); exDrawer(false,true); // il modello resta in vista: cassetto chiuso
   if(dl) dl.sel=id;
   buildModel(id);
   document.querySelectorAll('#chip-zone .chip').forEach(ch=>ch.classList.toggle('sel',ch.dataset.id===id));
@@ -4344,12 +4409,12 @@ function dlOpen(id){
 function dlNotice(){ closeDrugModal(); switchView('explorer'); dlRender(); dlScrollTo(document.getElementById('dl-bar')); }
 /* #q: testo nella ricerca dei bersagli; se nessun chip corrisponde, cerca tra i nomi dei farmaci */
 function dlQuery(q){
-  closeDrugModal(); switchView('explorer');
+  closeDrugModal(); switchView('explorer'); exDrawer(true,true); // #q: elenco aperto con la ricerca applicata
   const s=document.getElementById('fam-search'); if(s){ s.value=q; famSearch({target:s}); }
   const anyChip=[...document.querySelectorAll('#chip-zone .chip')].some(ch=>ch.style.display!=='none');
   const qq=dlNorm(q);
   dl=(qq&&!anyChip)?{kind:'q',q,hits:qq.length>=3?dlFind(n=>dlNorm(n).indexOf(qq)>=0):[],sel:null}:null;
-  dlRender(); dlScrollTo(document.getElementById('chip-zone'));
+  dlRender(); dlScrollTo(document.getElementById('ex-bar')||document.getElementById('chip-zone'));
 }
 function dlApply(hash){
   let p; try{ p=new URLSearchParams((typeof hash==='string'?hash:location.hash||'').replace(/^#/,'')); }catch(_){ return; }
@@ -4461,6 +4526,96 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDrugM
 /* ═══ slot header: fine ═══ */
 // ·
 /* ═══ slot explorer: inizio (solo il suo agente) ═══ */
+/* Esploratore: all'apertura si vede subito il modello 3D; l'elenco di canali e recettori
+   (#chip-zone, ricerca, Espandi/Comprimi) sta in un cassetto aperto dal bottone #ex-toggle.
+   exAfterModel / exDrawer / exIsOpen sono chiamate anche da buildModel, dlOpen, dlQuery e navStep,
+   a volte prima che questo slot sia eseguito: per questo lo stato usa var e niente const in TDZ. */
+var exReady=false;
+var EX_KEY='cr-ex-last';
+var EX_L={
+  it:{open:'Guarda canali e recettori',close:'Nascondi canali e recettori',now:'In vista:',count:' bersagli'},
+  en:{open:'Browse channels & receptors',close:'Hide channels & receptors',now:'Viewing:',count:' targets'}
+};
+function exT(k){ const L=EX_L[LANG==='en'?'en':'it']||EX_L.it; return L[k]; }
+function exIsOpen(){ const d=document.getElementById('ex-drawer'); return !!(d&&d.classList.contains('open')); }
+function exReduced(){ try{ return matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(_){ return false; } }
+/* apre/chiude il cassetto; instant = senza transizione (deep link, misure di scroll affidabili) */
+function exDrawer(open,instant){
+  const d=document.getElementById('ex-drawer'), b=document.getElementById('ex-toggle'); if(!d||!b) return;
+  open=!!open; if(open===exIsOpen()) return;
+  if(instant) d.classList.add('ex-instant');
+  d.classList.toggle('open',open); b.setAttribute('aria-expanded',String(open));
+  if(open){ d.removeAttribute('inert'); exRevealSel(); }
+  else { if(d.contains(document.activeElement)) b.focus({preventScroll:true}); d.setAttribute('inert',''); }
+  if(instant){ void d.offsetHeight; d.classList.remove('ex-instant'); }
+  if(exReady) exSyncLabel();
+}
+/* all'apertura mostra il chip del modello in vista: espande la sua famiglia (non durante una ricerca) */
+function exRevealSel(){
+  const s=document.getElementById('fam-search'); if(s&&s.value.trim()) return;
+  const ch=document.querySelector('#chip-zone .chip[data-id="'+current+'"]'); if(!ch) return;
+  const row=ch.closest('.fam-row'); if(!row||!row.classList.contains('collapsed')) return;
+  row.classList.remove('collapsed'); if(row.dataset.fam) openFams.add(row.dataset.fam);
+  const h=row.querySelector('.acc-head'); if(h) h.setAttribute('aria-expanded','true');
+}
+function exSyncLabel(){
+  const open=exIsOpen();
+  const l=document.getElementById('ex-lbl'); if(l) l.textContent=exT(open?'close':'open');
+  const n=document.querySelectorAll('#chip-zone .chip').length;
+  const c=document.getElementById('ex-count'); if(c){ c.textContent=n?String(n):''; c.hidden=!n; }
+  const b=document.getElementById('ex-toggle'); if(b) b.title=n?(n+exT('count')):'';
+  const k=document.getElementById('ex-now-k'); if(k) k.textContent=exT('now');
+}
+function exSyncNow(){
+  const c=C[current]; if(!c) return;
+  const dot=document.getElementById('ex-now-dot'); if(dot) dot.style.background=accentOf(c);
+  const nm=document.getElementById('ex-now-name'); if(nm) nm.textContent=c.short||c.name;
+  const fm=document.getElementById('ex-now-fam'); if(fm) fm.textContent=c.fam?('· '+famLabel(c.fam)):'';
+}
+/* chiamata alla fine di buildModel: aggiorna la barra e ricorda l'ultimo bersaglio visto */
+function exAfterModel(id){
+  if(!exReady) return;
+  exSyncNow(); exSyncLabel();
+  try{ localStorage.setItem(EX_KEY,id); }catch(_){ }
+}
+/* dopo la scelta di un chip: se la barra è uscita dalla vista, riporta su barra + modello */
+function exBringModel(){
+  const bar=document.getElementById('ex-bar'); if(!bar) return;
+  const tabs=document.querySelector('.tabs'); const off=(tabs?tabs.getBoundingClientRect().height+10:0)+12;
+  const top=bar.getBoundingClientRect().top;
+  if(top>=off-1&&top<innerHeight*0.5) return;
+  window.scrollTo({top:Math.max(0,top+window.scrollY-off),behavior:exReduced()?'auto':'smooth'});
+}
+(function exInit(){
+  const b=document.getElementById('ex-toggle'), d=document.getElementById('ex-drawer'), zone=document.getElementById('chip-zone');
+  if(!b||!d||!zone) return;
+  b.addEventListener('click',()=>exDrawer(!exIsOpen()));
+  /* scelta di un chip (il suo onclick ha già caricato il modello): il cassetto si chiude, il modello resta in vista */
+  zone.addEventListener('click',e=>{ const ch=e.target.closest&&e.target.closest('button.chip'); if(!ch) return; exDrawer(false); exBringModel(); });
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='Escape'||!exIsOpen()) return;
+    const dm=document.getElementById('drug-modal'); if(dm&&!dm.hidden) return;
+    const ex=document.getElementById('view-explorer'); if(!ex||!ex.classList.contains('active')) return;
+    if(e.target&&e.target.id==='fam-search'&&e.target.value) return; // Esc nella ricerca: prima svuota il campo
+    exDrawer(false); b.focus({preventScroll:true});
+  });
+  /* ultimo bersaglio visto (salvo deep link #card= / #target=, che hanno già scelto il modello) */
+  let restore=true;
+  try{ const p=new URLSearchParams((location.hash||'').replace(/^#/,'')); if(p.has('card')||p.has('target')) restore=false; }catch(_){ }
+  exReady=true;
+  if(restore){
+    let last=null; try{ last=localStorage.getItem(EX_KEY); }catch(_){ }
+    if(last&&last!==current&&C[last]&&allTargetIds().indexOf(last)>=0) buildModel(last);
+  }
+  else if(C[current]){ try{ localStorage.setItem(EX_KEY,current); }catch(_){ } } // anche il bersaglio aperto da deep link conta come «ultimo visto»
+  exSyncLabel(); exSyncNow();
+  /* il renderer segue le dimensioni reali di #canvas-host (cassetto, griglia, rotazione del telefono) */
+  const host=document.getElementById('canvas-host');
+  if(host&&typeof ResizeObserver==='function'){
+    let raf=0;
+    new ResizeObserver(()=>{ cancelAnimationFrame(raf); raf=requestAnimationFrame(()=>{ try{ onResize(); }catch(_){ } }); }).observe(host);
+  }
+})();
 /* ═══ slot explorer: fine ═══ */
 // ·
 /* ═══ slot anim: inizio (solo il suo agente) ═══ */

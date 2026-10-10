@@ -59,6 +59,7 @@ const {chromium}=require('playwright');
  await page.route('https://unpkg.com/**',r=>r.abort());
  await page.locator('.sp[data-space="atlas"]').click();
  const explore=await (await page.$('#if-canali')).contentFrame();
+ await explore.locator('#ex-toggle').click(); // l'elenco dei bersagli sta nel cassetto «Guarda canali e recettori»
  await explore.locator('#chip-zone button.chip').first().waitFor();
  assert.equal(await explore.locator('#chip-zone button.chip').count(),81);
  assert.match(await explore.locator('#canvas-host').innerText(),/unavailable/);
