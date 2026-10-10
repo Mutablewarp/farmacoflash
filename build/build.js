@@ -7,15 +7,17 @@
 const fs = require('fs');
 const path = require('path');
 const { pwaHead } = require('./pwa-head');
+const core = require('../src/core');
 
 const BUILD = __dirname;
 const ROOT = path.resolve(BUILD, '..');
 const OUT = path.join(ROOT, 'Flashcard-Farmacologia.html');
 
-function readJsonIfExists(p) { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return null; } }
+function readJsonIfExists(p) { return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')) : null; }
 
 const data = JSON.parse(fs.readFileSync(path.join(BUILD, 'cards.json'), 'utf8'));
 const byId = new Map(data.cards.map(c => [c.id, c]));
+if(byId.size!==data.cards.length)throw Error('Duplicate card IDs');
 
 // --- memofrasi (memo/*.json: { entries: [{id, memo}] }) ---
 const memoMap = new Map();
@@ -75,11 +77,23 @@ if (enrich && enrich.entries) {
   }
 }
 
+for(const c of data.cards){
+  for(const s of c.segments)s.key=core.sectionKey(s.label);
+  if(c.en){for(const s of c.en.segments)s.key=core.sectionKey(s.label);c.en.missingClassification=c.segments.some(s=>s.key==='classification')&&!c.en.segments.some(s=>s.key==='classification');}
+}
+if(withMemo!==data.cards.length||withEn!==data.cards.length||mergedEnrich!==data.cards.length)throw Error('Incomplete required learning data');
+// --- card con un bersaglio nell'Atlante 3D (build/atlas-cards.json, opzionale: array di id) ---
+const atlasRaw = readJsonIfExists(path.join(BUILD, 'atlas-cards.json'));
+const atlasCards = [...new Set((Array.isArray(atlasRaw) ? atlasRaw : []).filter(id => typeof id === 'string' && byId.has(id)))].sort();
+
 const tpl = fs.readFileSync(path.join(BUILD, 'app-template.html'), 'utf8');
 const b64 = Buffer.from(JSON.stringify(data), 'utf8').toString('base64');
 fs.writeFileSync(OUT, tpl
   .replace('__PWA_HEAD__', pwaHead({ name: 'FarmacoFlash · Flashcard di Farmacologia', title: 'FarmacoFlash' }))
-  .replace('__DATA_B64__', b64));
+  .replace('__DATA_B64__', b64)
+  .replace('__ATLAS_CARDS__', () => JSON.stringify(atlasCards).replace(/</g, '\\u003c'))
+  .replace('__CORE_JS__',()=>fs.readFileSync(path.join(ROOT,'src/core.js'),'utf8'))
+  .replace('__BRIDGE_JS__',()=>fs.readFileSync(path.join(ROOT,'src/bridge.js'),'utf8')));
 
 const sizeMB = (fs.statSync(OUT).size / 1024 / 1024).toFixed(2);
 console.log(`✓ Scritto ${path.basename(OUT)}  (${sizeMB} MB)`);
@@ -87,5 +101,7 @@ console.log(`  Carte: ${data.cards.length} · Mazzi: ${data.decks.length}`);
 console.log(`  Memofrasi iniettate: ${withMemo}/${data.cards.length}`);
 console.log(`  Card tradotte EN: ${withEn}/${data.cards.length}  ·  Diagrammi EN: ${Object.keys(data.diagramsEn).length}`);
 console.log(`  Card arricchite da Goodman: ${mergedEnrich}`);
+console.log(`  Card collegate all'Atlante 3D: ${atlasCards.length}`);
 const missing = data.cards.filter(c => !c.memo).map(c => c.id);
 if (missing.length) console.log(`  ⚠️  senza memofrase: ${missing.length}\n   ${missing.join('\n   ')}`);
+require('./table');
