@@ -1089,27 +1089,35 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 .xq-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
 .xq-item{border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--ink) 3%,transparent);
   transition:border-color .2s ease-out,background-color .2s ease-out}
-.xq-item:hover{border-color:var(--line2)}
 .xq-item.open{border-color:var(--gold-line);background:color-mix(in srgb,var(--gold) 4%,transparent)}
 .xq-q{appearance:none;-webkit-appearance:none;display:flex;align-items:flex-start;gap:12px;width:100%;min-height:48px;
   margin:0;padding:11px 14px;border:0;border-radius:11px;background:none;cursor:pointer;text-align:left;
   font-family:'Archivo',system-ui,sans-serif;font-size:14px;font-weight:500;line-height:1.45;color:var(--ink);
-  -webkit-tap-highlight-color:transparent}
+  -webkit-tap-highlight-color:transparent;transition:background-color .15s ease-out}
 .xq-q:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+/* tocco: un breve riflesso mentre il dito è giù, nessuno stato «appiccicato» dopo il tap */
+.xq-q:active{background:color-mix(in srgb,var(--gold) 9%,transparent)}
 .xq-n{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;
   border:1px solid var(--gold-line);background:var(--gold-soft);color:var(--gold);
   font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:600;line-height:1;
   transition:background-color .2s ease-out,color .2s ease-out,border-color .2s ease-out}
-.xq-q:hover .xq-n,.xq-item.open .xq-n{background:var(--gold);border-color:var(--gold);color:var(--panel)}
+.xq-item.open .xq-n{background:var(--gold);border-color:var(--gold);color:var(--panel)}
 .xq-t{flex:1 1 auto;min-width:0;padding-top:3px;text-wrap:pretty}
 .xq-chev{flex:none;width:18px;height:18px;margin-top:5px;fill:none;stroke:var(--ink-faint);stroke-width:2;
   stroke-linecap:round;stroke-linejoin:round;transition:transform .2s ease-out,stroke .2s ease-out}
-.xq-q:hover .xq-chev{stroke:var(--ink-dim)}
 .xq-item.open .xq-chev{transform:rotate(180deg);stroke:var(--gold)}
-.xq-a{display:grid;grid-template-rows:0fr;visibility:hidden;
-  transition:grid-template-rows .22s ease-out,visibility 0s linear .22s}
-.xq-item.open .xq-a{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .22s ease-out,visibility 0s}
+@media(hover:hover){
+  .xq-item:hover{border-color:var(--line2)}
+  .xq-q:hover .xq-n{background:var(--gold);border-color:var(--gold);color:var(--panel)}
+  .xq-q:hover .xq-chev{stroke:var(--ink-dim)}
+}
+/* risposta chiusa = pannello interno con hidden="until-found": invisibile e fuori dall'albero di accessibilità,
+   ma Ctrl+F lo trova e lo apre (evento beforematch). Dove until-found non esiste, hidden vale display:none. */
+.xq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .22s ease-out}
+.xq-item.open .xq-a{grid-template-rows:1fr}
+.xq-item.xq-now .xq-a{transition:none}
 .xq-a>div{min-height:0;overflow:hidden}
+.xq .nw{white-space:nowrap}
 .xq-body{padding:0 16px 14px 52px;font-size:13.6px;line-height:1.62;color:var(--ink-dim);max-width:78ch}
 .xq-body p{margin:0}
 .xq-body p+p{margin-top:8px}
@@ -1122,7 +1130,14 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
   .xq-body{padding:0 14px 14px 14px;font-size:13.8px}
 }
 @media(prefers-reduced-motion:reduce){
-  .xq-item,.xq-n,.xq-chev,.xq-a,.xq-item.open .xq-a{transition:none}
+  .xq-item,.xq-q,.xq-n,.xq-chev,.xq-a,.xq-item.open .xq-a{transition:none}
+}
+/* stampa: tutte le risposte aperte, per ripassare su carta */
+@media print{
+  .xq-a{grid-template-rows:1fr!important}
+  .xq-a>div[hidden]{display:block!important;content-visibility:visible!important}
+  .xq-chev{display:none}
+  .xq-item{break-inside:avoid}
 }
 </style>
 <!-- ─ -->
@@ -2675,8 +2690,8 @@ let DIFFS_IT=[
    cols:[
     {cls:"", t:"M1 · M3 · M5 → Gq (i dispari)", li:[
       "Effettore <strong>fosfolipasi C-β</strong> → <strong>IP3 + DAG</strong> → <strong>↑ Ca²⁺</strong>",
-      "<strong>M1</strong>: gangli, SNC, cellule parietali gastriche (secrezione acida)",
-      "<strong>M3</strong>: muscolo liscio (bronchi, vescica), ghiandole, occhio (miosi/accomodazione)",
+      "<strong>M1</strong>: gangli (anche intramurali gastrici: secrezione acida), SNC",
+      "<strong>M3</strong>: muscolo liscio (bronchi, vescica), ghiandole, cellule parietali gastriche, occhio (miosi/accomodazione)",
       "<strong>M5</strong>: SNC, vasi cerebrali, rilascio di dopamina",
       "Farmaci: pilocarpina (agonista); ipratropio / ossibutinina / atropina (antagonisti)"]},
     {cls:"", t:"M2 · M4 → Gi (i pari)", li:[
@@ -2708,16 +2723,16 @@ let EXAM_IT=[
   [ /* 2 · Na/Ca vs K */
     {q:"Perché il blocco dei canali K⁺ cardiaci (hERG) allunga il QT e quali farmaci non antiaritmici lo fanno?",
      a:"<p>Il canale <strong>hERG (Kᵥ11.1)</strong> porta la corrente <strong>I<sub>Kr</sub></strong>, che ripolarizza il miocardio. Se è bloccato il potenziale d'azione si allunga, il <strong>QT</strong> aumenta e possono comparire post-depolarizzazioni precoci che innescano la <strong>torsione di punta</strong>.</p><p>Oltre agli antiarritmici di classe III e IA lo fanno <strong>macrolidi</strong> (eritromicina, claritromicina), <strong>fluorochinoloni</strong>, antimicotici azolici, alcuni antipsicotici e antidepressivi; terfenadina e astemizolo sono stati ritirati per questo. Il rischio sale con ipokaliemia, bradicardia e inibitori del CYP3A4.</p>"},
-    {q:"Perché le diidropiridine agiscono soprattutto sui vasi, mentre verapamil e diltiazem agiscono sul cuore?",
-     a:"<p>Tutti bloccano il canale Ca²⁺ di tipo <strong>L</strong> sulla subunità α1, ma in siti e stati diversi. Le <strong>diidropiridine</strong> (amlodipina, nifedipina) prediligono il canale inattivato, più frequente nel muscolo liscio vasale, meno polarizzato: danno vasodilatazione e, alle dosi cliniche, non rallentano il nodo AV (anzi, tachicardia riflessa).</p><p>Il blocco del <strong>verapamil</strong> (meno quello del diltiazem) è <strong>uso-dipendente</strong>: colpisce i tessuti che scaricano spesso e rallenta nodo SA e conduzione AV. Per questo si usano nelle tachiaritmie sopraventricolari, e l'associazione con i β-bloccanti espone a blocco AV.</p>"},
+    {q:"Perché le diidropiridine agiscono soprattutto sui vasi, mentre verapamil e diltiazem agiscono anche sul cuore?",
+     a:"<p>Tutti bloccano il canale Ca²⁺ di tipo <strong>L</strong> sulla subunità α1, ma in siti e stati diversi. Le <strong>diidropiridine</strong> (amlodipina, nifedipina) prediligono il canale inattivato, più frequente nel muscolo liscio vasale, meno polarizzato: danno vasodilatazione e, alle dosi cliniche, non rallentano il nodo AV (anzi, tachicardia riflessa).</p><p><strong>Verapamil</strong> e <strong>diltiazem</strong> sono invece poco selettivi: vasodilatano e insieme deprimono nodo SA, conduzione AV e contrattilità. Il blocco del verapamil (meno quello del diltiazem) è anche <strong>uso-dipendente</strong>, quindi colpisce di più i tessuti che scaricano spesso. Per questo si usano nelle tachiaritmie sopraventricolari, e l'associazione con i β-bloccanti espone a blocco AV.</p>"},
     {q:"In che cosa differisce l'architettura dei canali Na⁺ e Ca²⁺ da quella dei canali K⁺ voltaggio-dipendenti?",
      a:"<p>Naᵥ e Caᵥ sono <strong>pseudotetrameri</strong>: un'unica grande subunità α (α1 nel Ca²⁺) con <strong>4 domini omologhi</strong>, ciascuno di 6 segmenti transmembrana (S1–S6); S4 è il sensore, l'ansa tra S5 e S6 riveste il poro.</p><p>I Kᵥ sono <strong>veri tetrameri</strong>: 4 subunità separate, ognuna con 6 segmenti, che si assemblano attorno al poro e al filtro di selettività. Il Caᵥ ha anche subunità accessorie (β, α2δ): gabapentin e pregabalin legano <strong>α2δ</strong>, non il poro.</p>"}
   ],
   [ /* 3 · Nicotinici vs Glutammato */
     {q:"Qual è la differenza strutturale tra i recettori nicotinici e i recettori ionotropici del glutammato?",
-     a:"<p><strong>Subunità</strong>: 5 nei nicotinici (superfamiglia Cys-loop), 4 nel glutammato. <strong>Segmento M2</strong>: nei nicotinici attraversa la membrana; nel glutammato è un'ansa <strong>rientrante</strong>, che entra dal versante citoplasmatico e torna indietro. In entrambi M2 riveste il poro.</p><p><strong>Sito del ligando</strong>: nei nicotinici all'interfaccia tra due subunità; nel glutammato è una tasca formata da due segmenti (S1 e S2) della stessa subunità, sul lungo dominio N-terminale.</p>"},
+     a:"<p><strong>Subunità</strong>: 5 nei nicotinici (superfamiglia Cys-loop), 4 nel glutammato. <strong>Segmento M2</strong>: nei nicotinici attraversa la membrana; nel glutammato è un'ansa <strong>rientrante</strong>, che entra dal versante citoplasmatico e torna indietro. In entrambi M2 riveste il poro.</p><p><strong>Sito del ligando</strong>: nei nicotinici all'interfaccia tra due subunità; nel glutammato è una tasca a conchiglia formata da due segmenti extracellulari della stessa subunità: <strong>S1</strong>, che precede M1, e <strong>S2</strong>, l'ansa tra M3 e M4. Il lungo N-terminale (~400 aa) è un dominio distinto, sede di modulatori allosterici (per esempio l'ifenprodil sugli NMDA con GluN2B).</p>"},
     {q:"Perché il recettore NMDA è un «rilevatore di coincidenza»?",
-     a:"<p>Per aprirsi l'NMDA richiede insieme <strong>glutammato</strong>, il co-agonista <strong>glicina</strong> e una <strong>depolarizzazione</strong> della membrana. A riposo il poro è occluso dal <strong>Mg²⁺</strong>; il blocco è voltaggio-dipendente e si toglie solo quando gli AMPA vicini hanno già depolarizzato la cellula.</p><p>Così il Ca²⁺ entra solo quando la sinapsi è davvero attiva. È la base del <strong>potenziamento a lungo termine (LTP)</strong>, cioè di apprendimento e memoria nell'ippocampo.</p>"},
+     a:"<p>Per aprirsi l'NMDA richiede insieme <strong>glutammato</strong>, il co-agonista <strong>glicina</strong> e una <strong>depolarizzazione</strong> della membrana. A riposo il poro è occluso dal <strong>Mg²⁺</strong>; il blocco è voltaggio-dipendente e si toglie solo quando gli AMPA vicini hanno già depolarizzato la cellula.</p><p>Così il Ca²⁺ entra solo quando la sinapsi è davvero attiva. Su questo si fonda il <strong>potenziamento a lungo termine (LTP)</strong> dell'ippocampo, meccanismo cellulare ritenuto alla base di apprendimento e memoria.</p>"},
     {q:"Perché l'NMDA può diventare pericoloso e come agiscono memantina e ketamina?",
      a:"<p>L'NMDA è molto permeabile al <strong>Ca²⁺</strong>. Con un eccesso di glutammato (ischemia, trauma, neurodegenerazione) il Ca²⁺ intracellulare sale troppo: si attivano proteasi e nNOS, i mitocondri cedono e il neurone muore. È l'<strong>eccitotossicità</strong>.</p><p><strong>Memantina</strong>: bloccante del canale a bassa affinità e uso-dipendente, frena l'attivazione patologica e risparmia la trasmissione fisiologica (Alzheimer moderato-grave). <strong>Ketamina</strong>: bloccante del canale NMDA, anestetico dissociativo e antidepressivo rapido (esketamina).</p>"}
   ],
@@ -2733,13 +2748,13 @@ let EXAM_IT=[
     {q:"Benzodiazepine e barbiturici agiscono entrambi sul GABA-A: in che cosa differiscono e perché i barbiturici sono più pericolosi?",
      a:"<p>Entrambi sono <strong>modulatori allosterici positivi</strong>, in siti diversi. Le <strong>BDZ</strong> aumentano la <strong>frequenza</strong> di apertura del canale Cl⁻ e agiscono solo in presenza di GABA, quindi l'effetto ha un tetto. I <strong>barbiturici</strong> aumentano la <strong>durata</strong> di apertura e, ad alte dosi, <strong>aprono il canale anche senza GABA</strong>.</p><p>Di qui la differenza clinica: l'overdose isolata di BDZ è raramente letale e ha un antidoto (flumazenil); i barbiturici hanno indice terapeutico stretto, possono dare depressione respiratoria fatale e non hanno antidoto.</p>"},
     {q:"Dove legano il GABA e le benzodiazepine sul recettore GABA-A?",
-     a:"<p>Il GABA-A è un pentamero, di solito <strong>2α + 2β + 1γ</strong>, che forma un canale per il Cl⁻. Il <strong>GABA</strong> lega il sito ortosterico all'<strong>interfaccia α-β</strong> (due siti per recettore). Le <strong>BDZ</strong> legano un sito diverso, all'<strong>interfaccia α-γ</strong>.</p><p>Per questo le BDZ non sono agonisti: aumentano l'affinità del recettore per il GABA e da sole non aprono il canale. Il <strong>flumazenil</strong> compete per lo stesso sito α-γ e ne annulla l'effetto.</p>"},
+     a:"<p>Il GABA-A è un pentamero, di solito <strong class='nw'>2α + 2β + 1γ</strong>, che forma un canale per il Cl⁻. Il <strong>GABA</strong> lega il sito ortosterico all'<strong>interfaccia α-β</strong> (due siti per recettore). Le <strong>BDZ</strong> legano un sito diverso, all'<strong>interfaccia α-γ</strong>.</p><p>Per questo le BDZ non sono agonisti: aumentano l'affinità del recettore per il GABA e da sole non aprono il canale. Il <strong>flumazenil</strong> compete per lo stesso sito α-γ e ne annulla l'effetto.</p>"},
     {q:"Che cosa cambia se nel GABA-A manca la subunità γ?",
      a:"<p>Senza γ non si forma l'interfaccia α-γ, quindi manca il sito delle benzodiazepine: il recettore risponde ancora al GABA (sito α-β) ma è <strong>insensibile alle BDZ</strong>. Ne sono un esempio i recettori con la subunità δ al posto di γ, per lo più extrasinaptici.</p><p>I barbiturici agiscono invece anche su recettori formati solo da α e β. Le variazioni nella composizione delle subunità aiutano a spiegare perché la risposta alle BDZ può cambiare, per esempio dopo esposizione cronica all'alcol.</p>"}
   ],
   [ /* 6 · Ionotropico vs Metabotropico */
     {q:"Che differenza c'è tra un recettore ionotropico e un recettore metabotropico?",
-     a:"<p>Il <strong>ionotropico</strong> è esso stesso un canale: il ligando apre il poro e gli ioni passano in <strong>millisecondi</strong>. È formato da più subunità (4 o 5) attorno al poro: nicotinico, GABA-A, 5-HT₃, AMPA, NMDA.</p><p>Il <strong>metabotropico</strong> (GPCR) è una singola catena con <strong>7 segmenti transmembrana</strong> e nessun poro: attiva una proteina G, che regola enzimi e secondi messaggeri. La risposta è più lenta (<strong>secondi</strong>) ma amplificata e più duratura: muscarinici, adrenergici, dopaminergici, oppioidi.</p>"},
+     a:"<p>Il <strong>ionotropico</strong> è esso stesso un canale: il ligando apre il poro e gli ioni passano in <strong>millisecondi</strong>. È formato da 3 a 5 subunità attorno al poro (3 nei P2X, 4 nel glutammato, 5 nei Cys-loop): nicotinico, GABA-A, 5-HT₃, AMPA, NMDA.</p><p>Il <strong>metabotropico</strong> (GPCR) è una singola catena con <strong>7 segmenti transmembrana</strong> e nessun poro: attiva una proteina G, che regola enzimi e secondi messaggeri. La risposta è più lenta (<strong>da centinaia di millisecondi a secondi</strong>) ma amplificata e più duratura: muscarinici, adrenergici, dopaminergici, oppioidi.</p>"},
     {q:"Gs, Gi e Gq: quale effettore attiva ciascuna e con quale secondo messaggero?",
      a:"<p><strong>Gs</strong> attiva l'adenilato ciclasi: ↑AMPc e PKA (β1, β2, D1, H2). <strong>Gi</strong> inibisce l'adenilato ciclasi (↓AMPc); in più il dimero <strong>βγ</strong> apre canali K⁺ e chiude canali Ca²⁺ (M2, α2, D2, μ). <strong>Gq</strong> attiva la fosfolipasi C-β: dal PIP₂ nascono <strong>IP₃</strong>, che libera Ca²⁺ dal reticolo, e <strong>DAG</strong>, che attiva la PKC (M1, M3, α1, H1).</p><p>Il segnale si spegne quando la subunità α idrolizza il GTP a GDP e si riassocia a βγ.</p>"},
     {q:"Perché la clonidina, agonista α2, abbassa la pressione?",
@@ -2749,13 +2764,13 @@ let EXAM_IT=[
     {q:"L'acetilcolina agisce su recettori nicotinici e muscarinici: qual è la differenza fondamentale?",
      a:"<p>Stesso mediatore, due famiglie di recettori. Il <strong>nicotinico</strong> è un recettore-canale (pentamero): l'ACh apre un poro cationico, entra Na⁺ e la membrana si depolarizza in millisecondi. Si trova sulla placca neuromuscolare (Nm), nei gangli autonomici e nel SNC (Nn).</p><p>Il <strong>muscarinico</strong> è un GPCR (M1–M5): l'effetto passa per una proteina G, è più lento e, secondo il sottotipo, eccitatorio o inibitorio. Sulla placca l'ACh contrae il muscolo; sul cuore, via M2, lo rallenta.</p>"},
     {q:"Perché la tubocurarina blocca la placca neuromuscolare ma non ha effetti centrali?",
-     a:"<p>La tubocurarina è un <strong>antagonista competitivo</strong> dell'ACh sul nicotinico muscolare: blocco neuromuscolare non depolarizzante e paralisi flaccida, reversibile aumentando l'ACh con la neostigmina.</p><p>È un <strong>ammonio quaternario</strong>, con carica positiva permanente: non attraversa la barriera ematoencefalica e resta in periferia. Per lo stesso motivo non serve nel Parkinson, dove servono antimuscarinici centrali lipofili (triesifenidile, biperidene). Oggi in anestesia si usano rocuronio, vecuronio e cisatracurio.</p>"},
+     a:"<p>La tubocurarina è un <strong>antagonista competitivo</strong> dell'ACh sul nicotinico muscolare: blocco neuromuscolare non depolarizzante e paralisi flaccida, reversibile aumentando l'ACh con la neostigmina.</p><p>È un <strong>ammonio quaternario</strong>, con carica positiva permanente: non attraversa la barriera ematoencefalica e resta in periferia. Non serve nel Parkinson per due motivi: non entra nel SNC e blocca i <strong>nicotinici</strong>, mentre lì servono antimuscarinici centrali lipofili (triesifenidile, biperidene). Oggi in anestesia si usano rocuronio, vecuronio e cisatracurio.</p>"},
     {q:"In che cosa differiscono i recettori nicotinici muscolari da quelli neuronali?",
      a:"<p>Il <strong>muscolare</strong> adulto è (α1)₂β1δε; nel feto ε è sostituita da γ. Le subunità γ, δ ed ε esistono solo nel muscolo. I <strong>neuronali</strong> contengono solo subunità α (α2–α10) e β (β2–β4).</p><p>Nel SNC il sottotipo principale è <strong>α4β2</strong>: media la dipendenza da nicotina ed è il bersaglio della <strong>vareniclina</strong>, agonista parziale usata per smettere di fumare. L'omomero <strong>α7</strong> è molto permeabile al Ca²⁺.</p>"}
   ],
   [ /* 8 · Muscarinici: Gq vs Gi */
     {q:"Quali sono i 5 sottotipi muscarinici, a quale proteina G sono accoppiati e dove agiscono?",
-     a:"<p>Regola: <strong>dispari = Gq</strong> (↑Ca²⁺, eccitatori), <strong>pari = Gi</strong> (↓AMPc e apertura di canali K⁺, inibitori).</p><p><strong>M1</strong> (Gq): gangli, corteccia, secrezione acida gastrica. <strong>M2</strong> (Gi): cuore, nodo SA e AV; autorecettore presinaptico. <strong>M3</strong> (Gq): muscolo liscio (bronchi, vescica, intestino), ghiandole esocrine, occhio. <strong>M4</strong> (Gi): SNC, striato. <strong>M5</strong> (Gq): SNC, substantia nigra.</p>"},
+     a:"<p>Regola: <strong>dispari = Gq</strong> (↑Ca²⁺, eccitatori), <strong>pari = Gi</strong> (↓AMPc e apertura di canali K⁺, inibitori).</p><p><strong>M1</strong> (Gq): gangli (anche quelli intramurali gastrici, che regolano per via nervosa la secrezione acida; bersaglio della pirenzepina), corteccia. <strong>M2</strong> (Gi): cuore, nodo SA e AV; autorecettore presinaptico. <strong>M3</strong> (Gq): muscolo liscio (bronchi, vescica, intestino), ghiandole esocrine, cellula parietale gastrica, occhio. <strong>M4</strong> (Gi): SNC, striato. <strong>M5</strong> (Gq): SNC, substantia nigra.</p>"},
     {q:"Perché gli inibitori dell'acetilcolinesterasi danno bradicardia e perché l'atropina la corregge?",
      a:"<p>Con l'AChE inibita l'ACh si accumula e attiva l'<strong>M2</strong> cardiaco (Gi). Il dimero βγ apre i canali K⁺ <strong>GIRK</strong> e Gαi riduce l'AMPc: il nodo SA si iperpolarizza e scarica più lentamente, la conduzione AV rallenta. Ne derivano bradicardia e possibile blocco AV.</p><p>L'<strong>atropina</strong>, antagonista muscarinico, occupa l'M2 e interrompe la via: la frequenza risale. Nell'intossicazione da organofosfati si associa la <strong>pralidossima</strong>, che riattiva l'enzima se somministrata presto.</p>"},
     {q:"Come si usano in clinica gli antimuscarinici, sede per sede?",
@@ -3577,8 +3592,8 @@ const DIFFS_EN = [
    cols:[
     {cls:"", t:"M1 · M3 · M5 → Gq (the odd ones)", li:[
       "Effector <strong>phospholipase C-β</strong> → <strong>IP3 + DAG</strong> → <strong>↑ Ca²⁺</strong>",
-      "<strong>M1</strong>: ganglia, CNS, gastric parietal cells (acid secretion)",
-      "<strong>M3</strong>: smooth muscle (bronchi, bladder), glands, eye (miosis/accommodation)",
+      "<strong>M1</strong>: ganglia (including gastric intramural ganglia: acid secretion), CNS",
+      "<strong>M3</strong>: smooth muscle (bronchi, bladder), glands, gastric parietal cells, eye (miosis/accommodation)",
       "<strong>M5</strong>: CNS, cerebral vessels, dopamine release",
       "Drugs: pilocarpine (agonist); ipratropium / oxybutynin / atropine (antagonists)"]},
     {cls:"", t:"M2 · M4 → Gi (the even ones)", li:[
@@ -3593,66 +3608,66 @@ const DIFFS_EN = [
 /* The 3 most-asked questions for each comparison (same order as DIFFS): [{q,a}×3] × 8. Answers checked against Goodman & Gilman, 14th ed. */
 const EXAM_EN = [
   [ /* 1 · Voltage-gated vs Ligand-gated */
-    {q:"What is use-dependent block, and why does it make local anaesthetics, class I antiarrhythmics and antiepileptics selective?",
-     a:"<p>These drugs bind the Na⁺ channel mainly in the <strong>open</strong> and <strong>inactivated</strong> states and stabilise inactivation. The more a cell fires, the more time its channels spend in those states and the more drug binds.</p><p>The result is <strong>functional selectivity</strong>: high-frequency tissue is blocked (an arrhythmic focus, an epileptogenic neuron, a firing nociceptive fibre), while sinus rhythm and normal brain activity are largely spared.</p>"},
+    {q:"What is use-dependent block, and why does it make local anesthetics, class I antiarrhythmics and antiepileptics selective?",
+     a:"<p>These drugs bind the Na⁺ channel mainly in the <strong>open</strong> and <strong>inactivated</strong> states and stabilize inactivation. The more a cell fires, the more time its channels spend in those states and the more drug binds.</p><p>The result is <strong>functional selectivity</strong>: high-frequency tissue is blocked (an arrhythmic focus, an epileptogenic neuron, a firing nociceptive fiber), while sinus rhythm and normal brain activity are largely spared.</p>"},
     {q:"What are the three states of the voltage-gated Na⁺ channel, and why does the inactivated state make the cell refractory?",
-     a:"<p><strong>Closed</strong> at rest (about −70 mV), ready to open. <strong>Open</strong> for a few milliseconds after depolarisation: Na⁺ enters and the action potential propagates. <strong>Inactivated</strong> right after: the inactivation gate, the cytoplasmic loop between domains III and IV, occludes the pore.</p><p>An inactivated channel will not reopen even if a new stimulus arrives; it returns to the closed, available state only on repolarisation. That is why the cell is <strong>refractory</strong> and its maximum firing rate is limited.</p>"},
+     a:"<p><strong>Closed</strong> at rest (about −70 mV), ready to open. <strong>Open</strong> for a few milliseconds after depolarization: Na⁺ enters and the action potential propagates. <strong>Inactivated</strong> right after: the inactivation gate, the cytoplasmic loop between domains III and IV, occludes the pore.</p><p>An inactivated channel will not reopen even if a new stimulus arrives; it returns to the closed, available state only on repolarization. That is why the cell is <strong>refractory</strong> and its maximum firing rate is limited.</p>"},
     {q:"What distinguishes a voltage-gated channel from a ligand-gated channel receptor?",
-     a:"<p>The stimulus that opens the pore. A <strong>voltage-gated</strong> channel (Naᵥ, Caᵥ, Kᵥ) has a <strong>voltage sensor, the S4 segment</strong>, rich in positive residues: depolarisation moves it and opens the channel. A <strong>channel receptor</strong> (nicotinic, GABA-A, NMDA, 5-HT₃) opens when a <strong>ligand</strong> binds its extracellular site.</p><p>The first one reads the membrane potential, the second one reads a molecule. The first undergoes inactivation, the second desensitisation.</p>"}
+     a:"<p>The stimulus that opens the pore. A <strong>voltage-gated</strong> channel (Naᵥ, Caᵥ, Kᵥ) has a <strong>voltage sensor, the S4 segment</strong>, rich in positive residues: depolarization moves it and opens the channel. A <strong>channel receptor</strong> (nicotinic, GABA-A, NMDA, 5-HT₃) opens when a <strong>ligand</strong> binds its extracellular site.</p><p>The first one reads the membrane potential, the second one reads a molecule. The first undergoes inactivation, the second desensitization.</p>"}
   ],
   [ /* 2 · Na/Ca vs K */
     {q:"Why does blocking cardiac K⁺ channels (hERG) prolong the QT, and which non-antiarrhythmic drugs do it?",
-     a:"<p>The <strong>hERG (Kᵥ11.1)</strong> channel carries <strong>I<sub>Kr</sub></strong>, which repolarises the myocardium. When it is blocked the action potential lengthens, the <strong>QT</strong> prolongs and early afterdepolarisations can trigger <strong>torsades de pointes</strong>.</p><p>Besides class III and IA antiarrhythmics, culprits include <strong>macrolides</strong> (erythromycin, clarithromycin), <strong>fluoroquinolones</strong>, azole antifungals and some antipsychotics and antidepressants; terfenadine and astemizole were withdrawn for this reason. Risk rises with hypokalaemia, bradycardia and CYP3A4 inhibitors.</p>"},
-    {q:"Why do dihydropyridines act mainly on vessels, while verapamil and diltiazem act on the heart?",
-     a:"<p>All of them block the <strong>L-type</strong> Ca²⁺ channel on its α1 subunit, but at different sites and states. <strong>Dihydropyridines</strong> (amlodipine, nifedipine) prefer the inactivated channel, more common in less polarised vascular smooth muscle: they vasodilate and, at clinical doses, do not slow the AV node (they cause reflex tachycardia instead).</p><p><strong>Verapamil</strong> (and to a lesser extent diltiazem) produces <strong>use-dependent</strong> block: it hits tissue that fires often and slows the SA node and AV conduction. Hence their use in supraventricular tachyarrhythmias, and the risk of AV block when combined with β-blockers.</p>"},
+     a:"<p>The <strong>hERG (Kᵥ11.1)</strong> channel carries <strong>I<sub>Kr</sub></strong>, which repolarizes the myocardium. When it is blocked the action potential lengthens, the <strong>QT</strong> prolongs and early afterdepolarizations can trigger <strong>torsades de pointes</strong>.</p><p>Besides class III and IA antiarrhythmics, culprits include <strong>macrolides</strong> (erythromycin, clarithromycin), <strong>fluoroquinolones</strong>, azole antifungals and some antipsychotics and antidepressants; terfenadine and astemizole were withdrawn for this reason. Risk rises with hypokalemia, bradycardia and CYP3A4 inhibitors.</p>"},
+    {q:"Why do dihydropyridines act mainly on vessels, while verapamil and diltiazem also act on the heart?",
+     a:"<p>All of them block the <strong>L-type</strong> Ca²⁺ channel on its α1 subunit, but at different sites and states. <strong>Dihydropyridines</strong> (amlodipine, nifedipine) prefer the inactivated channel, more common in less polarized vascular smooth muscle: they vasodilate and, at clinical doses, do not slow the AV node (they cause reflex tachycardia instead).</p><p><strong>Verapamil</strong> and <strong>diltiazem</strong>, by contrast, are poorly selective: they vasodilate and also depress the SA node, AV conduction and contractility. Verapamil block (less so diltiazem) is also <strong>use-dependent</strong>, so it acts most on tissue that fires often. Hence their use in supraventricular tachyarrhythmias, and the risk of AV block when combined with β-blockers.</p>"},
     {q:"How does the architecture of Na⁺ and Ca²⁺ channels differ from that of voltage-gated K⁺ channels?",
      a:"<p>Naᵥ and Caᵥ are <strong>pseudotetramers</strong>: a single large α subunit (α1 for Ca²⁺) with <strong>4 homologous domains</strong>, each made of 6 transmembrane segments (S1–S6); S4 is the sensor and the S5–S6 loop lines the pore.</p><p>Kᵥ channels are <strong>true tetramers</strong>: 4 separate subunits of 6 segments each, assembled around the pore and selectivity filter. Caᵥ also has auxiliary subunits (β, α2δ): gabapentin and pregabalin bind <strong>α2δ</strong>, not the pore.</p>"}
   ],
   [ /* 3 · Nicotinic vs Glutamate */
     {q:"What is the structural difference between nicotinic receptors and ionotropic glutamate receptors?",
-     a:"<p><strong>Subunits</strong>: 5 in nicotinic receptors (Cys-loop superfamily), 4 in glutamate receptors. <strong>M2 segment</strong>: in nicotinic receptors it crosses the membrane; in glutamate receptors it is a <strong>re-entrant</strong> loop that enters from the cytoplasmic side and turns back. In both, M2 lines the pore.</p><p><strong>Ligand site</strong>: at the interface between two subunits in nicotinic receptors; in glutamate receptors a pocket formed by two segments (S1 and S2) of the same subunit, on the long N-terminal domain.</p>"},
+     a:"<p><strong>Subunits</strong>: 5 in nicotinic receptors (Cys-loop superfamily), 4 in glutamate receptors. <strong>M2 segment</strong>: in nicotinic receptors it crosses the membrane; in glutamate receptors it is a <strong>re-entrant</strong> loop that enters from the cytoplasmic side and turns back. In both, M2 lines the pore.</p><p><strong>Ligand site</strong>: at the interface between two subunits in nicotinic receptors; in glutamate receptors a clamshell pocket formed by two extracellular segments of the same subunit: <strong>S1</strong>, just before M1, and <strong>S2</strong>, the M3-M4 loop. The long N-terminal domain (~400 aa) is separate and binds allosteric modulators (for example ifenprodil at GluN2B-containing NMDA receptors).</p>"},
     {q:"Why is the NMDA receptor a “coincidence detector”?",
-     a:"<p>To open, the NMDA receptor needs <strong>glutamate</strong>, the co-agonist <strong>glycine</strong> and membrane <strong>depolarisation</strong> at the same time. At rest the pore is plugged by <strong>Mg²⁺</strong>; the block is voltage-dependent and is relieved only once nearby AMPA receptors have already depolarised the cell.</p><p>So Ca²⁺ enters only when the synapse is truly active. This underlies <strong>long-term potentiation (LTP)</strong>, the basis of learning and memory in the hippocampus.</p>"},
+     a:"<p>To open, the NMDA receptor needs <strong>glutamate</strong>, the co-agonist <strong>glycine</strong> and membrane <strong>depolarization</strong> at the same time. At rest the pore is plugged by <strong>Mg²⁺</strong>; the block is voltage-dependent and is relieved only once nearby AMPA receptors have already depolarized the cell.</p><p>So Ca²⁺ enters only when the synapse is truly active. This drives hippocampal <strong>long-term potentiation (LTP)</strong>, the cellular mechanism thought to support learning and memory.</p>"},
     {q:"Why can NMDA receptors become harmful, and how do memantine and ketamine act?",
-     a:"<p>The NMDA receptor is highly permeable to <strong>Ca²⁺</strong>. With excess glutamate (ischaemia, trauma, neurodegeneration) intracellular Ca²⁺ rises too far: proteases and nNOS are activated, mitochondria fail and the neuron dies. This is <strong>excitotoxicity</strong>.</p><p><strong>Memantine</strong>: a low-affinity, use-dependent channel blocker that curbs pathological activation and spares physiological transmission (moderate to severe Alzheimer disease). <strong>Ketamine</strong>: an NMDA channel blocker, dissociative anaesthetic and rapid-acting antidepressant (esketamine).</p>"}
+     a:"<p>The NMDA receptor is highly permeable to <strong>Ca²⁺</strong>. With excess glutamate (ischemia, trauma, neurodegeneration) intracellular Ca²⁺ rises too far: proteases and nNOS are activated, mitochondria fail and the neuron dies. This is <strong>excitotoxicity</strong>.</p><p><strong>Memantine</strong>: a low-affinity, use-dependent channel blocker that curbs pathological activation and spares physiological transmission (moderate to severe Alzheimer disease). <strong>Ketamine</strong>: an NMDA channel blocker, dissociative anesthetic and rapid-acting antidepressant (esketamine).</p>"}
   ],
   [ /* 4 · Cationic vs Anionic */
     {q:"In a channel receptor, what decides whether the effect is excitatory or inhibitory?",
-     a:"<p>The <strong>ion that passes</strong>, which depends on the <strong>M2</strong> residues lining the pore. If the pore is cationic (nicotinic, 5-HT₃, AMPA, NMDA), Na⁺ and Ca²⁺ enter: the membrane <strong>depolarises</strong> and the effect is excitatory.</p><p>If the pore is anionic (<strong>GABA-A</strong>, <strong>glycine</strong>), Cl⁻ enters: the membrane <strong>hyperpolarises</strong> or is held near rest, and the cell becomes harder to excite.</p>"},
+     a:"<p>The <strong>ion that passes</strong>, which depends on the <strong>M2</strong> residues lining the pore. If the pore is cationic (nicotinic, 5-HT₃, AMPA, NMDA), Na⁺ and Ca²⁺ enter: the membrane <strong>depolarizes</strong> and the effect is excitatory.</p><p>If the pore is anionic (<strong>GABA-A</strong>, <strong>glycine</strong>), Cl⁻ enters: the membrane <strong>hyperpolarizes</strong> or is held near rest, and the cell becomes harder to excite.</p>"},
     {q:"Which is the only serotonin channel receptor, and why are the “setrons” antiemetic?",
-     a:"<p>The <strong>5-HT₃</strong> receptor, a cationic channel receptor of the Cys-loop superfamily; every other 5-HT receptor is a GPCR. Serotonin released in the gut, for example after chemotherapy, activates 5-HT₃ receptors on vagal afferents and in the chemoreceptor trigger zone (area postrema), depolarising the neurons that drive the vomiting centre.</p><p><strong>Ondansetron</strong>, granisetron and palonosetron block 5-HT₃: they are a mainstay of prophylaxis against chemotherapy-induced vomiting.</p>"},
+     a:"<p>The <strong>5-HT₃</strong> receptor, a cationic channel receptor of the Cys-loop superfamily; every other 5-HT receptor is a GPCR. Serotonin released in the gut, for example after chemotherapy, activates 5-HT₃ receptors on vagal afferents and in the chemoreceptor trigger zone (area postrema), depolarizing the neurons that drive the vomiting center.</p><p><strong>Ondansetron</strong>, granisetron and palonosetron block 5-HT₃: they are a mainstay of prophylaxis against chemotherapy-induced vomiting.</p>"},
     {q:"K⁺ is a cation: why does opening K⁺ channels inhibit the cell?",
-     a:"<p>What matters is the <strong>direction of flow</strong>, not the charge. K⁺ is concentrated inside the cell: when channels open it <strong>leaves</strong> and pulls the potential toward its equilibrium (about −90 mV). The membrane repolarises or hyperpolarises and threshold moves further away.</p><p>Na⁺ and Ca²⁺ are concentrated outside and <strong>enter</strong>, so they depolarise. That is why Kᵥ channels end the action potential and why drugs that open K⁺ channels (opioids via GIRK, minoxidil on K-ATP) reduce excitability.</p>"}
+     a:"<p>What matters is the <strong>direction of flow</strong>, not the charge. K⁺ is concentrated inside the cell: when channels open it <strong>leaves</strong> and pulls the potential toward its equilibrium (about −90 mV). The membrane repolarizes or hyperpolarizes and threshold moves further away.</p><p>Na⁺ and Ca²⁺ are concentrated outside and <strong>enter</strong>, so they depolarize. That is why Kᵥ channels end the action potential and why drugs that open K⁺ channels (opioids via GIRK, minoxidil on K-ATP) reduce excitability.</p>"}
   ],
   [ /* 5 · GABA-A: BDZ vs barbiturates */
     {q:"Benzodiazepines and barbiturates both act on GABA-A: how do they differ, and why are barbiturates more dangerous?",
      a:"<p>Both are <strong>positive allosteric modulators</strong>, at different sites. <strong>BDZs</strong> increase the <strong>frequency</strong> of Cl⁻ channel opening and work only in the presence of GABA, so their effect has a ceiling. <strong>Barbiturates</strong> increase the <strong>duration</strong> of opening and, at high doses, <strong>open the channel even without GABA</strong>.</p><p>Hence the clinical difference: an isolated BDZ overdose is rarely lethal and has an antidote (flumazenil); barbiturates have a narrow therapeutic index, can cause fatal respiratory depression and have no antidote.</p>"},
     {q:"Where do GABA and benzodiazepines bind on the GABA-A receptor?",
-     a:"<p>GABA-A is a pentamer, usually <strong>2α + 2β + 1γ</strong>, forming a Cl⁻ channel. <strong>GABA</strong> binds the orthosteric site at the <strong>α-β interface</strong> (two sites per receptor). <strong>BDZs</strong> bind a different site, at the <strong>α-γ interface</strong>.</p><p>That is why BDZs are not agonists: they raise the receptor's affinity for GABA and cannot open the channel on their own. <strong>Flumazenil</strong> competes for the same α-γ site and reverses their effect.</p>"},
+     a:"<p>GABA-A is a pentamer, usually <strong class='nw'>2α + 2β + 1γ</strong>, forming a Cl⁻ channel. <strong>GABA</strong> binds the orthosteric site at the <strong>α-β interface</strong> (two sites per receptor). <strong>BDZs</strong> bind a different site, at the <strong>α-γ interface</strong>.</p><p>That is why BDZs are not agonists: they raise the receptor's affinity for GABA and cannot open the channel on their own. <strong>Flumazenil</strong> competes for the same α-γ site and reverses their effect.</p>"},
     {q:"What changes if the GABA-A receptor lacks the γ subunit?",
      a:"<p>Without γ there is no α-γ interface, so the benzodiazepine site is missing: the receptor still responds to GABA (α-β site) but is <strong>BDZ-insensitive</strong>. Receptors with a δ subunit in place of γ, mostly extrasynaptic, are an example.</p><p>Barbiturates, by contrast, also act on receptors made only of α and β. Changes in subunit composition help explain why the response to BDZs can shift, for example after chronic alcohol exposure.</p>"}
   ],
   [ /* 6 · Ionotropic vs Metabotropic */
     {q:"What is the difference between an ionotropic and a metabotropic receptor?",
-     a:"<p>An <strong>ionotropic</strong> receptor is itself a channel: the ligand opens the pore and ions flow within <strong>milliseconds</strong>. It is built from several subunits (4 or 5) around the pore: nicotinic, GABA-A, 5-HT₃, AMPA, NMDA.</p><p>A <strong>metabotropic</strong> receptor (GPCR) is a single chain with <strong>7 transmembrane segments</strong> and no pore: it activates a G protein that regulates enzymes and second messengers. The response is slower (<strong>seconds</strong>) but amplified and longer lasting: muscarinic, adrenergic, dopaminergic, opioid receptors.</p>"},
+     a:"<p>An <strong>ionotropic</strong> receptor is itself a channel: the ligand opens the pore and ions flow within <strong>milliseconds</strong>. It is built from 3 to 5 subunits around the pore (3 in P2X, 4 in glutamate, 5 in Cys-loop receptors): nicotinic, GABA-A, 5-HT₃, AMPA, NMDA.</p><p>A <strong>metabotropic</strong> receptor (GPCR) is a single chain with <strong>7 transmembrane segments</strong> and no pore: it activates a G protein that regulates enzymes and second messengers. The response is slower (<strong>hundreds of milliseconds to seconds</strong>) but amplified and longer lasting: muscarinic, adrenergic, dopaminergic, opioid receptors.</p>"},
     {q:"Gs, Gi and Gq: which effector does each activate, and with which second messenger?",
-     a:"<p><strong>Gs</strong> activates adenylyl cyclase: ↑cAMP and PKA (β1, β2, D1, H2). <strong>Gi</strong> inhibits adenylyl cyclase (↓cAMP); in addition its <strong>βγ</strong> dimer opens K⁺ channels and closes Ca²⁺ channels (M2, α2, D2, μ). <strong>Gq</strong> activates phospholipase C-β: PIP₂ yields <strong>IP₃</strong>, which releases Ca²⁺ from the reticulum, and <strong>DAG</strong>, which activates PKC (M1, M3, α1, H1).</p><p>Signalling stops when the α subunit hydrolyses GTP to GDP and reassociates with βγ.</p>"},
+     a:"<p><strong>Gs</strong> activates adenylyl cyclase: ↑cAMP and PKA (β1, β2, D1, H2). <strong>Gi</strong> inhibits adenylyl cyclase (↓cAMP); in addition its <strong>βγ</strong> dimer opens K⁺ channels and closes Ca²⁺ channels (M2, α2, D2, μ). <strong>Gq</strong> activates phospholipase C-β: PIP₂ yields <strong>IP₃</strong>, which releases Ca²⁺ from the reticulum, and <strong>DAG</strong>, which activates PKC (M1, M3, α1, H1).</p><p>Signaling stops when the α subunit hydrolyzes GTP to GDP and reassociates with βγ.</p>"},
     {q:"Why does clonidine, an α2 agonist, lower blood pressure?",
      a:"<p>The α2 receptor is coupled to <strong>Gi</strong>: ↓cAMP, while the βγ dimer opens K⁺ channels and closes presynaptic Ca²⁺ channels. On the noradrenergic terminal it acts as an <strong>autoreceptor</strong>: activating it reduces noradrenaline release.</p><p>Clonidine is lipophilic, crosses the blood-brain barrier and activates α2 receptors in the brainstem: <strong>sympathetic outflow</strong> to heart and vessels falls, so heart rate, resistance and pressure fall. It is an example of a GPCR acting through ion channels.</p>"}
   ],
   [ /* 7 · ACh: nicotinic vs muscarinic */
     {q:"Acetylcholine acts on nicotinic and muscarinic receptors: what is the fundamental difference?",
-     a:"<p>Same transmitter, two receptor families. The <strong>nicotinic</strong> receptor is a channel receptor (pentamer): ACh opens a cation pore, Na⁺ enters and the membrane depolarises within milliseconds. It sits at the neuromuscular junction (Nm), in autonomic ganglia and in the CNS (Nn).</p><p>The <strong>muscarinic</strong> receptor is a GPCR (M1–M5): its effect runs through a G protein, is slower and, depending on the subtype, excitatory or inhibitory. At the end plate ACh contracts the muscle; on the heart, via M2, it slows it down.</p>"},
+     a:"<p>Same transmitter, two receptor families. The <strong>nicotinic</strong> receptor is a channel receptor (pentamer): ACh opens a cation pore, Na⁺ enters and the membrane depolarizes within milliseconds. It sits at the neuromuscular junction (Nm), in autonomic ganglia and in the CNS (Nn).</p><p>The <strong>muscarinic</strong> receptor is a GPCR (M1–M5): its effect runs through a G protein, is slower and, depending on the subtype, excitatory or inhibitory. At the end plate ACh contracts the muscle; on the heart, via M2, it slows it down.</p>"},
     {q:"Why does tubocurarine block the neuromuscular junction but have no central effects?",
-     a:"<p>Tubocurarine is a <strong>competitive antagonist</strong> of ACh at the muscle nicotinic receptor: non-depolarising neuromuscular block and flaccid paralysis, reversible by raising ACh with neostigmine.</p><p>It is a <strong>quaternary ammonium</strong> compound with a permanent positive charge: it does not cross the blood-brain barrier and stays in the periphery. For the same reason it is useless in Parkinson disease, which needs lipophilic central antimuscarinics (trihexyphenidyl, biperiden). Anaesthesia today uses rocuronium, vecuronium and cisatracurium.</p>"},
+     a:"<p>Tubocurarine is a <strong>competitive antagonist</strong> of ACh at the muscle nicotinic receptor: non-depolarizing neuromuscular block and flaccid paralysis, reversible by raising ACh with neostigmine.</p><p>It is a <strong>quaternary ammonium</strong> compound with a permanent positive charge: it does not cross the blood-brain barrier and stays in the periphery. It is useless in Parkinson disease for two reasons: it does not enter the CNS, and it blocks <strong>nicotinic</strong> receptors, whereas the disease needs lipophilic central antimuscarinics (trihexyphenidyl, biperiden). Anesthesia today uses rocuronium, vecuronium and cisatracurium.</p>"},
     {q:"How do muscle nicotinic receptors differ from neuronal ones?",
      a:"<p>The adult <strong>muscle</strong> receptor is (α1)₂β1δε; in the fetus ε is replaced by γ. The γ, δ and ε subunits exist only in muscle. <strong>Neuronal</strong> receptors contain only α (α2–α10) and β (β2–β4) subunits.</p><p>In the CNS the main subtype is <strong>α4β2</strong>: it mediates nicotine dependence and is the target of <strong>varenicline</strong>, a partial agonist used for smoking cessation. The <strong>α7</strong> homomer is highly permeable to Ca²⁺.</p>"}
   ],
   [ /* 8 · Muscarinic: Gq vs Gi */
     {q:"What are the 5 muscarinic subtypes, which G protein is each coupled to, and where do they act?",
-     a:"<p>Rule: <strong>odd = Gq</strong> (↑Ca²⁺, excitatory), <strong>even = Gi</strong> (↓cAMP and K⁺ channel opening, inhibitory).</p><p><strong>M1</strong> (Gq): ganglia, cortex, gastric acid secretion. <strong>M2</strong> (Gi): heart, SA and AV nodes; presynaptic autoreceptor. <strong>M3</strong> (Gq): smooth muscle (bronchi, bladder, gut), exocrine glands, eye. <strong>M4</strong> (Gi): CNS, striatum. <strong>M5</strong> (Gq): CNS, substantia nigra.</p>"},
+     a:"<p>Rule: <strong>odd = Gq</strong> (↑Ca²⁺, excitatory), <strong>even = Gi</strong> (↓cAMP and K⁺ channel opening, inhibitory).</p><p><strong>M1</strong> (Gq): ganglia (including gastric intramural ganglia that drive acid secretion; pirenzepine target), cortex. <strong>M2</strong> (Gi): heart, SA and AV nodes; presynaptic autoreceptor. <strong>M3</strong> (Gq): smooth muscle (bronchi, bladder, gut), exocrine glands, gastric parietal cell, eye. <strong>M4</strong> (Gi): CNS, striatum. <strong>M5</strong> (Gq): CNS, substantia nigra.</p>"},
     {q:"Why do acetylcholinesterase inhibitors cause bradycardia, and why does atropine correct it?",
-     a:"<p>With AChE inhibited, ACh accumulates and activates cardiac <strong>M2</strong> (Gi). The βγ dimer opens <strong>GIRK</strong> K⁺ channels and Gαi lowers cAMP: the SA node hyperpolarises and fires more slowly, and AV conduction slows. The result is bradycardia and possible AV block.</p><p><strong>Atropine</strong>, a muscarinic antagonist, occupies M2 and interrupts the pathway, so heart rate recovers. In organophosphate poisoning it is combined with <strong>pralidoxime</strong>, which reactivates the enzyme if given early.</p>"},
+     a:"<p>With AChE inhibited, ACh accumulates and activates cardiac <strong>M2</strong> (Gi). The βγ dimer opens <strong>GIRK</strong> K⁺ channels and Gαi lowers cAMP: the SA node hyperpolarizes and fires more slowly, and AV conduction slows. The result is bradycardia and possible AV block.</p><p><strong>Atropine</strong>, a muscarinic antagonist, occupies M2 and interrupts the pathway, so heart rate recovers. In organophosphate poisoning it is combined with <strong>pralidoxime</strong>, which reactivates the enzyme if given early.</p>"},
     {q:"How are antimuscarinics used clinically, site by site?",
      a:"<p><strong>Bronchi (M3)</strong>: inhaled ipratropium (SAMA) and tiotropium (LAMA) in COPD. <strong>Bladder (M3)</strong>: oxybutynin and tolterodine for overactive bladder. <strong>Eye</strong>: atropine and tropicamide for mydriasis and cycloplegia. <strong>Vestibular system</strong>: scopolamine for motion sickness. <strong>CNS</strong>: trihexyphenidyl and biperiden in Parkinson disease.</p><p>Structure decides the site: quaternary compounds (ipratropium, tiotropium) stay peripheral; tertiary amines (scopolamine, trihexyphenidyl) cross the blood-brain barrier.</p>"}
   ]
@@ -4569,10 +4584,34 @@ function xqL(){
   return L[LANG==='en'?'en':'it'];
 }
 var xqOpenIds; /* var: sollevata a inizio modulo, così xqOpenSet() funziona anche prima di questo punto */
+var xqWarned;
 function xqOpenSet(){ return xqOpenIds||(xqOpenIds=new Set()); }
+/* Le parole con trattino o lineetta (α-β, 5-HT₃, GABA-A, S1–S6, M3-M4) non vanno a capo a metà:
+   avvolge in .nw solo il testo tra i tag, mai gli attributi. */
+function xqNoBreak(html){
+  return String(html).split(/(<[^>]*>)/).map(function(s){
+    return s.charAt(0)==='<'?s:s.replace(/\S+[-–]\S+/g,'<span class="nw">$&</span>');
+  }).join('');
+}
+function xqReduced(){ try{ return matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){ return false; } }
+/* apre/chiude un quesito: classe .open, aria-expanded, hidden="until-found" sul pannello e memoria dello stato */
+function xqSet(li,on){
+  const b=li.querySelector('.xq-q'), p=li.querySelector('.xq-a > div'); if(!b||!p) return;
+  if(on){
+    p.removeAttribute('hidden'); li.classList.add('open');
+  } else {
+    li.classList.remove('open');
+    setTimeout(function(){ if(!li.classList.contains('open')) p.setAttribute('hidden','until-found'); }, xqReduced()?0:230);
+  }
+  b.setAttribute('aria-expanded',String(on));
+  const s=xqOpenSet(), id=b.id.replace(/-b$/,''); if(on) s.add(id); else s.delete(id);
+}
 function examRender(){
   const grid=document.getElementById('diff-grid'); if(!grid) return;
   const L=xqL(), open=xqOpenSet();
+  if(!xqWarned&&Array.isArray(EXAM)&&Array.isArray(DIFFS)&&EXAM.length!==DIFFS.length){
+    xqWarned=true; console.warn('[exam] EXAM ('+EXAM.length+') e DIFFS ('+DIFFS.length+') hanno lunghezze diverse: i quesiti sono abbinati per posizione.');
+  }
   const chev='<svg class="xq-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
   const icon='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8 1c0 1.7-2.4 2.2-2.4 3.7"/><path d="M12 17.2h.01"/></svg>';
   grid.querySelectorAll(':scope > .diff-card').forEach((card,i)=>{
@@ -4583,22 +4622,28 @@ function examRender(){
       const id='xq-'+i+'-'+j, on=open.has(id);
       return `<li class="xq-item${on?' open':''}">`+
         `<button type="button" class="xq-q" id="${id}-b" aria-expanded="${on}" aria-controls="${id}-a">`+
-        `<span class="xq-n" aria-hidden="true">${j+1}</span><span class="xq-t">${x.q}</span>${chev}</button>`+
-        `<div class="xq-a" id="${id}-a"><div><div class="xq-body">${x.a}</div></div></div></li>`;
+        `<span class="xq-n" aria-hidden="true">${j+1}</span><span class="xq-t">${xqNoBreak(x.q)}</span>${chev}</button>`+
+        `<div class="xq-a" id="${id}-a"><div${on?'':' hidden="until-found"'}><div class="xq-body">${xqNoBreak(x.a)}</div></div></div></li>`;
     }).join('');
-    const sec=document.createElement('section');
-    sec.className='xq'; sec.setAttribute('aria-labelledby','xq-h-'+i);
-    sec.innerHTML=`<h4 class="xq-h" id="xq-h-${i}">${icon}${L.h}</h4><ol class="xq-list">${items}</ol>`;
-    card.appendChild(sec);
+    /* div, non section: 8 landmark con lo stesso nome sarebbero solo rumore; la struttura la dà già l'h4 */
+    const box=document.createElement('div');
+    box.className='xq';
+    box.innerHTML=`<h4 class="xq-h">${icon}${L.h}</h4><ol class="xq-list">${items}</ol>`;
+    card.appendChild(box);
   });
 }
 (function(){
   const grid=document.getElementById('diff-grid'); if(!grid) return;
   grid.addEventListener('click',function(e){
     const b=e.target&&e.target.closest&&e.target.closest('.xq-q'); if(!b||!grid.contains(b)) return;
-    const li=b.parentElement, on=!li.classList.contains('open'), id=b.id.replace(/-b$/,'');
-    li.classList.toggle('open',on); b.setAttribute('aria-expanded',String(on));
-    const s=xqOpenSet(); if(on) s.add(id); else s.delete(id);
+    const li=b.parentElement; xqSet(li,!li.classList.contains('open'));
+  });
+  /* Ctrl+F (o un link #:~:text=) ha trovato il testo in una risposta chiusa: aprila subito, senza animazione,
+     così il browser scorre sulla posizione definitiva */
+  grid.addEventListener('beforematch',function(e){
+    const li=e.target&&e.target.closest&&e.target.closest('.xq-item'); if(!li||li.classList.contains('open')) return;
+    li.classList.add('xq-now'); xqSet(li,true);
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ li.classList.remove('xq-now'); }); });
   });
   if(!grid.querySelector('.xq')) examRender();
 })();
