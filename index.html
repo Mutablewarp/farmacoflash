@@ -3,156 +3,688 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Farmacologia — Studio integrato</title>
+<title>FarmacoFlash · Farmacologia</title>
+<meta name="description" content="Flashcard a ripetizione spaziata e atlante 3D dei bersagli dei farmaci, per l'esame di Farmacologia.">
+<meta name="theme-color" content="#f3f0e9">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="FarmacoFlash">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>/* tema prima del primo disegno: niente lampo chiaro in modalità scura */
+(function(){var t;try{t=localStorage.getItem('cr-theme')}catch(e){}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;})();</script>
 <style>
 :root{
-  --bg:#f3f0e9; --panel:#fdfbf6; --line:#e6e0d4; --line2:#d6cdbd;
-  --ink:#1c1a15; --ink-dim:#565049; --ink-faint:#8a8278;
-  --gold:#835c14; --gold-line:#e6d6b4; --gold-soft:#f4ecda;
-  --bar-h:60px;
-  --sys:-apple-system,BlinkMacSystemFont,'SF Pro Text','Archivo',system-ui,sans-serif;
+  --bg:#f3f0e9;--panel:#fdfbf6;--sunk:#ebe6db;--line:#e6e0d4;--line2:#d6cdbd;
+  --ink:#1c1a15;--ink-dim:#565049;--ink-faint:#8a8278;
+  --gold:#835c14;--on-gold:#fff;--gold-line:#e6d6b4;--gold-soft:#f4ecda;
+  --warn:#8a5a00;--warn-soft:#f6ead2;--info:#2b5f8a;--info-soft:#e4edf4;
+  --night:#1d1a15;--night-ink:#efe9db;--night-dim:#c2b9a6;--night-gold:#e3bd80;--night-line:#3a352a;
+  --shadow:0 1px 2px rgb(28 26 21/.06),0 10px 28px -14px rgb(28 26 21/.22);
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --display:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --top-h:65px;--nav-h:0px;
+  --z-top:20;--z-nav:21;--z-tour:40;
 }
 :root[data-theme="dark"]{
-  --bg:#13110d; --panel:#1b1812; --line:#2a261d; --line2:#3a352a;
-  --ink:#efe9db; --ink-dim:#b3ab9a; --ink-faint:#837b6c;
-  --gold:#e3bd80; --gold-line:#4a3d22; --gold-soft:#241c0d;
+  --bg:#13110d;--panel:#1b1812;--sunk:#0f0d0a;--line:#2a261d;--line2:#3a352a;
+  --ink:#efe9db;--ink-dim:#b3ab9a;--ink-faint:#837b6c;
+  --gold:#e3bd80;--on-gold:#1c1a15;--gold-line:#4a3d22;--gold-soft:#241c0d;
+  --warn:#e8b45a;--warn-soft:#2a2112;--info:#8cb8e0;--info-soft:#15202a;
+  --night:#211d16;--night-line:#4a3d22;
+  --shadow:0 1px 2px rgb(0 0 0/.35),0 14px 32px -18px rgb(0 0 0/.7);
+  color-scheme:dark;
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
-body{font-family:var(--sys);color:var(--ink);background:var(--bg);overflow:hidden;-webkit-font-smoothing:antialiased}
-/* ---- top bar ---- */
-.bar{
-  position:fixed;inset:0 0 auto 0;height:var(--bar-h);z-index:10;
-  display:flex;align-items:center;gap:16px;padding:0 18px;
-  padding-top:env(safe-area-inset-top);
-  background:color-mix(in srgb,var(--bg) 80%,transparent);
-  backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);
-  border-bottom:1px solid var(--line);
+body{font:400 15px/1.55 var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow:hidden}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+::selection{background:var(--gold-soft);color:var(--ink)}
+.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- testata ---------- */
+.top{position:fixed;inset:0 0 auto;z-index:var(--z-top);background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.bar{height:64px;display:flex;align-items:center;gap:16px;padding:0 max(20px,env(safe-area-inset-right)) 0 max(20px,env(safe-area-inset-left))}
+.brand{display:flex;align-items:center;gap:10px;border:0;background:none;padding:4px 6px 4px 0;border-radius:10px;color:var(--ink)}
+.brand img{width:30px;height:30px;border-radius:8px}
+.brand b{font:600 20px/1 var(--display);letter-spacing:-.015em}
+.spaces{display:flex;gap:2px;padding:4px;border-radius:999px;background:var(--sunk);border:1px solid var(--line)}
+.sp{position:relative;border:0;background:none;height:38px;padding:0 16px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--ink-dim);transition:color .18s var(--ease),background-color .18s var(--ease),box-shadow .18s var(--ease)}
+.sp svg{width:18px;height:18px}
+.sp:hover{color:var(--ink)}
+.sp[aria-current="page"]{background:var(--panel);color:var(--ink);box-shadow:0 1px 2px rgb(28 26 21/.08),0 0 0 1px var(--line2)}
+.badge{min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--gold);color:var(--on-gold);font-size:11px;line-height:18px;text-align:center;font-weight:700}
+.badge[hidden]{display:none}
+.tools{margin-left:auto;display:flex;align-items:center;gap:8px}
+.search{position:relative;width:min(300px,26vw);margin:0}
+.search svg{position:absolute;left:13px;top:50%;width:16px;height:16px;transform:translateY(-50%);color:var(--ink-dim);pointer-events:none}
+.search input{width:100%;height:40px;border:1px solid var(--line2);border-radius:999px;background:var(--panel);padding:0 14px 0 38px;font-size:14px;transition:border-color .18s var(--ease),box-shadow .18s var(--ease)}
+.search input::placeholder{color:var(--ink-dim);opacity:1}
+.search input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.ib{width:40px;height:40px;flex-shrink:0;border-radius:999px;border:1px solid var(--line2);background:var(--panel);display:inline-grid;place-items:center;color:var(--ink-dim);transition:color .18s var(--ease),border-color .18s var(--ease)}
+.ib svg{width:18px;height:18px}
+.ib:hover{color:var(--ink);border-color:var(--ink-faint)}
+.ib.txt{width:auto;padding:0 12px;font:500 12px/1 var(--mono);letter-spacing:.04em}
+#search-toggle{display:none}
+.sub{display:flex;gap:2px;height:46px;padding:0 max(14px,env(safe-area-inset-right)) 0 max(14px,env(safe-area-inset-left));border-top:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.sub::-webkit-scrollbar{display:none}
+.sub[hidden]{display:none}
+.sub button{position:relative;border:0;background:none;padding:0 14px;font-weight:600;font-size:14px;color:var(--ink-dim);white-space:nowrap;transition:color .18s var(--ease)}
+.sub button:hover{color:var(--ink)}
+.sub button[aria-current="page"]{color:var(--ink)}
+.sub button[aria-current="page"]::after{content:"";position:absolute;left:12px;right:12px;bottom:0;height:2px;border-radius:2px;background:var(--gold)}
+.sub .hint{margin-left:auto;align-self:center;color:var(--ink-dim);font-size:13px;white-space:nowrap;padding-left:16px}
+.sub kbd{font:500 12px/1 var(--mono);padding:3px 6px;border:1px solid var(--line2);border-radius:5px;background:var(--panel)}
+
+/* ---------- palco ---------- */
+.stage{position:fixed;left:0;right:0;top:var(--top-h);bottom:var(--nav-h)}
+.stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg)}
+.stage iframe[hidden],.page[hidden],.loading[hidden]{display:none}
+.page{position:absolute;inset:0;overflow:auto;overscroll-behavior:contain}
+.wrap{max-width:1120px;margin:0 auto;padding:40px max(20px,env(safe-area-inset-right)) 64px max(20px,env(safe-area-inset-left))}
+.loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink-dim);font-size:14px;pointer-events:none}
+
+/* ---------- bottoni ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:10px;border:1px solid var(--line2);background:var(--panel);color:var(--ink);font-weight:600;font-size:15px;text-decoration:none;transition:background-color .18s var(--ease),border-color .18s var(--ease),transform .18s var(--ease)}
+.btn:hover{border-color:var(--ink-faint)}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.primary{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--ink-dim)}
+.btn.ghost:hover{color:var(--ink)}
+.link{border:0;background:none;padding:6px 2px;color:var(--gold);font-weight:600;font-size:14px;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+
+/* ---------- Inizio ---------- */
+.hello{margin-bottom:28px}
+.hello .date{margin:0 0 6px;color:var(--ink-dim);font-size:14px}
+.hello h1{margin:0;font:500 44px/1.08 var(--display);letter-spacing:-.02em;text-wrap:balance}
+.hello .lead{margin:10px 0 0;max-width:62ch;color:var(--ink-dim);font-size:17px;text-wrap:pretty}
+.doors{display:grid;grid-template-columns:1.08fr 1fr;gap:18px}
+.door{position:relative;overflow:hidden;border-radius:20px;padding:22px 26px 24px;display:flex;flex-direction:column;gap:12px}
+.door .art{width:220px;height:120px;margin:0 0 4px -6px}
+.door h2{margin:0;font:500 30px/1.1 var(--display);letter-spacing:-.015em}
+.door p{margin:0;max-width:52ch;font-size:15.5px;text-wrap:pretty}
+.door .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:8px}
+.door-cards{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow)}
+.door-cards p{color:var(--ink-dim)}
+.door-atlas{background:var(--night);color:var(--night-ink);border:1px solid var(--night-line)}
+.door-atlas p{color:var(--night-dim)}
+.door-atlas .btn.primary{background:var(--night-gold);border-color:var(--night-gold);color:#1c1a15}
+.door-atlas :focus-visible{outline-color:var(--night-gold)}
+.a-sunk{fill:var(--sunk);stroke:var(--line2)}.a-soft{fill:var(--gold-soft);stroke:var(--gold-line)}.a-card{fill:var(--panel);stroke:var(--line2)}
+.a-ink{fill:var(--ink)}.a-line{fill:var(--line2)}.a-gold{fill:var(--gold)}.a-tick{fill:none;stroke:var(--on-gold);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.a-head{fill:#8b7f68}.a-tail{stroke:#5a5141;stroke-width:1.6;stroke-linecap:round}
+.a-sub{fill:#3b342a;stroke:#e3bd80;stroke-opacity:.55;stroke-width:1.3}.a-ion{fill:#e3bd80}.a-glow{fill:#e3bd80;opacity:.18}
+.stats{display:flex;gap:28px;margin:2px 0 0;padding:0}
+.stats div{display:flex;flex-direction:column-reverse;gap:3px}
+.stats dt{font-size:13px;color:var(--ink-dim)}
+.stats dd{margin:0;font:500 30px/1 var(--display);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.stats .due dd{color:var(--gold)}
+.facts{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.facts li{padding:5px 11px;border-radius:999px;border:1px solid var(--night-line);font-size:13px;color:var(--night-dim)}
+.block{margin-top:52px}
+.block-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;margin-bottom:14px}
+.block-head h2{margin:0;font:500 24px/1.2 var(--display);letter-spacing:-.01em}
+.block-head p{margin:0;color:var(--ink-dim);font-size:14px}
+.course{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.mod h3{margin:0 0 10px;font-size:15px;font-weight:700;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.mod h3 small{font-weight:500;color:var(--ink-dim);font-size:13.5px}
+.decks{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.deck{width:100%;display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:12px;min-height:46px;padding:8px 8px 8px 6px;border:0;border-bottom:1px solid var(--line);background:none;text-align:left;transition:background-color .15s var(--ease)}
+.deck:hover{background:var(--gold-soft)}
+.deck .code{font:500 12px/1 var(--mono);color:var(--gold)}
+.deck .t{font-weight:500;font-size:14.5px}
+.deck .n{font:500 12px/1 var(--mono);color:var(--ink-dim);font-variant-numeric:tabular-nums}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:0;padding:0;list-style:none;counter-reset:s}
+.how li{counter-increment:s;padding-top:14px;border-top:2px solid var(--ink)}
+.how li::before{content:counter(s);font:500 26px/1 var(--display);color:var(--gold);display:block;margin-bottom:8px}
+.how b{display:block;font-size:15.5px;margin-bottom:4px}
+.how p{margin:0;color:var(--ink-dim);font-size:14.5px;text-wrap:pretty}
+.how-cta{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
+.foot{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--ink-dim);font-size:13px;display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:wrap}
+
+/* ---------- Novità ---------- */
+.page-head h1{margin:0;font:500 40px/1.1 var(--display);letter-spacing:-.02em}
+.page-head .lead{margin:10px 0 0;max-width:68ch;color:var(--ink-dim);font-size:16px;text-wrap:pretty}
+.page-head .meta{margin:10px 0 0;color:var(--ink-dim);font-size:13px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 6px}
+.chip{border:1px solid var(--line2);background:var(--panel);border-radius:999px;min-height:36px;padding:0 14px;font-size:13.5px;font-weight:600;color:var(--ink-dim);transition:color .15s var(--ease),background-color .15s var(--ease),border-color .15s var(--ease)}
+.chip:hover{color:var(--ink);border-color:var(--ink-faint)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.news-list{list-style:none;margin:0;padding:0}
+.news{padding:18px 0;border-bottom:1px solid var(--line);display:grid;gap:6px}
+.news .nm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--ink-dim)}
+.tag{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font-weight:600;font-size:12px;background:var(--sunk);color:var(--ink)}
+.tag.k-sicurezza{background:var(--warn-soft);color:var(--warn)}
+.tag.k-linea-guida{background:var(--info-soft);color:var(--info)}
+.news time{font-family:var(--mono);font-size:12px}
+.news a.nt{font-weight:600;font-size:16px;line-height:1.4;color:var(--ink);text-decoration:none;max-width:80ch}
+.news a.nt:hover{text-decoration:underline;text-underline-offset:3px}
+.news a.nt span{color:var(--ink-dim);font-weight:400}
+.news .ns{margin:0;color:var(--ink-dim);font-size:14.5px;max-width:80ch}
+.news .nd{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--ink-dim);margin-top:2px}
+.news .nd button{border:1px solid var(--gold-line);background:var(--gold-soft);color:var(--ink);border-radius:999px;min-height:32px;padding:0 12px;font-size:13px;font-weight:600}
+.news .nd button:hover{border-color:var(--gold)}
+.news-list.compact .news{padding:14px 0}
+.news-list.compact .ns{display:none}
+.empty{padding:24px 0;color:var(--ink-dim);max-width:62ch;margin:0}
+.src-status{margin-top:28px;font-size:13px;color:var(--ink-dim)}
+
+/* ---------- giro guidato ---------- */
+.tour{position:fixed;inset:0;z-index:var(--z-tour);pointer-events:none}
+.tour[hidden]{display:none}
+.shade{position:fixed;background:rgb(16 14 11/.6);pointer-events:auto}
+.ring{position:fixed;border-radius:12px;box-shadow:0 0 0 2px var(--gold),0 0 0 7px rgb(227 189 128/.35);transition:left .22s var(--ease),top .22s var(--ease),width .22s var(--ease),height .22s var(--ease)}
+.ring[hidden]{display:none}
+.pop{position:fixed;pointer-events:auto;width:min(380px,calc(100vw - 24px));background:var(--panel);color:var(--ink);border:1px solid var(--line2);border-radius:16px;padding:18px 18px 14px;box-shadow:0 24px 60px -20px rgb(0 0 0/.45);transition:left .22s var(--ease),top .22s var(--ease)}
+.pop .prog{display:flex;align-items:center;gap:10px;font:500 12px/1 var(--mono);color:var(--ink-dim)}
+.pop .prog i{flex:1;height:3px;border-radius:3px;background:var(--line);overflow:hidden;display:block}
+.pop .prog b{display:block;height:100%;background:var(--gold);transition:width .22s var(--ease)}
+.pop h2{margin:12px 0 6px;font:500 22px/1.2 var(--display);letter-spacing:-.01em}
+.pop p{margin:0;color:var(--ink-dim);font-size:15px}
+.pop .try{margin-top:10px;font-size:13.5px;color:var(--gold);font-weight:600}
+.pop .try[hidden]{display:none}
+.pop .acts{display:flex;gap:8px;margin-top:16px;align-items:center}
+.pop .acts .btn{min-height:40px;padding:0 14px;font-size:14px}
+.pop .acts .grow{flex:1}
+
+/* ---------- telefono ---------- */
+@media (max-width:860px){
+  :root{--nav-h:calc(65px + env(safe-area-inset-bottom))}
+  .bar{height:56px;gap:10px;padding:0 max(12px,env(safe-area-inset-right)) 0 max(14px,env(safe-area-inset-left))}
+  .brand b{font-size:18px}
+  .brand img{width:28px;height:28px}
+  .spaces{position:fixed;left:0;right:0;bottom:0;z-index:var(--z-nav);border-radius:0;border:0;border-top:1px solid var(--line);background:var(--panel);padding:6px max(6px,env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left));justify-content:space-around;gap:4px}
+  .sp{flex:1;flex-direction:column;justify-content:center;height:52px;padding:0 4px;gap:3px;font-size:11.5px;border-radius:12px}
+  .sp svg{width:22px;height:22px}
+  .sp[aria-current="page"]{background:var(--gold-soft);box-shadow:none}
+  .sp[aria-current="page"] svg{color:var(--gold)}
+  .sp .badge{position:absolute;top:3px;left:calc(50% + 6px);min-width:16px;height:16px;line-height:16px;font-size:10px;padding:0 4px}
+  .tools{gap:6px}
+  .search{display:none;position:absolute;left:0;right:0;top:calc(56px + env(safe-area-inset-top));width:auto;padding:8px 12px;background:var(--bg);border-bottom:1px solid var(--line)}
+  .top.searching .search{display:block}
+  .search svg{left:25px}
+  #search-toggle{display:inline-grid}
+  .sub{height:44px;padding:0 6px}
+  .sub button{padding:0 11px;font-size:13.5px}
+  .sub .hint{display:none}
+  .wrap{padding-top:26px}
+  .hello h1{font-size:34px}
+  .hello .lead{font-size:16px}
+  .doors{grid-template-columns:1fr}
+  .door{padding:18px 20px 20px}
+  .door h2{font-size:26px}
+  .door .art{width:180px;height:98px}
+  .course{grid-template-columns:1fr}
+  .how{grid-template-columns:1fr;gap:18px}
+  .page-head h1{font-size:32px}
 }
-.brand{display:flex;align-items:baseline;gap:9px;white-space:nowrap;user-select:none}
-.brand .mk{font-size:17px;align-self:center}
-.brand .nm{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:18px;letter-spacing:-.01em}
-.brand .sub{color:var(--ink-faint);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase}
-/* ---- segmented tabs (monochrome) ---- */
-.tabs{display:flex;gap:2px;margin:0 auto;background:transparent;border:1px solid var(--line2);border-radius:999px;padding:3px}
-.seg{appearance:none;border:0;background:transparent;color:var(--ink-dim);font-family:inherit;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:8px 18px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:color .2s,background .2s}
-.seg .ic{font-size:14px;letter-spacing:0}
-.seg:hover{color:var(--ink)}
-.seg.active{background:var(--ink);color:var(--bg)}
-.seg:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-.seg .lbl-sm{display:none}
-/* ---- right controls ---- */
-.ctl{display:flex;gap:8px;margin-left:auto}
-.cbtn{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;min-width:36px;height:34px;padding:0 11px;border:1px solid var(--line2);border-radius:999px;background:transparent;color:var(--ink-dim);cursor:pointer;transition:.18s}
-.cbtn:hover{border-color:var(--ink);color:var(--ink)}
-.cbtn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-/* ---- stage ---- */
-.stage{position:fixed;inset:calc(var(--bar-h) + env(safe-area-inset-top)) 0 0 0}
-iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg)}
-iframe[hidden]{display:none}
-@media (max-width:700px){
-  .brand .sub{display:none}
-  .seg{padding:8px 13px}
-  .seg .lbl{display:none}
-  .seg .lbl-sm{display:inline;letter-spacing:.1em}
-}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:400px){.ib.txt{padding:0 9px}.stats{gap:18px}.stats dd{font-size:26px}}
+@media (max-width:374px){.brand b{display:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 <style>/* © giorgiom250698 */:root{--author:"giorgiom250698";--author-sha256:"7e89b191a704024f69214d2e5be7e71b95a3d374165994eb77a8021abb59ea6d"}</style>
-<style>/* micro-polish UI: rendering · selezione · scrollbar · scroll fluido */
-html{scroll-behavior:smooth}
-body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
-::selection{background:var(--line2);color:var(--ink)}
-::-webkit-scrollbar{width:11px;height:11px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--line2);border-radius:9px;border:3px solid transparent;background-clip:padding-box}
-::-webkit-scrollbar-thumb:hover{background:var(--ink-faint,var(--faint,#8a8278));background-clip:padding-box}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-</style>
 </head>
 <body>
-  <header class="bar">
-    <div class="brand"><span class="mk">🧬</span><span class="nm">Farmacologia</span><span class="sub"></span></div>
-    <div class="tabs" role="tablist" aria-label="Strumenti">
-      <button class="seg active" id="tab-canali" data-app="canali" role="tab" aria-selected="true">
-        <span class="ic">🧬</span><span class="lbl" data-it="Bersagli &amp; Farmaci 3D" data-en="Targets &amp; Drugs 3D">Bersagli &amp; Farmaci 3D</span><span class="lbl-sm">3D</span>
-      </button>
-      <button class="seg" id="tab-flashcard" data-app="flashcard" role="tab" aria-selected="false">
-        <span class="ic">📇</span><span class="lbl">FarmacoFlash</span><span class="lbl-sm">Flash</span>
-      </button>
+<header class="top" id="top">
+  <div class="bar">
+    <button class="brand" type="button" data-space="home" aria-label="FarmacoFlash, inizio"><img src="assets/icon.svg" alt="" width="30" height="30"><b>FarmacoFlash</b></button>
+    <nav class="spaces" data-i-aria="nav_aria" aria-label="Sezioni">
+      <button class="sp" type="button" data-space="home"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"/></svg><span data-i="home">Inizio</span></button>
+      <button class="sp" type="button" data-space="cards"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="14" height="14" rx="2.5"/><path d="M7.5 3.5h11A2.5 2.5 0 0 1 21 6v11"/></svg><span data-i="cards">Flashcard</span></button>
+      <button class="sp" type="button" data-space="atlas"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 20.2 7.4v9.2L12 21.2l-8.2-4.6V7.4z"/><path d="M3.8 7.4 12 12l8.2-4.6M12 12v9.2"/></svg><span data-i="atlas">Atlante 3D</span></button>
+      <button class="sp" type="button" data-space="news"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16.5V11a6 6 0 1 1 12 0v5.5l1.5 2h-15z"/><path d="M10 21a2 2 0 0 0 4 0"/></svg><span data-i="news">Novità</span><span class="badge" id="news-badge" hidden></span></button>
+    </nav>
+    <div class="tools">
+      <form class="search" id="search" role="search">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+        <input id="q" type="search" enterkeyhint="search" autocomplete="off" spellcheck="false" data-i-ph="search" data-i-aria="search" placeholder="Cerca un farmaco o un marchio" aria-label="Cerca un farmaco o un marchio">
+      </form>
+      <button class="ib" id="search-toggle" type="button" data-i-aria="search_open" aria-label="Cerca" aria-expanded="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></button>
+      <button class="ib" id="help" type="button" data-i-aria="help" aria-label="Guida"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.7.3-1 .8-1 1.5v.4"/><path d="M12 17.1v.1"/></svg></button>
+      <button class="ib" id="theme" type="button" aria-label="Tema"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path id="theme-path" d=""/></svg></button>
+      <button class="ib txt" id="lang" type="button" aria-label="English">EN</button>
     </div>
-    <div class="ctl">
-      <button class="cbtn" id="theme" type="button" title="Tema chiaro / scuro">☾</button>
-      <button class="cbtn" id="lang" type="button" title="Italiano / English">EN</button>
-    </div>
-  </header>
-  <div class="stage">
-    <iframe id="if-canali"    title="Bersagli & Farmaci in 3D" src="Canali-e-Recettori-3D.html?embed=1"></iframe>
-    <iframe id="if-flashcard" title="FarmacoFlash"             src="Flashcard-Farmacologia.html?embed=1" hidden></iframe>
   </div>
+  <nav class="sub" id="sub" data-i-aria="sub_aria" aria-label="Flashcard" hidden>
+    <button type="button" data-sub="dash" data-i="dash">Oggi</button>
+    <button type="button" data-sub="study" data-i="study">Studia</button>
+    <button type="button" data-sub="browse" data-i="browse">Sfoglia</button>
+    <button type="button" data-sub="names" data-i="names">Tabella dei nomi</button>
+    <button type="button" data-sub="stats" data-i="stats">Progressi</button>
+    <span class="hint"><span data-i="hint_a">Premi</span> <kbd>/</kbd> <span data-i="hint_b">per cercare un farmaco</span></span>
+  </nav>
+</header>
+
+<main class="stage" id="stage">
+  <section class="page" id="page-home" aria-labelledby="hello" hidden>
+    <div class="wrap">
+      <header class="hello">
+        <p class="date" id="today"></p>
+        <h1 id="hello">Buongiorno.</h1>
+        <p class="lead" data-i="lead">Due strumenti in un posto solo: ripassa con le flashcard, capisci i bersagli nell'atlante 3D.</p>
+      </header>
+      <div class="doors">
+        <article class="door door-cards" aria-labelledby="door-cards-h">
+          <svg class="art" viewBox="0 0 220 120" aria-hidden="true">
+            <rect class="a-sunk" x="40" y="26" width="128" height="82" rx="12" transform="rotate(-9 104 67)"/>
+            <rect class="a-soft" x="52" y="18" width="128" height="82" rx="12" transform="rotate(5 116 59)"/>
+            <g transform="rotate(-2 112 62)">
+              <rect class="a-card" x="46" y="20" width="132" height="86" rx="12"/>
+              <rect class="a-ink" x="62" y="38" width="64" height="9" rx="4.5"/>
+              <rect class="a-line" x="62" y="56" width="96" height="6" rx="3"/>
+              <rect class="a-line" x="62" y="70" width="78" height="6" rx="3"/>
+              <circle class="a-gold" cx="160" cy="88" r="10"/>
+              <path class="a-tick" d="m155.5 88 3 3 5.5-6"/>
+            </g>
+          </svg>
+          <h2 id="door-cards-h" data-i="cards">Flashcard</h2>
+          <p data-i="cards_p">Ripetizione spaziata su tutto il programma, farmacologia generale e speciale, con la tabella dei nomi e i quiz di scrittura.</p>
+          <dl class="stats">
+            <div class="due"><dt data-i="due">Da ripassare oggi</dt><dd id="st-due">0</dd></div>
+            <div><dt data-i="seen">Già studiate</dt><dd id="st-seen">0</dd></div>
+            <div><dt data-i="total">Carte in tutto</dt><dd id="st-total">0</dd></div>
+          </dl>
+          <div class="acts">
+            <button class="btn primary" type="button" id="start" data-go="flashcard:#study">Inizia lo studio</button>
+            <button class="btn" type="button" data-go="catalog:" data-i="names">Tabella dei nomi</button>
+          </div>
+        </article>
+        <article class="door door-atlas" aria-labelledby="door-atlas-h">
+          <svg class="art" viewBox="0 0 220 120" aria-hidden="true" id="atlas-art"><ellipse class="a-glow" cx="112" cy="62" rx="40" ry="52"/></svg>
+          <h2 id="door-atlas-h" data-i="atlas">Atlante 3D</h2>
+          <p data-i="atlas_p">Canali ionici, recettori e GPCR in modelli da ruotare. Per ogni bersaglio trovi i farmaci che lo colpiscono, il meccanismo e il collegamento alla carta.</p>
+          <ul class="facts" id="facts"></ul>
+          <div class="acts">
+            <button class="btn primary" type="button" data-go="canali:" data-i="atlas_open">Apri l'atlante</button>
+          </div>
+        </article>
+      </div>
+
+      <section class="block" aria-labelledby="home-news-h">
+        <div class="block-head"><h2 id="home-news-h" data-i="news_h">Novità dalle fonti ufficiali</h2><button class="link" type="button" data-space="news" data-i="see_all">Vedi tutte</button></div>
+        <ol class="news-list compact" id="home-news"></ol>
+      </section>
+
+      <section class="block" aria-labelledby="course-h">
+        <div class="block-head"><h2 id="course-h" data-i="course_h">Il programma</h2><p data-i="course_p">Tocca un argomento per studiarne le carte.</p></div>
+<!--COURSE:START--><div class="course"><div class="mod"><h3><span data-i="mod1"></span><small data-i="mod1s"></small></h3><ul class="decks"><li><button class="deck" type="button" data-go="flashcard:#deck=G1"><span class="code">G1</span><span class="t">Principi · assorbimento e biodisponibilità</span><span class="n">6</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=G2"><span class="code">G2</span><span class="t">Principi · distribuzione e metabolismo</span><span class="n">7</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=G3"><span class="code">G3</span><span class="t">Principi · eliminazione e parametri cinetici</span><span class="n">5</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=G4"><span class="code">G4</span><span class="t">Principi · farmacodinamica</span><span class="n">7</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=G5"><span class="code">G5</span><span class="t">Bersagli · canali, pompe e trasportatori</span><span class="n">5</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=G6"><span class="code">G6</span><span class="t">Bersagli · recettori e trasduzione</span><span class="n">5</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=A4"><span class="code">A4</span><span class="t">Glucocorticoidi</span><span class="n">8</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=A5"><span class="code">A5</span><span class="t">FANS + paracetamolo</span><span class="n">10</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=A6"><span class="code">A6</span><span class="t">Antistaminici</span><span class="n">5</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=A7"><span class="code">A7</span><span class="t">Antiemicranici + antiemetici</span><span class="n">7</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=A8"><span class="code">A8</span><span class="t">Antiasmatici / BPCO</span><span class="n">8</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=A9"><span class="code">A9</span><span class="t">Farmaci biologici / biosimilari / anti-TNF-α</span><span class="n">7</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=A10"><span class="code">A10</span><span class="t">Diabete / insulina</span><span class="n">10</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=A11"><span class="code">A11</span><span class="t">Farmaci gastrointestinali</span><span class="n">10</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=A12"><span class="code">A12</span><span class="t">Osso / osteoporosi</span><span class="n">8</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=Beta-lattamici"><span class="code">AB1</span><span class="t">Antibiotici β-lattamici</span><span class="n">17</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=Antibiotici-2"><span class="code">AB2</span><span class="t">Antibiotici: parete e antimicobatterici</span><span class="n">12</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=Antibiotici-3"><span class="code">AB3</span><span class="t">Antibiotici: sintesi proteica e acidi nucleici</span><span class="n">13</span></button></li></ul></div><div class="mod"><h3><span data-i="mod2"></span><small data-i="mod2s"></small></h3><ul class="decks"><li><button class="deck" type="button" data-go="flashcard:#deck=G7"><span class="code">G7</span><span class="t">Neurofarmacologia molecolare</span><span class="n">6</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B1"><span class="code">B1</span><span class="t">Sedativo-ipnotici e ansiolitici</span><span class="n">7</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B2"><span class="code">B2</span><span class="t">Anestetici generali e locali</span><span class="n">6</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B3"><span class="code">B3</span><span class="t">Antidepressivi</span><span class="n">10</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B4"><span class="code">B4</span><span class="t">Disturbo bipolare / stabilizzanti dell&#39;umore</span><span class="n">5</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B5"><span class="code">B5</span><span class="t">Antipsicotici</span><span class="n">5</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B6"><span class="code">B6</span><span class="t">Antiparkinson</span><span class="n">6</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B7"><span class="code">B7</span><span class="t">Alzheimer e sclerosi multipla</span><span class="n">8</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B8"><span class="code">B8</span><span class="t">Oppioidi / terapia del dolore</span><span class="n">6</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B9"><span class="code">B9</span><span class="t">Antiepilettici + statine/ipolipemizzanti</span><span class="n">8</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B10"><span class="code">B10</span><span class="t">Antiipertensivi: simpaticolitici, α- e β-bloccanti</span><span class="n">6</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B11"><span class="code">B11</span><span class="t">RAAS</span><span class="n">5</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B11b"><span class="code">B11b</span><span class="t">Scompenso/digitale, xantine e diuretici</span><span class="n">8</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B12"><span class="code">B12</span><span class="t">Antitrombotici</span><span class="n">7</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B12b"><span class="code">B12b</span><span class="t">Vasodilatatori</span><span class="n">3</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B13"><span class="code">B13</span><span class="t">Antiaritmici</span><span class="n">5</span></button></li><li><button class="deck" type="button" data-go="flashcard:#deck=B14"><span class="code">B14</span><span class="t">Antitumorali / oncologia di precisione</span><span class="n">4</span></button></li></ul></div></div><!--COURSE:END-->
+      </section>
+
+      <section class="block" aria-labelledby="how-h">
+        <div class="block-head"><h2 id="how-h" data-i="how_h">Come si usa</h2></div>
+        <ol class="how" id="how"></ol>
+        <div class="how-cta"><button class="btn" type="button" id="tour-start" data-i="tour_btn">Fai il giro guidato</button></div>
+      </section>
+
+      <footer class="foot"><span data-i="foot_l">Strumento di studio: non sostituisce il libro né il giudizio clinico.</span><span data-i="foot_r">I tuoi progressi restano in questo browser.</span></footer>
+    </div>
+  </section>
+
+  <section class="page" id="page-news" aria-labelledby="news-title" hidden>
+    <div class="wrap">
+      <header class="page-head">
+        <h1 id="news-title" data-i="news">Novità</h1>
+        <p class="lead" data-i="news_lead">Avvisi di sicurezza e nuove linee guida raccolti ogni notte da EMA, AIFA, FDA e PubMed. Le carte non cambiano da sole: apri la fonte e verifica.</p>
+        <p class="meta" id="news-meta"></p>
+      </header>
+      <div class="filters" role="group" data-i-aria="filters" aria-label="Filtri">
+        <button class="chip" type="button" data-f="all" aria-pressed="true" data-i="f_all">Tutte</button>
+        <button class="chip" type="button" data-f="mine" aria-pressed="false" data-i="f_mine">Sui farmaci del programma</button>
+        <button class="chip" type="button" data-f="sicurezza" aria-pressed="false" data-i="f_safety">Sicurezza</button>
+        <button class="chip" type="button" data-f="linea-guida" aria-pressed="false" data-i="f_guide">Linee guida</button>
+      </div>
+      <ol class="news-list" id="news-list"></ol>
+      <p class="src-status" id="news-sources"></p>
+    </div>
+  </section>
+
+  <iframe id="if-flashcard" title="FarmacoFlash, flashcard" data-src="Flashcard-Farmacologia.html?embed=1" hidden></iframe>
+  <iframe id="if-catalog" title="Tabella dei nomi dei farmaci" data-src="Tabella-Farmaci.html?embed=1" hidden></iframe>
+  <iframe id="if-canali" title="Atlante 3D di bersagli e farmaci" data-src="Canali-e-Recettori-3D.html?embed=1" hidden></iframe>
+  <div class="loading" id="loading" hidden></div>
+</main>
+
+<div class="tour" id="tour" hidden>
+  <div class="shade"></div><div class="shade"></div><div class="shade"></div><div class="shade"></div>
+  <div class="ring" id="tour-ring" hidden></div>
+  <div class="pop" id="tour-pop" role="dialog" aria-modal="false" aria-labelledby="tour-t" aria-describedby="tour-x">
+    <div class="prog"><span id="tour-n"></span><i><b id="tour-bar"></b></i></div>
+    <h2 id="tour-t"></h2>
+    <p id="tour-x"></p>
+    <p class="try" id="tour-try" hidden></p>
+    <div class="acts"><button class="btn ghost" type="button" id="tour-skip"></button><span class="grow"></span><button class="btn" type="button" id="tour-back"></button><button class="btn primary" type="button" id="tour-next"></button></div>
+  </div>
+</div>
+<p class="sr-only" id="live" aria-live="polite"></p>
+
+<!--INDEX:START--><script id="ff-index" type="application/json">{"total":255,"cards":{"G1__fase-biofarmaceutica-passaggio-membrane":"Fase biofarmaceutica e passaggio delle membrane","G1__pka-henderson-hasselbalch-ion-trapping":"pKa, equazione di Henderson–Hasselbalch e ion trapping","G1__vie-somministrazione-primo-passaggio":"Vie di somministrazione ed effetto di primo passaggio","G1__glicoproteina-p-mdr1-abcb1":"Glicoproteina P","G1__biodisponibilita-auc-cmax-tmax":"Biodisponibilità","G1__bioequivalenza-generici-biosimilari":"Bioequivalenza: farmaci equivalenti","G2__legame-proteine-plasmatiche-spiazzamento":"Legame alle proteine plasmatiche","G2__distribuzione-tissutale-bee-adipe":"Distribuzione tissutale: perfusione, barriera emato-encefalica, affinità per i tessuti e ridistribuzione","G2__volume-di-distribuzione-apparente":"Volume di distribuzione apparente","G2__biotrasformazione-fase-1-fase-2-cyp":"Biotrasformazione: reazioni di fase 1","G2__induttori-inibitori-cyp-pompelmo":"Induttori e inibitori dei CYP","G2__metaboliti-attivi-reattivi-profarmaci":"Metaboliti attivi, intermedi reattivi e profarmaci","G2__polimorfismi-cyp-farmacogenetica":"Polimorfismi dei CYP e farmacogenetica","G3__vie-eliminazione-circolo-enteroepatico":"Vie di eliminazione e circolo entero-epatico","G3__escrezione-renale-oat-oct-ph-urinario":"Escrezione renale: filtrazione, secrezione tubulare","G3__cinetica-ordine-uno-e-ordine-zero":"Cinetica di eliminazione di ordine 1 e di ordine 0","G3__clearance-renale-epatica-totale":"Clearance","G3__emivita-steady-state-dose-di-carico":"Emivita, steady state, dose di carico e dose di mantenimento","G4__curva-dose-risposta-potenza-efficacia":"Interazione farmaco–bersaglio e curva concentrazione–risposta: EC50, potenza ed efficacia","G4__indice-terapeutico-margine-sicurezza":"Indice terapeutico, finestra terapeutica e margine di sicurezza","G4__agonisti-parziali-inversi-antagonisti":"Agonisti pieni, parziali e inversi; antagonisti","G4__modulatori-allosterici-bdz-gaba-a":"Modulatori allosterici: benzodiazepine e recettore GABA-A","G4__antagonismo-competitivo-irreversibile":"Antagonismo: competitivo, irreversibile/non competitivo, funzionale e chimico","G4__tolleranza-tachifilassi-regolazione":"Adattamenti alla somministrazione ripetuta: tolleranza, tachifilassi, down/up-regulation, sensitizzazione","G4__additivita-sinergismo-antagonismo":"Interazioni farmacodinamiche: additività, sinergismo, antagonismo ed effetti cumulativi","G5__canali-na-blocco-uso-dipendente":"Canali Na⁺ voltaggio-dipendenti: tre stati funzionali e blocco uso-dipendente","G5__canali-ca-voltaggio-calcio-antagonisti":"Canali Ca²⁺ voltaggio-dipendenti","G5__canali-k-qt-girk-katp":"Canali K⁺: voltaggio-dipendenti","G5__pompe-atpasi-tipo-p-digitale-ipp":"Pompe ATPasi di tipo P: Na⁺/K⁺-ATPasi e digitale, H⁺/K⁺-ATPasi e inibitori di pompa","G5__trasportatori-epiteliali-e-neuronali":"Trasportatori come bersagli: epiteliali renali","G6__quattro-superfamiglie-recettori":"Le quattro superfamiglie di recettori: struttura, trasduzione e tempi di risposta","G6__superfamiglia-nicotinica-tubocurarina":"Superfamiglia dei recettori-canale pentamerici","G6__recettori-glutammato-ampa-nmda":"Recettori ionotropici del glutammato: AMPA e NMDA","G6__gpcr-proteine-g-gs-gi-gq":"Recettori accoppiati a proteine G","G6__recettori-intracellulari-nucleari":"Recettori intracellulari","A4__glucocorticoidi-classe-meccanismo-effett":"Glucocorticoidi","A4__idrocortisone-cortisolo-cortisone":"Idrocortisone","A4__prednisone-prednisolone":"Prednisone / Prednisolone","A4__metilprednisolone":"Metilprednisolone","A4__triamcinolone":"Triamcinolone","A4__betametasone-e-desametasone-fluorurati":"Betametasone e Desametasone","A4__fludrocortisone":"Fludrocortisone","A4__glucocorticoidi-topici-e-inalatori-beclo":"Glucocorticoidi topici e inalatori","A5__fans-classe-meccanismo-azioni-effetti-co":"FANS","A5__acido-acetilsalicilico-asa-aspirina":"Acido acetilsalicilico","A5__derivati-dell-acido-propionico-ibuprofen":"Derivati dell'acido propionico","A5__diclofenac-derivato-dell-acido-acetico":"Diclofenac","A5__indometacina-derivato-dell-acido-acetico":"Indometacina","A5__ketorolac-toradol-derivato-dell-acido-ac":"Ketorolac","A5__nimesulide-aulin":"Nimesulide","A5__oxicam-piroxicam-meloxicam":"Oxicam","A5__coxib-celecoxib-valdecoxib-rofecoxib":"Coxib","A5__paracetamolo-fans-atipico":"Paracetamolo","A6__istamina-recettori-e-strategie-farmacolo":"Istamina — recettori e strategie farmacologiche","A6__anti-h1-di-i-generazione-clorfeniramina-":"Anti-H1 di I generazione","A6__anti-h1-di-ii-generazione-loratadina-cet":"Anti-H1 di II generazione","A6__anti-h1-di-iii-generazione-desloratadina":"Anti-H1 di III generazione","A6__anti-h2-cimetidina-ranitidina-famotidina":"Anti-H2","A7__emicrania-terapia-dell-attacco-acuto-fan":"Emicrania — terapia dell'attacco acuto","A7__derivati-dell-ergot-ergotamina-diidroerg":"Derivati dell'ergot","A7__triptani-sumatriptan-ii-generazione":"Triptani","A7__nuove-classi-anti-emicrania-ditani-gepan":"Nuove classi anti-emicrania","A7__emicrania-terapia-profilattica":"Emicrania — terapia profilattica","A7__antiemetici-centro-del-vomito-e-classi":"Antiemetici","A7__domperidone-e-metoclopramide":"Domperidone e Metoclopramide","A8__asma-bpco-basi-e-strategia-terapeutica":"Asma / BPCO — basi e strategia terapeutica","A8__2-agonisti-saba-laba-ultra-laba":"β2-agonisti","A8__xantine-teofillinici-teofillina-aminofil":"Xantine / teofillinici","A8__antimuscarinici-sama-lama":"Antimuscarinici","A8__glucocorticoidi-sistemici-inalatori":"Glucocorticoidi","A8__cromoni-cromoglicato-di-sodio":"Cromoni","A8__antileucotrienici-zileuton-montelukast-z":"Antileucotrienici","A8__biotecnologici-omalizumab-anti-il5":"Biotecnologici","A9__farmaci-biologici-proteine-terapeutiche-":"Farmaci biologici / proteine terapeutiche","A9__anticorpi-monoclonali-tipi-e-nomenclatur":"Anticorpi monoclonali","A9__anti-tnf-classe":"Anti-TNF-α","A9__infliximab":"Infliximab","A9__adalimumab":"Adalimumab","A9__etanercept":"Etanercept","A9__biosimilari-concetti":"Biosimilari","A10__insulina-insulina-umana-analoghi":"Insulina","A10__sulfaniluree-i-gen-tolbutamide-clorpropa":"Sulfaniluree","A10__glinidi-derivati-della-meglitinide":"Glinidi","A10__metformina-biguanidi":"Metformina","A10__glitazoni-tiazolidinedioni-pioglitazone-":"Glitazoni","A10__acarbosio-inibitore-dell-glucosidasi":"Acarbosio","A10__incretine-agonisti-del-recettore-glp-1-e":"Incretine — agonisti del recettore GLP-1","A10__incretine-inibitori-della-dpp-4-gliptine":"Incretine — inibitori della DPP-4","A10__inibitori-sglt2-glifozine":"Inibitori SGLT2","A10__iperglicemizzanti-glucagone-octreotide-d":"Iperglicemizzanti","A11__antiacidi-sali-di-alluminio-magnesio":"Antiacidi","A11__antagonisti-dei-recettori-h2-famotidina-":"Antagonisti dei recettori H2","A11__antimuscarinici-gastrici-pirenzepina-tel":"Antimuscarinici gastrici","A11__inibitori-della-pompa-protonica-ipp-omep":"Inibitori della pompa protonica – IPP","A11__protettori-della-mucosa-misoprostolo-suc":"Protettori della mucosa","A11__procinetici-neostigmina-domperidone-meto":"Procinetici","A11__antidiarroici-loperamide":"Antidiarroici","A11__lassativi-stipsi-da-oppiacei":"Lassativi","A11__ibd-antinfiammatori-5-asa-mesalazina-sul":"IBD — antinfiammatori 5-ASA","A11__ibd-immunosoppressori-e-biologici":"IBD — immunosoppressori e biologici","A12__osso-regolazione-del-calcio-e-basi-della":"Osso — regolazione del calcio e basi della terapia","A12__calcio-vitamina-d":"Calcio + Vitamina D","A12__estrogeni-17-estradiolo":"Estrogeni","A12__serm-raloxifene-tamoxifene":"SERM","A12__calcitonina":"Calcitonina","A12__bifosfonati-i-iii-generazione":"Bifosfonati","A12__denosumab":"Denosumab","A12__teriparatide-pth-intermittente-fluoruri":"Teriparatide","G7__nt-classici-neuropeptidi-retrogradi":"Neurotrasmettitori classici e neuropeptidi; autorecettori e trasmissione retrograda","G7__catecolamine-sintesi-mao-comt":"Catecolamine: biosintesi, degradazione","G7__angina-iatrogena":"Angina iatrogena: meccanismi e farmaci responsabili","G7__omeostasi-calcio-intracellulare":"Omeostasi del Ca²⁺ intracellulare: canali, depositi","G7__nicotina-alfa4beta2-dipendenza":"Nicotina, recettore α4β2 e circuito della dipendenza","G7__asse-hpa-crh-cronofarmacologia":"Asse HPA, CRH e ritmi circadiani nella terapia","B1__benzodiazepine-bdz":"Benzodiazepine","B1__flumazenil":"Flumazenil","B1__barbiturici-fenobarbital-secobarbital-pe":"Barbiturici","B1__z-compounds-zaleplon-zolpidem":"Z-compounds","B1__etifoxina":"Etifoxina","B1__buspirone-e-serotoninergici-ansia-cronic":"Buspirone e serotoninergici","B1__neurosteroidi-steroidi-neuroattivi":"Neurosteroidi","B2__anestetici-generali-principi":"Anestetici generali — principi","B2__anestetici-inalatori-volatili-alotano-is":"Anestetici inalatori / volatili","B2__anestetici-endovenosi-tiopentale-propofo":"Anestetici endovenosi","B2__anestetici-locali-meccanismo-e-farmacoci":"Anestetici locali — meccanismo e farmacocinetica","B2__anestetici-locali-singole-molecole":"Anestetici locali — singole molecole","B2__anestetici-locali-adr-e-associazione-con":"Anestetici locali — ADR e associazione con vasocostrittore","B3__antidepressivi-basi-fisiopatologiche":"Antidepressivi — basi fisiopatologiche","B3__antidepressivi-triciclici-tca":"Antidepressivi triciclici","B3__imao-inibitori-delle-monoamino-ossidasi":"IMAO","B3__sindrome-serotoninergica":"Sindrome serotoninergica","B3__ssri-citalopram-escitalopram-fluoxetina-":"SSRI","B3__reboxetina-nri-inibitore-reuptake-noradr":"Reboxetina","B3__bupropione-dri-inibitore-reuptake-dopami":"Bupropione","B3__venlafaxina-snri":"Venlafaxina","B3__nassa-mirtazapina":"NaSSA","B3__sari-trazodone-nefazodone":"SARI","B4__disturbo-bipolare-basi":"Disturbo bipolare — basi","B4__litio-sali-di-litio":"Litio","B4__acido-valproico-valproato-sodico-come-st":"Acido valproico","B4__carbamazepina-come-stabilizzante-dell-um":"Carbamazepina — come stabilizzante dell'umore","B4__lamotrigina":"Lamotrigina","B5__psicosi-schizofrenia-basi-e-vie-dopamine":"Psicosi/schizofrenia — basi e vie dopaminergiche","B5__antipsicotici-tipici-1-generazione-neuro":"Antipsicotici tipici","B5__antipsicotici-atipici-2-generazione":"Antipsicotici atipici","B5__aripiprazolo-3-generazione":"Aripiprazolo","B5__antipsicotici-effetti-indesiderati-e-for":"Antipsicotici — effetti indesiderati e formulazioni LAI","B6__parkinson-strategia-terapeutica":"Parkinson — strategia terapeutica","B6__levodopa-l-dopa-carbidopa-benserazide":"Levodopa","B6__dopamino-agonisti":"Dopamino-agonisti","B6__imao-b-selegilina-rasagilina-safinamide":"IMAO-B","B6__comt-inibitori-entacapone-opicapone-tolc":"COMT-inibitori","B6__amantadina-antimuscarinici-e-farmaci-acc":"Amantadina, antimuscarinici e farmaci accessori","B7__alzheimer-strategia-terapeutica":"Alzheimer — strategia terapeutica","B7__inibitori-dell-acetilcolinesterasi-donep":"Inibitori dell'acetilcolinesterasi","B7__memantina":"Memantina","B7__alzheimer-terapie-accessorie-e-prospetti":"Alzheimer — terapie accessorie e prospettive","B7__sm-basi-e-glucocorticoidi-attacco-acuto":"SM — basi e glucocorticoidi","B7__sm-immunosoppressori-aspecifici":"SM — immunosoppressori aspecifici","B7__sm-disease-modifying-treatments-dmt":"SM — disease-modifying treatments","B7__sm-farmaci-adiuvanti-sintomatici":"SM — farmaci adiuvanti","B8__terapia-del-dolore-scala-oms-e-adiuvanti":"Terapia del dolore — scala OMS e adiuvanti","B8__sistema-oppioidergico-recettori-e-meccan":"Sistema oppioidergico — recettori e meccanismo","B8__oppioidi-effetti-tolleranza-e-dipendenza":"Oppioidi — effetti, tolleranza e dipendenza","B8__oppiacei-deboli-codeina-tramadolo-step-2":"Oppiacei deboli","B8__oppiacei-forti-step-3":"Oppiacei forti","B8__antagonisti-paracetamolo-e-cannabinoidi":"Antagonisti, paracetamolo e cannabinoidi","B9__antiepilettici-meccanismi-e-principi":"Antiepilettici — meccanismi e principi","B9__aed-i-gen-bloccanti-dei-canali-na-fenito":"AED I gen — bloccanti dei canali Na⁺","B9__aed-i-gen-gabaergici-e-altri-barbiturici":"AED I gen — GABAergici e altri","B9__aed-ii-generazione":"AED II generazione","B9__antiepilettici-indicazioni-per-tipo-di-c":"Antiepilettici — indicazioni per tipo di crisi","B9__statine-meccanismo-e-farmacocinetica":"Statine — meccanismo e farmacocinetica","B9__statine-classificazione-effetti-collater":"Statine — classificazione, effetti collaterali e interazioni","B9__altri-ipolipemizzanti-fibrati-acido-nico":"Altri ipolipemizzanti","B10__ipertensione-strategia-terapeutica":"Ipertensione — strategia terapeutica","B10__simpaticolitici-centrali-2-agonisti-clon":"Simpaticolitici centrali — α2-agonisti","B10__metildopa":"α-metildopa","B10__1-bloccanti-prazosina-doxazosina-tamsulo":"α1-bloccanti","B10__bloccanti-generazioni-e-proprieta-ancill":"β-bloccanti — generazioni e proprietà ancillari","B10__bloccanti-meccanismi-avanzati-indicazion":"β-bloccanti — meccanismi avanzati, indicazioni e ADR","B11__sraa-fisiologia-e-bersagli-farmacologici":"SRAA — fisiologia e bersagli farmacologici","B11__ace-inibitori-captopril-enalapril-ramipr":"ACE-inibitori","B11__sartani-losartan-valsartan-irbesartan-te":"Sartani","B11__inibitori-della-renina-aliskiren":"Inibitori della renina","B11__calcio-antagonisti-diidropiridine-verapa":"Calcio-antagonisti","B11b__insufficienza-cardiaca-basi-fisiopatolog":"Insufficienza cardiaca — basi fisiopatologiche","B11b__digitale-digossina":"Digitale / digossina","B11b__teofillina-e-xantine":"Teofillina e xantine","B11b__diuretici-overview-siti-e-classi":"Diuretici — overview","B11b__inibitori-dell-anidrasi-carbonica-acetaz":"Inibitori dell'anidrasi carbonica","B11b__diuretici-osmotici-mannitolo":"Diuretici osmotici","B11b__diuretici-dell-ansa-drastici-furosemide-":"Diuretici dell'ansa / drastici","B11b__diuretici-tiazidici-e-risparmiatori-di-k":"Diuretici tiazidici e risparmiatori di K⁺","B12__emostasi-e-bersagli-della-terapia":"Emostasi e bersagli della terapia","B12__aspirina-e-inibitori-reversibili-della-c":"Aspirina e inibitori reversibili della COX1","B12__antagonisti-del-recettore-p2y12-ticlopid":"Antagonisti del recettore P2Y12","B12__antagonisti-della-gp-iib-iiia-e-altri-an":"Antagonisti della GP IIb/IIIa e altri antiaggreganti","B12__eparina-eparine-a-basso-peso-molecolare-":"Eparina, eparine a basso peso molecolare e derivati sintetici","B12__anticoagulanti-orali-vka-inibitori-diret":"Anticoagulanti orali","B12__fibrinolitici-e-antitrombotico-ideale":"Fibrinolitici e antitrombotico ideale","B12b__vasodilatatori-overview-e-antagonisti-de":"Vasodilatatori — overview e antagonisti dell'endotelina","B12b__nitrati-nitrossidi-nitroglicerina-isosor":"Nitrati / nitrossidi","B12b__attivatori-dei-canali-k-atp-e-idralazina":"Attivatori dei canali K⁺-ATP e idralazina","B13__aritmie-e-strategie-antiaritmiche":"Aritmie e strategie antiaritmiche","B13__classe-i-bloccanti-dei-canali-del-na-ia-":"Classe I — bloccanti dei canali del Na⁺","B13__classe-ii-bloccanti":"Classe II — β-bloccanti","B13__classe-iii-bloccanti-dei-canali-del-k":"Classe III — bloccanti dei canali del K⁺","B13__classe-iv-ca-antagonisti-adenosina-e-pot":"Classe IV","B14__antitumorali-strategie-e-principi":"Antitumorali — strategie e principi","B14__target-therapy-e-biomarcatori":"Target therapy e biomarcatori","B14__parp-inibitori-e-letalita-sintetica":"PARP-inibitori e letalità sintetica","B14__immunoterapia-checkpoint-inhibitors-e-an":"Immunoterapia","Antibiotici-2__fosfomicina":"Fosfomicina","Antibiotici-2__cicloserina":"Cicloserina","Antibiotici-2__bacitracina":"Bacitracina","Antibiotici-2__glicopeptidi-classe-vancomicina-teicopla":"Glicopeptidi","Antibiotici-2__vancomicina":"Vancomicina","Antibiotici-2__teicoplanina":"Teicoplanina","Antibiotici-2__antimicobatterici-quadro-generale-terapi":"Antimicobatterici","Antibiotici-2__isoniazide-ini":"Isoniazide","Antibiotici-2__etambutolo":"Etambutolo","Antibiotici-2__rifampicina":"Rifampicina","Antibiotici-2__pirazinamide":"Pirazinamide","Antibiotici-2__antitubercolari-di-ii-scelta":"Antitubercolari di II scelta","Antibiotici-3__sulfamidici":"Sulfamidici","Antibiotici-3__trimetoprim":"Trimetoprim","Antibiotici-3__chinoloni-e-fluorochinoloni":"Chinoloni e Fluorochinoloni","Antibiotici-3__rifampicina-integrazione-lez-17-profilo-":"Rifampicina","Antibiotici-3__macrolidi-classe-eritromicina-claritromi":"Macrolidi","Antibiotici-3__eritromicina":"Eritromicina","Antibiotici-3__azitromicina":"Azitromicina","Antibiotici-3__claritromicina-nota":"Claritromicina","Antibiotici-3__lincosamidi-clindamicina":"Lincosamidi","Antibiotici-3__cloramfenicolo-caf":"Cloramfenicolo","Antibiotici-3__aminoglicosidi-classe-meccanismo-cinetic":"Aminoglicosidi","Antibiotici-3__aminoglicosidi-singoli-farmaci":"Aminoglicosidi — singoli farmaci","Antibiotici-3__tetracicline":"Tetracicline","Beta-lattamici__lattamici-classe-quadro-generale":"β-lattamici","Beta-lattamici__penicilline-naturali-penicillina-g-benzi":"Penicilline naturali — Penicillina G","Beta-lattamici__penicilline-resistenti-alle-lattamasi-me":"Penicilline resistenti alle β-lattamasi","Beta-lattamici__aminopenicilline-amoxicillina-ampicillin":"Aminopenicilline","Beta-lattamici__carbossipenicilline-carbenicillina-ticar":"Carbossipenicilline","Beta-lattamici__ureidopenicilline-piperacillina-mezlocil":"Ureidopenicilline","Beta-lattamici__cefalosporine-classe-quadro-generale":"Cefalosporine","Beta-lattamici__cefalosporine-di-i-generazione-cefazolin":"Cefalosporine di I generazione","Beta-lattamici__cefalosporine-di-ii-generazione-cefoxiti":"Cefalosporine di II generazione","Beta-lattamici__cefalosporine-di-iii-generazione-cefotax":"Cefalosporine di III generazione","Beta-lattamici__cefalosporine-di-iv-generazione-cefepime":"Cefalosporine di IV generazione","Beta-lattamici__nuove-cefalosporine-ceftolozano-ceftarol":"Nuove cefalosporine","Beta-lattamici__carbapenemici-imipenem-ertapenem-doripen":"Carbapenemici","Beta-lattamici__monobattamici-aztreonam":"Monobattamici","Beta-lattamici__lattamasi-classificazione-di-ambler-enzi":"β-lattamasi — classificazione di Ambler","Beta-lattamici__inibitori-delle-lattamasi-i-generazione-":"Inibitori delle β-lattamasi — I generazione","Beta-lattamici__inibitori-delle-lattamasi-ii-generazione":"Inibitori delle β-lattamasi — II generazione e nuovi"}}</script><!--INDEX:END-->
 <script>
-  const root=document.documentElement;
-  const frames={ canali:document.getElementById('if-canali'), flashcard:document.getElementById('if-flashcard') };
-  const tabs ={ canali:document.getElementById('tab-canali'), flashcard:document.getElementById('tab-flashcard') };
-  let theme='light', lang='it', current='canali', pendingCard=null;
-  const ready={canali:false, flashcard:false};
+const I18N={
+it:{home:'Inizio',cards:'Flashcard',atlas:'Atlante 3D',news:'Novità',dash:'Oggi',study:'Studia',browse:'Sfoglia',names:'Tabella dei nomi',stats:'Progressi',
+  nav_aria:'Sezioni',sub_aria:'Flashcard',search:'Cerca un farmaco o un marchio',search_open:'Apri la ricerca',help:'Guida e giro guidato',hint_a:'Premi',hint_b:'per cercare un farmaco',
+  theme_to_dark:'Passa al tema scuro',theme_to_light:'Passa al tema chiaro',lang_to:'Switch to English',lang_btn:'EN',
+  hello:['Buonanotte','Buongiorno','Buon pomeriggio','Buonasera'],lead:"Due strumenti in un posto solo: ripassa con le flashcard, capisci i bersagli nell'atlante 3D.",
+  cards_p:'Ripetizione spaziata su tutto il programma, farmacologia generale e speciale, con la tabella dei nomi e i quiz di scrittura.',
+  due:'Da ripassare oggi',seen:'Già studiate',total:'Carte in tutto',start:'Inizia lo studio',review_n:n=>'Ripassa '+n+(n===1?' carta':' carte'),
+  atlas_p:'Canali ionici, recettori e GPCR in modelli da ruotare. Per ogni bersaglio trovi i farmaci che lo colpiscono, il meccanismo e il collegamento alla carta.',
+  atlas_open:"Apri l'atlante",facts:['Modelli 3D da ruotare','62 classificazioni','Interazioni CYP450','Mappa antibiotici'],
+  news_h:'Novità dalle fonti ufficiali',see_all:'Vedi tutte',course_h:'Il programma',course_p:'Tocca un argomento per studiarne le carte.',
+  mod1:'Modulo I',mod1s:'Farmacologia generale',mod2:'Modulo II',mod2s:'Farmacologia speciale',
+  how_h:'Come si usa',how:[['Studia ogni giorno','Apri Studia: leggi il farmaco, rispondi a mente, gira la carta e valuta quanto ricordavi. Le carte sbagliate tornano prima.'],
+    ['Collega','Dalla carta passi al bersaglio nell\'atlante 3D e dall\'atlante torni alla carta. La tabella dei nomi ti allena a scriverli.'],
+    ['Resta aggiornato','In Novità trovi avvisi di sicurezza e nuove linee guida da fonti ufficiali. Le carte interessate mostrano un avviso.']],
+  tour_btn:'Fai il giro guidato (1 minuto)',foot_l:'Strumento di studio: non sostituisce il libro né il giudizio clinico.',foot_r:'I tuoi progressi restano in questo browser.',
+  news_lead:'Avvisi di sicurezza e nuove linee guida raccolti ogni notte da EMA, AIFA, FDA e PubMed. Le carte non cambiano da sole: apri la fonte e verifica.',
+  filters:'Filtri',f_all:'Tutte',f_mine:'Sui farmaci del programma',f_safety:'Sicurezza',f_guide:'Linee guida',
+  kind:{sicurezza:'Sicurezza','linea-guida':'Linea guida',scheda:'Scheda tecnica',notizia:'Notizia'},
+  linked:'Nelle tue carte:',updated:'Aggiornato il',sources:'Fonti controllate',src_err:'non raggiungibile',
+  none:'Nessuna novità con questo filtro.',none_home:'Nessuna novità recente.',loading:'Caricamento…',
+  offline:"Le novità arrivano dal sito pubblicato: apri l'app dal suo link per vederle. Tutto il resto funziona anche da file.",
+  error:'Non riesco a scaricare le novità adesso. Riprova più tardi.',
+  step:(a,b)=>a+' di '+b,next:'Avanti',back:'Indietro',skip:'Esci',done:'Fine',try:'Oppure tocca il pulsante evidenziato.',
+  tour:[['Benvenuto in FarmacoFlash','Un giro di un minuto per sapere dove sta tutto. Puoi uscire quando vuoi con Esc.'],
+    ['Flashcard','Qui studi con le carte a ripetizione spaziata: ogni farmaco torna quando stai per dimenticarlo.'],
+    ['Studia','Una sessione alla volta: leggi il farmaco, rispondi a mente, gira la carta e valuta quanto ricordavi.'],
+    ['Tabella dei nomi','Tutti i farmaci per classe, con i nomi commerciali e i quiz di scrittura. Da ogni riga apri la sua carta.'],
+    ['Progressi','Statistiche e backup. I progressi restano in questo browser: esportali per passare a un altro dispositivo.'],
+    ['Cerca','Scrivi un principio attivo o un marchio, per esempio Tachipirina, da qualsiasi schermata.'],
+    ['Atlante 3D','Canali e recettori in 3D con i farmaci che li colpiscono. Dal farmaco salti alla sua carta, dalla carta torni al bersaglio.'],
+    ['Novità','Ogni notte raccogliamo avvisi di sicurezza e nuove linee guida da fonti ufficiali. Se riguardano una tua carta, la carta lo segnala.'],
+    ['Tutto qui','Il pulsante ? riapre questo giro quando vuoi. Buono studio.']]},
+en:{home:'Home',cards:'Flashcards',atlas:'3D Atlas',news:'Updates',dash:'Today',study:'Study',browse:'Browse',names:'Names table',stats:'Progress',
+  nav_aria:'Sections',sub_aria:'Flashcards',search:'Search a drug or brand',search_open:'Open search',help:'Help and guided tour',hint_a:'Press',hint_b:'to search a drug',
+  theme_to_dark:'Switch to dark theme',theme_to_light:'Switch to light theme',lang_to:"Passa all'italiano",lang_btn:'IT',
+  hello:['Good night','Good morning','Good afternoon','Good evening'],lead:'Two tools in one place: review with flashcards, understand drug targets in the 3D atlas.',
+  cards_p:'Spaced repetition across the whole syllabus, general and systematic pharmacology, with a names table and typing quizzes.',
+  due:'Due today',seen:'Studied',total:'Cards in total',start:'Start studying',review_n:n=>'Review '+n+(n===1?' card':' cards'),
+  atlas_p:'Ion channels, receptors and GPCRs as models you can rotate. For each target: the drugs that hit it, the mechanism and a link to the card.',
+  atlas_open:'Open the atlas',facts:['Rotatable 3D models','62 classifications','CYP450 interactions','Antibiotics map'],
+  news_h:'Updates from official sources',see_all:'See all',course_h:'The syllabus',course_p:'Tap a topic to study its cards.',
+  mod1:'Module I',mod1s:'General pharmacology',mod2:'Module II',mod2s:'Systematic pharmacology',
+  how_h:'How it works',how:[['Study every day','Open Study: read the drug, answer in your head, flip the card and rate your recall. Missed cards come back sooner.'],
+    ['Connect','Jump from a card to its target in the 3D atlas and back. The names table trains you to write them.'],
+    ['Stay current','Updates lists safety notices and new guidelines from official sources. Affected cards show a notice.']],
+  tour_btn:'Take the guided tour (1 minute)',foot_l:'A study aid: it does not replace the textbook or clinical judgement.',foot_r:'Your progress stays in this browser.',
+  news_lead:'Safety notices and new guidelines collected every night from EMA, AIFA, FDA and PubMed. Cards never change on their own: open the source and check.',
+  filters:'Filters',f_all:'All',f_mine:'On syllabus drugs',f_safety:'Safety',f_guide:'Guidelines',
+  kind:{sicurezza:'Safety','linea-guida':'Guideline',scheda:'Product information',notizia:'News'},
+  linked:'In your cards:',updated:'Updated',sources:'Sources checked',src_err:'unreachable',
+  none:'No updates match this filter.',none_home:'No recent updates.',loading:'Loading…',
+  offline:'Updates come from the published site: open the app from its link to see them. Everything else works from a file too.',
+  error:'Updates could not be downloaded right now. Try again later.',
+  step:(a,b)=>a+' of '+b,next:'Next',back:'Back',skip:'Exit',done:'Done',try:'Or tap the highlighted button.',
+  tour:[['Welcome to FarmacoFlash','A one minute tour of where everything lives. Press Esc to leave at any time.'],
+    ['Flashcards','Study with spaced-repetition cards here: each drug comes back just before you would forget it.'],
+    ['Study','One session at a time: read the drug, answer in your head, flip the card and rate your recall.'],
+    ['Names table','Every drug by class, with brand names and typing quizzes. Open the card from any row.'],
+    ['Progress','Statistics and backup. Progress stays in this browser: export it to move to another device.'],
+    ['Search','Type an active ingredient or a brand, for example Tachipirina, from any screen.'],
+    ['3D Atlas','Channels and receptors in 3D with the drugs that hit them. Jump from a drug to its card and back to the target.'],
+    ['Updates','Every night we collect safety notices and new guidelines from official sources. If one concerns your card, the card says so.'],
+    ['That is all','The ? button replays this tour whenever you like. Happy studying.']]}
+};
 
-  try{ theme=localStorage.getItem('cr-theme')||'light'; }catch(e){}
-  try{ lang =localStorage.getItem('cr-lang') ||'it'; }catch(e){}
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const root=document.documentElement,top_=$('#top');
+const frames={flashcard:$('#if-flashcard'),catalog:$('#if-catalog'),canali:$('#if-canali')};
+const pages={home:$('#page-home'),news:$('#page-news')};
+const PATHS={'Flashcard-Farmacologia.html':'flashcard','Tabella-Farmaci.html':'catalog','Canali-e-Recettori-3D.html':'canali','index.html':'home'};
+let INDEX={total:0,cards:{}};try{INDEX=JSON.parse($('#ff-index').textContent)}catch(e){}
+let theme=root.dataset.theme,lang='it',cur={app:'',hash:''},lastCards={app:'flashcard',hash:'#dash'};
+try{if(localStorage.getItem('cr-lang')==='en')lang='en'}catch(e){}
+const ready={},loaded={},pending={},sent={};
+const T=k=>(I18N[lang]||I18N.it)[k];
+const store=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
 
-  function tell(app,msg){ const f=frames[app]; if(f&&f.contentWindow){ try{ f.contentWindow.postMessage(msg,'*'); }catch(e){} } }
-  function broadcast(msg){ tell('canali',msg); tell('flashcard',msg); }
+/* ---------- comunicazione con le app ---------- */
+function tell(app,msg){const f=frames[app];if(f&&f.contentWindow)try{f.contentWindow.postMessage(msg,location.origin==='null'?'*':location.origin)}catch(e){}}
+function syncApp(app){tell(app,{__farmaco:1,type:'appearance',theme,lang});if(app==='canali'){tell(app,{__fusion:'theme',value:theme});tell(app,{__fusion:'lang',value:lang});tell(app,{__fusion:'visibility',value:cur.app==='canali'});}}
+for(const [app,f] of Object.entries(frames))f.addEventListener('load',()=>{loaded[app]=true;syncApp(app);if(cur.app===app)$('#loading').hidden=true;});
 
-  function applyChrome(){
-    root.dataset.theme=theme; root.lang=lang;
-    document.getElementById('theme').textContent=(theme==='light'?'☀':'☾');
-    document.getElementById('lang').textContent =(lang==='it'?'EN':'IT');
-    document.querySelectorAll('[data-it]').forEach(el=>{ const v=el.getAttribute(lang==='en'?'data-en':'data-it'); if(v!=null) el.innerHTML=v; });
+/* ---------- navigazione ---------- */
+const spaceOf=app=>app==='flashcard'||app==='catalog'?'cards':app==='canali'?'atlas':app;
+function subOf(app,hash){if(app==='catalog')return'names';if(app!=='flashcard')return'';const k=(hash||'#dash').split('=')[0];return{'#dash':'dash','#study':'study','#browse':'browse','#deck':'browse','#stats':'stats'}[k]||'';}
+function hashFor(app,hash){return app==='home'?'#inizio':app==='news'?'#novita':'#'+app+'/'+encodeURIComponent(hash||'')}
+function go(app,hash='',push=true,force=false){
+  if(!(app in frames)&&!(app in pages))app='home';
+  cur={app,hash};
+  for(const [k,p] of Object.entries(pages))p.hidden=k!==app;
+  for(const [k,f] of Object.entries(frames)){
+    const on=k===app;f.hidden=!on;
+    if(on&&!f.getAttribute('src')){f.src=f.dataset.src+(hash||'');sent[k]=hash;}
+    else if(on&&hash&&(force||hash!==sent[k])){sent[k]=hash;if(ready[k])tell(k,{__farmaco:1,type:'route',hash});else pending[k]=hash;}
+    tell(k,{__fusion:'visibility',value:on});
   }
-  applyChrome();
+  const ld=$('#loading');ld.hidden=!(app in frames)||!!loaded[app];ld.textContent=T('loading');
+  const sp=spaceOf(app),sub=subOf(app,hash);
+  if(sp==='cards')lastCards={app,hash:hash||(app==='flashcard'?'#dash':'')};
+  $$('.sp[data-space]').forEach(b=>b.dataset.space===sp?b.setAttribute('aria-current','page'):b.removeAttribute('aria-current'));
+  $('#sub').hidden=sp!=='cards';
+  $$('[data-sub]').forEach(b=>b.dataset.sub===sub?b.setAttribute('aria-current','page'):b.removeAttribute('aria-current'));
+  if(push&&location.hash!==hashFor(app,hash))history.pushState(null,'',hashFor(app,hash));
+  if(app==='home')renderHome();
+  if(app==='news'){renderNews();markNewsSeen();}
+  measure();
+}
+function restore(){
+  const h=location.hash;let m;
+  if(h==='#novita')return go('news','',false);
+  if((m=h.match(/^#(flashcard|catalog|canali)\/(.*)$/))){let x='';try{x=decodeURIComponent(m[2])}catch(e){}return go(m[1],x,false);}
+  go('home','',false);
+}
+addEventListener('popstate',restore);
+function goSpace(s){if(s==='home')go('home');else if(s==='news')go('news');else if(s==='atlas')go('canali');else go(lastCards.app,lastCards.hash);}
+document.addEventListener('click',e=>{
+  const sp=e.target.closest('[data-space]');if(sp){goSpace(sp.dataset.space);return;}
+  const sb=e.target.closest('[data-sub]');if(sb){const s=sb.dataset.sub;s==='names'?go('catalog','',true,true):go('flashcard','#'+s,true,true);return;}
+  const g=e.target.closest('[data-go]');if(g){const v=g.dataset.go,i=v.indexOf(':');go(v.slice(0,i),v.slice(i+1),true,true);return;}
+  const c=e.target.closest('[data-card]');if(c){go('flashcard','#card='+c.dataset.card,true,true);}
+});
 
-  function showApp(name){
-    if(!frames[name]) return;
-    current=name;
-    for(const k in frames){
-      frames[k].hidden = (k!==name);
-      tabs[k].classList.toggle('active', k===name);
-      tabs[k].setAttribute('aria-selected', k===name?'true':'false');
-    }
+addEventListener('message',e=>{
+  const app=Object.keys(frames).find(k=>frames[k].contentWindow===e.source);
+  if(!app||e.origin!==location.origin||!e.data||typeof e.data!=='object')return;
+  const d=e.data;
+  if((d.__farmaco===1&&d.type==='ready')||d.__fusion==='ready'){
+    ready[app]=true;loaded[app]=true;if(cur.app===app)$('#loading').hidden=true;syncApp(app);
+    if(pending[app]){tell(app,{__farmaco:1,type:'route',hash:pending[app]});pending[app]='';}
   }
-  tabs.canali.onclick    = ()=>showApp('canali');
-  tabs.flashcard.onclick = ()=>showApp('flashcard');
+  else if(d.__farmaco===1&&d.type==='navigate'&&typeof d.path==='string'&&typeof d.hash==='string'&&d.hash.length<500){const to=PATHS[d.path.split('?')[0]];if(to)go(to,d.hash,true,true);}
+  else if(d.__fusion==='open-flashcard'&&typeof d.card==='string'&&/^[\w-]+$/.test(d.card))go('flashcard','#card='+d.card,true,true);
+  else if(d.__fusion==='open-canali')go('canali');
+  else if(d.__farmaco===1&&d.type==='storage-reloaded')tell('catalog',{__farmaco:1,type:'storage-reloaded'});
+});
 
-  document.getElementById('theme').onclick=()=>{
-    theme=(theme==='light'?'dark':'light');
-    try{localStorage.setItem('cr-theme',theme);}catch(e){}
-    applyChrome(); broadcast({__fusion:'theme', value:theme});
-  };
-  document.getElementById('lang').onclick=()=>{
-    lang=(lang==='it'?'en':'it');
-    try{localStorage.setItem('cr-lang',lang);}catch(e){}
-    applyChrome(); broadcast({__fusion:'lang', value:lang});
-  };
+/* ---------- ricerca ---------- */
+const q=$('#q');
+$('#search').addEventListener('submit',e=>{e.preventDefault();const v=q.value.trim();if(!v)return;go('catalog','#q='+encodeURIComponent(v),true,true);q.blur();toggleSearch(false);});
+function toggleSearch(on){top_.classList.toggle('searching',on);$('#search-toggle').setAttribute('aria-expanded',on);if(on)q.focus();measure();}
+$('#search-toggle').addEventListener('click',()=>toggleSearch(!top_.classList.contains('searching')));
+document.addEventListener('keydown',e=>{
+  if(e.key==='/'&&!e.metaKey&&!e.ctrlKey&&!/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)&&$('#tour').hidden){e.preventDefault();toggleSearch(true);q.focus();}
+  else if(e.key==='Escape'&&document.activeElement===q){q.blur();toggleSearch(false);}
+});
 
-  function syncApp(app){ tell(app,{__fusion:'theme', value:theme}); tell(app,{__fusion:'lang', value:lang}); }
-  frames.canali.addEventListener('load', ()=>syncApp('canali'));
-  frames.flashcard.addEventListener('load', ()=>syncApp('flashcard'));
+/* ---------- aspetto e lingua ---------- */
+const SUN='M12 3v1.5M12 19.5V21M4.6 4.6l1.1 1.1M18.3 18.3l1.1 1.1M3 12h1.5M19.5 12H21M4.6 19.4l1.1-1.1M18.3 5.7l1.1-1.1M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z';
+const MOON='M20 14.6A8.2 8.2 0 1 1 9.4 4a6.6 6.6 0 0 0 10.6 10.6z';
+function applyChrome(){
+  root.dataset.theme=theme;root.lang=lang;
+  $('meta[name=theme-color]').content=theme==='dark'?'#13110d':'#f3f0e9';
+  $('#theme-path').setAttribute('d',theme==='dark'?SUN:MOON);
+  $('#theme').setAttribute('aria-label',T(theme==='dark'?'theme_to_light':'theme_to_dark'));
+  $('#lang').textContent=T('lang_btn');$('#lang').setAttribute('aria-label',T('lang_to'));
+  $$('[data-i]').forEach(el=>{const v=T(el.dataset.i);if(typeof v==='string')el.textContent=v;});
+  $$('[data-i-ph]').forEach(el=>el.placeholder=T(el.dataset.iPh));
+  $$('[data-i-aria]').forEach(el=>el.setAttribute('aria-label',T(el.dataset.iAria)));
+  $('#facts').replaceChildren(...T('facts').map(t=>{const li=document.createElement('li');li.textContent=t;return li;}));
+  $('#how').replaceChildren(...T('how').map(([b,p])=>{const li=document.createElement('li'),h=document.createElement('b'),x=document.createElement('p');h.textContent=b;x.textContent=p;li.append(h,x);return li;}));
+  if(cur.app==='home')renderHome();
+  if(cur.app==='news')renderNews();
+  if(ti>=0)tourShow();
+}
+$('#theme').addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';store('cr-theme',theme);applyChrome();Object.keys(frames).forEach(syncApp);});
+$('#lang').addEventListener('click',()=>{lang=lang==='it'?'en':'it';store('cr-lang',lang);applyChrome();Object.keys(frames).forEach(syncApp);});
+function measure(){root.style.setProperty('--top-h',top_.offsetHeight+'px');if(ti>=0)requestAnimationFrame(place);}
+new ResizeObserver(measure).observe(top_);
 
-  window.addEventListener('message', (e)=>{
-    const d=e.data||{}; if(!d.__fusion) return;
-    if(d.__fusion==='ready'){
-      ready[d.app]=true; syncApp(d.app);
-      if(d.app==='flashcard' && pendingCard){ tell('flashcard',{__fusion:'open-card', card:pendingCard}); pendingCard=null; }
-    }
-    else if(d.__fusion==='open-flashcard'){
-      showApp('flashcard');
-      if(d.card){ if(ready.flashcard){ tell('flashcard',{__fusion:'open-card', card:d.card}); } else { pendingCard=d.card; } }
-    }
-    else if(d.__fusion==='open-canali'){ showApp('canali'); }
+/* ---------- Inizio ---------- */
+(function atlasArt(){
+  const s=$('#atlas-art'),NS='http://www.w3.org/2000/svg',add=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);s.appendChild(e);return e;};
+  for(let x=8;x<=214;x+=13){if(x>78&&x<148)continue;
+    add('line',{class:'a-tail',x1:x-2,y1:42,x2:x-2,y2:58});add('line',{class:'a-tail',x1:x+2,y1:42,x2:x+2,y2:58});
+    add('line',{class:'a-tail',x1:x-2,y1:66,x2:x-2,y2:82});add('line',{class:'a-tail',x1:x+2,y1:66,x2:x+2,y2:82});
+    add('circle',{class:'a-head',cx:x,cy:37,r:5.2});add('circle',{class:'a-head',cx:x,cy:87,r:5.2});}
+  [[84,22,17,80],[99,16,13,92],[116,16,13,92],[131,22,17,80]].forEach(([x,y,w,h])=>add('rect',{class:'a-sub',x,y,width:w,height:h,rx:w/2}));
+  [[114,8],[114,61],[114,114]].forEach(([cx,cy],i)=>add('circle',{class:'a-ion',cx,cy,r:i===1?4.5:3.6,opacity:i===1?1:.75}));
+})();
+function readSRS(){try{const S=JSON.parse(localStorage.getItem('farmaco-srs-v1')||'null');return(S&&S.srs)||{}}catch(e){return{}}}
+const localISO=(d=new Date())=>new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10);
+function renderHome(){
+  const h=new Date().getHours();
+  $('#hello').textContent=T('hello')[h<5?0:h<12?1:h<18?2:3]+'.';
+  $('#today').textContent=new Date().toLocaleDateString(lang==='en'?'en-GB':'it-IT',{weekday:'long',day:'numeric',month:'long'});
+  const srs=readSRS(),t=localISO();let due=0,seen=0;
+  for(const k in srs){const s=srs[k];if(s&&s.state&&s.state!=='new'){seen++;if(s.due&&s.due<=t)due++;}}
+  $('#st-due').textContent=due;$('#st-seen').textContent=seen;$('#st-total').textContent=INDEX.total||'';
+  $('#start').textContent=due?T('review_n')(due):T('start');
+  paintNews($('#home-news'),3);
+}
+addEventListener('storage',e=>{if(e.key==='farmaco-srs-v1'&&cur.app==='home')renderHome();});
+
+/* ---------- Novità ---------- */
+let NEWS=null,newsState='idle',filter='all';
+async function loadNews(){
+  if(newsState!=='idle')return;
+  if(!/^https?:$/.test(location.protocol)){newsState='offline';return refreshNews();}
+  newsState='loading';
+  try{const r=await fetch('novita.json',{cache:'no-cache'});if(!r.ok)throw new Error(r.status);NEWS=await r.json();if(!NEWS||!Array.isArray(NEWS.items))throw new Error('schema');newsState='ok';}
+  catch(e){newsState='error';}
+  refreshNews();
+}
+function refreshNews(){if(cur.app==='home')paintNews($('#home-news'),3);if(cur.app==='news')renderNews();updateBadge();}
+const safeUrl=u=>/^https?:\/\//i.test(String(u||''))?String(u):'';
+const fmtDate=d=>{const x=new Date(d+'T12:00:00');return isNaN(x)?'':x.toLocaleDateString(lang==='en'?'en-GB':'it-IT',{day:'numeric',month:'short',year:'numeric'});};
+const linked=it=>Array.isArray(it.cards)&&it.cards.some(id=>INDEX.cards[id]);
+function newsItem(it){
+  const el=(n,c,t)=>{const e=document.createElement(n);if(c)e.className=c;if(t!=null)e.textContent=t;return e;};
+  const li=el('li','news'),meta=el('div','nm');
+  meta.append(el('span','tag',String(it.source||'').toUpperCase()));
+  const k=T('kind')[it.kind];if(k)meta.append(el('span','tag k-'+it.kind,k));
+  if(it.date){const tm=el('time',null,fmtDate(it.date));tm.dateTime=it.date;meta.append(tm);}
+  const url=safeUrl(it.url),a=el(url?'a':'span','nt',String(it.title||''));
+  if(url){a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.append(el('span',null,' ↗'));}
+  li.append(meta,a);
+  if(it.summary)li.append(el('p','ns',String(it.summary)));
+  const ids=(it.cards||[]).filter(id=>INDEX.cards[id]).slice(0,6);
+  if(ids.length){const nd=el('div','nd');nd.append(el('span',null,T('linked')));for(const id of ids){const b=el('button',null,INDEX.cards[id]);b.type='button';b.dataset.card=id;nd.append(b);}li.append(nd);}
+  return li;
+}
+function paintNews(list,max){
+  list.replaceChildren();
+  if(newsState==='idle'||newsState==='loading'){loadNews();list.append(Object.assign(document.createElement('p'),{className:'empty',textContent:T('loading')}));return;}
+  if(newsState!=='ok'){list.append(Object.assign(document.createElement('p'),{className:'empty',textContent:T(newsState==='offline'?'offline':'error')}));return;}
+  let items=NEWS.items;
+  if(filter==='mine'&&!max)items=items.filter(linked);
+  else if(filter!=='all'&&!max)items=items.filter(it=>it.kind===filter);
+  if(max)items=[...items.filter(linked),...items.filter(it=>!linked(it))].slice(0,max).sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+  if(!items.length){list.append(Object.assign(document.createElement('p'),{className:'empty',textContent:T(max?'none_home':'none')}));return;}
+  list.append(...items.map(newsItem));
+}
+function renderNews(){
+  paintNews($('#news-list'));
+  $$('[data-f]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.f===filter));
+  const meta=$('#news-meta'),src=$('#news-sources');meta.textContent='';src.textContent='';
+  if(newsState!=='ok')return;
+  if(NEWS.generated){const d=new Date(NEWS.generated);if(!isNaN(d))meta.textContent=T('updated')+' '+d.toLocaleString(lang==='en'?'en-GB':'it-IT',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});}
+  if(Array.isArray(NEWS.sources))src.textContent=T('sources')+': '+NEWS.sources.map(s=>String(s.name||s.id)+(s.ok?'':' ('+T('src_err')+')')).join(' · ');
+}
+$$('[data-f]').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.f;renderNews();}));
+function lastSeen(){try{return localStorage.getItem('ff-news-seen')||''}catch(e){return''}}
+function markNewsSeen(){if(newsState==='ok'&&NEWS.items.length){store('ff-news-seen',NEWS.items.map(i=>String(i.date||'')).sort().pop());updateBadge();}}
+function updateBadge(){
+  const b=$('#news-badge');if(newsState!=='ok'){b.hidden=true;return;}
+  const since=lastSeen()||localISO(new Date(Date.now()-14*864e5));
+  const n=NEWS.items.filter(it=>linked(it)&&String(it.date||'')>since).length;
+  b.textContent=n>9?'9+':n;b.hidden=!n||cur.app==='news';
+}
+
+/* ---------- giro guidato ---------- */
+const TOUR=[{},
+  {sel:'.sp[data-space="cards"]',click:true},
+  {sel:'[data-sub="study"]',pre:()=>{if(spaceOf(cur.app)!=='cards')go('flashcard','#dash');}},
+  {sel:'[data-sub="names"]',pre:()=>{if(spaceOf(cur.app)!=='cards')go('flashcard','#dash');}},
+  {sel:'[data-sub="stats"]',pre:()=>{if(spaceOf(cur.app)!=='cards')go('flashcard','#dash');}},
+  {sel:'#q, #search-toggle'},
+  {sel:'.sp[data-space="atlas"]',click:true},
+  {sel:'.sp[data-space="news"]'},
+  {sel:'#help'}];
+let ti=-1,tEl=null,tOff=null;
+const tour=$('#tour'),pop=$('#tour-pop'),ring=$('#tour-ring'),shades=$$('.shade');
+const visible=el=>!!el&&el.getClientRects().length>0;
+const pick=s=>{if(!s.sel)return null;for(const q of s.sel.split(','))for(const el of document.querySelectorAll(q.trim()))if(visible(el))return el;return null;};
+function unbind(){if(tEl&&tOff)tEl.removeEventListener('click',tOff);tEl=tOff=null;}
+function tourOpen(){toggleSearch(false);ti=0;tour.hidden=false;document.addEventListener('keydown',tourKey,true);addEventListener('resize',place);tourShow();}
+function tourClose(){if(ti<0)return;unbind();ti=-1;tour.hidden=true;document.removeEventListener('keydown',tourKey,true);removeEventListener('resize',place);store('ff-tour-v2','done');$('#help').focus();}
+function advance(d){const n=ti+d;if(n<0)return;if(n>=TOUR.length)return tourClose();ti=n;tourShow();}
+function tourShow(){
+  unbind();const s=TOUR[ti],txt=T('tour')[ti],last=ti===TOUR.length-1;
+  if(s.pre)s.pre();
+  $('#tour-t').textContent=txt[0];$('#tour-x').textContent=txt[1];
+  $('#tour-n').textContent=T('step')(ti+1,TOUR.length);$('#tour-bar').style.width=((ti+1)/TOUR.length*100)+'%';
+  $('#tour-skip').textContent=T('skip');$('#tour-back').textContent=T('back');$('#tour-back').disabled=ti===0;
+  $('#tour-next').textContent=last?T('done'):T('next');
+  $('#live').textContent=txt[0]+'. '+txt[1];
+  requestAnimationFrame(()=>{
+    tEl=pick(s);
+    const tr=$('#tour-try');tr.hidden=!(s.click&&tEl);tr.textContent=T('try');
+    if(s.click&&tEl){tOff=()=>{unbind();setTimeout(()=>advance(1),80);};tEl.addEventListener('click',tOff);}
+    place();$('#tour-next').focus({preventScroll:true});
   });
+}
+function place(){
+  if(ti<0)return;
+  const W=innerWidth,H=innerHeight,pw=pop.offsetWidth,ph=pop.offsetHeight,set=(el,x,y,w,h)=>Object.assign(el.style,{left:x+'px',top:y+'px',width:Math.max(0,w)+'px',height:Math.max(0,h)+'px'});
+  const r=tEl&&visible(tEl)?tEl.getBoundingClientRect():null;
+  if(!r){ring.hidden=true;set(shades[0],0,0,W,H);for(const s of shades.slice(1))set(s,0,0,0,0);Object.assign(pop.style,{left:Math.max(12,(W-pw)/2)+'px',top:Math.max(12,(H-ph)/2)+'px'});return;}
+  const p=6,x=Math.max(0,r.left-p),y=Math.max(0,r.top-p),w=Math.min(W,r.right+p)-x,h=Math.min(H,r.bottom+p)-y;
+  set(shades[0],0,0,W,y);set(shades[1],0,y+h,W,H-y-h);set(shades[2],0,y,x,h);set(shades[3],x+w,y,W-x-w,h);
+  ring.hidden=false;set(ring,x,y,w,h);
+  const below=y+h+12,top=below+ph<=H-12?below:Math.max(12,y-12-ph);
+  Object.assign(pop.style,{left:Math.min(Math.max(12,x+w/2-pw/2),W-pw-12)+'px',top:top+'px'});
+}
+function tourKey(e){
+  if(e.key==='Escape'){e.preventDefault();tourClose();}
+  else if(e.key==='ArrowRight'&&!/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)){e.preventDefault();next();}
+  else if(e.key==='ArrowLeft'&&!/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)){e.preventDefault();advance(-1);}
+}
+function next(){const s=TOUR[ti];if(s.click&&tEl){const el=tEl;unbind();el.click();}advance(1);}
+$('#tour-next').addEventListener('click',next);
+$('#tour-back').addEventListener('click',()=>advance(-1));
+$('#tour-skip').addEventListener('click',tourClose);
+$('#help').addEventListener('click',tourOpen);
+$('#tour-start').addEventListener('click',tourOpen);
+
+/* ---------- avvio ---------- */
+applyChrome();
+restore();
+loadNews();
+const prewarm=()=>{const f=frames.flashcard;if(!f.getAttribute('src'))f.src=f.dataset.src;};
+window.requestIdleCallback?requestIdleCallback(prewarm,{timeout:4000}):setTimeout(prewarm,2500);
+try{if(!localStorage.getItem('ff-tour-v2')&&cur.app==='home')setTimeout(tourOpen,700);}catch(e){}
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 </script>
 <!-- authorship watermark (do not remove) :: author=giorgiom250698 :: sha256=7e89b191a704024f69214d2e5be7e71b95a3d374165994eb77a8021abb59ea6d -->
 <span id="__auth" hidden aria-hidden="true" data-z="⁠​‌‌​​‌‌‌​‌‌​‌​​‌​‌‌​‌‌‌‌​‌‌‌​​‌​​‌‌​​‌‌‌​‌‌​‌​​‌​‌‌​‌‌‌‌​‌‌​‌‌​‌​​‌‌​​‌​​​‌‌​‌​‌​​‌‌​​​​​​‌‌​‌‌​​​‌‌‌​​‌​​‌‌‌​​​⁠"></span>

@@ -1,11 +1,11 @@
 // Genera il blocco <head> PWA/iOS (meta + apple-touch-icon PNG + manifest) da
-// incorporare nei file single-file. Usato da build.js e _gen-table.js via
+// incorporare nei file single-file. Usato da build.js e table.js via
 // placeholder __PWA_HEAD__. Icone embeddate come data: URI (resta single-file).
 const fs = require('fs'), path = require('path');
 const b64 = p => fs.readFileSync(path.join(__dirname, p)).toString('base64');
 
 function pwaHead(o) {
-  const theme = o.theme || '#fff8ec';
+  const theme = o.theme || '#f3f0e9';
   const i180 = 'data:image/png;base64,' + b64('icon-180.png');
   const i512 = 'data:image/png;base64,' + b64('icon-512.png');
   const manifest = {

@@ -1,0 +1,17 @@
+{
+  "name": "FarmacoFlash · Farmacologia",
+  "short_name": "FarmacoFlash",
+  "description": "Flashcard a ripetizione spaziata e atlante 3D dei bersagli dei farmaci, per l'esame di Farmacologia.",
+  "lang": "it",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f0e9",
+  "theme_color": "#f3f0e9",
+  "icons": [
+    { "src": "assets/icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
