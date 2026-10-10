@@ -12,6 +12,11 @@ build/*.tmp
 build/i18n/src-*.json
 build/batches/
 build/sources/
+catalog-review/
+node_modules/
+_site/
+__pycache__/
+.playwright-mcp/
 screenshots/_*.png
 *.tmp
 *.log
@@ -25,6 +30,9 @@ settings.json
 credentials.json
 *_secret*
 *_token*
+
+# termini vietati per il controllo anonimato (solo locale: npm run privacy)
+.privacy-terms
 
 # note interne di lavoro (non nel repo)
 task_plan.md

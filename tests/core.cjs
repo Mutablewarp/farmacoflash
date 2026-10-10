@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict');
+const c=require('../src/core');
+assert.equal(c.norm('β₂'), 'beta2');
+assert.equal(c.norm('β2'),c.norm('beta 2'));
+assert.equal(c.rank('paracetamolo',['paracetamolo'],[],'other'),100);
+assert.equal(c.rank('tachipirina',['paracetamolo'],['Tachipirina'],''),90);
+assert.equal(c.distance('paracetmolo','paracetamolo'),1);
+assert.equal(c.sectionKey('Reazioni avverse comuni'),c.sectionKey('Common adverse reactions'));
+assert.equal(c.escape('"<'), '&quot;&lt;');
+assert.throws(()=>c.validateStudy({v:1,srs:{},log:[{id:'a',d:'bad',g:0}]}));
+assert.throws(()=>c.validateQuiz({wrong:{x:-1}}));
+assert.equal(c.validateStudy({v:1,srs:{},log:[]}).v,1);
+console.log('Core regression checks passed');

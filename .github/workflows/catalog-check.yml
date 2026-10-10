@@ -1,0 +1,28 @@
+name: Validate AIFA registry candidate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'
+      timezone: Europe/Rome
+permissions:
+  contents: read
+concurrency:
+  group: catalog-check
+  cancel-in-progress: false
+jobs:
+  validate:
+    # Activation requires an explicit publication/privacy decision. Never auto-publish clinical content.
+    if: vars.CATALOG_SYNC_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python build/sync-catalog.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aifa-review-candidate
+          path: catalog-review/
+          retention-days: 7
