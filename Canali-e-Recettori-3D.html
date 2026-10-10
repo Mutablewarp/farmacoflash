@@ -1085,6 +1085,166 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 <!-- ─ -->
 <style data-slot="cyp">
 /* slot cyp: CSS di questa funzione (solo il suo agente) */
+/* colori di ruolo: substrato = oro (accento), inibitore = rosso (↑ livelli), induttore = blu (↓ livelli) */
+.cx{--cx-s:var(--gold);--cx-s-bg:var(--gold-soft);--cx-s-ln:var(--gold-line);
+  --cx-i:#f2998a;--cx-i-bg:rgba(242,153,138,.09);--cx-i-ln:rgba(242,153,138,.34);
+  --cx-n:#8cc0ec;--cx-n-bg:rgba(140,192,236,.09);--cx-n-ln:rgba(140,192,236,.34);
+  margin:6px 0 20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+:root[data-theme="light"] .cx{--cx-i:#a3301d;--cx-i-bg:#fbede9;--cx-i-ln:#eec3b9;--cx-n:#1d5a8e;--cx-n-bg:#ebf2f9;--cx-n-ln:#bfd5ea}
+.cx button{font:inherit;color:inherit}
+/* selettore isoenzima */
+.cx-iso{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.cx-isob{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-height:62px;padding:10px 12px;border:1px solid var(--line);border-radius:var(--r-md,13px);
+  background:var(--panel);cursor:pointer;text-align:left;transition:border-color .18s ease-out,background-color .18s ease-out,box-shadow .18s ease-out}
+.cx-isob:hover{border-color:var(--line2)}
+.cx-isob.sel{border-color:var(--gold);background:var(--gold-soft);box-shadow:0 0 0 1px var(--gold) inset}
+.cx-isob-n{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.cx-isob-c{display:flex;gap:6px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-dim)}
+.cx-isob-c i{font-style:normal;display:inline-flex;align-items:center;gap:4px}
+.cx-isob-c i::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cx-s)}
+.cx-isob-c i.i::before{background:var(--cx-i)} .cx-isob-c i.n::before{background:var(--cx-n)}
+.cx-isob-r{display:flex;flex-wrap:wrap;gap:4px}
+.cx-isob-r b{font-size:11px;font-weight:600;line-height:1;padding:3px 6px;border-radius:6px;border:1px solid var(--cx-s-ln);background:var(--cx-s-bg);color:var(--cx-s)}
+.cx-isob-r b.i{border-color:var(--cx-i-ln);background:var(--cx-i-bg);color:var(--cx-i)}
+.cx-isob-r b.n{border-color:var(--cx-n-ln);background:var(--cx-n-bg);color:var(--cx-n)}
+.cx-isob.hit:not(.sel){border-color:var(--line2)}
+/* pannello isoenzima + scheda farmaco */
+.cx-top{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;align-items:start}
+.cx-panel,.cx-drug,.cx-build{border:1px solid var(--line);border-radius:var(--r-lg,18px);background:var(--panel);box-shadow:var(--shadow);min-width:0}
+.cx-panel{padding:18px 20px 20px}
+.cx-ph{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;margin-bottom:14px}
+.cx-iso-t{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--ink);letter-spacing:-.02em}
+.cx-why{flex:1 1 320px;font-size:14px;line-height:1.5;color:var(--ink-dim);max-width:70ch}
+.cx-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.cx-col h4{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 7px;font-size:13.5px;font-weight:650;color:var(--ink);margin-bottom:9px}
+.cx-col h4 small{font-size:12px;font-weight:400;color:var(--ink-dim)}
+.cx-sw{display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--cx-s);flex:none;align-self:center}
+.cx-col-i .cx-sw,.cx-sw.i{background:var(--cx-i)} .cx-col-n .cx-sw,.cx-sw.n{background:var(--cx-n)}
+.cx-chips{display:flex;flex-wrap:wrap;gap:6px}
+.cx-chip{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:6px 11px;border-radius:10px;border:1px solid var(--cx-s-ln);background:var(--cx-s-bg);
+  color:var(--ink);font-size:13.5px;line-height:1.25;text-align:left;cursor:pointer;transition:border-color .16s ease-out,box-shadow .16s ease-out,background-color .16s ease-out}
+.cx-chip.cx-i{border-color:var(--cx-i-ln);background:var(--cx-i-bg)} .cx-chip.cx-n{border-color:var(--cx-n-ln);background:var(--cx-n-bg)}
+.cx-chip:hover{border-color:var(--cx-s)} .cx-chip.cx-i:hover{border-color:var(--cx-i)} .cx-chip.cx-n:hover{border-color:var(--cx-n)}
+.cx-chip.on{box-shadow:0 0 0 2px var(--cx-s) inset;border-color:var(--cx-s)}
+.cx-chip.cx-i.on{box-shadow:0 0 0 2px var(--cx-i) inset;border-color:var(--cx-i)} .cx-chip.cx-n.on{box-shadow:0 0 0 2px var(--cx-n) inset;border-color:var(--cx-n)}
+.cx-tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;line-height:1;padding:3px 5px;border-radius:5px;color:var(--ink-dim);border:1px solid var(--line2);background:var(--panel)}
+.cx-i .cx-tag{color:var(--cx-i);border-color:var(--cx-i-ln)} .cx-n .cx-tag{color:var(--cx-n);border-color:var(--cx-n-ln)} .cx-s .cx-tag{color:var(--cx-s);border-color:var(--cx-s-ln)}
+.cx-empty{font-size:13px;color:var(--ink-dim);padding:8px 0}
+.cx-drug{padding:16px 18px}
+.cx-hint-t{font-weight:650;color:var(--ink);font-size:14.5px;margin-bottom:4px}
+.cx-hint>p{font-size:13.5px;color:var(--ink-dim);line-height:1.5}
+.cx-hint ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:8px;padding-top:12px;border-top:1px solid var(--line)}
+.cx-hint li,.cx-dl-r li{display:grid;grid-template-columns:9px minmax(0,1fr);gap:9px;align-items:baseline;font-size:13px;line-height:1.45;color:var(--ink-dim)}
+.cx-hint li b,.cx-dl-r li b{color:var(--ink);font-weight:600}
+.cx-hint .cx-sw,.cx-dl-r .cx-sw{transform:translateY(1px)}
+.cx-dh{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.cx-dh h4{font-size:17px;font-weight:650;color:var(--ink);line-height:1.3;padding-top:9px;overflow-wrap:anywhere}
+.cx-x{flex:none;min-width:44px;min-height:44px;margin:-6px -10px 0 0;border:0;border-radius:10px;background:transparent;color:var(--ink-dim);cursor:pointer;font-size:14px}
+.cx-x:hover{color:var(--ink);background:var(--panel2)}
+.cx-dl-r{list-style:none;display:flex;flex-direction:column;gap:5px;margin:8px 0 12px}
+.cx-mx{width:100%;min-width:0;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-dim);table-layout:fixed}
+.cx-mx thead th,:root[data-theme="light"] .cx-mx thead th{position:static;background:none;border:0;padding:4px 0;font-size:11px;font-weight:500;letter-spacing:0;text-transform:none;text-align:center;color:var(--ink-dim)}
+.cx-mx thead th:first-child{width:78px}
+.cx-mx tbody th{text-align:left;font-family:'Archivo',system-ui,sans-serif;font-size:12px;font-weight:500;color:var(--ink-dim);padding:6px 0;border-top:1px solid var(--line)}
+.cx-mx tbody td{text-align:center;padding:6px 0;border:0;border-top:1px solid var(--line);vertical-align:middle}
+.cx-mx tbody tr{cursor:default} .cx-mx tbody tr:hover{background:none}
+.cx-dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--cx-s);vertical-align:middle}
+.cx-dot.i{background:var(--cx-i)} .cx-dot.n{background:var(--cx-n)}
+.cx-dot.strong{box-shadow:0 0 0 3px var(--panel),0 0 0 4.5px currentColor}
+.cx-dot.i.strong{color:var(--cx-i)} .cx-dot.n.strong{color:var(--cx-n)}
+.cx-dot0{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--line2);vertical-align:middle}
+.cx-dact{display:flex;flex-direction:column;gap:7px;margin-top:14px}
+.cx-btn{min-height:44px;padding:9px 14px;border-radius:11px;border:1px solid var(--gold-line);background:var(--gold-soft);color:var(--gold);font-weight:600;font-size:13.5px;cursor:pointer;text-align:left;transition:border-color .16s ease-out}
+.cx-btn:hover{border-color:var(--gold)}
+/* costruttore */
+.cx-build{padding:20px 20px 22px}
+.cx-bh h3{font-family:'Fraunces',Georgia,serif;font-size:21px;font-weight:600;letter-spacing:-.01em;color:var(--ink);margin-bottom:4px}
+.cx-bh p{font-size:14px;color:var(--ink-dim);line-height:1.5;max-width:76ch}
+.cx-quick{margin-top:14px}
+.cx-ql{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:7px}
+.cx-quick-row{display:flex;flex-wrap:wrap;gap:6px}
+.cx-q{min-height:40px;padding:7px 12px;border-radius:999px;border:1px solid var(--line2);background:var(--panel2);font-size:13px;cursor:pointer;transition:border-color .16s ease-out,background-color .16s ease-out}
+.cx-q span{color:var(--ink-dim);margin:0 1px}
+.cx-q:hover{border-color:var(--gold)}
+.cx-q.on{border-color:var(--gold);background:var(--gold-soft);box-shadow:0 0 0 1px var(--gold) inset}
+.cx-pick{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:end;margin-top:16px}
+.cx-f{display:flex;flex-direction:column;gap:5px;min-width:0}
+.cx-f>span:first-child{font-size:12.5px;font-weight:600;color:var(--ink-dim)}
+.cx-sel{position:relative;display:block}
+.cx-sel::after{content:"";position:absolute;right:15px;top:50%;width:7px;height:7px;border-right:1.6px solid var(--ink-dim);border-bottom:1.6px solid var(--ink-dim);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.cx-sel select{appearance:none;-webkit-appearance:none;width:100%;min-height:48px;padding:10px 40px 10px 14px;border-radius:12px;border:1px solid var(--line2);background:var(--panel2);color:var(--ink);font:inherit;font-size:15px;cursor:pointer}
+.cx-sel select:hover{border-color:var(--gold-line)}
+.cx-arrow{align-self:end;height:48px;display:flex;align-items:center;font-size:18px;color:var(--ink-dim)}
+.cx-res{margin-top:16px}
+.cx-r{border:1px solid var(--line2);border-radius:var(--r-md,13px);background:var(--panel2);overflow:hidden}
+.cx-r.cx-in{animation:cxIn .22s ease-out}
+@keyframes cxIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.cx-rhead{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.cx-big{flex:none;display:grid;place-items:center;width:52px;height:52px;border-radius:14px;font-size:28px;font-weight:700;line-height:1;background:var(--panel);border:1px solid var(--line2);color:var(--ink-dim)}
+.cx-r-up .cx-big{color:var(--cx-i);background:var(--cx-i-bg);border-color:var(--cx-i-ln)}
+.cx-r-down .cx-big{color:var(--cx-n);background:var(--cx-n-bg);border-color:var(--cx-n-ln)}
+.cx-verdict{font-size:18px;font-weight:650;color:var(--ink);line-height:1.3;margin-bottom:5px}
+.cx-vsub{font-weight:400;color:var(--ink-dim);font-size:15px}
+.cx-st,.cx-iso-pill{display:inline-block;font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;border:1px solid var(--line2);color:var(--ink-dim);margin-right:6px}
+.cx-st-data,.cx-st-gg{color:var(--gold);border-color:var(--gold-line);background:var(--gold-soft)}
+.cx-st-pred{color:var(--ink);border-style:dashed}
+.cx-iso-pill{font-family:'JetBrains Mono',monospace;font-weight:500}
+.cx-rbody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:18px;padding:14px 16px 16px;align-items:start}
+.cx-dl{display:flex;flex-direction:column;gap:11px}
+.cx-dl dt{font-size:12.5px;font-weight:650;color:var(--ink-dim);margin-bottom:2px}
+.cx-dl dd{font-size:14px;line-height:1.5;color:var(--ink)}
+.cx-chart{margin:0;padding:8px 8px 6px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.cx-chart svg{display:block;width:100%;height:auto}
+.cx-ct{font-size:12.5px;color:var(--ink-dim);padding:2px 4px 4px}
+.cx-ct b{color:var(--ink);font-weight:600}
+.cx-chart figcaption{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;line-height:1.35;color:var(--ink-dim);padding:6px 4px 2px}
+.cx-li{display:inline-flex;align-items:center;gap:6px}
+.cx-lg{display:inline-block;flex:none;width:18px;height:0;border-top:2px dashed var(--ink-dim)}
+.cx-lg-i{border-top:3px solid var(--ink)} .cx-up .cx-lg-i{border-top-color:var(--cx-i)} .cx-down .cx-lg-i{border-top-color:var(--cx-n)}
+.cx-lg-t{border-top:2px dashed var(--cx-i)} .cx-lg-m{border-top:2px dashed var(--cx-n)}
+.cx-rampw{display:block;margin-top:8px}
+.cx-rampc{display:block;font-size:12px;color:var(--ink-dim);margin-top:1px}
+.cx-win{fill:var(--gold);opacity:.08}
+.cx-ztox{fill:var(--cx-i);opacity:.07} .cx-zlow{fill:var(--cx-n);opacity:.06}
+.cx-tl{stroke:var(--cx-i);stroke-width:1.5;stroke-dasharray:5 3}
+.cx-ml{stroke:var(--cx-n);stroke-width:1.5;stroke-dasharray:5 3}
+.cx-axt{font-family:'Archivo',system-ui,sans-serif;font-size:10.5px;fill:var(--ink-dim)}
+.cx-ax{stroke:var(--line2);stroke-width:1}
+.cx-base{fill:none;stroke:var(--ink-dim);stroke-width:1.8;stroke-dasharray:5 4;stroke-linejoin:round}
+.cx-int{fill:none;stroke:var(--ink);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round}
+.cx-up .cx-int{stroke:var(--cx-i)} .cx-down .cx-int{stroke:var(--cx-n)}
+.cx-ramp{display:block;width:100%;max-width:240px;height:auto}
+.cx-rl{fill:none;stroke-width:2.2;stroke:var(--cx-i);stroke-linejoin:round}
+.cx-r-down .cx-rl{stroke:var(--cx-n)}
+/* tabella riassuntiva ripiegabile */
+.cx-full{margin:4px 0 0}
+.cx-full>summary{display:flex;align-items:center;gap:9px;min-height:44px;padding:8px 14px;border:1px solid var(--line);border-radius:var(--r-md,13px);background:var(--panel);
+  color:var(--ink);font-size:14px;font-weight:600;cursor:pointer;list-style:none;width:max-content;max-width:100%}
+.cx-full>summary::-webkit-details-marker{display:none}
+.cx-full>summary::before{content:"";width:7px;height:7px;border-right:1.6px solid var(--gold);border-bottom:1.6px solid var(--gold);transform:rotate(-45deg);transition:transform .18s ease-out;flex:none}
+.cx-full[open]>summary::before{transform:rotate(45deg)}
+.cx-full>summary:hover{border-color:var(--line2)}
+.cx-full[open]>.gwrap{margin-top:10px}
+.cx :focus-visible,.cx-full>summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.cx-r.cx-in{animation:none}.cx-full>summary::before{transition:none}}
+@media (pointer:coarse){.cx-chip,.cx-q{min-height:44px}}
+@media (max-width:1060px){.cx-iso{grid-template-columns:repeat(3,minmax(0,1fr))}.cx-top{grid-template-columns:minmax(0,1fr)}.cx-rbody{grid-template-columns:minmax(0,1fr)}.cx-chart{max-width:460px}}
+@media (max-width:760px){
+  .cx-chip,.cx-q{min-height:44px}
+  .cx-quick-row{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;margin-right:-14px;padding:2px 14px 4px 2px;margin-left:-2px}
+  .cx-quick-row::-webkit-scrollbar{height:0}
+  .cx-q{flex:none;scroll-snap-align:start}
+  .cx-cols{grid-template-columns:minmax(0,1fr);gap:14px}
+  .cx-panel,.cx-drug,.cx-build{padding:14px}
+  .cx-pick{grid-template-columns:minmax(0,1fr)}
+  .cx-arrow{display:none}
+  .cx-isob{min-height:56px;padding:9px 10px}
+  .cx-isob-n{font-size:13px}
+  .cx-rhead{padding:12px}
+  .cx-rbody{padding:12px}
+  .cx-big{width:44px;height:44px;font-size:24px}
+  .cx-verdict{font-size:16.5px}
+}
 </style>
 <!-- ─ -->
 <style data-slot="antibiotics">
@@ -3954,7 +4114,7 @@ function applyTheme(th){ document.documentElement.dataset.theme=th; const b=docu
 /* ===================== INTERAZIONI: CYP450 + farmaco-farmaco ===================== */
 function buildInteractions(){
   const CYP=[
-    {iso:"CYP3A4", sub:["statine (simva/atorva), Ca-antagonisti (verapamil/diltiazem), ciclosporina, warfarin, molti altri","statins (simva/atorva), Ca-blockers (verapamil/diltiazem), ciclosporin, warfarin, many others"],
+    {iso:"CYP3A4", sub:["statine (simva/atorva), Ca-antagonisti (verapamil/diltiazem), ciclosporina, warfarin, contraccettivi orali, molti altri","statins (simva/atorva), Ca-blockers (verapamil/diltiazem), ciclosporin, warfarin, oral contraceptives, many others"],
       inh:["azoli (keto/itraconazolo), macrolidi (eritro/claritro), ritonavir, verapamil/diltiazem, succo di pompelmo","azoles (keto/itraconazole), macrolides (erythro/clarithro), ritonavir, verapamil/diltiazem, grapefruit juice"],
       ind:["rifampicina, carbamazepina, fenitoina, fenobarbital, erba di San Giovanni","rifampicin, carbamazepine, phenytoin, phenobarbital, St John's wort"]},
     {iso:"CYP2D6", sub:["codeina e tramadolo (profarmaci → oppioide attivo), metoprololo, antidepressivi (triciclici/SSRI), antipsicotici, tamoxifene","codeine and tramadol (prodrugs → active opioid), metoprolol, antidepressants (TCAs/SSRIs), antipsychotics, tamoxifen"],
@@ -3996,12 +4156,14 @@ function buildInteractions(){
   const cypRows=CYP.map(r=>`<tr><td class="rc">${r.iso}</td><td>${t(r.sub)}</td><td>${t(r.inh)}</td><td>${t(r.ind)}</td></tr>`).join('');
   const ddiSec=(d)=>`<tr class="ghead"><td colspan="4">${t(d.lab)}</td></tr>`+d.rows.map(r=>`<tr><td class="rc">${t(r[0])}</td><td>${t(r[1])}</td><td>${t(r[2])}</td><td>${t(r[3])}</td></tr>`).join('');
   document.getElementById('view-interactions').innerHTML=`
-    <div class="subhead">⇌ ${t(['Citocromi CYP450 — induttori, inibitori, substrati','Cytochrome CYP450 — inducers, inhibitors, substrates'])}</div>
+    <div class="subhead">⇌ ${t(['Citocromi CYP450: substrati, inibitori, induttori','Cytochrome CYP450: substrates, inhibitors, inducers'])}</div>
     <p class="lead">${t(['Il CYP450 epatico metabolizza la maggior parte dei farmaci. Un <b>inibitore</b> ↑ i livelli del substrato (rischio di <b>tossicità</b>); un <b>induttore</b> ↓ i livelli (rischio di <b>inefficacia</b>). Eccezione: per i <b>profarmaci</b> la logica si inverte.','Hepatic CYP450 metabolizes most drugs. An <b>inhibitor</b> ↑ substrate levels (risk of <b>toxicity</b>); an <b>inducer</b> ↓ levels (risk of <b>treatment failure</b>). Exception: for <b>prodrugs</b> the logic is reversed.'])}</p>
-    <div class="gwrap"><table class="gt"><thead><tr><th>${t(['Isoenzima','Isoenzyme'])}</th><th>${t(['Substrati (esempi)','Substrates (examples)'])}</th><th>${t(['Inibitori → ↑ effetto del substrato','Inhibitors → ↑ substrate effect'])}</th><th>${t(['Induttori → ↓ effetto del substrato','Inducers → ↓ substrate effect'])}</th></tr></thead><tbody>${cypRows}</tbody></table></div>
+    <div id="cypx" class="cx"></div>
+    <details class="cx-full"><summary>${t(['Tabella riassuntiva per isoenzima','Summary table by isoenzyme'])}</summary>
+    <div class="gwrap"><table class="gt"><thead><tr><th>${t(['Isoenzima','Isoenzyme'])}</th><th>${t(['Substrati (esempi)','Substrates (examples)'])}</th><th>${t(['Inibitori → ↑ effetto del substrato','Inhibitors → ↑ substrate effect'])}</th><th>${t(['Induttori → ↓ effetto del substrato','Inducers → ↓ substrate effect'])}</th></tr></thead><tbody>${cypRows}</tbody></table></div></details>
     <div class="hot" style="margin-top:16px"><h3>★ ${t(['Memoria rapida CYP','CYP quick memory'])}</h3><ol>
-      <li>${t(['<b>Inibitori</b> (↑ tossicità del substrato, effetto in <b>ore</b>): azoli, macrolidi, ciprofloxacina, fluvoxamina, ritonavir, amiodarone, succo di pompelmo.','<b>Inhibitors</b> (↑ substrate toxicity, effect within <b>hours</b>): azoles, macrolides, ciprofloxacin, fluvoxamine, ritonavir, amiodarone, grapefruit juice.'])}</li>
-      <li>${t(['<b>Induttori</b> (↓ efficacia, effetto in <b>giorni</b> — serve nuova sintesi enzimatica): rifampicina, carbamazepina, fenitoina, fenobarbital, erba di San Giovanni, fumo, etanolo cronico.','<b>Inducers</b> (↓ efficacy, effect over <b>days</b> — needs new enzyme synthesis): rifampicin, carbamazepine, phenytoin, phenobarbital, St John\'s wort, smoking, chronic ethanol.'])}</li>
+      <li>${t(['<b>Inibitori</b> (↑ tossicità del substrato, effetto <b>rapido</b>: da ore a pochi giorni): azoli, macrolidi, ciprofloxacina, fluvoxamina, ritonavir, amiodarone, succo di pompelmo.','<b>Inhibitors</b> (↑ substrate toxicity, <b>fast</b> effect: hours to a few days): azoles, macrolides, ciprofloxacin, fluvoxamine, ritonavir, amiodarone, grapefruit juice.'])}</li>
+      <li>${t(['<b>Induttori</b> (↓ efficacia, effetto <b>lento</b>: circa 1–2 settimane, perché serve nuova sintesi di enzima; altrettanto per esaurirsi): rifampicina, carbamazepina, fenitoina, fenobarbital, erba di San Giovanni, fumo, etanolo cronico.','<b>Inducers</b> (↓ efficacy, <b>slow</b> effect: about 1–2 weeks, because new enzyme must be synthesized; as long to wear off): rifampicin, carbamazepine, phenytoin, phenobarbital, St John\'s wort, smoking, chronic ethanol.'])}</li>
       <li>${t(['<b>Profarmaci</b> (logica opposta): codeina→morfina (CYP2D6) e clopidogrel (CYP2C19) <b>perdono</b> efficacia con un inibitore.','<b>Prodrugs</b> (opposite logic): codeine→morphine (CYP2D6) and clopidogrel (CYP2C19) <b>lose</b> efficacy with an inhibitor.'])}</li>
     </ol></div>
     <div class="subhead" style="margin-top:28px">⇌ ${t(['Interazioni farmaco-farmaco','Drug–drug interactions'])}</div>
@@ -4009,6 +4171,7 @@ function buildInteractions(){
     <div class="gwrap"><table class="gt"><thead><tr><th>${t(['Farmaci','Drugs'])}</th><th>${t(['Meccanismo','Mechanism'])}</th><th>${t(['Effetto / rischio','Effect / risk'])}</th><th>${t(['Nota clinica','Clinical note'])}</th></tr></thead><tbody>${ddiSec(DDI.pd)}${ddiSec(DDI.pk)}</tbody></table></div>
     <p class="note">${t(['Elenco didattico non esaustivo, orientato all\'esame; verifica sempre dose, indicazione e fonte ufficiale prima dell\'uso clinico.','Didactic, non-exhaustive, exam-oriented list; always check dose, indication and an official source before clinical use.'])}</p>`;
   if(typeof linkifyDrugsIn==='function') linkifyDrugsIn(document.getElementById('view-interactions'));
+  if(cypxReady) cypxMount(); /* esploratore interattivo (slot cyp): montato dopo il linkify, così i chip restano bottoni */
 }
 /* ===================== ANTIBIOTICI: mappa mentale per meccanismo ===================== */
 function buildAntibiotics(){
@@ -4473,6 +4636,324 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDrugM
 /* ═══ slot exam: fine ═══ */
 // ·
 /* ═══ slot cyp: inizio (solo il suo agente) ═══ */
+/* Interazioni CYP interattive: isoenzima → ruoli dei farmaci → costruttore perpetratore/vittima.
+   Dati: stessi farmaci della tabella CYP della vista (buildInteractions) + coppie della tabella DDI.
+   Verifiche su Goodman & Gilman 14ª ed.: cap. 5 (induzione via PXR/AhR; omeprazolo induce CYP1A2; iperico → CYP3A4 → contraccettivi),
+   cap. 9 (etanolo cronico e isoniazide inducono CYP2E1 → più NAPQI), cap. 59 (ciprofloxacina ↑ teofillina),
+   tab. clozapina (fluvoxamina, inibitore forte del CYP1A2, ↑ 5–10 volte), App. II tab. AII-2 (inibitori/induttori «forti»:
+   AUC della vittima ≥5 volte o ridotta ≥80%), cap. 73 (tamoxifene → endoxifene via CYP2D6, peso clinico discusso).
+   buildInteractions() gira prima di questo slot: cypxReady (var, quindi già dichiarata) evita la TDZ delle const qui sotto. */
+var cypxReady=false, cypxState=null;
+const CYPX_L={
+  it:{isoGroup:'Isoenzima',sub:'Substrati',subH:'vengono metabolizzati',inh:'Inibitori',inhH:'↑ livelli del substrato',ind:'Induttori',indH:'↓ livelli del substrato',
+    none:'Praticamente non inducibile.',strong:'forte',pro:'profarmaco',tox:'→ NAPQI',
+    hintT:'Tocca un farmaco',hint:'Vedi in un colpo solo tutti i suoi ruoli sui sei isoenzimi e mandalo al costruttore qui sotto.',
+    hintI:'<b>Inibitore</b> → substrato ↑ → rischio di tossicità',hintN:'<b>Induttore</b> → substrato ↓ → rischio di inefficacia',hintP:'<b>Profarmaco</b> → logica inversa (serve il CYP per attivarlo)',
+    roleS:'Substrato',roleI:'Inibitore',roleN:'Induttore',of:'di',and:' e ',close:'Chiudi la scheda',
+    asP:'Usa come perpetratore',asV:'Usa come vittima',
+    bT:'Costruisci l’interazione',bL:'Scegli chi agisce sull’enzima (perpetratore) e chi ne subisce l’effetto (vittima): il risultato mostra direzione, meccanismo, conseguenza e decorso.',
+    quick:'Coppie classiche d’esame',pP:'Perpetratore',pV:'Vittima (substrato)',gI:'Inibitori',gN:'Induttori',gB:'Inibitore e induttore',
+mech:'Meccanismo',cons:'Conseguenza',ex:'Esempio · gestione',time:'Decorso',
+    stData:'Coppia classica',stGG:'Documentata (Goodman & Gilman)',stPred:'Prevista dal meccanismo',stNone:'Nessuna interazione CYP',stSame:'Stesso farmaco',
+    plasma:'nel plasma',alone:'senza ',withX:'con ',conc:'concentrazione',timeAx:'tempo (dosi ripetute)',
+    mec:'minima efficace',mtc:'soglia di tossicità',days:'giorni',onset:'comparsa dell’effetto',
+    sameTxt:'Scegli due farmaci diversi: perpetratore e vittima devono essere distinti.',
+    tInh:'Rapida: compare da ore a pochi giorni, appena l’inibitore raggiunge concentrazioni efficaci; il substrato si porta al nuovo equilibrio in circa 4–5 emivite. Regredisce quando l’inibitore viene eliminato.',
+    tInd:'Lenta: serve sintesi di nuovo enzima (recettori nucleari come PXR e AhR), quindi si sviluppa in circa 1–2 settimane e si esaurisce in tempi simili dopo la sospensione. Attenzione anche quando si toglie l’induttore: i livelli risalgono.',
+    predEx:'Non è tra le coppie classiche documentate qui: è una previsione dal profilo CYP. L’entità dipende da quanto è potente {P} e da quanto {V} dipende dal {ISO}.',
+    strongI:' {P} è un inibitore forte del {ISO} (G&G: AUC della vittima aumentata di almeno 5 volte).',
+    strongN:' {P} è un induttore forte del {ISO} (G&G: AUC della vittima ridotta di almeno l’80%).',
+    noneTxt:'{V} non è substrato degli isoenzimi su cui agisce {P} ({ISO}): in questi dati non c’è un’interazione via CYP, quindi nessun allarme.',
+    noneCons:'{V}: livelli invariati per questa via.',
+    noneEx:'Restano possibili interazioni per altre vie (trasportatori come la glicoproteina P, effetti farmacodinamici che si sommano): vedi la tabella farmaco-farmaco più sotto.',
+    mixed:'Effetto netto incerto: {P} inibisce un isoenzima e ne induce un altro.',
+    ntI:' Indice terapeutico stretto: il rischio è concreto.',
+    tamox:' Peso clinico discusso (G&G).'},
+  en:{isoGroup:'Isoenzyme',sub:'Substrates',subH:'are metabolized',inh:'Inhibitors',inhH:'↑ substrate levels',ind:'Inducers',indH:'↓ substrate levels',
+    none:'Practically non-inducible.',strong:'strong',pro:'prodrug',tox:'→ NAPQI',
+    hintT:'Tap a drug',hint:'See all its roles across the six isoenzymes at once, and send it to the builder below.',
+    hintI:'<b>Inhibitor</b> → substrate ↑ → risk of toxicity',hintN:'<b>Inducer</b> → substrate ↓ → risk of failure',hintP:'<b>Prodrug</b> → reversed logic (the CYP activates it)',
+    roleS:'Substrate',roleI:'Inhibitor',roleN:'Inducer',of:'of',and:' and ',close:'Close the card',
+    asP:'Use as perpetrator',asV:'Use as victim',
+    bT:'Build the interaction',bL:'Pick the drug acting on the enzyme (perpetrator) and the one affected (victim): the result shows direction, mechanism, consequence and time course.',
+    quick:'Classic exam pairs',pP:'Perpetrator',pV:'Victim (substrate)',gI:'Inhibitors',gN:'Inducers',gB:'Inhibitor and inducer',
+mech:'Mechanism',cons:'Consequence',ex:'Example · management',time:'Time course',
+    stData:'Classic pair',stGG:'Documented (Goodman & Gilman)',stPred:'Predicted from mechanism',stNone:'No CYP interaction',stSame:'Same drug',
+    plasma:'in plasma',alone:'without ',withX:'with ',conc:'concentration',timeAx:'time (repeated doses)',
+    mec:'minimum effective',mtc:'toxicity threshold',days:'days',onset:'onset of the effect',
+    sameTxt:'Pick two different drugs: perpetrator and victim must differ.',
+    tInh:'Fast: appears within hours to a few days, as soon as the inhibitor reaches effective concentrations; the substrate settles at its new steady state in about 4–5 half-lives. It fades once the inhibitor is eliminated.',
+    tInd:'Slow: new enzyme must be synthesized (nuclear receptors such as PXR and AhR), so it builds up over about 1–2 weeks and wears off over a similar time after stopping. Watch out when the inducer is withdrawn too: levels climb back.',
+    predEx:'Not among the classic documented pairs here: it is a prediction from the CYP profile. Its size depends on how potent {P} is and on how much {V} relies on {ISO}.',
+    strongI:' {P} is a strong {ISO} inhibitor (G&G: victim AUC raised at least 5-fold).',
+    strongN:' {P} is a strong {ISO} inducer (G&G: victim AUC cut by at least 80%).',
+    noneTxt:'{V} is not a substrate of the isoenzymes {P} acts on ({ISO}): these data show no CYP interaction, so no alarm.',
+    noneCons:'{V} levels unchanged through this route.',
+    noneEx:'Interactions through other routes remain possible (transporters such as P-glycoprotein, additive pharmacodynamic effects): see the drug–drug table below.',
+    mixed:'Net effect uncertain: {P} inhibits one isoenzyme and induces another.',
+    ntI:' Narrow therapeutic index: the risk is real.',
+    tamox:' Clinical weight debated (G&G).'}
+};
+function cxl(k){ return CYPX_L[LANG==='en'?'en':'it'][k]; }
+function cxf(s,o){ return s.replace(/\{(\w+)\}/g,(m,k)=>o[k]!=null?o[k]:m); }
+function cxCap(s){ return s?s.charAt(0).toUpperCase()+s.slice(1):s; }
+/* farmaci: id → [it, en] (nomi della tabella CYP della vista) */
+const CX_D={
+  simva:['simvastatina','simvastatin'],atorva:['atorvastatina','atorvastatin'],verap:['verapamil','verapamil'],dilt:['diltiazem','diltiazem'],
+  ciclo:['ciclosporina','ciclosporin'],warf:['warfarin','warfarin'],oc:['contraccettivi orali','oral contraceptives'],
+  keto:['ketoconazolo','ketoconazole'],itra:['itraconazolo','itraconazole'],eritro:['eritromicina','erythromycin'],clari:['claritromicina','clarithromycin'],
+  rito:['ritonavir','ritonavir'],pomp:['succo di pompelmo','grapefruit juice'],rifa:['rifampicina','rifampicin'],carba:['carbamazepina','carbamazepine'],
+  feni:['fenitoina','phenytoin'],fenob:['fenobarbital','phenobarbital'],iper:['erba di San Giovanni','St John’s wort'],
+  codeina:['codeina','codeine'],trama:['tramadolo','tramadol'],meto:['metoprololo','metoprolol'],antidep:['antidepressivi (TCA, SSRI)','antidepressants (TCAs, SSRIs)'],
+  antips:['antipsicotici','antipsychotics'],tamox:['tamoxifene','tamoxifen'],fluox:['fluoxetina','fluoxetine'],parox:['paroxetina','paroxetine'],
+  bupro:['bupropione','bupropion'],chini:['chinidina','quinidine'],sulfo:['sulfaniluree','sulfonylureas'],fans:['FANS','NSAIDs'],
+  fluco:['fluconazolo','fluconazole'],amio:['amiodarone','amiodarone'],metro:['metronidazolo','metronidazole'],clopi:['clopidogrel','clopidogrel'],
+  omep:['omeprazolo','omeprazole'],diaz:['diazepam','diazepam'],fluvox:['fluvoxamina','fluvoxamine'],teof:['teofillina','theophylline'],
+  caff:['caffeina','caffeine'],cloz:['clozapina','clozapine'],olanz:['olanzapina','olanzapine'],cipro:['ciprofloxacina','ciprofloxacin'],
+  fumo:['fumo di sigaretta','cigarette smoke'],parac:['paracetamolo','paracetamol'],etoh:['etanolo','ethanol'],volat:['anestetici volatili','volatile anaesthetics'],
+  disulf:['disulfiram','disulfiram'],etohc:['etanolo cronico','chronic ethanol'],isoniaz:['isoniazide','isoniazid']
+};
+/* isoenzimi: S substrati, I inibitori, N induttori; sI/sN = «forti» secondo G&G App. II (tab. AII-2 e testo sulla clozapina) */
+const CX_ISO=[
+  {iso:'CYP3A4',why:['Il più importante: metabolizza la quota più ampia dei farmaci ed è presente anche nell’intestino (per questo il succo di pompelmo conta).','The most important: it clears the largest share of drugs and is also present in the gut (which is why grapefruit juice matters).'],
+    S:['simva','atorva','verap','dilt','ciclo','warf','oc'],I:['keto','itra','eritro','clari','rito','verap','dilt','pomp'],N:['rifa','carba','feni','fenob','iper'],sI:['itra','clari','rito'],sN:['rifa','carba','feni']},
+  {iso:'CYP2D6',why:['Polimorfico (metabolizzatori lenti o ultrarapidi) e quasi non inducibile: attiva codeina e tramadolo.','Polymorphic (poor or ultra-rapid metabolizers) and barely inducible: it activates codeine and tramadol.'],
+    S:['codeina','trama','meto','antidep','antips','tamox'],I:['fluox','parox','bupro','chini'],N:[],sI:['fluox','parox'],sN:[]},
+  {iso:'CYP2C9',why:['Elimina l’S-warfarin, l’enantiomero più attivo: inibirlo fa salire l’INR.','Clears S-warfarin, the more active enantiomer: inhibiting it raises the INR.'],
+    S:['warf','feni','sulfo','fans'],I:['fluco','amio','metro'],N:['rifa','carba'],sI:[],sN:[]},
+  {iso:'CYP2C19',why:['Attiva il clopidogrel: con un inibitore (omeprazolo) o un genotipo lento l’antiaggregazione cala.','Activates clopidogrel: an inhibitor (omeprazole) or a poor-metabolizer genotype weakens the antiplatelet effect.'],
+    S:['clopi','omep','diaz'],I:['omep','fluvox','fluco'],N:['rifa'],sI:['fluco'],sN:['rifa']},
+  {iso:'CYP1A2',why:['Indotto dal fumo e dall’omeprazolo (via AhR); teofillina e clozapina risentono molto dei suoi inibitori.','Induced by smoking and omeprazole (via AhR); theophylline and clozapine are very sensitive to its inhibitors.'],
+    S:['teof','caff','cloz','olanz'],I:['cipro','fluvox'],N:['fumo','omep','carba'],sI:['cipro','fluvox'],sN:[]},
+  {iso:'CYP2E1',why:['Trasforma il paracetamolo nel NAPQI epatotossico: l’alcol cronico e l’isoniazide lo inducono.','Turns paracetamol into hepatotoxic NAPQI: chronic alcohol and isoniazid induce it.'],
+    S:['parac','etoh','volat'],I:['disulf'],N:['etohc','isoniaz'],sI:[],sN:[]}
+];
+/* profarmaci (il CYP crea la specie attiva) e metabolita tossico */
+const CX_PRO={codeina:['morfina','morphine'],trama:['O-desmetiltramadolo','O-desmethyltramadol'],clopi:['metabolita attivo','active metabolite'],tamox:['endoxifene','endoxifen']};
+const CX_TOX={parac:['NAPQI','NAPQI']};
+const CX_NTI=['warf','feni','teof','ciclo'];
+/* coppie documentate: «perp>vittima» → conseguenza, esempio/gestione, fonte (d = tabella DDI della vista, g = Goodman & Gilman) */
+const CX_DOC={};
+function cxDoc(ps,vs,src,cons,ex,extra){ ps.forEach(p=>vs.forEach(v=>{ CX_DOC[p+'>'+v]=Object.assign({src,cons,ex},extra||{}); })); }
+cxDoc(['amio','metro','fluco'],['warf'],'d',['↑ INR → rischio di emorragia.','↑ INR → bleeding risk.'],['Fluconazolo in un paziente in warfarin: ridurre la dose e controllare l’INR.','Fluconazole in a patient on warfarin: reduce the dose and check the INR.']);
+cxDoc(['eritro','clari','keto','itra','verap'],['simva','atorva'],'d',['Miopatia, fino alla rabdomiolisi.','Myopathy, up to rhabdomyolysis.'],['Claritromicina in un paziente in simvastatina: sospendere o ridurre la statina.','Clarithromycin in a patient on simvastatin: stop or reduce the statin.']);
+cxDoc(['omep'],['clopi'],'d',['Meno metabolita attivo → antiaggregazione ↓ → rischio di trombosi.','Less active metabolite → weaker antiplatelet effect → thrombosis risk.'],['Paziente con stent in clopidogrel che deve proteggere lo stomaco: preferire il pantoprazolo.','Stented patient on clopidogrel needing gastric protection: prefer pantoprazole.']);
+cxDoc(['fluox','parox'],['codeina'],'d',['Meno morfina → analgesia ↓.','Less morphine → weaker analgesia.'],['Paziente in SSRI (fluoxetina o paroxetina) con dolore: scegliere un analgesico che non richieda il CYP2D6.','Patient on an SSRI (fluoxetine or paroxetine) in pain: choose an analgesic that does not need CYP2D6.']);
+cxDoc(['rifa'],['warf'],'d',['↓ INR → anticoagulazione inefficace.','↓ INR → ineffective anticoagulation.'],['Rifampicina per tubercolosi in un paziente in warfarin: aumentare la dose sotto controllo dell’INR e ridurla quando la rifampicina viene sospesa.','Rifampicin for TB in a patient on warfarin: raise the dose under INR control and lower it when rifampicin is stopped.']);
+cxDoc(['rifa'],['oc'],'d',['Contraccezione inefficace → gravidanza indesiderata.','Contraceptive failure → unintended pregnancy.'],['Donna in pillola che inizia rifampicina: usare un metodo non ormonale.','Woman on the pill starting rifampicin: use a non-hormonal method.']);
+cxDoc(['iper','carba','feni'],['oc'],'g',['Contraccezione inefficace → gravidanza indesiderata.','Contraceptive failure → unintended pregnancy.'],['Iperico «naturale» preso per l’umore insieme alla pillola: è un induttore del CYP3A4 (via PXR).','“Natural” St John’s wort taken for mood with the pill: it is a CYP3A4 inducer (via PXR).']);
+cxDoc(['cipro'],['teof'],'g',['↑ teofillina → tossicità (nausea, aritmie, convulsioni).','↑ theophylline → toxicity (nausea, arrhythmias, seizures).'],['Paziente con BPCO in teofillina e infezione: scegliere un altro antibiotico o ridurre la teofillina dosandone i livelli.','COPD patient on theophylline with an infection: choose another antibiotic or reduce theophylline and measure levels.']);
+cxDoc(['fluvox'],['cloz'],'g',['Clozapina ↑ di 5–10 volte → sedazione, ipotensione, convulsioni.','Clozapine ↑ 5–10-fold → sedation, hypotension, seizures.'],['Evitare l’associazione o ridurre molto la clozapina, dosandone i livelli.','Avoid the combination or cut clozapine markedly, measuring levels.']);
+cxDoc(['fumo'],['cloz','olanz'],'g',['Livelli più bassi nel fumatore; se smette di fumare risalgono.','Lower levels in smokers; they rise again after quitting.'],['Paziente in clozapina che smette di fumare: dosare i livelli e ridurre la dose se servono.','Patient on clozapine who quits smoking: measure levels and lower the dose if needed.']);
+cxDoc(['etohc','isoniaz'],['parac'],'g',['Più NAPQI (e, con l’alcol, meno glutatione) → rischio di epatotossicità ↑.','More NAPQI (and, with alcohol, less glutathione) → higher hepatotoxicity risk.'],['Bevitore cronico con febbre: paracetamolo a dosi prudenti.','Chronic drinker with fever: paracetamol at cautious doses.']);
+cxDoc(['disulf'],['etoh'],'g',['Vampate, nausea, tachicardia, ipotensione (reazione da disulfiram).','Flushing, nausea, tachycardia, hypotension (disulfiram reaction).'],['È l’uso terapeutico del disulfiram nella dipendenza da alcol.','This is the therapeutic use of disulfiram in alcohol dependence.'],
+  {mech:['Il disulfiram blocca l’aldeide deidrogenasi (non il CYP2E1): l’acetaldeide prodotta dall’etanolo si accumula.','Disulfiram blocks aldehyde dehydrogenase (not CYP2E1): acetaldehyde formed from ethanol builds up.'],sp:['acetaldeide','acetaldehyde'],dir:1});
+const CX_QUICK=[['fluco','warf'],['clari','simva'],['omep','clopi'],['fluox','codeina'],['rifa','oc'],['cipro','teof'],['etohc','parac'],['fluvox','cloz']];
+const CX_SHORT=i=>i.replace('CYP','');
+function cxN(id){ return t(CX_D[id]); }
+function cxRoles(id){ const r=[]; CX_ISO.forEach(b=>{ if(b.S.includes(id)) r.push({iso:b.iso,k:'S'}); if(b.I.includes(id)) r.push({iso:b.iso,k:'I',s:b.sI.includes(id)}); if(b.N.includes(id)) r.push({iso:b.iso,k:'N',s:b.sN.includes(id)}); }); return r; }
+function cxJoin(a){ if(a.length<2) return a.join(''); return a.slice(0,-1).join(', ')+cxl('and')+a[a.length-1]; }
+function cxReduce(){ return !!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches); }
+/* ── analisi della coppia ── */
+function cxAnalyze(p,v){
+  if(p===v) return {st:'same'};
+  const links=[];
+  CX_ISO.forEach(b=>{ if(!b.S.includes(v)) return; if(b.I.includes(p)) links.push({iso:b.iso,k:'I',s:b.sI.includes(p)}); if(b.N.includes(p)) links.push({iso:b.iso,k:'N',s:b.sN.includes(p)}); });
+  const doc=CX_DOC[p+'>'+v]||null;
+  const P=cxN(p), V=cxN(v);
+  if(!links.length){ const acts=cxRoles(p).filter(r=>r.k!=='S').map(r=>r.iso); return {st:'none',P,V,isos:cxJoin(acts)}; }
+  const kinds=[...new Set(links.map(l=>l.k))]; const k=kinds.length>1?'X':kinds[0];
+  const isoTxt=cxJoin(links.map(l=>l.iso));
+  const pro=CX_PRO[v], tox=CX_TOX[v];
+  let sp=V, dir=0, role='';
+  if(doc&&doc.sp){ sp=t(doc.sp); dir=doc.dir; }
+  else if(k!=='X'){
+    const inh=(k==='I');
+    if(pro){ sp=t(pro); dir=inh?-1:1; role='pro'; }
+    else if(tox){ sp=t(tox); dir=inh?-1:1; role='tox'; }
+    else dir=inh?1:-1;
+  }
+  const verb=k==='I'?t(['inibisce','inhibits']):t(['induce','induces']);
+  const pl=links.length>1, art=pl?'i':'il', Pc=cxCap(P);
+  const more=k==='I'?t(['meno enzima attivo, meno metabolismo','less active enzyme, less metabolism']):t(['più enzima, più metabolismo','more enzyme, more metabolism']);
+  let mech;
+  if(doc&&doc.mech) mech=t(doc.mech);
+  else if(k==='X') mech=cxf(cxl('mixed'),{P:Pc});
+  else if(role==='pro') mech=t([`${Pc} ${verb} ${art} ${isoTxt}, che ${pl?'attivano':'attiva'} ${V}: si forma ${dir>0?'più':'meno'} ${sp}.`,`${Pc} ${verb} ${isoTxt}, which ${pl?'activate':'activates'} ${V}: ${dir>0?'more':'less'} ${sp} is formed.`]);
+  else if(role==='tox') mech=t([`${Pc} ${verb} ${art} ${isoTxt}, che ${pl?'trasformano':'trasforma'} ${V} in ${sp}: si forma ${dir>0?'più':'meno'} ${sp}.`,`${Pc} ${verb} ${isoTxt}, which ${pl?'turn':'turns'} ${V} into ${sp}: ${dir>0?'more':'less'} ${sp} is formed.`]);
+  else mech=t([`${Pc} ${verb} ${art} ${isoTxt}, ${pl?'le vie che eliminano':'la via che elimina'} ${V}: ${more}, ${dir>0?'più':'meno'} ${V} nel plasma.`,`${Pc} ${verb} ${isoTxt}, the ${pl?'routes that clear':'route that clears'} ${V}: ${more}, ${dir>0?'more':'less'} ${V} in plasma.`]);
+  const strong=links.find(l=>l.s);
+  if(strong&&!(doc&&doc.mech)) mech+=cxf(cxl(strong.k==='I'?'strongI':'strongN'),{P:Pc,ISO:strong.iso});
+  let cons, ex;
+  if(doc){ cons=t(doc.cons); ex=t(doc.ex); }
+  else {
+    if(k==='X') cons=cxf(cxl('mixed'),{P});
+    else if(role==='pro') cons=dir<0?t([`Meno ${sp}: effetto di ${V} ↓.`,`Less ${sp}: ${V} works less.`]):t([`Più ${sp}: effetto di ${V} potenzialmente ↑.`,`More ${sp}: ${V} effect potentially ↑.`]);
+    else if(role==='tox') cons=dir>0?t([`Più ${sp} → rischio di epatotossicità ↑.`,`More ${sp} → higher hepatotoxicity risk.`]):t([`Meno ${sp} formato per questa via.`,`Less ${sp} formed by this route.`]);
+    else cons=dir>0?t([`Più esposizione a ${V}: effetti dose-dipendenti e tossicità ↑.`,`Higher exposure to ${V}: dose-dependent effects and toxicity ↑.`]):t([`Meno esposizione a ${V}: rischio di inefficacia terapeutica.`,`Lower exposure to ${V}: risk of therapeutic failure.`]);
+    if(role===''&&dir>0&&CX_NTI.includes(v)) cons+=cxl('ntI');
+    if(v==='tamox'&&dir<0) cons+=cxl('tamox');
+    ex=cxf(cxl('predEx'),{P,V,ISO:isoTxt});
+  }
+  const time=k==='N'?cxl('tInd'):k==='I'?cxl('tInh'):cxl('tInh')+' '+cxl('tInd');
+  return {st:doc?(doc.src==='d'?'data':'gg'):'pred',P,V,sp,dir,k,mech,cons,ex,time,role,isoTxt};
+}
+/* ── curva concentrazione–tempo (dosi orali ripetute, modello a 1 compartimento) ── */
+const CX_PK={ka:1.1,ke:0.14,tau:8,T:48,n:96};
+function cxCurve(amp,keF){ const {ka,tau,T,n}=CX_PK, ke=CX_PK.ke*keF, pts=[];
+  for(let i=0;i<=n;i++){ const tt=T*i/n; let c=0; for(let d=0;d*tau<=tt;d++){ const s=tt-d*tau; c+=ka/(ka-ke)*(Math.exp(-ke*s)-Math.exp(-ka*s)); } pts.push([tt,c*amp]); } return pts; }
+function cxTarget(r){ /* fattori: farmaco madre → cambia l'eliminazione; metabolita → cambia la formazione */
+  if(r.st==='none') return {amp:1,keF:1};
+  if(r.role==='pro'||r.role==='tox'||r.sp!==r.V) return r.dir>0?{amp:2.1,keF:1}:{amp:0.36,keF:1};
+  return r.dir>0?{amp:1,keF:0.42}:r.dir<0?{amp:1,keF:2.6}:{amp:1,keF:1};
+}
+const CX_G={w:320,h:184,l:12,r:10,t:12,b:26};
+function cxPath(pts,ymax){ const {w,h,l,r,t:tp,b}=CX_G, pw=w-l-r, ph=h-tp-b;
+  return pts.map((p,i)=>(i?'L':'M')+(l+p[0]/CX_PK.T*pw).toFixed(1)+' '+(tp+ph-Math.min(p[1],ymax*1.04)/ymax*ph).toFixed(1)).join(''); }
+function cxChart(r){
+  const base=cxCurve(1,1), b0=Math.max(...base.map(p=>p[1])), tg=cxTarget(r), fin=cxCurve(tg.amp,tg.keF), f0=Math.max(...fin.map(p=>p[1]));
+  const ymax=Math.max(b0*2.3,f0*1.08);
+  const {w,h,l,r:rr,t:tp,b}=CX_G, ph=h-tp-b, Y=v=>(tp+ph-v/ymax*ph).toFixed(1);
+  const mec=b0*0.42, mtc=b0*1.4, toxOnly=r.role==='tox'||(r.st!=='none'&&r.sp!==r.V&&r.role!=='pro');
+  const dirC=r.dir>0?'up':r.dir<0?'down':'flat';
+  const lbl=r.st==='none'?r.V:r.sp;
+  const aria=r.st==='none'?t([`Curva di ${lbl}: invariata.`,`Curve of ${lbl}: unchanged.`]):t([`Curva di ${lbl}: ${r.dir>0?'sale verso la soglia di tossicità':'scende sotto la minima efficace'} rispetto a ${r.V} da solo.`,`Curve of ${lbl}: it ${r.dir>0?'rises towards the toxicity threshold':'falls below the minimum effective level'} compared with ${r.V} alone.`]);
+  const it=(cls,txt)=>`<span class="cx-li"><span class="cx-lg ${cls}"></span>${txt}</span>`;
+  return `<figure class="cx-chart cx-${dirC}"><p class="cx-ct">${t(['Concentrazione di ','Concentration of '])}<b>${escAttr(lbl)}</b>${r.st!=='none'&&r.sp!==r.V?` (${escAttr(r.V)})`:''}</p><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${escAttr(aria)}">
+    <rect x="${l}" y="${tp}" width="${w-l-rr}" height="${(Y(mtc)-tp).toFixed(1)}" class="cx-ztox"/>
+    ${toxOnly?'':`<rect x="${l}" y="${Y(mtc)}" width="${w-l-rr}" height="${(Y(mec)-Y(mtc)).toFixed(1)}" class="cx-win"/><rect x="${l}" y="${Y(mec)}" width="${w-l-rr}" height="${(tp+ph-Y(mec)).toFixed(1)}" class="cx-zlow"/><line x1="${l}" x2="${w-rr}" y1="${Y(mec)}" y2="${Y(mec)}" class="cx-ml"/>`}
+    <line x1="${l}" x2="${w-rr}" y1="${Y(mtc)}" y2="${Y(mtc)}" class="cx-tl"/>
+    <line x1="${l}" x2="${w-rr}" y1="${tp+ph}" y2="${tp+ph}" class="cx-ax"/><line x1="${l}" x2="${l}" y1="${tp}" y2="${tp+ph}" class="cx-ax"/>
+    <text x="${l}" y="${h-8}" class="cx-axt">${cxl('timeAx')} →</text>
+    <path d="${cxPath(base,ymax)}" class="cx-base"/>
+    ${r.st==='none'?'':`<path d="${cxPath(fin,ymax)}" class="cx-int" data-amp="${tg.amp}" data-kef="${tg.keF}" data-ymax="${ymax}"/>`}
+  </svg><figcaption>${it('cx-lg-b',escAttr(lbl)+' '+cxl('alone')+escAttr(r.P))}${r.st==='none'?'':it('cx-lg-i',escAttr(lbl)+' '+cxl('withX')+escAttr(r.P))}${it('cx-lg-t',cxl('mtc'))}${toxOnly?'':it('cx-lg-m',cxl('mec'))}</figcaption></figure>`;
+}
+/* rampa del decorso: 0–21 giorni */
+function cxRamp(k){
+  const W=220,H=36,X=d=>(8+d/21*(W-16)).toFixed(1),pts=[]; for(let i=0;i<=42;i++){ const d=21*i/42; const y=k==='N'?1-Math.exp(-d/4):1-Math.exp(-d/0.45); pts.push(X(d)+' '+(24-y*20).toFixed(1)); }
+  return `<span class="cx-rampw"><svg class="cx-ramp cx-ramp-${k==='N'?'n':'i'}" viewBox="0 0 ${W} ${H}" aria-hidden="true"><line x1="8" x2="${W-8}" y1="24" y2="24" class="cx-ax"/>
+    ${[0,7,14,21].map(d=>`<line x1="${X(d)}" x2="${X(d)}" y1="24" y2="27" class="cx-ax"/><text x="${X(d)}" y="${H-1}" text-anchor="middle" class="cx-axt">${d}</text>`).join('')}
+    <path d="M${pts.join('L')}" class="cx-rl"/></svg><span class="cx-rampc">${cxl('onset')} · ${cxl('days')} 0–21</span></span>`;
+}
+/* animazione: dalla curva di base a quella con interazione (niente animazione con riduzione del movimento) */
+function cxAnimate(svgPath){
+  if(!svgPath) return;
+  const amp=+svgPath.dataset.amp, keF=+svgPath.dataset.kef, ymax=+svgPath.dataset.ymax;
+  if(cxReduce()) return;
+  const run=()=>{ const t0=performance.now(), D=900; const step=now=>{ const x=Math.min(1,(now-t0)/D), e=1-Math.pow(1-x,3);
+      svgPath.setAttribute('d',cxPath(cxCurve(1+(amp-1)*e,1+(keF-1)*e),ymax)); if(x<1) requestAnimationFrame(step); };
+    svgPath.setAttribute('d',cxPath(cxCurve(1,1),ymax)); requestAnimationFrame(step); };
+  if(!('IntersectionObserver' in window)){ run(); return; }
+  svgPath.setAttribute('d',cxPath(cxCurve(1,1),ymax)); /* parte dalla base: niente lampo della curva finale */
+  const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ io.disconnect(); run(); } },{threshold:.35}); /* vista nascosta: parte quando diventa visibile */
+  io.observe(svgPath.closest('svg'));
+}
+/* ── render ── */
+function cxChip(id,k,b){
+  const strong=(k==='I'&&b.sI.includes(id))||(k==='N'&&b.sN.includes(id));
+  const tag=strong?`<span class="cx-tag">${cxl('strong')}</span>`:(k==='S'&&CX_PRO[id])?`<span class="cx-tag">${cxl('pro')}</span>`:(k==='S'&&CX_TOX[id])?`<span class="cx-tag">${cxl('tox')}</span>`:'';
+  const on=cypxState.drug===id;
+  return `<button type="button" class="cx-chip cx-${k.toLowerCase()}${on?' on':''}" data-d="${id}" aria-pressed="${on}">${escAttr(cxN(id))}${tag}</button>`;
+}
+function cxIsoHTML(){
+  const roles=cypxState.drug?cxRoles(cypxState.drug):[];
+  return CX_ISO.map(b=>{ const sel=b.iso===cypxState.iso, rs=roles.filter(r=>r.iso===b.iso);
+    const al=`${b.iso}: ${b.S.length} ${cxl('sub').toLowerCase()}, ${b.I.length} ${cxl('inh').toLowerCase()}, ${b.N.length} ${cxl('ind').toLowerCase()}`+(rs.length?' · '+cxN(cypxState.drug)+': '+rs.map(r=>cxl('role'+r.k).toLowerCase()).join(', '):'');
+    return `<button type="button" class="cx-isob${sel?' sel':''}${rs.length?' hit':''}" data-iso="${b.iso}" aria-pressed="${sel}" aria-label="${escAttr(al)}"><span class="cx-isob-n">${b.iso}</span><span class="cx-isob-c"><i class="s">${b.S.length}</i><i class="i">${b.I.length}</i><i class="n">${b.N.length}</i></span>${rs.length?`<span class="cx-isob-r">${rs.map(r=>`<b class="${r.k.toLowerCase()}">${cxl('role'+r.k)}</b>`).join('')}</span>`:''}</button>`; }).join('');
+}
+function cxPanelHTML(){
+  const b=CX_ISO.find(x=>x.iso===cypxState.iso)||CX_ISO[0];
+  const col=(k,lab,hint,ids)=>`<div class="cx-col cx-col-${k.toLowerCase()}"><h4><span class="cx-sw" aria-hidden="true"></span>${lab} <small>${hint}</small></h4><div class="cx-chips">${ids.length?ids.map(id=>cxChip(id,k,b)).join(''):`<p class="cx-empty">${cxl('none')}</p>`}</div></div>`;
+  return `<header class="cx-ph"><h3 class="cx-iso-t">${b.iso}</h3><p class="cx-why">${t(b.why)}</p></header>
+    <div class="cx-cols">${col('S',cxl('sub'),cxl('subH'),b.S)}${col('I',cxl('inh'),cxl('inhH'),b.I)}${col('N',cxl('ind'),cxl('indH'),b.N)}</div>`;
+}
+function cxDrugHTML(){
+  const id=cypxState.drug;
+  if(!id) return `<div class="cx-hint"><p class="cx-hint-t">${cxl('hintT')}</p><p>${cxl('hint')}</p><ul><li><span class="cx-sw i"></span><span>${cxl('hintI')}</span></li><li><span class="cx-sw n"></span><span>${cxl('hintN')}</span></li><li><span class="cx-sw s"></span><span>${cxl('hintP')}</span></li></ul></div>`;
+  const rs=cxRoles(id), byK=k=>rs.filter(r=>r.k===k);
+  const line=(k,lab)=>{ const a=byK(k); return a.length?`<li><span class="cx-sw ${k.toLowerCase()}"></span><span><b>${lab}</b> ${cxl('of')} ${cxJoin(a.map(r=>r.iso+(r.s?` (${cxl('strong')})`:'')))}</span></li>`:''; };
+  const cell=(iso,k)=>{ const r=rs.find(x=>x.iso===iso&&x.k===k); return `<td>${r?`<span class="cx-dot ${k.toLowerCase()}${r.s?' strong':''}" title="${escAttr(cxl('role'+k)+' · '+iso)}"></span>`:'<span class="cx-dot0"></span>'}</td>`; };
+  const isP=rs.some(r=>r.k!=='S'), isV=rs.some(r=>r.k==='S');
+  const ff=(typeof ffMini==='function')?ffMini(CX_D[id][0]):'';
+  return `<div class="cx-dcard"><div class="cx-dh"><h4>${escAttr(cxN(id))}${ff}</h4><button type="button" class="cx-x" data-act="close" aria-label="${escAttr(cxl('close'))}">✕</button></div>
+    <ul class="cx-dl-r">${line('S',cxl('roleS'))}${line('I',cxl('roleI'))}${line('N',cxl('roleN'))}</ul>
+    <table class="cx-mx"><thead><tr><th></th>${CX_ISO.map(b=>`<th scope="col">${CX_SHORT(b.iso)}</th>`).join('')}</tr></thead><tbody>
+      ${['S','I','N'].map(k=>`<tr><th scope="row">${cxl('role'+k)}</th>${CX_ISO.map(b=>cell(b.iso,k)).join('')}</tr>`).join('')}</tbody></table>
+    <div class="cx-dact">${isP?`<button type="button" class="cx-btn" data-act="asP">${cxl('asP')} →</button>`:''}${isV?`<button type="button" class="cx-btn" data-act="asV">${cxl('asV')} →</button>`:''}</div></div>`;
+}
+function cxOpts(){
+  const perp=new Map(), vict=new Set();
+  CX_ISO.forEach(b=>{ b.I.forEach(id=>{ perp.set(id,(perp.get(id)||'')+'I'); }); b.N.forEach(id=>{ perp.set(id,(perp.get(id)||'')+'N'); }); b.S.forEach(id=>vict.add(id)); });
+  const by=g=>[...perp].filter(([id,s])=>g==='B'?(s.includes('I')&&s.includes('N')):g==='I'?(s.includes('I')&&!s.includes('N')):(!s.includes('I'))).map(([id])=>id).sort((a,b)=>cxN(a).localeCompare(cxN(b)));
+  const o=(id,cur)=>`<option value="${id}"${id===cur?' selected':''}>${escAttr(cxN(id))}</option>`;
+  const P=cypxState.p, V=cypxState.v;
+  const pHTML=[['I','gI'],['N','gN'],['B','gB']].map(([g,lk])=>{ const ids=by(g); return ids.length?`<optgroup label="${escAttr(cxl(lk))}">${ids.map(id=>o(id,P)).join('')}</optgroup>`:''; }).join('');
+  const vHTML=[...vict].sort((a,b)=>cxN(a).localeCompare(cxN(b))).map(id=>o(id,V)).join('');
+  return {pHTML,vHTML};
+}
+function cxQuickHTML(){ return CX_QUICK.map(([p,v])=>{ const on=cypxState.p===p&&cypxState.v===v; return `<button type="button" class="cx-q${on?' on':''}" data-p="${p}" data-v="${v}" aria-pressed="${on}">${escAttr(cxN(v))} <span aria-hidden="true">+</span> ${escAttr(cxN(p))}</button>`; }).join(''); }
+function cxResultHTML(){
+  const r=cxAnalyze(cypxState.p,cypxState.v);
+  if(r.st==='same') return `<div class="cx-r cx-r-same"><div class="cx-rhead"><span class="cx-big" aria-hidden="true">=</span><div><p class="cx-verdict">${cxl('sameTxt')}</p><span class="cx-st cx-st-none">${cxl('stSame')}</span></div></div></div>`;
+  const stLab={data:cxl('stData'),gg:cxl('stGG'),pred:cxl('stPred'),none:cxl('stNone')}[r.st];
+  if(r.st==='none'){
+    return `<div class="cx-r cx-r-none"><div class="cx-rhead"><span class="cx-big" aria-hidden="true">≈</span><div><p class="cx-verdict">${escAttr(r.V)}: ${t(['livelli invariati','levels unchanged'])}</p><span class="cx-st cx-st-none">${stLab}</span></div></div>
+      <div class="cx-rbody"><dl class="cx-dl"><div><dt>${cxl('mech')}</dt><dd>${cxf(cxl('noneTxt'),{P:r.P,V:cxCap(r.V),ISO:r.isos})}</dd></div><div><dt>${cxl('cons')}</dt><dd>${cxf(cxl('noneCons'),{V:cxCap(r.V)})}</dd></div><div><dt>${cxl('ex')}</dt><dd>${cxl('noneEx')}</dd></div></dl>${cxChart(r)}</div></div>`;
+  }
+  const up=r.dir>0, arrow=r.dir>0?'↑':r.dir<0?'↓':'↕';
+  return `<div class="cx-r cx-r-${up?'up':r.dir<0?'down':'mix'}"><div class="cx-rhead"><span class="cx-big" aria-hidden="true">${arrow}</span><div><p class="cx-verdict">${escAttr(r.sp)} ${arrow} ${r.sp===r.V?cxl('plasma'):`<span class="cx-vsub">(${escAttr(r.V)})</span>`}</p><span class="cx-st cx-st-${r.st}">${stLab}</span><span class="cx-iso-pill">${r.isoTxt}</span></div></div>
+    <div class="cx-rbody"><dl class="cx-dl"><div><dt>${cxl('mech')}</dt><dd>${r.mech}</dd></div><div><dt>${cxl('cons')}</dt><dd>${r.cons}</dd></div><div><dt>${cxl('ex')}</dt><dd>${r.ex}</dd></div>
+      <div><dt>${cxl('time')}</dt><dd>${r.time}${r.k==='X'?'':cxRamp(r.k)}</dd></div></dl>${cxChart(r)}</div></div>`;
+}
+function cxRenderResult(animate){
+  const root=document.getElementById('cypx'); if(!root) return;
+  const box=root.querySelector('.cx-res'); box.innerHTML=cxResultHTML();
+  root.querySelector('.cx-quick-row').innerHTML=cxQuickHTML();
+  const ps=root.querySelector('#cx-p'), vs=root.querySelector('#cx-v'); if(ps) ps.value=cypxState.p; if(vs) vs.value=cypxState.v;
+  if(animate&&!cxReduce()){ const c=box.firstElementChild; if(c){ c.classList.add('cx-in'); } }
+  cxAnimate(box.querySelector('.cx-int'));
+}
+function cxRenderTop(){
+  const root=document.getElementById('cypx'); if(!root) return;
+  root.querySelector('.cx-iso').innerHTML=cxIsoHTML();
+  root.querySelector('.cx-panel').innerHTML=cxPanelHTML();
+  root.querySelector('.cx-drug').innerHTML=cxDrugHTML();
+}
+function cypxMount(){
+  const root=document.getElementById('cypx'); if(!root) return;
+  if(!cypxState) cypxState={iso:'CYP3A4',drug:null,p:'fluco',v:'warf'};
+  const {pHTML,vHTML}=cxOpts();
+  root.innerHTML=`<div class="cx-iso" role="group" aria-label="${escAttr(cxl('isoGroup'))}"></div>
+    <div class="cx-top"><section class="cx-panel"></section><aside class="cx-drug" aria-live="polite"></aside></div>
+    <section class="cx-build" id="cx-build"><div class="cx-bh"><h3>${cxl('bT')}</h3><p>${cxl('bL')}</p></div>
+      <div class="cx-quick"><p class="cx-ql">${cxl('quick')}</p><div class="cx-quick-row"></div></div>
+      <div class="cx-pick"><label class="cx-f"><span>${cxl('pP')}</span><span class="cx-sel"><select id="cx-p">${pHTML}</select></span></label>
+        <span class="cx-arrow" aria-hidden="true">→</span>
+        <label class="cx-f"><span>${cxl('pV')}</span><span class="cx-sel"><select id="cx-v">${vHTML}</select></span></label></div>
+      <div class="cx-res" aria-live="polite"></div></section>`;
+  cxRenderTop(); cxRenderResult(false);
+  root.addEventListener('click',cxOnClick);
+  root.querySelector('#cx-p').addEventListener('change',e=>{ cypxState.p=e.target.value; cxRenderResult(true); });
+  root.querySelector('#cx-v').addEventListener('change',e=>{ cypxState.v=e.target.value; cxRenderResult(true); });
+}
+function cxOnClick(e){
+  const ib=e.target.closest('.cx-isob'); if(ib){ cypxState.iso=ib.dataset.iso; cxRenderTop(); const f=document.querySelector('#cypx .cx-isob[data-iso="'+ib.dataset.iso+'"]'); if(f) f.focus(); return; }
+  const ch=e.target.closest('.cx-chip'); if(ch){ const d=ch.dataset.d; cypxState.drug=(cypxState.drug===d)?null:d; cxRenderTop();
+    const f=document.querySelector('#cypx .cx-chip[data-d="'+d+'"]'); if(f) f.focus();
+    const card=document.querySelector('#cypx .cx-drug'); /* schermi stretti: la scheda sta sotto il pannello, la porto in vista */
+    if(cypxState.drug&&card&&matchMedia('(max-width:1060px)').matches){ const rc=card.getBoundingClientRect(); if(rc.top>innerHeight-80) card.scrollIntoView({behavior:cxReduce()?'auto':'smooth',block:'nearest'}); }
+    return; }
+  const q=e.target.closest('.cx-q'); if(q){ cypxState.p=q.dataset.p; cypxState.v=q.dataset.v; cxRenderResult(true); const f=document.querySelector('#cypx .cx-q[data-p="'+q.dataset.p+'"][data-v="'+q.dataset.v+'"]'); if(f) f.focus(); return; }
+  const a=e.target.closest('[data-act]'); if(!a) return;
+  const act=a.dataset.act;
+  if(act==='close'){ const d=cypxState.drug; cypxState.drug=null; cxRenderTop(); const f=document.querySelector('#cypx .cx-chip[data-d="'+d+'"]')||document.querySelector('#cypx .cx-isob.sel'); if(f) f.focus(); return; }
+  if(act==='asP'||act==='asV'){ if(act==='asP') cypxState.p=cypxState.drug; else cypxState.v=cypxState.drug; cxRenderResult(true);
+    const bld=document.getElementById('cx-build'); if(bld) bld.scrollIntoView({behavior:cxReduce()?'auto':'smooth',block:'start'});
+    const s=document.getElementById(act==='asP'?'cx-p':'cx-v'); if(s) s.focus({preventScroll:true}); return; }
+}
+cypxReady=true;
+cypxMount();
 /* ═══ slot cyp: fine ═══ */
 // ·
 /* ═══ slot antibiotics: inizio (solo il suo agente) ═══ */
