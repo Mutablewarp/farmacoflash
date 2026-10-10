@@ -2,6 +2,60 @@
  "version": 1,
  "decks": [
   {
+   "id": "G1",
+   "code": "G1",
+   "title": "PRINCIPI · ASSORBIMENTO E BIODISPONIBILITÀ",
+   "slug": "principi-assorbimento-e-biodisponibilita",
+   "source": "sbobine 🅱 Generale – docente, Lezione 01 (farmacocinetica: assorbimento, vie di somministrazione, biodisponibilità; contenuto rielaborato e verificato su Goodman & Gilman 14ª ed.).",
+   "module": "I",
+   "count": 6
+  },
+  {
+   "id": "G2",
+   "code": "G2",
+   "title": "PRINCIPI · DISTRIBUZIONE E METABOLISMO",
+   "slug": "principi-distribuzione-e-metabolismo",
+   "source": "sbobine 🅱 Generale – docente, Lezione 02 (distribuzione, volume di distribuzione, biotrasformazione, citocromi P450, polimorfismi; ripresa dei polimorfismi all'inizio della Lezione 03; contenuto rielaborato e verificato su Goodman & Gilman 14ª ed.).",
+   "module": "I",
+   "count": 7
+  },
+  {
+   "id": "G3",
+   "code": "G3",
+   "title": "PRINCIPI · ELIMINAZIONE E PARAMETRI CINETICI",
+   "slug": "principi-eliminazione-e-parametri-cineti",
+   "source": "sbobine 🅱 Generale – docente, Lezione 03 (vie di eliminazione, circolo entero-epatico, rene, cinetiche di eliminazione, clearance, emivita, steady state, dose di carico; contenuto rielaborato e verificato su Goodman & Gilman 14ª ed.).",
+   "module": "I",
+   "count": 5
+  },
+  {
+   "id": "G4",
+   "code": "G4",
+   "title": "PRINCIPI · FARMACODINAMICA",
+   "slug": "principi-farmacodinamica",
+   "source": "sbobine 🅱 Generale – docente, Lezioni 03–04 (curve dose-risposta, potenza ed efficacia, indice terapeutico, agonisti e antagonisti, modulatori allosterici, adattamenti e interazioni; contenuto rielaborato e verificato su Goodman & Gilman 14ª ed.).",
+   "module": "I",
+   "count": 7
+  },
+  {
+   "id": "G5",
+   "code": "G5",
+   "title": "BERSAGLI · CANALI, POMPE E TRASPORTATORI",
+   "slug": "bersagli-canali-pompe-e-trasportatori",
+   "source": "sbobine 🅱 Generale – docente, Lezioni 04–05 (canali Na⁺, Ca²⁺ e K⁺ voltaggio-dipendenti, canali K-ATP e accoppiati a proteine G, pompe ATPasi, trasportatori epiteliali e neurotrasportatori; contenuto rielaborato e verificato su Goodman & Gilman 14ª ed.).",
+   "module": "I",
+   "count": 5
+  },
+  {
+   "id": "G6",
+   "code": "G6",
+   "title": "BERSAGLI · RECETTORI E TRASDUZIONE",
+   "slug": "bersagli-recettori-e-trasduzione",
+   "source": "sbobine 🅱 Generale – docente, Lezione 06 (superfamiglie recettoriali, recettori-canale, glutammato, proteine G, muscarinici, adrenergici, dopaminergici, recettori intracellulari; integrato con 🅲 Speciale – docente, Lezioni 01, 02 e 04; contenuto rielaborato e verificato su Goodman & Gilman 14ª ed.).",
+   "module": "I",
+   "count": 5
+  },
+  {
    "id": "A4",
    "code": "A4",
    "title": "GLUCOCORTICOIDI",
@@ -81,6 +135,15 @@
    "source": "sbobine 🅱 Generale – docente, Lezione 15 (estrazione esclusiva dal documento; \"N/D nei documenti forniti\" dove il dato non è presente). *(Il resto della Lez 15 tratta principi generali di antibioticoterapia → i farmaci antibiotici sono nei file A1-A3.)*",
    "module": "I",
    "count": 8
+  },
+  {
+   "id": "G7",
+   "code": "G7",
+   "title": "NEUROFARMACOLOGIA MOLECOLARE",
+   "slug": "neurofarmacologia-molecolare",
+   "source": "sbobine 🅲 Speciale – docente, Lezioni 01–04 (sinapsi e neurotrasmettitori, asse HPA e CRH, angina iatrogena, nicotina e dipendenza, sistemi monoaminergici, glutammato e omeostasi del calcio; contenuto rielaborato e verificato su Goodman & Gilman 14ª ed.).",
+   "module": "II",
+   "count": 6
   },
   {
    "id": "B1",
@@ -255,6 +318,1394 @@
   }
  ],
  "cards": [
+  {
+   "id": "G1__fase-biofarmaceutica-passaggio-membrane",
+   "deckId": "G1",
+   "name": "Fase biofarmaceutica e passaggio delle membrane (diffusione passiva, legge di Fick, trasportatori)",
+   "nameShort": "Fase biofarmaceutica e passaggio delle membrane",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "il **principio attivo** è la molecola che, legandosi a un **bersaglio** (recettore in senso lato), produce un effetto terapeutico, profilattico o diagnostico; la **forma farmaceutica** = principio attivo + **eccipienti** inerti. Prima dell'assorbimento c'è la **fase biofarmaceutica**: disgregazione e **dissoluzione** → solo il farmaco **in soluzione** attraversa le membrane. «Dosis sola facit venenum»: ogni farmaco è anche un potenziale tossico → bilancio **rischio/beneficio**."
+    },
+    {
+     "label": "Come funziona",
+     "value": "la maggior parte dei farmaci passa per **diffusione passiva** lungo il gradiente; le molecole idrofile o cariche usano **carrier** (diffusione facilitata, trasporto attivo secondario): **levodopa**, α-metildopa, baclofene → trasportatori degli aminoacidi; **β-lattamici** → trasportatore dei peptidi (PEPT1); **metformina** → trasportatori dei cationi organici (OCT); le macromolecole → endocitosi."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "**legge di Fick: J = D · A · (C₁ − C₂) / spessore** → il flusso ↑ con gradiente e **superficie**, ↓ con lo **spessore**; D riassume dimensioni, **liposolubilità** (coefficiente di ripartizione olio/acqua) e ionizzazione. Il sangue porta via il farmaco assorbito (**effetto lavandino**) → il gradiente non si annulla."
+    },
+    {
+     "label": "Perché conta",
+     "value": "**superficie**: intestino tenue (villi, microvilli) ≫ stomaco; le malattie intestinali ↓ l'assorbimento. **Spessore**: lo stesso cortisonico topico passa molto più dalla palpebra o dalla cute del lattante che dal tallone. **Molecole grandi** (proteine, anticorpi, eparina) non diffondono → via parenterale."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "**più lipofilo non vuol dire sempre più assorbito**: un coefficiente di ripartizione troppo alto «intrappola» il farmaco nel doppio strato lipidico e ne ostacola il passaggio al citosol e al plasma; troppo basso → non attraversa. Serve un **equilibrio idrofilo-lipofilo**."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ pKa e ion trapping (G1); glicoproteina P (G1); levodopa e pasto proteico (B6); farmaci biologici per via parenterale (A9)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1642
+  },
+  {
+   "id": "G1__pka-henderson-hasselbalch-ion-trapping",
+   "deckId": "G1",
+   "name": "pKa, equazione di Henderson–Hasselbalch e ion trapping",
+   "nameShort": "pKa, equazione di Henderson–Hasselbalch e ion trapping",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "quasi tutti i farmaci sono **acidi o basi deboli**; il **pKa** è il pH al quale il farmaco è ionizzato al **50%**. Solo la forma **non ionizzata** (liposolubile) attraversa le membrane per diffusione; la forma carica è idrofila e resta nel compartimento in cui si trova."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "**acido debole**: log([HA]/[A⁻]) = pKa − pH → a pH < pKa prevale HA (non ionizzato). **Base debole**: log([BH⁺]/[B]) = pKa − pH → a pH < pKa prevale BH⁺ (ionizzata). Ogni unità di pH di differenza = fattore **10**. Esempio: acido con pKa 4,4 → rapporto ionizzato/non ionizzato **1000:1 nel plasma (pH 7,4)** e **1:1000 nel succo gastrico (pH 1,4)**."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**ion trapping**: all'equilibrio un **acido si accumula nel compartimento più basico**, una **base in quello più acido**, perché lì si ionizza e non può più tornare indietro. Applicazioni: **urine** (alcalinizzarle con NaHCO₃ accelera l'escrezione di salicilati e fenobarbital), **latte materno** e **plasma fetale** (più acidi del plasma materno → concentrano le basi deboli)."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**aspirina** (acido, pKa ≈ 3,5): nello stomaco è non ionizzata → entra nella cellula della mucosa, dove a pH ~7 si ionizza e resta intrappolata (contributo locale alla gastrolesività, oltre al blocco della COX-1). **Morfina** (base): a pH gastrico è protonata → praticamente non si assorbe nello stomaco."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "«l'aspirina si assorbe nello stomaco perché lì è non ionizzata?» → l'assorbimento **comincia** lì, ma la **gran parte** avviene nell'**intestino tenue** (pH ~6,5): l'enorme superficie e il flusso ematico compensano la maggiore ionizzazione. Il pH spiega la **direzione**, la superficie decide la **quantità**."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ escrezione renale e pH urinario (G3); FANS e danno gastrico (A5); anestetici locali, basi deboli (B2)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1451
+  },
+  {
+   "id": "G1__vie-somministrazione-primo-passaggio",
+   "deckId": "G1",
+   "name": "Vie di somministrazione ed effetto di primo passaggio",
+   "nameShort": "Vie di somministrazione ed effetto di primo passaggio",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**vie enterali** (orale, sublinguale, rettale), **parenterali** (endovenosa, intramuscolare, sottocutanea, intra-arteriosa, intratecale), **inalatoria**, **topiche/transdermiche**; ognuna può dare effetto **sistemico** o **locale**. **Primo passaggio**: quota del farmaco orale eliminata da **parete intestinale** (CYP3A4, esterasi, P-gp) e **fegato** (via portale) **prima** di raggiungere il circolo sistemico → ↓ biodisponibilità."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**orale**: comoda, economica, sicura (in parte recuperabile) ma onset ~30–60 min e assorbimento variabile. **Sublinguale**: drenaggio in vena cava superiore → **niente primo passaggio** (nitroglicerina). **Rettale**: circa il **50%** evita il fegato → primo passaggio parziale; utile se vomito o paziente non collaborante. **EV**: biodisponibilità 100%, effetto immediato, grandi volumi, ma infusione lenta e rischi maggiori. **IM/SC**: assorbimento modulabile con la formulazione (depot, insuline ritardo)."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "elevato primo passaggio: **nitroglicerina** (orale inefficace → sublinguale o cerotto), **propranololo**, **lidocaina**, **morfina**, verapamil, nifedipina, triciclici. Il **cibo** ↑ la biodisponibilità del propranololo (↑ flusso splancnico) → va assunto sempre nello stesso modo rispetto ai pasti. Interazioni nel lume: **tetracicline + Ca²⁺/Mg²⁺/Al³⁺** (chelati insolubili), **penicillina G** distrutta dall'acido, **resine sequestranti** + digossina, **metoclopramide** anticipa e **anticolinergici** ritardano il picco (svuotamento gastrico)."
+    },
+    {
+     "label": "Perché conta",
+     "value": "per restare **locali**: farmaci **carichi** (tiotropio, ammonio quaternario), **vasocostrittore** associato all'anestetico locale, cortisonici inalatori con forte primo passaggio (fluticasone, budesonide), granulometria e distanziatore. Ma una via topica può diventare **sistemica**: cortisonici cutanei nel bambino, **colliri β-bloccanti** (bradicardia, broncospasmo)."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "«la sublinguale è rapida perché la superficie è grande» → **falso**: la superficie è piccola; è rapida per l'**alta vascolarizzazione**, il **bypass portale** e perché si usa con farmaci **molto liposolubili** e non ionizzati (nitroglicerina)."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ biodisponibilità (G1); glicoproteina P (G1); CYP3A4 e pompelmo (G2); cortisonici inalatori (A4, A8); nitrati (B12b)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1961
+  },
+  {
+   "id": "G1__glicoproteina-p-mdr1-abcb1",
+   "deckId": "G1",
+   "name": "Glicoproteina P (P-gp, MDR1/ABCB1)",
+   "nameShort": "Glicoproteina P",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "pompa di **efflusso ATP-dipendente** della famiglia **ABC** (gene **ABCB1/MDR1**), espressa sul versante **luminale/apicale** di enterociti, epatociti (canalicolo biliare), tubulo prossimale, **endotelio della BEE**, placenta, testicolo. Espelle substrati anfipatici/lipofili **senza modificarli**."
+    },
+    {
+     "label": "Come funziona",
+     "value": "nell'intestino **riporta nel lume** parte del farmaco appena assorbito (↓ biodisponibilità); in fegato e rene ne **accelera l'escrezione** (bile, urine); in BEE e placenta **protegge** SNC e feto. Lavora in tandem con il **CYP3A4** enterocitario, con cui condivide molti substrati e inibitori → effetto combinato sulla biodisponibilità orale."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "substrati: **digossina**, chinidina, verapamil, diltiazem, **ciclosporina**, tacrolimus, **loperamide**, fexofenadina, inibitori delle proteasi HIV, eritromicina, antitumorali (**doxorubicina, vincristina, etoposide**). Inibitori (chinidina, verapamil, claritromicina, ritonavir) → **↑ digossinemia**; induttori via **PXR** (**rifampicina, iperico**) → ↓ biodisponibilità della digossina."
+    },
+    {
+     "label": "Perché conta",
+     "value": "**loperamide + chinidina**: l'inibizione della P-gp nella BEE fa entrare nel SNC un oppioide che di norma resta periferico → **depressione respiratoria**. Nei tumori la **sovraespressione** di P-gp dà **resistenza multipla** (MDR) a chemioterapici strutturalmente diversi."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "la P-gp **non è un enzima**: non metabolizza, **trasporta fuori** il farmaco intatto. Un'interazione «da P-gp» cambia l'esposizione senza produrre nuovi metaboliti e spesso coesiste con quella sul CYP3A4."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ digossina (B11b); antidiarroici – loperamide (A11); claritromicina (Antibiotici-3); resistenza ai chemioterapici (B14); induttori enzimatici (G2)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1463
+  },
+  {
+   "id": "G1__biodisponibilita-auc-cmax-tmax",
+   "deckId": "G1",
+   "name": "Biodisponibilità (F) e curva concentrazione–tempo (AUC, Cmax, Tmax)",
+   "nameShort": "Biodisponibilità",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**biodisponibilità (F)** = frazione della dose che raggiunge **immodificata** il circolo sistemico (0–100%). **Assoluta**: rispetto alla via endovenosa (F = 100% per definizione); **relativa**: tra due formulazioni o due vie diverse dalla EV."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "**F = (AUC_orale × Dose_EV) / (AUC_EV × Dose_orale)**. **AUC** (area sotto la curva, anche con il metodo dei trapezi) = **entità** dell'esposizione; **Cmax** e **Tmax** = **velocità** dell'assorbimento. Esempio: digossina orale **F ≈ 0,7** → per la stessa esposizione la dose orale è ~1,4 volte quella EV."
+    },
+    {
+     "label": "Come funziona",
+     "value": "sulla curva concentrazione–tempo: fase ascendente (assorbimento > distribuzione + eliminazione), **picco** (equilibrio), fase discendente (distribuzione, metabolismo, escrezione). **Onset** = tempo per superare la **concentrazione minima efficace (MEC)**; **durata d'azione** ≈ tempo sopra la MEC; oltre la **concentrazione minima tossica** compaiono gli effetti avversi → l'intervallo tra le due è la **finestra terapeutica**."
+    },
+    {
+     "label": "Perché conta",
+     "value": "la F orale è ridotta da acidità ed enzimi digestivi, scarsa solubilità, **P-gp**, **primo passaggio** intestinale ed epatico, svuotamento gastrico, malattie intestinali. F serve a **convertire le dosi tra le vie**: dose di carico e di mantenimento si dividono per F."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "stessa AUC ≠ stesso effetto: due formulazioni con uguale F possono avere **Cmax/Tmax diversi** (una supera la MEC, l'altra no o in ritardo). Per questo la **bioequivalenza** richiede AUC **e** Cmax."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ bioequivalenza (G1); dose di carico e di mantenimento (G3); primo passaggio (G1)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1309
+  },
+  {
+   "id": "G1__bioequivalenza-generici-biosimilari",
+   "deckId": "G1",
+   "name": "Bioequivalenza: farmaci equivalenti (generici) vs biosimilari",
+   "nameShort": "Bioequivalenza: farmaci equivalenti",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "due prodotti **farmaceuticamente equivalenti** (stesso principio attivo, dose, forma e via) sono **bioequivalenti** se **velocità ed entità** dell'assorbimento (AUC, Cmax, Tmax) non differiscono in modo significativo. È la base dell'autorizzazione dei **generici** («equivalenti») alla scadenza del brevetto: possono cambiare gli eccipienti, non l'esposizione."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "**criterio EMA/FDA**: l'**intervallo di confidenza al 90%** del rapporto test/riferimento (medie geometriche) di **AUC e Cmax** deve cadere in **80,00–125,00%** (intervallo simmetrico in scala logaritmica). Per i farmaci a **ristretto indice terapeutico** l'EMA lo restringe a **90,00–111,11%** (almeno per l'AUC)."
+    },
+    {
+     "label": "Perché conta",
+     "value": "il generico **omette** gli studi preclinici e clinici di efficacia: lo studio di bioequivalenza «trasferisce» i dati dell'originatore. Il **biosimilare** no: una proteina prodotta da cellule viventi non è mai identica («è il processo a fare il prodotto») → serve un **esercizio di comparabilità** su qualità, dati non clinici e **clinici** (efficacia, sicurezza, **immunogenicità**)."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "«80–125% = il generico può contenere il 20% di principio attivo in meno» → **falso**: il limite riguarda l'**intervallo di confidenza del rapporto di esposizione**, non il contenuto (che ha limiti di qualità molto più stretti); le differenze medie osservate sono di pochi punti percentuali. Attenzione però: ogni generico è confrontato con il **riferimento**, non con gli altri generici."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ biosimilari (A9); biodisponibilità (G1); indice terapeutico (G4)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1312
+  },
+  {
+   "id": "G2__legame-proteine-plasmatiche-spiazzamento",
+   "deckId": "G2",
+   "name": "Legame alle proteine plasmatiche (albumina, α1-glicoproteina acida) e spiazzamento",
+   "nameShort": "Legame alle proteine plasmatiche",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "nel plasma il farmaco è in **equilibrio dinamico** tra forma **libera** e **legata** (legami deboli e reversibili). Solo la **frazione libera** attraversa le membrane, raggiunge il bersaglio, viene **filtrata** dal glomerulo e (per i farmaci a bassa estrazione) **metabolizzata**; la quota legata fa da **riserva** e ne prolunga la permanenza. % legame = legato/totale × 100."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**albumina** → farmaci **acidi** (sito I: **warfarin**, FANS, sulfaniluree, valproato, furosemide; sito II: **diazepam**, ibuprofene); **α1-glicoproteina acida** (proteina di **fase acuta**) → farmaci **basici** (**lidocaina**); **lipoproteine** → farmaci molto lipofili (amiodarone); proteine vettrici specifiche (transcortina, SHBG, TBG) → steroidi e ormoni."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "legame **molto elevato** (≥95–99%): **warfarin ~99%**, **ibuprofene >99%**, amiodarone, valproato (~90%, saturabile alle dosi alte); **basso**: **metformina**, **paracetamolo**, allopurinolo. Quando i siti si **saturano** la frazione libera cresce più che proporzionalmente alla dose."
+    },
+    {
+     "label": "Perché conta",
+     "value": "la frazione libera ↑ con **ipoalbuminemia** (epatopatia, sindrome nefrosica, malnutrizione, ustioni, gravidanza); nelle **reazioni di fase acuta** (infarto, neoplasie, artrite, Crohn) ↑ α1-glicoproteina → ↑ legame delle basi. I dosaggi plasmatici misurano di solito il **totale**: con albumina bassa una concentrazione «normale» può nascondere troppo farmaco libero."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "**spiazzamento** (es. FANS che competono con il warfarin sul sito I): l'aumento della frazione libera è **transitorio** — il farmaco liberato si distribuisce e viene eliminato, e allo **steady state la concentrazione libera torna invariata se la clearance non cambia**. Conta davvero per farmaci a **ristretto indice terapeutico, alta clearance e somministrazione EV** (es. lidocaina). Il rischio di warfarin + FANS è soprattutto **farmacodinamico** (antiaggregazione, lesioni gastriche) e, per alcuni FANS, da inibizione del **CYP2C9**."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ anticoagulanti orali (B12); volume di distribuzione (G2); clearance (G3)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1741
+  },
+  {
+   "id": "G2__distribuzione-tissutale-bee-adipe",
+   "deckId": "G2",
+   "name": "Distribuzione tissutale: perfusione, barriera emato-encefalica, affinità per i tessuti e ridistribuzione",
+   "nameShort": "Distribuzione tissutale: perfusione, barriera emato-encefalica, affinità per i tessuti e ridistribuzione",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "passaggio del farmaco **dal plasma ai tessuti** (interstizio → cellule). Dipende da **frazione libera**, **perfusione** dell'organo, **tipo di capillare/barriera**, **affinità chimico-fisica** per il tessuto (liposolubilità, legami specifici) e **trasportatori**. Il farmaco raggiunge anche tessuti privi di bersaglio → **depositi** ed effetti indesiderati."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "flusso a riposo (70 kg): **rene ~20%** della gittata (il più perfuso per grammo), **fegato ~31%**, **cervello ~15%**, cuore ~4,5%; **muscolo** ~16% ma poco per kg; **adipe** ~4,5% e molto lento → gli organi molto perfusi si equilibrano per primi, l'adipe per ultimo."
+    },
+    {
+     "label": "Come funziona",
+     "value": "capillari **fenestrati** (fegato, rene, milza, intestino, ghiandole endocrine) lasciano passare anche gli anticorpi; la **BEE** (giunzioni serrate + P-gp) ammette solo molecole **piccole, lipofile, non ionizzate** o dotate di trasportatore: la **dopamina** non passa → si dà **levodopa**; la **tubocurarina** (ammonio quaternario) resta periferica."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**tiopentale**: dopo un bolo EV raggiunge subito il cervello; il risveglio dipende dalla **ridistribuzione** a muscolo e adipe, non dal metabolismo. **Lidocaina nello shock**: muscolo ipoperfuso → più farmaco al SNC → **convulsioni**. **Azitromicina**: concentrazioni intracellulari e tissutali (anche nei fagociti) molto superiori a quelle plasmatiche → cicli brevi. **Bifosfonati** → osso (analoghi del pirofosfato); **tetracicline** → ossa e denti (chelano il Ca²⁺)."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "«un farmaco che si accumula nell'adipe va dato per un'altra via?» → **no**: la distribuzione avviene **dopo** l'ingresso in circolo e dipende dalla molecola, non dalla via; la via cambia biodisponibilità e velocità di assorbimento. L'accumulo adiposo pesa in **terapia cronica** (benzodiazepine lipofile: rilascio lento e imprevedibile, più marcato nell'anziano con più massa grassa)."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ anestetici endovenosi (B2); benzodiazepine (B1); azitromicina (Antibiotici-3); bifosfonati (A12); levodopa (B6)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1686
+  },
+  {
+   "id": "G2__volume-di-distribuzione-apparente",
+   "deckId": "G2",
+   "name": "Volume di distribuzione apparente (Vd)",
+   "nameShort": "Volume di distribuzione apparente",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**Vd = quantità di farmaco nell'organismo / concentrazione plasmatica** (dopo un bolo EV: Dose/C₀). È il volume **teorico** che servirebbe per contenere tutto il farmaco alla stessa concentrazione misurata nel plasma: un parametro di **distribuzione**, non uno spazio anatomico."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "riferimenti (70 kg): **plasma ~3–4 L (~0,05 L/kg)**, **liquido extracellulare ~14 L (~0,2 L/kg)**, **acqua corporea totale ~42 L (~0,6 L/kg)**. Esempi: **eparina ~0,05–0,1 L/kg** (resta nel plasma), **warfarin ~0,1–0,2** (legato all'albumina), tubocurarina ~0,2 (extracellulare), teofillina ~0,5, **digossina ~6 L/kg (~500 L)**, **clorochina ~15.000 L**."
+    },
+    {
+     "label": "Come funziona",
+     "value": "Vd **piccolo**: farmaco idrofilo, grande o molto legato alle proteine plasmatiche → resta nel compartimento vascolare. Vd **grande** (superiore all'acqua corporea): farmaco **sequestrato nei tessuti** (lipidi, proteine e fosfolipidi tissutali) → concentrazione plasmatica bassa."
+    },
+    {
+     "label": "Perché conta",
+     "value": "**dose di carico = C target × Vd / F**: teofillina, Vd 0,5 L/kg × 70 kg = 35 L, target 10 mg/L → **350 mg**. **t½ = 0,693 × Vd / CL** → a parità di clearance un Vd grande allunga la t½ (amiodarone: settimane). Vd piccolo → **emodialisi efficace** nell'intossicazione; Vd grande (triciclici, digossina) → dialisi inutile."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "un Vd di 15.000 L non è un errore di calcolo: dice che quasi tutto il farmaco è **nei tessuti**, ma **non dice dove**. Il Vd cambia con età, obesità, edemi: il diazepam ha t½ più lunga nell'anziano per **↑ Vd**, non per ↓ clearance."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ legame alle proteine (G2); emivita e dose di carico (G3); digossina (B11b)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1310
+  },
+  {
+   "id": "G2__biotrasformazione-fase-1-fase-2-cyp",
+   "deckId": "G2",
+   "name": "Biotrasformazione: reazioni di fase 1 (CYP450) e di fase 2 (coniugazione)",
+   "nameShort": "Biotrasformazione: reazioni di fase 1",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "insieme di reazioni (soprattutto **epatiche**, ma anche intestinali, renali, polmonari) che rendono il farmaco **più polare** → eliminabile con urine o bile; di solito ne terminano l'attività. **Fase 1 (funzionalizzazione)**: introduce o smaschera un gruppo polare (–OH, –COOH, –NH₂, –SH). **Fase 2 (coniugazione)**: lega un substrato endogeno molto polare."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**fase 1**: **ossidazioni** (CYP450 = monoossigenasi con gruppo **eme**: il Fe³⁺, ridotto da elettroni ceduti dal NADPH, lega O₂ e inserisce un atomo di ossigeno nel substrato: RH + O₂ + NADPH + H⁺ → ROH + H₂O + NADP⁺), riduzioni, **idrolisi** (esterasi: aspirina → salicilato; enalapril → enalaprilato). **Fase 2**: **glucuronidazione** (UGT, la più importante), solfatazione (SULT), **acetilazione** (NAT2), coniugazione con **glutatione** (GST), **metilazione** (COMT, TPMT)."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "nomenclatura: **CYP + famiglia (numero) + sottofamiglia (lettera) + isoforma (numero)** → CYP**3A4**. Poche isoforme delle famiglie 1–3 metabolizzano la maggior parte dei farmaci; il **CYP3A4**, il più abbondante nel fegato, interviene in **oltre il 50%** dei farmaci in uso."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**fenitoina** → 4-idrossi-fenitoina (CYP) → glucuronide (UGT): da molecola quasi insolubile a metabolita idrosolubile. **Statine**: lova-, simva-, atorvastatina → **CYP3A4**; fluvastatina → **CYP2C9**; **pravastatina** (e rosuvastatina) poco dipendenti dai CYP → preferibili con inibitori del 3A4 (macrolidi, azoli) per ridurre il rischio di **miopatia/rabdomiolisi**."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "la fase 2 **non segue sempre** la fase 1 (oxazepam e lorazepam sono glucuronidati direttamente) e non sempre aumenta l'idrosolubilità: **acetilazione e metilazione** possono ridurla. Il **neonato** ha UGT immature (ittero fisiologico; «sindrome grigia» da cloramfenicolo)."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ induttori e inibitori (G2); metaboliti attivi e profarmaci (G2); polimorfismi (G2); statine (B9)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1605
+  },
+  {
+   "id": "G2__induttori-inibitori-cyp-pompelmo",
+   "deckId": "G2",
+   "name": "Induttori e inibitori dei CYP (e succo di pompelmo)",
+   "nameShort": "Induttori e inibitori dei CYP",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**induzione** = ↑ **sintesi** degli enzimi (e di trasportatori come la P-gp) tramite recettori nucleari (**PXR**: rifampicina, iperico; **CAR**: fenobarbital; **AhR**: fumo, omeprazolo) → ↑ clearance → **↓ concentrazioni ed effetto**. **Inibizione** = blocco competitivo o irreversibile (inattivazione «suicida») → ↓ clearance → **↑ concentrazioni e tossicità**."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "**tempi**: l'inibizione compare in **ore–pochi giorni** (dipende dalla t½ dell'inibitore); l'induzione richiede **giorni–1/2 settimane** (sintesi proteica) e **persiste** per giorni dopo la sospensione (turnover dell'enzima)."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**induttori**: **rifampicina** (il più potente), **carbamazepina** (anche autoinduzione), **fenitoina**, **fenobarbital**, **iperico**, fumo di sigaretta (CYP1A2), etanolo cronico (CYP2E1). **Inibitori**: **eritromicina/claritromicina** (non l'azitromicina), **azoli** (ketoconazolo, itraconazolo, voriconazolo), **ritonavir**, cimetidina, amiodarone, **valproato**, SSRI (**fluoxetina/paroxetina → CYP2D6**; fluvoxamina → 1A2/2C19), **succo di pompelmo** (furanocumarine → CYP3A4)."
+    },
+    {
+     "label": "Perché conta",
+     "value": "**rifampicina + contraccettivo orale** → fallimento contraccettivo; **claritromicina + simvastatina** → rabdomiolisi; **terfenadina + eritromicina/pompelmo** → QT lungo e torsione di punta (terfenadina ritirata); ketoconazolo + inibitori delle proteasi → tossicità. Il danno è maggiore se il substrato ha **indice terapeutico ristretto**."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "il **pompelmo** inibisce **irreversibilmente** soprattutto il CYP3A4 **intestinale** → aumenta la biodisponibilità **orale** dei substrati ad alto primo passaggio (felodipina, simvastatina, ciclosporina, midazolam), non la clearance di un farmaco EV; l'effetto dura **1–3 giorni** (serve nuova sintesi dell'enzima) → distanziare di qualche ora non basta."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ rifampicina (Antibiotici-2); macrolidi (Antibiotici-3); statine (B9); carbamazepina (B4); SSRI (B3)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1656
+  },
+  {
+   "id": "G2__metaboliti-attivi-reattivi-profarmaci",
+   "deckId": "G2",
+   "name": "Metaboliti attivi, intermedi reattivi e profarmaci (benzodiazepine, paracetamolo, clopidogrel, codeina)",
+   "nameShort": "Metaboliti attivi, intermedi reattivi e profarmaci",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "il metabolismo non sempre inattiva: può produrre **metaboliti attivi** (prolungano l'effetto), **intermedi reattivi** (legami covalenti con proteine e DNA → tossicità, tipicamente epatica) o attivare un **profarmaco** (somministrato inattivo, attivato dal metabolismo)."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**metaboliti attivi**: **diazepam → nordiazepam → oxazepam** (tutti attivi; il nordiazepam ha emivita lunghissima → effetto complessivo di giorni) → glucuronide inattivo. Al contrario **oxazepam, lorazepam, temazepam** sono solo **glucuronidati** (metaboliti inattivi) → preferibili in **anziani ed epatopatici**; triazolam, midazolam, alprazolam → CYP3A4, durata breve."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**paracetamolo**: in gran parte **glucuronidato e solfatato**; una piccola quota → **CYP2E1** (e 3A4) → **NAPQI**, neutralizzato dal **glutatione**. In **sovradosaggio** le vie di coniugazione si saturano, il GSH si esaurisce e il NAPQI lega covalentemente le proteine → **necrosi epatica centrolobulare**. Antidoto: **N-acetilcisteina** (ricostituisce il GSH), massima efficacia entro **8–10 h**."
+    },
+    {
+     "label": "Profarmaci",
+     "value": "**enalapril → enalaprilato** (esterasi); **clopidogrel** → metabolita attivo in 2 tappe via **CYP2C19** (solo ~15% della dose); **codeina → morfina** via **CYP2D6** (~5–10%); **levodopa → dopamina**; valaciclovir → aciclovir."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "la tossicità del paracetamolo ↑ quando il **GSH è basso** o il **CYP2E1 è indotto**: alcolismo cronico, digiuno o malnutrizione, epatopatia. E un profarmaco attivato da un **unico enzima polimorfico** (clopidogrel, codeina) è il caso tipico della **farmacogenetica**."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ paracetamolo (A5); benzodiazepine (B1); antagonisti P2Y12 (B12); oppiacei deboli (B8); polimorfismi (G2)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1432
+  },
+  {
+   "id": "G2__polimorfismi-cyp-farmacogenetica",
+   "deckId": "G2",
+   "name": "Polimorfismi dei CYP e farmacogenetica (CYP2C9, CYP2C19, CYP2D6, NAT2)",
+   "nameShort": "Polimorfismi dei CYP e farmacogenetica",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**polimorfismo** = variante genica presente in **>1%** della popolazione. Fenotipi metabolici: **poor (PM)**, **intermedi (IM)**, **normali/estensivi (EM)**, **ultrarapidi (UM**, duplicazioni del gene). La **farmacogenetica** studia come queste varianti cambiano efficacia e tossicità dei farmaci."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "dati riportati a lezione (≈360 volontari italiani sani): **CYP2C9** (varianti *2/*3) eterozigoti ~**32%**, con due alleli varianti ~**6%**; **CYP2C19** (*2) eterozigoti ~**19%**, omozigoti ~**1,7%**; **CYP2D6**: EM ~**53%**, eterozigoti ~**35%**, PM ~**3,4%**, **UM ~8,3%** (UM più frequenti nell'area **mediterranea**)."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**CYP2C9** lento → **warfarin** meno degradato → emorragie (dosi più basse, INR ravvicinato). **CYP2C19** PM → **clopidogrel** non bioattivato → **trombosi dello stent** (preferire prasugrel o ticagrelor); ma omeprazolo più efficace. **CYP2D6**: PM → **codeina inefficace** e accumulo di nortriptilina; UM → eccesso di morfina dalla codeina → **depressione respiratoria** (decessi pediatrici: codeina controindicata **sotto i 12 anni**). **NAT2** acetilatori lenti → tossicità da **isoniazide**."
+    },
+    {
+     "label": "Perché conta",
+     "value": "giustifica i **test pre-prescrizione** (CYP2C19 per clopidogrel, CYP2C9/VKORC1 per warfarin, HLA-B per abacavir) e spiega perché la stessa dose dà risposte opposte in pazienti diversi."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "UM **non è sempre «meglio»**: per un **profarmaco** (codeina) UM = **tossicità** e PM = inefficacia; per un farmaco **attivo inattivato** dal CYP (nortriptilina) è il contrario, PM = tossicità e UM = inefficacia."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ antagonisti P2Y12 e anticoagulanti orali (B12); oppiacei deboli (B8); IPP (A11); isoniazide (Antibiotici-2)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1414
+  },
+  {
+   "id": "G3__vie-eliminazione-circolo-enteroepatico",
+   "deckId": "G3",
+   "name": "Vie di eliminazione e circolo entero-epatico",
+   "nameShort": "Vie di eliminazione e circolo entero-epatico",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "vie **principali**: **rene** (urine; molecole idrofile o rese tali dal metabolismo) e **fegato → bile → feci**. Vie **accessorie**: **polmone** (anestetici volatili, etanolo → etilometro), **sudore e saliva** (drug test), **latte materno** (rischio per il lattante), **capelli** (cheratina; crescita ~1 cm/mese → datazione dell'esposizione in ambito forense)."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**circolo entero-epatico**: i coniugati (soprattutto **glucuronidi**) escreti con la bile vengono idrolizzati dalle **β-glucuronidasi batteriche** → il farmaco libero, di nuovo lipofilo, è **riassorbito** e torna al fegato. Conseguenze: ↑ permanenza in circolo, **picchi secondari**, emivita apparente più lunga."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**indometacina**: t½ allo steady state ~2,4 h ma **t½ terminale ~120 h**, attribuita al ciclo biliare. Esempio della lezione: la **digossina** può mostrare risalite della concentrazione a distanza di ore; la **digitossina** (più lipofila, eliminazione soprattutto epatica, circolo entero-epatico marcato, emivita di giorni) era ancora più difficile da gestire ed è stata abbandonata."
+    },
+    {
+     "label": "Perché conta",
+     "value": "il ciclo si può **interrompere** con sostanze che legano i metaboliti nell'intestino (**resine sequestranti** come colestiramina, carbone attivo) → utile nelle intossicazioni, ma fonte di interazioni (↓ assorbimento di digossina, warfarin)."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "«antibiotici + pillola = gravidanza per blocco del circolo entero-epatico» → evidenza debole per gli antibiotici comuni; l'interazione **certa** è quella da **induzione enzimatica** (**rifampicina**). Nel **latte**, più acido del plasma, si concentrano le **basi deboli**."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ digossina (B11b); resine e altri ipolipemizzanti (B9); rifampicina (Antibiotici-2); ion trapping (G1)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1457
+  },
+  {
+   "id": "G3__escrezione-renale-oat-oct-ph-urinario",
+   "deckId": "G3",
+   "name": "Escrezione renale: filtrazione, secrezione tubulare (OAT/OCT), riassorbimento e pH urinario",
+   "nameShort": "Escrezione renale: filtrazione, secrezione tubulare",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "tre processi: **filtrazione glomerulare** (passiva; solo farmaco **libero** e di piccole dimensioni: l'albumina non passa), **secrezione tubulare attiva** (tubulo **prossimale**, trasportatori; il fattore più importante dell'escrezione renale), **riassorbimento passivo** (soprattutto distale; dipende da liposolubilità, pKa e **pH urinario**)."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**OAT1/OAT3** (anioni organici: **penicilline**, **FANS**, **metotrexato**, diuretici, **probenecid**, urato) e **OCT2/MATE** (cationi: **metformina**, cimetidina, trimetoprim, procainamide); P-gp per la **digossina**. La secrezione **non è limitata dal legame proteico**. La **morfina** (base, via OCT) dopo glucuronidazione diventa un anione → anche via OAT."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**probenecid** compete con la **penicillina** per OAT1/OAT3 → ne rallenta l'escrezione e ne prolunga i livelli (strategia storica). **FANS o probenecid + metotrexato** → ↓ escrezione → tossicità. Acido urico: **furosemide/tiazidi** ↑ uricemia (gotta); **aspirina** a basse dosi trattiene urato, ad alte dosi (>3 g/die) è uricosurica; il probenecid inibisce anche **URAT1** (uricosurico)."
+    },
+    {
+     "label": "pH urinario e popolazioni speciali",
+     "value": "**ion trapping urinario**: **acido debole → alcalinizzare** le urine (**NaHCO₃**: salicilati, fenobarbital) → forma A⁻ intrappolata; **base debole → acidificare** (NH₄Cl; anfetamine) → BH⁺ intrappolata, oggi poco usato (acidosi, rabdomiolisi). **Neonato**: secrezione immatura; **anziano**: funzione renale ↓ progressivamente → dosi su **eGFR** (Cockcroft–Gault, CKD-EPI)."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "«un farmaco molto legato alle proteine non può essere eliminato dal rene» → vale per la **filtrazione**, non per la **secrezione attiva**, che sottrae il farmaco anche alle proteine (le penicilline sono eliminate rapidamente nonostante il legame)."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ β-lattamici; diuretici (B11b); metformina (A10); FANS (A5); ion trapping (G1)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1571
+  },
+  {
+   "id": "G3__cinetica-ordine-uno-e-ordine-zero",
+   "deckId": "G3",
+   "name": "Cinetica di eliminazione di ordine 1 e di ordine 0 (saturabile)",
+   "nameShort": "Cinetica di eliminazione di ordine 1 e di ordine 0",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**ordine 1**: la velocità di eliminazione è **proporzionale alla concentrazione** → si elimina una **frazione costante** per unità di tempo; decadimento **esponenziale** (retta in scala semilogaritmica), **t½ costante**. **Ordine 0**: il sistema è **saturo** → si elimina una **quantità costante** per unità di tempo; decadimento **lineare**, t½ non costante."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "**C(t) = C₀ · e^(−k·t)**, con **k = CL/Vd = 0,693/t½**. Michaelis–Menten: **v = Vmax · C / (Km + C)** → se C ≪ Km la cinetica è di ordine 1; se C ≫ Km diventa di ordine 0. Dopo 3 t½ resta il 12,5%, dopo 5 t½ circa il 3%."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**etanolo**: alcol deidrogenasi saturata già a basse concentrazioni → eliminazione circa costante (ordine di **7–10 g/h**). **Fenitoina**: Km (5–10 mg/L) vicino al limite inferiore del range terapeutico (10–20 mg/L) → piccoli aumenti di dose danno **grandi aumenti** di concentrazione. **Salicilati** ad alte dosi."
+    },
+    {
+     "label": "Perché conta",
+     "value": "con eliminazione saturabile la concentrazione allo steady state **non è proporzionale alla dose**, lo steady state arriva più tardi e in modo imprevedibile e il concetto di t½ costante non vale → **monitoraggio delle concentrazioni (TDM)** e aumenti di dose piccoli e graduali."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "la lezione elenca tra i saturabili anche altri antiepilettici; il caso paradigmatico da portare è la **fenitoina**. La **carbamazepina** è famosa per un'altra cosa: l'**autoinduzione** (la clearance ↑ nelle prime settimane → la dose va aumentata)."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ antiepilettici (B9); aspirina (A5); clearance ed emivita (G3)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1255
+  },
+  {
+   "id": "G3__clearance-renale-epatica-totale",
+   "deckId": "G3",
+   "name": "Clearance (CL): renale, epatica e totale",
+   "nameShort": "Clearance",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**volume di plasma (o sangue) completamente depurato dal farmaco nell'unità di tempo** (mL/min, L/h): **CL = velocità di eliminazione / concentrazione**. È **additiva**: CL totale = CL renale + CL epatica + altre."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "allo **steady state**: velocità di somministrazione = **CL × Css** → **dose di mantenimento = Css × CL × τ / F**. Esempio della lezione: **clonidina**, CL 3 mL/min/kg, target 1 ng/mL → infusione **3 ng/min/kg** (~0,2 µg/min in 70 kg). Epatica: **CL_H = Q_H × E** (Q_H ~0,8–1,5 L/min; E = rapporto di estrazione)."
+    },
+    {
+     "label": "Come funziona",
+     "value": "farmaci ad **alta estrazione** (E → 1; CL sistemica > ~6 mL/min/kg: **lidocaina, propranololo, morfina, diltiazem, imipramina**) → CL limitata dal **flusso epatico** (↓ in scompenso, shock) e grande primo passaggio. **Bassa estrazione** (es. warfarin, fenitoina, teofillina) → CL dipende dalla **frazione libera** e dall'**attività enzimatica** (induttori, inibitori)."
+    },
+    {
+     "label": "Perché conta",
+     "value": "è il parametro più importante per le **terapie croniche**: stabilisce la **dose di mantenimento**. Se la CL ↓ (insufficienza renale per aminoglicosidi, digossina, metformina; epatica per i farmaci metabolizzati) e la dose resta uguale → **accumulo** e tossicità."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "la CL è una **costante di proporzionalità**, non la quantità eliminata (che dipende anche dalla concentrazione); e la **t½ non misura la CL**: un farmaco può avere CL elevata e t½ lunga se il **Vd è enorme**."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ emivita e dosi (G3); primo passaggio (G1); escrezione renale (G3); metabolismo (G2)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1231
+  },
+  {
+   "id": "G3__emivita-steady-state-dose-di-carico",
+   "deckId": "G3",
+   "name": "Emivita, steady state, dose di carico e dose di mantenimento",
+   "nameShort": "Emivita, steady state, dose di carico e dose di mantenimento",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**emivita (t½)** = tempo in cui la concentrazione plasmatica si **dimezza** (cinetica di ordine 1). **Steady state** = condizione in cui, con dosi ripetute o infusione costante, **velocità di ingresso = velocità di eliminazione** e le concentrazioni oscillano attorno a un plateau."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "**t½ = 0,693 × Vd / CL**. Accumulo verso lo steady state: 1 t½ → 50%, 2 → 75%, 3 → 87,5%, **4 → ~94%**, **5 → ~97%** → regola delle **4–5 emivite** (vale anche per il **washout**). **Dose di carico = C target × Vd / F**; **dose di mantenimento = C target × CL × τ / F**. Con intervallo τ = t½ la concentrazione oscilla di un fattore 2."
+    },
+    {
+     "label": "Come funziona",
+     "value": "il **tempo** per arrivare allo steady state dipende **solo dalla t½**; il **livello** raggiunto dipende da dose, intervallo, F e CL. La t½ «riassume» distribuzione (Vd) ed eliminazione (CL)."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**lidocaina** (t½ 1–2 h) in un'aritmia post-infarto: aspettare 4 t½ (4–8 h) è inaccettabile → **bolo di carico + infusione**. **Digossina** (t½ ~3 giorni): senza carico servono quasi **2 settimane** → carico frazionato (es. 0,25 + 0,25 + 0,125 mg a 6–8 h) con monitoraggio. Fluoxetina/norfluoxetina: steady state e washout di **settimane**."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "**raddoppiare la dose non fa arrivare prima** allo steady state: raddoppia il livello, non il tempo. La dose di carico dipende dal **Vd**, quella di mantenimento dalla **CL**: nell'insufficienza renale si riduce soprattutto il mantenimento (ma per la digossina cala anche il Vd → anche il carico va ridotto)."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ volume di distribuzione (G2); clearance (G3); digossina (B11b); antiaritmici di classe I – lidocaina (B13)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1309
+  },
+  {
+   "id": "G4__curva-dose-risposta-potenza-efficacia",
+   "deckId": "G4",
+   "name": "Interazione farmaco–bersaglio e curva concentrazione–risposta: EC50, potenza ed efficacia",
+   "nameShort": "Interazione farmaco–bersaglio e curva concentrazione–risposta: EC50, potenza ed efficacia",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "la **farmacodinamica** studia che cosa il farmaco fa all'organismo. Bersagli: **recettori**, **canali ionici**, **enzimi**, **trasportatori/pompe**. Il legame è di solito **debole e reversibile** (legami H, ionici, van der Waals) → l'effetto finisce quando il farmaco si stacca; se è **covalente** (aspirina–COX, IPP–pompa protonica, clopidogrel–P2Y12) dura fino alla **risintesi** del bersaglio."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "curva **risposta vs log[concentrazione]** = **sigmoide** con soglia, pendenza e **plateau (Emax)**. **EC50** (ED50 in vivo) = concentrazione o dose che dà il **50% dell'effetto massimo**. La scala logaritmica rende lineare il tratto centrale e permette di leggere bene l'EC50 su un ampio intervallo di dosi."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**potenza** = quantità di farmaco necessaria per un certo effetto → **posizione sull'asse x** (EC50 più bassa = più potente; dipende da affinità e accoppiamento). **Efficacia** = **effetto massimo** ottenibile → **altezza del plateau**. Una **pendenza ripida** significa che piccole variazioni di dose danno grandi variazioni di effetto → farmaco meno maneggevole."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**furosemide vs idroclorotiazide**: la furosemide (ansa, NKCC2, dove si riassorbe ~**25%** del Na⁺ filtrato) è **più efficace** ma **meno potente** (servono 20–40 mg); l'idroclorotiazide (tubulo distale, NCC, effetto massimo intorno al 5% del Na⁺ filtrato) è **più potente** (12,5–25 mg) ma **meno efficace**."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "«più potente = migliore» → **falso**: la potenza decide solo **quanti milligrammi** servono; conta l'**efficacia** rispetto all'obiettivo. In un **edema polmonare acuto** serve la furosemide, perché nessuna dose di tiazide raggiunge quel plateau."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ diuretici (B11b); indice terapeutico (G4); agonisti parziali (G4); antagonismo (G4)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1479
+  },
+  {
+   "id": "G4__indice-terapeutico-margine-sicurezza",
+   "deckId": "G4",
+   "name": "Indice terapeutico, finestra terapeutica e margine di sicurezza",
+   "nameShort": "Indice terapeutico, finestra terapeutica e margine di sicurezza",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "dalle **curve dose–risposta quantali** (% di individui che rispondono) si ricavano **ED50** (effetto desiderato nel 50%), **TD50** (tossicità nel 50%) e, negli animali, **LD50**. **Indice terapeutico (TI) = TD50/ED50** (o LD50/ED50): misura quanto il farmaco è **selettivo** per l'effetto voluto rispetto a quello dannoso."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "**finestra terapeutica** = intervallo di concentrazioni efficace con tossicità minima. **Margine di sicurezza** (lezione) = distanza tra la dose tossica nell'**1%** e la dose efficace nel **99%** (TD1/ED99): più prudente del TI. Esempio del G&G: LD50 400 / ED50 100 → **TI = 4**."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**ristretto indice terapeutico**: **digossina** (efficacia con concentrazioni ≤1 ng/mL), **litio**, **warfarin**, **fenitoina**, **aminoglicosidi**, teofillina, ciclosporina/tacrolimus → **monitoraggio** (dosaggi plasmatici, INR). Lezione: per i **barbiturici** la dose ipnotica è vicina a quella letale, a differenza delle benzodiazepine."
+    },
+    {
+     "label": "Perché conta",
+     "value": "con TI ampio il farmaco «assorbe» la variabilità farmacocinetica (interazioni, polimorfismi, insufficienza d'organo); con TI stretto piccole variazioni di **clearance** portano alla tossicità → cautela con inibitori e induttori e criteri di bioequivalenza più stretti."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "il TI usa i valori al **50%**: se le curve di efficacia e tossicità hanno **pendenze diverse**, le loro code possono sovrapporsi anche con un TI apparentemente buono → per questo si guarda anche il **margine di sicurezza**. E il TI dipende da quale effetto tossico si considera."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ digossina (B11b); litio (B4); warfarin (B12); aminoglicosidi (Antibiotici-3); bioequivalenza (G1)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1374
+  },
+  {
+   "id": "G4__agonisti-parziali-inversi-antagonisti",
+   "deckId": "G4",
+   "name": "Agonisti pieni, parziali e inversi; antagonisti (il modello degli oppioidi)",
+   "nameShort": "Agonisti pieni, parziali e inversi; antagonisti",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**affinità** = capacità di legare il recettore; **efficacia (attività intrinseca)** = capacità di attivarlo. **Agonista pieno**: risposta massima; **agonista parziale**: occupa tutti i recettori ma dà una risposta **sub-massimale** («effetto tetto»); **antagonista neutro**: efficacia **zero**, si vede solo in presenza dell'agonista; **agonista inverso**: **riduce l'attività costitutiva** del recettore stabilizzandone la conformazione inattiva."
+    },
+    {
+     "label": "Come funziona",
+     "value": "modello a **due stati** (R inattivo ⇄ R* attivo): l'agonista sposta l'equilibrio verso R*, il parziale solo in parte, l'agonista inverso verso R, l'antagonista neutro non lo sposta. Un **parziale** in presenza di un **pieno** occupa i recettori e ne **riduce** l'effetto → si comporta da **antagonista**."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "recettore **μ**: **morfina** (agonista pieno: analgesia ma anche **depressione respiratoria**), **buprenorfina** (parziale ad **alta affinità**: effetto tetto sulla depressione respiratoria → più sicura; può precipitare astinenza in chi usa agonisti pieni), **naloxone** (antagonista competitivo; t½ breve → rischio di **ri-sedazione**). Altri parziali: **vareniclina** (α4β2), buspirone (5-HT1A), aripiprazolo (D2), **pindololo** (β, attività simpaticomimetica intrinseca). Agonisti inversi: **antistaminici H1/H2**."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "**parziale ≠ poco potente**: potenza ed efficacia sono indipendenti (la buprenorfina è **più potente** della morfina ma **meno efficace**). E l'agonista inverso si distingue dall'antagonista solo dove il recettore ha **attività costitutiva**."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ oppioidi (B8); antistaminici (A6); buspirone (B1); aripiprazolo (B5); bupropione e vareniclina (B3)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1416
+  },
+  {
+   "id": "G4__modulatori-allosterici-bdz-gaba-a",
+   "deckId": "G4",
+   "name": "Modulatori allosterici: benzodiazepine e recettore GABA-A",
+   "nameShort": "Modulatori allosterici: benzodiazepine e recettore GABA-A",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**modulatore allosterico** = ligando che si lega a un **sito diverso** da quello del ligando endogeno (**ortosterico**) e ne modifica **affinità e/o efficacia**: positivo (**PAM**), negativo (**NAM**) o «silente» (occupa il sito senza effetto, bloccando gli altri modulatori)."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**GABA-A**: pentamero (tipicamente 2α, 2β, 1γ) che forma un canale per il **Cl⁻**. Il **GABA** si lega tra **α e β**; le **BDZ** all'interfaccia **α–γ** → ↑ affinità per il GABA e ↑ **frequenza** di apertura del canale **in presenza di GABA**. I **barbiturici** ↑ la **durata** delle aperture e ad alte dosi aprono il canale **anche senza GABA**."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**flumazenil**: antagonista competitivo del sito BDZ (blocca sia le BDZ sia gli agonisti inversi del sito) → antidoto dell'overdose e risveglio dopo sedazione con midazolam. **Picrotossina**: blocca il **poro** (non competitiva); **bicucullina**: antagonista competitivo del sito del GABA (convulsivante, solo sperimentale); **neurosteroidi**: allopregnanolone PAM, pregnenolone solfato NAM."
+    },
+    {
+     "label": "Perché conta",
+     "value": "le BDZ amplificano un segnale **fisiologico** → effetto «a tetto» → un'overdose di sola BDZ raramente è letale; con **alcol, barbiturici, oppioidi** il rischio diventa grave. Le subunità α orientano l'effetto (α1 sedazione/amnesia; α2/α3 ansiolisi e miorilassamento)."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "«le BDZ sono agonisti del GABA» → **no**: senza GABA non aprono il canale. Il **flumazenil** ha emivita più breve di molte BDZ (**ri-sedazione**) e può scatenare **convulsioni** in chi è dipendente da BDZ o in intossicazioni miste (es. con triciclici)."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ benzodiazepine, flumazenil, barbiturici, neurosteroidi (B1); superfamiglia dei recettori-canale (G6); sinergismo (G4)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1424
+  },
+  {
+   "id": "G4__antagonismo-competitivo-irreversibile",
+   "deckId": "G4",
+   "name": "Antagonismo: competitivo, irreversibile/non competitivo, funzionale e chimico",
+   "nameShort": "Antagonismo: competitivo, irreversibile/non competitivo, funzionale e chimico",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "riduzione dell'effetto di un agonista. Può avvenire **sullo stesso recettore** (competitivo o irreversibile), **a valle** del recettore (funzionale), **sul ligando** stesso (chimico) o sulla sua **farmacocinetica**."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**competitivo** (reversibile, sito ortosterico, legami deboli): la curva dell'agonista si sposta **a destra in modo parallelo**, **Emax invariato** → antagonismo **sormontabile** aumentando l'agonista; lo spostamento dipende da concentrazione e affinità dell'antagonista. **Irreversibile/non competitivo** (legame covalente o allosterico): **↓ Emax** non recuperabile; l'effetto finisce solo con la **risintesi** del bersaglio."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "competitivo: **propranololo vs isoproterenolo**, naloxone vs morfina, atropina vs acetilcolina. Irreversibile: **fenossibenzamina** (alchila i recettori α → feocromocitoma, da iniziare **prima** del β-bloccante), **clopidogrel/prasugrel** (P2Y12), **aspirina** (acetila la COX-1: le **piastrine anucleate** non la risintetizzano → effetto per **7–10 giorni**), **IPP** (pompa H⁺/K⁺)."
+    },
+    {
+     "label": "Antagonismo funzionale e chimico",
+     "value": "**funzionale**: un agonista su un **altro recettore** produce l'effetto opposto → **adrenalina nell'anafilassi** (β2 → ↑ cAMP → broncodilatazione; α1 → vasocostrizione) contro istamina e leucotrieni. **Chimico**: neutralizzazione diretta del ligando → **infliximab/adalimumab** (TNF-α), bevacizumab (VEGF), protamina (eparina), **Fab anti-digossina**."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "**ibuprofene prima dell'aspirina**: occupando in modo reversibile la COX-1 piastrinica, può impedire l'acetilazione → **↓ effetto antiaggregante** dell'aspirina. Nell'anafilassi l'**adrenalina IM** viene **prima**: antistaminici e cortisonici sono lenti e solo aggiuntivi."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ aspirina (A5); P2Y12 (B12); IPP (A11); α-bloccanti (B10); anti-TNF (A9); istamina (A6)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1541
+  },
+  {
+   "id": "G4__tolleranza-tachifilassi-regolazione",
+   "deckId": "G4",
+   "name": "Adattamenti alla somministrazione ripetuta: tolleranza, tachifilassi, down/up-regulation, sensitizzazione",
+   "nameShort": "Adattamenti alla somministrazione ripetuta: tolleranza, tachifilassi, down/up-regulation, sensitizzazione",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**tolleranza** = ↓ risposta alla stessa dose dopo somministrazioni ripetute (giorni–settimane) → servono dosi più alte; spesso **parziale** (solo alcuni effetti). **Tachifilassi** = tolleranza **rapida** (minuti–ore). **Sensitizzazione** = ↑ risposta con esposizioni ripetute. **Farmacoresistenza** = perdita completa di efficacia (antimicrobici, antitumorali)."
+    },
+    {
+     "label": "Come funziona",
+     "value": "meccanismi farmacodinamici: **desensibilizzazione** del bersaglio (fosforilazione da **GRK** e legame delle **β-arrestine** → disaccoppiamento e internalizzazione), **down-regulation** (↓ numero di recettori), esaurimento del mediatore, contro-regolazione omeostatica. Farmacocinetici: **induzione enzimatica** (↑ clearance). Con antagonisti cronici: **up-regulation/supersensibilità**."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**tachifilassi**: **efedrina** e **tiramina** (simpaticomimetici indiretti) esauriscono il pool di noradrenalina rilasciabile; **nitrati** (→ intervallo libero notturno). **Down-regulation**: **β2-agonisti** in uso regolare (↓ durata della broncodilatazione; i cortisonici inalatori la limitano). **Up-regulation**: **β-bloccanti** (sospensione brusca → tachicardia, angina, infarto → **scalare in 1–2 settimane**), clonidina (rebound ipertensivo)."
+    },
+    {
+     "label": "Perché conta",
+     "value": "**oppioidi**: tolleranza **dissociata** — rapida a sedazione, nausea, euforia e (in parte) analgesia; scarsa a **stipsi** e **miosi**; la depressione respiratoria resta il rischio letale con escalation rapide, sedativi associati o dopo **perdita della tolleranza** (astinenza). **Sensitizzazione**: psicostimolanti (effetti motori, craving), kindling epilettico, sensitizzazione centrale nel dolore neuropatico."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "**desensibilizzazione** (bersaglio meno responsivo, rapida) ≠ **down-regulation** (meno bersagli, lenta); la **tachifilassi** si distingue dalla tolleranza per il **tempo**. La tolleranza può essere **farmacocinetica** (meno farmaco al recettore: induzione) o **farmacodinamica**."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ β2-agonisti (A8); β-bloccanti e clonidina (B10); nitrati (B12b); oppioidi (B8); benzodiazepine (B1)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1779
+  },
+  {
+   "id": "G4__additivita-sinergismo-antagonismo",
+   "deckId": "G4",
+   "name": "Interazioni farmacodinamiche: additività, sinergismo, antagonismo ed effetti cumulativi",
+   "nameShort": "Interazioni farmacodinamiche: additività, sinergismo, antagonismo ed effetti cumulativi",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**additività**: l'effetto della combinazione = **somma** degli effetti («1 + 1 = 2»); **sinergismo (sovra-additività)**: effetto **maggiore** della somma («1 + 1 = 3»); **sub-additività/antagonismo**: effetto **minore**. Si rappresentano con l'**isobologramma** (retta di additività tra le EC50 dei due farmaci)."
+    },
+    {
+     "label": "Perché conta",
+     "value": "usate **intenzionalmente**, additività e sinergismo permettono **dosi più basse** di ciascun farmaco e quindi meno effetti dose-dipendenti: **ACE-inibitore + tiazidico** (anche in associazione fissa), **β-lattamico + aminoglicoside**."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "sinergismi **pericolosi**: **BDZ + alcol** e **BDZ + oppioidi** (depressione respiratoria, avvertenza FDA del 2016); **nitrati + inibitori PDE5** (sildenafil: entrambi ↑ cGMP → **ipotensione grave**). Antagonismo: **FANS + ACE-inibitori/diuretici** (↓ prostaglandine renali → ↓ effetto antipertensivo; con un diuretico «triple whammy» → **insufficienza renale acuta**)."
+    },
+    {
+     "label": "Tossicità cumulativa",
+     "value": "ACE-inibitori/sartani + **risparmiatori di K⁺** (spironolattone, amiloride) ± trimetoprim o FANS → **iperkaliemia** (monitorare K⁺ e creatinina, soprattutto in insufficienza renale, diabete, anziani); più farmaci che allungano il **QT** → torsione di punta."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "il sinergismo **non richiede lo stesso bersaglio**: spesso i farmaci convergono sullo stesso **esito fisiologico** (centro del respiro, tono vascolare). E un'interazione può essere **farmacocinetica** (CYP, P-gp) anziché farmacodinamica: all'esame va detto quale."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ benzodiazepine (B1); oppioidi (B8); ACE-inibitori (B11); nitrati (B12b); aminoglicosidi (Antibiotici-3); risparmiatori di K⁺ (B11b)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1381
+  },
+  {
+   "id": "G5__canali-na-blocco-uso-dipendente",
+   "deckId": "G5",
+   "name": "Canali Na⁺ voltaggio-dipendenti: tre stati funzionali e blocco uso-dipendente",
+   "nameShort": "Canali Na⁺ voltaggio-dipendenti: tre stati funzionali e blocco uso-dipendente",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "subunità **α** (~260 kDa) con **4 domini omologhi (I–IV)**, ciascuno di **6 segmenti** transmembrana: **S4** (residui positivi) = **sensore di voltaggio**; l'**ansa P** tra S5 e S6 forma il **filtro di selettività** (sito della **tetrodotossina**); l'ansa intracellulare **III–IV** è il **gate di inattivazione** rapida."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**3 stati**: **chiuso** (a riposo, attivabile) → **aperto** (pochi ms, ingresso di Na⁺, depolarizzazione) → **inattivato** (non conduce e **non è riattivabile** → refrattarietà) → torna chiuso con la ripolarizzazione. **Anestetici locali, antiaritmici di classe I e antiepilettici** raggiungono il sito quando il canale è **aperto** e legano/stabilizzano lo stato **inattivato**."
+    },
+    {
+     "label": "Perché conta",
+     "value": "**blocco uso-dipendente** (frequenza- e voltaggio-dipendente): più una cellula scarica o è depolarizzata, più canali sono aperti/inattivati e più farmaco si lega → bloccati **focolaio epilettico**, **tachiaritmia**, **fibra nocicettiva** in scarica; risparmiati i tessuti a frequenza normale = **selettività funzionale**, non anatomica."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "classe **IB** (lidocaina, mexiletina): dissociazione **rapida** → agisce su tessuto **ischemico/depolarizzato** e ad alta frequenza; **IC** (flecainide, propafenone): dissociazione **lenta** → blocco anche a frequenze normali (proaritmia nel cuore strutturalmente malato); **IA** (chinidina, procainamide): intermedia + blocco K⁺ (↑ QT). Antiepilettici: fenitoina, carbamazepina, lamotrigina, lacosamide. Isoforme: **Nav1.1–1.3** (SNC), **Nav1.5** (cuore, poco sensibile alla tetrodotossina), Nav1.7/1.8 (nocicettori)."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "la selettività è per lo **stato** del canale, non per l'organo: in caso di **sovradosaggio** o **iniezione intravascolare**, gli anestetici locali bloccano anche SNC e cuore → **convulsioni**, aritmie, arresto (la bupivacaina è la più cardiotossica)."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ anestetici locali (B2); antiaritmici di classe I (B13); antiepilettici (B9)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1648
+  },
+  {
+   "id": "G5__canali-ca-voltaggio-calcio-antagonisti",
+   "deckId": "G5",
+   "name": "Canali Ca²⁺ voltaggio-dipendenti (L, T, N, P/Q) e calcio-antagonisti",
+   "nameShort": "Canali Ca²⁺ voltaggio-dipendenti",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "subunità **α1** che forma il poro (4 domini × 6 segmenti, S4 sensore) + subunità accessorie **α2δ** (unite da ponte disolfuro), **β** (intracellulare) ± γ. **Alta soglia (HVA)**: **L** (cuore, muscolo liscio e scheletrico, cellule endocrine), **N** (terminazioni presinaptiche → rilascio di neurotrasmettitori), **P/Q** (cervelletto, presinaptici), R. **Bassa soglia (LVA)**: **T** («transient»: nodo SA, **talamo**)."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**solo i canali L** sono bersaglio dei calcio-antagonisti, con 3 siti sulla α1 accoppiati allostericamente: **diidropiridine** (nifedipina, amlodipina…: segmenti dei domini III–IV; preferiscono lo stato **inattivato** a potenziali meno negativi → **muscolo liscio vasale**), **verapamil** (fenilalchilamina, segmento IVS6, accesso dal lato intracellulare, blocco **uso-dipendente** → nodo SA/AV), **diltiazem** (benzotiazepina, profilo intermedio)."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "canali **T** del talamo → oscillazioni talamo-corticali delle **assenze** → **etosuccimide** (anche valproato, zonisamide). **Gabapentin/pregabalin** non agiscono sulla α1: legano la **α2δ-1** → ↓ rilascio di neurotrasmettitori eccitatori (dolore neuropatico, epilessia focale, ansia generalizzata). Canali **N**: ziconotide (dolore intrattabile, via intratecale)."
+    },
+    {
+     "label": "Perché conta",
+     "value": "**verapamil o diltiazem + β-bloccante** → bradicardia, blocco AV, scompenso. **DHP a rilascio rapido** (nifedipina) → **tachicardia riflessa** e possibile **angina**; **edema malleolare** da vasodilatazione precapillare, che **non risponde ai diuretici**."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "nel **muscolo scheletrico** il canale L (α1S) funziona da **sensore** accoppiato meccanicamente al **RyR1**: la contrazione non dipende dal Ca²⁺ extracellulare → i calcio-antagonisti non danno debolezza muscolare. Nelle cellule endocrine bastano piccoli ingressi di Ca²⁺ → effetto trascurabile sulla secrezione."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ calcio-antagonisti (B11); antiaritmici di classe IV (B13); antiepilettici (B9); omeostasi del Ca²⁺ (G7); angina iatrogena (G7)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1694
+  },
+  {
+   "id": "G5__canali-k-qt-girk-katp",
+   "deckId": "G5",
+   "name": "Canali K⁺: voltaggio-dipendenti (QT lungo), GIRK e K-ATP",
+   "nameShort": "Canali K⁺: voltaggio-dipendenti",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "il gruppo più eterogeneo di canali; conviene classificarli per **funzione**: **voltaggio-dipendenti** (ripolarizzazione), **attivati dal Ca²⁺**, **accoppiati a proteine G (GIRK)**, **ATP-dipendenti (K-ATP)**. Aprirli porta il potenziale verso **E_K** → iperpolarizzazione, ↓ eccitabilità; bloccarli **prolunga il potenziale d'azione**."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**cuore**: IKr (canale **hERG**/Kv11.1) e IKs ripolarizzano; gli **antiaritmici di classe III** (amiodarone, sotalolo, dofetilide, ibutilide) li bloccano → ↑ durata del potenziale d'azione e refrattarietà → **↑ QT**. **GIRK**: aperti dal dimero **βγ** di Gi/Go (**M2** vagale nel nodo SA/AV, **A1** adenosina, **μ/δ** oppioidi, **α2**, GABA-B). **K-ATP** (Kir6.2 + **SUR**): l'ATP lo chiude → depolarizzazione."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**β-cellula**: glucosio → ↑ ATP → chiusura K-ATP → depolarizzazione → canali Ca²⁺ → **insulina**; **sulfaniluree e glinidi** chiudono il canale legando **SUR1**; il **diazossido** lo apre (insulinoma). **Minoxidil, nicorandil** aprono **SUR2B** → vasodilatazione. Neuroni: la **retigabina** apriva i canali KCNQ (antiepilettico, ritirata per pigmentazione blu). Le **metilxantine** bloccano i recettori A1 (effetto eccitante)."
+    },
+    {
+     "label": "Perché conta",
+     "value": "**QT lungo da farmaci** = di solito blocco **fuori bersaglio di hERG**, canale con una cavità che lega molte molecole: macrolidi, fluorochinoloni, aloperidolo e altri antipsicotici, metadone, ondansetron, citalopram ad alte dosi, triciclici; antistaminici come **terfenadina e astemizolo** ritirati. Rischio ↑ con **ipokaliemia**, ipomagnesiemia, bradicardia, sesso femminile, QT lungo congenito, inibitori del metabolismo, associazioni → **torsione di punta**."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "non tutti i bloccanti di IKr sono ugualmente pericolosi: l'**amiodarone** allunga molto il QT ma dà raramente torsione (blocca anche Na⁺ e Ca²⁺); il **verapamil** blocca IKr senza associarsi a torsione. Il rischio dipende dal profilo **multicanale** e dalle condizioni del paziente."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ antiaritmici di classe III (B13); sulfaniluree e glinidi (A10); attivatori dei canali K-ATP (B12b); antistaminici di II generazione (A6); antipsicotici (B5)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1810
+  },
+  {
+   "id": "G5__pompe-atpasi-tipo-p-digitale-ipp",
+   "deckId": "G5",
+   "name": "Pompe ATPasi di tipo P: Na⁺/K⁺-ATPasi e digitale, H⁺/K⁺-ATPasi e inibitori di pompa",
+   "nameShort": "Pompe ATPasi di tipo P: Na⁺/K⁺-ATPasi e digitale, H⁺/K⁺-ATPasi e inibitori di pompa",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "pompe che usano l'ATP per trasportare ioni **contro gradiente** e che durante il ciclo si **autofosforilano su un aspartato** (conformazioni **E1 ⇄ E2**): **Na⁺/K⁺-ATPasi**, **H⁺/K⁺-ATPasi** gastrica, **Ca²⁺-ATPasi** (SERCA, PMCA)."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**Na⁺/K⁺-ATPasi**: **3 Na⁺ fuori / 2 K⁺ dentro** per ATP → **elettrogenica**; mantiene i gradienti che alimentano tutti i trasportatori secondari. Subunità **α** (catalitica: α1 ubiquitaria e renale, **α2** muscolo e cuore, α3 neuroni) + β; espressione ↑ dall'aldosterone."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**digossina**: lega la pompa nella conformazione **E2 fosforilata** dal lato extracellulare **competendo con il K⁺** → ↑ Na⁺ intracellulare → lo scambiatore **NCX** (3 Na⁺/1 Ca²⁺) estrude meno Ca²⁺ → più Ca²⁺ nel reticolo → **inotropo positivo**; effetto **vagale** → ↓ conduzione AV (controllo della frequenza nella fibrillazione atriale). **IPP**: profarmaci attivati nell'ambiente acido del canalicolo → legame **covalente** alla H⁺/K⁺-ATPasi → inibizione **irreversibile** (effetto che supera la t½ plasmatica di 1–2 h)."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "digossina = **ristretto indice terapeutico**: efficacia con concentrazioni **≤1 ng/mL**; tossicità ↑ con **ipokaliemia** (meno K⁺ in competizione e pompa già depressa), ipomagnesiemia, ipercalcemia, **insufficienza renale**, età avanzata, interazioni (**amiodarone, verapamil, chinidina**). Segni: nausea e vomito, **xantopsia**, confusione, extrasistolia, **tachicardia ventricolare bidirezionale**, blocchi AV. Antidoto: **frammenti Fab anti-digossina**."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "diuretici dell'ansa o tiazidici + digossina → **ipokaliemia** → intossicazione digitalica anche a concentrazioni «normali». Al contrario un'intossicazione acuta grave si accompagna a **iperkaliemia** (pompa bloccata in tutto l'organismo)."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ digitale (B11b); IPP (A11); diuretici (B11b); omeostasi del Ca²⁺ (G7)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1570
+  },
+  {
+   "id": "G5__trasportatori-epiteliali-e-neuronali",
+   "deckId": "G5",
+   "name": "Trasportatori come bersagli: epiteliali renali (diuretici) e neurotrasportatori",
+   "nameShort": "Trasportatori come bersagli: epiteliali renali",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "proteine che spostano soluti sfruttando il **gradiente del Na⁺** creato dalla Na⁺/K⁺-ATPasi (trasporto attivo secondario) o il gradiente di **H⁺** (trasportatori vescicolari). Sono bersagli di **diuretici**, **antidepressivi**, **antiepilettici** e **sostanze d'abuso**."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**rene**: **NKCC2** (tratto ascendente spesso, ~25% del Na⁺ filtrato) → **diuretici dell'ansa**; **NCC** (tubulo distale) → **tiazidici**; **ENaC** (dotto collettore) → **amiloride, triamterene**; recettore mineralcorticoide → **spironolattone, eplerenone**; **SGLT2** → gliflozine. Più Na⁺ al dotto collettore (ansa, tiazidi) = più K⁺ secreto → **ipokaliemia**."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**SLC6** (Na⁺/Cl⁻-dipendenti): **SERT** (SSRI), **NET** (atomoxetina, triciclici, SNRI), **DAT** (bupropione; cocaina), **GAT-1** (**tiagabina** → ↑ GABA sinaptico). **Vescicolari** (antiporto H⁺): **VMAT2** (reserpina irreversibile → deplezione di monoamine; **tetrabenazina** nella corea di Huntington). **EAAT** gliali (EAAT1/2) ricaptano il glutammato e limitano l'eccitotossicità; in **ischemia** (↓ ATP, gradienti dissipati) possono funzionare al **contrario** e rilasciarlo."
+    },
+    {
+     "label": "Perché conta",
+     "value": "il **reuptake** ricicla il neurotrasmettitore, **termina** il segnale e lo protegge dalla degradazione: bloccarlo ↑ e prolunga la trasmissione → effetto terapeutico (antidepressivi) o d'abuso (cocaina)."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "**cocaina** = **blocca** il trasportatore; **amfetamina** = è un **substrato** che entra, svuota le vescicole (VMAT2) e **inverte** DAT/NET → rilascio indipendente dagli impulsi. Stesso bersaglio, meccanismo e tossicità diversi."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ diuretici (B11b); inibitori SGLT2 (A10); antidepressivi (B3); tiagabina (B9); Huntington e farmaci accessori (B6)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1466
+  },
+  {
+   "id": "G6__quattro-superfamiglie-recettori",
+   "deckId": "G6",
+   "name": "Le quattro superfamiglie di recettori: struttura, trasduzione e tempi di risposta",
+   "nameShort": "Le quattro superfamiglie di recettori: struttura, trasduzione e tempi di risposta",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**recettore** = macromolecola che riconosce un ligando endogeno (neurotrasmettitore, ormone, mediatore) — e i farmaci che lo imitano o lo bloccano — e **trasduce** il segnale modificando la funzione cellulare: tramite **flussi ionici**, **secondi messaggeri** (cAMP, cGMP, Ca²⁺, IP3/DAG) o **trascrizione genica**."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "**1) Ionotropici** (canali ligando-dipendenti): **millisecondi** — pentameri (nAChR, GABA-A, glicina, 5-HT3) o tetrameri (AMPA, NMDA, kainato). **2) Metabotropici/GPCR** (7 segmenti transmembrana, una sola catena): **secondi** — la famiglia più ampia di bersagli. **3) Con attività enzimatica intrinseca**: **tirosin-chinasici** (insulina, EGF, VEGF, PDGF: dimerizzazione + autofosforilazione → proteine con domini SH2/PTB → MAPK, PI3K-Akt) e **guanilato ciclasi** di membrana (ANP/BNP → cGMP): **minuti–ore**. **4) Intracellulari/nucleari** (ligandi **lipofili**): **ore–giorni**."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "contrazione del muscolo scheletrico (nAChR, ms) · modulazione della frequenza cardiaca (β1/M2, secondi) · crescita e proliferazione (recettori tirosin-chinasici) · effetto antinfiammatorio dei glucocorticoidi (GR, ore). Farmaci: **imatinib, gefitinib** (inibitori di tirosin-chinasi), **trastuzumab** (HER2), **cetuximab** (EGFR)."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "esistono due classificazioni **diverse**: per **meccanismo di trasduzione** (le 4 superfamiglie) e per **struttura** (la «superfamiglia nicotinica» raggruppa recettori con ligandi diversi ma stessa architettura). I «tempi» sono quelli della **risposta cellulare**, non del legame; i glucocorticoidi hanno anche effetti **non genomici** rapidi."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ recettori-canale pentamerici (G6); proteine G (G6); recettori nucleari (G6); terapie a bersaglio molecolare (B14)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1486
+  },
+  {
+   "id": "G6__superfamiglia-nicotinica-tubocurarina",
+   "deckId": "G6",
+   "name": "Superfamiglia dei recettori-canale pentamerici (nicotinici, GABA-A, glicina, 5-HT3) e tubocurarina",
+   "nameShort": "Superfamiglia dei recettori-canale pentamerici",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "recettori-canale formati da **5 subunità**; ciascuna ha un lungo **N-terminale extracellulare** con un'ansa chiusa da **ponte disolfuro** («cys-loop»), **4 segmenti transmembrana (M1–M4)** — **M2** riveste il poro — e C-terminale extracellulare. Il ligando si lega all'**interfaccia tra subunità** (2 siti per l'agonista)."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**nAChR** (cationi Na⁺/K⁺ ± Ca²⁺ → eccitatorio): **muscolare** (α1)₂β1δγ nel feto, con ε al posto di γ nell'adulto; **neuronali** α4β2 (nicotina, vareniclina) e **α7** omomerico, molto permeabile al **Ca²⁺**. **GABA-A** e **glicina** (Cl⁻ → inibitori; glicina soprattutto midollo e tronco, **stricnina** antagonista → convulsioni). **5-HT3**: l'unico recettore **ionotropico** della serotonina (area postrema, afferenze vagali) → antiemetici **«-setron»** (ondansetron)."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**tubocurarina** (principio attivo del curaro): **antagonista competitivo** del nAChR muscolare → paralisi flaccida (bloccante neuromuscolare **non depolarizzante**; oggi rocuronio, vecuronio, (cis)atracurio), reversibile con anticolinesterasici. È un **ammonio quaternario**: carica permanente → non attraversa la **BEE** né la mucosa intestinale → agisce solo in periferia."
+    },
+    {
+     "label": "Perché conta",
+     "value": "la fosforilazione del nAChR muscolare (PKA, PKC) ne modula apertura e **desensibilizzazione**; l'esposizione prolungata all'agonista porta il canale in uno stato **desensibilizzato**: è alla base del blocco da succinilcolina e del blocco neuromuscolare da alte dosi di nicotina."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "«la tubocurarina per il tremore parkinsoniano?» → **no**: non entra nel SNC; gli anticolinergici antiparkinson sono **antimuscarinici centrali lipofili** (biperidene, triesifenidile)."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ antiemetici 5-HT3 (A7); miorilassanti in anestesia (B2); benzodiazepine e GABA-A (B1, G4); nicotina e dipendenza (G7); antiparkinson (B6)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1552
+  },
+  {
+   "id": "G6__recettori-glutammato-ampa-nmda",
+   "deckId": "G6",
+   "name": "Recettori ionotropici del glutammato: AMPA e NMDA (blocco da Mg²⁺, LTP, eccitotossicità)",
+   "nameShort": "Recettori ionotropici del glutammato: AMPA e NMDA",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "il **glutammato** è il principale neurotrasmettitore **eccitatorio** del SNC; recettori ionotropici **AMPA**, **NMDA**, **kainato** (tetrameri: il segmento **M2 rientra** nella membrana senza attraversarla) e metabotropici **mGlu** (gruppo I → Gq; gruppi II–III → Gi/Go)."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**AMPA** (GluA1–4): trasmissione rapida, soprattutto Na⁺; con la subunità **GluA2** (editata nel poro) è **impermeabile al Ca²⁺**, senza GluA2 diventa **Ca²⁺-permeabile** (substrato di neurodegenerazione e di plasticità indotta da sostanze d'abuso). **NMDA** (GluN1 + GluN2): servono **glutammato** (GluN2) + co-agonista **glicina/D-serina** (GluN1) + **depolarizzazione** che espelle il **Mg²⁺** dal poro → «**rilevatore di coincidenza**»; alta permeabilità al **Ca²⁺**."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "Ca²⁺ entrato dall'NMDA → CaMKII, **nNOS** (NO come messaggero retrogrado) → **LTP/LTD** (ippocampo: apprendimento e memoria). **Eccitotossicità** (ischemia, ipoglicemia, trauma): rilascio massivo e ricaptazione ridotta di glutammato → sovraccarico di Ca²⁺ → **calpaine**, ROS e perossinitrito, danno mitocondriale → morte neuronale."
+    },
+    {
+     "label": "Farmaci",
+     "value": "**memantina** (antagonista NMDA **a bassa affinità, uso-dipendente** → Alzheimer moderato-grave), **ketamina** (blocco del canale → anestesia dissociativa; esketamina antidepressivo rapido), fenciclidina; **perampanel** (antagonista AMPA non competitivo, antiepilettico); riluzolo (↓ rilascio di glutammato, SLA)."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "il **Mg²⁺** non è un antagonista competitivo del glutammato: è un **blocco del poro voltaggio-dipendente** → l'NMDA conduce solo se la membrana è già depolarizzata (dagli AMPA). Per questo un bloccante uso-dipendente come la memantina risparmia la trasmissione fisiologica."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ memantina (B7); ketamina (B2); antiepilettici (B9); omeostasi del Ca²⁺ (G7)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1528
+  },
+  {
+   "id": "G6__gpcr-proteine-g-gs-gi-gq",
+   "deckId": "G6",
+   "name": "Recettori accoppiati a proteine G (GPCR): Gs, Gi, Gq e i sistemi muscarinico, adrenergico e dopaminergico",
+   "nameShort": "Recettori accoppiati a proteine G",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**GPCR** = una catena con **7 segmenti transmembrana** (N-terminale extracellulare; 3ª ansa intracellulare e C-terminale accoppiati alla proteina G). Proteina G **eterotrimerica αβγ**: a riposo α lega **GDP**; il recettore attivato fa scambiare GDP con **GTP** → α-GTP e **βγ** si separano e regolano gli effettori; l'attività **GTPasica** di α spegne il segnale. Grande **amplificazione**."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**Gs** → ↑ adenilato ciclasi → ↑ **cAMP** → PKA (β1, β2, β3, D1/D5, H2, 5-HT4, V2). **Gi/Go** → ↓ cAMP; **βγ** apre i canali K⁺ (GIRK) e chiude i Ca²⁺ di tipo N (α2, M2/M4, D2–D4, μ/δ/κ, GABA-B, CB1, 5-HT1A). **Gq** → **PLCβ** → **IP3** (Ca²⁺ dal reticolo) + **DAG** (PKC) (α1, M1/M3/M5, H1, AT1, 5-HT2)."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**muscarinici**: **dispari Gq, pari Gi** → M2 cardiaco (vago: ↓ frequenza e conduzione AV), M3 ghiandole e muscolo liscio, M1 SNC e stomaco. **Adrenergici**: α1 Gq (vasocostrizione, midriasi, prostata), **α2 Gi** (autorecettori presinaptici → ↓ rilascio di noradrenalina; **clonidina** centrale → ↓ efflusso simpatico), β Gs. **Dopaminergici**: D1-like (D1, D5) Gs; **D2-like** (D2, D3, D4) Gi → bersaglio degli antipsicotici."
+    },
+    {
+     "label": "Fosfodiesterasi e tossina colerica",
+     "value": "le **fosfodiesterasi (PDE)** spengono cAMP e cGMP: teofillina (non selettiva, anche antagonista dell'adenosina), **milrinone** (PDE3, inotropo), **sildenafil/tadalafil** (PDE5), roflumilast (PDE4). La **tossina colerica** blocca Gs in stato attivo → cAMP elevato negli enterociti → diarrea secretoria."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "l'**α2** è l'unico adrenergico **Gi**: un agonista adrenergico (clonidina) **abbassa** la pressione agendo al centro; sospenderlo bruscamente dà **rebound**. Nitrati + inibitori PDE5 → entrambi ↑ cGMP → **ipotensione grave**."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ antimuscarinici (A8, A11); clonidina e α1-bloccanti (B10); β2-agonisti e teofillina (A8); antipsicotici (B5); istamina (A6)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1524
+  },
+  {
+   "id": "G6__recettori-intracellulari-nucleari",
+   "deckId": "G6",
+   "name": "Recettori intracellulari (nucleari): meccanismo genomico e non genomico",
+   "nameShort": "Recettori intracellulari",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "fattori di trascrizione attivati da ligandi **lipofili** che attraversano la membrana: **citosolici** a riposo (complessati con **HSP90**: glucocorticoidi, mineralcorticoidi, androgeni, progestinici) o già **nucleari** (estrogeni, ormoni tiroidei, vitamina D, acido retinoico, PPAR, PXR/CAR)."
+    },
+    {
+     "label": "Come funziona",
+     "value": "domini: **transattivazione** N-terminale, **DBD** con due **dita di zinco** (cisteine che coordinano Zn²⁺) che riconoscono sequenze specifiche del DNA (**HRE**, es. GRE), regione cerniera, **LBD** (tasca del ligando). Sequenza: legame → distacco da HSP → **dimerizzazione** → nucleo → HRE → reclutamento di **co-attivatori/co-repressori** → ↑/↓ trascrizione (es. glucocorticoidi: inibizione di **NF-κB/AP-1**)."
+    },
+    {
+     "label": "Formula / numeri chiave",
+     "value": "**latenza** di ore (effetti cellulari) e giorni (effetto clinico pieno); l'effetto **dura oltre** la permanenza del farmaco in circolo (durata biologica > t½ plasmatica, tipico dei corticosteroidi)."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "farmaci: **glucocorticoidi**, **SERM** (tamoxifene, raloxifene), antiandrogeni (bicalutamide), **levotiroxina**, **calcitriolo**, **ATRA** (leucemia promielocitica acuta), **glitazoni** (PPARγ), **fibrati** (PPARα); la **rifampicina** agisce su **PXR** → induzione enzimatica."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "per la loro latenza i glucocorticoidi **non** sono il primo farmaco nel broncospasmo acuto o nell'anafilassi (prima **adrenalina** e β2-agonisti) — anche se esistono effetti **rapidi non genomici** (minuti), mediati da meccanismi di membrana."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ glucocorticoidi (A4); SERM (A12); induttori enzimatici (G2); glitazoni (A10)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1322
+  },
   {
    "id": "A4__glucocorticoidi-classe-meccanismo-effett",
    "deckId": "A4",
@@ -3707,6 +5158,246 @@
    "thin": false,
    "ndCount": 0,
    "charLen": 396
+  },
+  {
+   "id": "G7__nt-classici-neuropeptidi-retrogradi",
+   "deckId": "G7",
+   "name": "Neurotrasmettitori classici e neuropeptidi; autorecettori e trasmissione retrograda (endocannabinoidi, NO)",
+   "nameShort": "Neurotrasmettitori classici e neuropeptidi; autorecettori e trasmissione retrograda",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**neurotrasmettitore classico** (acetilcolina, glutammato, GABA, glicina, monoamine): sintetizzato nel **terminale**, concentrato in **piccole vescicole sinaptiche**, rilasciato per **esocitosi Ca²⁺-dipendente** nelle zone attive (canali N e P/Q) anche con un singolo potenziale d'azione; azione **rapida e locale**; spento da **ricaptazione** (DAT, NET, SERT, GAT, EAAT) o **enzimi** (acetilcolinesterasi)."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**neuropeptidi** (oppioidi endogeni, CRH, NPY, sostanza P, CGRP, ossitocina): sintetizzati nel **soma** come precursori (es. **POMC**), immagazzinati in **grandi vescicole a nucleo denso**, rilasciati **fuori dalle zone attive** solo con **scariche ripetute o ad alta frequenza**; agiscono anche a distanza (**trasmissione di volume**) come **modulatori**; inattivati da **peptidasi** (niente ricaptazione)."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**co-trasmissione**: lo stesso neurone libera un trasmettitore classico e un peptide o ATP (noradrenalina + **NPY** + ATP; acetilcolina + **VIP**) con soglie di rilascio diverse. **Autorecettori ed eterorecettori** presinaptici a feedback negativo: **α2** (noradrenalina), **5-HT1A** somato-dendritici e 5-HT1B/1D terminali, D2, GABA-B, M2 → la **mirtazapina** antagonizza α2 → ↑ rilascio di noradrenalina e serotonina."
+    },
+    {
+     "label": "Perché conta",
+     "value": "**trasmissione retrograda**: gli **endocannabinoidi** (anandamide, **2-AG**) sono sintetizzati «su richiesta» nel neurone post-sinaptico e attivano i **CB1** presinaptici (Gi/Go, molto abbondanti nel cervello) → ↓ rilascio; il **NO** (gas prodotto dalla NO sintasi neuronale attivata dal Ca²⁺) diffonde al terminale e attiva la **guanilato ciclasi solubile** → cGMP."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "i neuropeptidi **non** vengono ricaptati come le monoamine e richiedono stimolazioni intense: per questo il loro effetto è lento, diffuso e «comportamentale». Il **CRH** è sia **ormone** (asse ipofisario) sia **neurotrasmettitore** (amigdala, locus coeruleus)."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ oppioidi endogeni e cannabinoidi (B8); mirtazapina (B3); NMDA e NO (G6); asse HPA e CRH (G7)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1709
+  },
+  {
+   "id": "G7__catecolamine-sintesi-mao-comt",
+   "deckId": "G7",
+   "name": "Catecolamine: biosintesi, degradazione (MAO, COMT) e metaboliti marcatori",
+   "nameShort": "Catecolamine: biosintesi, degradazione",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "**tirosina → L-DOPA** (**tirosina idrossilasi**, TH: **enzima limitante**, cofattore tetraidrobiopterina) **→ dopamina** (decarbossilasi degli L-aminoacidi aromatici, AADC o DOPA-decarbossilasi) **→ noradrenalina** (dopamina **β-idrossilasi**, nelle vescicole) **→ adrenalina** (**PNMT**, soprattutto nella midollare del surrene). Il **VMAT2** carica le vescicole; il **NET** ricapta la maggior parte (~87%) della noradrenalina rilasciata."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**MAO** (mitocondriale): **MAO-A** → noradrenalina, serotonina e **tiramina** alimentare (intestino, fegato); **MAO-B** → dopamina (SNC, piastrine). **COMT**: agisce solo sui **catecoli** (quindi non sulla serotonina)."
+    },
+    {
+     "label": "Metaboliti marcatori",
+     "value": "**noradrenalina/adrenalina → VMA** (urine: **feocromocitoma**) e MHPG (turnover centrale della noradrenalina); **dopamina → DOPAC e HVA** (l'HVA è il principale metabolita, indice del turnover dopaminergico); **serotonina → 5-HIAA** (solo MAO; urine: **sindrome da carcinoide**)."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**levodopa + carbidopa/benserazide** (inibitori **periferici** dell'AADC, non passano la BEE); **entacapone, opicapone, tolcapone** (COMT); **selegilina, rasagilina, safinamide** (MAO-B); **IMAO** non selettivi irreversibili + cibi ricchi di **tiramina** → **crisi ipertensiva** («cheese effect»), rischio minore con la **moclobemide** (MAO-A reversibile). **MPTP → MPP⁺** (via MAO-B) → captato dal **DAT** → inibisce il complesso I mitocondriale → morte dei neuroni dopaminergici della sostanza nera → parkinsonismo e modello sperimentale."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "un **metabolita aumentato** non significa sempre più sintesi: può riflettere più rilascio e degradazione o più esposizione per **blocco della ricaptazione** (cocaina) → va letto insieme al neurotrasmettitore e alla clinica. Inibire l'AADC non riduce molto le scorte tissutali di noradrenalina: il passaggio limitante è la **TH**."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ levodopa, COMT e IMAO-B (B6); IMAO (B3); α-metildopa (B10); feocromocitoma e fenossibenzamina (G4)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1677
+  },
+  {
+   "id": "G7__angina-iatrogena",
+   "deckId": "G7",
+   "name": "Angina iatrogena: meccanismi e farmaci responsabili",
+   "nameShort": "Angina iatrogena: meccanismi e farmaci responsabili",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "comparsa o peggioramento di **ischemia miocardica** indotta da farmaci, soprattutto in pazienti con **coronaropatia**. Domanda d'esame classica: va impostata **prima sul meccanismo** e poi sulle classi."
+    },
+    {
+     "label": "Come funziona",
+     "value": "il **consumo di O₂** del miocardio dipende soprattutto da **frequenza cardiaca**, contrattilità e postcarico; la tachicardia accorcia anche la **diastole**, quando le coronarie si riempiono → con stenosi fisse la domanda supera l'offerta. Quattro meccanismi: **(A)** vasodilatazione/ipotensione → **tachicardia riflessa** (baroriflesso); **(B)** **vasocostrizione coronarica** diretta; **(C)** ↑ **tono simpatico** (diretto o da rebound); **(D)** cardiotossicità o ipertensione da farmaci."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**(A)** **nifedipina a rilascio rapido**, idralazina, minoxidil, prima dose di **α1-bloccanti**; il **dipiridamolo** dilata le arteriole sane e «ruba» flusso alle zone ischemiche. **(B)** **triptani** ed **ergotaminici** (controindicati nella cardiopatia ischemica), **cocaina**, anfetamine, decongestionanti α-agonisti, **5-fluorouracile/capecitabina** (vasospasmo). **(C)** **sospensione brusca dei β-bloccanti** (o della clonidina), simpaticomimetici (dobutamina, adrenalina), levodopa, IMAO + tiramina, eccesso di **levotiroxina**. **(D)** antracicline, farmaci anti-VEGF, coxib."
+    },
+    {
+     "label": "Perché conta",
+     "value": "in un coronaropatico iperteso si preferiscono **diidropiridine a lento onset** (amlodipina) o l'associazione con un **β-bloccante**; i β-bloccanti si **scalano**; i triptani si evitano; i nitrati a lunga durata richiedono un **intervallo libero** (tolleranza) ma non vanno sospesi bruscamente."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "non elencare farmaci a caso: partire dal **baroriflesso** e dalla **fisiologia del flusso coronarico** dimostra di aver capito perché farmaci opposti (un vasodilatatore e un vasocostrittore) possono dare lo stesso sintomo."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ calcio-antagonisti (B11, G5); triptani ed ergotaminici (A7); β-bloccanti (B10); nitrati (B12b); 5-FU e antitumorali (B14); up-regulation (G4)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1706
+  },
+  {
+   "id": "G7__omeostasi-calcio-intracellulare",
+   "deckId": "G7",
+   "name": "Omeostasi del Ca²⁺ intracellulare: canali, depositi (IP3R, RyR), pompe (SERCA, PMCA) e NCX",
+   "nameShort": "Omeostasi del Ca²⁺ intracellulare: canali, depositi",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "il Ca²⁺ libero è **~1–1,2 mM** fuori e **~100 nM** nel citosol (gradiente ~10.000 volte); la maggior parte del Ca²⁺ cellulare è **legata** (calmodulina, calsequestrina) o nei **depositi** (reticolo endo/sarcoplasmatico, mitocondri). Il Ca²⁺ libero è il **segnale**: contrazione, secrezione, esocitosi dei neurotrasmettitori, trascrizione, apoptosi."
+    },
+    {
+     "label": "Come funziona",
+     "value": "**ingresso**: canali voltaggio-dipendenti (L, N, P/Q, R, T), recettori-canale (NMDA, AMPA privi di GluA2, nAChR α7), canali operati da recettori e **SOCE/CRAC** (il sensore **STIM1** nel reticolo avverte lo svuotamento e apre **ORAI1** sulla membrana plasmatica). **Rilascio dai depositi**: **IP3R** (via Gq → PLC → IP3) e **RyR** (rilascio di Ca²⁺ indotto dal Ca²⁺: RyR2 nel cuore; RyR1 nel muscolo scheletrico, accoppiato al canale L)."
+    },
+    {
+     "label": "Rimozione del Ca²⁺",
+     "value": "**SERCA** (ricarica il reticolo; regolata dal fosfolambano), **PMCA** (estrusione ad alta affinità, attivata dalla calmodulina), **NCX** (3 Na⁺ dentro / 1 Ca²⁺ fuori: alta capacità, dipende dal gradiente di Na⁺), **mitocondri** (tampone nel sovraccarico)."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**digitale**: ↓ gradiente di Na⁺ → ↓ estrusione via NCX → ↑ Ca²⁺ nel reticolo → inotropismo. **Dantrolene**: inibisce **RyR1** → ipertermia maligna (varianti **RYR1/CACNA1S** → suscettibilità ad anestetici volatili e succinilcolina). **Ciclosporina e tacrolimus** inibiscono la **calcineurina** (fosfatasi Ca²⁺/calmodulina-dipendente). I glucocorticoidi inducono l'**annessina-1** (lega Ca²⁺ e fosfolipidi) → ↓ fosfolipasi A2."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "quando il Ca²⁺ sale senza controllo (ischemia, eccitotossicità) si attivano **calpaine**, fosfolipasi e caspasi e i mitocondri si danneggiano: il danno diventa irreversibile. Nel **muscolo scheletrico** la contrazione non richiede Ca²⁺ extracellulare (accoppiamento meccanico canale L–RyR1), nel **cuore** sì."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ canali Ca²⁺ (G5); digitale (B11b, G5); glutammato ed eccitotossicità (G6); anestetici (B2); glucocorticoidi (A4)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1647
+  },
+  {
+   "id": "G7__nicotina-alfa4beta2-dipendenza",
+   "deckId": "G7",
+   "name": "Nicotina, recettore α4β2 e circuito della dipendenza (vareniclina)",
+   "nameShort": "Nicotina, recettore α4β2 e circuito della dipendenza",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "alle concentrazioni raggiunte fumando, la nicotina agisce soprattutto sul **nAChR neuronale α4β2** (alta affinità), espresso sui neuroni **dopaminergici dell'area tegmentale ventrale (VTA)**, più che sul recettore muscolare."
+    },
+    {
+     "label": "Come funziona",
+     "value": "nicotina → α4β2 → depolarizzazione dei neuroni della VTA → ↑ **dopamina** nel **nucleus accumbens** (striato ventrale: registra il **valore/rinforzo**) → lo **striato dorsale** apprende l'**azione** associata (il gesto del fumare) e la trasforma in **abitudine**. L'esposizione ripetuta **desensibilizza** i recettori → tolleranza e bisogno di dosi maggiori."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**vareniclina**: **agonista parziale α4β2** → stimola abbastanza da attenuare **craving** e astinenza e, occupando il recettore, **riduce il rinforzo** della nicotina fumata. Altre opzioni: **bupropione** (DAT/NET), **terapia sostitutiva** con nicotina (cerotti transdermici, gomme)."
+    },
+    {
+     "label": "Perché conta",
+     "value": "il **craving** è legato alla **memoria** associativa e allo **stress** (CRH nell'amigdala): è il vero bersaglio del trattamento. Secondo la lezione la vulnerabilità individuale dipende molto dal **sistema oppioide endogeno** (lo stesso che regola la soglia del dolore), non solo dal numero di recettori nicotinici."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "l'agonista **parziale** ha un **doppio ruolo**: in assenza di nicotina agisce da agonista (meno astinenza), in sua presenza da **antagonista** (meno gratificazione). Non confonderlo con un antagonista puro."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ agonisti parziali (G4); recettori-canale pentamerici (G6); bupropione (B3); asse HPA e CRH (G7)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1294
+  },
+  {
+   "id": "G7__asse-hpa-crh-cronofarmacologia",
+   "deckId": "G7",
+   "name": "Asse HPA, CRH e ritmi circadiani nella terapia (cronofarmacologia)",
+   "nameShort": "Asse HPA, CRH e ritmi circadiani nella terapia",
+   "fields": {},
+   "segments": [
+    {
+     "label": "Definizione",
+     "value": "il **CRH** (nucleo paraventricolare) agisce come **ormone** (sangue portale → **ACTH** dalla POMC → **cortisolo** dalla zona fascicolata, con feedback negativo) e come **neurotrasmettitore** extra-ipotalamico (amigdala, locus coeruleus): ansia, risposta allo stress, affetto negativo dell'**astinenza**, **ricadute**. Gli effetti **metabolici** (iperglicemia, catabolismo) sono del **cortisolo**, non del CRH."
+    },
+    {
+     "label": "Come funziona",
+     "value": "il cortisolo agisce su **MR** (alta affinità, occupati già a livelli basali) e **GR** (bassa affinità, reclutati da stress o terapia) → curva a **U rovesciata** su apprendimento e memoria (ippocampo): livelli moderati favoriscono la potenziazione sinaptica, livelli eccessivi o cronici la ostacolano (memorie traumatiche, disturbo post-traumatico da stress)."
+    },
+    {
+     "label": "Ritmo circadiano",
+     "value": "cortisolo con **picco al risveglio** (prime ore del mattino) e minimo serale-notturno; nelle stesse ore la **scarica noradrenergica** (locus coeruleus) ↑ pressione e frequenza → **picco mattutino** di infarti, ictus e aritmie."
+    },
+    {
+     "label": "Esempio clinico",
+     "value": "**glucocorticoidi** in dose unica **al mattino** (mimano il ritmo, ↓ soppressione dell'asse; eventuale schema a giorni alterni); antipertensivi con **copertura di 24 h** che includa le prime ore del mattino; **α1-bloccanti** (prazosina, doxazosina): «**effetto prima dose**» (ipotensione ortostatica, sincope) → prima dose **bassa alla sera, al momento di coricarsi**, poi aumento graduale."
+    },
+    {
+     "label": "Trappola d'esame",
+     "value": "«tutti gli antipertensivi vanno dati la sera» → non dimostrato: un grande trial pragmatico (TIME, 2022) non ha trovato differenze negli eventi tra assunzione mattutina e serale; conta la **copertura delle 24 h**. La regola della sera vale per la **prima dose** degli α1-bloccanti."
+    },
+    {
+     "label": "Collegamenti",
+     "value": "→ glucocorticoidi (A4); α1-bloccanti (B10); ansia (B1); nicotina e dipendenza (G7)."
+    }
+   ],
+   "freetext": [],
+   "tags": [],
+   "popculture": null,
+   "enriched": false,
+   "thin": false,
+   "ndCount": 0,
+   "charLen": 1517
   },
   {
    "id": "B1__benzodiazepine-bdz",

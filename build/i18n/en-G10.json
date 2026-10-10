@@ -1,0 +1,1346 @@
+{
+ "group": "G10",
+ "entries": [
+  {
+   "id": "G1__fase-biofarmaceutica-passaggio-membrane",
+   "name": "Biopharmaceutical phase and membrane passage (passive diffusion, Fick's law, carriers)",
+   "nameShort": "Biopharmaceutical phase and membrane passage",
+   "memo": "Only what is **dissolved** is absorbed: most drugs cross by **diffusion (Fick)**, hydrophilic ones need a **carrier**.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "the **active ingredient** is the molecule that binds a **target** (receptor in the broad sense) and produces a therapeutic, prophylactic or diagnostic effect; the **dosage form** = active ingredient + inert **excipients**. Absorption is preceded by the **biopharmaceutical phase**: disintegration and **dissolution** → only drug **in solution** crosses membranes. «Dosis sola facit venenum»: every drug is also a potential poison → **risk/benefit** balance."
+    },
+    {
+     "label": "How it works",
+     "value": "most drugs cross by **passive diffusion** down their gradient; hydrophilic or charged molecules use **carriers** (facilitated diffusion, secondary active transport): **levodopa**, α-methyldopa, baclofen → amino acid transporters; **β-lactams** → peptide transporter (PEPT1); **metformin** → organic cation transporters (OCT); macromolecules → endocytosis."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "**Fick's law: J = D · A · (C₁ − C₂) / thickness** → flux ↑ with gradient and **surface area**, ↓ with **thickness**; D summarizes size, **lipid solubility** (oil/water partition coefficient) and ionization. Blood carries the absorbed drug away (**sink effect**) → the gradient is maintained."
+    },
+    {
+     "label": "Why it matters",
+     "value": "**surface area**: small intestine (villi, microvilli) ≫ stomach; intestinal disease ↓ absorption. **Thickness**: the same topical corticosteroid crosses the eyelid or an infant's skin far more than the heel. **Large molecules** (proteins, antibodies, heparin) do not diffuse → parenteral route."
+    },
+    {
+     "label": "Exam trap",
+     "value": "**more lipophilic does not always mean better absorbed**: a partition coefficient that is too high «traps» the drug in the lipid bilayer and hinders its passage to cytosol and plasma; too low → it does not cross. A **hydrophilic–lipophilic balance** is needed."
+    },
+    {
+     "label": "Connections",
+     "value": "→ pKa and ion trapping (G1); P-glycoprotein (G1); levodopa and protein meals (B6); parenteral biologics (A9)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G1__pka-henderson-hasselbalch-ion-trapping",
+   "name": "pKa, Henderson–Hasselbalch equation and ion trapping",
+   "nameShort": "pKa, Henderson–Hasselbalch equation and ion trapping",
+   "memo": "Only the **non-ionized** form crosses: an acid gets **trapped** where the medium is basic, a base where it is acidic.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "nearly all drugs are **weak acids or bases**; the **pKa** is the pH at which the drug is **50%** ionized. Only the **non-ionized** (lipid-soluble) form crosses membranes by diffusion; the charged form is hydrophilic and stays in its compartment."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "**weak acid**: log([HA]/[A⁻]) = pKa − pH → at pH < pKa HA (non-ionized) predominates. **Weak base**: log([BH⁺]/[B]) = pKa − pH → at pH < pKa BH⁺ (ionized) predominates. Each pH unit of difference = factor of **10**. Example: acid with pKa 4.4 → ionized/non-ionized ratio **1000:1 in plasma (pH 7.4)** and **1:1000 in gastric juice (pH 1.4)**."
+    },
+    {
+     "label": "How it works",
+     "value": "**ion trapping**: at equilibrium an **acid accumulates in the more basic compartment**, a **base in the more acidic one**, because it ionizes there and cannot diffuse back. Applications: **urine** (alkalinizing with NaHCO₃ speeds excretion of salicylates and phenobarbital), **breast milk** and **fetal plasma** (more acidic than maternal plasma → concentrate weak bases)."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**aspirin** (acid, pKa ≈ 3.5): non-ionized in the stomach → enters mucosal cells, where at pH ~7 it ionizes and is trapped (local contribution to gastric injury, besides COX-1 inhibition). **Morphine** (base): protonated at gastric pH → practically not absorbed in the stomach."
+    },
+    {
+     "label": "Exam trap",
+     "value": "«is aspirin absorbed in the stomach because it is non-ionized there?» → absorption **starts** there, but **most** occurs in the **small intestine** (pH ~6.5): the huge surface area and blood flow outweigh the greater ionization. pH explains the **direction**, surface area decides the **amount**."
+    },
+    {
+     "label": "Connections",
+     "value": "→ renal excretion and urinary pH (G3); NSAIDs and gastric injury (A5); local anaesthetics, weak bases (B2)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G1__vie-somministrazione-primo-passaggio",
+   "name": "Routes of administration and first-pass effect",
+   "nameShort": "Routes of administration and first-pass effect",
+   "memo": "By mouth the drug passes **through the liver first**: **sublingual** avoids it, **rectal** only halfway.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**enteral routes** (oral, sublingual, rectal), **parenteral** (intravenous, intramuscular, subcutaneous, intra-arterial, intrathecal), **inhalational**, **topical/transdermal**; each can act **systemically** or **locally**. **First pass**: the fraction of an oral dose removed by the **gut wall** (CYP3A4, esterases, P-gp) and **liver** (portal route) **before** reaching the systemic circulation → ↓ bioavailability."
+    },
+    {
+     "label": "How it works",
+     "value": "**oral**: convenient, cheap, safe (partly retrievable) but onset ~30–60 min and variable absorption. **Sublingual**: drains into the superior vena cava → **no first pass** (nitroglycerin). **Rectal**: about **50%** bypasses the liver → partial first pass; useful with vomiting or uncooperative patients. **IV**: 100% bioavailability, immediate effect, large volumes, but slow infusion and higher risk. **IM/SC**: absorption tunable by formulation (depots, long-acting insulins)."
+    },
+    {
+     "label": "Clinical example",
+     "value": "high first pass: **nitroglycerin** (ineffective orally → sublingual or patch), **propranolol**, **lidocaine**, **morphine**, verapamil, nifedipine, tricyclics. **Food** ↑ propranolol bioavailability (↑ splanchnic flow) → take it consistently with respect to meals. Luminal interactions: **tetracyclines + Ca²⁺/Mg²⁺/Al³⁺** (insoluble chelates), **penicillin G** destroyed by acid, **bile acid resins** + digoxin, **metoclopramide** advances and **anticholinergics** delay the peak (gastric emptying)."
+    },
+    {
+     "label": "Why it matters",
+     "value": "to stay **local**: **charged** drugs (tiotropium, quaternary ammonium), a **vasoconstrictor** with local anaesthetics, inhaled corticosteroids with high first pass (fluticasone, budesonide), particle size and spacers. But a topical route can become **systemic**: skin corticosteroids in children, **β-blocker eye drops** (bradycardia, bronchospasm)."
+    },
+    {
+     "label": "Exam trap",
+     "value": "«sublingual is fast because the surface is large» → **false**: the surface is small; it is fast because of **high vascularity**, **portal bypass** and use with **highly lipid-soluble**, non-ionized drugs (nitroglycerin)."
+    },
+    {
+     "label": "Connections",
+     "value": "→ bioavailability (G1); P-glycoprotein (G1); CYP3A4 and grapefruit (G2); inhaled corticosteroids (A4, A8); nitrates (B12b)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G1__glicoproteina-p-mdr1-abcb1",
+   "name": "P-glycoprotein (P-gp, MDR1/ABCB1)",
+   "nameShort": "P-glycoprotein",
+   "memo": "P-gp **pumps out** the intact drug: less absorption, more excretion, brain and fetus protected.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**ATP-dependent efflux pump** of the **ABC** family (gene **ABCB1/MDR1**) on the **luminal/apical** side of enterocytes, hepatocytes (bile canaliculus), proximal tubule, **blood–brain barrier endothelium**, placenta, testis. It extrudes amphipathic/lipophilic substrates **without modifying them**."
+    },
+    {
+     "label": "How it works",
+     "value": "in the gut it **returns** part of the absorbed drug **to the lumen** (↓ bioavailability); in liver and kidney it **speeds excretion** (bile, urine); at the BBB and placenta it **protects** the CNS and fetus. It works in tandem with enterocyte **CYP3A4**, sharing many substrates and inhibitors → combined effect on oral bioavailability."
+    },
+    {
+     "label": "Clinical example",
+     "value": "substrates: **digoxin**, quinidine, verapamil, diltiazem, **ciclosporin**, tacrolimus, **loperamide**, fexofenadine, HIV protease inhibitors, erythromycin, anticancer drugs (**doxorubicin, vincristine, etoposide**). Inhibitors (quinidine, verapamil, clarithromycin, ritonavir) → **↑ digoxin levels**; **PXR** inducers (**rifampicin, St John's wort**) → ↓ digoxin bioavailability."
+    },
+    {
+     "label": "Why it matters",
+     "value": "**loperamide + quinidine**: P-gp inhibition at the BBB lets a normally peripheral opioid into the CNS → **respiratory depression**. In tumours, P-gp **overexpression** causes **multidrug resistance** (MDR) to structurally unrelated chemotherapeutics."
+    },
+    {
+     "label": "Exam trap",
+     "value": "P-gp is **not an enzyme**: it does not metabolize, it **pumps out** the intact drug. A «P-gp interaction» changes exposure without new metabolites and often coexists with a CYP3A4 interaction."
+    },
+    {
+     "label": "Connections",
+     "value": "→ digoxin (B11b); antidiarrhoeals – loperamide (A11); clarithromycin (Antibiotici-3); chemotherapy resistance (B14); enzyme inducers (G2)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G1__biodisponibilita-auc-cmax-tmax",
+   "name": "Bioavailability (F) and the concentration–time curve (AUC, Cmax, Tmax)",
+   "nameShort": "Bioavailability",
+   "memo": "F = how much drug **actually reaches** the circulation: **AUC** tells how much, **Cmax and Tmax** how fast.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**bioavailability (F)** = fraction of the dose reaching the systemic circulation **unchanged** (0–100%). **Absolute**: versus the intravenous route (F = 100% by definition); **relative**: between two formulations or two non-IV routes."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "**F = (AUC_oral × Dose_IV) / (AUC_IV × Dose_oral)**. **AUC** (area under the curve, e.g. trapezoidal method) = **extent** of exposure; **Cmax** and **Tmax** = **rate** of absorption. Example: oral digoxin **F ≈ 0.7** → the oral dose must be ~1.4 times the IV dose for the same exposure."
+    },
+    {
+     "label": "How it works",
+     "value": "on the concentration–time curve: rising phase (absorption > distribution + elimination), **peak** (balance), falling phase (distribution, metabolism, excretion). **Onset** = time to exceed the **minimum effective concentration (MEC)**; **duration of action** ≈ time above the MEC; above the **minimum toxic concentration** adverse effects appear → the range between them is the **therapeutic window**."
+    },
+    {
+     "label": "Why it matters",
+     "value": "oral F is reduced by acid and digestive enzymes, poor solubility, **P-gp**, intestinal and hepatic **first pass**, gastric emptying, gut disease. F is used to **convert doses between routes**: loading and maintenance doses are divided by F."
+    },
+    {
+     "label": "Exam trap",
+     "value": "same AUC ≠ same effect: two formulations with equal F may have **different Cmax/Tmax** (one exceeds the MEC, the other does not or does so late). That is why **bioequivalence** requires AUC **and** Cmax."
+    },
+    {
+     "label": "Connections",
+     "value": "→ bioequivalence (G1); loading and maintenance doses (G3); first pass (G1)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G1__bioequivalenza-generici-biosimilari",
+   "name": "Bioequivalence: generic medicines vs biosimilars",
+   "nameShort": "Bioequivalence: generic medicines vs biosimilars",
+   "memo": "A generic must give the **same exposure** (90% CI within **80–125%**); a biosimilar must also show **efficacy and safety**.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "two **pharmaceutically equivalent** products (same active ingredient, strength, dosage form and route) are **bioequivalent** if the **rate and extent** of absorption (AUC, Cmax, Tmax) do not differ significantly. This underpins approval of **generics** when the patent expires: excipients may change, exposure may not."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "**EMA/FDA criterion**: the **90% confidence interval** of the test/reference ratio (geometric means) of **AUC and Cmax** must lie within **80.00–125.00%** (symmetric on a log scale). For **narrow-therapeutic-index** drugs the EMA narrows it to **90.00–111.11%** (at least for AUC)."
+    },
+    {
+     "label": "Why it matters",
+     "value": "a generic **omits** preclinical and clinical efficacy studies: the bioequivalence study «transfers» the originator's data. A **biosimilar** cannot: a protein made by living cells is never identical («the process makes the product») → a **comparability exercise** on quality, non-clinical and **clinical** data (efficacy, safety, **immunogenicity**) is required."
+    },
+    {
+     "label": "Exam trap",
+     "value": "«80–125% means a generic may contain 20% less drug» → **false**: the limit applies to the **confidence interval of the exposure ratio**, not to drug content (which has much tighter quality limits); observed mean differences are a few percent. But each generic is compared with the **reference**, not with other generics."
+    },
+    {
+     "label": "Connections",
+     "value": "→ biosimilars (A9); bioavailability (G1); therapeutic index (G4)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G2__legame-proteine-plasmatiche-spiazzamento",
+   "name": "Plasma protein binding (albumin, α1-acid glycoprotein) and displacement",
+   "nameShort": "Plasma protein binding",
+   "memo": "Only the **free fraction** acts, is filtered and metabolized; displacement raises it only **transiently**.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "in plasma a drug is in **dynamic equilibrium** between **free** and **bound** forms (weak, reversible bonds). Only the **free fraction** crosses membranes, reaches the target, is **filtered** by the glomerulus and (for low-extraction drugs) **metabolized**; the bound fraction is a **reservoir** that prolongs its stay. % bound = bound/total × 100."
+    },
+    {
+     "label": "How it works",
+     "value": "**albumin** → **acidic** drugs (site I: **warfarin**, NSAIDs, sulfonylureas, valproate, furosemide; site II: **diazepam**, ibuprofen); **α1-acid glycoprotein** (an **acute-phase** protein) → **basic** drugs (**lidocaine**); **lipoproteins** → highly lipophilic drugs (amiodarone); specific carrier proteins (transcortin, SHBG, TBG) → steroids and hormones."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "**very high** binding (≥95–99%): **warfarin ~99%**, **ibuprofen >99%**, amiodarone, valproate (~90%, saturable at high doses); **low**: **metformin**, **paracetamol**, allopurinol. When sites **saturate**, the free fraction rises more than proportionally with dose."
+    },
+    {
+     "label": "Why it matters",
+     "value": "the free fraction ↑ with **hypoalbuminaemia** (liver disease, nephrotic syndrome, malnutrition, burns, pregnancy); in **acute-phase reactions** (MI, cancer, arthritis, Crohn's) ↑ α1-acid glycoprotein → ↑ binding of bases. Plasma assays usually measure the **total**: with low albumin a «normal» level can hide too much free drug."
+    },
+    {
+     "label": "Exam trap",
+     "value": "**displacement** (e.g. NSAIDs competing with warfarin at site I): the rise in free fraction is **transient** — the released drug distributes and is eliminated, and at **steady state the free concentration returns to baseline unless clearance changes**. It matters mainly for **narrow-therapeutic-index, high-clearance, IV** drugs (e.g. lidocaine). The warfarin + NSAID risk is mostly **pharmacodynamic** (antiplatelet effect, gastric lesions) and, for some NSAIDs, **CYP2C9** inhibition."
+    },
+    {
+     "label": "Connections",
+     "value": "→ oral anticoagulants (B12); volume of distribution (G2); clearance (G3)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G2__distribuzione-tissutale-bee-adipe",
+   "name": "Tissue distribution: perfusion, blood–brain barrier, tissue affinity and redistribution",
+   "nameShort": "Tissue distribution: perfusion, blood–brain barrier, tissue affinity and redistribution",
+   "memo": "Drug goes **first where blood flow is highest**, then where it finds **affinity**: waking from thiopental is **redistribution**.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "passage of drug **from plasma to tissues** (interstitium → cells). It depends on **free fraction**, organ **perfusion**, **capillary/barrier type**, physicochemical **affinity** for the tissue (lipid solubility, specific binding) and **transporters**. Drug also reaches tissues without the target → **depots** and adverse effects."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "resting blood flow (70 kg): **kidney ~20%** of cardiac output (highest per gram), **liver ~31%**, **brain ~15%**, heart ~4.5%; **muscle** ~16% but little per kg; **fat** ~4.5% and very slow → highly perfused organs equilibrate first, fat last."
+    },
+    {
+     "label": "How it works",
+     "value": "**fenestrated** capillaries (liver, kidney, spleen, gut, endocrine glands) even let antibodies through; the **BBB** (tight junctions + P-gp) admits only **small, lipophilic, non-ionized** molecules or those with a transporter: **dopamine** does not cross → **levodopa** is given; **tubocurarine** (quaternary ammonium) stays peripheral."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**thiopental**: after an IV bolus it reaches the brain at once; awakening depends on **redistribution** to muscle and fat, not on metabolism. **Lidocaine in shock**: hypoperfused muscle → more drug to the CNS → **seizures**. **Azithromycin**: intracellular/tissue levels (including phagocytes) far above plasma → short courses. **Bisphosphonates** → bone (pyrophosphate analogues); **tetracyclines** → bones and teeth (chelate Ca²⁺)."
+    },
+    {
+     "label": "Exam trap",
+     "value": "«should a drug that accumulates in fat be given by another route?» → **no**: distribution happens **after** entry into the circulation and depends on the molecule, not the route; the route changes bioavailability and absorption rate. Fat storage matters in **chronic therapy** (lipophilic benzodiazepines: slow, unpredictable release, more so in the elderly with more fat mass)."
+    },
+    {
+     "label": "Connections",
+     "value": "→ intravenous anaesthetics (B2); benzodiazepines (B1); azithromycin (Antibiotici-3); bisphosphonates (A12); levodopa (B6)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G2__volume-di-distribuzione-apparente",
+   "name": "Apparent volume of distribution (Vd)",
+   "nameShort": "Apparent volume of distribution",
+   "memo": "Vd is an **imaginary** volume: small if the drug stays in the blood, **huge** if it hides in tissues.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**Vd = amount of drug in the body / plasma concentration** (after an IV bolus: Dose/C₀). It is the **theoretical** volume needed to hold all the drug at the concentration measured in plasma: a **distribution** parameter, not an anatomical space."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "references (70 kg): **plasma ~3–4 L (~0.05 L/kg)**, **extracellular fluid ~14 L (~0.2 L/kg)**, **total body water ~42 L (~0.6 L/kg)**. Examples: **heparin ~0.05–0.1 L/kg** (stays in plasma), **warfarin ~0.1–0.2** (albumin-bound), tubocurarine ~0.2 (extracellular), theophylline ~0.5, **digoxin ~6 L/kg (~500 L)**, **chloroquine ~15,000 L**."
+    },
+    {
+     "label": "How it works",
+     "value": "**small** Vd: hydrophilic, large or highly plasma-protein-bound drug → stays in the vascular compartment. **Large** Vd (above total body water): drug **sequestered in tissues** (lipids, tissue proteins and phospholipids) → low plasma concentration."
+    },
+    {
+     "label": "Why it matters",
+     "value": "**loading dose = target C × Vd / F**: theophylline, Vd 0.5 L/kg × 70 kg = 35 L, target 10 mg/L → **350 mg**. **t½ = 0.693 × Vd / CL** → at equal clearance a large Vd prolongs t½ (amiodarone: weeks). Small Vd → **haemodialysis works** in poisoning; large Vd (tricyclics, digoxin) → dialysis is useless."
+    },
+    {
+     "label": "Exam trap",
+     "value": "a Vd of 15,000 L is not a calculation error: it says almost all the drug is **in tissues**, but **not where**. Vd changes with age, obesity, oedema: diazepam has a longer t½ in the elderly because of **↑ Vd**, not ↓ clearance."
+    },
+    {
+     "label": "Connections",
+     "value": "→ protein binding (G2); half-life and loading dose (G3); digoxin (B11b)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G2__biotrasformazione-fase-1-fase-2-cyp",
+   "name": "Biotransformation: phase 1 (CYP450) and phase 2 (conjugation) reactions",
+   "nameShort": "Biotransformation: phase 1",
+   "memo": "**Phase 1** adds a polar handle (often via **CYP**), **phase 2** attaches a conjugate: the result is an **excretable** drug.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "set of reactions (mainly **hepatic**, also intestinal, renal, pulmonary) that make a drug **more polar** → excretable in urine or bile; usually they end its activity. **Phase 1 (functionalization)**: introduces or unmasks a polar group (–OH, –COOH, –NH₂, –SH). **Phase 2 (conjugation)**: attaches a highly polar endogenous substrate."
+    },
+    {
+     "label": "How it works",
+     "value": "**phase 1**: **oxidations** (CYP450 = **haem** monooxygenases: Fe³⁺, reduced by electrons from NADPH, binds O₂ and inserts one oxygen atom into the substrate: RH + O₂ + NADPH + H⁺ → ROH + H₂O + NADP⁺), reductions, **hydrolysis** (esterases: aspirin → salicylate; enalapril → enalaprilat). **Phase 2**: **glucuronidation** (UGT, the most important), sulfation (SULT), **acetylation** (NAT2), **glutathione** conjugation (GST), **methylation** (COMT, TPMT)."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "nomenclature: **CYP + family (number) + subfamily (letter) + isoform (number)** → CYP**3A4**. A few isoforms of families 1–3 metabolize most drugs; **CYP3A4**, the most abundant in liver, is involved in **over 50%** of drugs in use."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**phenytoin** → 4-hydroxyphenytoin (CYP) → glucuronide (UGT): from an almost insoluble molecule to a water-soluble metabolite. **Statins**: lova-, simva-, atorvastatin → **CYP3A4**; fluvastatin → **CYP2C9**; **pravastatin** (and rosuvastatin) little CYP-dependent → preferred with 3A4 inhibitors (macrolides, azoles) to reduce **myopathy/rhabdomyolysis** risk."
+    },
+    {
+     "label": "Exam trap",
+     "value": "phase 2 does **not always follow** phase 1 (oxazepam and lorazepam are glucuronidated directly) and does not always increase water solubility: **acetylation and methylation** can reduce it. **Neonates** have immature UGTs (physiological jaundice; chloramphenicol «grey baby» syndrome)."
+    },
+    {
+     "label": "Connections",
+     "value": "→ inducers and inhibitors (G2); active metabolites and prodrugs (G2); polymorphisms (G2); statins (B9)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G2__induttori-inibitori-cyp-pompelmo",
+   "name": "CYP inducers and inhibitors (and grapefruit juice)",
+   "nameShort": "CYP inducers and inhibitors",
+   "memo": "**Inhibitors** raise levels within **hours**; **inducers** lower them over **days** and wear off slowly.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**induction** = ↑ **synthesis** of enzymes (and transporters such as P-gp) via nuclear receptors (**PXR**: rifampicin, St John's wort; **CAR**: phenobarbital; **AhR**: smoking, omeprazole) → ↑ clearance → **↓ concentrations and effect**. **Inhibition** = competitive or irreversible («suicide») block → ↓ clearance → **↑ concentrations and toxicity**."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "**timing**: inhibition appears within **hours–a few days** (depends on the inhibitor's t½); induction needs **days–1/2 weeks** (protein synthesis) and **persists** for days after withdrawal (enzyme turnover)."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**inducers**: **rifampicin** (the strongest), **carbamazepine** (also autoinduction), **phenytoin**, **phenobarbital**, **St John's wort**, cigarette smoke (CYP1A2), chronic ethanol (CYP2E1). **Inhibitors**: **erythromycin/clarithromycin** (not azithromycin), **azoles** (ketoconazole, itraconazole, voriconazole), **ritonavir**, cimetidine, amiodarone, **valproate**, SSRIs (**fluoxetine/paroxetine → CYP2D6**; fluvoxamine → 1A2/2C19), **grapefruit juice** (furanocoumarins → CYP3A4)."
+    },
+    {
+     "label": "Why it matters",
+     "value": "**rifampicin + oral contraceptive** → contraceptive failure; **clarithromycin + simvastatin** → rhabdomyolysis; **terfenadine + erythromycin/grapefruit** → long QT and torsades (terfenadine withdrawn); ketoconazole + protease inhibitors → toxicity. Harm is greater when the victim drug has a **narrow therapeutic index**."
+    },
+    {
+     "label": "Exam trap",
+     "value": "**grapefruit** inhibits mainly **intestinal** CYP3A4 **irreversibly** → raises the **oral** bioavailability of high-first-pass substrates (felodipine, simvastatin, ciclosporin, midazolam), not the clearance of an IV drug; the effect lasts **1–3 days** (new enzyme must be synthesized) → spacing doses by a few hours is not enough."
+    },
+    {
+     "label": "Connections",
+     "value": "→ rifampicin (Antibiotici-2); macrolides (Antibiotici-3); statins (B9); carbamazepine (B4); SSRIs (B3)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G2__metaboliti-attivi-reattivi-profarmaci",
+   "name": "Active metabolites, reactive intermediates and prodrugs (benzodiazepines, paracetamol, clopidogrel, codeine)",
+   "nameShort": "Active metabolites, reactive intermediates and prodrugs",
+   "memo": "Metabolism can **prolong** the effect (nordiazepam), make it **toxic** (NAPQI) or **switch it on** (prodrugs).",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "metabolism does not always inactivate: it can produce **active metabolites** (prolonging the effect), **reactive intermediates** (covalent binding to proteins and DNA → toxicity, typically hepatic) or activate a **prodrug** (given inactive, activated by metabolism)."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**active metabolites**: **diazepam → nordiazepam → oxazepam** (all active; nordiazepam has a very long half-life → overall effect lasting days) → inactive glucuronide. By contrast **oxazepam, lorazepam, temazepam** are only **glucuronidated** (inactive metabolites) → preferred in **elderly and liver patients**; triazolam, midazolam, alprazolam → CYP3A4, short duration."
+    },
+    {
+     "label": "How it works",
+     "value": "**paracetamol**: mostly **glucuronidated and sulfated**; a small fraction → **CYP2E1** (and 3A4) → **NAPQI**, neutralized by **glutathione**. In **overdose** conjugation saturates, GSH is depleted and NAPQI binds proteins covalently → **centrilobular hepatic necrosis**. Antidote: **N-acetylcysteine** (restores GSH), most effective within **8–10 h**."
+    },
+    {
+     "label": "Prodrugs",
+     "value": "**enalapril → enalaprilat** (esterases); **clopidogrel** → active metabolite in 2 steps via **CYP2C19** (only ~15% of the dose); **codeine → morphine** via **CYP2D6** (~5–10%); **levodopa → dopamine**; valaciclovir → aciclovir."
+    },
+    {
+     "label": "Exam trap",
+     "value": "paracetamol toxicity ↑ when **GSH is low** or **CYP2E1 is induced**: chronic alcoholism, fasting or malnutrition, liver disease. And a prodrug activated by a **single polymorphic enzyme** (clopidogrel, codeine) is the textbook case for **pharmacogenetics**."
+    },
+    {
+     "label": "Connections",
+     "value": "→ paracetamol (A5); benzodiazepines (B1); P2Y12 antagonists (B12); weak opioids (B8); polymorphisms (G2)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G2__polimorfismi-cyp-farmacogenetica",
+   "name": "CYP polymorphisms and pharmacogenetics (CYP2C9, CYP2C19, CYP2D6, NAT2)",
+   "nameShort": "CYP polymorphisms and pharmacogenetics",
+   "memo": "Same dose, opposite response: for a **prodrug** ultrarapid metabolizers risk **toxicity**, poor metabolizers **failure**.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**polymorphism** = gene variant present in **>1%** of the population. Metabolic phenotypes: **poor (PM)**, **intermediate (IM)**, **normal/extensive (EM)**, **ultrarapid (UM**, gene duplications). **Pharmacogenetics** studies how such variants change drug efficacy and toxicity."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "data reported in the lecture (≈360 healthy Italian volunteers): **CYP2C9** (*2/*3 variants) heterozygotes ~**32%**, two variant alleles ~**6%**; **CYP2C19** (*2) heterozygotes ~**19%**, homozygotes ~**1.7%**; **CYP2D6**: EM ~**53%**, heterozygotes ~**35%**, PM ~**3.4%**, **UM ~8.3%** (UMs more frequent in the **Mediterranean** area)."
+    },
+    {
+     "label": "Clinical example",
+     "value": "slow **CYP2C9** → **warfarin** degraded less → bleeding (lower doses, close INR). **CYP2C19** PM → **clopidogrel** not activated → **stent thrombosis** (prefer prasugrel or ticagrelor); but omeprazole more effective. **CYP2D6**: PM → **codeine ineffective** and nortriptyline accumulation; UM → excess morphine from codeine → **respiratory depression** (paediatric deaths: codeine contraindicated **under 12 years**). Slow **NAT2** acetylators → **isoniazid** toxicity."
+    },
+    {
+     "label": "Why it matters",
+     "value": "it justifies **pre-prescription tests** (CYP2C19 for clopidogrel, CYP2C9/VKORC1 for warfarin, HLA-B for abacavir) and explains why the same dose gives opposite responses in different patients."
+    },
+    {
+     "label": "Exam trap",
+     "value": "UM is **not always «better»**: for a **prodrug** (codeine) UM = **toxicity** and PM = failure; for an **active drug inactivated** by the CYP (nortriptyline) it is the reverse, PM = toxicity and UM = failure."
+    },
+    {
+     "label": "Connections",
+     "value": "→ P2Y12 antagonists and oral anticoagulants (B12); weak opioids (B8); PPIs (A11); isoniazid (Antibiotici-2)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G3__vie-eliminazione-circolo-enteroepatico",
+   "name": "Elimination routes and enterohepatic circulation",
+   "nameShort": "Elimination routes and enterohepatic circulation",
+   "memo": "A glucuronide excreted in bile can be **reabsorbed** after bacterial hydrolysis: the drug **comes back** and lasts longer.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**main** routes: **kidney** (urine; hydrophilic molecules or those made so by metabolism) and **liver → bile → faeces**. **Minor** routes: **lungs** (volatile anaesthetics, ethanol → breathalyser), **sweat and saliva** (drug tests), **breast milk** (risk to the infant), **hair** (keratin; growth ~1 cm/month → dating exposure in forensic medicine)."
+    },
+    {
+     "label": "How it works",
+     "value": "**enterohepatic circulation**: conjugates (mainly **glucuronides**) excreted in bile are hydrolysed by **bacterial β-glucuronidases** → the free, again lipophilic drug is **reabsorbed** and returns to the liver. Consequences: ↑ residence time, **secondary peaks**, longer apparent half-life."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**indomethacin**: steady-state t½ ~2.4 h but **terminal t½ ~120 h**, attributed to biliary cycling. Lecture example: **digoxin** may show rebounds in concentration hours later; **digitoxin** (more lipophilic, mainly hepatic elimination, marked enterohepatic cycling, half-life of days) was even harder to manage and has been abandoned."
+    },
+    {
+     "label": "Why it matters",
+     "value": "the cycle can be **interrupted** by agents that bind metabolites in the gut (**bile acid sequestrants** such as cholestyramine, activated charcoal) → useful in poisoning, but a source of interactions (↓ absorption of digoxin, warfarin)."
+    },
+    {
+     "label": "Exam trap",
+     "value": "«antibiotics + the pill = pregnancy by blocking enterohepatic cycling» → weak evidence for common antibiotics; the **proven** interaction is **enzyme induction** (**rifampicin**). In **milk**, more acidic than plasma, **weak bases** concentrate."
+    },
+    {
+     "label": "Connections",
+     "value": "→ digoxin (B11b); resins and other lipid-lowering drugs (B9); rifampicin (Antibiotici-2); ion trapping (G1)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G3__escrezione-renale-oat-oct-ph-urinario",
+   "name": "Renal excretion: filtration, tubular secretion (OAT/OCT), reabsorption and urinary pH",
+   "nameShort": "Renal excretion: filtration, tubular secretion",
+   "memo": "The kidney **filters** free drug, **secretes** even bound drug via OAT/OCT, **reabsorbs** the non-ionized form: urinary pH decides the last step.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "three processes: **glomerular filtration** (passive; only **free**, small drug: albumin does not pass), **active tubular secretion** (**proximal** tubule, transporters; the main determinant of renal excretion), **passive reabsorption** (mainly distal; depends on lipid solubility, pKa and **urinary pH**)."
+    },
+    {
+     "label": "How it works",
+     "value": "**OAT1/OAT3** (organic anions: **penicillins**, **NSAIDs**, **methotrexate**, diuretics, **probenecid**, urate) and **OCT2/MATE** (cations: **metformin**, cimetidine, trimethoprim, procainamide); P-gp for **digoxin**. Secretion is **not limited by protein binding**. **Morphine** (a base, via OCT) becomes an anion after glucuronidation → also via OAT."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**probenecid** competes with **penicillin** for OAT1/OAT3 → slows its excretion and prolongs its levels (historical strategy). **NSAIDs or probenecid + methotrexate** → ↓ excretion → toxicity. Uric acid: **furosemide/thiazides** ↑ uricaemia (gout); low-dose **aspirin** retains urate, high doses (>3 g/day) are uricosuric; probenecid also inhibits **URAT1** (uricosuric)."
+    },
+    {
+     "label": "Urinary pH and special populations",
+     "value": "**urinary ion trapping**: **weak acid → alkalinize** urine (**NaHCO₃**: salicylates, phenobarbital) → A⁻ trapped; **weak base → acidify** (NH₄Cl; amphetamines) → BH⁺ trapped, now rarely used (acidosis, rhabdomyolysis). **Neonates**: immature secretion; **elderly**: progressively ↓ renal function → dose by **eGFR** (Cockcroft–Gault, CKD-EPI)."
+    },
+    {
+     "label": "Exam trap",
+     "value": "«a highly protein-bound drug cannot be eliminated by the kidney» → true for **filtration**, not for **active secretion**, which strips drug even from proteins (penicillins are cleared rapidly despite binding)."
+    },
+    {
+     "label": "Connections",
+     "value": "→ β-lactams; diuretics (B11b); metformin (A10); NSAIDs (A5); ion trapping (G1)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G3__cinetica-ordine-uno-e-ordine-zero",
+   "name": "First-order and zero-order (saturable) elimination kinetics",
+   "nameShort": "First-order and zero-order",
+   "memo": "First order = a fixed **percentage** is lost; zero order = a fixed **amount**: with **phenytoin** small dose increases do big harm.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**first order**: elimination rate is **proportional to concentration** → a **constant fraction** is removed per unit time; **exponential** decline (straight line on a semi-log plot), **constant t½**. **Zero order**: the system is **saturated** → a **constant amount** is removed per unit time; **linear** decline, t½ not constant."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "**C(t) = C₀ · e^(−k·t)**, with **k = CL/Vd = 0.693/t½**. Michaelis–Menten: **v = Vmax · C / (Km + C)** → when C ≪ Km kinetics are first order; when C ≫ Km they become zero order. After 3 t½ 12.5% remains, after 5 t½ about 3%."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**ethanol**: alcohol dehydrogenase saturated even at low concentrations → roughly constant elimination (about **7–10 g/h**). **Phenytoin**: Km (5–10 mg/L) close to the lower end of the therapeutic range (10–20 mg/L) → small dose increases give **large rises** in concentration. High-dose **salicylates**."
+    },
+    {
+     "label": "Why it matters",
+     "value": "with saturable elimination the steady-state concentration is **not proportional to dose**, steady state comes later and unpredictably and a constant t½ no longer applies → **therapeutic drug monitoring (TDM)** and small, gradual dose increases."
+    },
+    {
+     "label": "Exam trap",
+     "value": "the lecture also lists other antiepileptics as saturable; the paradigm case to bring is **phenytoin**. **Carbamazepine** is famous for something else: **autoinduction** (clearance ↑ over the first weeks → the dose must be raised)."
+    },
+    {
+     "label": "Connections",
+     "value": "→ antiepileptics (B9); aspirin (A5); clearance and half-life (G3)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G3__clearance-renale-epatica-totale",
+   "name": "Clearance (CL): renal, hepatic and total",
+   "nameShort": "Clearance",
+   "memo": "Clearance sets the **maintenance dose**: dosing rate = **CL × desired concentration**.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**volume of plasma (or blood) completely cleared of drug per unit time** (mL/min, L/h): **CL = elimination rate / concentration**. It is **additive**: total CL = renal CL + hepatic CL + other."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "at **steady state**: dosing rate = **CL × Css** → **maintenance dose = Css × CL × τ / F**. Lecture example: **clonidine**, CL 3 mL/min/kg, target 1 ng/mL → infusion **3 ng/min/kg** (~0.2 µg/min in 70 kg). Hepatic: **CL_H = Q_H × E** (Q_H ~0.8–1.5 L/min; E = extraction ratio)."
+    },
+    {
+     "label": "How it works",
+     "value": "**high-extraction** drugs (E → 1; systemic CL > ~6 mL/min/kg: **lidocaine, propranolol, morphine, diltiazem, imipramine**) → CL limited by **hepatic blood flow** (↓ in heart failure, shock) and large first pass. **Low extraction** (e.g. warfarin, phenytoin, theophylline) → CL depends on **free fraction** and **enzyme activity** (inducers, inhibitors)."
+    },
+    {
+     "label": "Why it matters",
+     "value": "it is the key parameter for **chronic therapy**: it sets the **maintenance dose**. If CL ↓ (renal failure for aminoglycosides, digoxin, metformin; hepatic failure for metabolized drugs) and the dose is unchanged → **accumulation** and toxicity."
+    },
+    {
+     "label": "Exam trap",
+     "value": "CL is a **proportionality constant**, not the amount eliminated (which also depends on concentration); and **t½ does not measure CL**: a drug can have high CL and a long t½ if its **Vd is huge**."
+    },
+    {
+     "label": "Connections",
+     "value": "→ half-life and dosing (G3); first pass (G1); renal excretion (G3); metabolism (G2)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G3__emivita-steady-state-dose-di-carico",
+   "name": "Half-life, steady state, loading dose and maintenance dose",
+   "nameShort": "Half-life, steady state, loading dose and maintenance dose",
+   "memo": "Steady state arrives in **4–5 half-lives** whatever the dose; if you cannot wait, use a **loading dose** (Vd).",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**half-life (t½)** = time for the plasma concentration to **halve** (first-order kinetics). **Steady state** = the condition in which, with repeated doses or a constant infusion, **input rate = elimination rate** and concentrations fluctuate around a plateau."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "**t½ = 0.693 × Vd / CL**. Accumulation towards steady state: 1 t½ → 50%, 2 → 75%, 3 → 87.5%, **4 → ~94%**, **5 → ~97%** → the **4–5 half-life** rule (also for **washout**). **Loading dose = target C × Vd / F**; **maintenance dose = target C × CL × τ / F**. With dosing interval τ = t½ the concentration fluctuates two-fold."
+    },
+    {
+     "label": "How it works",
+     "value": "the **time** to steady state depends **only on t½**; the **level** reached depends on dose, interval, F and CL. t½ «summarizes» distribution (Vd) and elimination (CL)."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**lidocaine** (t½ 1–2 h) for a post-infarction arrhythmia: waiting 4 t½ (4–8 h) is unacceptable → **loading bolus + infusion**. **Digoxin** (t½ ~3 days): without loading it takes almost **2 weeks** → divided loading (e.g. 0.25 + 0.25 + 0.125 mg 6–8 h apart) with monitoring. Fluoxetine/norfluoxetine: steady state and washout over **weeks**."
+    },
+    {
+     "label": "Exam trap",
+     "value": "**doubling the dose does not reach steady state sooner**: it doubles the level, not the time. The loading dose depends on **Vd**, the maintenance dose on **CL**: in renal failure mainly the maintenance dose is cut (but for digoxin Vd also falls → the loading dose must be reduced too)."
+    },
+    {
+     "label": "Connections",
+     "value": "→ volume of distribution (G2); clearance (G3); digoxin (B11b); class I antiarrhythmics – lidocaine (B13)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G4__curva-dose-risposta-potenza-efficacia",
+   "name": "Drug–target interaction and the concentration–response curve: EC50, potency and efficacy",
+   "nameShort": "Drug–target interaction and the concentration–response curve: EC50, potency and efficacy",
+   "memo": "**Potency** = where the curve sits (EC50, x-axis); **efficacy** = how high it goes (Emax, y-axis).",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**pharmacodynamics** studies what the drug does to the body. Targets: **receptors**, **ion channels**, **enzymes**, **transporters/pumps**. Binding is usually **weak and reversible** (H-bonds, ionic, van der Waals) → the effect ends when the drug dissociates; if **covalent** (aspirin–COX, PPIs–proton pump, clopidogrel–P2Y12) it lasts until the target is **resynthesized**."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "**response vs log[concentration]** curve = **sigmoid** with threshold, slope and **plateau (Emax)**. **EC50** (ED50 in vivo) = concentration or dose giving **50% of the maximal effect**. The log scale linearizes the central part and lets the EC50 be read accurately over a wide dose range."
+    },
+    {
+     "label": "How it works",
+     "value": "**potency** = amount of drug needed for a given effect → **position on the x-axis** (lower EC50 = more potent; depends on affinity and coupling). **Efficacy** = **maximal attainable effect** → **height of the plateau**. A **steep slope** means small dose changes cause large effect changes → a less forgiving drug."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**furosemide vs hydrochlorothiazide**: furosemide (loop, NKCC2, where ~**25%** of filtered Na⁺ is reabsorbed) is **more efficacious** but **less potent** (20–40 mg needed); hydrochlorothiazide (distal tubule, NCC, maximal effect around 5% of filtered Na⁺) is **more potent** (12.5–25 mg) but **less efficacious**."
+    },
+    {
+     "label": "Exam trap",
+     "value": "«more potent = better» → **false**: potency only decides **how many milligrams** are needed; what matters is **efficacy** relative to the goal. In **acute pulmonary oedema** furosemide is needed, because no thiazide dose reaches that plateau."
+    },
+    {
+     "label": "Connections",
+     "value": "→ diuretics (B11b); therapeutic index (G4); partial agonists (G4); antagonism (G4)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G4__indice-terapeutico-margine-sicurezza",
+   "name": "Therapeutic index, therapeutic window and margin of safety",
+   "nameShort": "Therapeutic index, therapeutic window and margin of safety",
+   "memo": "**TI = TD50/ED50**: the narrower it is, the more every small change in exposure becomes **toxicity** → monitoring.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**quantal dose–response curves** (% of individuals responding) give the **ED50** (desired effect in 50%), **TD50** (toxicity in 50%) and, in animals, **LD50**. **Therapeutic index (TI) = TD50/ED50** (or LD50/ED50): it measures how **selective** a drug is for the desired versus the harmful effect."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "**therapeutic window** = concentration range effective with minimal toxicity. **Margin of safety** (lecture) = distance between the dose toxic in **1%** and the dose effective in **99%** (TD1/ED99): more conservative than the TI. G&G example: LD50 400 / ED50 100 → **TI = 4**."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**narrow therapeutic index**: **digoxin** (efficacy at concentrations ≤1 ng/mL), **lithium**, **warfarin**, **phenytoin**, **aminoglycosides**, theophylline, ciclosporin/tacrolimus → **monitoring** (plasma levels, INR). Lecture: for **barbiturates** the hypnotic dose is close to the lethal one, unlike benzodiazepines."
+    },
+    {
+     "label": "Why it matters",
+     "value": "with a wide TI the drug «absorbs» pharmacokinetic variability (interactions, polymorphisms, organ failure); with a narrow TI small changes in **clearance** lead to toxicity → caution with inhibitors and inducers and tighter bioequivalence criteria."
+    },
+    {
+     "label": "Exam trap",
+     "value": "the TI uses **50%** values: if efficacy and toxicity curves have **different slopes**, their tails may overlap even with an apparently good TI → hence the **margin of safety**. And the TI depends on which toxic effect is considered."
+    },
+    {
+     "label": "Connections",
+     "value": "→ digoxin (B11b); lithium (B4); warfarin (B12); aminoglycosides (Antibiotici-3); bioequivalence (G1)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G4__agonisti-parziali-inversi-antagonisti",
+   "name": "Full, partial and inverse agonists; antagonists (the opioid model)",
+   "nameShort": "Full, partial and inverse agonists; antagonists",
+   "memo": "All of them **bind** (affinity); what changes is how much they **activate**: full 100%, partial «ceiling», antagonist 0, inverse **below zero**.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**affinity** = ability to bind the receptor; **efficacy (intrinsic activity)** = ability to activate it. **Full agonist**: maximal response; **partial agonist**: occupies all receptors but gives a **sub-maximal** response («ceiling effect»); **neutral antagonist**: **zero** efficacy, seen only in the presence of an agonist; **inverse agonist**: **reduces constitutive activity** by stabilizing the inactive conformation."
+    },
+    {
+     "label": "How it works",
+     "value": "**two-state** model (inactive R ⇄ active R*): an agonist shifts the equilibrium towards R*, a partial agonist only partly, an inverse agonist towards R, a neutral antagonist not at all. A **partial** agonist in the presence of a **full** one occupies the receptors and **reduces** its effect → it behaves as an **antagonist**."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**μ** receptor: **morphine** (full agonist: analgesia but also **respiratory depression**), **buprenorphine** (high-**affinity** partial agonist: ceiling on respiratory depression → safer; may precipitate withdrawal in full-agonist users), **naloxone** (competitive antagonist; short t½ → risk of **re-sedation**). Other partial agonists: **varenicline** (α4β2), buspirone (5-HT1A), aripiprazole (D2), **pindolol** (β, intrinsic sympathomimetic activity). Inverse agonists: **H1/H2 antihistamines**."
+    },
+    {
+     "label": "Exam trap",
+     "value": "**partial ≠ weakly potent**: potency and efficacy are independent (buprenorphine is **more potent** than morphine but **less efficacious**). And an inverse agonist differs from an antagonist only where the receptor has **constitutive activity**."
+    },
+    {
+     "label": "Connections",
+     "value": "→ opioids (B8); antihistamines (A6); buspirone (B1); aripiprazole (B5); bupropion and varenicline (B3)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G4__modulatori-allosterici-bdz-gaba-a",
+   "name": "Allosteric modulators: benzodiazepines and the GABA-A receptor",
+   "nameShort": "Allosteric modulators: benzodiazepines and the GABA-A receptor",
+   "memo": "Benzodiazepines **do not open** the channel by themselves: they make GABA **more effective** (more openings). No GABA, no effect.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**allosteric modulator** = ligand that binds a **site different** from that of the endogenous (**orthosteric**) ligand and changes its **affinity and/or efficacy**: positive (**PAM**), negative (**NAM**) or «silent» (occupies the site without effect, blocking other modulators)."
+    },
+    {
+     "label": "How it works",
+     "value": "**GABA-A**: pentamer (typically 2α, 2β, 1γ) forming a **Cl⁻** channel. **GABA** binds between **α and β**; **benzodiazepines** at the **α–γ** interface → ↑ affinity for GABA and ↑ **frequency** of channel opening **in the presence of GABA**. **Barbiturates** ↑ the **duration** of openings and at high doses open the channel **even without GABA**."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**flumazenil**: competitive antagonist at the BZ site (blocks both benzodiazepines and inverse agonists at that site) → overdose antidote and reversal of midazolam sedation. **Picrotoxin**: blocks the **pore** (non-competitive); **bicuculline**: competitive antagonist at the GABA site (convulsant, experimental only); **neurosteroids**: allopregnanolone PAM, pregnenolone sulfate NAM."
+    },
+    {
+     "label": "Why it matters",
+     "value": "benzodiazepines amplify a **physiological** signal → «ceiling» effect → overdose of a benzodiazepine alone is rarely lethal; with **alcohol, barbiturates, opioids** the risk becomes serious. α subunits steer the effect (α1 sedation/amnesia; α2/α3 anxiolysis and muscle relaxation)."
+    },
+    {
+     "label": "Exam trap",
+     "value": "«benzodiazepines are GABA agonists» → **no**: without GABA they do not open the channel. **Flumazenil** has a shorter half-life than many benzodiazepines (**re-sedation**) and can trigger **seizures** in benzodiazepine-dependent patients or mixed overdoses (e.g. with tricyclics)."
+    },
+    {
+     "label": "Connections",
+     "value": "→ benzodiazepines, flumazenil, barbiturates, neurosteroids (B1); ligand-gated channel superfamily (G6); synergism (G4)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G4__antagonismo-competitivo-irreversibile",
+   "name": "Antagonism: competitive, irreversible/non-competitive, functional and chemical",
+   "nameShort": "Antagonism: competitive, irreversible/non-competitive, functional and chemical",
+   "memo": "**Competitive** = curve shifted right, Emax preserved; **irreversible** = Emax lowered until the target is **resynthesized**.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "reduction of an agonist's effect. It can occur **at the same receptor** (competitive or irreversible), **downstream** of the receptor (functional), **on the ligand** itself (chemical) or on its **pharmacokinetics**."
+    },
+    {
+     "label": "How it works",
+     "value": "**competitive** (reversible, orthosteric site, weak bonds): the agonist curve shifts **right in parallel**, **Emax unchanged** → **surmountable** by increasing the agonist; the shift depends on the antagonist's concentration and affinity. **Irreversible/non-competitive** (covalent or allosteric binding): **↓ Emax** not recoverable; the effect ends only when the target is **resynthesized**."
+    },
+    {
+     "label": "Clinical example",
+     "value": "competitive: **propranolol vs isoproterenol**, naloxone vs morphine, atropine vs acetylcholine. Irreversible: **phenoxybenzamine** (alkylates α receptors → phaeochromocytoma, started **before** the β-blocker), **clopidogrel/prasugrel** (P2Y12), **aspirin** (acetylates COX-1: **anucleate platelets** cannot resynthesize it → effect for **7–10 days**), **PPIs** (H⁺/K⁺ pump)."
+    },
+    {
+     "label": "Functional and chemical antagonism",
+     "value": "**functional**: an agonist at **another receptor** produces the opposite effect → **adrenaline in anaphylaxis** (β2 → ↑ cAMP → bronchodilation; α1 → vasoconstriction) against histamine and leukotrienes. **Chemical**: direct neutralization of the ligand → **infliximab/adalimumab** (TNF-α), bevacizumab (VEGF), protamine (heparin), **anti-digoxin Fab**."
+    },
+    {
+     "label": "Exam trap",
+     "value": "**ibuprofen before aspirin**: by reversibly occupying platelet COX-1 it can prevent acetylation → **↓ antiplatelet effect** of aspirin. In anaphylaxis **IM adrenaline** comes **first**: antihistamines and corticosteroids are slow add-ons."
+    },
+    {
+     "label": "Connections",
+     "value": "→ aspirin (A5); P2Y12 (B12); PPIs (A11); α-blockers (B10); anti-TNF (A9); histamine (A6)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G4__tolleranza-tachifilassi-regolazione",
+   "name": "Adaptations to repeated dosing: tolerance, tachyphylaxis, down/up-regulation, sensitization",
+   "nameShort": "Adaptations to repeated dosing: tolerance, tachyphylaxis, down/up-regulation, sensitization",
+   "memo": "Chronic agonist → **fewer receptors** (tolerance); chronic antagonist → **more receptors**: never stop a **β-blocker** abruptly.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**tolerance** = ↓ response to the same dose after repeated administration (days–weeks) → higher doses needed; often **partial** (only some effects). **Tachyphylaxis** = **rapid** tolerance (minutes–hours). **Sensitization** = ↑ response with repeated exposure. **Drug resistance** = complete loss of efficacy (antimicrobials, anticancer drugs)."
+    },
+    {
+     "label": "How it works",
+     "value": "pharmacodynamic mechanisms: target **desensitization** (phosphorylation by **GRKs** and binding of **β-arrestins** → uncoupling and internalization), **down-regulation** (↓ receptor number), mediator depletion, homeostatic counter-regulation. Pharmacokinetic: **enzyme induction** (↑ clearance). With chronic antagonists: **up-regulation/supersensitivity**."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**tachyphylaxis**: **ephedrine** and **tyramine** (indirect sympathomimetics) deplete the releasable noradrenaline pool; **nitrates** (→ nightly nitrate-free interval). **Down-regulation**: regular **β2-agonists** (↓ duration of bronchodilation; inhaled corticosteroids limit it). **Up-regulation**: **β-blockers** (abrupt withdrawal → tachycardia, angina, MI → **taper over 1–2 weeks**), clonidine (rebound hypertension)."
+    },
+    {
+     "label": "Why it matters",
+     "value": "**opioids**: **dissociated** tolerance — rapid to sedation, nausea, euphoria and (partly) analgesia; little to **constipation** and **miosis**; respiratory depression remains the lethal risk with rapid escalation, co-administered sedatives or after **loss of tolerance** (abstinence). **Sensitization**: psychostimulants (motor effects, craving), epileptic kindling, central sensitization in neuropathic pain."
+    },
+    {
+     "label": "Exam trap",
+     "value": "**desensitization** (less responsive target, fast) ≠ **down-regulation** (fewer targets, slow); **tachyphylaxis** differs from tolerance by **time**. Tolerance can be **pharmacokinetic** (less drug at the receptor: induction) or **pharmacodynamic**."
+    },
+    {
+     "label": "Connections",
+     "value": "→ β2-agonists (A8); β-blockers and clonidine (B10); nitrates (B12b); opioids (B8); benzodiazepines (B1)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G4__additivita-sinergismo-antagonismo",
+   "name": "Pharmacodynamic interactions: additivity, synergism, antagonism and cumulative effects",
+   "nameShort": "Pharmacodynamic interactions: additivity, synergism, antagonism and cumulative effects",
+   "memo": "**1+1 = 2** additivity, **1+1 = 3** synergism: useful when intended (lower doses), lethal when accidental (**benzodiazepines + alcohol/opioids**).",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**additivity**: the combined effect = the **sum** of the effects («1 + 1 = 2»); **synergism (supra-additivity)**: effect **greater** than the sum («1 + 1 = 3»); **sub-additivity/antagonism**: effect **smaller**. Shown with an **isobologram** (line of additivity between the two drugs' EC50s)."
+    },
+    {
+     "label": "Why it matters",
+     "value": "used **intentionally**, additivity and synergism allow **lower doses** of each drug and therefore fewer dose-dependent adverse effects: **ACE inhibitor + thiazide** (also in fixed combinations), **β-lactam + aminoglycoside**."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**dangerous** synergisms: **benzodiazepines + alcohol** and **benzodiazepines + opioids** (respiratory depression, 2016 FDA warning); **nitrates + PDE5 inhibitors** (sildenafil: both ↑ cGMP → **severe hypotension**). Antagonism: **NSAIDs + ACE inhibitors/diuretics** (↓ renal prostaglandins → ↓ antihypertensive effect; with a diuretic, «triple whammy» → **acute kidney injury**)."
+    },
+    {
+     "label": "Cumulative toxicity",
+     "value": "ACE inhibitors/ARBs + **K⁺-sparing diuretics** (spironolactone, amiloride) ± trimethoprim or NSAIDs → **hyperkalaemia** (monitor K⁺ and creatinine, especially in renal failure, diabetes, the elderly); several **QT**-prolonging drugs → torsades de pointes."
+    },
+    {
+     "label": "Exam trap",
+     "value": "synergism **does not require the same target**: drugs often converge on the same **physiological outcome** (respiratory centre, vascular tone). And an interaction may be **pharmacokinetic** (CYP, P-gp) rather than pharmacodynamic: say which in the exam."
+    },
+    {
+     "label": "Connections",
+     "value": "→ benzodiazepines (B1); opioids (B8); ACE inhibitors (B11); nitrates (B12b); aminoglycosides (Antibiotici-3); K⁺-sparing diuretics (B11b)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G5__canali-na-blocco-uso-dipendente",
+   "name": "Voltage-gated Na⁺ channels: three functional states and use-dependent block",
+   "nameShort": "Voltage-gated Na⁺ channels: three functional states and use-dependent block",
+   "memo": "Na⁺-channel blockers bind the channel **while it works**: they hit cells firing **too much** and spare the rest.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**α** subunit (~260 kDa) with **4 homologous domains (I–IV)**, each of **6** transmembrane **segments**: **S4** (positive residues) = **voltage sensor**; the **P loop** between S5 and S6 forms the **selectivity filter** (**tetrodotoxin** site); the intracellular **III–IV** loop is the fast **inactivation gate**."
+    },
+    {
+     "label": "How it works",
+     "value": "**3 states**: **closed** (resting, activatable) → **open** (a few ms, Na⁺ influx, depolarization) → **inactivated** (non-conducting and **not re-activatable** → refractoriness) → back to closed on repolarization. **Local anaesthetics, class I antiarrhythmics and antiepileptics** reach their site when the channel is **open** and bind/stabilize the **inactivated** state."
+    },
+    {
+     "label": "Why it matters",
+     "value": "**use-dependent block** (frequency- and voltage-dependent): the more a cell fires or is depolarized, the more channels are open/inactivated and the more drug binds → an **epileptic focus**, a **tachyarrhythmia**, a firing **nociceptive fibre** are blocked; normally firing tissues are spared = **functional**, not anatomical, selectivity."
+    },
+    {
+     "label": "Clinical example",
+     "value": "class **IB** (lidocaine, mexiletine): **fast** dissociation → acts on **ischaemic/depolarized** tissue and at high rates; **IC** (flecainide, propafenone): **slow** dissociation → block even at normal rates (proarrhythmia in structurally diseased hearts); **IA** (quinidine, procainamide): intermediate + K⁺ block (↑ QT). Antiepileptics: phenytoin, carbamazepine, lamotrigine, lacosamide. Isoforms: **Nav1.1–1.3** (CNS), **Nav1.5** (heart, relatively tetrodotoxin-resistant), Nav1.7/1.8 (nociceptors)."
+    },
+    {
+     "label": "Exam trap",
+     "value": "selectivity is for the channel **state**, not the organ: after **overdose** or **intravascular injection** local anaesthetics also block CNS and heart → **seizures**, arrhythmias, arrest (bupivacaine is the most cardiotoxic)."
+    },
+    {
+     "label": "Connections",
+     "value": "→ local anaesthetics (B2); class I antiarrhythmics (B13); antiepileptics (B9)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G5__canali-ca-voltaggio-calcio-antagonisti",
+   "name": "Voltage-gated Ca²⁺ channels (L, T, N, P/Q) and calcium channel blockers",
+   "nameShort": "Voltage-gated Ca²⁺ channels",
+   "memo": "**DHPs** → vessels, **verapamil** → heart, **diltiazem** in between; all act only on **L** channels. Absence seizures run through **T** channels.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "pore-forming **α1** subunit (4 domains × 6 segments, S4 sensor) + accessory **α2δ** (disulfide-linked), **β** (intracellular) ± γ subunits. **High-voltage-activated (HVA)**: **L** (heart, smooth and skeletal muscle, endocrine cells), **N** (presynaptic terminals → transmitter release), **P/Q** (cerebellum, presynaptic), R. **Low-voltage-activated (LVA)**: **T** («transient»: SA node, **thalamus**)."
+    },
+    {
+     "label": "How it works",
+     "value": "**only L channels** are calcium-channel-blocker targets, with 3 allosterically coupled sites on α1: **dihydropyridines** (nifedipine, amlodipine…: domain III–IV segments; prefer the **inactivated** state at less negative potentials → **vascular smooth muscle**), **verapamil** (phenylalkylamine, IVS6, intracellular access, **use-dependent** block → SA/AV node), **diltiazem** (benzothiazepine, intermediate profile)."
+    },
+    {
+     "label": "Clinical example",
+     "value": "thalamic **T** channels → thalamocortical oscillations of **absence seizures** → **ethosuximide** (also valproate, zonisamide). **Gabapentin/pregabalin** do not act on α1: they bind **α2δ-1** → ↓ release of excitatory transmitters (neuropathic pain, focal epilepsy, generalized anxiety). **N** channels: ziconotide (intractable pain, intrathecal)."
+    },
+    {
+     "label": "Why it matters",
+     "value": "**verapamil or diltiazem + β-blocker** → bradycardia, AV block, heart failure. **Immediate-release DHPs** (nifedipine) → **reflex tachycardia** and possible **angina**; **ankle oedema** from precapillary vasodilation, which **does not respond to diuretics**."
+    },
+    {
+     "label": "Exam trap",
+     "value": "in **skeletal muscle** the L channel (α1S) works as a **sensor** mechanically coupled to **RyR1**: contraction does not depend on extracellular Ca²⁺ → calcium channel blockers do not cause muscle weakness. Endocrine cells need only small Ca²⁺ entry → negligible effect on secretion."
+    },
+    {
+     "label": "Connections",
+     "value": "→ calcium channel blockers (B11); class IV antiarrhythmics (B13); antiepileptics (B9); Ca²⁺ homeostasis (G7); drug-induced angina (G7)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G5__canali-k-qt-girk-katp",
+   "name": "K⁺ channels: voltage-gated (long QT), GIRK and K-ATP",
+   "nameShort": "K⁺ channels: voltage-gated",
+   "memo": "Opening K⁺ channels **switches the cell off**, blocking them lengthens the action potential: drug-induced **long QT** is almost always **hERG**.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "the most heterogeneous channel group; best classified by **function**: **voltage-gated** (repolarization), **Ca²⁺-activated**, **G-protein-coupled (GIRK)**, **ATP-sensitive (K-ATP)**. Opening them drives the potential towards **E_K** → hyperpolarization, ↓ excitability; blocking them **prolongs the action potential**."
+    },
+    {
+     "label": "How it works",
+     "value": "**heart**: IKr (**hERG**/Kv11.1 channel) and IKs repolarize; **class III antiarrhythmics** (amiodarone, sotalol, dofetilide, ibutilide) block them → ↑ action potential duration and refractoriness → **↑ QT**. **GIRK**: opened by the **βγ** dimer of Gi/Go (vagal **M2** in SA/AV node, **A1** adenosine, **μ/δ** opioid, **α2**, GABA-B). **K-ATP** (Kir6.2 + **SUR**): ATP closes it → depolarization."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**β-cell**: glucose → ↑ ATP → K-ATP closure → depolarization → Ca²⁺ channels → **insulin**; **sulfonylureas and glinides** close the channel by binding **SUR1**; **diazoxide** opens it (insulinoma). **Minoxidil, nicorandil** open **SUR2B** → vasodilation. Neurons: **retigabine** opened KCNQ channels (antiepileptic, withdrawn for blue pigmentation). **Methylxanthines** block A1 receptors (excitatory effect)."
+    },
+    {
+     "label": "Why it matters",
+     "value": "**drug-induced long QT** = usually **off-target hERG block**, a channel with a cavity that binds many molecules: macrolides, fluoroquinolones, haloperidol and other antipsychotics, methadone, ondansetron, high-dose citalopram, tricyclics; antihistamines such as **terfenadine and astemizole** withdrawn. Risk ↑ with **hypokalaemia**, hypomagnesaemia, bradycardia, female sex, congenital long QT, metabolic inhibitors, combinations → **torsades de pointes**."
+    },
+    {
+     "label": "Exam trap",
+     "value": "not all IKr blockers are equally dangerous: **amiodarone** prolongs QT markedly but rarely causes torsades (it also blocks Na⁺ and Ca²⁺); **verapamil** blocks IKr without torsades. Risk depends on the **multichannel** profile and the patient's conditions."
+    },
+    {
+     "label": "Connections",
+     "value": "→ class III antiarrhythmics (B13); sulfonylureas and glinides (A10); K-ATP channel openers (B12b); second-generation antihistamines (A6); antipsychotics (B5)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G5__pompe-atpasi-tipo-p-digitale-ipp",
+   "name": "P-type ATPases: Na⁺/K⁺-ATPase and digitalis, H⁺/K⁺-ATPase and proton pump inhibitors",
+   "nameShort": "P-type ATPases: Na⁺/K⁺-ATPase and digitalis, H⁺/K⁺-ATPase and proton pump inhibitors",
+   "memo": "Digoxin blocks the **Na⁺/K⁺-ATPase** → less Ca²⁺ exit via **NCX** → stronger heart; but with **low K⁺** it turns toxic.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "pumps that use ATP to move ions **against their gradient** and **autophosphorylate on an aspartate** during the cycle (**E1 ⇄ E2** conformations): **Na⁺/K⁺-ATPase**, gastric **H⁺/K⁺-ATPase**, **Ca²⁺-ATPases** (SERCA, PMCA)."
+    },
+    {
+     "label": "How it works",
+     "value": "**Na⁺/K⁺-ATPase**: **3 Na⁺ out / 2 K⁺ in** per ATP → **electrogenic**; maintains the gradients that drive all secondary transporters. **α** subunit (catalytic: α1 ubiquitous and renal, **α2** muscle and heart, α3 neurons) + β; expression ↑ by aldosterone."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**digoxin**: binds the pump in the **phosphorylated E2** conformation from outside, **competing with K⁺** → ↑ intracellular Na⁺ → the **NCX** exchanger (3 Na⁺/1 Ca²⁺) extrudes less Ca²⁺ → more Ca²⁺ in the SR → **positive inotropy**; **vagal** effect → ↓ AV conduction (rate control in atrial fibrillation). **PPIs**: prodrugs activated in the acidic canaliculus → **covalent** binding to H⁺/K⁺-ATPase → **irreversible** inhibition (effect outlasting the 1–2 h plasma t½)."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "digoxin = **narrow therapeutic index**: efficacy at concentrations **≤1 ng/mL**; toxicity ↑ with **hypokalaemia** (less competing K⁺ and an already depressed pump), hypomagnesaemia, hypercalcaemia, **renal failure**, old age, interactions (**amiodarone, verapamil, quinidine**). Signs: nausea and vomiting, **xanthopsia**, confusion, ectopy, **bidirectional ventricular tachycardia**, AV block. Antidote: **anti-digoxin Fab fragments**."
+    },
+    {
+     "label": "Exam trap",
+     "value": "loop or thiazide diuretics + digoxin → **hypokalaemia** → digitalis toxicity even at «normal» levels. Conversely, severe acute poisoning comes with **hyperkalaemia** (pump blocked throughout the body)."
+    },
+    {
+     "label": "Connections",
+     "value": "→ digitalis (B11b); PPIs (A11); diuretics (B11b); Ca²⁺ homeostasis (G7)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G5__trasportatori-epiteliali-e-neuronali",
+   "name": "Transporters as drug targets: renal epithelial (diuretics) and neurotransmitter transporters",
+   "nameShort": "Transporters as drug targets: renal epithelial",
+   "memo": "Diuretics block whoever reabsorbs **Na⁺** in the nephron; antidepressants and drugs of abuse act on whoever **takes back** neurotransmitters.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "proteins that move solutes using the **Na⁺ gradient** built by the Na⁺/K⁺-ATPase (secondary active transport) or the **H⁺** gradient (vesicular transporters). They are targets of **diuretics**, **antidepressants**, **antiepileptics** and **drugs of abuse**."
+    },
+    {
+     "label": "How it works",
+     "value": "**kidney**: **NKCC2** (thick ascending limb, ~25% of filtered Na⁺) → **loop diuretics**; **NCC** (distal tubule) → **thiazides**; **ENaC** (collecting duct) → **amiloride, triamterene**; mineralocorticoid receptor → **spironolactone, eplerenone**; **SGLT2** → gliflozins. More Na⁺ reaching the collecting duct (loop, thiazides) = more K⁺ secreted → **hypokalaemia**."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**SLC6** (Na⁺/Cl⁻-dependent): **SERT** (SSRIs), **NET** (atomoxetine, tricyclics, SNRIs), **DAT** (bupropion; cocaine), **GAT-1** (**tiagabine** → ↑ synaptic GABA). **Vesicular** (H⁺ antiport): **VMAT2** (reserpine irreversibly → monoamine depletion; **tetrabenazine** in Huntington's chorea). Glial **EAATs** (EAAT1/2) take up glutamate and limit excitotoxicity; in **ischaemia** (↓ ATP, dissipated gradients) they can run **in reverse** and release it."
+    },
+    {
+     "label": "Why it matters",
+     "value": "**reuptake** recycles the transmitter, **terminates** the signal and protects it from degradation: blocking it ↑ and prolongs transmission → therapeutic effect (antidepressants) or abuse (cocaine)."
+    },
+    {
+     "label": "Exam trap",
+     "value": "**cocaine** = **blocks** the transporter; **amphetamine** = a **substrate** that enters, empties vesicles (VMAT2) and **reverses** DAT/NET → impulse-independent release. Same target, different mechanism and toxicity."
+    },
+    {
+     "label": "Connections",
+     "value": "→ diuretics (B11b); SGLT2 inhibitors (A10); antidepressants (B3); tiagabine (B9); Huntington's disease and adjunct drugs (B6)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G6__quattro-superfamiglie-recettori",
+   "name": "The four receptor superfamilies: structure, signalling and response times",
+   "nameShort": "The four receptor superfamilies: structure, signalling and response times",
+   "memo": "Channels in **milliseconds**, GPCRs in **seconds**, enzyme-linked receptors in **minutes–hours**, nuclear receptors in **hours–days**.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**receptor** = macromolecule that recognizes an endogenous ligand (neurotransmitter, hormone, mediator) — and drugs that mimic or block it — and **transduces** the signal by changing cell function: via **ion fluxes**, **second messengers** (cAMP, cGMP, Ca²⁺, IP3/DAG) or **gene transcription**."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "**1) Ionotropic** (ligand-gated channels): **milliseconds** — pentamers (nAChR, GABA-A, glycine, 5-HT3) or tetramers (AMPA, NMDA, kainate). **2) Metabotropic/GPCRs** (7 transmembrane segments, a single chain): **seconds** — the largest family of drug targets. **3) Intrinsic enzyme activity**: **tyrosine kinase** receptors (insulin, EGF, VEGF, PDGF: dimerization + autophosphorylation → SH2/PTB-domain proteins → MAPK, PI3K-Akt) and membrane **guanylyl cyclase** (ANP/BNP → cGMP): **minutes–hours**. **4) Intracellular/nuclear** (**lipophilic** ligands): **hours–days**."
+    },
+    {
+     "label": "Clinical example",
+     "value": "skeletal muscle contraction (nAChR, ms) · heart rate modulation (β1/M2, seconds) · growth and proliferation (receptor tyrosine kinases) · anti-inflammatory effect of glucocorticoids (GR, hours). Drugs: **imatinib, gefitinib** (tyrosine kinase inhibitors), **trastuzumab** (HER2), **cetuximab** (EGFR)."
+    },
+    {
+     "label": "Exam trap",
+     "value": "there are two **different** classifications: by **signalling mechanism** (the 4 superfamilies) and by **structure** (the «nicotinic superfamily» groups receptors with different ligands but the same architecture). The «times» refer to the **cellular response**, not binding; glucocorticoids also have rapid **non-genomic** effects."
+    },
+    {
+     "label": "Connections",
+     "value": "→ pentameric ligand-gated channels (G6); G proteins (G6); nuclear receptors (G6); targeted therapies (B14)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G6__superfamiglia-nicotinica-tubocurarina",
+   "name": "Pentameric ligand-gated channel superfamily (nicotinic, GABA-A, glycine, 5-HT3) and tubocurarine",
+   "nameShort": "Pentameric ligand-gated channel superfamily",
+   "memo": "Five subunits, **M2** lining the pore: one template for nicotinic, GABA-A, glycine and 5-HT3 receptors. Charged **tubocurarine** stays peripheral.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "ligand-gated channels made of **5 subunits**; each has a long **extracellular N-terminus** with a **disulfide**-closed loop («cys-loop»), **4 transmembrane segments (M1–M4)** — **M2** lines the pore — and an extracellular C-terminus. The ligand binds at **subunit interfaces** (2 agonist sites)."
+    },
+    {
+     "label": "How it works",
+     "value": "**nAChR** (Na⁺/K⁺ ± Ca²⁺ cations → excitatory): **muscle** type (α1)₂β1δγ in the fetus, with ε replacing γ in adults; **neuronal** α4β2 (nicotine, varenicline) and homomeric **α7**, highly **Ca²⁺**-permeable. **GABA-A** and **glycine** (Cl⁻ → inhibitory; glycine mainly spinal cord and brainstem, **strychnine** antagonist → convulsions). **5-HT3**: the only **ionotropic** serotonin receptor (area postrema, vagal afferents) → **«-setron»** antiemetics (ondansetron)."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**tubocurarine** (active principle of curare): **competitive antagonist** of the muscle nAChR → flaccid paralysis (**non-depolarizing** neuromuscular blocker; today rocuronium, vecuronium, (cis)atracurium), reversed by anticholinesterases. It is a **quaternary ammonium**: permanent charge → crosses neither the **BBB** nor the gut mucosa → acts only peripherally."
+    },
+    {
+     "label": "Why it matters",
+     "value": "phosphorylation of the muscle nAChR (PKA, PKC) modulates opening and **desensitization**; prolonged agonist exposure drives the channel into a **desensitized** state: the basis of succinylcholine block and of neuromuscular block by high-dose nicotine."
+    },
+    {
+     "label": "Exam trap",
+     "value": "«tubocurarine for parkinsonian tremor?» → **no**: it does not enter the CNS; antiparkinsonian anticholinergics are **lipophilic central antimuscarinics** (biperiden, trihexyphenidyl)."
+    },
+    {
+     "label": "Connections",
+     "value": "→ 5-HT3 antiemetics (A7); neuromuscular blockers in anaesthesia (B2); benzodiazepines and GABA-A (B1, G4); nicotine and addiction (G7); antiparkinsonian drugs (B6)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G6__recettori-glutammato-ampa-nmda",
+   "name": "Ionotropic glutamate receptors: AMPA and NMDA (Mg²⁺ block, LTP, excitotoxicity)",
+   "nameShort": "Ionotropic glutamate receptors: AMPA and NMDA",
+   "memo": "**NMDA** opens only with **glutamate + glycine + depolarization** (to expel Mg²⁺): a coincidence detector and the **Ca²⁺** gate.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**glutamate** is the main **excitatory** CNS transmitter; ionotropic **AMPA**, **NMDA**, **kainate** receptors (tetramers: the **M2 segment re-enters** the membrane without crossing it) and metabotropic **mGlu** receptors (group I → Gq; groups II–III → Gi/Go)."
+    },
+    {
+     "label": "How it works",
+     "value": "**AMPA** (GluA1–4): fast transmission, mainly Na⁺; with the (pore-edited) **GluA2** subunit it is **Ca²⁺-impermeable**, without GluA2 it becomes **Ca²⁺-permeable** (substrate of neurodegeneration and drug-induced plasticity). **NMDA** (GluN1 + GluN2): needs **glutamate** (GluN2) + **glycine/D-serine** co-agonist (GluN1) + **depolarization** that expels **Mg²⁺** from the pore → «**coincidence detector**»; high **Ca²⁺** permeability."
+    },
+    {
+     "label": "Clinical example",
+     "value": "Ca²⁺ entering via NMDA → CaMKII, **nNOS** (NO as retrograde messenger) → **LTP/LTD** (hippocampus: learning and memory). **Excitotoxicity** (ischaemia, hypoglycaemia, trauma): massive release and reduced reuptake of glutamate → Ca²⁺ overload → **calpains**, ROS and peroxynitrite, mitochondrial damage → neuronal death."
+    },
+    {
+     "label": "Drugs",
+     "value": "**memantine** (**low-affinity, use-dependent** NMDA antagonist → moderate–severe Alzheimer's), **ketamine** (channel block → dissociative anaesthesia; esketamine rapid antidepressant), phencyclidine; **perampanel** (non-competitive AMPA antagonist, antiepileptic); riluzole (↓ glutamate release, ALS)."
+    },
+    {
+     "label": "Exam trap",
+     "value": "**Mg²⁺** is not a competitive glutamate antagonist: it is a **voltage-dependent pore block** → NMDA conducts only if the membrane is already depolarized (by AMPA). That is why a use-dependent blocker such as memantine spares physiological transmission."
+    },
+    {
+     "label": "Connections",
+     "value": "→ memantine (B7); ketamine (B2); antiepileptics (B9); Ca²⁺ homeostasis (G7)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G6__gpcr-proteine-g-gs-gi-gq",
+   "name": "G protein–coupled receptors (GPCRs): Gs, Gi, Gq and the muscarinic, adrenergic and dopaminergic systems",
+   "nameShort": "G protein–coupled receptors",
+   "memo": "**Gs** ↑ cAMP, **Gi** ↓ cAMP and opens K⁺, **Gq** ↑ IP3/Ca²⁺: muscarinic **odd = Gq, even = Gi**; **α2** is the only Gi adrenoceptor.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**GPCR** = a single chain with **7 transmembrane segments** (extracellular N-terminus; third intracellular loop and C-terminus coupled to the G protein). **Heterotrimeric αβγ** G protein: at rest α binds **GDP**; the activated receptor exchanges GDP for **GTP** → α-GTP and **βγ** separate and regulate effectors; α's **GTPase** activity ends the signal. Large **amplification**."
+    },
+    {
+     "label": "How it works",
+     "value": "**Gs** → ↑ adenylyl cyclase → ↑ **cAMP** → PKA (β1, β2, β3, D1/D5, H2, 5-HT4, V2). **Gi/Go** → ↓ cAMP; **βγ** opens K⁺ channels (GIRK) and closes N-type Ca²⁺ channels (α2, M2/M4, D2–D4, μ/δ/κ, GABA-B, CB1, 5-HT1A). **Gq** → **PLCβ** → **IP3** (Ca²⁺ from ER) + **DAG** (PKC) (α1, M1/M3/M5, H1, AT1, 5-HT2)."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**muscarinic**: **odd Gq, even Gi** → cardiac M2 (vagus: ↓ rate and AV conduction), M3 glands and smooth muscle, M1 CNS and stomach. **Adrenergic**: α1 Gq (vasoconstriction, mydriasis, prostate), **α2 Gi** (presynaptic autoreceptors → ↓ noradrenaline release; central **clonidine** → ↓ sympathetic outflow), β Gs. **Dopaminergic**: D1-like (D1, D5) Gs; **D2-like** (D2, D3, D4) Gi → antipsychotic target."
+    },
+    {
+     "label": "Phosphodiesterases and cholera toxin",
+     "value": "**phosphodiesterases (PDEs)** switch off cAMP and cGMP: theophylline (non-selective, also an adenosine antagonist), **milrinone** (PDE3, inotrope), **sildenafil/tadalafil** (PDE5), roflumilast (PDE4). **Cholera toxin** locks Gs in the active state → high enterocyte cAMP → secretory diarrhoea."
+    },
+    {
+     "label": "Exam trap",
+     "value": "**α2** is the only **Gi** adrenoceptor: an adrenergic agonist (clonidine) **lowers** blood pressure by acting centrally; abrupt withdrawal causes **rebound**. Nitrates + PDE5 inhibitors → both ↑ cGMP → **severe hypotension**."
+    },
+    {
+     "label": "Connections",
+     "value": "→ antimuscarinics (A8, A11); clonidine and α1-blockers (B10); β2-agonists and theophylline (A8); antipsychotics (B5); histamine (A6)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G6__recettori-intracellulari-nucleari",
+   "name": "Intracellular (nuclear) receptors: genomic and non-genomic mechanisms",
+   "nameShort": "Intracellular",
+   "memo": "**Lipophilic** ligand → receptor in cytosol or nucleus → **DNA**: slow effect (hours) that **outlasts** the drug.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "transcription factors activated by **lipophilic** ligands that cross the membrane: **cytosolic** at rest (bound to **HSP90**: glucocorticoids, mineralocorticoids, androgens, progestins) or already **nuclear** (oestrogens, thyroid hormones, vitamin D, retinoic acid, PPARs, PXR/CAR)."
+    },
+    {
+     "label": "How it works",
+     "value": "domains: N-terminal **transactivation**, **DBD** with two **zinc fingers** (cysteines coordinating Zn²⁺) that recognize specific DNA sequences (**HREs**, e.g. GRE), hinge region, **LBD** (ligand pocket). Sequence: binding → release from HSP → **dimerization** → nucleus → HRE → recruitment of **co-activators/co-repressors** → ↑/↓ transcription (e.g. glucocorticoids: inhibition of **NF-κB/AP-1**)."
+    },
+    {
+     "label": "Formula / key numbers",
+     "value": "**latency** of hours (cellular effects) and days (full clinical effect); the effect **outlasts** the drug's presence in the circulation (biological duration > plasma t½, typical of corticosteroids)."
+    },
+    {
+     "label": "Clinical example",
+     "value": "drugs: **glucocorticoids**, **SERMs** (tamoxifen, raloxifene), antiandrogens (bicalutamide), **levothyroxine**, **calcitriol**, **ATRA** (acute promyelocytic leukaemia), **glitazones** (PPARγ), **fibrates** (PPARα); **rifampicin** acts on **PXR** → enzyme induction."
+    },
+    {
+     "label": "Exam trap",
+     "value": "because of their latency, glucocorticoids are **not** first-line in acute bronchospasm or anaphylaxis (**adrenaline** and β2-agonists first) — even though rapid **non-genomic** effects (minutes), mediated at the membrane, exist."
+    },
+    {
+     "label": "Connections",
+     "value": "→ glucocorticoids (A4); SERMs (A12); enzyme inducers (G2); glitazones (A10)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G7__nt-classici-neuropeptidi-retrogradi",
+   "name": "Classical neurotransmitters and neuropeptides; autoreceptors and retrograde signalling (endocannabinoids, NO)",
+   "nameShort": "Classical neurotransmitters and neuropeptides; autoreceptors and retrograde signalling",
+   "memo": "A classical transmitter **transmits** (fast, local, taken back up); a neuropeptide **modulates** (slow, at a distance, degraded by peptidases).",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**classical neurotransmitter** (acetylcholine, glutamate, GABA, glycine, monoamines): made in the **terminal**, concentrated in **small synaptic vesicles**, released by **Ca²⁺-dependent exocytosis** at active zones (N and P/Q channels) even with a single action potential; **fast, local** action; terminated by **reuptake** (DAT, NET, SERT, GAT, EAAT) or **enzymes** (acetylcholinesterase)."
+    },
+    {
+     "label": "How it works",
+     "value": "**neuropeptides** (endogenous opioids, CRH, NPY, substance P, CGRP, oxytocin): made in the **soma** as precursors (e.g. **POMC**), stored in **large dense-core vesicles**, released **outside active zones** only with **repetitive or high-frequency firing**; they also act at a distance (**volume transmission**) as **modulators**; inactivated by **peptidases** (no reuptake)."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**co-transmission**: one neuron releases a classical transmitter plus a peptide or ATP (noradrenaline + **NPY** + ATP; acetylcholine + **VIP**) with different release thresholds. Presynaptic **auto- and heteroreceptors** give negative feedback: **α2** (noradrenaline), somatodendritic **5-HT1A** and terminal 5-HT1B/1D, D2, GABA-B, M2 → **mirtazapine** blocks α2 → ↑ release of noradrenaline and serotonin."
+    },
+    {
+     "label": "Why it matters",
+     "value": "**retrograde signalling**: **endocannabinoids** (anandamide, **2-AG**) are made «on demand» in the postsynaptic neuron and activate presynaptic **CB1** (Gi/Go, abundant in the brain) → ↓ release; **NO** (a gas made by Ca²⁺-activated neuronal NO synthase) diffuses to the terminal and activates **soluble guanylyl cyclase** → cGMP."
+    },
+    {
+     "label": "Exam trap",
+     "value": "neuropeptides are **not** taken back up like monoamines and need intense stimulation: hence their slow, diffuse, «behavioural» effect. **CRH** is both a **hormone** (pituitary axis) and a **neurotransmitter** (amygdala, locus coeruleus)."
+    },
+    {
+     "label": "Connections",
+     "value": "→ endogenous opioids and cannabinoids (B8); mirtazapine (B3); NMDA and NO (G6); HPA axis and CRH (G7)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G7__catecolamine-sintesi-mao-comt",
+   "name": "Catecholamines: biosynthesis, degradation (MAO, COMT) and marker metabolites",
+   "nameShort": "Catecholamines: biosynthesis, degradation",
+   "memo": "**Tyrosine hydroxylase** controls synthesis; **MAO-A** clears NA, 5-HT and **tyramine**, **MAO-B** dopamine.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**tyrosine → L-DOPA** (**tyrosine hydroxylase**, TH: **rate-limiting enzyme**, cofactor tetrahydrobiopterin) **→ dopamine** (aromatic L-amino acid decarboxylase, AADC or DOPA decarboxylase) **→ noradrenaline** (dopamine **β-hydroxylase**, inside vesicles) **→ adrenaline** (**PNMT**, mainly in the adrenal medulla). **VMAT2** loads vesicles; **NET** takes back most (~87%) of released noradrenaline."
+    },
+    {
+     "label": "How it works",
+     "value": "**MAO** (mitochondrial): **MAO-A** → noradrenaline, serotonin and dietary **tyramine** (gut, liver); **MAO-B** → dopamine (CNS, platelets). **COMT**: acts only on **catechols** (so not on serotonin)."
+    },
+    {
+     "label": "Marker metabolites",
+     "value": "**noradrenaline/adrenaline → VMA** (urine: **phaeochromocytoma**) and MHPG (central noradrenaline turnover); **dopamine → DOPAC and HVA** (HVA is the main metabolite, an index of dopamine turnover); **serotonin → 5-HIAA** (MAO only; urine: **carcinoid syndrome**)."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**levodopa + carbidopa/benserazide** (**peripheral** AADC inhibitors that do not cross the BBB); **entacapone, opicapone, tolcapone** (COMT); **selegiline, rasagiline, safinamide** (MAO-B); irreversible non-selective **MAOIs** + **tyramine**-rich foods → **hypertensive crisis** («cheese effect»), lower risk with **moclobemide** (reversible MAO-A). **MPTP → MPP⁺** (via MAO-B) → taken up by **DAT** → inhibits mitochondrial complex I → death of nigral dopaminergic neurons → parkinsonism and experimental model."
+    },
+    {
+     "label": "Exam trap",
+     "value": "a **raised metabolite** does not always mean more synthesis: it may reflect more release and breakdown or more exposure from **reuptake block** (cocaine) → read it together with the transmitter and the clinical picture. Inhibiting AADC barely lowers tissue noradrenaline stores: the rate-limiting step is **TH**."
+    },
+    {
+     "label": "Connections",
+     "value": "→ levodopa, COMT and MAO-B inhibitors (B6); MAOIs (B3); α-methyldopa (B10); phaeochromocytoma and phenoxybenzamine (G4)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G7__angina-iatrogena",
+   "name": "Drug-induced (iatrogenic) angina: mechanisms and culprit drugs",
+   "nameShort": "Drug-induced",
+   "memo": "Mechanism first (reflex tachycardia, coronary spasm, sympathetic rebound), then the drugs: that is how to answer in the exam.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "onset or worsening of **myocardial ischaemia** caused by drugs, especially in patients with **coronary artery disease**. A classic exam question: answer **mechanism first**, then drug classes."
+    },
+    {
+     "label": "How it works",
+     "value": "myocardial **O₂ demand** depends mainly on **heart rate**, contractility and afterload; tachycardia also shortens **diastole**, when the coronaries fill → with fixed stenoses demand exceeds supply. Four mechanisms: **(A)** vasodilation/hypotension → **reflex tachycardia** (baroreflex); **(B)** direct **coronary vasoconstriction**; **(C)** ↑ **sympathetic tone** (direct or rebound); **(D)** drug cardiotoxicity or hypertension."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**(A)** **immediate-release nifedipine**, hydralazine, minoxidil, first dose of **α1-blockers**; **dipyridamole** dilates healthy arterioles and «steals» flow from ischaemic areas. **(B)** **triptans** and **ergots** (contraindicated in ischaemic heart disease), **cocaine**, amphetamines, α-agonist decongestants, **5-fluorouracil/capecitabine** (vasospasm). **(C)** **abrupt β-blocker withdrawal** (or clonidine), sympathomimetics (dobutamine, adrenaline), levodopa, MAOIs + tyramine, excess **levothyroxine**. **(D)** anthracyclines, anti-VEGF drugs, coxibs."
+    },
+    {
+     "label": "Why it matters",
+     "value": "in a hypertensive coronary patient prefer **slow-onset dihydropyridines** (amlodipine) or combination with a **β-blocker**; **taper** β-blockers; avoid triptans; long-acting nitrates need a **nitrate-free interval** (tolerance) but must not be stopped abruptly."
+    },
+    {
+     "label": "Exam trap",
+     "value": "do not list drugs at random: starting from the **baroreflex** and **coronary flow physiology** shows you understand why opposite drugs (a vasodilator and a vasoconstrictor) can cause the same symptom."
+    },
+    {
+     "label": "Connections",
+     "value": "→ calcium channel blockers (B11, G5); triptans and ergots (A7); β-blockers (B10); nitrates (B12b); 5-FU and anticancer drugs (B14); up-regulation (G4)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G7__omeostasi-calcio-intracellulare",
+   "name": "Intracellular Ca²⁺ homeostasis: channels, stores (IP3R, RyR), pumps (SERCA, PMCA) and NCX",
+   "nameShort": "Intracellular Ca²⁺ homeostasis: channels, stores",
+   "memo": "Ca²⁺ enters through **channels**, leaves the **stores** (IP3R, RyR), is cleared by **SERCA, PMCA, NCX**: when control fails, the cell dies.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "free Ca²⁺ is **~1–1.2 mM** outside and **~100 nM** in the cytosol (~10,000-fold gradient); most cellular Ca²⁺ is **bound** (calmodulin, calsequestrin) or in **stores** (endo/sarcoplasmic reticulum, mitochondria). Free Ca²⁺ is the **signal**: contraction, secretion, transmitter exocytosis, transcription, apoptosis."
+    },
+    {
+     "label": "How it works",
+     "value": "**entry**: voltage-gated channels (L, N, P/Q, R, T), ligand-gated channels (NMDA, GluA2-lacking AMPA, α7 nAChR), receptor-operated channels and **SOCE/CRAC** (the ER sensor **STIM1** detects depletion and opens plasma-membrane **ORAI1**). **Release from stores**: **IP3R** (via Gq → PLC → IP3) and **RyR** (Ca²⁺-induced Ca²⁺ release: RyR2 in heart; RyR1 in skeletal muscle, coupled to the L channel)."
+    },
+    {
+     "label": "Ca²⁺ removal",
+     "value": "**SERCA** (refills the reticulum; regulated by phospholamban), **PMCA** (high-affinity extrusion, activated by calmodulin), **NCX** (3 Na⁺ in / 1 Ca²⁺ out: high capacity, depends on the Na⁺ gradient), **mitochondria** (buffer during overload)."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**digitalis**: ↓ Na⁺ gradient → ↓ NCX extrusion → ↑ SR Ca²⁺ → inotropy. **Dantrolene**: inhibits **RyR1** → malignant hyperthermia (**RYR1/CACNA1S** variants → susceptibility to volatile anaesthetics and succinylcholine). **Ciclosporin and tacrolimus** inhibit **calcineurin** (Ca²⁺/calmodulin-dependent phosphatase). Glucocorticoids induce **annexin-1** (binds Ca²⁺ and phospholipids) → ↓ phospholipase A2."
+    },
+    {
+     "label": "Exam trap",
+     "value": "when Ca²⁺ rises uncontrolled (ischaemia, excitotoxicity) **calpains**, phospholipases and caspases are activated and mitochondria are damaged: injury becomes irreversible. In **skeletal muscle** contraction does not need extracellular Ca²⁺ (mechanical L channel–RyR1 coupling); in the **heart** it does."
+    },
+    {
+     "label": "Connections",
+     "value": "→ Ca²⁺ channels (G5); digitalis (B11b, G5); glutamate and excitotoxicity (G6); anaesthetics (B2); glucocorticoids (A4)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G7__nicotina-alfa4beta2-dipendenza",
+   "name": "Nicotine, the α4β2 receptor and the addiction circuit (varenicline)",
+   "nameShort": "Nicotine, the α4β2 receptor and the addiction circuit",
+   "memo": "Nicotine → **α4β2** in the **VTA** → dopamine in the **nucleus accumbens**: **varenicline** (a partial agonist) eases craving and blunts the reward.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "at the concentrations reached by smoking, nicotine acts mainly on the high-affinity **neuronal α4β2 nAChR**, expressed on **dopaminergic neurons of the ventral tegmental area (VTA)**, rather than on the muscle receptor."
+    },
+    {
+     "label": "How it works",
+     "value": "nicotine → α4β2 → depolarization of VTA neurons → ↑ **dopamine** in the **nucleus accumbens** (ventral striatum: encodes **value/reinforcement**) → the **dorsal striatum** learns the associated **action** (the act of smoking) and turns it into a **habit**. Repeated exposure **desensitizes** receptors → tolerance and need for higher doses."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**varenicline**: **α4β2 partial agonist** → stimulates enough to ease **craving** and withdrawal and, by occupying the receptor, **reduces the reinforcement** of smoked nicotine. Other options: **bupropion** (DAT/NET), nicotine **replacement therapy** (transdermal patches, gum)."
+    },
+    {
+     "label": "Why it matters",
+     "value": "**craving** is tied to associative **memory** and **stress** (CRH in the amygdala): it is the real treatment target. According to the lecture, individual vulnerability depends largely on the **endogenous opioid system** (the same one that sets pain threshold), not only on nicotinic receptor numbers."
+    },
+    {
+     "label": "Exam trap",
+     "value": "a **partial** agonist has a **dual role**: without nicotine it acts as an agonist (less withdrawal), with nicotine as an **antagonist** (less reward). Do not confuse it with a pure antagonist."
+    },
+    {
+     "label": "Connections",
+     "value": "→ partial agonists (G4); pentameric ligand-gated channels (G6); bupropion (B3); HPA axis and CRH (G7)."
+    }
+   ],
+   "freetext": []
+  },
+  {
+   "id": "G7__asse-hpa-crh-cronofarmacologia",
+   "name": "HPA axis, CRH and circadian rhythms in drug therapy (chronopharmacology)",
+   "nameShort": "HPA axis, CRH and circadian rhythms in drug therapy",
+   "memo": "Cortisol and noradrenaline **peak in the morning**: corticosteroids **in the morning**, first **α1-blocker** dose **at bedtime**.",
+   "segments": [
+    {
+     "label": "Definition",
+     "value": "**CRH** (paraventricular nucleus) acts as a **hormone** (portal blood → **ACTH** from POMC → **cortisol** from the zona fasciculata, with negative feedback) and as an extrahypothalamic **neurotransmitter** (amygdala, locus coeruleus): anxiety, stress response, negative affect of **withdrawal**, **relapse**. **Metabolic** effects (hyperglycaemia, catabolism) belong to **cortisol**, not CRH."
+    },
+    {
+     "label": "How it works",
+     "value": "cortisol acts on **MR** (high affinity, occupied even at basal levels) and **GR** (low affinity, recruited by stress or therapy) → **inverted-U** curve for learning and memory (hippocampus): moderate levels favour synaptic potentiation, excessive or chronic levels impair it (traumatic memories, post-traumatic stress disorder)."
+    },
+    {
+     "label": "Circadian rhythm",
+     "value": "cortisol **peaks on waking** (early morning) and is lowest in the evening/night; at the same time a **noradrenergic surge** (locus coeruleus) ↑ blood pressure and heart rate → **morning peak** of infarctions, strokes and arrhythmias."
+    },
+    {
+     "label": "Clinical example",
+     "value": "**glucocorticoids** as a single **morning** dose (mimic the rhythm, ↓ axis suppression; possibly alternate-day regimens); antihypertensives with **24-h coverage** including the early morning; **α1-blockers** (prazosin, doxazosin): «**first-dose effect**» (orthostatic hypotension, syncope) → start with a **low dose at bedtime**, then titrate slowly."
+    },
+    {
+     "label": "Exam trap",
+     "value": "«all antihypertensives should be taken in the evening» → not proven: a large pragmatic trial (TIME, 2022) found no difference in events between morning and evening dosing; **24-h coverage** is what matters. The bedtime rule applies to the **first dose** of α1-blockers."
+    },
+    {
+     "label": "Connections",
+     "value": "→ glucocorticoids (A4); α1-blockers (B10); anxiety (B1); nicotine and addiction (G7)."
+    }
+   ],
+   "freetext": []
+  }
+ ]
+}
