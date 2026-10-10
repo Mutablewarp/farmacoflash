@@ -1,16 +1,14 @@
-# Pubblica su GitHub Pages: automatico a ogni push su main (+ avvio manuale).
-#
-# ⚠️ PRIVACY: su un account GitHub gratuito un sito Pages è PUBBLICO anche se il
-# repository è privato. Per un sito Pages *privato* (accesso solo agli utenti
-# autorizzati) serve GitHub Pro/Team/Enterprise.
-# Questo workflow NON parte da solo: va avviato a mano (Actions → "Deploy FarmacoFlash")
-# e Pages va prima abilitato in Settings → Pages → Source: GitHub Actions.
-# Finché non lo avvii tu, nulla viene pubblicato.
+# Pubblica su GitHub Pages (sito pubblico: https://mutablewarp.github.io/farmacoflash/).
+# Quando: a ogni push su main, ogni notte (aggiorna il feed Novità) e su avvio manuale.
+# Il feed elenca solo avvisi e linee guida da fonti ufficiali: non modifica mai le carte.
+# Nota: GitHub sospende i workflow programmati dopo 60 giorni senza commit sul repo.
 
 name: Deploy FarmacoFlash (Pages)
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '30 3 * * *'   # 05:30 ora legale italiana, 04:30 ora solare
   workflow_dispatch:
 
 permissions:
@@ -20,7 +18,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -30,14 +28,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: "Prepara il sito (app: index.html = home con le due app)"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build e controlli di regressione
+        run: npm test
+      - name: Prepara il sito
         run: |
           mkdir -p _site
-          cp index.html _site/index.html
-          cp "Canali-e-Recettori-3D.html" _site/
-          cp "Flashcard-Farmacologia.html" _site/
-          cp "Tabella-Farmaci.html" _site/ 2>/dev/null || true
-          cp -r screenshots _site/screenshots 2>/dev/null || true
+          cp index.html sw.js manifest.webmanifest _site/
+          cp "Flashcard-Farmacologia.html" "Tabella-Farmaci.html" "Canali-e-Recettori-3D.html" _site/
+          cp -R assets _site/assets
+      - name: Novità dalle fonti ufficiali (EMA, AIFA, FDA, PubMed)
+        # Unisce le novità già pubblicate con quelle di oggi; se le fonti non rispondono
+        # resta la copia versionata nel repo, così il sito non perde mai il feed.
+        run: |
+          python3 build/novita.py --prev "https://mutablewarp.github.io/farmacoflash/novita.json" --out _site/novita.json \
+            || cp novita.json _site/novita.json
+      - name: Controllo privacy (termini vietati nei file pubblicati)
+        # I termini stanno nel secret PRIVACY_TERMS (regex, es. "nome1|nome2"), mai nel repo pubblico.
+        env:
+          TERMS: ${{ secrets.PRIVACY_TERMS }}
+        run: |
+          if [ -z "$TERMS" ]; then echo "::warning::Secret PRIVACY_TERMS assente: controllo saltato."; exit 0; fi
+          if grep -rliE "$TERMS" _site; then
+            echo "::error::Termine vietato nei file pubblicati: deploy bloccato."
+            exit 1
+          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -1,0 +1,17 @@
+{"meta": {"total_records": 4, "timestamp": "2026-10-10T03:00:00Z"},
+ "data": [
+  {"title": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 28 September - 1 October 2026",
+   "press_release": "No", "related_medicine_referral": "Depakine;Litfulo", "categories": "Human",
+   "topics": "Pharmacovigilance", "news_summary": "PRAC starts a review of &lt;i&gt;valproate&lt;/i&gt; medicines",
+   "first_published_date": "02/10/2026", "last_updated_date": "",
+   "news_url": "https://www.ema.europa.eu/en/news/meeting-highlights-prac-28-september-1-october-2026"},
+  {"title": "EMA recommends veterinary vaccine", "related_medicine_referral": "", "categories": "Veterinary",
+   "topics": "Vaccines", "news_summary": "Cattle vaccine", "first_published_date": "09/10/2026",
+   "news_url": "https://www.ema.europa.eu/en/news/vet-vaccine"},
+  {"title": "Executive Director speech", "related_medicine_referral": "", "categories": "Human;Corporate",
+   "topics": "Speech", "news_summary": "Speech", "first_published_date": "01/10/2026",
+   "news_url": "https://www.ema.europa.eu/en/news/speech"},
+  {"title": "First oral GLP-1 treatment for weight management", "related_medicine_referral": "",
+   "categories": "Human", "topics": "Medicines", "news_summary": "New option for obesity",
+   "first_published_date": "22/05/2026", "news_url": "https://www.ema.europa.eu/en/news/first-oral-glp-1"}
+ ]}

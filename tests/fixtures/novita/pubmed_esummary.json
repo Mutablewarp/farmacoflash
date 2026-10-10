@@ -1,0 +1,18 @@
+{"header": {"type": "esummary", "version": "0.3"},
+ "result": {
+  "uids": ["40000001", "40000002", "40000003"],
+  "40000001": {"uid": "40000001", "pubdate": "2026 Oct 9", "source": "Eur Heart J",
+   "authors": [{"name": "Rossi M", "authtype": "Author"}],
+   "title": "2026 ESC Guidelines for the management of atrial fibrillation: anticoagulation with apixaban and warfarin.",
+   "pubtype": ["Journal Article", "Practice Guideline"], "sortpubdate": "2026/10/09 00:00",
+   "history": [{"pubstatus": "pubmed", "date": "2026/10/06 06:42"}, {"pubstatus": "entrez", "date": "2026/10/05 20:07"}]},
+  "40000002": {"uid": "40000002", "pubdate": "2026 Sep", "source": "Respir Med",
+   "authors": [{"name": "Smith J", "authtype": "Author"}],
+   "title": "Adherence to guideline-recommended COPD care: a national cohort.",
+   "pubtype": ["Journal Article"], "sortpubdate": "2026/09/20 00:00",
+   "history": [{"pubstatus": "entrez", "date": "2026/09/20 10:00"}]},
+  "40000003": {"uid": "40000003", "pubdate": "2026 Sep", "source": "Neurology",
+   "authors": [], "title": "Correction to: Practice guideline for epilepsy.",
+   "pubtype": ["Published Erratum"], "sortpubdate": "2026/09/18 00:00",
+   "history": [{"pubstatus": "entrez", "date": "2026/09/18 10:00"}]}
+ }}

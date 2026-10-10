@@ -1,0 +1,16 @@
+{"meta": {"total_records": 4, "timestamp": "2026-10-10T03:00:00Z"},
+ "data": [
+  {"category": "Human", "name_of_medicine": "Depakine", "active_substances": "valproate sodium;valproic acid",
+   "dhpc_type": "Adverse event;Post-authorisation measure", "therapeutic_area_mesh": "Epilepsy;Bipolar Disorder",
+   "dissemination_date": "30/09/2026", "first_published_date": "01/10/2026", "last_updated_date": "",
+   "dhpc_url": "https://www.ema.europa.eu/en/medicines/dhpc/depakine"},
+  {"category": "Veterinary", "name_of_medicine": "Vetmedin", "active_substances": "pimobendan",
+   "dhpc_type": "Quality defect", "therapeutic_area_mesh": "", "dissemination_date": "02/10/2026",
+   "first_published_date": "02/10/2026", "dhpc_url": "https://www.ema.europa.eu/en/medicines/dhpc/vetmedin"},
+  {"category": "Human", "name_of_medicine": "Oldmed", "active_substances": "lorazepam",
+   "dhpc_type": "Adverse event", "therapeutic_area_mesh": "Anxiety", "dissemination_date": "15/01/2020",
+   "first_published_date": "15/01/2020", "dhpc_url": "https://www.ema.europa.eu/en/medicines/dhpc/oldmed"},
+  {"category": "Human", "name_of_medicine": "Badlink", "active_substances": "warfarin",
+   "dhpc_type": "Adverse event", "therapeutic_area_mesh": "", "dissemination_date": "05/10/2026",
+   "first_published_date": "05/10/2026", "dhpc_url": "javascript:alert(1)"}
+ ]}

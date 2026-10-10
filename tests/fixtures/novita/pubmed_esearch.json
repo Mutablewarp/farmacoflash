@@ -1,0 +1,2 @@
+{"header": {"type": "esearch", "version": "0.3"},
+ "esearchresult": {"count": "4", "retmax": "4", "retstart": "0", "idlist": ["40000001", "40000002", "40000003", "bad-id"]}}

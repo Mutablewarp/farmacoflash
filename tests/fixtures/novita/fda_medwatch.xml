@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" xml:base="http://www.fda.gov/">
+  <channel>
+    <title>MedWatch Safety Alerts RSS Feed</title>
+    <link>http://www.fda.gov/</link>
+    <language>en</language>
+    <item>
+      <title>FDA warns about &lt;b&gt;valproate&lt;/b&gt; &amp;amp; serious birth defects</title>
+      <link>http://www.fda.gov/drugs/drug-safety-and-availability/fda-warns-valproate-birth-defects</link>
+      <description><![CDATA[<p>FDA is warning that <strong>valproate</strong> use in pregnancy&nbsp;can cause major birth defects.</p>]]></description>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 EDT</pubDate>
+      <guid isPermaLink="true">http://www.fda.gov/drugs/drug-safety-and-availability/fda-warns-valproate-birth-defects</guid>
+    </item>
+    <item>
+      <title>Early Alert: Infusion Pump Issue from Example Medical</title>
+      <link>http://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/early-alert-infusion-pump</link>
+      <description>Software problem with an infusion pump.</description>
+      <pubDate>Thu, 01 Oct 2026 00:00:00 EDT</pubDate>
+    </item>
+    <item>
+      <title>Example Pharmacy Recalls Compounded Glutathione Due to Elevated Endotoxin</title>
+      <link>http://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/example-glutathione-recall</link>
+      <description>Recall of compounded glutathione.</description>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 EDT</pubDate>
+    </item>
+    <item>
+      <title>Example Labs Recalls One Lot of Lorazepam Injection Due to Particulate Matter</title>
+      <link>http://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/example-lorazepam-recall</link>
+      <description>Lorazepam Injection, USP 2 mg/mL, one lot recalled.</description>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 EDT</pubDate>
+    </item>
+  </channel>
+</rss>

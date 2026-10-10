@@ -1,0 +1,2140 @@
+{
+ "generated": "2026-10-10T16:47:47Z",
+ "window_days": 365,
+ "sources": [
+  {
+   "id": "ema",
+   "name": "EMA",
+   "url": "https://www.ema.europa.eu/en/news",
+   "ok": true,
+   "count": 95,
+   "error": null
+  },
+  {
+   "id": "aifa",
+   "name": "AIFA",
+   "url": "https://www.aifa.gov.it/comunicazioni-di-sicurezza",
+   "ok": true,
+   "count": 23,
+   "error": null
+  },
+  {
+   "id": "fda",
+   "name": "FDA",
+   "url": "https://www.fda.gov/drugs/drug-safety-and-availability/drug-safety-communications",
+   "ok": true,
+   "count": 6,
+   "error": null
+  },
+  {
+   "id": "pubmed",
+   "name": "PubMed (linee guida)",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/",
+   "ok": true,
+   "count": 30,
+   "error": null
+  }
+ ],
+ "items": [
+  {
+   "id": "6fd210c94f81",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Ocrevus (ocrelizumab)",
+   "summary": "Direct healthcare professional communication (Adverse event, Post-authorisation measure). Therapeutic area: Multiple Sclerosis.",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/ocrevus",
+   "date": "2026-10-09",
+   "lang": "en",
+   "drugs": [
+    "ocrelizumab"
+   ],
+   "cards": [
+    "B7__sm-disease-modifying-treatments-dmt"
+   ],
+   "decks": [
+    "B7"
+   ]
+  },
+  {
+   "id": "a04c75d9235e",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Nota Informativa Importante di Sicurezza (NIIS) su Ocrevus (ocrelizumab)",
+   "summary": "Ocrevus (ocrelizumab): nuovo rischio di danno epatico indotto da farmaco e raccomandazioni sul monitoraggio della funzionalità epatica prima e durante il trattamento.",
+   "url": "https://www.aifa.gov.it/-/nota-informativa-importante-di-sicurezza-niis-ocrevus-ocrelizumab",
+   "date": "2026-10-08",
+   "lang": "it",
+   "drugs": [
+    "ocrelizumab"
+   ],
+   "cards": [
+    "B7__sm-disease-modifying-treatments-dmt"
+   ],
+   "decks": [
+    "B7"
+   ]
+  },
+  {
+   "id": "a2eac3f6a3d1",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Clinical trial applications advice pilot becomes permanent",
+   "summary": "Technical and regulatory support for preparing clinical trial applications will continue from January 2027",
+   "url": "https://www.ema.europa.eu/en/news/clinical-trial-applications-advice-pilot-becomes-permanent",
+   "date": "2026-10-08",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "f596b347b429",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Evidence-to-Recommendation Framework for 2026 ACE Clinical Guideline on bacterial skin and soft tissue infections - diagnosis and antibiotic prescribing.",
+   "summary": "Singapore Med J, 2026 Oct 7. Ponniah JD et al.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42847140/",
+   "date": "2026-10-08",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "3e491ae2b84a",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Sudden unexpected death in epilepsy: An Italian expert consensus statement on risk, mechanisms, prevention, and therapeutic strategies.",
+   "summary": "Epilepsia Open, 2026 Oct 7. Belcastro V et al.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42839771/",
+   "date": "2026-10-07",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "1ce6c7d87b1d",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 28 September - 1 October",
+   "summary": "PRAC carried out its broad range of responsibilities for managing the safety of medicines",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-28-september-1-october",
+   "date": "2026-10-02",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "170cdab8b9a2",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Global regulators call for advancing alternatives to animal testing across the medicine lifecycle",
+   "summary": "International harmonisation is a key pillar of EMA’s 3Rs strategy",
+   "url": "https://www.ema.europa.eu/en/news/global-regulators-call-advancing-alternatives-animal-testing-across-medicine-lifecycle",
+   "date": "2026-10-01",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "49a576061b27",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Advice on ‘end-of-year’ submission dates for type I variations in 2026",
+   "summary": "Regulatory update",
+   "url": "https://www.ema.europa.eu/en/news/advice-end-year-submission-dates-type-i-variations-2026",
+   "date": "2026-10-01",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "033231535979",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Pharmacological treatment strategies to prevent heart failure across the cardiovascular-kidney-metabolic spectrum: an EJHF Expert Consensus Statement.",
+   "summary": "Eur J Heart Fail, 2026 Oct 1. Inciardi RM et al.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42817848/",
+   "date": "2026-10-01",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "ed586abc3097",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "2026 iCARDIO Alliance Global Implementation Guidelines on Heart Failure.",
+   "summary": "J Card Fail, 2027 Oct 13. Chopra V et al. Practice Guideline.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42822640/",
+   "date": "2026-10-01",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "afe1ba40e20d",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Women are missing from medicines development: EMA’s roadmap for change",
+   "summary": "10 priorities proposed to drive change in medicines for women’s health",
+   "url": "https://www.ema.europa.eu/en/news/women-are-missing-medicines-development-emas-roadmap-change",
+   "date": "2026-09-30",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "f1b93a4cc7ce",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "VI Spanish Consensus Conference on the treatment of Helicobacter pylori infection.",
+   "summary": "Gastroenterol Hepatol, 2026 Sep 30. Gisbert JP et al. Practice Guideline.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42816313/",
+   "date": "2026-09-30",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "af26f73e016e",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "EASL-EASD-EASO Guidance for the Use of Resmetirom and Semaglutide as MASH-Targeted Therapy.",
+   "summary": "J Hepatol, 2026 Dec 1. European Association for the Study of the Liver (EASL). Electronic address: easloffice@easloffice.eu et al. Practice Guideline.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42805503/",
+   "date": "2026-09-28",
+   "lang": "en",
+   "drugs": [
+    "semaglutide"
+   ],
+   "cards": [
+    "A10__incretine-agonisti-del-recettore-glp-1-e"
+   ],
+   "decks": [
+    "A10"
+   ]
+  },
+  {
+   "id": "ff6d7dc5a946",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "European Network for Optimization of Veterinary Antimicrobial Therapy (ENOVAT) guidelines for antimicrobial and non-steroidal anti-inflammatory drug use in bovine respiratory disease.",
+   "summary": "Open Res Eur, 2026. Scahill K et al.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42798319/",
+   "date": "2026-09-26",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "924d61883e58",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Targeted Treatment of Agitation in Alzheimer's Dementia: Prioritizing Function and Safety Over Sedation and Other Serious Harms.",
+   "summary": "Prim Care Companion CNS Disord, 2026 Sep 22. Tariot PN et al. Practice Guideline.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42771693/",
+   "date": "2026-09-22",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "7d0cb3b6daab",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Meeting highlights from the Committee for Medicinal Products for Human Use (CHMP) 14-17 September 2026",
+   "summary": "12 new medicines recommended for approval; another 11 medicines recommended for extension of their therapeutic indications. Related: Frehemgo, Gevalka, Klygefa, Lifyorli, Povofortay, Sepalna, VaxRabeo, Adcomfo, Pebrilzo, Inijaq, Ruxolitinib Zentiva, KemSu, Qezzaqar, Xervyteg…",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-14-17-september-2026",
+   "date": "2026-09-18",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "89c725ced1ba",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "Benefits of sodium oxybate continue to outweigh risks in people with alcohol dependency",
+   "summary": "Studies required to further characterise efficacy. Related: Sodium oxybate-containing syrup and oral solution for alcohol dependence.",
+   "url": "https://www.ema.europa.eu/en/news/benefits-sodium-oxybate-continue-outweigh-risks-people-alcohol-dependency",
+   "date": "2026-09-18",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "f3432cc9da7a",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "EMA concludes review of ipidacrine-containing medicines",
+   "summary": "Benefits continue to outweigh risks, but important restrictions on the medicines' use are recommended. Related: Ipidacrine-containing medicinal products.",
+   "url": "https://www.ema.europa.eu/en/news/ema-concludes-review-ipidacrine-containing-medicines",
+   "date": "2026-09-18",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "a865e2dea008",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "2026 EASD evidence-based clinical practice guideline for assessing and managing diabetes distress among adults with type 1 diabetes or type 2 diabetes.",
+   "summary": "Diabetologia, 2026 Sep 15. Speight J et al.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42744915/",
+   "date": "2026-09-16",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "cb3ca0dde6ad",
+   "source": "fda",
+   "kind": "sicurezza",
+   "title": "FDA Approves Additional Information in Labeling for Kybella (Deoxycholic Acid) Injection Warning of Adverse Reactions Associated with Unapproved Use",
+   "summary": "FDA Drug Safety Communication.",
+   "url": "https://www.fda.gov/drugs/drug-safety-communications/fda-approves-additional-information-labeling-kybella-deoxycholic-acid-injection-warning-adverse",
+   "date": "2026-09-15",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "159579c335bb",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Atherogenic dyslipidaemia 2026. Consensus document of the COR (Remnant Cholesterol) Group of the Spanish Arteriosclerosis Society.",
+   "summary": "Clin Investig Arterioscler, 2026 Sep 12. Pedro-Botet J et al. Practice Guideline.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42731917/",
+   "date": "2026-09-12",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "920792f60a44",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "2026 Taiwan guidelines for the acute pharmacologic treatment of migraine in adults.",
+   "summary": "J Chin Med Assoc, 2026 Sep 11. Lau CI et al.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42723131/",
+   "date": "2026-09-11",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "b919f757fdac",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Pathogenesis and Phenotypes of Pulmonary Vascular Disease in COPD: A Consensus Statement From the Pulmonary Vascular Research Institute's Innovative Drug Development Initiative - PH Group 3 Workstream.",
+   "summary": "Pulm Circ, 2026 Jul. Piccari L et al.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42725037/",
+   "date": "2026-09-11",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "7659717aa005",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Taiwan joint consensus on the management of osteoporosis in patients with diabetes.",
+   "summary": "J Formos Med Assoc, 2026 Sep 9. Hwang JS et al. Practice Guideline.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42716892/",
+   "date": "2026-09-09",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "04dd40583dd2",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "American Association of Clinical Endocrinology Consensus Statement: Use of Diabetes Technology for Management of Adults with Diabetes.",
+   "summary": "Endocr Pract, 2026 Sep 8. McGill JB et al. Practice Guideline.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42709002/",
+   "date": "2026-09-08",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "19a9ffd8eb45",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Supporting clinical guidelines for opioid conversion to methadone and tapering to prevent withdrawal in critically ill children using physiology based pharmacokinetic modeling and simulation.",
+   "summary": "PLoS One, 2026. de Hoop-Sommen MA et al.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42709714/",
+   "date": "2026-09-08",
+   "lang": "en",
+   "drugs": [
+    "metadone"
+   ],
+   "cards": [
+    "B8__oppioidi-effetti-tolleranza-e-dipendenza",
+    "B8__oppiacei-forti-step-3"
+   ],
+   "decks": [
+    "B8"
+   ]
+  },
+  {
+   "id": "70430fdc6a24",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "European Respiratory Society clinical practice guidelines update for the treatment of pulmonary arterial hypertension.",
+   "summary": "Eur Respir J, 2026 Sep 7. Kovacs G et al.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42705705/",
+   "date": "2026-09-07",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "36e1a22c5c69",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Aggiornamenti dal PRAC: riunione del 31 agosto – 3 settembre 2026",
+   "summary": "Aggiornamenti importanti dal Comitato per la valutazione dei rischi in farmacovigilanza (PRAC) - Riunione del 31 agosto - 3 settembre 2026.",
+   "url": "https://www.aifa.gov.it/-/aggiornamenti-dal-prac-riunione-del-31-agosto-3-settembre-2026",
+   "date": "2026-09-04",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "0d883f670fc5",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 31 August - 3 September 2026",
+   "summary": "PRAC starts safety review of injectable iron-containing medicines. Related: Parenteral iron-containing medicinal products.",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-31-august-3-september-2026",
+   "date": "2026-09-04",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "baafdc8775a1",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "New EU supply chain to end Visudyne shortage",
+   "summary": "Critical shortage of eye medicine expected to be resolved in 2027. Related: Visudyne.",
+   "url": "https://www.ema.europa.eu/en/news/new-eu-supply-chain-end-visudyne-shortage",
+   "date": "2026-09-04",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "137ec4a81e2b",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Voluntary data submission pilot to advance innovative alternatives to animal testing",
+   "summary": "Developers can submit New Approach Methodologies (NAMs) data and receive tailored feedback.",
+   "url": "https://www.ema.europa.eu/en/news/voluntary-data-submission-pilot-advance-innovative-alternatives-animal-testing",
+   "date": "2026-09-01",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "5491dff805e8",
+   "source": "fda",
+   "kind": "sicurezza",
+   "title": "FDA Adds Boxed Warning to Labeling for Ferric Carboxymaltose Injection (Injectafer) to Describe Risk of Low Phosphate Levels",
+   "summary": "FDA Drug Safety Communication.",
+   "url": "https://www.fda.gov/drugs/drug-safety-communications/fda-adds-boxed-warning-labeling-ferric-carboxymaltose-injection-injectafer-describe-risk-low",
+   "date": "2026-09-01",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "23c7b5cf0525",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Pharmacologic Treatment for Migraine Prevention in Adults Practice Guideline Recommendations: Report of the AAN Guidelines Subcommittee and the American Headache Society.",
+   "summary": "Headache, 2026 Oct. Potrebic S et al.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42673606/",
+   "date": "2026-08-31",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "cb1d23cb74f7",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Pharmacologic Treatment for Migraine Prevention in Adults Practice Guideline Recommendations: Report of the AAN Guidelines Subcommittee and the American Headache Society.",
+   "summary": "Neurology, 2026 Oct 13. Potrebic S et al. Practice Guideline.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42673560/",
+   "date": "2026-08-31",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "9581344d8dd0",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Criteria for the diagnosis of cardiogenic shock-European perspective: A Clinical Consensus Statement of the Association for Acute CardioVascular Care, the Heart Failure Association, and the European Association of Percutaneous Cardiovascular Interventions of the ESC.",
+   "summary": "Eur Heart J Acute Cardiovasc Care, 2026 Aug 29. Lim HS et al. Consensus Statement.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42667225/",
+   "date": "2026-08-29",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "07bd9886e05b",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "2026 ESC Guidelines for the management of heart failure.",
+   "summary": "Eur Heart J, 2026 Oct 9. Køber L et al.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42661420/",
+   "date": "2026-08-28",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "0d5b5d0faf70",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Antibiotic Treatment of Severe Infections with Multiresistant Bacteria.",
+   "summary": "Dtsch Arztebl Int, 2026 Nov 13. Gatermann SG et al. Practice Guideline.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42661422/",
+   "date": "2026-08-28",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "1123dd8b75ef",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Workup and management of rhythm disorders in myocarditis and inflammatory cardiomyopathy: a clinical consensus statement of the European Heart Rhythm Association and the Heart Failure Association of the ESC, the ESC Working Group on Myocardial & Pericardial Diseases, the European Association of…",
+   "summary": "Eur J Heart Fail, 2026 Aug 28. Peretto G et al.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42663246/",
+   "date": "2026-08-28",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "1b1ed5331c61",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Wearable wrist-watch type cuff oscillometric blood pressure monitors: consensus statement by the European Society of Hypertension Working Group on blood pressure monitoring.",
+   "summary": "J Hypertens, 2026 Oct 1. Stergiou GS et al. Consensus Statement, Review.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42644439/",
+   "date": "2026-08-26",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "532a1b315a46",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Practical guide on the use of the PulseSelect pulsed field ablation system for atrial fibrillation ablation procedures.",
+   "summary": "Europace, 2026 Sep 2. Andrade JG et al. Practice Guideline.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42644575/",
+   "date": "2026-08-26",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "977c8aae343c",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Clinical pathway for patients with suspected heart failure in primary care: Recommendations guided by NT-proBNP testing.",
+   "summary": "Rev Port Cardiol, 2026 Aug 24. Gavina C et al. Practice Guideline.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42636974/",
+   "date": "2026-08-24",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "c76296ef0b73",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Evidence-based clinical practice guidelines for peptic ulcer disease 2026.",
+   "summary": "J Gastroenterol, 2026 Oct. Sugimoto M et al. Practice Guideline, Review.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42635735/",
+   "date": "2026-08-24",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "e76ef2714ecd",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Jentadueto (linagliptin, metformin hydrochloride)",
+   "summary": "Direct healthcare professional communication (Quality defect). Therapeutic area: Diabetes Mellitus, Type 2.",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/jentadueto",
+   "date": "2026-08-20",
+   "lang": "en",
+   "drugs": [
+    "linagliptin",
+    "metformina"
+   ],
+   "cards": [
+    "A10__metformina-biguanidi",
+    "A10__incretine-inibitori-della-dpp-4-gliptine"
+   ],
+   "decks": [
+    "A10"
+   ]
+  },
+  {
+   "id": "eb08837ce335",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Strategies for preventing and reversing atrial cardiomyopathy (AtCM): current evidence, therapeutic targets, and future directions. A European Journal of Heart Failure expert consensus statement.",
+   "summary": "Eur J Heart Fail, 2026 Aug 19. Zakeri R et al.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42617069/",
+   "date": "2026-08-19",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "4e1f95789094",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Co-designing opioid stewardship guidelines for cancer pain management in Nepal: study protocol.",
+   "summary": "Pain Manag, 2026 Aug 18. Shrestha S et al.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42610766/",
+   "date": "2026-08-18",
+   "lang": "en",
+   "drugs": [],
+   "cards": [
+    "B8__oppioidi-effetti-tolleranza-e-dipendenza"
+   ],
+   "decks": [
+    "B8"
+   ]
+  },
+  {
+   "id": "012e4c168b20",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Executive summary of the Japanese clinical practice guidelines for tuberous sclerosis complex-associated epilepsy 2025.",
+   "summary": "Brain Dev, 2026 Oct. Okanishi T et al. Practice Guideline, Review.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42607557/",
+   "date": "2026-08-17",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "49c046343e9b",
+   "source": "pubmed",
+   "kind": "linea-guida",
+   "title": "Chinese Guideline on Risk Management of Osteoporosis in the General Public.",
+   "summary": "Orthop Surg, 2026 Oct. Zhang S et al. Practice Guideline.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42578688/",
+   "date": "2026-08-11",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "9feeb6fd3fb9",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Nota Informativa Importante di Sicurezza (NIIS) su Litfulo (ritlecitinib)",
+   "summary": "Litfulo (ritlecitinib): raccomandazioni aggiornate per minimizzare i rischi di eventi avversi cardiovascolari maggiori, tumori maligni, tromboembolismo venoso, infezioni gravi e mortalità.",
+   "url": "https://www.aifa.gov.it/-/nota-informativa-importante-di-sicurezza-niis-su-litfulo-ritlecitinib-",
+   "date": "2026-08-10",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "4a585aaf7b88",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Litfulo (ritlecitinib tosilate)",
+   "summary": "Direct healthcare professional communication (Adverse event, Post-authorisation measure, Restriction of indication). Therapeutic area: Alopecia Areata.",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/litfulo",
+   "date": "2026-08-10",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "87343da82ff1",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Nota Informativa Importante di Sicurezza (NIIS) su medicinali contenenti desogestrel ed etonogestrel",
+   "summary": "Medicinali contenenti desogestrel ed etonogestrel: rischio di meningioma e misure per minimizzare il rischio.",
+   "url": "https://www.aifa.gov.it/-/nota-informativa-importante-sicurezza-medicinali-contenenti-desogestrel-etonogestrel",
+   "date": "2026-08-06",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "3eda49a1a187",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Desogestrel / etonogestrel (desogestrel, etonogestrel)",
+   "summary": "Direct healthcare professional communication (Adverse event, Post-authorisation measure).",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/desogestrel-etonogestrel",
+   "date": "2026-08-06",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "297b1f24c895",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Nota Informativa Importante di Sicurezza (NIIS) su Bendamustina Accord",
+   "summary": "Bendamustina Accord 25 mg/ml concentrato per soluzione per infusione: Rischio di errore terapeutico dovuto a errata diluizione.",
+   "url": "https://www.aifa.gov.it/-/niis-bendamustina-accord",
+   "date": "2026-08-03",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "53fdcdff9f3e",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Meeting highlights from the Committee for Medicinal Products for Human Use (CHMP) 20-23 July 2026",
+   "summary": "Twelve new medicines recommended for approval; another eight medicines recommended for extension of their therapeutic indications. Related: Evlarco, Icotyde, Lynavoy, Lyrokaul, Nezglyal, Susvimo, Ubeslo, Zokovea, Cavoley, Riociguat Accord, Ruxolitinib Viatris, Tafamidis Accord…",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-20-23-july-2026",
+   "date": "2026-07-24",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "92598b7bd606",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "New treatment option for neovascular age-related macular degeneration",
+   "summary": "Susvimo is delivered over time via an ocular implant, reducing the need for frequent intravitreal injections. Related: Susvimo.",
+   "url": "https://www.ema.europa.eu/en/news/new-treatment-option-neovascular-age-related-macular-degeneration",
+   "date": "2026-07-24",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "f7fae47f77eb",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "First oral medicine targeting interleukin-23 receptor recommended for plaque psoriasis",
+   "summary": "Icotyde shown to clear psoriasis skin lesions in many patients with moderate to-severe plaque psoriasis. Related: Icotyde.",
+   "url": "https://www.ema.europa.eu/en/news/first-oral-medicine-targeting-interleukin-23-receptor-recommended-plaque-psoriasis",
+   "date": "2026-07-24",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "f9f3b61c7833",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Vyvgart (efgartigimod alfa)",
+   "summary": "Direct healthcare professional communication (Quality defect). Therapeutic area: Myasthenia Gravis, Polyradiculoneuropathy, Chronic Inflammatory Demyelinating.",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/vyvgart",
+   "date": "2026-07-24",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "0a783410082f",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Tavneos (avacopan)",
+   "summary": "Direct healthcare professional communication (Referral - Article 20 procedure). Therapeutic area: Microscopic Polyangiitis, Wegener Granulomatosis.",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/tavneos",
+   "date": "2026-07-17",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "d7c02c6a440b",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Nota Informativa Importante di Sicurezza (NIIS) su Tavneos (avacopan)",
+   "summary": "Tavneos (avacopan): raccomandazione per la revoca dell’Autorizzazione all’Immissione in Commercio nell’Unione Europea (EU) a causa del rapporto beneficio/rischio sfavorevole.",
+   "url": "https://www.aifa.gov.it/-/nota-informativa-importante-di-sicurezza-niis-su-tavneos-avacopan",
+   "date": "2026-07-16",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "20957e95750b",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Ixchiq (Chikungunya virus, strain CHIKV LR2006-OPY1, live attenuated)",
+   "summary": "Direct healthcare professional communication (Adverse event, Restriction of indication). Therapeutic area: Chikungunya virus.",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/ixchiq-1",
+   "date": "2026-07-14",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "e542c822e9d4",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Aggiornamenti dal PRAC riunione 6-9 luglio 2026",
+   "summary": "Aggiornamenti importanti dal Comitato per la valutazione dei rischi in farmacovigilanza (PRAC) - Riunione del 6-9 luglio 2026.",
+   "url": "https://www.aifa.gov.it/-/aggiornamenti-prac-riunione-6-9-luglio-2026",
+   "date": "2026-07-10",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "8973f1c5fa01",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 6-9 July 2026",
+   "summary": "PRAC agrees new safety information on desogestrel- and etonogestrel-containing contraceptives and Litfulo, a medicine to treat alopecia areata. Related: Litfulo.",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-6-9-july-2026",
+   "date": "2026-07-10",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "6879f391b9a7",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "EMA fast tracks review of a medicine for metastatic pancreatic cancer",
+   "summary": "Phased review has started to accelerate assessment of medicine with potential to address high unmet medical need",
+   "url": "https://www.ema.europa.eu/en/news/ema-fast-tracks-review-medicine-metastatic-pancreatic-cancer",
+   "date": "2026-07-07",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "988796381292",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "EMA steps up efforts on medicines for women’s health",
+   "summary": "Initiatives to map gaps, challenges and prioritise further actions",
+   "url": "https://www.ema.europa.eu/en/news/ema-steps-efforts-medicines-womens-health",
+   "date": "2026-07-02",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "33c59a801681",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Meeting highlights from the Committee for Medicinal Products for Human Use (CHMP) 22-25 June 2026",
+   "summary": "Six new medicines recommended for approval; another 12 medicines recommended for extension of their therapeutic indications. Related: Rifadin oral suspension and syrup and associated names, Xervyteg, Orladeyo, Aujemflu, Denosumab Ascend, Hopledo, Nylaspeg, Onswik, Daybu…",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-22-25-june-2026",
+   "date": "2026-06-26",
+   "lang": "en",
+   "drugs": [
+    "denosumab"
+   ],
+   "cards": [
+    "A12__denosumab"
+   ],
+   "decks": [
+    "A12"
+   ]
+  },
+  {
+   "id": "4eca84c35c41",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "EMA recommends revoking marketing authorisation for Tavneos",
+   "summary": "Benefits no longer proven to outweigh risks of treatment. Related: Tavneos, Tavneos.",
+   "url": "https://www.ema.europa.eu/en/news/ema-recommends-revoking-marketing-authorisation-tavneos",
+   "date": "2026-06-26",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "42cb8d3a5938",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Evrysdi (risdiplam)",
+   "summary": "Direct healthcare professional communication (Quality defect). Therapeutic area: Muscular Atrophy, Spinal.",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/evrysdi-0",
+   "date": "2026-06-22",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "4ef0e3dc7685",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Aggiornamenti dal PRAC riunione 8-11 giugno 2026",
+   "summary": "Si rendono disponibili aggiornamenti importanti dalla riunione del Comitato per la valutazione dei rischi in farmacovigilanza (PRAC) dell'8-11 giugno 2026.",
+   "url": "https://www.aifa.gov.it/-/aggiornamenti-prac-riunione-giugno-2026",
+   "date": "2026-06-12",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "b4e1dbcad40d",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 8-11 June 2026",
+   "summary": "PRAC concludes evaluation of new data regarding potential risk of neurodevelopmental disorders in children born to men treated with valproate",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-8-11-june-2026",
+   "date": "2026-06-12",
+   "lang": "en",
+   "drugs": [
+    "valproato"
+   ],
+   "cards": [
+    "A7__emicrania-terapia-profilattica",
+    "B4__acido-valproico-valproato-sodico-come-st",
+    "B9__aed-i-gen-gabaergici-e-altri-barbiturici"
+   ],
+   "decks": [
+    "A7",
+    "B4",
+    "B9"
+   ]
+  },
+  {
+   "id": "9c7513469592",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "EMA’s 2025 annual report shows strong approval numbers for human and veterinary medicines",
+   "summary": "Report highlights progress in science, medicines and health in 2025",
+   "url": "https://www.ema.europa.eu/en/news/emas-2025-annual-report-shows-strong-approval-numbers-human-veterinary-medicines",
+   "date": "2026-06-11",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "f0076f0330a7",
+   "source": "fda",
+   "kind": "sicurezza",
+   "title": "FDA Approves Labeling Changes for Over-the-Counter (OTC) Weight Loss Drug alli (Orlistat) to Warn of Risk of Kidney Stones and Kidney Injury",
+   "summary": "FDA Drug Safety Communication.",
+   "url": "https://www.fda.gov/drugs/drug-safety-communications/fda-approves-labeling-changes-over-counter-otc-weight-loss-drug-alli-orlistat-warn-risk-kidney",
+   "date": "2026-06-10",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "171f7238e824",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "EMA, AMA and African regulatory authorities join forces on Ebola outbreak response",
+   "summary": "Experts discuss clinical trials, treatments and vaccines",
+   "url": "https://www.ema.europa.eu/en/news/ema-ama-african-regulatory-authorities-join-forces-ebola-outbreak-response",
+   "date": "2026-06-03",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "e3345d3e69fd",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "ETF recommends updating COVID-19 vaccines to target XFG variant",
+   "summary": "Updated vaccines will help maintain protection against disease as virus continues to evolve",
+   "url": "https://www.ema.europa.eu/en/news/etf-recommends-updating-covid-19-vaccines-target-xfg-variant",
+   "date": "2026-05-29",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "a5f72be61641",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "First medicine to treat rare uncontrolled growth of body tissues",
+   "summary": "Vijoice addresses an unmet medical need for patients with severe or life-threatening PIK3CA-related overgrowth spectrum (PROS) disorders. Related: Vijoice.",
+   "url": "https://www.ema.europa.eu/en/news/first-medicine-treat-rare-uncontrolled-growth-body-tissues",
+   "date": "2026-05-22",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "b003c97d23d3",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Meeting highlights from the Committee for Medicinal Products for Human Use (CHMP) 18-21 May 2026",
+   "summary": "Eight new medicines recommended for approval; another 13 medicines recommended for extension of their therapeutic indications. Related: Boey, Etcamah, Jascayd, Vijoice, Ablymico, Liraglutide STADA, Colchicine Agepha Pharma, Vislyfa, Deqtynet, Braftovi, Enhertu, Erbitux…",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-18-21-may-2026",
+   "date": "2026-05-22",
+   "lang": "en",
+   "drugs": [
+    "liraglutide"
+   ],
+   "cards": [
+    "A10__incretine-agonisti-del-recettore-glp-1-e"
+   ],
+   "decks": [
+    "A10"
+   ]
+  },
+  {
+   "id": "c53b664b3595",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "New medicine for two types of pulmonary fibrosis",
+   "summary": "Jascayd slowed loss of lung function in patients with idiopathic or progressive pulmonary fibrosis. Related: Jascayd.",
+   "url": "https://www.ema.europa.eu/en/news/new-medicine-two-types-pulmonary-fibrosis",
+   "date": "2026-05-22",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "e056527c418a",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "First oral GLP-1 treatment for weight management",
+   "summary": "Wegovy tablets offer an alternative to subcutaneous injections. Related: Wegovy.",
+   "url": "https://www.ema.europa.eu/en/news/first-oral-glp-1-treatment-weight-management",
+   "date": "2026-05-22",
+   "lang": "en",
+   "drugs": [],
+   "cards": [
+    "A10__incretine-agonisti-del-recettore-glp-1-e"
+   ],
+   "decks": [
+    "A10"
+   ]
+  },
+  {
+   "id": "45c1999a81f1",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "EU tracks progress towards 2030 clinical trial targets",
+   "summary": "19 multinational clinical trials have been authorised in addition to the historical average; 40.5% of the total number of clinical trials recruit participants within 200 days",
+   "url": "https://www.ema.europa.eu/en/news/eu-tracks-progress-towards-2030-clinical-trial-targets",
+   "date": "2026-05-20",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "607fc611f114",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Ontozry (cenobamate)",
+   "summary": "Direct healthcare professional communication (Adverse event, Post-authorisation measure). Therapeutic area: Epilepsy.",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/ontozry",
+   "date": "2026-05-13",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "ad39ef2deef4",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Tecovirimat SIGA (tecovirimat monohydrate)",
+   "summary": "Direct healthcare professional communication (Restriction of indication). Therapeutic area: Poxviridae Infections, Cowpox, Monkeypox, Vaccinia, Smallpox.",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/tecovirimat-siga",
+   "date": "2026-05-13",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "cb17437cc6d6",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Nota Informativa Importante di Sicurezza (NIIS) su Ontozry (cenobamato)",
+   "summary": "Ontozry (cenobamato): nuovi requisiti per il monitoraggio della funzionalità epatica a seguito di segnalazioni di grave danno epatico.",
+   "url": "https://www.aifa.gov.it/-/nota-informativa-importante-sicurezza-niis-su-ontozry-cenobamato",
+   "date": "2026-05-12",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "12c5751683dc",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "EMA actively monitoring cruise ship Hantavirus outbreak",
+   "summary": "Risk for the general population currently considered very low by ECDC",
+   "url": "https://www.ema.europa.eu/en/news/ema-actively-monitoring-cruise-ship-hantavirus-outbreak",
+   "date": "2026-05-12",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "3474a6c7a29b",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "EMA welcomes political agreement on Critical Medicines Act",
+   "summary": "Act to improve availability, production and supply of critical medicines in the European Union",
+   "url": "https://www.ema.europa.eu/en/news/ema-welcomes-political-agreement-critical-medicines-act",
+   "date": "2026-05-12",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "91c800d8b96a",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 4-7 May 2026",
+   "summary": "PRAC carried out its broad range of responsibilities for managing the risks associated with medicine use",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-4-7-may-2026",
+   "date": "2026-05-08",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "028b9f673cbd",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Nota Informativa Importante di Sicurezza (NIIS) su Adalain",
+   "summary": "Adalain (Adapalene + Benzoyl peroxide 0.1% + 2.5% e 0,3% + 2,5% gel per uso topico): Rischio teratogeno e controindicazione in gravidanza e nelle donne che pianificano una gravidanza.",
+   "url": "https://www.aifa.gov.it/-/nota-informativa-importante-di-sicurezza-niis-su-adalain",
+   "date": "2026-05-07",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "998508f3f2de",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "AIFA richiama all’uso corretto del paracetamolo, con particolare attenzione ai casi di sovradosaggio intenzionale negli adolescenti",
+   "summary": "L'Agenzia Italiana del Farmaco (AIFA), richiama l’attenzione sull’importanza di un uso corretto e consapevole del paracetamolo, con particolare riferimento ai casi di sovradosaggio intenzionale negli adolescenti.",
+   "url": "https://www.aifa.gov.it/-/aifa-richiama-uso-corretto-paracetamolo-particolare-attenzione-casi-sovradosaggio-intenzionale-negli-adolescenti",
+   "date": "2026-05-05",
+   "lang": "it",
+   "drugs": [
+    "paracetamolo"
+   ],
+   "cards": [
+    "A5__paracetamolo-fans-atipico",
+    "B8__antagonisti-paracetamolo-e-cannabinoidi"
+   ],
+   "decks": [
+    "A5",
+    "B8"
+   ]
+  },
+  {
+   "id": "0168a8bf1933",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "EMA launches new advisory group on vaccine confidence",
+   "summary": "International panel of high-level experts will support EMA’s efforts to strengthen trust in vaccines",
+   "url": "https://www.ema.europa.eu/en/news/ema-launches-new-advisory-group-vaccine-confidence",
+   "date": "2026-04-29",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "eca027b8383a",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "New pilot to support development of ‘breakthrough’ medical devices",
+   "summary": "Enhanced regulatory support and priority access to scientific advice for developers",
+   "url": "https://www.ema.europa.eu/en/news/new-pilot-support-development-breakthrough-medical-devices",
+   "date": "2026-04-28",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "040c10d711a2",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Meeting highlights from the Committee for Medicinal Products for Human Use (CHMP) 20-23 April 2026",
+   "summary": "Five new medicines recommended for approval; another nine medicines recommended for extension of their therapeutic indications. Related: Cenrifki, Itvisma, Redemplo, Palbociclib Viatris, Rexatilux, Agamree, Aquipta, Inaqovi, Opdivo, Privigen, Skyrizi, Venclyxto, Opdualag…",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-20-23-april-2026",
+   "date": "2026-04-24",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "6d493dcb2528",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "New medicine to reduce triglycerides in adults with familial chylomicronaemia syndrome",
+   "summary": "Redemplo provides new treatment option for patients with a high unmet medical need. Related: Redemplo.",
+   "url": "https://www.ema.europa.eu/en/news/new-medicine-reduce-triglycerides-adults-familial-chylomicronaemia-syndrome",
+   "date": "2026-04-24",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "660685c2b4bb",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Savene (dexrazoxane)",
+   "summary": "Direct healthcare professional communication (Quality defect). Therapeutic area: Extravasation of Diagnostic and Therapeutic Materials.",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/savene",
+   "date": "2026-04-23",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "b6c632e6686c",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Levamisole",
+   "summary": "Direct healthcare professional communication (Adverse event).",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/levamisole",
+   "date": "2026-04-16",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "ec3e4c4e149c",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Aggiornamenti dal PRAC riunione 7-10 aprile 2026",
+   "summary": "Si rendono disponibili aggiornamenti importanti dalla riunione del Comitato per la valutazione dei rischi in farmacovigilanza (PRAC) del 7-10 aprile 2026.",
+   "url": "https://www.aifa.gov.it/-/aggiornamenti-dal-prac-riunione-7-10-aprile-2026",
+   "date": "2026-04-10",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "433a07f078e2",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 7-10 April 2026",
+   "summary": "PRAC agrees on communication to healthcare professionals about cases of severe liver injury with epilepsy medicine",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-7-10-april-2026",
+   "date": "2026-04-10",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "c88c5da7acc7",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Avtozma (tocilizumab)",
+   "summary": "Direct healthcare professional communication (Medication error, Quality defect). Therapeutic area: Arthritis, Rheumatoid, Arthritis, Juvenile Rheumatoid, Cytokine Release Syndrome, COVID-19 virus infection.",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/avtozma",
+   "date": "2026-04-07",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "7e1ee1d4377a",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "EMA raccomanda la restrizione delle indicazioni terapeutiche del medicinale Tecovirimat SIGA",
+   "summary": "Il medicinale non ha dimostrato efficacia nel trattamento dell’infezione virale mpox in studi clinici controllati e randomizzati.",
+   "url": "https://www.aifa.gov.it/-/ema-raccomanda-restrizione-indicazioni-terapeutiche-medicinale-tecovirimat-siga",
+   "date": "2026-03-31",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "b2092ec7eef8",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "EMA consults on virtual control groups to help reduce animal use in medicines development",
+   "summary": "A draft qualification opinion for the new testing method is open for consultation",
+   "url": "https://www.ema.europa.eu/en/news/ema-consults-virtual-control-groups-help-reduce-animal-use-medicines-development",
+   "date": "2026-03-31",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "68d2db4ee5d6",
+   "source": "fda",
+   "kind": "sicurezza",
+   "title": "FDA Identifies Cases of Serious Liver Injury in Patients Taking Tavneos (avacopan) for Severe Active Anti-neutrophil Cytoplasmic Autoantibody (ANCA)-associated Vasculitis",
+   "summary": "FDA Drug Safety Communication.",
+   "url": "https://www.fda.gov/drugs/drug-safety-communications/fda-identifies-cases-serious-liver-injury-patients-taking-tavneos-avacopan-severe-active-anti",
+   "date": "2026-03-31",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "2483a8138fa6",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "EU recommendations for 2026/2027 seasonal flu vaccine composition",
+   "summary": "Annual updates to virus strains ensure vaccines stay effective",
+   "url": "https://www.ema.europa.eu/en/news/eu-recommendations-2026-2027-seasonal-flu-vaccine-composition",
+   "date": "2026-03-30",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "51f4b50dde37",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Levamisolo: confermata a livello europeo la raccomandazione PRAC di ritiro dal mercato UE",
+   "summary": "Il (CMDh), ha confermato la raccomandazione del (PRAC) di ritirare dal mercato dell’Unione Europea (UE) i medicinali contenenti levamisolo.",
+   "url": "https://www.aifa.gov.it/-/levamisolo-confermata-a-livello-europeo-raccomandazione-prac-ritiro-mercato-ue",
+   "date": "2026-03-27",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "180f9e2d4155",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Meeting highlights from the Committee for Medicinal Products for Human Use (CHMP) 23-26 March 2026",
+   "summary": "Five new medicines recommended for approval; another 13 medicines recommended for extension of their therapeutic indications. Related: Adstiladrin, Imdylltra, Joenja, Zepzelca, Bopediat, Besponsa, Capvaxive, Feraccru, Hetronifly, Hympavzi, Imcivree, Lojuxta, Mekinist, mResvia…",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-23-26-march-2026",
+   "date": "2026-03-27",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "288a1d174f79",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "New treatment for relapsed extensive-stage small cell lung cancer",
+   "summary": "Imdylltra addresses unmet need in people with poor prognosis and limited treatment options. Related: Imdylltra.",
+   "url": "https://www.ema.europa.eu/en/news/new-treatment-relapsed-extensive-stage-small-cell-lung-cancer",
+   "date": "2026-03-27",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "a8935da57265",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "EMA recommends restricting use of Tecovirimat SIGA",
+   "summary": "The medicine was not effective for the treatment of mpox in randomised clinical trials. Related: Tecovirimat SIGA, Tecovirimat SIGA.",
+   "url": "https://www.ema.europa.eu/en/news/ema-recommends-restricting-use-tecovirimat-siga",
+   "date": "2026-03-27",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "c2ba157ef484",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Nota Informativa Importante di Sicurezza (NIIS) su Remsima (infliximab)",
+   "summary": "Remsima (infliximab): La nuova formulazione endovenosa (EV), 100 mg e 350 mg soluzione concentrata per infusione, contiene sorbitolo ed è pertanto controindicata in pazienti con intolleranza ereditaria al fruttosio.",
+   "url": "https://www.aifa.gov.it/-/nota-informativa-importante-sicurezza-su-remsima-infliximab",
+   "date": "2026-03-20",
+   "lang": "it",
+   "drugs": [
+    "infliximab"
+   ],
+   "cards": [
+    "A9__anti-tnf-classe",
+    "A9__infliximab",
+    "A11__ibd-immunosoppressori-e-biologici"
+   ],
+   "decks": [
+    "A9",
+    "A11"
+   ]
+  },
+  {
+   "id": "4556af4d4acf",
+   "source": "fda",
+   "kind": "sicurezza",
+   "title": "FDA Is Requiring Warning about Vitamin B6 Deficiency and Associated Seizures for Drug Products Containing Carbidopa/Levodopa",
+   "summary": "FDA Drug Safety Communication.",
+   "url": "https://www.fda.gov/drugs/drug-safety-communications/fda-requiring-warning-about-vitamin-b6-deficiency-and-associated-seizures-drug-products-containing",
+   "date": "2026-03-20",
+   "lang": "en",
+   "drugs": [
+    "carbidopa",
+    "levodopa"
+   ],
+   "cards": [
+    "B6__levodopa-l-dopa-carbidopa-benserazide"
+   ],
+   "decks": [
+    "B6"
+   ]
+  },
+  {
+   "id": "55e70ab0c380",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "New PRIME tools to accelerate development of medicines in the EU",
+   "summary": "Three new PRIME features streamline scientific dialogue and help developers to stay on track",
+   "url": "https://www.ema.europa.eu/en/news/new-prime-tools-accelerate-development-medicines-eu",
+   "date": "2026-03-18",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "e5671cd35b3b",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Aggiornamenti dal PRAC riunione 9-12 marzo 2026",
+   "summary": "Si rendono disponibili aggiornamenti importanti dalla riunione del Comitato per la valutazione dei rischi in farmacovigilanza (PRAC) del 9-12 marzo 2026.",
+   "url": "https://www.aifa.gov.it/-/aggiornamenti-dal-prac-riunione-9-12-marzo-2026",
+   "date": "2026-03-13",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "16f23f1dff1b",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 9 - 12 March 2026",
+   "summary": "PRAC warns about known risk of aseptic meningitis with chikungunya vaccine Ixchiq",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-9-12-march-2026",
+   "date": "2026-03-13",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "aee8b4daa3bd",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "New guidance on the conduct of clinical trials during public health emergencies in the EU",
+   "summary": "Recommendations to streamline authorisation of new clinical trials and changes to ongoing trials to generate clinical evidence",
+   "url": "https://www.ema.europa.eu/en/news/new-guidance-conduct-clinical-trials-during-public-health-emergencies-eu",
+   "date": "2026-03-05",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "278c43fe6c62",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "New medicine to treat paediatric low-grade glioma",
+   "summary": "Ojemda addresses unmet need for patients aged 6 months and older with paediatric brain tumour with BRAF alterations. Related: Ojemda.",
+   "url": "https://www.ema.europa.eu/en/news/new-medicine-treat-paediatric-low-grade-glioma",
+   "date": "2026-02-27",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "7cca81f9e9da",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "First combined COVID-19 and influenza vaccine for people 50 years and older",
+   "summary": "mCombriax helps to protect against both COVID-19 caused by SARS-CoV-2 and seasonal influenza. Related: mCombriax.",
+   "url": "https://www.ema.europa.eu/en/news/first-combined-covid-19-influenza-vaccine-people-50-years-older",
+   "date": "2026-02-27",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "984e813e66d5",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Meeting highlights from the Committee for Medicinal Products for Human Use (CHMP) 23-26 February 2026",
+   "summary": "12 new medicines recommended for approval; another six medicines recommended for extension of their therapeutic indications. Related: mCombriax, Ojemda, Onerji, Palsonify, Rhapsido, Xolremdi, Bysumlog, Dazparda, Fubelv, Poherdy, Tuyory, Zandoriah, Acoziborole Winthrop, Daybu…",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-23-26-february-2026",
+   "date": "2026-02-27",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "ad1cc0b5c74d",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "New single-dose oral treatment for human African trypanosomiasis (sleeping sickness)",
+   "summary": "Acoziborole Winthrop simplifies treatment of first- and second-stage disease caused by T. brucei gambiense. Related: Acoziborole Winthrop.",
+   "url": "https://www.ema.europa.eu/en/news/new-single-dose-oral-treatment-human-african-trypanosomiasis-sleeping-sickness",
+   "date": "2026-02-27",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "44c79c6488a9",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Aggiornamenti dal PRAC riunione 9-12 febbraio 2026",
+   "summary": "Si rendono disponibili aggiornamenti importanti dalla riunione del Comitato per la valutazione dei rischi in farmacovigilanza (PRAC) del 9-12 febbraio 2026.",
+   "url": "https://www.aifa.gov.it/-/aggiornamenti-prac-riunione-9-12-febbraio-2026",
+   "date": "2026-02-13",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "b515326bf24c",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 9 - 12 February 2026",
+   "summary": "PRAC concludes safety review of levamisole, a medicine used to treat parasitic worm infections",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-9-12-february-2026",
+   "date": "2026-02-13",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "ed55e3a0aedc",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "EMA recommends withdrawal of marketing authorisations for levamisole medicines",
+   "summary": "Leukoencephalopathy confirmed as a serious side effect of levamisole. Related: Levamisole-containing medicinal products.",
+   "url": "https://www.ema.europa.eu/en/news/ema-recommends-withdrawal-marketing-authorisations-levamisole-medicines",
+   "date": "2026-02-13",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "c3dcecb977ec",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Arixtra (fondaparinux sodium)",
+   "summary": "Direct healthcare professional communication (Quality defect). Therapeutic area: Venous Thrombosis, Pulmonary Embolism, Myocardial Infarction, Angina, Unstable.",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/arixtra",
+   "date": "2026-02-09",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "063f11048acd",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "First treatment for rare thymidine kinase 2 deficiency",
+   "summary": "Kygevvi improves motor function of patients with disease onset at or before 12 years of age. Related: Kygevvi.",
+   "url": "https://www.ema.europa.eu/en/news/first-treatment-rare-thymidine-kinase-2-deficiency",
+   "date": "2026-01-30",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "0be549215766",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "EMA starts review of Tavneos, a medicine for rare autoimmune diseases GPA and MPA",
+   "summary": "Review prompted by questions regarding data integrity of main study. Related: Tavneos, Tavneos.",
+   "url": "https://www.ema.europa.eu/en/news/ema-starts-review-tavneos-medicine-rare-autoimmune-diseases-gpa-mpa",
+   "date": "2026-01-30",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "5860fd2b5c24",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Meeting highlights from the Committee for Medicinal Products for Human Use (CHMP) 26-29 January 2026",
+   "summary": "Six new medicines recommended for approval; another nine medicines recommended for extension of their therapeutic indications. Related: Fylrevy, Ilumira, Kayshild, Kygevvi, Supemtek, Akeega, Efmody, Eurneffy, Imfinzi, Kerendia, Noxafil, Opdivo, Zynyz, Iclusig, Rezurock…",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-26-29-january-2026",
+   "date": "2026-01-30",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "58d68db1f5e8",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "New medicine to treat chronic graft-versus-host disease",
+   "summary": "Rezurock addresses unmet need when other treatments are unsuccessful or unsuitable. Related: Rezurock.",
+   "url": "https://www.ema.europa.eu/en/news/new-medicine-treat-chronic-graft-versus-host-disease",
+   "date": "2026-01-30",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "e5131d02031d",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "First immunotherapy-based treatment recommended for advanced anal cancer",
+   "summary": "Zynyz provides an option for adults with squamous cell carcinoma of the anal canal. Related: Zynyz.",
+   "url": "https://www.ema.europa.eu/en/news/first-immunotherapy-based-treatment-recommended-advanced-anal-cancer",
+   "date": "2026-01-30",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "c67b0143fbb6",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Ilona Reischl re-elected as chair of Committee for Advanced Therapies",
+   "summary": "Ilona Reischl’s second three-year mandate will begin in February 2026",
+   "url": "https://www.ema.europa.eu/en/news/ilona-reischl-re-elected-chair-committee-advanced-therapies",
+   "date": "2026-01-23",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "0dfc108c9fd9",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Carmen Purdel elected as new chair of the Committee for Herbal Medicinal Products",
+   "summary": "Carmen Purdel will begin her three-year mandate in March 2026.",
+   "url": "https://www.ema.europa.eu/en/news/carmen-purdel-elected-new-chair-committee-herbal-medicinal-products",
+   "date": "2026-01-21",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "7879966c566e",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Mysimba (bupropion hydrochloride, naltrexone hydrochloride)",
+   "summary": "Direct healthcare professional communication (Adverse event).",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/mysimba",
+   "date": "2026-01-16",
+   "lang": "en",
+   "drugs": [
+    "bupropione"
+   ],
+   "cards": [
+    "B3__bupropione-dri-inibitore-reuptake-dopami"
+   ],
+   "decks": [
+    "B3"
+   ]
+  },
+  {
+   "id": "f4d090d06a8a",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 12 - 15 January 2026",
+   "summary": "PRAC carried out its broad range of responsibilities for managing the risks associated with medicine use",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-12-15-january-2026",
+   "date": "2026-01-16",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "871549e58751",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Human medicines in 2025",
+   "summary": "104 new medicines recommended for approval; 38 had a new active substance",
+   "url": "https://www.ema.europa.eu/en/news/human-medicines-2025",
+   "date": "2026-01-15",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "074866130fe5",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "EMA and FDA set common principles for AI in medicine development",
+   "summary": "Advancing safe, ethical and aligned AI practices across the medicines lifecycle",
+   "url": "https://www.ema.europa.eu/en/news/ema-fda-set-common-principles-ai-medicine-development-0",
+   "date": "2026-01-14",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "f1a0d0cac560",
+   "source": "fda",
+   "kind": "sicurezza",
+   "title": "FDA Requests Removal of Suicidal Behavior and Ideation Warning from Glucagon-Like Peptide-1 Receptor Agonist (GLP-1 RA) Medications",
+   "summary": "FDA Drug Safety Communication.",
+   "url": "https://www.fda.gov/drugs/drug-safety-communications/fda-requests-removal-suicidal-behavior-and-ideation-warning-glucagon-peptide-1-receptor-agonist-glp",
+   "date": "2026-01-13",
+   "lang": "en",
+   "drugs": [],
+   "cards": [
+    "A10__incretine-agonisti-del-recettore-glp-1-e"
+   ],
+   "decks": [
+    "A10"
+   ]
+  },
+  {
+   "id": "23ea2cc97e69",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Nota Informativa Importante di Sicurezza (NIIS) su Carbamazepina (Tegretol 20 mg/ml Sciroppo)",
+   "summary": "Carbamazepina (Tegretol 20 mg/ml Sciroppo): restrizione d'uso nei neonati poiché la concentrazione dell'eccipiente glicole propilenico supera la soglia raccomandata.",
+   "url": "https://www.aifa.gov.it/-/niis-su-carbamazepina-tegretol-20-mg-ml-sciroppo",
+   "date": "2025-12-19",
+   "lang": "it",
+   "drugs": [
+    "carbamazepina"
+   ],
+   "cards": [
+    "B4__carbamazepina-come-stabilizzante-dell-um",
+    "B9__aed-i-gen-bloccanti-dei-canali-na-fenito"
+   ],
+   "decks": [
+    "B4",
+    "B9"
+   ]
+  },
+  {
+   "id": "74cd3636d2f6",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "New medicine to treat non-muscle invasive bladder cancer",
+   "summary": "Anktiva provides an alternative to surgery for patients whose cancer does not respond to treatment with Bacillus Calmette-Guérin. Related: Anktiva.",
+   "url": "https://www.ema.europa.eu/en/news/new-medicine-treat-non-muscle-invasive-bladder-cancer",
+   "date": "2025-12-12",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "76a7416d9ef8",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Meeting highlights from the Committee for Medicinal Products for Human Use (CHMP) 8-11 December 2025",
+   "summary": "Seven new medicines recommended for approval; another 12 medicines recommended for extension of their therapeutic indications. Related: Anktiva, Aumseqa, Exdensur, Myqorzo, mNexspike, Gotenfia, Ranluspec, Aspaveli, Arexvy, Dovprela (previously Pretomanid FGK), Elucirem, Eylea…",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-8-11-december-2025",
+   "date": "2025-12-12",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "57fb4a359029",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Nota Informativa Importante di Sicurezza (NIIS) su formulazioni endovenose di acido tranexamico",
+   "summary": "Formulazioni endovenose di acido tranexamico - Reazioni avverse gravi, incluse reazioni ad esito fatale, dovute a somministrazione intratecale accidentale.",
+   "url": "https://www.aifa.gov.it/-/niis-su-formulazioni-endovenose-acido-tranexamico",
+   "date": "2025-12-11",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "f5fa95da1860",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Tranexamic acid",
+   "summary": "Direct healthcare professional communication (Adverse event).",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/tranexamic-acid",
+   "date": "2025-12-11",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "5958e3dfe656",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Remsima (infliximab)",
+   "summary": "Direct healthcare professional communication (New contraindication). Therapeutic area: Arthritis, Psoriatic, Spondylitis, Ankylosing, Colitis, Ulcerative, Psoriasis, Crohn Disease, Arthritis, Rheumatoid.",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/remsima",
+   "date": "2025-12-08",
+   "lang": "en",
+   "drugs": [
+    "infliximab"
+   ],
+   "cards": [
+    "A9__anti-tnf-classe",
+    "A9__infliximab",
+    "A11__ibd-immunosoppressori-e-biologici"
+   ],
+   "decks": [
+    "A9",
+    "A11"
+   ]
+  },
+  {
+   "id": "3facaa28500b",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Nota Informativa Importante di Sicurezza (NIIS) su Rybelsus (semaglutide orale)",
+   "summary": "Rybelsus (semaglutide orale): rischio di errore terapeutico dovuto all'introduzione di una nuova formulazione con maggiore biodisponibilità.",
+   "url": "https://www.aifa.gov.it/-/niis-su-rybelsus-semaglutide-orale",
+   "date": "2025-12-01",
+   "lang": "it",
+   "drugs": [
+    "semaglutide"
+   ],
+   "cards": [
+    "A10__incretine-agonisti-del-recettore-glp-1-e"
+   ],
+   "decks": [
+    "A10"
+   ]
+  },
+  {
+   "id": "f70d0e023f74",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 24 - 27 November 2025",
+   "summary": "PRAC carried out its broad range of responsibilities for managing the risks associated with medicine use",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-24-27-november-2025",
+   "date": "2025-11-28",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "5cfb4128235f",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Call for expressions of interest for civil society representatives to participate in the work of EMA’s Paediatric Committee",
+   "summary": "Three members and alternates representing healthcare professionals and three members and alternates representing patients’ associations will be appointed",
+   "url": "https://www.ema.europa.eu/en/news/call-expressions-interest-civil-society-representatives-participate-work-emas-paediatric-committee",
+   "date": "2025-11-20",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "03ca7e603ede",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Improved scientific advice for medicines for public health threats including antimicrobial resistance",
+   "summary": "New approach brings together clinical trial and ethics expertise to accelerate development of medicines for use ahead of or during emergencies",
+   "url": "https://www.ema.europa.eu/en/news/improved-scientific-advice-medicines-public-health-threats-including-antimicrobial-resistance",
+   "date": "2025-11-17",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "045e4f6383a1",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "First-in-class treatment to delay onset of type 1 diabetes",
+   "summary": "Teizeild significantly delays onset of stage 3 diabetes and preserves functioning of cells producing insulin. Related: Teizeild.",
+   "url": "https://www.ema.europa.eu/en/news/first-class-treatment-delay-onset-type-1-diabetes",
+   "date": "2025-11-14",
+   "lang": "en",
+   "drugs": [
+    "insulina"
+   ],
+   "cards": [
+    "A10__insulina-insulina-umana-analoghi"
+   ],
+   "decks": [
+    "A10"
+   ]
+  },
+  {
+   "id": "3ff1734ebf6a",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Meeting highlights from the Committee for Medicinal Products for Human Use (CHMP) 10-13 November 2025",
+   "summary": "Ten new medicines recommended for approval; another four medicines recommended for extension of their therapeutic indications. Related: Dawnzera, GalenVita, Inluriyo, Teizeild, VacPertagen, Waskyra, Ondibta, Osqay, Enzalutamide Accordpharma, Teduglutide Viatris, Koselugo…",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-10-13-november-2025",
+   "date": "2025-11-14",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "8d9b90d5a450",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "First gene therapy to treat rare disease Wiskott-Aldrich syndrome",
+   "summary": "Waskyra significantly reduces infections and bleeding episodes in people with life-threatening immunodeficiency. Related: Waskyra.",
+   "url": "https://www.ema.europa.eu/en/news/first-gene-therapy-treat-rare-disease-wiskott-aldrich-syndrome",
+   "date": "2025-11-14",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "89759c2916e8",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Libtayo (cemiplimab)",
+   "summary": "Direct healthcare professional communication (Quality defect). Therapeutic area: Carcinoma, Squamous Cell.",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/libtayo",
+   "date": "2025-11-10",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "e64e8b77cd7d",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "EMA partners with healthcare professionals and consumers for #ItTakesATeam medicine shortages campaign",
+   "summary": "Campaign highlights how different actors can help in case of a shortage",
+   "url": "https://www.ema.europa.eu/en/news/ema-partners-healthcare-professionals-consumers-ittakesateam-medicine-shortages-campaign",
+   "date": "2025-11-04",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "664ea2ecbe74",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Nota Informativa Importante di Sicurezza (NIIS) su Levetiracetam (Keppra® e levetiracetam UCB)",
+   "summary": "Levetiracetam (Keppra® e levetiracetam UCB) soluzione orale (flacone da 150 ml per bambini di età compresa tra 6 mesi e 4 anni) e rischio di errore terapeutico a causa del cambio di siringa graduata.",
+   "url": "https://www.aifa.gov.it/-/nota-informativa-importante-sicurezza-niis-su-levetiracetam-keppra-e-levetiracetam-ucb-",
+   "date": "2025-11-03",
+   "lang": "it",
+   "drugs": [
+    "levetiracetam"
+   ],
+   "cards": [
+    "B9__aed-ii-generazione"
+   ],
+   "decks": [
+    "B9"
+   ]
+  },
+  {
+   "id": "4901b446a02c",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Aggiornamenti dal PRAC riunione 27-30 ottobre 2025",
+   "summary": "Si rendono disponibili aggiornamenti importanti dalla riunione del Comitato per la valutazione dei rischi in farmacovigilanza (PRAC) del 27-30 ottobre 2025.",
+   "url": "https://www.aifa.gov.it/-/aggiornamenti-dal-prac-riunione-27-30-ottobre-2025",
+   "date": "2025-10-31",
+   "lang": "it",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "e3b991f317a6",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "Meeting highlights from the Pharmacovigilance Risk Assessment Committee (PRAC) 27 - 30 October 2025",
+   "summary": "PRAC agrees on a communication to healthcare professionals on injectable tranexamic acid medicines",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-pharmacovigilance-risk-assessment-committee-prac-27-30-october-2025",
+   "date": "2025-10-31",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "7381deddf289",
+   "source": "ema",
+   "kind": "sicurezza",
+   "title": "DHPC: Lenalidomide Mylan (lenalidomide)",
+   "summary": "Direct healthcare professional communication (Quality defect). Therapeutic area: Multiple Myeloma.",
+   "url": "https://www.ema.europa.eu/en/medicines/dhpc/lenalidomide-mylan",
+   "date": "2025-10-29",
+   "lang": "en",
+   "drugs": [],
+   "cards": [],
+   "decks": []
+  },
+  {
+   "id": "457b6b2a3a8f",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "EMA partners with content creators to promote safe and responsible use of GLP-1 medicines",
+   "summary": "#HealthNotHype social media campaign aims to expand audience reach of public health messages",
+   "url": "https://www.ema.europa.eu/en/news/ema-partners-content-creators-promote-safe-responsible-use-glp-1-medicines",
+   "date": "2025-10-21",
+   "lang": "en",
+   "drugs": [],
+   "cards": [
+    "A10__incretine-agonisti-del-recettore-glp-1-e"
+   ],
+   "decks": [
+    "A10"
+   ]
+  },
+  {
+   "id": "a9dd66b580ae",
+   "source": "ema",
+   "kind": "notizia",
+   "title": "Meeting highlights from the Committee for Medicinal Products for Human Use (CHMP) 13-16 October 2025",
+   "summary": "Two new medicines recommended for approval; another eight medicines recommended for extension of their therapeutic indications. Related: Brinsupri, Wayrilz, Rezurock, Austedo, Breyanzi, Cejemly, Gazyvaro, Libtayo, Paxlovid, Pyrukynd, Tremfya, Scemblix, Hydrocortisone Aguettant…",
+   "url": "https://www.ema.europa.eu/en/news/meeting-highlights-committee-medicinal-products-human-use-chmp-13-16-october-2025",
+   "date": "2025-10-17",
+   "lang": "en",
+   "drugs": [
+    "idrocortisone"
+   ],
+   "cards": [
+    "A4__idrocortisone-cortisolo-cortisone",
+    "A11__ibd-immunosoppressori-e-biologici"
+   ],
+   "decks": [
+    "A4",
+    "A11"
+   ]
+  },
+  {
+   "id": "3d48d925f300",
+   "source": "aifa",
+   "kind": "sicurezza",
+   "title": "Nota Informativa Importante di Sicurezza (NIIS) su Nifedicor",
+   "summary": "Nifedicor 20 mg/ml gocce orali, soluzione (nifedipina): modifica del contagocce che varia la quantità di medicinale erogata.",
+   "url": "https://www.aifa.gov.it/-/nota-informativa-importante-di-sicurezza-niis-su-nifedicor",
+   "date": "2025-10-15",
+   "lang": "it",
+   "drugs": [
+    "nifedipina"
+   ],
+   "cards": [
+    "B11b__diuretici-tiazidici-e-risparmiatori-di-k"
+   ],
+   "decks": [
+    "B11b"
+   ]
+  }
+ ]
+}
