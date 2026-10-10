@@ -1073,6 +1073,62 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 <!-- ─ -->
 <style data-slot="anim">
 /* slot anim: CSS di questa funzione (solo il suo agente) */
+/* palco 3D: fondale caldo coerente con il tema (scuro di default, chiaro con data-theme="light") */
+:root{--a3-bg:radial-gradient(120% 95% at 50% 0%,#2a2318 0%,#191510 55%,#120f0b 100%);--a3-zone:#b3ab9a;--a3-lb-bg:rgba(27,24,18,.84)}
+:root[data-theme="light"]{--a3-bg:radial-gradient(120% 95% at 50% 0%,#fffdf8 0%,#f6f1e6 55%,#ece5d6 100%);--a3-zone:#5c554c;--a3-lb-bg:rgba(253,251,246,.9)}
+#view-anim .anim-card{padding:12px 12px 12px}
+.a3-view{position:relative;width:100%;max-width:var(--maxw-anim,820px);margin-inline:auto;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+  background:var(--a3-bg);box-shadow:0 0 0 1px var(--line) inset;touch-action:pan-y;cursor:grab;-webkit-user-select:none;user-select:none}
+.a3-view:active{cursor:grabbing}
+@media(max-width:600px){.a3-view{aspect-ratio:4/3.3}}
+.a3-cv{position:absolute;inset:0;width:100%;height:100%;display:block;transition:opacity .2s ease-out}
+.a3-wrap .a3-cv{opacity:.25}
+.a3-lbs{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.a3-lb{position:absolute;left:0;top:0;padding:3px 7px;border-radius:7px;border:1px solid var(--line2);background:var(--a3-lb-bg);
+  color:var(--ink);font:500 11.5px/1.25 'JetBrains Mono',ui-monospace,monospace;white-space:nowrap;opacity:0;transition:opacity .18s ease-out;will-change:transform}
+.a3-lb-k{font-weight:700;font-size:12px;border-color:var(--gold-line)}
+.a3-zone{position:absolute;left:12px;font:500 11px/1 'JetBrains Mono',ui-monospace,monospace;color:var(--a3-zone);pointer-events:none}
+.a3-ext{top:12px}.a3-cyt{bottom:12px}
+.a3-vm{position:absolute;right:10px;top:9px;display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;border:1px solid var(--line2);
+  background:var(--a3-lb-bg);color:var(--ink);font:500 11.5px/1.2 'JetBrains Mono',ui-monospace,monospace;pointer-events:none}
+.a3-vm[hidden]{display:none}
+.a3-vm i{width:8px;height:8px;border-radius:50%;background:var(--ink-faint)}
+.a3-vm[data-s="dep"] i{background:#f08c2e}.a3-vm[data-s="hyp"] i{background:#4c8dff}
+.a3-hint{position:absolute;right:12px;bottom:10px;font-size:12px;color:var(--a3-zone);pointer-events:none;transition:opacity .25s ease-out}
+.a3-hint.off{opacity:0}
+.a3-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px;max-width:var(--maxw-anim,820px);margin:10px auto 0}
+.a3-tr,.a3-steps{display:flex;flex-wrap:wrap;gap:6px}
+.a3-btn{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:0 10px;border:1px solid var(--line2);border-radius:12px;
+  background:var(--panel);color:var(--ink);font:600 12.5px/1 'JetBrains Mono',ui-monospace,monospace;cursor:pointer;
+  transition:border-color .15s ease-out,background-color .15s ease-out,color .15s ease-out}
+.a3-btn:hover{border-color:var(--gold)}
+.a3-btn svg{width:18px;height:18px}
+.a3-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.a3-play{min-width:52px;background:var(--gold-soft);border-color:var(--gold-line)}
+.a3-st{color:var(--ink-dim)}
+.a3-st[aria-current="step"]{background:var(--gold-soft);border-color:var(--gold);color:var(--ink)}
+.a3-rm .a3-play,.a3-rm .a3-spd,.a3-rm .a3-hint{display:none}
+.a3-cap{max-width:var(--maxw-anim,820px);margin:10px auto 0;min-height:3em;font-size:14.5px;line-height:1.5;color:var(--ink);text-wrap:pretty}
+.a3-cap b{font-weight:650}
+.a3-capn{display:inline-block;margin-right:9px;font:700 12.5px/1 'JetBrains Mono',ui-monospace,monospace;color:var(--gold)}
+/* elenco dei passi sotto il palco: niente striscia laterale, passo attivo evidenziato e cliccabile */
+#view-anim .anim-step{display:block;width:100%;border:1px solid transparent;border-image:none;border-radius:12px;padding:8px 11px;
+  font:inherit;font-size:13.5px;line-height:1.5;color:var(--ink-dim);background:transparent;text-align:left;transition:background-color .15s ease-out,border-color .15s ease-out}
+#view-anim button.anim-step{cursor:pointer;min-height:44px}
+#view-anim button.anim-step:hover{border-color:var(--line2)}
+#view-anim .anim-step.on{background:var(--gold-soft);border-color:var(--gold-line);color:var(--ink)}
+#view-anim .anim-step .n{color:var(--gold);margin-right:8px}
+/* scenari: veri pulsanti, ≥ 44 px, selezione a tinta piena con testo bianco leggibile */
+#view-anim .scen{min-height:44px;font-size:12.5px}
+#view-anim .scen.sel{color:#fff}
+#view-anim .scen.sel.gs{background:#1d6b47}#view-anim .scen.sel.gi{background:#b21f22}#view-anim .scen.sel.gq{background:#9a5512}
+#view-anim .scen.sel.musc{background:#6b3fa0}#view-anim .scen.sel.neu{background:#1f5f9e}
+#view-anim .scen:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+@media(max-width:600px){#view-anim .scen-row{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;margin-inline:-4px;padding:2px 4px}
+  #view-anim .scen-row::-webkit-scrollbar{height:0}#view-anim .scen{flex:none;scroll-snap-align:start}}
+/* ripiego 2.5D (senza WebGL): strati con ombra e inclinazione prospettica */
+.a25 .anim-svg{transform:perspective(1100px) rotateX(var(--a25x,0deg)) rotateY(var(--a25y,0deg));transition:transform .2s ease-out;box-shadow:0 22px 40px -28px rgba(0,0,0,.55),var(--hair)}
+@media (prefers-reduced-motion:reduce){.a25 .anim-svg{transform:none;transition:none}.a3-cv,.a3-lb,.a3-hint{transition:none}}
 </style>
 <!-- ─ -->
 <style data-slot="table">
@@ -2752,11 +2808,16 @@ function svgWrap(inner,h){const H=h||440;return `<svg class="anim-svg" viewBox="
     <radialGradient id="abg" cx="50%" cy="36%" r="85%"><stop offset="0%" stop-color="#231e14"/><stop offset="58%" stop-color="#15110b"/><stop offset="100%" stop-color="#0e0b07"/></radialGradient>
     <filter id="aglow" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="3.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     <linearGradient id="amem" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(190,160,102,0.16)"/><stop offset="50%" stop-color="rgba(150,124,86,0.05)"/><stop offset="100%" stop-color="rgba(190,160,102,0.16)"/></linearGradient>
+    <filter id="a25s" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.32"/></filter>
+    <linearGradient id="a25l" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff" stop-opacity="0.07"/><stop offset="45%" stop-color="#fff" stop-opacity="0"/></linearGradient>
   </defs>
   <rect x="0" y="0" width="760" height="${H}" fill="url(#abg)"/>
-  ${inner}</svg>`;}
+  <g filter="url(#a25s)">${inner}</g><rect x="0" y="0" width="760" height="${H}" fill="url(#a25l)" pointer-events="none"/></svg>`;}
 function memBand(yT,h){return `<rect x="0" y="${yT}" width="760" height="${h}" fill="url(#amem)"/><line x1="0" y1="${yT}" x2="760" y2="${yT}" stroke="#6e6450" stroke-width="1.4" opacity="0.85"/><line x1="0" y1="${yT+h}" x2="760" y2="${yT+h}" stroke="#574e3c" stroke-width="1.4" opacity="0.85"/><text x="13" y="${yT-9}" fill="#9c8b64" font-size="11" ${FM}>${t(['EXTRACELLULARE','EXTRACELLULAR'])}</text><text x="13" y="${yT+h+18}" fill="#7c715d" font-size="11" ${FM}>${t(['INTRACELLULARE','INTRACELLULAR'])}</text>`;}
 function step(n,html){return `<div class="anim-step"><span class="n">${n}</span>${html}</div>`;}
+/* elenco dei passi: con il 3D attivo ogni passo è un pulsante che porta la scena a quel passo */
+function capList(steps){ const live=typeof A3!=='undefined'&&A3&&A3.ok;
+  return steps.map((s,i)=>live?`<button type="button" class="anim-step" data-i="${i}" aria-pressed="false"><span class="n">${s[0]}</span>${s[1]}</button>`:step(s[0],s[1])).join(''); }
 
 /* ---------- ciclo GPCR ---------- */
 /* mappa scenari recettoriali per le animazioni: chiave → recettore mostrato, accoppiamento G, agonista, didascalia clinica (step 4) */
@@ -2832,7 +2893,8 @@ function buildGPCRAnim(coup){
     ${sm}`;
   return svgWrap(inner,400);
 }
-function gpcrCap(coup){
+function gpcrCap(coup){ return capList(gpcrSteps(coup)); }
+function gpcrSteps(coup){
   let rec=null, s4o=null; if(GREC[coup]){ rec=GREC[coup].rec; s4o=GREC[coup].s4; coup=GREC[coup].coup; }
   const s3 = coup==='gs' ? t(['Gαs-GTP <b>stimola l\'adenilato ciclasi</b> → ↑ AMPc → attivazione della PKA.','Gαs-GTP <b>stimulates adenylyl cyclase</b> → ↑ cAMP → PKA activation.'])
            : coup==='gi' ? t(['Gαi-GTP <b>inibisce l\'adenilato ciclasi</b> → ↓ AMPc; in parallelo il dimero <b>βγ apre canali K⁺</b> (iperpolarizzazione).','Gαi-GTP <b>inhibits adenylyl cyclase</b> → ↓ cAMP; in parallel the <b>βγ dimer opens K⁺ channels</b> (hyperpolarization).'])
@@ -2841,9 +2903,10 @@ function gpcrCap(coup){
            : coup==='gi' ? t(['Esempi: <b>morfina → μ</b> (↓AMPc) · <b>ACh → M2 cardiaco</b> (βγ→K⁺ → bradicardia) · adenosina sul nodo AV.','Examples: <b>morphine → μ</b> (↓cAMP) · <b>ACh → cardiac M2</b> (βγ→K⁺ → bradycardia) · adenosine on the AV node.'])
            : t(['IP3 libera <b>Ca²⁺</b> dal reticolo, DAG attiva la PKC. Esempio: <b>noradrenalina → α1 (Gq)</b> → vasocostrizione (prazosina = antagonista).','IP3 releases <b>Ca²⁺</b> from the reticulum, DAG activates PKC. Example: <b>noradrenaline → α1 (Gq)</b> → vasoconstriction (prazosin = antagonist).']);
   if(s4o) s4=t(s4o);
-  return step(1,t(['Il ligando (per i muscarinici l\'ACh) lega le 7 eliche TM → cambio conformazionale della 3ª ansa intracellulare.','The ligand (ACh for muscarinics) binds the 7 TM helices → conformational change of the 3rd intracellular loop.']))
-       + step(2,t(['Gα scambia <b>GDP→GTP</b> e si stacca dal dimero βγ.','Gα exchanges <b>GDP→GTP</b> and detaches from the βγ dimer.']))
-       + step(3,s3) + step(4,s4);
+  return [[1,t(['Il ligando (per i muscarinici l\'ACh) lega le 7 eliche TM → cambio conformazionale: TM6 ruota verso l\'esterno e la faccia intracellulare (3ª ansa) si apre alla proteina G.','The ligand (ACh for muscarinics) binds the 7 TM helices → conformational change: TM6 swings outward and the intracellular face (3rd loop) opens to the G protein.'])],
+    [2,t(['Gα scambia <b>GDP→GTP</b> e si stacca dal dimero βγ.','Gα exchanges <b>GDP→GTP</b> and detaches from the βγ dimer.'])],
+    [3,s3],[4,s4],
+    [5,t(['Fine del segnale: Gα idrolizza il GTP a GDP (attività GTPasica intrinseca, accelerata dalle proteine <b>RGS</b>) e si riassocia a βγ; il ligando si stacca e il sistema torna allo stato basale.','Signal termination: Gα hydrolyzes GTP to GDP (intrinsic GTPase activity, accelerated by <b>RGS</b> proteins) and reassociates with βγ; the ligand unbinds and the system returns to baseline.'])]];
 }
 
 /* ---------- gating dei canali ---------- */
@@ -2951,24 +3014,25 @@ function buildChanAnim(scn){
   if(scn==='nmda') return nmdaChannel();
   return '';
 }
-function chanCap(scn){
-  if(scn==='gaba') return step('A',t(['Il <b>GABA</b> apre il canale → ingresso di <b>Cl⁻</b> → iperpolarizzazione (inibizione).','<b>GABA</b> opens the channel → <b>Cl⁻</b> influx → hyperpolarization (inhibition).']))
-    +step('BDZ',t(['Le <b>benzodiazepine</b> (modulatori allosterici, sito α-γ) aumentano la <b>frequenza</b> di apertura: più aperture brevi.','<b>Benzodiazepines</b> (allosteric modulators, α-γ site) increase opening <b>frequency</b>: more brief openings.']))
-    +step('BARB',t(['I <b>barbiturici</b> aumentano la <b>durata</b> di apertura e, ad alte dosi, aprono il canale <b>senza GABA</b>.','<b>Barbiturates</b> increase opening <b>duration</b> and, at high doses, open the channel <b>without GABA</b>.']))
-    +step('★',t(['Niente «effetto tetto» per i barbiturici → depressione respiratoria fatale (indice terapeutico stretto).','No “ceiling effect” for barbiturates → fatal respiratory depression (narrow therapeutic index).']));
-  if(scn==='nav') return step(1,t(['<b>Chiuso</b> a riposo → la depolarizzazione apre il gate di attivazione.','<b>Closed</b> at rest → depolarization opens the activation gate.']))
-    +step(2,t(['<b>Aperto</b>: entra <b>Na⁺</b> → depolarizzazione e propagazione del potenziale d\'azione.','<b>Open</b>: <b>Na⁺</b> enters → depolarization and propagation of the action potential.']))
-    +step(3,t(['<b>Inattivato</b>: il gate di inattivazione (linker <b>DIII–DIV</b>) chiude il poro → periodo refrattario.','<b>Inactivated</b>: the inactivation gate (<b>DIII–DIV</b> linker) closes the pore → refractory period.']))
-    +step('★',t(['<b>Anestetici locali / antiaritmici Ia-c / antiepilettici</b> entrano dall\'interno, legano S6 e stabilizzano lo stato inattivo → <b>blocco use-dependent</b> (più efficace sulle fibre ad alta frequenza).','<b>Local anesthetics / class Ia-c antiarrhythmics / antiepileptics</b> enter from inside, bind S6 and stabilize the inactivated state → <b>use-dependent block</b> (more effective on high-frequency fibers).']));
-  if(scn==='nach') return step(1,t(['Due molecole di <b>ACh</b> legano le interfacce α-γ e α-δ.','Two <b>ACh</b> molecules bind the α-γ and α-δ interfaces.']))
-    +step(2,t(['Il canale (pentamero, M2 = poro) si apre → ingresso di <b>Na⁺</b> → depolarizzazione (placca: contrazione).','The channel (pentamer, M2 = pore) opens → <b>Na⁺</b> influx → depolarization (endplate: contraction).']))
-    +step('SUX',t(['<b>Succinilcolina</b> = agonista <b>depolarizzante</b>: apre e mantiene depolarizzato → desensibilizzazione (blocco di fase I).','<b>Succinylcholine</b> = <b>depolarizing</b> agonist: opens and keeps depolarized → desensitization (phase I block).']))
-    +step('CUR',t(['<b>Tubocurarina / rocuronio</b> = antagonisti competitivi: occupano i siti dell\'ACh senza aprire → blocco neuromuscolare.','<b>Tubocurarine / rocuronium</b> = competitive antagonists: occupy the ACh sites without opening → neuromuscular block.']));
-  if(scn==='nmda') return step(1,t(['A riposo il poro è tappato dallo <b>ione Mg²⁺</b> (blocco voltaggio-dipendente).','At rest the pore is plugged by the <b>Mg²⁺ ion</b> (voltage-dependent block).']))
-    +step(2,t(['Servono <b>glutammato</b> (su GluN2) <b>+ glicina/D-serina</b> (su GluN1) <b>+ depolarizzazione</b>: «coincidence detector».','It needs <b>glutamate</b> (on GluN2) <b>+ glycine/D-serine</b> (on GluN1) <b>+ depolarization</b>: “coincidence detector”.']))
-    +step(3,t(['La depolarizzazione espelle il Mg²⁺ → entra <b>Ca²⁺</b> (recettore Ca²⁺-permeabile).','Depolarization expels Mg²⁺ → <b>Ca²⁺</b> enters (Ca²⁺-permeable receptor).']))
-    +step('★',t(['<b>Ketamina / memantina</b> bloccano il poro (al posto del Mg²⁺); <b>perampanel</b> blocca invece l\'AMPA.','<b>Ketamine / memantine</b> block the pore (instead of Mg²⁺); <b>perampanel</b> blocks AMPA instead.']));
-  return '';
+function chanCap(scn){ return capList(chanSteps(scn)); }
+function chanSteps(scn){
+  if(scn==='gaba') return [['A',t(['Il <b>GABA</b> apre il canale → ingresso di <b>Cl⁻</b> → iperpolarizzazione (inibizione).','<b>GABA</b> opens the channel → <b>Cl⁻</b> influx → hyperpolarization (inhibition).'])],
+    ['BDZ',t(['Le <b>benzodiazepine</b> (modulatori allosterici, sito α-γ) aumentano la <b>frequenza</b> di apertura: più aperture brevi.','<b>Benzodiazepines</b> (allosteric modulators, α-γ site) increase opening <b>frequency</b>: more brief openings.'])],
+    ['BARB',t(['I <b>barbiturici</b> aumentano la <b>durata</b> di apertura e, ad alte dosi, aprono il canale <b>senza GABA</b>.','<b>Barbiturates</b> increase opening <b>duration</b> and, at high doses, open the channel <b>without GABA</b>.'])],
+    ['★',t(['Senza GABA le benzodiazepine non aprono il canale (effetto tetto); i barbiturici ad alte dosi sì. Niente «effetto tetto» per i barbiturici → depressione respiratoria fatale (indice terapeutico stretto).','Without GABA benzodiazepines do not open the channel (ceiling effect); high-dose barbiturates do. No “ceiling effect” for barbiturates → fatal respiratory depression (narrow therapeutic index).'])]];
+  if(scn==='nav') return [[1,t(['<b>Chiuso</b> a riposo → la depolarizzazione apre il gate di attivazione.','<b>Closed</b> at rest → depolarization opens the activation gate.'])],
+    [2,t(['<b>Aperto</b>: entra <b>Na⁺</b> → depolarizzazione e propagazione del potenziale d\'azione.','<b>Open</b>: <b>Na⁺</b> enters → depolarization and propagation of the action potential.'])],
+    [3,t(['<b>Inattivato</b>: il gate di inattivazione (motivo IFM sul linker <b>DIII–DIV</b>) chiude il poro dal lato interno → periodo refrattario.','<b>Inactivated</b>: the inactivation gate (IFM motif on the <b>DIII–DIV</b> linker) closes the pore from the inside → refractory period.'])],
+    ['★',t(['<b>Anestetici locali / antiaritmici Ia-c / antiepilettici</b> entrano dall\'interno, legano S6 e stabilizzano lo stato inattivo → <b>blocco use-dependent</b> (più efficace sulle fibre ad alta frequenza).','<b>Local anesthetics / class Ia-c antiarrhythmics / antiepileptics</b> enter from inside, bind S6 and stabilize the inactivated state → <b>use-dependent block</b> (more effective on high-frequency fibers).'])]];
+  if(scn==='nach') return [[1,t(['Due molecole di <b>ACh</b> legano le interfacce α-γ (α-ε nell\'adulto) e α-δ.','Two <b>ACh</b> molecules bind the α-γ (α-ε in the adult) and α-δ interfaces.'])],
+    [2,t(['Il canale (pentamero, M2 = poro) si apre → ingresso di <b>Na⁺</b> → depolarizzazione (placca: contrazione).','The channel (pentamer, M2 = pore) opens → <b>Na⁺</b> influx → depolarization (endplate: contraction).'])],
+    ['SUX',t(['<b>Succinilcolina</b> = agonista <b>depolarizzante</b> resistente all\'AChE: apre il canale e mantiene la placca depolarizzata → fascicolazioni, poi i canali Na⁺ perigiunzionali restano inattivati → paralisi flaccida (<b>blocco di fase I</b>). Con dosi alte o prolungate il blocco diventa non depolarizzante (<b>fase II</b>).','<b>Succinylcholine</b> = AChE-resistant <b>depolarizing</b> agonist: opens the channel and keeps the endplate depolarized → fasciculations, then perijunctional Na⁺ channels stay inactivated → flaccid paralysis (<b>phase I block</b>). With high or prolonged doses the block becomes nondepolarizing (<b>phase II</b>).'])],
+    ['CUR',t(['<b>Tubocurarina / rocuronio</b> = antagonisti competitivi: occupano i siti dell\'ACh senza aprire → blocco neuromuscolare.','<b>Tubocurarine / rocuronium</b> = competitive antagonists: occupy the ACh sites without opening → neuromuscular block.'])]];
+  if(scn==='nmda') return [[1,t(['A riposo il poro è tappato dallo <b>ione Mg²⁺</b> (blocco voltaggio-dipendente).','At rest the pore is plugged by the <b>Mg²⁺ ion</b> (voltage-dependent block).'])],
+    [2,t(['Servono <b>glutammato</b> (su GluN2) <b>+ glicina/D-serina</b> (su GluN1) <b>+ depolarizzazione</b>: «coincidence detector».','It needs <b>glutamate</b> (on GluN2) <b>+ glycine/D-serine</b> (on GluN1) <b>+ depolarization</b>: “coincidence detector”.'])],
+    [3,t(['La depolarizzazione espelle il Mg²⁺ → entra <b>Ca²⁺</b> (recettore Ca²⁺-permeabile).','Depolarization expels Mg²⁺ → <b>Ca²⁺</b> enters (Ca²⁺-permeable receptor).'])],
+    ['★',t(['<b>Ketamina / memantina</b> bloccano il poro (al posto del Mg²⁺); <b>perampanel</b> blocca invece l\'AMPA.','<b>Ketamine / memantine</b> block the pore (instead of Mg²⁺); <b>perampanel</b> blocks AMPA instead.'])]];
+  return [];
 }
 
 /* ---------- scenari (pulsanti) + render ---------- */
@@ -2980,17 +3044,21 @@ const GPCR_SCN=[{k:'gs',lab:['Gs · generico','Gs · generic'],cls:'gs'},{k:'gi'
   {k:'d2',lab:['D2 · antipsicotici (Gi)','D2 · antipsychotics (Gi)'],cls:'gi'},{k:'ht2',lab:['5-HT2A · atipici (Gq)','5-HT2A · atypicals (Gq)'],cls:'gq'},{k:'ht1',lab:['5-HT1 · triptani (Gi)','5-HT1 · triptans (Gi)'],cls:'gi'}];
 const CHAN_SCN=[{k:'gaba',lab:['GABA-A · BDZ vs barbiturico','GABA-A · BDZ vs barbiturate'],cls:'neu'},{k:'nav',lab:['Na⁺ · stati + anestetico','Na⁺ · states + anesthetic'],cls:'neu'},{k:'nach',lab:['nicotinico · ACh / curaro','nicotinic · ACh / curare'],cls:'neu'},{k:'nmda',lab:['NMDA · Mg²⁺ / ketamina','NMDA · Mg²⁺ / ketamine'],cls:'neu'}];
 let curGPCR='gs', curChan='gaba';
+const anim3D=()=>typeof A3!=='undefined'&&A3&&A3.ok; // A3: slot anim (fondo del modulo)
+function scenRow(id,list,k,fn){ const row=document.getElementById(id);
+  row.innerHTML=list.map(s=>`<button type="button" class="scen ${s.cls} ${s.k===k?'sel':''}" data-k="${s.k}" aria-pressed="${s.k===k}">${t(s.lab)}</button>`).join('');
+  row.querySelectorAll('.scen').forEach(b=>b.onclick=()=>fn(b.dataset.k)); }
 function showGPCRAnim(k){ curGPCR=k;
-  document.getElementById('gpcr-scen').innerHTML=GPCR_SCN.map(s=>`<div class="scen ${s.cls} ${s.k===k?'sel':''}" data-k="${s.k}">${t(s.lab)}</div>`).join('');
-  document.querySelectorAll('#gpcr-scen .scen').forEach(b=>b.onclick=()=>showGPCRAnim(b.dataset.k));
-  document.getElementById('gpcr-anim').innerHTML=buildGPCRAnim(k);
+  scenRow('gpcr-scen',GPCR_SCN,k,showGPCRAnim);
+  if(anim3D()) A3.show('gpcr',k); else document.getElementById('gpcr-anim').innerHTML=buildGPCRAnim(k);
   document.getElementById('gpcr-cap').innerHTML=gpcrCap(k);
+  if(anim3D()) A3.caps('gpcr');
 }
 function showChanAnim(k){ curChan=k;
-  document.getElementById('chan-scen').innerHTML=CHAN_SCN.map(s=>`<div class="scen ${s.cls} ${s.k===k?'sel':''}" data-k="${s.k}">${t(s.lab)}</div>`).join('');
-  document.querySelectorAll('#chan-scen .scen').forEach(b=>b.onclick=()=>showChanAnim(b.dataset.k));
-  document.getElementById('chan-anim').innerHTML=buildChanAnim(k);
+  scenRow('chan-scen',CHAN_SCN,k,showChanAnim);
+  if(anim3D()) A3.show('chan',k); else document.getElementById('chan-anim').innerHTML=buildChanAnim(k);
   document.getElementById('chan-cap').innerHTML=chanCap(k);
+  if(anim3D()) A3.caps('chan');
 }
 
 /* ---------- biforcazione ACh: nicotinico (canale) vs muscarinico (GPCR) ---------- */
@@ -3027,13 +3095,17 @@ function buildForkAnim(){
     <line x1="380" y1="96" x2="380" y2="346" stroke="#2a2c3a" stroke-dasharray="3 6"/>`;
   return svgWrap(inner,400);
 }
-function forkCap(){
-  return step('N',t(['<b>Nicotinico</b> (canale, superfamiglia Cys-loop): l\'ACh apre il poro → <b>Na⁺</b> entra → depolarizzazione in <b>millisecondi</b> (es. placca neuromuscolare: eccita e contrae).','<b>Nicotinic</b> (channel, Cys-loop superfamily): ACh opens the pore → <b>Na⁺</b> enters → depolarization in <b>milliseconds</b> (e.g. neuromuscular junction: excites and contracts).']))
-   + step('M',t(['<b>Muscarinico</b> (GPCR, 7TM): l\'ACh attiva la proteina G → secondo messaggero in <b>secondi</b> (modulazione: cuore, ghiandole, muscolo liscio).','<b>Muscarinic</b> (GPCR, 7TM): ACh activates the G protein → second messenger in <b>seconds</b> (modulation: heart, glands, smooth muscle).']))
-   + step('Gi',t(['<b>M2 · M4 = Gi</b> → ↓AMPc + βγ apre K⁺ → iperpolarizzazione (M2 cuore = <b>bradicardia</b>).','<b>M2 · M4 = Gi</b> → ↓cAMP + βγ opens K⁺ → hyperpolarization (M2 heart = <b>bradycardia</b>).']))
-   + step('Gq',t(['<b>M1 · M3 · M5 = Gq</b> → PLC → IP3/DAG → ↑Ca²⁺ (M3 = contrazione/secrezione).','<b>M1 · M3 · M5 = Gq</b> → PLC → IP3/DAG → ↑Ca²⁺ (M3 = contraction/secretion).']));
+function forkCap(){ return capList(forkSteps()); }
+function forkSteps(){
+  return [['N',t(['<b>Nicotinico</b> (canale, superfamiglia Cys-loop): l\'ACh apre il poro → <b>Na⁺</b> entra → depolarizzazione in <b>millisecondi</b> (es. placca neuromuscolare: eccita e contrae).','<b>Nicotinic</b> (channel, Cys-loop superfamily): ACh opens the pore → <b>Na⁺</b> enters → depolarization in <b>milliseconds</b> (e.g. neuromuscular junction: excites and contracts).'])],
+   ['M',t(['<b>Muscarinico</b> (GPCR, 7TM): l\'ACh attiva la proteina G → secondo messaggero in <b>secondi</b> (modulazione: cuore, ghiandole, muscolo liscio).','<b>Muscarinic</b> (GPCR, 7TM): ACh activates the G protein → second messenger in <b>seconds</b> (modulation: heart, glands, smooth muscle).'])],
+   ['Gi',t(['<b>M2 · M4 = Gi</b> → ↓AMPc + βγ apre K⁺ → iperpolarizzazione (M2 cuore = <b>bradicardia</b>).','<b>M2 · M4 = Gi</b> → ↓cAMP + βγ opens K⁺ → hyperpolarization (M2 heart = <b>bradycardia</b>).'])],
+   ['Gq',t(['<b>M1 · M3 · M5 = Gq</b> → PLC → IP3/DAG → ↑Ca²⁺ (M3 = contrazione/secrezione).','<b>M1 · M3 · M5 = Gq</b> → PLC → IP3/DAG → ↑Ca²⁺ (M3 = contraction/secretion).'])]];
 }
-function showFork(){ const a=document.getElementById('fork-anim'); if(a)a.innerHTML=buildForkAnim(); const c=document.getElementById('fork-cap'); if(c)c.innerHTML=forkCap(); }
+function showFork(){ const a=document.getElementById('fork-anim'); if(!a) return;
+  if(anim3D()) A3.show('fork'); else a.innerHTML=buildForkAnim();
+  const c=document.getElementById('fork-cap'); if(c)c.innerHTML=forkCap();
+  if(anim3D()) A3.caps('fork'); }
 
 /* =========================================================================
    TABELLA: liganti → Gs / Gi / Gq (da tutto il programma)
@@ -4464,6 +4536,689 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDrugM
 /* ═══ slot explorer: fine ═══ */
 // ·
 /* ═══ slot anim: inizio (solo il suo agente) ═══ */
+/* Animazioni 3D dei meccanismi (vista ▶ Animazioni).
+   Un solo WebGLRenderer fuori schermo per tutta la vista: ogni riquadro ha la sua scena e un <canvas> 2D in cui
+   si copia il fotogramma (niente contesti WebGL multipli). Passi con didascalie IT/EN sincronizzate, play/pausa,
+   passo avanti/indietro, velocità, trascinamento per ruotare, oscillazione lenta della camera.
+   Movimento ridotto: un fotogramma chiave fermo per passo + pulsanti dei passi.
+   Ripiego (niente WebGL o CDN): gli schemi SVG 2D esistenti, con profondità 2.5D.
+   `var` (non const/let): showGPCRAnim/showChanAnim/showFork leggono A3 prima che questo blocco venga eseguito. */
+var A3=(function(){
+  const L={
+    it:{play:'Riproduci',pause:'Pausa',prev:'Passo precedente',next:'Passo successivo',speed:'Velocità',steps:'Passi del meccanismo',
+      stepOf:'Passo',drag:'Trascina per ruotare',ext:'Extracellulare',cyt:'Citoplasma',vm:'Vm',vmRest:'riposo',vmDep:'depolarizzazione',vmHyp:'iperpolarizzazione',
+      aGPCR:'Modello 3D animato: recettore a 7 eliche, proteina G ed effettore nella membrana',aChan:'Modello 3D animato del canale ionico nella membrana',
+      aFork:'Modello 3D animato: recettore nicotinico (canale) e recettore muscarinico (GPCR) a confronto',
+      camp:'AMPc',campUp:'AMPc ↑',campDn:'AMPc ↓',er:'reticolo endoplasmatico',pkc:'DAG → PKC',ip3:'IP3',ca:'Ca²⁺ ↑',pka:'PKA attiva',
+      eff:'effettore',girk:'GIRK · K⁺ esce',agon:'agonista',bdz:'benzodiazepina',barb:'barbiturico',barbHi:'barbiturico ad alte dosi',
+      sideBdz:'+ GABA + BDZ',sideBarb:'+ GABA + barbiturico',la:'anestetico locale',ifm:'gate di inattivazione (IFM)',s4:'S4 sensore',
+      glu:'glutammato',gly:'glicina',ket:'ketamina / memantina',sux:'succinilcolina',cur:'tubocurarina',mg:'Mg²⁺ nel poro',mgOut:'Mg²⁺ espulso',
+      open:'aperto',closed:'chiuso',inact:'inattivato',nic:'nicotinico · ms',mus:'muscarinico · s',noGaba:'senza GABA: resta chiuso',
+      blocked:'poro bloccato',phase1:'depolarizzazione persistente'},
+    en:{play:'Play',pause:'Pause',prev:'Previous step',next:'Next step',speed:'Speed',steps:'Mechanism steps',
+      stepOf:'Step',drag:'Drag to rotate',ext:'Extracellular',cyt:'Cytoplasm',vm:'Vm',vmRest:'rest',vmDep:'depolarization',vmHyp:'hyperpolarization',
+      aGPCR:'Animated 3D model: 7-helix receptor, G protein and effector in the membrane',aChan:'Animated 3D model of the ion channel in the membrane',
+      aFork:'Animated 3D model: nicotinic receptor (channel) and muscarinic receptor (GPCR) side by side',
+      camp:'cAMP',campUp:'cAMP ↑',campDn:'cAMP ↓',er:'endoplasmic reticulum',pkc:'DAG → PKC',ip3:'IP3',ca:'Ca²⁺ ↑',pka:'PKA active',
+      eff:'effector',girk:'GIRK · K⁺ out',agon:'agonist',bdz:'benzodiazepine',barb:'barbiturate',barbHi:'high-dose barbiturate',
+      sideBdz:'+ GABA + BDZ',sideBarb:'+ GABA + barbiturate',la:'local anesthetic',ifm:'inactivation gate (IFM)',s4:'S4 sensor',
+      glu:'glutamate',gly:'glycine',ket:'ketamine / memantine',sux:'succinylcholine',cur:'tubocurarine',mg:'Mg²⁺ in the pore',mgOut:'Mg²⁺ expelled',
+      open:'open',closed:'closed',inact:'inactivated',nic:'nicotinic · ms',mus:'muscarinic · s',noGaba:'no GABA: stays closed',
+      blocked:'pore blocked',phase1:'persistent depolarization'}
+  };
+  const tx=k=>{const d=L[LANG==='en'?'en':'it'];return d[k]!=null?d[k]:k;};
+  const RM=(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)'))||{matches:false};
+  const HOST={gpcr:'gpcr-anim',chan:'chan-anim',fork:'fork-anim'}, CAP={gpcr:'gpcr-cap',chan:'chan-cap',fork:'fork-cap'};
+  const STEPS={gpcr:k=>gpcrSteps(k),chan:k=>chanSteps(k),fork:()=>forkSteps()};
+
+  if(typeof THREE==='undefined'||!THREE){ a25Enable(); return {ok:false}; }
+  let renderer=null;
+  try{ renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'low-power'}); if(!renderer.getContext()) throw new Error('webgl'); }
+  catch(e){ console.warn('Animazioni 3D non disponibili: restano gli schemi 2D.'); a25Enable(); return {ok:false}; }
+  renderer.setPixelRatio(1); renderer.setClearColor(0x000000,0);
+  renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  let RW=0,RH=0;
+  function ensure(W,H){ if(W<=RW&&H<=RH) return; RW=Math.max(RW,W); RH=Math.max(RH,H); renderer.setSize(RW,RH,false); }
+  let env=null;
+  try{ const pg=new THREE.PMREMGenerator(renderer); env=pg.fromScene(new RoomEnvironment(),0.04).texture; pg.dispose(); }catch(e){ env=null; }
+
+  /* ---------- utilità ---------- */
+  const clamp01=x=>x<0?0:x>1?1:x, sm=x=>{x=clamp01(x);return x*x*(3-2*x);};
+  const R=(u,a,b)=>sm((u-a)/(b-a)), lerp=(a,b,k)=>a+(b-a)*k, V=(x,y,z)=>new THREE.Vector3(x,y,z);
+  const frac=x=>x-Math.floor(x);
+  function rng(seed){let s=(seed>>>0)||1;return()=>{s^=s<<13;s>>>=0;s^=s>>>17;s^=s<<5;s>>>=0;return s/4294967296;};}
+  function bez(a,c,b,k){const m=1-k;return V(m*m*a.x+2*m*k*c.x+k*k*b.x,m*m*a.y+2*m*k*c.y+k*k*b.y,m*m*a.z+2*m*k*c.z+k*k*b.z);}
+  function pulse(T,per,open,ph){const x=frac((T+ph)/per)*per;return sm(x/0.09)*(1-sm((x-open)/0.09));}
+  const isLight=()=>document.documentElement.dataset.theme==='light';
+  let COLLECT=null; const themed=[];
+  function pm(hex,o){const m=new THREE.MeshPhysicalMaterial(Object.assign({color:new THREE.Color(hex),roughness:.4,metalness:0,clearcoat:.45,clearcoatRoughness:.35,envMapIntensity:.75},o||{}));if(COLLECT)COLLECT.push(m);return m;}
+  const glossy=hex=>pm(hex,{roughness:.14,clearcoat:1,clearcoatRoughness:.06,envMapIntensity:1.15});
+  const ghost=hex=>pm(hex,{transparent:true,opacity:.17,depthWrite:false,clearcoat:0,roughness:.6});
+  const tint=(hex,k)=>'#'+new THREE.Color(hex).lerp(new THREE.Color('#ffffff'),k).getHexString();
+  const GEO={};
+  const cap=(r,l)=>GEO['c'+r+'|'+l]||(GEO['c'+r+'|'+l]=new THREE.CapsuleGeometry(r,l,6,16));
+  const sph=(r,w,h)=>GEO['s'+r+'|'+(w||28)]||(GEO['s'+r+'|'+(w||28)]=new THREE.SphereGeometry(r,w||28,h||18));
+  const cyl=(r,h,s)=>GEO['y'+r+'|'+h+'|'+s]||(GEO['y'+r+'|'+h+'|'+s]=new THREE.CylinderGeometry(r,r,h,s||16));
+  function M(g,m,cast){const o=new THREE.Mesh(g,m);o.castShadow=cast!==false;o.receiveShadow=true;return o;}
+  function show(o,v){o.visible=v>0.01;o.scale.setScalar(Math.max(0.001,v));}
+
+  /* ---------- membrana: doppio strato lipidico (teste + code), con fori per le proteine ---------- */
+  function membrane(o){
+    const r=rng(o.seed||11), sp=0.42, pts=[];
+    let row=0;
+    for(let z=o.z0;z<=o.z1+1e-6;z+=sp*0.88,row++) for(let x=o.x0;x<=o.x1+1e-6;x+=sp){
+      const xx=x+(row%2?sp/2:0)+(r()-.5)*.08, zz=z+(r()-.5)*.08;
+      if(xx>o.x1+.05) continue;
+      if(o.holes.some(h=>Math.hypot(xx-h[0],zz-(h[1]||0))<h[2])) continue;
+      pts.push([xx,zz,r()]);
+    }
+    const hm=pm('#c19e6a',{roughness:.5,clearcoat:.3,clearcoatRoughness:.5,envMapIntensity:.55,emissive:new THREE.Color('#000000')});
+    const tm=new THREE.MeshStandardMaterial({color:'#7a6a50',roughness:.9}); if(COLLECT)COLLECT.push(tm);
+    themed.push({m:hm,d:'#8c8170',l:'#d3c8b5'},{m:tm,d:'#544b3e',l:'#c9bca4'});
+    const n=pts.length, H=new THREE.InstancedMesh(sph(0.2,12,9),hm,n*2), T=new THREE.InstancedMesh(GEO.tail||(GEO.tail=new THREE.CylinderGeometry(0.045,0.028,0.5,5)),tm,n*4);
+    const m4=new THREE.Matrix4(), c=new THREE.Color(); let hi=0,ti=0;
+    for(const [x,z,v] of pts) for(const s of [1,-1]){
+      m4.makeTranslation(x,s*0.62,z); H.setMatrixAt(hi,m4); c.setScalar(0.84+v*0.24); H.setColorAt(hi++,c);
+      for(const d of [-0.075,0.075]){ m4.makeTranslation(x+d,s*0.3,z+d*0.4); T.setMatrixAt(ti,m4); T.setColorAt(ti++,c); }
+    }
+    H.castShadow=false; H.receiveShadow=true; T.castShadow=false; T.receiveShadow=true;
+    const g=new THREE.Group(); g.add(H,T);
+    return {group:g,heads:hm,inst:[H,T]};
+  }
+  function themeApply(){ const li=isLight(); themed.forEach(t=>t.m.color.set(li?t.l:t.d)); renderer.toneMappingExposure=li?1.0:0.98; }
+  function lights(scene){
+    scene.add(new THREE.HemisphereLight(0xfff4e2,0x3b3226,0.7));
+    const key=new THREE.DirectionalLight(0xfff0d8,2.4); key.position.set(3.5,10,7.5); key.castShadow=true;
+    key.shadow.mapSize.set(1024,1024); const sc=key.shadow.camera; sc.left=-10;sc.right=10;sc.top=8;sc.bottom=-8;sc.near=1;sc.far=34;
+    key.shadow.bias=-0.0005; key.shadow.normalBias=0.03; key.shadow.radius=5; scene.add(key);
+    const rim=new THREE.DirectionalLight(0xc8d6ff,0.75); rim.position.set(-7,2.5,-8); scene.add(rim);
+    const low=new THREE.DirectionalLight(0xffe2c0,0.35); low.position.set(2,-6,6); scene.add(low);
+  }
+
+  /* ---------- particelle ---------- */
+  class Flux{ /* ioni che attraversano il poro (dir -1: dall'esterno verso l'interno; +1: verso l'esterno) */
+    constructor(parent,o){
+      this.o=Object.assign({n:9,r:0.2,top:1.15,bot:-1.15,spread:1.4,z:0,dir:-1},o); this.open=0; this.ions=[];
+      const mat=glossy(o.col);
+      for(let i=0;i<this.o.n;i++){const m=M(sph(this.o.r,20,14),mat);parent.add(m);const io={m,st:0,k:0,w:0,a:Math.random()*6.3,q:Math.random(),h:this.home(),sc:1};m.position.copy(io.h);this.ions.push(io);}
+    }
+    home(){const o=this.o,a=Math.random()*6.283,r=0.45+Math.random()*o.spread,s=-o.dir;return V(o.x+Math.cos(a)*r,s*(1.5+Math.random()*1.1),o.z+Math.sin(a)*r*0.55);}
+    dest(){const o=this.o,a=Math.random()*6.283,r=0.35+Math.random()*o.spread,s=o.dir;return V(o.x+Math.cos(a)*r,s*(1.55+Math.random()*1.0),o.z+Math.sin(a)*r*0.55);}
+    step(dt){
+      const o=this.o,inY=o.dir<0?o.top:o.bot,outY=o.dir<0?o.bot:o.top,s=-o.dir;
+      for(const io of this.ions){
+        if(io.st===0){ io.a+=dt*0.9; io.m.position.set(io.h.x+Math.sin(io.a)*0.12,io.h.y+Math.cos(io.a*1.3)*0.08,io.h.z+Math.cos(io.a)*0.1); io.sc=Math.min(1,io.sc+dt*2.5);
+          if(this.open>0.5&&Math.random()<dt*2.4*this.open){io.st=1;io.k=0;io.w=0;io.from=io.m.position.clone();} }
+        else if(io.st===1){ io.k=Math.min(1,io.k+dt/0.45); const e=V(o.x+Math.sin(io.q*6.3)*0.18*io.q,inY+s*io.q*0.45,o.z+Math.cos(io.q*6.3)*0.18*io.q);
+          if(io.k>=1&&this.open>0.35){e.set(o.x,inY,o.z);}
+          io.m.position.lerpVectors(io.from,e,sm(io.k));
+          if(io.k>=1){ if(this.open>0.35){io.st=2;io.k=0;} else if((io.w+=dt)>1.6){io.st=0;io.h=this.home();io.sc=0.2;} } }
+        else if(io.st===2){ io.k+=dt/0.42; io.m.position.set(o.x+Math.sin(io.k*9)*0.03,lerp(inY,outY,Math.min(1,io.k)),o.z);
+          if(io.k>=1){io.st=3;io.k=0;io.from=io.m.position.clone();io.d=this.dest();} }
+        else { io.k+=dt/0.95; io.m.position.lerpVectors(io.from,io.d,sm(io.k)); io.sc=1-sm((io.k-0.55)/0.45);
+          if(io.k>=1){io.st=0;io.h=this.home();io.sc=0;io.m.position.copy(io.h);} }
+        io.m.scale.setScalar(Math.max(0.001,io.sc));
+      }
+    }
+  }
+  class Cloud{ /* nube di secondi messaggeri / Ca²⁺: quante particelle sono visibili = livello */
+    constructor(parent,o){ this.o=o; const mat=glossy(o.col), r=rng(o.seed||5); this.p=[];
+      for(let i=0;i<o.n;i++){const m=M(sph(o.r,16,12),mat);parent.add(m);this.p.push({m,ph:r()*6.3,x:r()*2-1,y:r()*2-1,z:r()*2-1});} }
+    pose(T,level){ const o=this.o,n=this.p.length;
+      this.p.forEach((q,i)=>{const v=sm(level*n-i),g=0.3+0.7*v;
+        q.m.position.set(o.c.x+q.x*o.sx*g+Math.sin(T*0.8+q.ph)*0.1,o.c.y+q.y*o.sy*g+Math.cos(T*0.95+q.ph)*0.09,o.c.z+q.z*o.sz*g);
+        q.m.scale.setScalar(Math.max(0.001,v));}); }
+  }
+  class Stream{ /* particelle che viaggiano da a → b (IP3 verso il recettore del RE) */
+    constructor(parent,o){ this.o=o; const mat=glossy(o.col); this.p=[]; for(let i=0;i<o.n;i++){const m=M(sph(o.r,16,12),mat);parent.add(m);this.p.push(m);} }
+    pose(T,level){ const o=this.o,n=this.p.length;
+      this.p.forEach((m,i)=>{const k=frac(T*0.42+i/n);m.position.copy(bez(o.a,o.c,o.b,k));m.position.z+=Math.sin(i*2.1)*0.25;
+        m.scale.setScalar(Math.max(0.001,level*Math.min(1,k*6,(1-k)*6)));}); }
+  }
+
+  /* ---------- proteine ---------- */
+  /* canale ad anello: n subunità attorno al poro; l'elica che fodera il poro ruota su un perno in alto (cancello) */
+  function ringChannel(o){
+    const g=new THREE.Group(); g.position.set(o.x,0,o.z||0); const subs=[]; const pr=o.poreR||0.5;
+    for(let i=0;i<o.n;i++){
+      const th=o.th0+i*2*Math.PI/o.n, s=o.subs[i], gh=i===o.ghost;
+      const base=gh?ghost(s.c):pm(s.c), lin=gh?ghost(s.c):pm(tint(s.c,0.22));
+      const rad=V(Math.cos(th),0,Math.sin(th)), tan=V(-Math.sin(th),0,Math.cos(th));
+      const pv=new THREE.Object3D(); pv.position.set(rad.x*pr,1.05,rad.z*pr);
+      const ph=M(cap(0.2,1.7),lin,!gh); ph.position.y=-1.05; pv.add(ph); g.add(pv);
+      (o.outer||[]).forEach(h=>{const a=th+h.da,m=M(cap(h.w||0.19,h.len||1.55),base,!gh);m.position.set(Math.cos(a)*h.r,h.y||0,Math.sin(a)*h.r);
+        m.quaternion.setFromAxisAngle(V(-Math.sin(a),0,Math.cos(a)),h.tilt||0.06);g.add(m);});
+      let ecd=null;
+      if(o.ecd){ecd=M(sph(o.ecd.r),base,!gh);ecd.scale.set(o.ecd.sx||0.78,o.ecd.sy||1.3,o.ecd.sx||0.78);
+        ecd.position.set(Math.cos(th)*o.ecd.rad,o.ecd.y,Math.sin(th)*o.ecd.rad);ecd.quaternion.setFromAxisAngle(tan,o.ecd.lean||0.2);g.add(ecd);}
+      if(o.icd){const m=M(cap(o.icd.r||0.14,o.icd.len||0.6),base,!gh);m.position.set(Math.cos(th)*o.icd.rad,o.icd.y,Math.sin(th)*o.icd.rad);
+        m.quaternion.setFromAxisAngle(tan,o.icd.tilt||0.5);g.add(m);}
+      subs.push({th,rad,tan,pv,c:s.c,ecd,ghost:gh,mat:base});
+    }
+    const api={group:g,subs,o,x:o.x,z:o.z||0,
+      gate(v){const a=lerp(o.closed!=null?o.closed:-0.16,o.open!=null?o.open:0.06,v);subs.forEach(s=>s.pv.quaternion.setFromAxisAngle(s.tan,a));},
+      ang(i,j){const a1=subs[i].th,a2=subs[j].th;return Math.atan2(Math.sin(a1)+Math.sin(a2),Math.cos(a1)+Math.cos(a2));},
+      site(i,j,y,r){const a=api.ang(i,j);return V(o.x+Math.cos(a)*r,y,(o.z||0)+Math.sin(a)*r);},
+      on(i,y,r){const a=subs[i].th;return V(o.x+Math.cos(a)*r,y,(o.z||0)+Math.sin(a)*r);}};
+    api.gate(0); return api;
+  }
+  const SUBC={a:'#4ea8de',b:'#52b788',g:'#f4a259',d:'#b388eb',e:'#f6bd60'};
+  function pentamer(x,order,ghostIdx,z){
+    const th0=Math.PI/2-ghostIdx*2*Math.PI/5;
+    return ringChannel({x,z,n:5,th0,ghost:ghostIdx,poreR:0.52,subs:order.map(k=>({c:SUBC[k]})),
+      outer:[{da:-0.3,r:0.98},{da:0,r:1.2,len:1.45},{da:0.3,r:0.98}],ecd:{r:0.52,rad:0.84,y:1.88,sx:0.78,sy:1.32,lean:0.2},icd:{rad:0.72,y:-1.55,r:0.12,len:0.55}});
+  }
+  function molecule(parts,col){ /* piccola molecola fatta di sfere lucide */
+    const g=new THREE.Group(), mat=glossy(col); parts.forEach(p=>{const m=M(sph(p[3]||0.2,24,16),mat);m.position.set(p[0],p[1],p[2]);g.add(m);}); return g; }
+  function dumbbell(col){ const g=molecule([[-0.2,0,0,0.19],[0.2,0,0,0.19]],col); const rod=M(cap(0.07,0.32),glossy(col)); rod.rotation.z=Math.PI/2; g.add(rod); return g; }
+
+  /* sistema GPCR: recettore 7TM + eterotrimero G + effettori (AC, PLCβ, GIRK, RE) */
+  function gpcrSystem(o){
+    const g=new THREE.Group(), S={g,o};
+    S.recMat=pm('#2a5fc0',{emissive:new THREE.Color('#ffcf7a'),emissiveIntensity:0});
+    S.hel=[];
+    for(let i=0;i<7;i++){const th=-Math.PI/2+0.35+i*2*Math.PI/7,rr=0.64*(i%2?1:0.93);
+      const pv=new THREE.Object3D();pv.position.set(o.xR+Math.cos(th)*rr,1.08,Math.sin(th)*rr);
+      const m=M(cap(0.21,1.75),S.recMat);m.position.y=-1.085;pv.add(m);g.add(pv);
+      const tan=V(-Math.sin(th),0,Math.cos(th));S.hel.push({pv,tan,base:i%2?0.1:-0.07});}
+    S.lig=molecule([[0,0,0,0.27]],o.ligCol||'#ffe08a'); g.add(S.lig);
+    // proteina G: Gα (dominio Ras + dominio elicoidale, con il nucleotide), Gβ (elica a 7 pale) e Gγ
+    S.gaMat=pm('#52b788',{emissive:new THREE.Color('#ffffff'),emissiveIntensity:0});
+    S.ga=new THREE.Group(); const ras=M(sph(0.5),S.gaMat); ras.scale.set(1.15,0.86,1); const hd=M(sph(0.36),S.gaMat); hd.position.set(0.44,0.28,-0.14);
+    S.nucMat=pm('#8e8aa6',{roughness:.2,clearcoat:1}); S.nuc=M(sph(0.17),S.nucMat); S.nuc.position.set(0.16,0.3,0.4);
+    const an=M(cyl(0.035,0.5,6),pm('#d9cdb2'),false); an.position.set(-0.15,0.58,0); S.ga.add(ras,hd,S.nuc,an); g.add(S.ga);
+    S.pi=M(sph(0.1,16,12),glossy('#f3e3ff')); g.add(S.pi);
+    S.bg=new THREE.Group(); const gb=M(cyl(0.5,0.34,7),pm('#b388eb')); gb.rotation.x=1.2; const gc=M(cap(0.12,0.6),pm('#f6bd60')); gc.rotation.z=Math.PI/2; gc.position.set(0.05,0.38,0.12);
+    const an2=M(cyl(0.035,0.42,6),pm('#d9cdb2'),false); an2.position.set(0.1,0.66,0.1); S.bg.add(gb,gc,an2); g.add(S.bg);
+    S.gaBase=V(o.xR+0.55,-1.62,0.2); S.bgBase=V(o.xR-0.55,-1.56,0.02);
+    // adenilato ciclasi: due fasci di 6 eliche + dominio catalitico C1/C2
+    S.ac=new THREE.Group(); S.ac.position.set(o.xE,0,0); S.acMat=pm('#3fb0c2',{emissive:new THREE.Color('#9af3ff'),emissiveIntensity:0});
+    for(const bx of [-0.52,0.52]) for(let i=0;i<6;i++){const a=i*Math.PI/3;const m=M(cap(0.14,1.45),S.acMat);m.position.set(bx+Math.cos(a)*0.33,0,Math.sin(a)*0.33);S.ac.add(m);}
+    for(const bx of [-0.3,0.3]){const m=M(sph(0.46),S.acMat);m.scale.set(1,0.8,1);m.position.set(bx,-1.55,0.05);S.ac.add(m);}
+    g.add(S.ac);
+    // fosfolipasi C-β: enzima periferico sulla faccia interna
+    S.plc=new THREE.Group(); S.plc.position.set(o.xE,-1.3,0); S.plcMat=pm('#a8482a',{emissive:new THREE.Color('#ff9a70'),emissiveIntensity:0});
+    const pb=M(sph(0.6),S.plcMat); pb.scale.set(1.45,0.75,1); pb.position.set(0,-0.08,0); const pd=M(sph(0.3),S.plcMat); pd.position.set(0.85,0.15,0.15); S.plc.add(pb,pd); g.add(S.plc);
+    // GIRK (Kir3): canale K⁺ tetramerico aperto dal dimero βγ
+    S.girk=ringChannel({x:o.xG,n:4,th0:Math.PI/2,ghost:0,poreR:0.42,subs:[0,1,2,3].map(()=>({c:'#7b8fbf'})),outer:[{da:0.5,r:0.82,len:1.4}],
+      icd:{rad:0.55,y:-1.5,r:0.26,len:0.3,tilt:0},closed:-0.13,open:0.06});
+    g.add(S.girk.group);
+    S.kFlux=new Flux(g,{x:o.xG,col:'#b388eb',dir:1,n:7,spread:1.0});
+    // reticolo endoplasmatico + recettore IP3 + Ca²⁺
+    S.er=new THREE.Group(); S.er.position.set(o.xE+0.4,-3.4,-0.3); const erm=pm('#9d8fc4',{transparent:true,opacity:.5,roughness:.3,depthWrite:false});
+    const cis=M(cap(0.5,3.6),erm,false); cis.rotation.z=Math.PI/2; cis.scale.set(1,1,0.6); cis.position.set(0.1,-0.15,-0.05); S.er.add(cis);
+    S.ip3r=[]; for(let i=0;i<4;i++){const a=i*Math.PI/2+0.4;const m=M(cap(0.1,0.5),pm('#6d5fa6'));m.position.set(-0.15+Math.cos(a)*0.2,0.45,0.2+Math.sin(a)*0.2);S.er.add(m);S.ip3r.push({m,a});}
+    for(let i=0;i<7;i++){const m=M(sph(0.1,14,10),glossy('#7fe0b1'));m.position.set(-1.3+i*0.45,-0.15+Math.sin(i*1.7)*0.12,Math.cos(i)*0.12);S.er.add(m);}
+    g.add(S.er);
+    S.camp=new Cloud(g,{n:13,col:'#52b788',r:0.12,c:V(o.xE,-2.55,0.5),sx:1.25,sy:0.55,sz:0.6,seed:9});
+    S.ip3=new Stream(g,{n:6,col:'#f4a259',r:0.11,a:V(o.xE-0.2,-1.75,0.35),c:V(o.xE-0.6,-2.5,0.6),b:V(o.xE+0.25,-2.95,0.1)});
+    S.ca=new Cloud(g,{n:12,col:'#7fe0b1',r:0.12,c:V(o.xE+0.25,-2.25,0.4),sx:1.3,sy:0.5,sz:0.6,seed:4});
+    S.dag=[]; for(let i=0;i<3;i++){const m=M(sph(0.13,16,10),glossy('#f6c79a'));m.scale.set(1.5,0.5,1.5);m.position.set(o.xE-1.0+i*0.5,-0.98,0.75-i*0.2);g.add(m);S.dag.push(m);}
+    const col=new THREE.Color(), ex=new THREE.Color('#ffffff');
+    S.st={};
+    S.pose=function(P,T){
+      S.st=P;
+      S.recMat.emissiveIntensity=0.32*P.act;
+      S.hel.forEach((h,i)=>h.pv.quaternion.setFromAxisAngle(h.tan,h.base+(i===5?0.3*P.act:0)));   // TM6 ruota verso l'esterno
+      const ligIn=bez(V(o.xR+1.7,3.0,1.1),V(o.xR+0.5,2.3,0.9),V(o.xR,0.98,0.05),P.lig);
+      const lp=P.ligOut>0?bez(V(o.xR,0.98,0.05),V(o.xR-0.6,2.2,0.6),V(o.xR-1.8,3.0,0.8),P.ligOut):ligIn;
+      S.lig.position.copy(lp); S.lig.position.y+=Math.sin(T*2.1)*0.04*(1-P.lig); show(S.lig,1-sm((P.ligOut-0.7)/0.3));
+      const dock=o.dock(P), gp=new THREE.Vector3().lerpVectors(S.gaBase,dock,sm(P.sep)); gp.y-=Math.sin(Math.PI*clamp01(P.sep))*0.35;
+      S.ga.position.copy(gp); S.ga.rotation.y=0.25*P.sep;
+      col.set(P.gaCol); S.gaMat.color.copy(col); S.gaMat.emissiveIntensity=0.14*P.eff;
+      const sw=Math.sin(Math.PI*clamp01(P.swap)); S.nuc.scale.setScalar(Math.max(0.001,1-0.85*sw));
+      S.nucMat.color.set(P.nuc>0.5?'#ffcf5a':'#8e8aa6'); S.nucMat.emissive.set(P.nuc>0.5?'#5a3d00':'#000000');
+      const pw=S.ga.localToWorld(S.nuc.position.clone()); S.pi.position.copy(pw).add(V(0.5*P.pi,0.5*P.pi,0.3*P.pi)); show(S.pi,Math.sin(Math.PI*clamp01(P.pi)));
+      const bgT=o.bgDock?new THREE.Vector3().lerpVectors(S.bgBase,o.bgDock,sm(P.bgGo)):S.bgBase.clone();
+      bgT.add(V(-0.25*P.sep*(1-P.bgGo),-0.08*P.sep,0)); bgT.y-=Math.sin(Math.PI*clamp01(P.bgGo))*0.3; S.bg.position.copy(bgT);
+      show(S.ac,P.showAC); S.acMat.emissiveIntensity=0.35*P.acGlow;
+      show(S.plc,P.showPLC); S.plcMat.emissiveIntensity=0.3*P.plcGlow;
+      show(S.girk.group,P.showGIRK); S.girk.gate(P.girk); S.kFlux.open=P.showGIRK>0.9?P.girk:0; S.kFlux.ions.forEach(io=>io.m.visible=P.showGIRK>0.5);
+      show(S.er,P.showER); S.ip3r.forEach(q=>q.m.position.y=0.45+0.06*P.ip3r);
+      S.camp.pose(T,P.showAC>0.5?P.camp:0); S.ip3.pose(T,P.ip3*P.showPLC); S.ca.pose(T,P.ca*P.showER);
+      S.dag.forEach((m,i)=>show(m,P.dag*P.showPLC*(0.8+0.2*Math.sin(T+i)))); S.dag.forEach(m=>m.scale.y*=0.33);
+    };
+    return S;
+  }
+  /* parametri del ciclo GPCR in funzione di u (0…5) per un accoppiamento: gs | gi | gq */
+  function gpcrParams(c,u){
+    const back=R(u,4.3,4.85), effOff=1-R(u,4.0,4.45);
+    const P={lig:R(u,0.05,0.75),ligOut:R(u,4.45,4.98),act:R(u,0.45,0.95)*(1-back),
+      swap:clamp01((u-1.05)/0.45)*(u<1.5?1:0)+clamp01((u-4.0)/0.35)*(u>4&&u<4.35?1:0),
+      nuc:R(u,1.25,1.3)*(1-R(u,4.17,4.2)),pi:clamp01((u-4.1)/0.45),sep:R(u,1.5,2.05)*(1-back),bgGo:0,eff:0,acGlow:0,plcGlow:0,girk:0,camp:0,ip3:0,ca:0,ip3r:0,dag:0,
+      showAC:c==='gq'?0:1,showPLC:c==='gq'?1:0,showER:c==='gq'?1:0,showGIRK:c==='gi'?1:0,gaCol:c==='gs'?'#52b788':c==='gi'?'#e5383b':'#f4a259',vm:0};
+    if(u>=4.55) P.pi=0;
+    const on=R(u,2.05,2.5)*effOff;
+    if(c==='gs'){P.eff=on;P.acGlow=0.15+0.85*on;P.camp=0.12+0.88*R(u,2.25,3.1)*(1-R(u,4.1,4.85));}
+    else if(c==='gi'){P.eff=on;P.acGlow=0.5*(1-on)+0.04;P.camp=0.72-0.62*R(u,2.25,3.2)*(1-R(u,4.1,4.85));P.bgGo=R(u,2.0,2.6)*(1-back);P.girk=R(u,2.55,2.8)*(1-R(u,4.05,4.35));P.vm=-P.girk;}
+    else {P.eff=on;P.plcGlow=on;P.dag=R(u,2.3,2.8)*(1-R(u,4.2,4.7));P.ip3=R(u,2.4,2.9)*(1-R(u,4.1,4.5));P.ip3r=R(u,3.0,3.2)*(1-R(u,4.1,4.4));P.ca=R(u,3.1,3.75)*(1-R(u,4.2,4.85));}
+    return P;
+  }
+
+  /* ---------- meccanismi ---------- */
+  function mechBase(){ COLLECT=[]; return {root:new THREE.Group(),mats:COLLECT,fluxes:[],labels:[],vm:()=>null,key:null}; }
+  function lab(t,p,v,cls){return {t:typeof t==='function'?t:()=>t,p,v:v||(()=>1),cls};}
+  const wp=o=>()=>o.getWorldPosition(new THREE.Vector3());
+
+  function mechGPCR(k){
+    const m=mechBase(), c=GREC[k]?GREC[k].coup:k, xR=-1.25, xE=2.95, xG=-4.75;
+    const sys=gpcrSystem({xR,xE,xG,dock:()=>V(xE-1.08,-1.68,0.42),bgDock:V(xG+0.95,-1.62,0.4)});
+    const holes=[[xR,0,1.0],[xE,0,1.2]]; if(c==='gi') holes.push([xG,0,1.0]);
+    const mem=membrane({x0:-7.8,x1:7.4,z0:-3.0,z1:1.45,holes,seed:3});
+    m.root.add(mem.group,sys.g); m.mem=mem;
+    m.steps=[4.2,4.6,4.8,5.2,4.6]; m.key=[0.9,0.92,0.85,0.85,0.55];
+    m.bounds=c==='gi'?{cx:-0.6,cy:-0.15,w:11.0,h:7.0}:c==='gq'?{cx:1.25,cy:-0.55,w:9.6,h:7.6}:{cx:0.75,cy:-0.15,w:8.8,h:6.8};
+    m.fluxes=[sys.kFlux];
+    let P=gpcrParams(c,0);
+    m.pose=(u,T)=>{P=gpcrParams(c,u);sys.pose(P,T);m.vmv=c==='gi'?P.vm:null;};
+    m.vm=()=>m.vmv;
+    const rec=GREC[k]?GREC[k].rec:'7TM', ago=GREC[k]?GREC[k].ago:null;
+    m.labels=[
+      lab(()=>rec==='7TM'?'7TM':rec+' · 7TM',()=>V(xR-1.55,1.35,0),null,'k'),
+      lab(()=>ago?t(ago):tx('agon'),()=>sys.lig.position.clone().add(V(0,0.55,0)),()=>1-R(P.ligOut,0.5,0.9)),
+      lab(()=>'Gα'+(c==='gs'?'s':c==='gi'?'i':'q')+' · '+(P.nuc>0.5?'GTP':'GDP'),()=>sys.ga.position.clone().add(V(0.1,-0.78,0.3))),
+      lab('βγ',()=>sys.bg.position.clone().add(V(-0.1,-0.62,0.3))),
+      lab(c==='gq'?'PLCβ':'AC',()=>V(xE+(c==='gq'?0.5:0.9),c==='gq'?-0.55:1.35,0.3),null,'k'),
+      lab(()=>tx('girk'),()=>V(xG,1.62,0),()=>c==='gi'?1:0,'k'),
+      lab(()=>c==='gs'?tx('campUp'):tx('campDn'),()=>V(xE+1.6,-2.45,0.5),()=>c==='gq'?0:R(P.eff,0.6,1)),
+      lab(()=>tx('pka'),()=>V(xE-0.25,-3.25,0.55),()=>c==='gs'?R(P.camp,0.85,0.98):0),
+      lab(()=>tx('pkc'),()=>V(xE-1.2,-1.35,1.1),()=>c==='gq'?R(P.dag,0.5,1):0),
+      lab(()=>tx('ip3'),()=>V(xE-1.1,-2.55,0.6),()=>c==='gq'?R(P.ip3,0.5,1):0),
+      lab(()=>tx('ca'),()=>V(xE+1.75,-2.1,0.4),()=>c==='gq'?R(P.ca,0.4,0.9):0),
+      lab(()=>tx('er'),()=>V(xE+1.6,-4.05,0),()=>c==='gq'?1:0)
+    ];
+    m.aria='aGPCR';
+    return m;
+  }
+
+  function mechChan(k){
+    const m=mechBase();
+    if(k==='gaba') return chanGABA(m);
+    if(k==='nav') return chanNav(m);
+    if(k==='nach') return chanNACh(m);
+    return chanNMDA(m);
+  }
+  function chanGABA(m){
+    const A=pentamer(-3.1,['b','a','g','b','a'],0), B=pentamer(3.1,['b','a','g','b','a'],0);
+    const mem=membrane({x0:-7.4,x1:7.4,z0:-3.0,z1:1.45,holes:[[-3.1,0,1.45],[3.1,0,1.45]],seed:5});
+    m.root.add(mem.group,A.group,B.group); m.mem=mem;
+    const fa=new Flux(m.root,{x:-3.1,col:'#46c98a',n:8}), fb=new Flux(m.root,{x:3.1,col:'#46c98a',n:8}); m.fluxes=[fa,fb];
+    const gab=[],sites=[[0,1],[3,4]];
+    [A,B].forEach(ch=>sites.forEach(s=>{const g=molecule([[0,0,0,0.2],[0.2,0.12,0.05,0.13]],'#ffe08a');m.root.add(g);gab.push({g,ch,s});}));
+    const bdz=molecule([[0,0,0,0.22],[0.24,0.08,0,0.16],[-0.2,0.1,0.05,0.14]],'#33b3c9'); m.root.add(bdz);
+    const barb=[0,1,2].map(i=>{const g=molecule([[0,0,0,0.2],[0.2,-0.05,0.08,0.14]],'#ee8a5c');m.root.add(g);return g;});
+    m.steps=[5.2,5.6,5.6,5.8]; m.key=[0.9,0.9,0.9,0.9];
+    m.bounds={cx:0,cy:0.45,w:10.6,h:7.4};
+    let S={};
+    m.pose=(u,T,st)=>{
+      const gaba=R(u,0.1,0.55)*(1-R(u,3.05,3.4)), bd=R(u,1.05,1.45), ba=R(u,2.05,2.45), hi=R(u,3.25,3.65);
+      const pa=st?1:(bd>0.9?pulse(T,0.78,0.32,0):pulse(T,2.3,0.42,0.4)), pb=st?1:(ba>0.9?pulse(T,2.6,1.75,1.0):pulse(T,2.3,0.42,1.3));
+      const pd=st?1:pulse(T,2.8,1.6,0.3);
+      const ga=gaba>0.9?pa:0, gb=gaba>0.9?pb:(hi>0.9?pd:0);
+      A.gate(ga); B.gate(gb); fa.open=ga; fb.open=gb;
+      gab.forEach((q,i)=>{const site=q.ch.site(q.s[0],q.s[1],1.95,1.32), far=site.clone().add(V(0.6*(i%2?1:-1),2.0,0.8));
+        const k=gaba; q.g.position.copy(bez(far,far.clone().lerp(site,0.5).add(V(0,0.6,0)),site,k)); show(q.g,u>3.3?1-R(u,3.3,3.45):1); q.g.position.y+=Math.sin(T*2+i)*0.03*(1-k);});
+      const bsite=A.site(1,2,1.9,1.35); bdz.position.copy(bez(bsite.clone().add(V(-1.2,2.0,0.6)),bsite.clone().add(V(-0.6,1.0,0.6)),bsite,bd)); show(bdz,bd>0.02?1:0.001);
+      const tsite=B.site(2,3,0.35,1.35);
+      barb.forEach((g,i)=>{const kk=i===0?ba:hi, s=i===0?tsite:B.site(i===1?3:1,i===1?4:2,0.35,1.35);
+        g.position.copy(bez(s.clone().add(V(1.4,2.4,0.7)),s.clone().add(V(0.9,1.2,0.8)),s,kk)); show(g,kk>0.02?1:0.001);});
+      S={u,gaba,bd,ba,hi,ga,gb};
+      m.vmv=-Math.max(ga,gb)*0.8;
+    };
+    m.vm=()=>m.vmv;
+    m.labels=[
+      lab(()=>tx('sideBdz'),()=>V(-3.1,3.7,0),null,'k'),lab(()=>tx('sideBarb'),()=>V(3.1,3.7,0),null,'k'),
+      lab('GABA',()=>gab[3].g.position.clone().add(V(0.2,0.45,0)),()=>(S.u<1.05?R(S.gaba,0.05,0.4):0)),
+      lab('α',()=>A.on(1,2.75,0.95),()=>S.u<2?1:0,'lo'),lab('γ',()=>A.on(2,2.75,0.95),()=>S.u<2?1:0,'lo'),
+      lab(()=>tx('bdz'),()=>bdz.position.clone().add(V(-0.25,0.5,0)),()=>R(S.bd,0.02,0.3)),
+      lab(()=>S.hi>0.5?tx('barbHi'):tx('barb'),()=>barb[0].position.clone().add(V(0.3,0.55,0)),()=>R(S.ba,0.02,0.3)),
+      lab(()=>tx('noGaba'),()=>V(-3.1,-2.35,0.4),()=>R(S.hi,0.3,0.9)),
+      lab('Cl⁻ ↓',()=>V(3.1+1.5,-2.0,0.4),()=>R(S.gb,0.3,0.9)),lab('Cl⁻ ↓',()=>V(-3.1+1.5,-2.0,0.4),()=>R(S.ga,0.3,0.9))
+    ];
+    m.aria='aChan'; return m;
+  }
+  function chanNav(m){
+    const cols=[SUBC.a,SUBC.b,SUBC.g,SUBC.d], th0=Math.PI/2;
+    const ch=ringChannel({x:0,n:4,th0,ghost:-1,poreR:0.5,subs:cols.map(c=>({c})),outer:[{da:-0.42,r:0.98},{da:0.42,r:0.98}],closed:-0.15,open:0.07});
+    // la subunità frontale resta trasparente (si vede il poro)
+    const front=[0,1,2,3].reduce((b,i)=>Math.sin(ch.subs[i].th)>Math.sin(ch.subs[b].th)?i:b,0);
+    ch.subs[front].pv.children[0].material=ghost(cols[front]);
+    ch.group.children.forEach(o=>{ if(o.isMesh){const a=Math.atan2(o.position.z,o.position.x),d=Math.abs(Math.atan2(Math.sin(a-ch.subs[front].th),Math.cos(a-ch.subs[front].th)));if(d<0.6){o.material=ghost(cols[front]);o.castShadow=false;}}});
+    // sensori del voltaggio (S1–S4) per dominio; S4 (rosso) sale con la depolarizzazione
+    const s4=[];
+    ch.subs.forEach((s,i)=>{const a=s.th+0.55, cx=Math.cos(a)*1.62, cz=Math.sin(a)*1.62, gh=i===front;
+      for(let j=0;j<4;j++){const b=j*Math.PI/2,mesh=M(cap(0.15,1.35),j===3?(gh?ghost('#e5383b'):pm('#e5383b',{emissive:new THREE.Color('#ff6b6b'),emissiveIntensity:0})):(gh?ghost(s.c):pm(tint(s.c,0.1))),!gh);
+        mesh.position.set(cx+Math.cos(b)*0.27,0,cz+Math.sin(b)*0.27);ch.group.add(mesh);if(j===3)s4.push(mesh);}});
+    const mem=membrane({x0:-7.0,x1:7.0,z0:-3.0,z1:1.45,holes:[[0,0,2.0]],seed:8});
+    m.root.add(mem.group,ch.group); m.mem=mem;
+    const flux=new Flux(m.root,{x:0,col:'#f2793b',n:10}); m.fluxes=[flux];
+    // gate di inattivazione: motivo IFM sul linker DIII–DIV, legato da una catena di sfere
+    const iD3=2, iD4=3, ifm=M(sph(0.25),glossy('#c792ea')); m.root.add(ifm);
+    const chain=[]; for(let i=0;i<9;i++){const c=M(sph(0.075,12,8),pm('#b48ad6'));m.root.add(c);chain.push(c);}
+    const la=molecule([[0,0,0,0.22],[0.26,-0.06,0.05,0.15],[-0.22,0.08,0,0.12]],'#e5383b'); m.root.add(la);
+    m.steps=[4.4,4.2,4.4,5.2]; m.key=[0.95,0.6,0.8,0.9];
+    m.bounds={cx:0,cy:-0.1,w:7.2,h:6.8};
+    let S={};
+    const a3=V(Math.cos(ch.subs[iD3].th)*0.62,-1.25,Math.sin(ch.subs[iD3].th)*0.62), a4=V(Math.cos(ch.subs[iD4].th)*0.62,-1.25,Math.sin(ch.subs[iD4].th)*0.62);
+    const ang34=ch.ang(iD3,iD4), rest=V(Math.cos(ang34)*1.25,-1.95,Math.sin(ang34)*1.25+0.3), plug=V(0,-1.32,0.05);
+    m.pose=(u,T)=>{
+      const dep=R(u,0.55,0.9)*(1-R(u,3.92,4)), s4u=R(u,0.6,0.95)*(1-R(u,3.92,4)), op=R(u,1.0,1.15)*(1-R(u,3.92,4)), inact=R(u,2.05,2.35)*(1-R(u,3.92,4)), lak=R(u,3.05,3.75);
+      ch.gate(op); s4.forEach(o=>{o.position.y=0.36*s4u;if(o.material.emissive)o.material.emissiveIntensity=0.5*s4u;});
+      const ip=new THREE.Vector3().lerpVectors(rest,plug,inact); ifm.position.copy(ip);
+      for(let i=0;i<chain.length;i++){const k=(i+1)/(chain.length+1), half=k<0.5, a=half?a3:ip, b=half?ip:a4, kk=half?k*2:(k-0.5)*2;
+        const mid=a.clone().lerp(b,0.5).add(V(0,-0.35,0.25)); chain[i].position.copy(bez(a,mid,b,kk));}
+      const p0=V(2.5,-2.6,0.9),p1=V(1.25,-0.5,0.55),p2=V(0.02,-0.3,0.05);
+      la.position.copy(lak<0.5?bez(p0,V(2.2,-1.2,0.9),p1,lak*2):bez(p1,V(0.6,-0.1,0.5),p2,(lak-0.5)*2)); show(la,u>2.95&&u<3.95?1:0.001);
+      flux.open=op*(1-inact);
+      S={u,dep,op,inact,lak,s4u};
+      m.vmv=dep*(1-0.6*inact);
+    };
+    m.vm=()=>m.vmv;
+    const st=()=>S.inact>0.5?tx('inact'):S.op>0.5?tx('open'):tx('closed');
+    m.labels=[
+      lab(()=>'Naᵥ · '+st(),()=>V(-2.3,1.7,0),null,'k'),
+      lab('DIII',()=>ch.on(2,-1.5,1.05),null,'lo'),lab('DIV',()=>ch.on(3,-1.5,1.25),null,'lo'),
+      lab(()=>tx('s4'),()=>s4[0].getWorldPosition(new THREE.Vector3()).add(V(0,1.15,0)),()=>R(S.s4u,0.2,0.8)),
+      lab(()=>tx('ifm'),()=>ifm.position.clone().add(V(0.4,-0.5,0.4)),()=>S.u<3?1:0.65),
+      lab('Na⁺ ↓',()=>V(1.35,-2.1,0.5),()=>R(S.op*(1-S.inact),0.3,0.9)),
+      lab(()=>tx('la'),()=>la.position.clone().add(V(0.55,-0.5,0.4)),()=>R(S.lak,0.01,0.2))
+    ];
+    m.aria='aChan'; return m;
+  }
+  function chanNACh(m){
+    const ch=pentamer(0,['a','g','a','d','b'],1);
+    const mem=membrane({x0:-7.0,x1:7.0,z0:-3.0,z1:1.45,holes:[[0,0,1.45]],seed:6});
+    m.root.add(mem.group,ch.group); m.mem=mem;
+    const flux=new Flux(m.root,{x:0,col:'#f2793b',n:10}); m.fluxes=[flux];
+    const sites=[[0,1],[2,3]].map(s=>ch.site(s[0],s[1],1.95,1.3));
+    const ach=sites.map(()=>{const g=molecule([[0,0,0,0.2],[0.2,0.1,0.05,0.14]],'#ffe08a');m.root.add(g);return g;});
+    const sux=sites.map(()=>{const g=dumbbell('#ffc94d');m.root.add(g);return g;});
+    const cur=sites.map(()=>{const g=molecule([[0,0,0,0.26],[0.3,0.1,0,0.22],[-0.28,0.12,0.06,0.2],[0.05,0.3,0.1,0.18]],'#c0703a');m.root.add(g);return g;});
+    m.steps=[4.2,4.4,5.4,5.4]; m.key=[0.95,0.85,0.85,0.92];
+    m.bounds={cx:0,cy:0.35,w:7.0,h:7.0};
+    let S={};
+    m.pose=(u,T)=>{
+      const a=R(u,0.1,0.6)*(1-R(u,2.0,2.2)), op=R(u,1.0,1.15)*(1-R(u,2.0,2.15)), sx=R(u,2.25,2.6)*(1-R(u,3.0,3.2)), op2=R(u,2.55,2.7)*(1-R(u,3.0,3.12));
+      const cu=R(u,3.25,3.65), tr=R(u,3.6,3.85)*(1-R(u,3.88,3.99));
+      const g=Math.max(op,op2); ch.gate(g); flux.open=g;
+      sites.forEach((s,i)=>{const far=s.clone().add(V(i?1.2:-1.2,2.1,0.9)), mid=s.clone().lerp(far,0.5).add(V(0,0.4,0));
+        const kk=u<2.2?a:(u>3.55?0.55*tr:0); ach[i].position.copy(bez(far,mid,s,kk)); show(ach[i],u<2.2?1-R(u,2.05,2.2):(u>3.55?R(u,3.55,3.65)*(1-R(u,3.9,3.99)):0.001));
+        sux[i].position.copy(bez(far.clone().add(V(0,0.3,0)),mid,s,sx)); sux[i].rotation.z=0.6+i; show(sux[i],u>2.2&&u<3.2?1:0.001);
+        cur[i].position.copy(bez(far.clone().add(V(i?0.6:-0.6,0.2,0)),mid,s.clone().add(V(0,0.12,0)),cu)); show(cur[i],u>3.2?1:0.001);});
+      S={u,a,op,sx,op2,cu,tr,g};
+      m.vmv=Math.max(op,op2);
+    };
+    m.vm=()=>m.vmv;
+    m.labels=[
+      lab(()=>'nAChR · '+(S.g>0.5?tx('open'):tx('closed')),()=>V(0,3.35,0),null,'k'),
+      lab('α',()=>ch.on(0,2.75,0.9),null,'lo'),lab('γ (ε)',()=>ch.on(1,2.75,0.9),null,'lo'),lab('α',()=>ch.on(2,2.75,0.9),null,'lo'),lab('δ',()=>ch.on(3,2.75,0.9),null,'lo'),lab('β',()=>ch.on(4,2.75,0.9),null,'lo'),
+      lab('ACh',()=>ach[0].position.clone().add(V(-0.35,0.45,0)),()=>(S.u<2.05&&S.a>0.02?1:0)+(S.u>3.6&&S.u<3.9?1:0)),
+      lab(()=>tx('sux'),()=>sux[1].position.clone().add(V(0.4,0.5,0)),()=>R(S.sx,0.05,0.3)),
+      lab(()=>tx('phase1'),()=>V(1.7,-2.2,0.4),()=>R(S.op2,0.5,1)),
+      lab(()=>tx('cur'),()=>cur[1].position.clone().add(V(0.5,0.55,0)),()=>R(S.cu,0.05,0.3)),
+      lab('Na⁺ ↓',()=>V(-1.5,-2.0,0.4),()=>R(S.g,0.4,0.9))
+    ];
+    m.aria='aChan'; return m;
+  }
+  function chanNMDA(m){
+    const n1='#7fa8d8', n2='#d9a24e';
+    const ch=ringChannel({x:0,n:4,th0:Math.PI/2,ghost:0,poreR:0.5,subs:[{c:n1},{c:n2},{c:n1},{c:n2}],outer:[{da:-0.4,r:0.98},{da:0.4,r:0.98}],
+      ecd:{r:0.42,rad:1.0,y:1.68,sx:1.0,sy:0.9,lean:0.1},closed:-0.15,open:0.06});
+    const lobes=[]; ch.subs.forEach((s,i)=>{const a=s.th,mat=s.ghost?ghost(s.c):pm(tint(s.c,0.12));
+      const up=M(sph(0.36),mat,!s.ghost); up.position.set(Math.cos(a)*1.05,2.25,Math.sin(a)*1.05); ch.group.add(up);
+      const atd=M(sph(0.42),s.ghost?ghost(s.c):pm(tint(s.c,0.3)),!s.ghost); atd.position.set(Math.cos(a)*1.15,3.05,Math.sin(a)*1.15); atd.scale.set(1,0.85,1); ch.group.add(atd);
+      lobes.push({up,a});});
+    const mem=membrane({x0:-7.0,x1:7.0,z0:-3.0,z1:1.45,holes:[[0,0,1.4]],seed:9});
+    m.root.add(mem.group,ch.group); m.mem=mem;
+    const flux=new Flux(m.root,{x:0,col:'#7fe0b1',n:10}); m.fluxes=[flux];
+    const mg=M(sph(0.23),glossy('#4ea8de')); m.root.add(mg);
+    const ket=molecule([[0,0,0,0.22],[0.22,0.12,0.04,0.15]],'#e5383b'); m.root.add(ket);
+    const ligs=ch.subs.map((s,i)=>{const g=molecule([[0,0,0,0.18],[0.17,0.08,0.03,0.12]],i%2?'#ffe08a':'#eef2f6');m.root.add(g);return g;});
+    m.steps=[4.2,5.2,4.8,5.0]; m.key=[0.9,0.92,0.9,0.92];
+    m.bounds={cx:0,cy:0.6,w:7.0,h:7.6};
+    let S={};
+    m.pose=(u,T)=>{
+      const lg=R(u,1.05,1.45)*(1-R(u,3.92,4)), gt=R(u,1.45,1.65)*(1-R(u,3.92,4)), dep=R(u,1.6,2.0)*(1-R(u,3.92,4)), ex=R(u,2.0,2.45), kt=R(u,3.05,3.5);
+      ch.gate(gt);
+      lobes.forEach(l=>{l.up.position.y=2.25-0.18*lg;});
+      ch.subs.forEach((s,i)=>{const site=V(Math.cos(s.th)*1.42,2.0,Math.sin(s.th)*1.42+0.1), far=site.clone().add(V(Math.cos(s.th)*1.2,2.0,0.9));
+        ligs[i].position.copy(bez(far,far.clone().lerp(site,0.5).add(V(0,0.5,0)),site,lg)); show(ligs[i],u>1.0&&u<3.98?1:0.001);});
+      const mgp=ex<0.5?V(0,lerp(0.35,2.2,ex*2),0):V(lerp(0,1.4,(ex-0.5)*2),2.2+0.3*(ex-0.5)*2,lerp(0,0.6,(ex-0.5)*2));
+      mg.position.copy(u<2?V(0,0.35+0.03*Math.sin(T*3),0):mgp); show(mg,u<3.9?1-0.35*R(ex,0.6,1):0.001);
+      ket.position.copy(bez(V(-1.4,3.4,1.0),V(-0.2,2.6,0.6),V(0,0.38,0),kt)); show(ket,u>3.0&&u<3.98?1:0.001);
+      flux.open=gt*ex*(1-R(kt,0.75,0.95));
+      S={lg,gt,dep,ex,kt};
+      m.vmv=dep;
+    };
+    m.vm=()=>m.vmv;
+    m.labels=[
+      lab(()=>'NMDA · '+(S.kt>0.9||(S.gt>0.5&&S.ex<0.5)?tx('blocked'):S.gt>0.5?tx('open'):tx('closed')),()=>V(0,4.0,0),null,'k'),
+      lab('GluN1',()=>ch.on(2,3.0,1.6),null,'lo'),lab('GluN2',()=>ch.on(3,3.0,1.6),null,'lo'),lab('GluN2',()=>ch.on(1,3.0,1.6),null,'lo'),
+      lab(()=>tx('mg'),()=>mg.position.clone().add(V(0.95,0,0.4)),()=>S.ex<0.1?1:0),
+      lab(()=>tx('mgOut'),()=>mg.position.clone().add(V(0.5,0.45,0)),()=>R(S.ex,0.3,0.7)*(1-R(S.kt,0,0.3))),
+      lab(()=>tx('glu'),()=>ligs[1].position.clone().add(V(0.45,0.4,0)),()=>R(S.lg,0.05,0.3)),
+      lab(()=>tx('gly'),()=>ligs[2].position.clone().add(V(-0.45,0.4,0)),()=>R(S.lg,0.05,0.3)),
+      lab(()=>tx('ket'),()=>ket.position.clone().add(V(-0.6,0.5,0)),()=>R(S.kt,0.02,0.2)),
+      lab('Ca²⁺ ↓',()=>V(1.45,-2.0,0.5),()=>R(S.ex,0.6,1)*(1-R(S.kt,0.6,0.9)))
+    ];
+    m.aria='aChan'; return m;
+  }
+
+  function mechFork(){
+    const m=mechBase(), xN=-4.5, xR=0.35, xE=4.25, xG=-1.95;
+    const nic=pentamer(xN,['a','g','a','d','b'],1);
+    const sys=gpcrSystem({xR,xE,xG,dock:P=>P.showPLC>0.5?V(xE-1.1,-1.7,0.42):V(xE-1.08,-1.68,0.42),bgDock:V(xG+0.95,-1.62,0.4)});
+    const mem=membrane({x0:-7.6,x1:7.6,z0:-3.0,z1:1.45,holes:[[xN,0,1.45],[xR,0,1.0],[xE,0,1.2],[xG,0,1.0]],seed:12});
+    m.root.add(mem.group,nic.group,sys.g); m.mem=mem;
+    const nf=new Flux(m.root,{x:xN,col:'#f2793b',n:8,spread:1.1}); m.fluxes=[nf,sys.kFlux];
+    const src=V(-2.0,4.2,0.2);
+    const sites=[[0,1],[2,3]].map(s=>nic.site(s[0],s[1],1.95,1.3));
+    const achN=sites.map(()=>{const g=molecule([[0,0,0,0.2],[0.2,0.1,0.05,0.14]],'#ffe08a');m.root.add(g);return g;});
+    m.steps=[4.4,5.0,5.0,6.6]; m.key=[0.6,0.95,0.92,0.95];
+    m.bounds={cx:-0.3,cy:-0.05,w:13.0,h:8.2};
+    let P=null,S={};
+    m.pose=(u,T)=>{
+      const an=R(u,0.05,0.4)*(1-R(u,1.3,1.5)), ng=R(u,0.4,0.48)*(1-R(u,1.25,1.4));
+      nic.gate(ng); nf.open=ng;
+      sites.forEach((s,i)=>{achN[i].position.copy(bez(src,src.clone().lerp(s,0.5).add(V(0,0.8,0)),s,R(u,0.05,0.4)));show(achN[i],u<1.5?(u>1.3?1-R(u,1.3,1.5):1):0.001);});
+      // muscarinico: più lento (attivazione della proteina G nei passi M, Gi, Gq)
+      const gq=R(u,3.0,3.25), reset=R(u,3.0,3.3), q2=R(u,3.3,3.65);
+      P={lig:R(u,0.1,0.7),ligOut:R(u,3.75,3.98),act:R(u,0.7,1.3)*(1-R(u,3.8,3.98)),swap:clamp01((u-1.1)/0.4)*(u<1.5?1:0),nuc:R(u,1.28,1.32)*(1-R(u,3.85,3.98)),pi:0,
+        sep:R(u,1.5,1.95)*(1-reset)+q2*(1-R(u,3.85,3.98)),bgGo:R(u,2.0,2.5)*(1-reset),eff:0,acGlow:0,plcGlow:0,girk:R(u,2.45,2.7)*(1-R(u,2.95,3.15)),
+        camp:0,ip3:R(u,3.55,3.75)*(1-R(u,3.9,3.99)),ca:R(u,3.7,3.95),ip3r:R(u,3.65,3.8),dag:R(u,3.5,3.7)*(1-R(u,3.9,3.99)),
+        showAC:1-gq,showPLC:gq,showER:gq,showGIRK:R(u,1.9,2.1)*(1-gq),gaCol:u<2?'#c792ea':u<3.1?'#e5383b':'#f4a259'};
+      const ai=R(u,2.05,2.5)*(1-R(u,2.95,3.1)); P.eff=u<3?Math.max(R(u,1.9,2.05)*0.5,ai):q2; P.acGlow=u<2?0.25+0.3*R(u,1.85,2.0):0.5*(1-ai)+0.04;
+      P.camp=u<2?0.35:0.72-0.6*ai; P.plcGlow=q2;
+      sys.pose(P,T);
+      S={u,ng,an,ai,q2,P};
+      m.vmv=ng>0.3?ng:(P.girk>0.1&&P.showGIRK>0.5?-P.girk:0);
+    };
+    m.vm=()=>m.vmv;
+    m.labels=[
+      lab(()=>tx('nic'),()=>V(xN,3.4,0),null,'k'),
+      lab(()=>tx('mus')+(S.P&&S.P.showPLC>0.5?' · M3 (Gq)':S.P&&S.P.showGIRK>0.5?' · M2 (Gi)':''),()=>V(xR,1.85,0),null,'k'),
+      lab('ACh',()=>achN[1].position.clone().add(V(0.3,0.45,0)),()=>S.u<1.3?1:0),
+      lab('Na⁺ ↓',()=>V(xN+1.45,-2.0,0.4),()=>R(S.ng||0,0.4,0.9)),
+      lab(()=>'Gα · '+(S.P&&S.P.nuc>0.5?'GTP':'GDP'),()=>sys.ga.position.clone().add(V(0.1,-0.78,0.3))),
+      lab('βγ',()=>sys.bg.position.clone().add(V(-0.1,-0.62,0.3))),
+      lab(()=>S.P&&S.P.showPLC>0.5?'PLCβ':(S.P&&S.P.showGIRK>0.5?'AC':tx('eff')),()=>V(xE+0.9,1.35,0.3),null,'k'),
+      lab(()=>tx('girk'),()=>V(xG,1.62,0),()=>S.P?R(S.P.showGIRK,0.5,1):0),
+      lab(()=>tx('campDn'),()=>V(xE+1.6,-2.45,0.5),()=>R(S.ai||0,0.6,1)),
+      lab(()=>tx('ca'),()=>V(xE+1.75,-2.1,0.4),()=>S.P?R(S.P.ca,0.4,0.9):0)
+    ];
+    m.aria='aFork'; return m;
+  }
+  const BUILD={gpcr:mechGPCR,chan:mechChan,fork:mechFork};
+
+  /* ---------- riquadro (stage) ---------- */
+  const ICON={prev:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    next:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    play:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg>',
+    pause:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="5.5" width="4" height="13" rx="1" fill="currentColor"/><rect x="13.5" y="5.5" width="4" height="13" rx="1" fill="currentColor"/></svg>'};
+  const SPEEDS=[0.5,1,1.5];
+  const stages={};
+  let raf=0,last=0,shellVisible=true;
+  function DPR(w,h){let d=Math.min(2,window.devicePixelRatio||1);if(w*h*d*d>2.4e6)d=Math.sqrt(2.4e6/(w*h));return d;}
+
+  class Stage{
+    constructor(id){
+      this.id=id; this.k=0; this.p=0; this.T=0; this.playing=!RM.matches; this.speed=1; this.visible=false; this.mech=null; this.key=null;
+      this.az=0; this.dAz=0; this.dEl=0; this.lastUser=-1e9; this.drag=null; this.w=0; this.h=0;
+      this.scene=new THREE.Scene(); if(env) this.scene.environment=env; lights(this.scene);
+      this.cam=new THREE.PerspectiveCamera(30,16/9,0.5,140);
+      const host=document.getElementById(HOST[id]); this.host=host;
+      host.innerHTML=`<div class="a3"><div class="a3-view"><canvas class="a3-cv" role="img"></canvas><div class="a3-lbs" aria-hidden="true"></div>
+        <span class="a3-zone a3-ext" aria-hidden="true"></span><span class="a3-zone a3-cyt" aria-hidden="true"></span>
+        <span class="a3-vm" aria-hidden="true" hidden><i></i><span></span></span><span class="a3-hint" aria-hidden="true"></span></div>
+        <div class="a3-bar"><div class="a3-tr"><button type="button" class="a3-btn" data-a="prev">${ICON.prev}</button><button type="button" class="a3-btn a3-play" data-a="play"></button><button type="button" class="a3-btn" data-a="next">${ICON.next}</button><button type="button" class="a3-btn a3-spd" data-a="spd"></button></div>
+        <div class="a3-steps" role="group"></div></div><p class="a3-cap" aria-live="polite"></p></div>`;
+      const q=s=>host.querySelector(s);
+      this.view=q('.a3-view'); this.cv=q('.a3-cv'); this.ctx=this.cv.getContext('2d'); this.lbs=q('.a3-lbs'); this.capEl=q('.a3-cap'); this.stepsEl=q('.a3-steps');
+      this.vmEl=q('.a3-vm'); this.hint=q('.a3-hint'); this.btnPlay=q('.a3-play'); this.btnSpd=q('.a3-spd');
+      host.querySelector('.a3-bar').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+        const a=b.dataset.a; if(a==='prev')this.go(this.k-1); else if(a==='next')this.go(this.k+1);
+        else if(a==='play'){this.playing=!this.playing; if(!this.playing){this.renderNow();} this.ui(); kick();}
+        else if(a==='spd'){this.speed=SPEEDS[(SPEEDS.indexOf(this.speed)+1)%SPEEDS.length]; this.ui();}
+        else if(a==='step') this.go(+b.dataset.i);});
+      this.root=q('.a3'); this.root.classList.toggle('a3-rm',!!RM.matches);
+      this.bindDrag();
+      new ResizeObserver(()=>{this.measure(); if(this.visible) this.renderNow();}).observe(this.view);
+      new IntersectionObserver(es=>{es.forEach(e=>{this.visible=e.isIntersecting;}); if(this.visible){this.measure();this.renderNow();kick();}},{threshold:0.01}).observe(this.view);
+    }
+    measure(){const r=this.view.getBoundingClientRect();this.w=Math.max(1,Math.round(r.width));this.h=Math.max(1,Math.round(r.height));}
+    bindDrag(){
+      const v=this.view;
+      v.addEventListener('pointerdown',e=>{if(e.button>0)return;this.drag={x:e.clientX,y:e.clientY,az:this.dAz,el:this.dEl,touch:e.pointerType==='touch'};
+        if(e.pointerType!=='touch'){try{v.setPointerCapture(e.pointerId);}catch(_){}} this.lastUser=performance.now(); this.hint.classList.add('off');});
+      v.addEventListener('pointermove',e=>{if(!this.drag)return;const dx=e.clientX-this.drag.x,dy=e.clientY-this.drag.y;
+        this.dAz=Math.max(-1.1,Math.min(1.1,this.drag.az-dx*0.009)); if(!this.drag.touch) this.dEl=Math.max(-0.3,Math.min(0.55,this.drag.el+dy*0.005));
+        this.lastUser=performance.now(); if(!this.loopy()) this.renderNow(); else kick();});
+      const end=()=>{this.drag=null;this.lastUser=performance.now();};
+      v.addEventListener('pointerup',end); v.addEventListener('pointercancel',end); v.addEventListener('lostpointercapture',end);
+    }
+    loopy(){return this.playing&&!RM.matches;}
+    set(key){
+      if(this.key===key&&this.mech){this.texts();return;}
+      if(this.mech){this.scene.remove(this.mech.root); this.mech.root.traverse(o=>{if(o.isInstancedMesh)o.dispose();}); this.mech.mats.forEach(m=>{const i=themed.findIndex(t=>t.m===m);if(i>=0)themed.splice(i,1);m.dispose();});}
+      this.key=key; this.mech=BUILD[this.id](key); COLLECT=null; this.scene.add(this.mech.root); themeApply();
+      this.k=0; this.p=this.loopy()?0:this.mech.key[0]; this.T=0; this.static=false;
+      this.texts(); if(!this.loopy()) this.settle(); else this.renderNow(); kick();
+    }
+    texts(){
+      const m=this.mech; if(!m) return;
+      this.steps=STEPS[this.id](this.key);
+      this.stepsEl.setAttribute('aria-label',tx('steps'));
+      this.stepsEl.innerHTML=this.steps.map((s,i)=>`<button type="button" class="a3-btn a3-st" data-a="step" data-i="${i}" aria-label="${tx('stepOf')} ${i+1}: ${String(s[0]).replace(/"/g,'')}">${s[0]}</button>`).join('');
+      this.cv.setAttribute('aria-label',tx(m.aria));
+      this.host.querySelector('.a3-ext').textContent=tx('ext'); this.host.querySelector('.a3-cyt').textContent=tx('cyt');
+      this.hint.textContent=tx('drag');
+      this.lbs.innerHTML=''; this.labels=m.labels.map(l=>{const e=document.createElement('span');e.className='a3-lb'+(l.cls?' a3-lb-'+l.cls:'');this.lbs.appendChild(e);return Object.assign({e,_t:null,_w:0},l);});
+      this.ui(); if(this.visible) this.renderNow();
+    }
+    ui(){
+      const n=this.steps?this.steps.length:0;
+      this.stepsEl.querySelectorAll('.a3-st').forEach((b,i)=>{if(i===this.k)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
+      if(this.steps&&this.steps[this.k]) this.capEl.innerHTML=`<span class="a3-capn">${this.k+1}/${n}</span>${this.steps[this.k][1]}`;
+      const pl=this.playing&&!RM.matches; this.btnPlay.innerHTML=pl?ICON.pause:ICON.play; this.btnPlay.setAttribute('aria-label',pl?tx('pause'):tx('play')); this.btnPlay.setAttribute('aria-pressed',String(pl));
+      this.btnSpd.textContent=String(this.speed).replace('.',LANG==='en'?'.':',')+'×'; this.btnSpd.setAttribute('aria-label',tx('speed')+' '+this.speed+'×');
+      this.host.querySelector('[data-a="prev"]').setAttribute('aria-label',tx('prev')); this.host.querySelector('[data-a="next"]').setAttribute('aria-label',tx('next'));
+      const cap=document.getElementById(CAP[this.id]);
+      if(cap) cap.querySelectorAll('.anim-step').forEach((el,i)=>{el.classList.toggle('on',i===this.k); if(el.tagName==='BUTTON') el.setAttribute('aria-pressed',String(i===this.k));});
+    }
+    go(k){const n=this.mech.steps.length;this.k=((k%n)+n)%n;this.p=this.loopy()?0:this.mech.key[this.k];this.ui();if(!this.loopy())this.settle();else kick();}
+    u(){return this.k+Math.min(0.999,this.p);}
+    settle(){ /* fotogramma chiave: posa del passo + ioni già distribuiti */
+      const m=this.mech, u=this.u(); this.static=true; m.pose(u,this.T,true);
+      for(let i=0;i<70;i++){m.fluxes.forEach(f=>f.step(1/30));} this.renderNow(true);
+    }
+    tick(dt){
+      const m=this.mech; if(!m) return;
+      const live=this.loopy();
+      if(live){ this.static=false; this.p+=dt*this.speed/m.steps[this.k]; this.T+=dt*this.speed;
+        if(this.p>=1){ this.p=0; this.k++; if(this.k>=m.steps.length){this.k=0;this.view.classList.add('a3-wrap');setTimeout(()=>this.view.classList.remove('a3-wrap'),240);} this.ui(); } }
+      const idle=performance.now()-this.lastUser>3500&&!this.drag;
+      if(live&&idle){ this.az=0.3*Math.sin(this.T*0.21); this.dAz*=Math.max(0,1-dt*0.6); this.dEl*=Math.max(0,1-dt*0.6); }
+      m.pose(this.u(),this.T,!!this.static);
+      if(live) m.fluxes.forEach(f=>f.step(dt*this.speed));
+    }
+    renderNow(st){
+      if(!this.mech||!this.visible||!A3ok) return;
+      if(!this.w) this.measure();
+      if(st!==true&&!this.loopy()) this.mech.pose(this.u(),this.T,!!this.static);
+      const d=DPR(this.w,this.h), W=Math.round(this.w*d), H=Math.round(this.h*d); ensure(W,H);
+      const b=this.mech.bounds, cam=this.cam; cam.aspect=this.w/this.h;
+      const vf=THREE.MathUtils.degToRad(cam.fov), hf=2*Math.atan(Math.tan(vf/2)*cam.aspect);
+      const bw=cam.aspect<1.5?b.w*0.86:b.w, dist=Math.max((b.h/2)/Math.tan(vf/2),(bw/2)/Math.tan(hf/2))+0.4;
+      const az=this.az+this.dAz, el=0.15+this.dEl;
+      cam.position.set(b.cx+dist*Math.sin(az)*Math.cos(el),b.cy+dist*Math.sin(el),dist*Math.cos(az)*Math.cos(el)); cam.lookAt(b.cx,b.cy,0); cam.updateProjectionMatrix();
+      const vm=this.mech.vm(); const hm=this.mech.mem&&this.mech.mem.heads;
+      if(hm){ if(vm==null||Math.abs(vm)<0.02){hm.emissiveIntensity=0;} else {hm.emissive.set(vm>0?'#ff9a3c':'#4c8dff');hm.emissiveIntensity=0.14*Math.abs(vm);} }
+      renderer.setViewport(0,0,W,H); renderer.setScissor(0,0,W,H); renderer.setScissorTest(true);
+      renderer.render(this.scene,cam);
+      if(this.cv.width!==W||this.cv.height!==H){this.cv.width=W;this.cv.height=H;}
+      this.ctx.clearRect(0,0,W,H); this.ctx.drawImage(renderer.domElement,0,RH-H,W,H,0,0,W,H);
+      this.labelsUpdate(); this.vmUpdate(vm);
+    }
+    labelsUpdate(){
+      const v=new THREE.Vector3(), w=this.w, h=this.h, placed=[];
+      const hit=(x,y,hw,hh)=>placed.some(r=>Math.abs(r[0]-x)<r[2]+hw+3&&Math.abs(r[1]-y)<r[3]+hh+2);
+      const narrow=w<520;
+      for(const l of this.labels){ const o=(narrow&&l.cls==='lo')?0:l.v(); if(o<0.03){ if(l.e.style.opacity!=='0')l.e.style.opacity='0'; continue; }
+        const t=l.t(); if(t!==l._t){l.e.textContent=t;l._t=t;l._w=l.e.offsetWidth;l._h=l.e.offsetHeight;}
+        v.copy(l.p()).project(this.cam); let x=(v.x*.5+.5)*w, y=(-v.y*.5+.5)*h; const hw=(l._w||40)/2, hh=(l._h||20)/2;
+        x=Math.max(hw+6,Math.min(w-hw-6,x)); y=Math.max(hh+30,Math.min(h-hh-30,y));
+        if(hit(x,y,hw,hh)){ let free=false; for(const d of [1,-1,2,-2]){ const yy=y+d*(2*hh+4); if(yy>hh+28&&yy<h-hh-28&&!hit(x,yy,hw,hh)){y=yy;free=true;break;} }
+          if(!free){ l.e.style.opacity='0'; continue; } }  // meglio nascondere che sovrapporre
+        placed.push([x,y,hw,hh]);
+        l.e.style.transform=`translate(${x.toFixed(1)}px,${y.toFixed(1)}px) translate(-50%,-50%)`; l.e.style.opacity=Math.min(1,o).toFixed(2); }
+    }
+    vmUpdate(vm){
+      const el=this.vmEl; if(vm==null){el.hidden=true;return;} el.hidden=false;
+      const s=vm>0.25?'dep':vm<-0.25?'hyp':'rest'; if(el.dataset.s!==s||el._l!==LANG){el.dataset.s=s;el._l=LANG;el.lastChild.textContent=tx('vm')+' · '+tx(s==='dep'?'vmDep':s==='hyp'?'vmHyp':'vmRest');}
+    }
+  }
+
+  /* ---------- ciclo di rendering: solo riquadri visibili, scheda visibile, vista visibile nella shell ---------- */
+  function canRun(){return A3ok&&!document.hidden&&shellVisible;}
+  function frame(now){
+    raf=0; if(!canRun()) return;
+    const dt=Math.min(0.05,(now-last)/1000); last=now; let more=false;
+    for(const id in stages){const s=stages[id]; if(!s.visible||!s.mech) continue; s.tick(dt); s.renderNow(true); if(s.loopy()||s.drag) more=true;}
+    if(more) raf=requestAnimationFrame(frame);
+  }
+  function kick(){ if(!raf&&canRun()){ last=performance.now(); raf=requestAnimationFrame(frame); } }
+  document.addEventListener('visibilitychange',()=>{ if(!document.hidden) kick(); });
+  window.addEventListener('message',e=>{ if(e.source!==window.parent||e.origin!==location.origin) return; const d=e.data;
+    if(d&&typeof d==='object'&&d.__fusion==='visibility'){ shellVisible=d.value===true; if(shellVisible) kick(); } });
+  new MutationObserver(()=>{themeApply(); for(const id in stages) stages[id].renderNow();}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  const onRM=()=>{for(const id in stages){const s=stages[id];s.playing=!RM.matches;s.root.classList.toggle('a3-rm',!!RM.matches);s.ui();if(RM.matches)s.go(s.k);} kick();};
+  if(RM.addEventListener) RM.addEventListener('change',onRM);
+  let A3ok=true;
+  renderer.domElement.addEventListener('webglcontextlost',e=>{ e.preventDefault(); A3ok=false; api.ok=false; if(raf)cancelAnimationFrame(raf); raf=0;
+    console.warn('Contesto WebGL perso: schemi 2D.'); showGPCRAnim(curGPCR); showChanAnim(curChan); showFork(); a25Enable(); });
+
+  const api={ok:true,
+    show(id,key){ if(!stages[id]) stages[id]=new Stage(id); stages[id].set(key); },
+    caps(id){ const s=stages[id], cap=document.getElementById(CAP[id]); if(!cap) return;
+      cap.querySelectorAll('.anim-step').forEach((el,i)=>{ el.onclick=()=>{ if(s) s.go(i); }; });
+      if(s) s.ui(); }
+  };
+  return api;
+})();
+/* 2.5D per gli schemi SVG di ripiego: strati con ombra (filtro nel <defs>) e inclinazione prospettica che segue il puntatore */
+function a25Enable(){
+  document.querySelectorAll('#view-anim .anim-card').forEach(card=>{
+    if(card.dataset.a25) return; card.dataset.a25='1'; card.classList.add('a25');
+    if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce), (pointer: coarse)').matches) return;
+    card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      card.style.setProperty('--a25y',(x*7).toFixed(2)+'deg'); card.style.setProperty('--a25x',(-y*5).toFixed(2)+'deg');});
+    card.addEventListener('pointerleave',()=>{card.style.setProperty('--a25y','0deg');card.style.setProperty('--a25x','0deg');});
+  });
+}
+/* al caricamento: con il 3D attivo, i tre riquadri passano dagli SVG alle scene */
+if(A3&&A3.ok){ showGPCRAnim(curGPCR); showChanAnim(curChan); showFork(); }
 /* ═══ slot anim: fine ═══ */
 // ·
 /* ═══ slot table: inizio (solo il suo agente) ═══ */
