@@ -1077,6 +1077,104 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 <!-- ─ -->
 <style data-slot="table">
 /* slot table: CSS di questa funzione (solo il suo agente) */
+/* Tabella comparativa: badge Modulo, legenda G/S, intestazione fissa, righe a schede su mobile */
+#view-table{
+  --mt-b:#ff8d8f; --mt-b-bg:rgba(229,56,59,.13); --mt-b-line:rgba(255,141,143,.6);
+  --mt-c:#7fe0b1; --mt-c-bg:rgba(82,183,136,.13); --mt-c-line:rgba(127,224,177,.55);
+  --mt-on:#17140f; --tbl-zebra:rgba(239,233,219,.025); --tbl-hover:rgba(227,189,128,.075);
+}
+:root[data-theme="light"] #view-table{
+  --mt-b:#b21f22; --mt-b-bg:#fbeae9; --mt-b-line:rgba(178,31,34,.5);
+  --mt-c:#176b45; --mt-c-bg:#e5f3eb; --mt-c-line:rgba(23,107,69,.5);
+  --mt-on:#ffffff; --tbl-zebra:rgba(28,26,21,.022); --tbl-hover:rgba(131,92,20,.07);
+}
+/* strumenti: ricerca + filtri con bersagli ≥44px */
+#view-table .table-tools{gap:10px}
+#view-table .table-tools input.search{min-height:44px;font-family:var(--ui)}
+#view-table .tbl-filters{display:flex;flex-wrap:wrap;gap:6px}
+:root[data-theme="light"] #view-table .table-tools input.search,:root[data-theme="light"] #view-table .filt:not(.on){background:var(--panel);border-color:var(--line2)}
+#view-table .filt{min-height:44px;padding:0 14px;display:inline-flex;align-items:center;transition:background-color .18s ease-out,border-color .18s ease-out,color .18s ease-out}
+#view-table .filt:focus-visible,#view-table .table-tools input.search:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+/* contenitore: la scheda ritaglia gli angoli senza diventare contenitore di scroll (così l'intestazione può restare fissa) */
+#view-table .table-card{overflow:clip}
+#view-table .tbl-scroll{overflow-x:auto;overscroll-behavior-x:contain}
+#cmp-table{min-width:960px;font-size:12.8px;border-collapse:separate;border-spacing:0}
+#cmp-table caption{caption-side:top;text-align:left}
+#cmp-table .tbl-sr,#cmp-table caption{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+#cmp-table thead th{position:sticky;top:0;z-index:2;background:var(--panel2);color:var(--ink-dim);vertical-align:bottom;padding:12px 13px 11px;border-bottom:1px solid var(--line2)}
+#cmp-table thead th .th-t{display:block}
+#cmp-table .mod-key{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:4px 6px;margin-top:7px;font:500 11.5px/1.2 var(--ui);letter-spacing:0;text-transform:none;color:var(--ink-dim);white-space:nowrap}
+#cmp-table .mk{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;font:700 9.5px/1 var(--ui);letter-spacing:0;color:var(--mt-on);flex:none}
+#cmp-table .mk.b{background:var(--mt-b)} #cmp-table .mk.c{background:var(--mt-c)}
+#cmp-table .mk-sep{display:none}
+#cmp-table caption .mk-sep{display:inline;margin:0 6px;color:var(--ink-faint)}
+#cmp-table tbody td{padding:13px 13px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
+#cmp-table tbody tr:last-child td{border-bottom:0}
+#cmp-table tbody tr{cursor:pointer;transition:background-color .16s ease-out}
+#cmp-table tbody tr.z{background:var(--tbl-zebra)}
+#cmp-table tbody tr:hover{background:var(--tbl-hover)}
+#cmp-table tbody tr:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;background:var(--tbl-hover)}
+#cmp-table tr[hidden]{display:none!important}
+#cmp-table td.c-name{white-space:nowrap}
+#cmp-table td.c-name .nmcell{min-height:26px}
+#cmp-table td.c-mod{white-space:nowrap}
+#cmp-table td .sub{display:block;margin-top:2px;color:var(--ink-dim);font-size:11.5px;font-family:var(--ui)}
+#cmp-table td.c-eff .eff-v{white-space:nowrap;font-weight:600}
+#cmp-table td.c-ion{font-family:var(--ui);font-size:12.6px}
+#cmp-table td.c-drug{color:var(--ink)}
+/* badge Modulo: pillola unica (mai spezzata su due righe), bordo pieno nel colore del modulo */
+#cmp-table .modtag{display:inline-flex;align-items:center;gap:6px;box-sizing:border-box;height:26px;padding:0 10px 0 3px;
+  border-radius:999px;border:1px solid var(--mt-line);background:var(--mt-bg);color:var(--mt);
+  font:600 12px/1 var(--ui);letter-spacing:0;white-space:nowrap;vertical-align:top;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+#cmp-table .modtag.b{--mt:var(--mt-b);--mt-bg:var(--mt-b-bg);--mt-line:var(--mt-b-line)}
+#cmp-table .modtag.c{--mt:var(--mt-c);--mt-bg:var(--mt-c-bg);--mt-line:var(--mt-c-line)}
+#cmp-table .modtag .mt-l{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--mt);color:var(--mt-on);font:700 11px/1 var(--ui)}
+#cmp-table .tbl-empty td{padding:28px 16px;text-align:center;color:var(--ink-dim);cursor:default}
+#cmp-table tr.tbl-empty:hover{background:none}
+/* desktop largo: la tabella sta nella scheda, quindi niente scroll interno e intestazione fissa rispetto alla pagina, sotto la barra schede */
+@media (min-width:1024px){
+  #view-table .tbl-scroll{overflow:visible}
+  #cmp-table{min-width:0;table-layout:fixed}
+  #cmp-table th:nth-child(1){width:11%} #cmp-table th:nth-child(2){width:116px} #cmp-table th:nth-child(3){width:13%}
+  #cmp-table th:nth-child(4){width:14%} #cmp-table th:nth-child(5){width:12%} #cmp-table th:nth-child(6){width:116px} #cmp-table th:nth-child(7){width:13%}
+  #cmp-table td.c-name{white-space:normal}
+  #cmp-table td{overflow-wrap:break-word}
+  #cmp-table thead th{top:var(--tbl-top,0px)}
+}
+/* tablet: scroll orizzontale solo dentro la scheda, con intestazione fissa al suo interno */
+@media (min-width:761px) and (max-width:1023px){
+  #view-table .tbl-scroll{overflow:auto;max-height:calc(100vh - var(--tbl-top,0px) - 24px);max-height:calc(100dvh - var(--tbl-top,0px) - 24px)}
+  #cmp-table td.c-name{position:sticky;left:0;z-index:1;background:var(--panel);white-space:normal;min-width:116px;max-width:150px;box-shadow:inset -1px 0 0 var(--line)}
+  #cmp-table tbody tr.z td.c-name{background:linear-gradient(var(--tbl-zebra),var(--tbl-zebra)),var(--panel)}
+  #cmp-table tbody tr:hover td.c-name,#cmp-table tbody tr:focus-visible td.c-name{background:linear-gradient(var(--tbl-hover),var(--tbl-hover)),var(--panel)}
+  #cmp-table thead th:first-child{position:sticky;left:0;z-index:3;box-shadow:inset -1px 0 0 var(--line)}
+}
+/* mobile: ogni canale diventa una scheda con le etichette dei campi; nessuno scroll orizzontale */
+@media (max-width:760px){
+  #view-table .table-tools{padding:12px}
+  #view-table .table-tools input.search{flex:1 1 100%}
+  #view-table .tbl-scroll{overflow:visible}
+  #cmp-table,#cmp-table tbody{display:block;min-width:0;width:100%}
+  #cmp-table caption{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto;white-space:normal;display:flex;align-items:center;flex-wrap:wrap;gap:4px;padding:12px 14px 2px;font:500 12.5px/1.3 var(--ui);color:var(--ink-dim)}
+  #cmp-table caption .cap-lead{font-weight:600;color:var(--ink);margin-right:4px}
+  #cmp-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  #cmp-table tbody{display:grid;gap:10px;padding:10px 12px 14px}
+  #cmp-table tbody tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px 14px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+  #cmp-table tbody tr.z{background:var(--panel)}
+  #cmp-table tbody tr:hover{background:var(--panel2)}
+  #cmp-table tbody td{display:block;padding:0;border:0;min-width:0;overflow-wrap:anywhere}
+  #cmp-table tbody td:not(.eff-up):not(.eff-dn){color:var(--ink)}
+  #cmp-table td.c-name{grid-column:1;align-self:center;white-space:normal}
+  #cmp-table td.c-name strong{font-size:15px}
+  #cmp-table td.c-mod{grid-column:2;justify-self:end;align-self:center}
+  #cmp-table td.c-fam,#cmp-table td.c-sub,#cmp-table td.c-drug,#cmp-table td.c-feat{grid-column:1/-1}
+  #cmp-table td[data-l]::before{content:attr(data-l);display:block;margin-bottom:3px;font:500 11.5px/1.3 var(--ui);color:var(--ink-dim)}
+  #cmp-table tr.tbl-empty{display:block;border-style:dashed}
+  #cmp-table tr.tbl-empty td{padding:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  #cmp-table tbody tr,#view-table .filt{transition:none}
+}
 </style>
 <!-- ─ -->
 <style data-slot="exam">
@@ -1221,23 +1319,26 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
   <section class="view" id="view-table">
     <div class="table-card">
       <div class="table-tools">
-        <input class="search" id="tbl-search" placeholder="Cerca canale, farmaco, subunità, ione…">
-        <button class="filt on" data-f="all">Tutti</button>
-        <button class="filt" data-f="voltaggio">Voltaggio-dip.</button>
-        <button class="filt" data-f="nicotinico">Nicotinici (5 sub)</button>
-        <button class="filt" data-f="glutammato">Glutammato (4 sub)</button>
+        <input class="search" id="tbl-search" type="search" aria-label="Cerca nella tabella" placeholder="Cerca canale, farmaco, subunità, ione…">
+        <div class="tbl-filters" role="group" aria-label="Filtra per famiglia">
+          <button type="button" class="filt on" data-f="all" aria-pressed="true">Tutti</button>
+          <button type="button" class="filt" data-f="voltaggio" aria-pressed="false">Voltaggio-dip.</button>
+          <button type="button" class="filt" data-f="nicotinico" aria-pressed="false">Nicotinici (5 sub)</button>
+          <button type="button" class="filt" data-f="glutammato" aria-pressed="false">Glutammato (4 sub)</button>
+        </div>
       </div>
       <div class="tbl-scroll">
         <table id="cmp-table">
+          <caption class="tbl-cap"></caption>
           <thead><tr>
-            <th>Canale</th><th>Modulo</th><th>Famiglia · topologia</th><th>Subunità</th>
-            <th>Poro / ione</th><th>Effetto</th><th>Farmaci chiave</th><th>Feature distintiva</th>
+            <th scope="col">Canale</th><th scope="col">Modulo</th><th scope="col">Famiglia · topologia</th><th scope="col">Subunità</th>
+            <th scope="col">Poro / ione</th><th scope="col">Effetto</th><th scope="col">Farmaci chiave</th><th scope="col">Feature distintiva</th>
           </tr></thead>
           <tbody id="tbl-body"></tbody>
         </table>
       </div>
     </div>
-    <p class="note"><b>Suggerimento:</b> clicca una riga per aprire il modello 3D corrispondente. Le icone indicano dove l'argomento è trattato: area Ⓖ generale o Ⓢ speciale.</p>
+    <p class="note"><b>Suggerimento:</b> clicca una riga per aprire il modello 3D corrispondente.</p>
   </section>
 
   <!-- ========== VIEW: DIFF ========== -->
@@ -2508,20 +2609,29 @@ function buildChips(){
 const ORDER=["nav","cav","kv","herg","nachr","gabaa","ht3","glyr","glu","katp","enac","trpv1"];
 function buildTable(){
   const tb=document.getElementById('tbl-body'); tb.innerHTML='';
+  const L=tblL(), col=L.cols;
   ORDER.forEach(id=>{
-    const c=C[id]; const tr=document.createElement('tr'); tr.dataset.id=id; tr.dataset.fam=c.fam;
+    const c=C[id]; if(!c) return;
+    const tr=document.createElement('tr'); tr.dataset.id=id; tr.dataset.fam=c.fam; tr.tabIndex=0;
+    const up=c.effect==='up';
     tr.innerHTML=`
-      <td><div class="nmcell"><span class="dot" style="background:${c.geom.ionColor}"></span><strong>${c.short}</strong></div></td>
-      <td><span class="modtag ${c.mod}">${c.mod==='b'?'Ⓖ Generale':'Ⓢ Speciale'}</span></td>
-      <td class="feat">${famLabel(c.fam)}<br><span style="color:var(--ink-faint);font-size:11.5px">${topoShort(id)}</span></td>
-      <td>${c.stoich}</td>
-      <td class="ion">${c.poro.split('·')[0]}</td>
-      <td class="${c.effect==='up'?'eff-up':'eff-dn'}">${c.effect==='up'?t(['▲ depolarizz.','▲ depolariz.']):t(['▼ iperpolarizz.','▼ hyperpolariz.'])}<br><span style="color:var(--ink-faint);font-size:11px">${c.effect==='up'?t(['eccitatorio','excitatory']):t(['inibitorio','inhibitory'])}</span></td>
-      <td>${c.drugs.map(d=>d.split('(')[0]).slice(0,3).join('<br>')}</td>
-      <td class="feat">${c.feat}</td>`;
-    tr.onclick=()=>{ switchView('explorer'); buildModel(id); };
+      <td class="c-name"><div class="nmcell"><span class="dot" style="background:${c.geom.ionColor}"></span><strong>${c.short}</strong></div></td>
+      <td class="c-mod">${tblModBadge(c.mod)}</td>
+      <td class="feat c-fam" data-l="${col[2]}">${famLabel(c.fam)}<span class="sub">${topoShort(id)}</span></td>
+      <td class="c-sub" data-l="${col[3]}">${c.stoich}</td>
+      <td class="ion c-ion" data-l="${col[4]}">${c.poro.split('·')[0]}</td>
+      <td class="c-eff ${up?'eff-up':'eff-dn'}" data-l="${col[5]}"><span class="eff-v">${up?t(['▲ depolarizz.','▲ depolariz.']):t(['▼ iperpolarizz.','▼ hyperpolariz.'])}</span><span class="sub">${up?t(['eccitatorio','excitatory']):t(['inibitorio','inhibitory'])}</span></td>
+      <td class="c-drug" data-l="${col[6]}">${c.drugs.map(d=>d.split('(')[0].trim()).slice(0,3).join('<br>')}</td>
+      <td class="feat c-feat" data-l="${col[7]}">${c.feat}</td>`;
+    tr.title=L.open+c.short.replace(/<[^>]+>/g,'');
+    const go=()=>{ switchView('explorer'); buildModel(id); };
+    tr.onclick=go;
+    tr.onkeydown=e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } };
     tb.appendChild(tr);
   });
+  tblDecorate();
+  filterTable();
+  tblStickyTop();
 }
 function topoShort(id){
   const c=C[id];
@@ -2529,17 +2639,26 @@ function topoShort(id){
   if(c.geom.type==='tetramerK')return t(['tetramero · 4 subunità','tetramer · 4 subunits']);
   if(c.geom.type==='pseudotetramer')return t(['pseudotetramero · 4 domini','pseudotetramer · 4 domains']);
   if(c.geom.type==='tetramerGlu')return t(['tetramero · 4 subunità · M2 re-entrant','tetramer · 4 subunits · re-entrant M2']);
+  return '';
 }
 function filterTable(){
-  const q=document.getElementById('tbl-search').value.toLowerCase();
-  const f=document.querySelector('.filt.on').dataset.f;
-  document.querySelectorAll('#tbl-body tr').forEach(tr=>{
+  const root=document.getElementById('view-table'), tb=document.getElementById('tbl-body');
+  if(!root||!tb) return;
+  const q=(document.getElementById('tbl-search').value||'').trim().toLowerCase();
+  const on=root.querySelector('.filt.on'); const f=on?on.dataset.f:'all';
+  let n=0;
+  tb.querySelectorAll('tr[data-id]').forEach(tr=>{
     const c=C[tr.dataset.id];
-    const hay=(c.name+c.stoich+c.feat+c.drugs.join(' ')+c.poro+c.topo).toLowerCase();
-    const okF=(f==='all'||tr.dataset.fam===f);
-    const okQ=(!q||hay.includes(q));
-    tr.style.display=(okF&&okQ)?'':'none';
+    const hay=(c.short+c.name+c.stoich+c.feat+c.drugs.join(' ')+c.poro+c.topo).toLowerCase();
+    const show=(f==='all'||tr.dataset.fam===f)&&(!q||hay.includes(q));
+    tr.hidden=!show;
+    tr.classList.toggle('z', show && (n++ % 2===1));
   });
+  let em=document.getElementById('tbl-empty');
+  if(!n){
+    if(!em){ em=document.createElement('tr'); em.id='tbl-empty'; em.className='tbl-empty'; em.innerHTML='<td colspan="8"></td>'; }
+    em.firstElementChild.textContent=tblL().empty; tb.appendChild(em); em.hidden=false;
+  } else if(em) em.hidden=true;
 }
 
 /* =========================================================================
@@ -2738,8 +2857,6 @@ document.getElementById('explode').oninput=function(){explodeAmt=explodeTarget=+
 document.getElementById('btn-section').onclick=function(){ sectionOn=!sectionOn; this.classList.toggle('on',sectionOn); applySection(); };
 document.getElementById('btn-explode').onclick=function(){ explodeTarget = explodeTarget>50?0:100; this.classList.toggle('on',explodeTarget>50); };
 document.getElementById('btn-tour').onclick=function(){ if(tour) stopTour(); else startTour(); };
-document.getElementById('tbl-search').oninput=filterTable;
-document.querySelectorAll('.filt').forEach(f=>f.onclick=function(){document.querySelectorAll('.filt').forEach(x=>x.classList.remove('on'));this.classList.add('on');filterTable();});
 
 document.getElementById('honesty-note').innerHTML='<b>Trasparenza sui dati:</b> i modelli 3D sono <b>schemi didattici</b> dell\'organizzazione delle subunità (numero, disposizione attorno al poro, posizione di M2/S4), non strutture atomiche da cryo-EM. Le frasi tra virgolette provengono dagli appunti delle lezioni; i blocchi verdi sono integrazioni da <b>Goodman &amp; Gilman</b>; i blocchi gialli segnalano punti in cui gli appunti divergono dal modello canonico e che conviene <b>verificare sui tuoi appunti</b>. Le stechiometrie dei recettori neuronali nicotinici hanno varianti reali: non considerarle assolute.';
 
@@ -4467,6 +4584,61 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDrugM
 /* ═══ slot anim: fine ═══ */
 // ·
 /* ═══ slot table: inizio (solo il suo agente) ═══ */
+/* testi IT/EN della tabella: funzione (non const) perché buildTable() gira all'avvio, prima di questo slot */
+function tblL(){
+  const L={
+    it:{ cols:['Canale','Modulo','Famiglia · topologia','Subunità','Poro / ione','Effetto','Farmaci chiave','Feature distintiva'],
+         mod:{ b:['G','Generale','Modulo generale'], c:['S','Speciale','Modulo speciale'] },
+         keyG:'generale', keyS:'speciale', capLead:'Modulo', capSr:'Tabella comparativa dei canali ionici.',
+         note:'<b>Suggerimento:</b> clicca una riga per aprire il modello 3D corrispondente.',
+         empty:'Nessun canale corrisponde alla ricerca o al filtro.', open:'Apri in 3D: ',
+         searchAria:'Cerca nella tabella', filtAria:'Filtra per famiglia' },
+    en:{ cols:['Channel','Module','Family · topology','Subunits','Pore / ion','Effect','Key drugs','Distinctive feature'],
+         mod:{ b:['G','General','General module'], c:['S','Special','Special module'] },
+         keyG:'general', keyS:'special', capLead:'Module', capSr:'Comparison table of ion channels.',
+         note:'<b>Tip:</b> click a row to open the matching 3D model.',
+         empty:'No channel matches the search or filter.', open:'Open in 3D: ',
+         searchAria:'Search the table', filtAria:'Filter by family' }
+  };
+  return L[LANG==='en'?'en':'it'];
+}
+function tblModBadge(m){
+  const k=tblL().mod[m]||tblL().mod.b;
+  return `<span class="modtag ${m==='c'?'c':'b'}" role="img" title="${k[2]}" aria-label="${k[2]}"><span class="mt-l">${k[0]}</span><span class="mt-t">${k[1]}</span></span>`;
+}
+function tblKeyHTML(){
+  const L=tblL();
+  return `<span class="mk b" aria-hidden="true">G</span> ${L.keyG}<span class="mk-sep" aria-hidden="true">·</span><span class="mk c" aria-hidden="true">S</span> ${L.keyS}`;
+}
+/* intestazione, legenda e nota: riscritte dopo applyLangUI (che imposta solo il testo semplice delle th) */
+function tblDecorate(){
+  const L=tblL();
+  const ths=document.querySelectorAll('#cmp-table thead th');
+  ths.forEach((th,i)=>{ if(L.cols[i]!=null) th.textContent=L.cols[i]; });
+  if(ths[1]) ths[1].innerHTML=`<span class="th-t">${L.cols[1]}</span><span class="mod-key">${tblKeyHTML()}</span>`;
+  const cap=document.querySelector('#cmp-table caption');
+  if(cap) cap.innerHTML=`<span class="tbl-sr">${L.capSr} </span><span class="cap-lead">${L.capLead}</span> ${tblKeyHTML()}`;
+  const note=document.querySelector('#view-table .note'); if(note) note.innerHTML=L.note;
+  const s=document.getElementById('tbl-search'); if(s) s.setAttribute('aria-label',L.searchAria);
+  const g=document.querySelector('#view-table .tbl-filters'); if(g) g.setAttribute('aria-label',L.filtAria);
+}
+/* intestazione fissa sotto la barra delle schede (anch'essa sticky): l'offset dipende dalla sua altezza reale */
+function tblStickyTop(){
+  const v=document.getElementById('view-table'); if(!v) return;
+  const bar=document.querySelector('.tabs'); let top=0;
+  if(bar){ const cs=getComputedStyle(bar); if(cs.position==='sticky'||cs.position==='fixed') top=Math.ceil((parseFloat(cs.top)||0)+bar.getBoundingClientRect().height-2); }
+  v.style.setProperty('--tbl-top',top+'px');
+}
+(function wireTable(){
+  const s=document.getElementById('tbl-search'); if(s) s.addEventListener('input',filterTable);
+  const fs=document.querySelectorAll('#view-table .filt');
+  fs.forEach(b=>b.addEventListener('click',function(){
+    fs.forEach(x=>{ const me=(x===this); x.classList.toggle('on',me); x.setAttribute('aria-pressed',me?'true':'false'); });
+    filterTable();
+  }));
+  const tab=document.querySelector('.tab[data-view="table"]'); if(tab) tab.addEventListener('click',()=>requestAnimationFrame(tblStickyTop));
+  let rq=0; addEventListener('resize',()=>{ cancelAnimationFrame(rq); rq=requestAnimationFrame(()=>{ const v=document.getElementById('view-table'); if(v&&v.classList.contains('active')) tblStickyTop(); }); });
+})();
 /* ═══ slot table: fine ═══ */
 // ·
 /* ═══ slot exam: inizio (solo il suo agente) ═══ */
