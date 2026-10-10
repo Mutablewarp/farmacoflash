@@ -14,6 +14,8 @@
   "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
 }}
 </script>
+<!-- embed (?embed=1, dentro index.html): classe impostata subito, così la testata compatta non "salta" dopo il caricamento di Three.js -->
+<script>if(/[?&]embed=1(?:&|$)/.test(location.search))document.documentElement.classList.add('embed');</script>
 <style>
 :root{
   --bg:#0c0d12; --bg2:#13141c; --panel:#171823; --panel2:#1d1f2b;
@@ -337,7 +339,7 @@ header.top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1p
 .brand::before{content:"FARMACOLOGIA · CORSO INTEGRATO";display:block;font-family:'JetBrains Mono',monospace;
   font-size:10px;letter-spacing:.32em;color:var(--ink-faint);margin-bottom:9px}
 .brand h1{font-size:clamp(26px,3.6vw,42px);line-height:1.02;letter-spacing:-.018em;font-weight:600}
-.brand h1 em{color:var(--gold);font-style:italic;background:linear-gradient(180deg,#f3cf9b,#db9a4e);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.brand h1 em{color:var(--gold);font-style:italic}
 .brand p{font-size:13.5px;margin-top:9px;max-width:66ch;line-height:1.58;color:var(--ink-dim)}
 .badges{flex-direction:column;align-items:flex-end;gap:7px}
 .badge{backdrop-filter:blur(8px);box-shadow:var(--hair);font-size:10.5px;padding:6px 11px}
@@ -503,7 +505,7 @@ html[data-theme="light"]{ background:#e9ecf3 }
     radial-gradient(36vmax 28vmax at 86% 24%, rgba(209,45,48,.08), transparent 60%),
     radial-gradient(42vmax 34vmax at 62% 96%, rgba(124,63,176,.08), transparent 62%); }
 :root[data-theme="light"] body::after{ mix-blend-mode:multiply; opacity:.028 }
-:root[data-theme="light"] .brand h1 em{ background:linear-gradient(180deg,#c2882f,#9c6418);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent }
+:root[data-theme="light"] .brand h1 em{ color:var(--gold) }
 :root[data-theme="light"] .panel,
 :root[data-theme="light"] .anim-card,
 :root[data-theme="light"] .diff-card,
@@ -717,8 +719,8 @@ td.drugpill:hover{color:var(--gold)}
 /* ampersand ornamentale, leggermente più grande */
 .brand h1 em:first-of-type{font-size:1.14em;vertical-align:-.035em;padding:0 .015em}
 /* "3D" con stacco d'aria */
-.brand h1 em:last-of-type{margin-left:.06em;padding-right:.16em;letter-spacing:0;-webkit-text-fill-color:transparent}
-/* evita il taglio della "D" italica col background-clip:text (Safari) */
+.brand h1 em:last-of-type{margin-left:.06em;padding-right:.16em;letter-spacing:0}
+/* "&" e "3D" in oro pieno (niente testo a gradiente); spazio per la "D" italica */
 .brand h1{padding-right:.18em;overflow:visible}
 /* occhiello e filo più rifiniti */
 .brand::before{letter-spacing:.36em;font-weight:600;opacity:.9}
@@ -890,7 +892,9 @@ html[data-theme="light"]{ background:#f5f5f7 }
 .tab{border-radius:11px;font-weight:550;letter-spacing:-.005em}
 
 /* Chips: airier, springy */
-.chip{border-radius:var(--r-md);padding:10px 15px}
+.chip{border-radius:var(--r-md);padding:10px 15px;min-height:44px;scroll-margin-block:160px;font:inherit;color:var(--ink)}
+.acc-head,.tab,.ctl-btn{min-height:44px;font-family:inherit;color:var(--ink)}
+.acc-head{width:100%;text-align:left;background:transparent;border:0}
 
 /* Accordions: airier headers, calmer chevron */
 .acc-head,.cl-head{border-radius:12px}
@@ -990,6 +994,48 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
 ::-webkit-scrollbar-thumb:hover{background:var(--ink-faint,var(--faint,#8a8278));background-clip:padding-box}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
+<style>/* ═══ embed compatto · tab bar mobile · deep link (#card/#target/#q) · link Tabella ═══ */
+/* testata in embed (?embed=1): titolo + sottotitolo breve su una riga; descrizione, occhiello e pill nascosti */
+.brand-sub{display:none}
+.embed .wrap{padding-top:12px}
+.embed header.top{flex-wrap:nowrap;gap:12px;padding-bottom:10px;margin-bottom:12px}
+.embed .brand{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 14px;min-width:0;padding-left:0;border-left:0;border-image:none}
+.embed .brand::before,.embed .brand h1::before,.embed .brand>p,.embed .badges{display:none}
+.embed .brand h1{font-size:clamp(19px,2.2vw,23px);line-height:1.2;letter-spacing:-.015em;padding-right:0;white-space:nowrap}
+.embed .brand h1 em{text-shadow:none;filter:none}
+.embed .brand h1 em:first-of-type{font-size:1em;vertical-align:baseline}
+.embed .brand-sub{display:block;min-width:0;font-size:13px;color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:560px){.embed .brand-sub{display:none}}
+@media(min-width:761px){.embed .tabs{display:flex;flex-wrap:wrap}.embed .tab{flex:1 1 auto}.embed .tabs::after{content:"";flex:999 1 0}} /* ::after assorbe lo spazio dell'ultima riga: le tab orfane non si allargano */
+/* tab bar stretta: scorrimento orizzontale con snap */
+@media(max-width:760px){.tabs{scroll-snap-type:x proximity;scroll-padding-inline:7px;overscroll-behavior-x:contain;scrollbar-width:none}.tab{scroll-snap-align:start}}
+/* bersagli di tocco ≥ 44px */
+@media(pointer:coarse),(max-width:760px){.fam-allbtn,.fam-search{min-height:44px}}
+@media(pointer:coarse){.ff-mini,.tbl-mini{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;margin-left:0}}
+/* barra del deep link: contesto della carta, bersagli rapidi, avvisi */
+.dl-bar{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:4px;padding:8px 52px 8px 14px;min-height:60px;border:1px solid var(--gold-line);border-radius:var(--r-md);background:var(--gold-soft);color:var(--ink);font-size:13.5px;line-height:1.45}
+.dl-bar[hidden],.dl-chips[hidden]{display:none}
+.dl-bar.is-note{border-color:var(--line2);background:var(--panel)}
+.dl-msg{flex:1 1 240px;min-width:0;margin:0}
+.dl-msg b{font-weight:650}
+.dl-chips{display:flex;flex-wrap:wrap;gap:6px}
+.dl-chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border:1px solid var(--line2);border-radius:var(--r-md);background:var(--panel);color:var(--ink);font:inherit;font-size:13px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.dl-chip:hover{border-color:var(--gold)}
+.dl-chip.sel{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.dl-dot{width:8px;height:8px;border-radius:50%;flex:none}
+.dl-x{position:absolute;top:7px;right:6px;min-width:44px;min-height:44px;border:0;border-radius:10px;background:transparent;color:var(--ink-dim);font-size:15px;cursor:pointer}
+.dl-x:hover{color:var(--ink);background:rgba(127,127,127,.12)}
+@media(max-width:560px){.dl-chips{flex:1 1 100%;min-width:0;margin-right:-44px;flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none}.dl-chips::-webkit-scrollbar{height:0}.dl-chip{flex:none;scroll-snap-align:start}}
+.pill.dl-hit{border-color:var(--gold);background:var(--gold-soft);color:var(--ink);box-shadow:0 0 0 1px var(--gold) inset}
+@media(prefers-reduced-motion:no-preference){.pill.dl-hit{animation:dlPulse 1.2s ease-out 2}}
+@keyframes dlPulse{from{box-shadow:0 0 0 1px var(--gold) inset,0 0 0 0 rgba(233,184,115,.6)}to{box-shadow:0 0 0 1px var(--gold) inset,0 0 0 9px rgba(233,184,115,0)}}
+/* link secondario alla Tabella farmaci */
+.tbl-mini{margin-left:4px;text-decoration:none;opacity:.65;font-size:.9em;vertical-align:middle}
+.tbl-mini:hover{opacity:1}
+.dm-tbl{display:flex;align-items:center;justify-content:center;min-height:44px;margin-top:6px;border-radius:10px;font-size:12.5px;color:var(--ink-dim);text-decoration:none}
+.dm-tbl:hover{color:var(--gold)}
+.dm-tbl[hidden]{display:none}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -997,6 +1043,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
   <header class="top">
     <div class="brand">
       <h1>Bersagli <em>&amp;</em> Farmaci in <em>3D</em></h1>
+      <span class="brand-sub">Canali ionici, recettori e farmaci · modelli 3D, animazioni, tabelle</span>
       <p>Dai <strong>canali ionici</strong> ai <strong>recettori a proteina G</strong> (muscarinici, adrenergici, dopaminergici, serotoninergici, oppioidi), fino a <strong>interazioni farmacologiche</strong>, <strong>citocromi CYP450</strong> e <strong>antibiotici</strong>: modelli 3D ruotabili a 360°, animazioni dei meccanismi e tabelle di confronto in un unico strumento di studio. Materiale: sbobine del corso, integrazioni Goodman &amp; Gilman segnalate.</p>
     </div>
     <div class="badges">
@@ -1012,20 +1059,26 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
   </header>
 
   <div class="tabs">
-    <div class="tab active" data-view="explorer">◍ Esploratore 3D</div>
-    <div class="tab" data-view="anim">▶ Animazioni · meccanismi</div>
-    <div class="tab" data-view="table">▤ Tabella comparativa</div>
-    <div class="tab" data-view="gprot">⊕ Liganti Gs · Gi · Gq</div>
-    <div class="tab" data-view="diff">⇄ Differenze &amp; Esame</div>
-    <div class="tab" data-view="interactions">⇌ Interazioni · CYP</div>
-    <div class="tab" data-view="antibiotics">✚ Antibiotici</div>
-    <div class="tab" data-view="drugs">▦ Farmaci</div>
-    <div class="tab" data-view="classif">⏱ Classificazioni</div>
+    <button class="tab active" data-view="explorer">◍ Esploratore 3D</button>
+    <button class="tab" data-view="anim">▶ Animazioni · meccanismi</button>
+    <button class="tab" data-view="table">▤ Tabella comparativa</button>
+    <button class="tab" data-view="gprot">⊕ Liganti Gs · Gi · Gq</button>
+    <button class="tab" data-view="diff">⇄ Differenze &amp; Esame</button>
+    <button class="tab" data-view="interactions">⇌ Interazioni · CYP</button>
+    <button class="tab" data-view="antibiotics">✚ Antibiotici</button>
+    <button class="tab" data-view="drugs">▦ Farmaci</button>
+    <button class="tab" data-view="classif">⏱ Classificazioni</button>
   </div>
 
   <!-- ========== VIEW: EXPLORER ========== -->
   <section class="view active" id="view-explorer">
     <div id="chip-zone"></div>
+    <!-- deep link (#card= / #target= / #q=): contesto, bersagli rapidi o avviso -->
+    <div id="dl-bar" class="dl-bar" hidden>
+      <p class="dl-msg" id="dl-msg" role="status" aria-live="polite"></p>
+      <div class="dl-chips" id="dl-chips"></div>
+      <button class="dl-x" id="dl-x" type="button" aria-label="Chiudi">✕</button>
+    </div>
 
     <div class="stage">
       <div class="viewer-card">
@@ -1176,6 +1229,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
       <div class="dm-sec dm-trap" id="dm-trap-wrap"><h5 id="dm-trap-h"></h5><p id="dm-trap"></p></div>
       <button id="dm-open" class="dm-btn" type="button"></button>
       <a id="dm-flash" class="dm-btn dm-btn2" target="_blank" rel="noopener" style="display:none"></a>
+      <a id="dm-tbl" class="dm-tbl" target="_blank" rel="noopener" hidden></a>
     </div>
   </div>
 
@@ -1186,18 +1240,15 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
 </div>
 
 <script type="module">
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { OutlinePass } from 'three/addons/postprocessing/OutlinePass.js';
-import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-import { FXAAShader } from 'three/addons/shaders/FXAAShader.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+let THREE,OrbitControls,EffectComposer,RenderPass,ShaderPass,UnrealBloomPass,OutlinePass,OutputPass,FXAAShader,RoomEnvironment;
+try{
+  [THREE,{OrbitControls},{EffectComposer},{RenderPass},{ShaderPass},{UnrealBloomPass},{OutlinePass},{OutputPass},{FXAAShader},{RoomEnvironment}]=await Promise.all([
+    import('three'),import('three/addons/controls/OrbitControls.js'),import('three/addons/postprocessing/EffectComposer.js'),import('three/addons/postprocessing/RenderPass.js'),import('three/addons/postprocessing/ShaderPass.js'),import('three/addons/postprocessing/UnrealBloomPass.js'),import('three/addons/postprocessing/OutlinePass.js'),import('three/addons/postprocessing/OutputPass.js'),import('three/addons/shaders/FXAAShader.js'),import('three/addons/environments/RoomEnvironment.js')]);
+}catch(error){console.warn('3D unavailable; educational text and diagrams remain available.');}
 /* =========================================================================
-   DATI — 7 canali. Fedeli alle sbobine; integrazioni G&G marcate [gg];
+   DATI — bersagli (canali ionici, GPCR, recettori di superficie; elenco
+   completo in FAMS). Questo letterale contiene i bersagli di base; gli altri
+   sono aggiunti più sotto (mk() e Object.assign). Fedeli alle sbobine; integrazioni G&G marcate [gg];
    discordanze sbobina↔modello canonico marcate [flag].
    ========================================================================= */
 let C_IT = {
@@ -1570,14 +1621,14 @@ let spin=true, showMem=true, showIons=true, explodeAmt=0, showPins=true;
 let fly=null, lastT=0;
 let sectionOn=false, explodeTarget=0, tour=null;
 let mgIon=null, mgLabel=null, mgPlay=true, mgClock=0;  /* NMDA: blocco/espulsione del Mg²⁺ */
-const HOME_TARGET=new THREE.Vector3(0,0.1,0), HOME_POS=new THREE.Vector3(8.5,4.2,11.5);
+const HOME_TARGET=THREE?new THREE.Vector3(0,0.1,0):null, HOME_POS=THREE?new THREE.Vector3(8.5,4.2,11.5):null;
 const MEM_TOP=1.05, MEM_BOT=-1.05;
-const CLIP=new THREE.Plane(new THREE.Vector3(0,0,-1),0);
+const CLIP=THREE?new THREE.Plane(new THREE.Vector3(0,0,-1),0):null;
 
 function initThree(){
   host=document.getElementById('canvas-host');
   if(typeof THREE==='undefined'){
-    host.innerHTML='<div class="loaderr">Impossibile caricare la libreria 3D (Three.js). Se sei dietro una rete con restrizioni, abilita l\'accesso a cdnjs.cloudflare.com e ricarica.</div>';
+    host.innerHTML='<div class="loaderr">3D non disponibile / 3D unavailable. Puoi leggere le spiegazioni e aprire Animazioni per gli schemi 2D. Text and 2D diagrams remain available.</div>';
     return false;
   }
   scene=new THREE.Scene();
@@ -1585,7 +1636,7 @@ function initThree(){
   const w=host.clientWidth,h=host.clientHeight;
   camera=new THREE.PerspectiveCamera(42,w/h,0.1,200);
   camera.position.copy(HOME_POS);
-  renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+  try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});}catch(error){scene=null;host.innerHTML='<div class="loaderr">WebGL non disponibile / unavailable. Usa le spiegazioni e gli schemi 2D in Animazioni.</div>';return false;}
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
   renderer.setSize(w,h);
   if('outputColorSpace' in renderer){ try{renderer.outputColorSpace=THREE.SRGBColorSpace;}catch(e){} }
@@ -1660,6 +1711,7 @@ function makeEnv(){
 function onResize(){
   if(!renderer)return;
   const w=host.clientWidth,h=host.clientHeight;
+  if(!w||!h)return; // esploratore nascosto (altra vista): aspect 0/0 = NaN → errori SVG dei pin a ogni frame
   camera.aspect=w/h; camera.updateProjectionMatrix(); renderer.setSize(w,h);
   if(composer) composer.setSize(w,h);
   if(bloomPass) bloomPass.setSize(w,h);
@@ -1711,7 +1763,7 @@ function flyTo(point,dist){
   const dir=camera.position.clone().sub(controls.target); const d=dist||Math.max(7,Math.min(13,dir.length()*0.72)); dir.normalize();
   fly={t:0,dur:0.85,fromPos:camera.position.clone(),toPos:point.clone().add(dir.multiplyScalar(d)),fromTar:controls.target.clone(),toTar:point.clone()};
 }
-function flyHome(){ fly={t:0,dur:0.8,fromPos:camera.position.clone(),toPos:HOME_POS.clone(),fromTar:(controls?controls.target.clone():HOME_TARGET.clone()),toTar:HOME_TARGET.clone()}; }
+function flyHome(){if(!renderer)return; fly={t:0,dur:0.8,fromPos:camera.position.clone(),toPos:HOME_POS.clone(),fromTar:(controls?controls.target.clone():HOME_TARGET.clone()),toTar:HOME_TARGET.clone()}; }
 function worldCenterOfSub(subId){
   const box=new THREE.Box3(); let any=false;
   modelGroup.traverse(o=>{if(o.isMesh&&o.userData.subId===subId){o.updateWorldMatrix(true,false); box.expandByObject(o); any=true;}});
@@ -1775,12 +1827,17 @@ function stepTour(){
   tour.i++; tour.timer=setTimeout(stepTour,2600);
 }
 
+let sceneVisible=true, animationFrame=0;
+function resumeAnimation(){if(!animationFrame&&!document.hidden&&sceneVisible)animationFrame=requestAnimationFrame(animate);}
+document.addEventListener('visibilitychange',resumeAnimation);
 function animate(){
-  requestAnimationFrame(animate);
+  animationFrame=0;
+  if(document.hidden||!sceneVisible)return;
+  resumeAnimation();
   if(!renderer)return;
   const now=performance.now(); const dt=Math.min(0.05,(now-lastT)/1000); lastT=now;
   if(fly){ fly.t+=dt/fly.dur; const k=ease(Math.min(1,fly.t)); camera.position.lerpVectors(fly.fromPos,fly.toPos,k); if(controls)controls.target.lerpVectors(fly.fromTar,fly.toTar,k); if(fly.t>=1)fly=null; }
-  if(controls){ controls.autoRotate = spin && !fly; controls.update(); }
+  if(controls){ controls.autoRotate = spin && !fly && !matchMedia('(prefers-reduced-motion: reduce)').matches; controls.update(); }
   else { camera.lookAt(HOME_TARGET); }
   if(Math.abs(explodeAmt-explodeTarget)>0.3){ explodeAmt+=(explodeTarget-explodeAmt)*Math.min(1,dt*5); applyExplode(); const es=document.getElementById('explode'); if(es) es.value=explodeAmt; }
   // --- NMDA: il Mg²⁺ tappa il poro (riposo) → depolarizzazione lo espelle → poi rientra ---
@@ -2151,6 +2208,7 @@ function buildSinglePass(cfg){
 function buildModel(id){
   stopTour();
   current=id; selected=null;
+  if(!renderer){document.getElementById('vt-name').textContent=C[id].name;document.getElementById('vt-sub').textContent=C[id].topo;showOverview(id);return;}
   clearModel();
   const cfg=C[id];
   buildMembrane();
@@ -2204,6 +2262,7 @@ function clearHighlight(){
   hoverMeshes=[]; hoverSubId=null;
 }
 function selectSub(subId, hitPoint){
+  if(!renderer)return;
   selected=subId; clearHighlight();
   const cfg=C[current];
   const key=resolveSubKey(cfg,subId);
@@ -2270,7 +2329,8 @@ function drugBlock(id,c){
     return `<div class="sec"><h4>${t(['💊 Farmaci per classe — clicca per meccanismo / scheda','💊 Drugs by class — click for mechanism / card'])}</h4>${g}</div>`;
   }
   if(typeof RECDRUGS!=='undefined' && RECDRUGS[id]){
-    const g=RECDRUGS[id].filter(grp=>grp.d&&grp.d.length).map((grp,gi)=>`<div class="drugrow"><span class="drug-cls">${t(grp.role)} <span class="mtag ${grp.type}">${roleTag(grp.type)}</span></span><div class="drug-items">${grp.d.map((x,di)=>`<span class="pill drugpill-r" data-rec="${id}" data-gi="${gi}" data-di="${di}" data-d="${x.n}" data-card="${x.card||''}">${x.n}</span>`).join('')}</div></div>`).join('');
+    // gi = indice nel RECDRUGS originale: un gruppo vuoto (es. at2[0]) non deve spostarlo, altrimenti il clic non apre la scheda
+    const g=RECDRUGS[id].map((grp,gi)=>({grp,gi})).filter(o=>o.grp.d&&o.grp.d.length).map(({grp,gi})=>`<div class="drugrow"><span class="drug-cls">${t(grp.role)} <span class="mtag ${grp.type}">${roleTag(grp.type)}</span></span><div class="drug-items">${grp.d.map((x,di)=>`<span class="pill drugpill-r" data-rec="${id}" data-gi="${gi}" data-di="${di}" data-d="${x.n}" data-card="${x.card||''}">${x.n}</span>`).join('')}</div></div>`).join('');
     if(g) return `<div class="sec"><h4>${t(['💊 Farmaci sul recettore — clicca per meccanismo / scheda','💊 Drugs on the receptor — click for mechanism / card'])}</h4>${g}</div>`;
   }
   return `<div class="sec"><h4>${t(['💊 Farmaci — clicca per il meccanismo','💊 Drugs — click for the mechanism'])}</h4><div>${c.drugs.map((d,di)=>`<span class="pill drugpill-rec" data-rec="${id}" data-di="${di}">${d}</span>`).join('')}</div></div>`;
@@ -2303,6 +2363,7 @@ function showOverview(id){
   `;
   document.getElementById('panel-body').innerHTML=html;
   wireLegend();
+  if(dl&&dl.sel===id) dlMark(false); // deep link attivo: mantiene evidenziati i farmaci della carta
 }
 function showSubInfo(c,key,subId){
   const s=c.subs[key];
@@ -2365,14 +2426,14 @@ function buildChips(){
   FAMS.forEach(F=>{
     const open=openFams.has(F.id);
     const row=document.createElement('div'); row.className='fam-row acc'+(open?'':' collapsed'); row.dataset.fam=F.id;
-    const head=document.createElement('div'); head.className='fam-label acc-head';
+    const head=document.createElement('button'); head.type='button';head.className='fam-label acc-head';head.setAttribute('aria-expanded',String(open));
     head.innerHTML=`<span class="acc-chev">▸</span><span class="acc-name">${famLabel(F.id)}</span><span class="acc-count">${(F.chans||[]).length}</span>`;
-    head.onclick=()=>{ const c=row.classList.toggle('collapsed'); if(c)openFams.delete(F.id); else openFams.add(F.id); };
+    head.onclick=()=>{ const c=row.classList.toggle('collapsed');head.setAttribute('aria-expanded',String(!c)); if(c)openFams.delete(F.id); else openFams.add(F.id); };
     row.appendChild(head);
     const chips=document.createElement('div'); chips.className='chips';
     (F.chans||[]).forEach(id=>{
       const c=C[id]; if(!c) return;
-      const b=document.createElement('div'); b.className='chip'; b.dataset.id=id; b.dataset.fam=F.id;
+      const b=document.createElement('button');b.type='button'; b.className='chip'; b.dataset.id=id; b.dataset.fam=F.id;
       b.innerHTML=`<span class="dot" style="background:${accentOf(c)}"></span>${c.short}<span class="tag">${c.mod==='b'?'Ⓖ':'Ⓢ'}</span>`;
       b.onclick=()=>buildModel(id);
       chips.appendChild(b);
@@ -2387,6 +2448,7 @@ function buildChips(){
 /* =========================================================================
    TABLE
    ========================================================================= */
+/* tabella comparativa: tutti i 12 canali ionici (FAMS voltaggio · nicotinico · glutammato · rettificatori); GPCR e recettori di superficie esclusi */
 const ORDER=["nav","cav","kv","herg","nachr","gabaa","ht3","glyr","glu","katp","enac","trpv1"];
 function buildTable(){
   const tb=document.getElementById('tbl-body'); tb.innerHTML='';
@@ -3824,13 +3886,11 @@ FAMS.push({id:"somatostatina",label:"Recettori della somatostatina (SSTR)",chans
 
 Object.assign(C_IT,{"il6r": {"name": "IL-6R (recettore citochinico)", "short": "IL-6R", "fam": "biologici", "mod": "b", "topo": "Recettore di superficie a singolo dominio TM; trasduce via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "IL-6R", "ligLabel": "IL-6", "subKeys": ["IL-6R", "IL-6R"], "ionColor": "#e07a7a", "transmit": ["Recettore citochinico · JAK → STAT3 (infiammazione, fase acuta)", "Cytokine receptor · JAK → STAT3 (inflammation, acute phase)"], "subLabel": "recettore IL-6 (JAK-STAT)", "cytokine": true}, "stoich": "Recettore di superficie + ligando citochinico", "poro": "Recettore citochinico · JAK → STAT3 (infiammazione, fase acuta)", "effect": "up", "effectTxt": "Media l'infiammazione sistemica: proteine di fase acuta (PCR), febbre, attivazione immunitaria", "drugs": ["Antagonisti (anti-IL-6R): tocilizumab, sarilumab"], "feat": "Citochinico (JAK-STAT) · bersaglio del tocilizumab", "subs": {"recettore": {"label": "IL-6R", "color": "#e07a7a", "role": "Recettore citochinico · JAK → STAT3 (infiammazione, fase acuta)", "site": ""}, "ligando": {"label": "Ligando: IL-6", "color": "#f0d59a", "role": "Citochina/ligando che attiva il recettore.", "site": ""}}, "states": "Ligando → dimerizzazione → segnale → spegnimento", "quote": {"t": "Media l'infiammazione sistemica: proteine di fase acuta (PCR), febbre, attivazione immunitaria", "s": "Generale (biologici)"}, "gg": "Il tocilizumab e il sarilumab bloccano il recettore dell'IL-6 → artrite reumatoide, arterite a cellule giganti e sindrome da rilascio di citochine (CRS) da CAR-T. Effetto: ↓PCR, rischio di infezioni e ↑ transaminasi/lipidi.", "flag": null, "trap": "★ tocilizumab = anti-IL-6R (lega il RECETTORE); usato anche nella CRS da CAR-T e nel COVID grave. La PCR cala → può mascherare le infezioni."}, "il1r": {"name": "IL-1R (recettore citochinico)", "short": "IL-1R", "fam": "biologici", "mod": "b", "topo": "Recettore di superficie a singolo dominio TM; trasduce via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "IL-1R", "ligLabel": "IL-1", "subKeys": ["IL-1R", "IL-1R"], "ionColor": "#f4a259", "transmit": ["Recettore citochinico · MyD88 → NF-κB (infiammazione)", "Cytokine receptor · MyD88 → NF-κB (inflammation)"], "subLabel": "recettore IL-1 (NF-κB)", "cytokine": true}, "stoich": "Recettore di superficie + ligando citochinico", "poro": "Recettore citochinico · MyD88 → NF-κB (infiammazione)", "effect": "up", "effectTxt": "Innesca l'infiammazione (febbre, IL-6, COX-2); chiave nelle malattie autoinfiammatorie e nella gotta", "drugs": ["Antagonista del recettore: anakinra", "Anti-ligando (anti-IL-1β): canakinumab, rilonacept"], "feat": "Citochinico (NF-κB) · anakinra = IL-1Ra ricombinante", "subs": {"recettore": {"label": "IL-1R", "color": "#f4a259", "role": "Recettore citochinico · MyD88 → NF-κB (infiammazione)", "site": ""}, "ligando": {"label": "Ligando: IL-1", "color": "#f0d59a", "role": "Citochina/ligando che attiva il recettore.", "site": ""}}, "states": "Ligando → dimerizzazione → segnale → spegnimento", "quote": {"t": "Innesca l'infiammazione (febbre, IL-6, COX-2); chiave nelle malattie autoinfiammatorie e nella gotta", "s": "Generale (biologici)"}, "gg": "L'anakinra (IL-1Ra ricombinante) blocca il recettore IL-1; canakinumab e rilonacept neutralizzano l'IL-1β. Usati in gotta, artrite idiopatica giovanile e sindromi autoinfiammatorie (CAPS).", "flag": null, "trap": "★ Distinzione: anakinra blocca il RECETTORE IL-1; canakinumab lega il LIGANDO IL-1β."}, "tnfr": {"name": "TNF / TNFR (recettore citochinico)", "short": "TNF-α / TNFR", "fam": "biologici", "mod": "b", "topo": "Recettore di superficie a singolo dominio TM; trasduce via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "TNF / TNFR", "ligLabel": "TNF-α", "subKeys": ["TNF / TNFR", "TNF / TNFR"], "ionColor": "#e5383b", "transmit": ["Citochina pro-infiammatoria → TNFR → NF-κB", "Pro-inflammatory cytokine → TNFR → NF-κB"], "subLabel": "TNF-α → NF-κB", "cytokine": true}, "stoich": "Recettore di superficie + ligando citochinico", "poro": "Citochina pro-infiammatoria → TNFR → NF-κB", "effect": "up", "effectTxt": "TNF-α è il motore dell'infiammazione cronica (AR, IBD, psoriasi, spondilite)", "drugs": ["Anti-TNF (legano il ligando): adalimumab, infliximab, golimumab, certolizumab", "Recettore solubile-esca: etanercept"], "feat": "Bersaglio dei -mab anti-TNF e dell'etanercept (recettore-esca)", "subs": {"recettore": {"label": "TNF / TNFR", "color": "#e5383b", "role": "Citochina pro-infiammatoria → TNFR → NF-κB", "site": ""}, "ligando": {"label": "Ligando: TNF-α", "color": "#f0d59a", "role": "Citochina/ligando che attiva il recettore.", "site": ""}}, "states": "Ligando → dimerizzazione → segnale → spegnimento", "quote": {"t": "TNF-α è il motore dell'infiammazione cronica (AR, IBD, psoriasi, spondilite)", "s": "Generale (biologici)"}, "gg": "Gli anti-TNF (adalimumab, infliximab, golimumab, certolizumab) sequestrano il TNF-α; l'etanercept è un recettore-esca (TNFR2-Fc). Usati in AR, malattie infiammatorie intestinali, psoriasi, spondilite. Riattivazione di TBC/HBV: screening prima della terapia.", "flag": null, "trap": "★ Tutti gli anti-TNF colpiscono il LIGANDO (non il recettore). Prima di iniziare: screening per TBC latente ed epatite B."}, "il5r": {"name": "IL-5 / IL-5Rα (recettore citochinico)", "short": "IL-5 / IL-5Rα", "fam": "biologici", "mod": "b", "topo": "Recettore di superficie a singolo dominio TM; trasduce via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "IL-5 / IL-5Rα", "ligLabel": "IL-5", "subKeys": ["IL-5 / IL-5Rα", "IL-5 / IL-5Rα"], "ionColor": "#52b788", "transmit": ["Citochina eosinofila → IL-5Rα → JAK/STAT", "Eosinophil cytokine → IL-5Rα → JAK/STAT"], "subLabel": "IL-5Rα (eosinofili)", "cytokine": true}, "stoich": "Recettore di superficie + ligando citochinico", "poro": "Citochina eosinofila → IL-5Rα → JAK/STAT", "effect": "up", "effectTxt": "IL-5 = sopravvivenza/attivazione degli eosinofili → asma eosinofilica grave", "drugs": ["Anti-recettore (IL-5Rα): benralizumab", "Anti-ligando (IL-5): mepolizumab, reslizumab"], "feat": "Bersaglio dei biologici per l'asma eosinofilica", "subs": {"recettore": {"label": "IL-5 / IL-5Rα", "color": "#52b788", "role": "Citochina eosinofila → IL-5Rα → JAK/STAT", "site": ""}, "ligando": {"label": "Ligando: IL-5", "color": "#f0d59a", "role": "Citochina/ligando che attiva il recettore.", "site": ""}}, "states": "Ligando → dimerizzazione → segnale → spegnimento", "quote": {"t": "IL-5 = sopravvivenza/attivazione degli eosinofili → asma eosinofilica grave", "s": "Generale (biologici)"}, "gg": "Nell'asma eosinofilica grave: mepolizumab e reslizumab neutralizzano l'IL-5; benralizumab blocca il recettore IL-5Rα e ne provoca la deplezione (ADCC). Riducono le esacerbazioni e l'uso di steroidi orali.", "flag": null, "trap": "★ benralizumab = anti-RECETTORE (IL-5Rα); mepolizumab/reslizumab = anti-LIGANDO (IL-5)."}, "il4r": {"name": "IL-4Rα (recettore citochinico)", "short": "IL-4Rα", "fam": "biologici", "mod": "b", "topo": "Recettore di superficie a singolo dominio TM; trasduce via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "IL-4Rα", "ligLabel": "IL-4 / IL-13", "subKeys": ["IL-4Rα", "IL-4Rα"], "ionColor": "#4ea8de", "transmit": ["Recettore citochinico Th2 → JAK → STAT6", "Th2 cytokine receptor → JAK → STAT6"], "subLabel": "IL-4Rα (Th2/JAK-STAT6)", "cytokine": true}, "stoich": "Recettore di superficie + ligando citochinico", "poro": "Recettore citochinico Th2 → JAK → STAT6", "effect": "up", "effectTxt": "Asse Th2 (IL-4/IL-13): IgE, infiammazione allergica (asma, dermatite atopica)", "drugs": ["Antagonisti (anti-IL-4Rα): dupilumab"], "feat": "Un solo bersaglio (IL-4Rα) blocca sia IL-4 sia IL-13", "subs": {"recettore": {"label": "IL-4Rα", "color": "#4ea8de", "role": "Recettore citochinico Th2 → JAK → STAT6", "site": ""}, "ligando": {"label": "Ligando: IL-4 / IL-13", "color": "#f0d59a", "role": "Citochina/ligando che attiva il recettore.", "site": ""}}, "states": "Ligando → dimerizzazione → segnale → spegnimento", "quote": {"t": "Asse Th2 (IL-4/IL-13): IgE, infiammazione allergica (asma, dermatite atopica)", "s": "Generale (biologici)"}, "gg": "Il dupilumab (anti-IL-4Rα) blocca la segnalazione di IL-4 e IL-13: asma di tipo 2, dermatite atopica, poliposi nasale, esofagite eosinofila. Effetto: ↓ IgE/eosinofili tissutali; possibile congiuntivite.", "flag": null, "trap": "★ Un unico bersaglio, l'IL-4Rα, spegne DUE citochine (IL-4 + IL-13): è il bersaglio del dupilumab."}, "fceri": {"name": "FcεRI / IgE (recettore citochinico)", "short": "FcεRI (IgE)", "fam": "biologici", "mod": "b", "topo": "Recettore di superficie a singolo dominio TM; trasduce via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "FcεRI / IgE", "ligLabel": "IgE", "subKeys": ["FcεRI / IgE", "FcεRI / IgE"], "ionColor": "#f6bd60", "transmit": ["Recettore ad alta affinità per le IgE → degranulazione mastocitaria", "High-affinity IgE receptor → mast-cell degranulation"], "subLabel": "FcεRI (mastociti)", "cytokine": true}, "stoich": "Recettore di superficie + ligando citochinico", "poro": "Recettore ad alta affinità per le IgE → degranulazione mastocitaria", "effect": "up", "effectTxt": "Le IgE legate a FcεRI, cross-linkate dall'allergene, scatenano la degranulazione (istamina) → allergia", "drugs": ["Anti-IgE (lega il ligando): omalizumab"], "feat": "Bersaglio (indiretto) dell'omalizumab", "subs": {"recettore": {"label": "FcεRI / IgE", "color": "#f6bd60", "role": "Recettore ad alta affinità per le IgE → degranulazione mastocitaria", "site": ""}, "ligando": {"label": "Ligando: IgE", "color": "#f0d59a", "role": "Citochina/ligando che attiva il recettore.", "site": ""}}, "states": "Ligando → dimerizzazione → segnale → spegnimento", "quote": {"t": "Le IgE legate a FcεRI, cross-linkate dall'allergene, scatenano la degranulazione (istamina) → allergia", "s": "Generale (biologici)"}, "gg": "L'omalizumab (anti-IgE) sequestra le IgE circolanti, riducendo l'occupazione e l'espressione di FcεRI: asma allergica grave e orticaria cronica spontanea. Non si somministra durante una reazione acuta.", "flag": null, "trap": "★ L'omalizumab lega le IgE LIBERE (il ligando), non direttamente il recettore FcεRI; abbassando le IgE riduce anche FcεRI."}, "epor": {"name": "EPO-R (recettore citochinico)", "short": "EPO-R", "fam": "biologici", "mod": "b", "topo": "Recettore di superficie a singolo dominio TM; trasduce via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "EPO-R", "ligLabel": "eritropoietina", "subKeys": ["EPO-R", "EPO-R"], "ionColor": "#e07a7a", "transmit": ["Recettore citochinico di tipo I → JAK2 → STAT5 → eritropoiesi", "Type-I cytokine receptor → JAK2 → STAT5 → erythropoiesis"], "subLabel": "EPO-R (JAK2-STAT5)", "cytokine": true}, "stoich": "Recettore di superficie + ligando citochinico", "poro": "Recettore citochinico di tipo I → JAK2 → STAT5 → eritropoiesi", "effect": "up", "effectTxt": "Stimola la produzione di globuli rossi nel midollo", "drugs": ["Agonisti (ESA): epoetina alfa, epoetina beta, darbepoetina"], "feat": "Agonisti = ESA (epoetine)", "subs": {"recettore": {"label": "EPO-R", "color": "#e07a7a", "role": "Recettore citochinico di tipo I → JAK2 → STAT5 → eritropoiesi", "site": ""}, "ligando": {"label": "Ligando: eritropoietina", "color": "#f0d59a", "role": "Citochina/ligando che attiva il recettore.", "site": ""}}, "states": "Ligando → dimerizzazione → segnale → spegnimento", "quote": {"t": "Stimola la produzione di globuli rossi nel midollo", "s": "Generale (biologici)"}, "gg": "Le epoetine (alfa/beta, darbepoetina) sono agonisti dell'EPO-R per l'anemia da insufficienza renale cronica o da chemioterapia. Target di Hb non troppo alto: rischio trombotico/ipertensione se sovracorretto.", "flag": null, "trap": "★ Le epoetine (ESA) sono AGONISTI dell'EPO-R; non superare il target di Hb (rischio trombotico). Abuso come doping."}, "gcsfr": {"name": "G-CSF-R (recettore citochinico)", "short": "G-CSF-R", "fam": "biologici", "mod": "b", "topo": "Recettore di superficie a singolo dominio TM; trasduce via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "G-CSF-R", "ligLabel": "G-CSF", "subKeys": ["G-CSF-R", "G-CSF-R"], "ionColor": "#52b788", "transmit": ["Recettore citochinico di tipo I → JAK → STAT → granulopoiesi", "Type-I cytokine receptor → JAK → STAT → granulopoiesis"], "subLabel": "G-CSF-R (granulopoiesi)", "cytokine": true}, "stoich": "Recettore di superficie + ligando citochinico", "poro": "Recettore citochinico di tipo I → JAK → STAT → granulopoiesi", "effect": "up", "effectTxt": "Stimola la produzione e il rilascio dei neutrofili", "drugs": ["Agonisti: filgrastim, pegfilgrastim, lenograstim"], "feat": "Agonisti = filgrastim e analoghi", "subs": {"recettore": {"label": "G-CSF-R", "color": "#52b788", "role": "Recettore citochinico di tipo I → JAK → STAT → granulopoiesi", "site": ""}, "ligando": {"label": "Ligando: G-CSF", "color": "#f0d59a", "role": "Citochina/ligando che attiva il recettore.", "site": ""}}, "states": "Ligando → dimerizzazione → segnale → spegnimento", "quote": {"t": "Stimola la produzione e il rilascio dei neutrofili", "s": "Generale (biologici)"}, "gg": "Filgrastim, pegfilgrastim e lenograstim sono agonisti del G-CSF-R per la neutropenia febbrile da chemioterapia e per la mobilizzazione di cellule staminali. Effetto: dolore osseo.", "flag": null, "trap": "★ filgrastim/pegfilgrastim = AGONISTI del G-CSF-R (↑neutrofili); tipico effetto: dolore osseo."}, "tpor": {"name": "TPO-R (c-Mpl) (recettore citochinico)", "short": "TPO-R (c-Mpl)", "fam": "biologici", "mod": "b", "topo": "Recettore di superficie a singolo dominio TM; trasduce via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "TPO-R (c-Mpl)", "ligLabel": "trombopoietina", "subKeys": ["TPO-R (c-Mpl)", "TPO-R (c-Mpl)"], "ionColor": "#b388eb", "transmit": ["Recettore citochinico → JAK2 → STAT → trombopoiesi", "Cytokine receptor → JAK2 → STAT → thrombopoiesis"], "subLabel": "TPO-R / c-Mpl", "cytokine": true}, "stoich": "Recettore di superficie + ligando citochinico", "poro": "Recettore citochinico → JAK2 → STAT → trombopoiesi", "effect": "up", "effectTxt": "Stimola la produzione di piastrine dai megacariociti", "drugs": ["Agonisti del TPO-R: romiplostim, eltrombopag, avatrombopag"], "feat": "Agonisti = romiplostim (peptibody) ed eltrombopag (orale)", "subs": {"recettore": {"label": "TPO-R (c-Mpl)", "color": "#b388eb", "role": "Recettore citochinico → JAK2 → STAT → trombopoiesi", "site": ""}, "ligando": {"label": "Ligando: trombopoietina", "color": "#f0d59a", "role": "Citochina/ligando che attiva il recettore.", "site": ""}}, "states": "Ligando → dimerizzazione → segnale → spegnimento", "quote": {"t": "Stimola la produzione di piastrine dai megacariociti", "s": "Generale (biologici)"}, "gg": "Romiplostim, eltrombopag e avatrombopag sono agonisti del TPO-R per la trombocitopenia immune (PTI) e altre piastrinopenie. Eltrombopag è orale (attenzione all'epatotossicità).", "flag": null, "trap": "★ eltrombopag/romiplostim = AGONISTI del TPO-R (↑piastrine) nella PTI — logica opposta agli antiaggreganti."}, "cd20": {"name": "CD20 (recettore citochinico)", "short": "CD20", "fam": "biologici", "mod": "b", "topo": "Recettore di superficie a singolo dominio TM; trasduce via JAK-STAT", "geom": {"type": "singlepass", "chains": 1, "recLabel": "CD20", "ligLabel": "—", "subKeys": ["CD20"], "ionColor": "#4ea8de", "transmit": ["Antigene di superficie dei linfociti B → deplezione (ADCC/CDC)", "B-cell surface antigen → depletion (ADCC/CDC)"], "subLabel": "antigene di superficie (linfociti B)", "cytokine": true}, "stoich": "Recettore di superficie + ligando citochinico", "poro": "Antigene di superficie dei linfociti B → deplezione (ADCC/CDC)", "effect": "up", "effectTxt": "Antigene di superficie dei linfociti B (no segnalazione): la sua deplezione elimina i linfociti B", "drugs": ["Anti-CD20 (deplezione B): rituximab, ocrelizumab, ofatumumab, obinutuzumab"], "feat": "Bersaglio degli anti-CD20 (deplezione dei linfociti B)", "subs": {"recettore": {"label": "CD20", "color": "#4ea8de", "role": "Antigene di superficie dei linfociti B → deplezione (ADCC/CDC)", "site": ""}, "ligando": {"label": "Ligando: —", "color": "#f0d59a", "role": "Citochina/ligando che attiva il recettore.", "site": ""}}, "states": "Ligando → dimerizzazione → segnale → spegnimento", "quote": {"t": "Antigene di superficie dei linfociti B (no segnalazione): la sua deplezione elimina i linfociti B", "s": "Generale (biologici)"}, "gg": "Rituximab, ocrelizumab, ofatumumab e obinutuzumab eliminano i linfociti B (ADCC/CDC): linfomi a cellule B, artrite reumatoide, vasculiti ANCA e sclerosi multipla (ocrelizumab). Rischio: riattivazione di HBV, infezioni.", "flag": null, "trap": "★ CD20 non trasduce segnale: gli anti-CD20 funzionano per DEPLEZIONE (ADCC/CDC). L'ocrelizumab è un cardine nella SM."}, "vegfr": {"name": "VEGF / VEGFR (recettore tirosin-chinasi)", "short": "VEGF / VEGFR", "fam": "biologici", "mod": "b", "topo": "Recettore di superficie a singolo dominio TM; trasduce via tirosin-chinasi", "geom": {"type": "singlepass", "chains": 2, "recLabel": "VEGF / VEGFR", "ligLabel": "VEGF", "subKeys": ["VEGF / VEGFR", "VEGF / VEGFR"], "ionColor": "#f4a259", "transmit": ["Tirosin-chinasi del VEGF → angiogenesi", "VEGF receptor tyrosine kinase → angiogenesis"], "subLabel": "VEGFR (RTK, angiogenesi)", "kinase": true}, "stoich": "Recettore di superficie + ligando citochinico", "poro": "Tirosin-chinasi del VEGF → angiogenesi", "effect": "up", "effectTxt": "Angiogenesi tumorale e neovascolarizzazione retinica", "drugs": ["Anti-ligando (VEGF): bevacizumab, aflibercept", "Anti-recettore (VEGFR2) / TKI: ramucirumab, sunitinib, sorafenib"], "feat": "Asse VEGF: bevacizumab (anti-ligando) vs ramucirumab (anti-recettore)", "subs": {"recettore": {"label": "VEGF / VEGFR", "color": "#f4a259", "role": "Tirosin-chinasi del VEGF → angiogenesi", "site": ""}, "ligando": {"label": "Ligando: VEGF", "color": "#f0d59a", "role": "Citochina/ligando che attiva il recettore.", "site": ""}}, "states": "Ligando → dimerizzazione → segnale → spegnimento", "quote": {"t": "Angiogenesi tumorale e neovascolarizzazione retinica", "s": "Generale (biologici)"}, "gg": "Antiangiogenici: bevacizumab e aflibercept neutralizzano il VEGF; ramucirumab blocca il VEGFR2. Usati in oncologia (colon, polmone, rene) e, intravitreali, nella degenerazione maculare. Effetti: ipertensione, proteinuria, eventi trombotici, ritardata cicatrizzazione.", "flag": null, "trap": "★ bevacizumab = anti-LIGANDO (VEGF); ramucirumab = anti-RECETTORE (VEGFR2). Anche intravitreali (DMLE). Effetti: ipertensione/proteinuria."}});
 Object.assign(C_EN,{"il6r": {"name": "IL-6R (cytokine receptor)", "short": "IL-6R", "fam": "biologici", "mod": "b", "topo": "Single-pass surface receptor; signals via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "IL-6R", "ligLabel": "IL-6", "subKeys": ["IL-6R", "IL-6R"], "ionColor": "#e07a7a", "transmit": ["Recettore citochinico · JAK → STAT3 (infiammazione, fase acuta)", "Cytokine receptor · JAK → STAT3 (inflammation, acute phase)"], "subLabel": "recettore IL-6 (JAK-STAT)", "cytokine": true}, "stoich": "Surface receptor + cytokine ligand", "poro": "Cytokine receptor · JAK → STAT3 (inflammation, acute phase)", "effect": "up", "effectTxt": "Drives systemic inflammation: acute-phase proteins (CRP), fever, immune activation", "drugs": ["Antagonists (anti-IL-6R): tocilizumab, sarilumab"], "feat": "Cytokine (JAK-STAT) · target of tocilizumab", "subs": {"recettore": {"label": "IL-6R", "color": "#e07a7a", "role": "Cytokine receptor · JAK → STAT3 (inflammation, acute phase)", "site": ""}, "ligando": {"label": "Ligand: IL-6", "color": "#f0d59a", "role": "Cytokine/ligand that activates the receptor.", "site": ""}}, "states": "Ligand → dimerization → signal → shutoff", "quote": {"t": "Drives systemic inflammation: acute-phase proteins (CRP), fever, immune activation", "s": "Generale (biologici)"}, "gg": "Tocilizumab and sarilumab block the IL-6 receptor → rheumatoid arthritis, giant-cell arteritis and CAR-T cytokine-release syndrome (CRS). Effect: ↓CRP, infection risk and ↑ transaminases/lipids.", "flag": null, "trap": "★ tocilizumab = anti-IL-6R (binds the RECEPTOR); also used in CAR-T CRS and severe COVID. CRP drops → can mask infections."}, "il1r": {"name": "IL-1R (cytokine receptor)", "short": "IL-1R", "fam": "biologici", "mod": "b", "topo": "Single-pass surface receptor; signals via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "IL-1R", "ligLabel": "IL-1", "subKeys": ["IL-1R", "IL-1R"], "ionColor": "#f4a259", "transmit": ["Recettore citochinico · MyD88 → NF-κB (infiammazione)", "Cytokine receptor · MyD88 → NF-κB (inflammation)"], "subLabel": "recettore IL-1 (NF-κB)", "cytokine": true}, "stoich": "Surface receptor + cytokine ligand", "poro": "Cytokine receptor · MyD88 → NF-κB (inflammation)", "effect": "up", "effectTxt": "Triggers inflammation (fever, IL-6, COX-2); key in autoinflammatory disease and gout", "drugs": ["Receptor antagonist: anakinra", "Anti-ligand (anti-IL-1β): canakinumab, rilonacept"], "feat": "Cytokine (NF-κB) · anakinra = recombinant IL-1Ra", "subs": {"recettore": {"label": "IL-1R", "color": "#f4a259", "role": "Cytokine receptor · MyD88 → NF-κB (inflammation)", "site": ""}, "ligando": {"label": "Ligand: IL-1", "color": "#f0d59a", "role": "Cytokine/ligand that activates the receptor.", "site": ""}}, "states": "Ligand → dimerization → signal → shutoff", "quote": {"t": "Triggers inflammation (fever, IL-6, COX-2); key in autoinflammatory disease and gout", "s": "Generale (biologici)"}, "gg": "Anakinra (recombinant IL-1Ra) blocks the IL-1 receptor; canakinumab and rilonacept neutralize IL-1β. Used in gout, juvenile idiopathic arthritis and autoinflammatory syndromes (CAPS).", "flag": null, "trap": "★ Distinction: anakinra blocks the IL-1 RECEPTOR; canakinumab binds the IL-1β LIGAND."}, "tnfr": {"name": "TNF / TNFR (cytokine receptor)", "short": "TNF-α / TNFR", "fam": "biologici", "mod": "b", "topo": "Single-pass surface receptor; signals via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "TNF / TNFR", "ligLabel": "TNF-α", "subKeys": ["TNF / TNFR", "TNF / TNFR"], "ionColor": "#e5383b", "transmit": ["Citochina pro-infiammatoria → TNFR → NF-κB", "Pro-inflammatory cytokine → TNFR → NF-κB"], "subLabel": "TNF-α → NF-κB", "cytokine": true}, "stoich": "Surface receptor + cytokine ligand", "poro": "Pro-inflammatory cytokine → TNFR → NF-κB", "effect": "up", "effectTxt": "TNF-α drives chronic inflammation (RA, IBD, psoriasis, spondylitis)", "drugs": ["Anti-TNF (ligand-binding): adalimumab, infliximab, golimumab, certolizumab", "Soluble decoy receptor: etanercept"], "feat": "Target of anti-TNF -mabs and etanercept (decoy receptor)", "subs": {"recettore": {"label": "TNF / TNFR", "color": "#e5383b", "role": "Pro-inflammatory cytokine → TNFR → NF-κB", "site": ""}, "ligando": {"label": "Ligand: TNF-α", "color": "#f0d59a", "role": "Cytokine/ligand that activates the receptor.", "site": ""}}, "states": "Ligand → dimerization → signal → shutoff", "quote": {"t": "TNF-α drives chronic inflammation (RA, IBD, psoriasis, spondylitis)", "s": "Generale (biologici)"}, "gg": "Anti-TNF agents (adalimumab, infliximab, golimumab, certolizumab) sequester TNF-α; etanercept is a decoy receptor (TNFR2-Fc). Used in RA, IBD, psoriasis, spondylitis. TB/HBV reactivation: screen before therapy.", "flag": null, "trap": "★ All anti-TNF agents target the LIGAND (not the receptor). Before starting: screen for latent TB and hepatitis B."}, "il5r": {"name": "IL-5 / IL-5Rα (cytokine receptor)", "short": "IL-5 / IL-5Rα", "fam": "biologici", "mod": "b", "topo": "Single-pass surface receptor; signals via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "IL-5 / IL-5Rα", "ligLabel": "IL-5", "subKeys": ["IL-5 / IL-5Rα", "IL-5 / IL-5Rα"], "ionColor": "#52b788", "transmit": ["Citochina eosinofila → IL-5Rα → JAK/STAT", "Eosinophil cytokine → IL-5Rα → JAK/STAT"], "subLabel": "IL-5Rα (eosinofili)", "cytokine": true}, "stoich": "Surface receptor + cytokine ligand", "poro": "Eosinophil cytokine → IL-5Rα → JAK/STAT", "effect": "up", "effectTxt": "IL-5 = eosinophil survival/activation → severe eosinophilic asthma", "drugs": ["Anti-receptor (IL-5Rα): benralizumab", "Anti-ligand (IL-5): mepolizumab, reslizumab"], "feat": "Target of severe eosinophilic asthma biologics", "subs": {"recettore": {"label": "IL-5 / IL-5Rα", "color": "#52b788", "role": "Eosinophil cytokine → IL-5Rα → JAK/STAT", "site": ""}, "ligando": {"label": "Ligand: IL-5", "color": "#f0d59a", "role": "Cytokine/ligand that activates the receptor.", "site": ""}}, "states": "Ligand → dimerization → signal → shutoff", "quote": {"t": "IL-5 = eosinophil survival/activation → severe eosinophilic asthma", "s": "Generale (biologici)"}, "gg": "In severe eosinophilic asthma: mepolizumab and reslizumab neutralize IL-5; benralizumab blocks the IL-5Rα receptor and depletes eosinophils (ADCC). They reduce exacerbations and oral-steroid use.", "flag": null, "trap": "★ benralizumab = anti-RECEPTOR (IL-5Rα); mepolizumab/reslizumab = anti-LIGAND (IL-5)."}, "il4r": {"name": "IL-4Rα (cytokine receptor)", "short": "IL-4Rα", "fam": "biologici", "mod": "b", "topo": "Single-pass surface receptor; signals via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "IL-4Rα", "ligLabel": "IL-4 / IL-13", "subKeys": ["IL-4Rα", "IL-4Rα"], "ionColor": "#4ea8de", "transmit": ["Recettore citochinico Th2 → JAK → STAT6", "Th2 cytokine receptor → JAK → STAT6"], "subLabel": "IL-4Rα (Th2/JAK-STAT6)", "cytokine": true}, "stoich": "Surface receptor + cytokine ligand", "poro": "Th2 cytokine receptor → JAK → STAT6", "effect": "up", "effectTxt": "Th2 axis (IL-4/IL-13): IgE, allergic inflammation (asthma, atopic dermatitis)", "drugs": ["Antagonists (anti-IL-4Rα): dupilumab"], "feat": "One target (IL-4Rα) blocks both IL-4 and IL-13", "subs": {"recettore": {"label": "IL-4Rα", "color": "#4ea8de", "role": "Th2 cytokine receptor → JAK → STAT6", "site": ""}, "ligando": {"label": "Ligand: IL-4 / IL-13", "color": "#f0d59a", "role": "Cytokine/ligand that activates the receptor.", "site": ""}}, "states": "Ligand → dimerization → signal → shutoff", "quote": {"t": "Th2 axis (IL-4/IL-13): IgE, allergic inflammation (asthma, atopic dermatitis)", "s": "Generale (biologici)"}, "gg": "Dupilumab (anti-IL-4Rα) blocks IL-4 and IL-13 signalling: type-2 asthma, atopic dermatitis, nasal polyposis, eosinophilic esophagitis. Effect: ↓ tissue IgE/eosinophils; possible conjunctivitis.", "flag": null, "trap": "★ A single target, IL-4Rα, shuts down TWO cytokines (IL-4 + IL-13): the target of dupilumab."}, "fceri": {"name": "FcεRI / IgE (cytokine receptor)", "short": "FcεRI (IgE)", "fam": "biologici", "mod": "b", "topo": "Single-pass surface receptor; signals via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "FcεRI / IgE", "ligLabel": "IgE", "subKeys": ["FcεRI / IgE", "FcεRI / IgE"], "ionColor": "#f6bd60", "transmit": ["Recettore ad alta affinità per le IgE → degranulazione mastocitaria", "High-affinity IgE receptor → mast-cell degranulation"], "subLabel": "FcεRI (mastociti)", "cytokine": true}, "stoich": "Surface receptor + cytokine ligand", "poro": "High-affinity IgE receptor → mast-cell degranulation", "effect": "up", "effectTxt": "Allergen-crosslinked IgE on FcεRI triggers degranulation (histamine) → allergy", "drugs": ["Anti-IgE (ligand-binding): omalizumab"], "feat": "(Indirect) target of omalizumab", "subs": {"recettore": {"label": "FcεRI / IgE", "color": "#f6bd60", "role": "High-affinity IgE receptor → mast-cell degranulation", "site": ""}, "ligando": {"label": "Ligand: IgE", "color": "#f0d59a", "role": "Cytokine/ligand that activates the receptor.", "site": ""}}, "states": "Ligand → dimerization → signal → shutoff", "quote": {"t": "Allergen-crosslinked IgE on FcεRI triggers degranulation (histamine) → allergy", "s": "Generale (biologici)"}, "gg": "Omalizumab (anti-IgE) sequesters circulating IgE, reducing FcεRI occupancy and expression: severe allergic asthma and chronic spontaneous urticaria. Not given during an acute reaction.", "flag": null, "trap": "★ Omalizumab binds FREE IgE (the ligand), not the FcεRI receptor directly; by lowering IgE it also reduces FcεRI."}, "epor": {"name": "EPO-R (cytokine receptor)", "short": "EPO-R", "fam": "biologici", "mod": "b", "topo": "Single-pass surface receptor; signals via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "EPO-R", "ligLabel": "eritropoietina", "subKeys": ["EPO-R", "EPO-R"], "ionColor": "#e07a7a", "transmit": ["Recettore citochinico di tipo I → JAK2 → STAT5 → eritropoiesi", "Type-I cytokine receptor → JAK2 → STAT5 → erythropoiesis"], "subLabel": "EPO-R (JAK2-STAT5)", "cytokine": true}, "stoich": "Surface receptor + cytokine ligand", "poro": "Type-I cytokine receptor → JAK2 → STAT5 → erythropoiesis", "effect": "up", "effectTxt": "Stimulates red-cell production in the bone marrow", "drugs": ["Agonists (ESAs): epoetina alfa, epoetina beta, darbepoetina"], "feat": "Agonists = ESAs (epoetins)", "subs": {"recettore": {"label": "EPO-R", "color": "#e07a7a", "role": "Type-I cytokine receptor → JAK2 → STAT5 → erythropoiesis", "site": ""}, "ligando": {"label": "Ligand: eritropoietina", "color": "#f0d59a", "role": "Cytokine/ligand that activates the receptor.", "site": ""}}, "states": "Ligand → dimerization → signal → shutoff", "quote": {"t": "Stimulates red-cell production in the bone marrow", "s": "Generale (biologici)"}, "gg": "Epoetins (alfa/beta, darbepoetin) are EPO-R agonists for anemia of chronic kidney disease or chemotherapy. Keep the Hb target modest: thrombotic/hypertension risk if over-corrected.", "flag": null, "trap": "★ Epoetins (ESAs) are EPO-R AGONISTS; do not exceed the Hb target (thrombotic risk). Doping abuse."}, "gcsfr": {"name": "G-CSF-R (cytokine receptor)", "short": "G-CSF-R", "fam": "biologici", "mod": "b", "topo": "Single-pass surface receptor; signals via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "G-CSF-R", "ligLabel": "G-CSF", "subKeys": ["G-CSF-R", "G-CSF-R"], "ionColor": "#52b788", "transmit": ["Recettore citochinico di tipo I → JAK → STAT → granulopoiesi", "Type-I cytokine receptor → JAK → STAT → granulopoiesis"], "subLabel": "G-CSF-R (granulopoiesi)", "cytokine": true}, "stoich": "Surface receptor + cytokine ligand", "poro": "Type-I cytokine receptor → JAK → STAT → granulopoiesis", "effect": "up", "effectTxt": "Stimulates neutrophil production and release", "drugs": ["Agonists: filgrastim, pegfilgrastim, lenograstim"], "feat": "Agonists = filgrastim and analogues", "subs": {"recettore": {"label": "G-CSF-R", "color": "#52b788", "role": "Type-I cytokine receptor → JAK → STAT → granulopoiesis", "site": ""}, "ligando": {"label": "Ligand: G-CSF", "color": "#f0d59a", "role": "Cytokine/ligand that activates the receptor.", "site": ""}}, "states": "Ligand → dimerization → signal → shutoff", "quote": {"t": "Stimulates neutrophil production and release", "s": "Generale (biologici)"}, "gg": "Filgrastim, pegfilgrastim and lenograstim are G-CSF-R agonists for chemotherapy-induced febrile neutropenia and stem-cell mobilization. Effect: bone pain.", "flag": null, "trap": "★ filgrastim/pegfilgrastim = G-CSF-R AGONISTS (↑neutrophils); typical effect: bone pain."}, "tpor": {"name": "TPO-R (c-Mpl) (cytokine receptor)", "short": "TPO-R (c-Mpl)", "fam": "biologici", "mod": "b", "topo": "Single-pass surface receptor; signals via JAK-STAT", "geom": {"type": "singlepass", "chains": 2, "recLabel": "TPO-R (c-Mpl)", "ligLabel": "trombopoietina", "subKeys": ["TPO-R (c-Mpl)", "TPO-R (c-Mpl)"], "ionColor": "#b388eb", "transmit": ["Recettore citochinico → JAK2 → STAT → trombopoiesi", "Cytokine receptor → JAK2 → STAT → thrombopoiesis"], "subLabel": "TPO-R / c-Mpl", "cytokine": true}, "stoich": "Surface receptor + cytokine ligand", "poro": "Cytokine receptor → JAK2 → STAT → thrombopoiesis", "effect": "up", "effectTxt": "Stimulates platelet production from megakaryocytes", "drugs": ["TPO-R agonists: romiplostim, eltrombopag, avatrombopag"], "feat": "Agonists = romiplostim (peptibody) and eltrombopag (oral)", "subs": {"recettore": {"label": "TPO-R (c-Mpl)", "color": "#b388eb", "role": "Cytokine receptor → JAK2 → STAT → thrombopoiesis", "site": ""}, "ligando": {"label": "Ligand: trombopoietina", "color": "#f0d59a", "role": "Cytokine/ligand that activates the receptor.", "site": ""}}, "states": "Ligand → dimerization → signal → shutoff", "quote": {"t": "Stimulates platelet production from megakaryocytes", "s": "Generale (biologici)"}, "gg": "Romiplostim, eltrombopag and avatrombopag are TPO-R agonists for immune thrombocytopenia (ITP) and other thrombocytopenias. Eltrombopag is oral (watch hepatotoxicity).", "flag": null, "trap": "★ eltrombopag/romiplostim = TPO-R AGONISTS (↑platelets) in ITP — opposite logic to antiplatelet drugs."}, "cd20": {"name": "CD20 (cytokine receptor)", "short": "CD20", "fam": "biologici", "mod": "b", "topo": "Single-pass surface receptor; signals via JAK-STAT", "geom": {"type": "singlepass", "chains": 1, "recLabel": "CD20", "ligLabel": "—", "subKeys": ["CD20"], "ionColor": "#4ea8de", "transmit": ["Antigene di superficie dei linfociti B → deplezione (ADCC/CDC)", "B-cell surface antigen → depletion (ADCC/CDC)"], "subLabel": "antigene di superficie (linfociti B)", "cytokine": true}, "stoich": "Surface receptor + cytokine ligand", "poro": "B-cell surface antigen → depletion (ADCC/CDC)", "effect": "up", "effectTxt": "B-cell surface antigen (no signalling): its depletion removes B cells", "drugs": ["Anti-CD20 (B-cell depletion): rituximab, ocrelizumab, ofatumumab, obinutuzumab"], "feat": "Target of anti-CD20 agents (B-cell depletion)", "subs": {"recettore": {"label": "CD20", "color": "#4ea8de", "role": "B-cell surface antigen → depletion (ADCC/CDC)", "site": ""}, "ligando": {"label": "Ligand: —", "color": "#f0d59a", "role": "Cytokine/ligand that activates the receptor.", "site": ""}}, "states": "Ligand → dimerization → signal → shutoff", "quote": {"t": "B-cell surface antigen (no signalling): its depletion removes B cells", "s": "Generale (biologici)"}, "gg": "Rituximab, ocrelizumab, ofatumumab and obinutuzumab deplete B cells (ADCC/CDC): B-cell lymphomas, rheumatoid arthritis, ANCA vasculitis and multiple sclerosis (ocrelizumab). Risk: HBV reactivation, infections.", "flag": null, "trap": "★ CD20 does not transduce signal: anti-CD20 agents work by DEPLETION (ADCC/CDC). Ocrelizumab is a mainstay in MS."}, "vegfr": {"name": "VEGF / VEGFR (receptor tyrosine kinase)", "short": "VEGF / VEGFR", "fam": "biologici", "mod": "b", "topo": "Single-pass surface receptor; signals via tyrosine kinase", "geom": {"type": "singlepass", "chains": 2, "recLabel": "VEGF / VEGFR", "ligLabel": "VEGF", "subKeys": ["VEGF / VEGFR", "VEGF / VEGFR"], "ionColor": "#f4a259", "transmit": ["Tirosin-chinasi del VEGF → angiogenesi", "VEGF receptor tyrosine kinase → angiogenesis"], "subLabel": "VEGFR (RTK, angiogenesi)", "kinase": true}, "stoich": "Surface receptor + cytokine ligand", "poro": "VEGF receptor tyrosine kinase → angiogenesis", "effect": "up", "effectTxt": "Tumour angiogenesis and retinal neovascularization", "drugs": ["Anti-ligand (VEGF): bevacizumab, aflibercept", "Anti-receptor (VEGFR2) / TKIs: ramucirumab, sunitinib, sorafenib"], "feat": "VEGF axis: bevacizumab (anti-ligand) vs ramucirumab (anti-receptor)", "subs": {"recettore": {"label": "VEGF / VEGFR", "color": "#f4a259", "role": "VEGF receptor tyrosine kinase → angiogenesis", "site": ""}, "ligando": {"label": "Ligand: VEGF", "color": "#f0d59a", "role": "Cytokine/ligand that activates the receptor.", "site": ""}}, "states": "Ligand → dimerization → signal → shutoff", "quote": {"t": "Tumour angiogenesis and retinal neovascularization", "s": "Generale (biologici)"}, "gg": "Antiangiogenics: bevacizumab and aflibercept neutralize VEGF; ramucirumab blocks VEGFR2. Used in oncology (colon, lung, kidney) and, intravitreally, in macular degeneration. Effects: hypertension, proteinuria, thrombotic events, impaired wound healing.", "flag": null, "trap": "★ bevacizumab = anti-LIGAND (VEGF); ramucirumab = anti-RECEPTOR (VEGFR2). Also intravitreal (AMD). Effects: hypertension/proteinuria."}});
-Object.assign(RECDRUGS,{"il6r": [{"role": ["Antagonisti (anti-IL-6R)", "Antagonists (anti-IL-6R)"], "type": "antag", "d": [{"n": "tocilizumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}, {"n": "sarilumab", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}]}], "il1r": [{"role": ["Antagonista del recettore", "Receptor antagonist"], "type": "antag", "d": [{"n": "anakinra", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}]}, {"role": ["Anti-ligando (anti-IL-1β)", "Anti-ligand (anti-IL-1β)"], "type": "indir", "d": [{"n": "canakinumab", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}, {"n": "rilonacept", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}]}], "tnfr": [{"role": ["Anti-TNF (legano il ligando)", "Anti-TNF (ligand-binding)"], "type": "indir", "d": [{"n": "adalimumab", "card": "A9__anti-tnf-classe"}, {"n": "infliximab", "card": "A9__anti-tnf-classe"}, {"n": "golimumab", "card": "A9__anti-tnf-classe"}, {"n": "certolizumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}]}, {"role": ["Recettore solubile-esca", "Soluble decoy receptor"], "type": "indir", "d": [{"n": "etanercept", "card": "A9__anti-tnf-classe"}]}], "il5r": [{"role": ["Anti-recettore (IL-5Rα)", "Anti-receptor (IL-5Rα)"], "type": "antag", "d": [{"n": "benralizumab", "card": "A8__asma-bpco-basi-e-strategia-terapeutica"}]}, {"role": ["Anti-ligando (IL-5)", "Anti-ligand (IL-5)"], "type": "indir", "d": [{"n": "mepolizumab", "card": "A8__asma-bpco-basi-e-strategia-terapeutica"}, {"n": "reslizumab", "card": "A8__asma-bpco-basi-e-strategia-terapeutica"}]}], "il4r": [{"role": ["Antagonisti (anti-IL-4Rα)", "Antagonists (anti-IL-4Rα)"], "type": "antag", "d": [{"n": "dupilumab", "card": "A8__asma-bpco-basi-e-strategia-terapeutica"}]}], "fceri": [{"role": ["Anti-IgE (lega il ligando)", "Anti-IgE (ligand-binding)"], "type": "indir", "d": [{"n": "omalizumab", "card": "A8__biotecnologici-omalizumab-anti-il5"}]}], "epor": [{"role": ["Agonisti (ESA)", "Agonists (ESAs)"], "type": "agon", "d": [{"n": "epoetina alfa"}, {"n": "epoetina beta"}, {"n": "darbepoetina"}]}], "gcsfr": [{"role": ["Agonisti", "Agonists"], "type": "agon", "d": [{"n": "filgrastim"}, {"n": "pegfilgrastim"}, {"n": "lenograstim"}]}], "tpor": [{"role": ["Agonisti del TPO-R", "TPO-R agonists"], "type": "agon", "d": [{"n": "romiplostim"}, {"n": "eltrombopag"}, {"n": "avatrombopag"}]}], "cd20": [{"role": ["Anti-CD20 (deplezione B)", "Anti-CD20 (B-cell depletion)"], "type": "antag", "d": [{"n": "rituximab", "card": "B7__sm-disease-modifying-treatments-dmt"}, {"n": "ocrelizumab", "card": "B7__sm-disease-modifying-treatments-dmt"}, {"n": "ofatumumab", "card": "B7__sm-disease-modifying-treatments-dmt"}, {"n": "obinutuzumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}]}], "vegfr": [{"role": ["Anti-ligando (VEGF)", "Anti-ligand (VEGF)"], "type": "indir", "d": [{"n": "bevacizumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}, {"n": "aflibercept", "card": "B14__antitumorali-strategie-e-principi"}]}, {"role": ["Anti-recettore (VEGFR2) / TKI", "Anti-receptor (VEGFR2) / TKIs"], "type": "antag", "d": [{"n": "ramucirumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}, {"n": "sunitinib", "card": "B14__antitumorali-strategie-e-principi"}, {"n": "sorafenib", "card": "B14__antitumorali-strategie-e-principi"}]}]});
-Object.assign(CARDMAP,{"tocilizumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "sarilumab": "A9__farmaci-biologici-proteine-terapeutiche-", "anakinra": "A9__farmaci-biologici-proteine-terapeutiche-", "canakinumab": "A9__farmaci-biologici-proteine-terapeutiche-", "rilonacept": "A9__farmaci-biologici-proteine-terapeutiche-", "adalimumab": "A9__anti-tnf-classe", "infliximab": "A9__anti-tnf-classe", "golimumab": "A9__anti-tnf-classe", "certolizumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "etanercept": "A9__anti-tnf-classe", "benralizumab": "A8__asma-bpco-basi-e-strategia-terapeutica", "mepolizumab": "A8__asma-bpco-basi-e-strategia-terapeutica", "reslizumab": "A8__asma-bpco-basi-e-strategia-terapeutica", "dupilumab": "A8__asma-bpco-basi-e-strategia-terapeutica", "omalizumab": "A8__biotecnologici-omalizumab-anti-il5", "rituximab": "B7__sm-disease-modifying-treatments-dmt", "ocrelizumab": "B7__sm-disease-modifying-treatments-dmt", "ofatumumab": "B7__sm-disease-modifying-treatments-dmt", "obinutuzumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "bevacizumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "aflibercept": "B14__antitumorali-strategie-e-principi", "ramucirumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "sunitinib": "B14__antitumorali-strategie-e-principi", "sorafenib": "B14__antitumorali-strategie-e-principi"});
+Object.assign(RECDRUGS,{"il6r": [{"role": ["Antagonisti (anti-IL-6R)", "Antagonists (anti-IL-6R)"], "type": "antag", "d": [{"n": "tocilizumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}, {"n": "sarilumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}]}], "il1r": [{"role": ["Antagonista del recettore", "Receptor antagonist"], "type": "antag", "d": [{"n": "anakinra", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}]}, {"role": ["Anti-ligando (anti-IL-1β)", "Anti-ligand (anti-IL-1β)"], "type": "indir", "d": [{"n": "canakinumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}, {"n": "rilonacept", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}]}], "tnfr": [{"role": ["Anti-TNF (legano il ligando)", "Anti-TNF (ligand-binding)"], "type": "indir", "d": [{"n": "adalimumab", "card": "A9__anti-tnf-classe"}, {"n": "infliximab", "card": "A9__anti-tnf-classe"}, {"n": "golimumab", "card": "A9__anti-tnf-classe"}, {"n": "certolizumab", "card": "A9__anti-tnf-classe"}]}, {"role": ["Recettore solubile-esca", "Soluble decoy receptor"], "type": "indir", "d": [{"n": "etanercept", "card": "A9__anti-tnf-classe"}]}], "il5r": [{"role": ["Anti-recettore (IL-5Rα)", "Anti-receptor (IL-5Rα)"], "type": "antag", "d": [{"n": "benralizumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}]}, {"role": ["Anti-ligando (IL-5)", "Anti-ligand (IL-5)"], "type": "indir", "d": [{"n": "mepolizumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}, {"n": "reslizumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}]}], "il4r": [{"role": ["Antagonisti (anti-IL-4Rα)", "Antagonists (anti-IL-4Rα)"], "type": "antag", "d": [{"n": "dupilumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}]}], "fceri": [{"role": ["Anti-IgE (lega il ligando)", "Anti-IgE (ligand-binding)"], "type": "indir", "d": [{"n": "omalizumab", "card": "A8__biotecnologici-omalizumab-anti-il5"}]}], "epor": [{"role": ["Agonisti (ESA)", "Agonists (ESAs)"], "type": "agon", "d": [{"n": "epoetina alfa", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}, {"n": "epoetina beta", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}, {"n": "darbepoetina", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}]}], "gcsfr": [{"role": ["Agonisti", "Agonists"], "type": "agon", "d": [{"n": "filgrastim", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}, {"n": "pegfilgrastim", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}, {"n": "lenograstim", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}]}], "tpor": [{"role": ["Agonisti del TPO-R", "TPO-R agonists"], "type": "agon", "d": [{"n": "romiplostim", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}, {"n": "eltrombopag", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}, {"n": "avatrombopag", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}]}], "cd20": [{"role": ["Anti-CD20 (deplezione B)", "Anti-CD20 (B-cell depletion)"], "type": "antag", "d": [{"n": "rituximab", "card": "B7__sm-disease-modifying-treatments-dmt"}, {"n": "ocrelizumab", "card": "B7__sm-disease-modifying-treatments-dmt"}, {"n": "ofatumumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}, {"n": "obinutuzumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}]}], "vegfr": [{"role": ["Anti-ligando (VEGF)", "Anti-ligand (VEGF)"], "type": "indir", "d": [{"n": "bevacizumab", "card": "B14__antitumorali-strategie-e-principi"}, {"n": "aflibercept", "card": "B14__antitumorali-strategie-e-principi"}]}, {"role": ["Anti-recettore (VEGFR2) / TKI", "Anti-receptor (VEGFR2) / TKIs"], "type": "antag", "d": [{"n": "ramucirumab", "card": "B14__antitumorali-strategie-e-principi"}, {"n": "sunitinib", "card": "B14__antitumorali-strategie-e-principi"}, {"n": "sorafenib", "card": "B14__antitumorali-strategie-e-principi"}]}]});
+Object.assign(CARDMAP,{"tocilizumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "sarilumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "anakinra": "A9__farmaci-biologici-proteine-terapeutiche-", "canakinumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "rilonacept": "A9__farmaci-biologici-proteine-terapeutiche-", "adalimumab": "A9__anti-tnf-classe", "infliximab": "A9__anti-tnf-classe", "golimumab": "A9__anti-tnf-classe", "certolizumab": "A9__anti-tnf-classe", "etanercept": "A9__anti-tnf-classe", "benralizumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "mepolizumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "reslizumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "dupilumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "omalizumab": "A8__biotecnologici-omalizumab-anti-il5", "rituximab": "B7__sm-disease-modifying-treatments-dmt", "ocrelizumab": "B7__sm-disease-modifying-treatments-dmt", "ofatumumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "obinutuzumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "bevacizumab": "B14__antitumorali-strategie-e-principi", "aflibercept": "B14__antitumorali-strategie-e-principi", "ramucirumab": "B14__antitumorali-strategie-e-principi", "sunitinib": "B14__antitumorali-strategie-e-principi", "sorafenib": "B14__antitumorali-strategie-e-principi", "epoetina alfa": "A9__farmaci-biologici-proteine-terapeutiche-", "epoetina beta": "A9__farmaci-biologici-proteine-terapeutiche-", "darbepoetina": "A9__farmaci-biologici-proteine-terapeutiche-", "filgrastim": "A9__farmaci-biologici-proteine-terapeutiche-", "pegfilgrastim": "A9__farmaci-biologici-proteine-terapeutiche-", "lenograstim": "A9__farmaci-biologici-proteine-terapeutiche-", "romiplostim": "A9__farmaci-biologici-proteine-terapeutiche-", "eltrombopag": "A9__farmaci-biologici-proteine-terapeutiche-", "avatrombopag": "A9__farmaci-biologici-proteine-terapeutiche-"});
 Object.assign(LOC,{"il6r": ["Linfociti, epatociti, cellule endoteliali", "Lymphocytes, hepatocytes, endothelial cells"], "il1r": ["Ubiquitario: cellule immunitarie, sinovia, endotelio", "Ubiquitous: immune cells, synovium, endothelium"], "tnfr": ["Cellule immunitarie, sinovia, mucosa intestinale, cute", "Immune cells, synovium, gut mucosa, skin"], "il5r": ["Eosinofili, midollo osseo", "Eosinophils, bone marrow"], "il4r": ["Linfociti Th2, cellule epiteliali, cute", "Th2 lymphocytes, epithelial cells, skin"], "fceri": ["Mastociti, basofili", "Mast cells, basophils"], "epor": ["Progenitori eritroidi del midollo osseo", "Erythroid progenitors in the bone marrow"], "gcsfr": ["Progenitori mieloidi del midollo osseo", "Myeloid progenitors in the bone marrow"], "tpor": ["Megacariociti del midollo osseo", "Megakaryocytes in the bone marrow"], "cd20": ["Linfociti B (dal pre-B alle cellule mature, non le plasmacellule)", "B lymphocytes (pre-B to mature, not plasma cells)"], "vegfr": ["Endotelio vascolare, tumori, retina", "Vascular endothelium, tumours, retina"]});
 FAMS.push({id:"biologici",label:"Biologici · recettori citochinici e di superficie",chans:["il6r","il1r","tnfr","il5r","il4r","fceri","epor","gcsfr","tpor","cd20","vegfr"]});
 
-Object.assign(CARDMAP,{"tocilizumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "sarilumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "canakinumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "mepolizumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "reslizumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "benralizumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "dupilumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "ofatumumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "obinutuzumab": "A9__anticorpi-monoclonali-tipi-e-nomenclatur", "certolizumab": "A9__anti-tnf-classe", "anakinra": "A9__farmaci-biologici-proteine-terapeutiche-", "rilonacept": "A9__farmaci-biologici-proteine-terapeutiche-", "epoetina alfa": "A9__farmaci-biologici-proteine-terapeutiche-", "epoetina beta": "A9__farmaci-biologici-proteine-terapeutiche-", "darbepoetina": "A9__farmaci-biologici-proteine-terapeutiche-", "filgrastim": "A9__farmaci-biologici-proteine-terapeutiche-", "pegfilgrastim": "A9__farmaci-biologici-proteine-terapeutiche-", "lenograstim": "A9__farmaci-biologici-proteine-terapeutiche-", "romiplostim": "A9__farmaci-biologici-proteine-terapeutiche-", "eltrombopag": "A9__farmaci-biologici-proteine-terapeutiche-", "avatrombopag": "A9__farmaci-biologici-proteine-terapeutiche-", "bevacizumab": "B14__antitumorali-strategie-e-principi", "aflibercept": "B14__antitumorali-strategie-e-principi", "ramucirumab": "B14__antitumorali-strategie-e-principi", "sunitinib": "B14__antitumorali-strategie-e-principi", "sorafenib": "B14__antitumorali-strategie-e-principi"});
-Object.assign(RECDRUGS,{"il6r": [{"role": ["Antagonisti (anti-IL-6R)", "Antagonists (anti-IL-6R)"], "type": "antag", "d": [{"n": "tocilizumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}, {"n": "sarilumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}]}], "il1r": [{"role": ["Antagonista del recettore", "Receptor antagonist"], "type": "antag", "d": [{"n": "anakinra", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}]}, {"role": ["Anti-ligando (anti-IL-1β)", "Anti-ligand (anti-IL-1β)"], "type": "indir", "d": [{"n": "canakinumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}, {"n": "rilonacept", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}]}], "tnfr": [{"role": ["Anti-TNF (legano il ligando)", "Anti-TNF (ligand-binding)"], "type": "indir", "d": [{"n": "adalimumab", "card": "A9__anti-tnf-classe"}, {"n": "infliximab", "card": "A9__anti-tnf-classe"}, {"n": "golimumab", "card": "A9__anti-tnf-classe"}, {"n": "certolizumab", "card": "A9__anti-tnf-classe"}]}, {"role": ["Recettore solubile-esca", "Soluble decoy receptor"], "type": "indir", "d": [{"n": "etanercept", "card": "A9__anti-tnf-classe"}]}], "il5r": [{"role": ["Anti-recettore (IL-5Rα)", "Anti-receptor (IL-5Rα)"], "type": "antag", "d": [{"n": "benralizumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}]}, {"role": ["Anti-ligando (IL-5)", "Anti-ligand (IL-5)"], "type": "indir", "d": [{"n": "mepolizumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}, {"n": "reslizumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}]}], "il4r": [{"role": ["Antagonisti (anti-IL-4Rα)", "Antagonists (anti-IL-4Rα)"], "type": "antag", "d": [{"n": "dupilumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}]}], "fceri": [{"role": ["Anti-IgE (lega il ligando)", "Anti-IgE (ligand-binding)"], "type": "indir", "d": [{"n": "omalizumab", "card": "A8__biotecnologici-omalizumab-anti-il5"}]}], "epor": [{"role": ["Agonisti (ESA)", "Agonists (ESAs)"], "type": "agon", "d": [{"n": "epoetina alfa", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}, {"n": "epoetina beta", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}, {"n": "darbepoetina", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}]}], "gcsfr": [{"role": ["Agonisti", "Agonists"], "type": "agon", "d": [{"n": "filgrastim", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}, {"n": "pegfilgrastim", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}, {"n": "lenograstim", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}]}], "tpor": [{"role": ["Agonisti del TPO-R", "TPO-R agonists"], "type": "agon", "d": [{"n": "romiplostim", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}, {"n": "eltrombopag", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}, {"n": "avatrombopag", "card": "A9__farmaci-biologici-proteine-terapeutiche-"}]}], "cd20": [{"role": ["Anti-CD20 (deplezione B)", "Anti-CD20 (B-cell depletion)"], "type": "antag", "d": [{"n": "rituximab", "card": "B7__sm-disease-modifying-treatments-dmt"}, {"n": "ocrelizumab", "card": "B7__sm-disease-modifying-treatments-dmt"}, {"n": "ofatumumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}, {"n": "obinutuzumab", "card": "A9__anticorpi-monoclonali-tipi-e-nomenclatur"}]}], "vegfr": [{"role": ["Anti-ligando (VEGF)", "Anti-ligand (VEGF)"], "type": "indir", "d": [{"n": "bevacizumab", "card": "B14__antitumorali-strategie-e-principi"}, {"n": "aflibercept", "card": "B14__antitumorali-strategie-e-principi"}]}, {"role": ["Anti-recettore (VEGFR2) / TKI", "Anti-receptor (VEGFR2) / TKIs"], "type": "antag", "d": [{"n": "ramucirumab", "card": "B14__antitumorali-strategie-e-principi"}, {"n": "sunitinib", "card": "B14__antitumorali-strategie-e-principi"}, {"n": "sorafenib", "card": "B14__antitumorali-strategie-e-principi"}]}]});
 let C=C_IT, DIFFS=DIFFS_IT, EXAM=EXAM_IT;
 /* ===== i18n: helper + applicazione lingua, e tema chiaro/scuro ===== */
 function t(a){return a[LANG==='en'?1:0];}
@@ -3981,15 +4041,15 @@ function buildClassif(){
   if(typeof linkifyDrugsIn==='function') linkifyDrugsIn(v);
 }
 function buildDrugTable(){
-  const order=['nav','cav','kv','nachr','gabaa','ht3','glu'];
+  const order=Object.keys(CHDRUGS);
   const ML={block:t(['blocco','block']),open:t(['apertura','opening']),agon:t(['agonista / PAM','agonist / PAM']),antag:t(['antagonista','antagonist']),indir:t(['indiretto','indirect'])};
   let rows=[];
   order.forEach(ch=>{ (CHDRUGS[ch]||[]).forEach((grp,gi)=>{ grp.drugs.forEach(d=>{ rows.push({d:d, ch:ch, gi:gi, cls:t(grp.cls), mech:t(grp.mech), type:grp.type}); }); }); });
-  const body=rows.map(r=>`<tr data-ch="${r.ch}"><td class="rc drugpill" data-ch="${r.ch}" data-gi="${r.gi}" data-d="${r.d}" data-card="${(typeof drugCard==='function')?drugCard(r.d):''}">${r.d}${(typeof ffMini==='function')?ffMini(r.d):''}</td><td class="dch">${t(CHMETA[r.ch])}</td><td>${r.cls}</td><td><span class="mtag ${r.type}">${ML[r.type]}</span> <span style="color:var(--ink-dim)">${r.mech}</span></td></tr>`).join('');
+  const body=rows.map(r=>`<tr data-ch="${r.ch}"><td class="rc drugpill" data-ch="${r.ch}" data-gi="${r.gi}" data-d="${r.d}" data-card="${(typeof drugCard==='function')?drugCard(r.d):''}">${r.d}${(typeof ffMini==='function')?ffMini(r.d):''}${tblMini(r.d)}</td><td class="dch">${t(CHMETA[r.ch])}</td><td>${r.cls}</td><td><span class="mtag ${r.type}">${ML[r.type]}</span> <span style="color:var(--ink-dim)">${r.mech}</span></td></tr>`).join('');
   const chips=`<button class="filt on" data-cf="all">${t(['Tutti','All'])}</button>`+order.map(ch=>`<button class="filt" data-cf="${ch}">${t(CHMETA[ch])}</button>`).join('');
   document.getElementById('view-drugs').innerHTML=`
     <div class="subhead">▦ ${t(['Farmaci per canale ionico','Drugs by ion channel'])}</div>
-    <p class="lead">${t(['Tutti i farmaci che agiscono sui 7 canali dell\'esploratore — <b>nome · classe · meccanismo</b> (senza dosi). Filtra per canale o cerca un farmaco/classe.','All drugs acting on the 7 channels of the explorer — <b>name · class · mechanism</b> (no doses). Filter by channel or search a drug/class.'])}</p>
+    <p class="lead">${t(['Tutti i farmaci che agiscono su '+order.length+' canali ionici dell\'esploratore — <b>nome · classe · meccanismo</b> (senza dosi). Filtra per canale o cerca un farmaco/classe.','All drugs acting on '+order.length+' ion channels of the explorer — <b>name · class · mechanism</b> (no doses). Filter by channel or search a drug/class.'])}</p>
     <div class="mlegend"><span class="mlegend-lab">${t(['Meccanismo','Mechanism'])}</span><span class="mtag block">${ML.block}</span><span class="mtag open">${ML.open}</span><span class="mtag agon">${ML.agon}</span><span class="mtag antag">${ML.antag}</span><span class="mtag indir">${ML.indir}</span></div>
     <div class="table-card">
       <div class="table-tools">
@@ -4019,12 +4079,17 @@ function openDrugModal(ch,gi,d){
   document.getElementById('dm-how').innerHTML=how?t(how):t(grp.mech);
   dmExplain(C[ch], d);
   const ob=document.getElementById('dm-open'); ob.textContent=t(['◍ Apri il canale in 3D','◍ Open the channel in 3D']); ob.dataset.ch=ch;
-  setFlashLink((typeof CARDMAP!=='undefined' && CARDMAP[(d||'').toLowerCase().trim()])||'');
+  setFlashLink((typeof CARDMAP!=='undefined' && CARDMAP[(d||'').toLowerCase().trim()])||'', d);
   const m=document.getElementById('drug-modal'); m.hidden=false; requestAnimationFrame(()=>m.classList.add('show'));
 }
 function closeDrugModal(){ const m=document.getElementById('drug-modal'); if(!m)return; m.classList.remove('show'); setTimeout(()=>{m.hidden=true;},180); }
 /* link alla scheda del farmaco in FarmacoFlash (#card=<id>) */
 function flashUrl(card){ return 'Flashcard-Farmacologia.html#card='+encodeURIComponent(card); }
+/* link alla Tabella farmaci, ricerca per nome (#q=<nome>) */
+function tableUrl(name){ return 'Tabella-Farmaci.html#q='+encodeURIComponent((''+name).trim()); }
+function escAttr(v){ return (''+v).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch]); }
+/* mini-link "📋" alla Tabella farmaci accanto al 📇 (solo per i farmaci con scheda) */
+function tblMini(name){ if(!drugCard(name)) return ''; const lab=escAttr(t(['Cerca «'+name+'» nella Tabella farmaci','Search “'+name+'” in the drug table'])); return ` <a class="tbl-mini" href="${escAttr(tableUrl(name))}" target="_blank" rel="noopener" title="${lab}" aria-label="${lab}" onclick="event.stopPropagation()">📋</a>`; }
 /* mini-link FarmacoFlash inline (tabella Farmaci) */
 function ffMini(name){ const c=(typeof CARDMAP!=='undefined')&&CARDMAP[(''+name).toLowerCase().trim()]; return c?` <a class="ff-mini" href="${flashUrl(c)}" target="_blank" rel="noopener" title="Apri in FarmacoFlash" onclick="event.stopPropagation()">📇</a>`:''; }
 /* linkify dei nomi di farmaco nelle tabelle in prosa (Interazioni / Liganti G) → scheda FarmacoFlash */
@@ -4039,7 +4104,11 @@ function linkifyDrugsIn(root){ if(!root||typeof CARDMAP==='undefined')return; co
   nodes.forEach(n=>{ const txt=n.nodeValue; re.lastIndex=0; let m,frag=null,last=0;
     while((m=re.exec(txt))){ const s=m.index,e=s+m[0].length; const before=s>0?txt[s-1]:' '; const after=e<txt.length?txt[e]:' '; if(isW(before)||isW(after))continue; const card=CARDMAP[m[0].toLowerCase()]; if(!card)continue; if(!frag)frag=document.createDocumentFragment(); frag.appendChild(document.createTextNode(txt.slice(last,s))); const a=document.createElement('a'); a.className='ff-link'; a.href=flashUrl(card); a.target='_blank'; a.rel='noopener'; a.title='Apri in FarmacoFlash'; a.textContent=m[0]; frag.appendChild(a); last=e; }
     if(frag){ frag.appendChild(document.createTextNode(txt.slice(last))); n.parentNode.replaceChild(frag,n); } }); }
-function setFlashLink(card){ const a=document.getElementById('dm-flash'); if(!a)return; if(card){ a.href=flashUrl(card); a.textContent=t(['📇 Apri la scheda in FarmacoFlash','📇 Open the card in FarmacoFlash']); a.style.display=''; } else { a.style.display='none'; a.removeAttribute('href'); } }
+function setFlashLink(card,name){ const a=document.getElementById('dm-flash'); if(a){ if(card){ a.href=flashUrl(card); a.textContent=t(['📇 Apri la scheda in FarmacoFlash','📇 Open the card in FarmacoFlash']); a.style.display=''; } else { a.style.display='none'; a.removeAttribute('href'); } }
+  /* link secondario "📋 Tabella": solo se il farmaco ha anche la scheda */
+  const tb=document.getElementById('dm-tbl'); if(!tb) return;
+  if(card&&name){ tb.href=tableUrl(name); tb.textContent=t(['📋 Tabella','📋 Table']); tb.title=t(['Cerca «'+name+'» nella Tabella farmaci','Search “'+name+'” in the drug table']); tb.hidden=false; }
+  else { tb.hidden=true; tb.removeAttribute('href'); } }
 /* spiegazione ricca nella modale: contesto clinico (gg) + nota sul farmaco (DRUGNOTE) + trabocchetto (trap) */
 function dmExplain(c, drugName){
   const ctxW=document.getElementById('dm-ctx-wrap'), noteW=document.getElementById('dm-note-wrap'), trapW=document.getElementById('dm-trap-wrap');
@@ -4068,7 +4137,7 @@ function openRecDrugModal(recId,gi,di){
   document.getElementById('dm-how').innerHTML=how;
   dmExplain(c, drug.n);
   const ob=document.getElementById('dm-open'); ob.textContent=t(['◍ Apri il recettore in 3D','◍ Open the receptor in 3D']); ob.dataset.ch=recId;
-  setFlashLink(drug.card||'');
+  setFlashLink(drug.card||drugCard(drug.n), drug.n);
   const m=document.getElementById('drug-modal'); m.hidden=false; requestAnimationFrame(()=>m.classList.add('show'));
 }
 /* fallback per i GPCR generici (gs/gi/gq): farmaci come frase */
@@ -4103,7 +4172,8 @@ function setLang(lang){
   applyLangUI();
   buildChips(); buildTable(); buildDiffs(); buildExam(); buildGProtTable(); buildInteractions(); buildAntibiotics(); buildDrugTable(); buildClassif();
   showGPCRAnim(curGPCR); showChanAnim(curChan); showFork();
-  if(scene && C[current]) buildModel(current);
+  if(C[current]) buildModel(current); // anche senza 3D: ridisegna il pannello nella nuova lingua
+  dlRender();
 }
 function applyLangUI(){
   const e=LANG==='en'?1:0;
@@ -4120,6 +4190,8 @@ function applyLangUI(){
   sq('.tab[data-view="classif"]','⏱ Classificazioni','⏱ Classifications');
   sq('.brand h1','Bersagli <em>&amp;</em> Farmaci in <em>3D</em>','Targets <em>&amp;</em> Drugs in <em>3D</em>',true);
   sq('.brand p','Dai <strong>canali ionici</strong> ai <strong>recettori a proteina G</strong> (muscarinici, adrenergici, dopaminergici, serotoninergici, oppioidi), fino a <strong>interazioni farmacologiche</strong>, <strong>citocromi CYP450</strong> e <strong>antibiotici</strong>: modelli 3D ruotabili a 360°, animazioni dei meccanismi e tabelle di confronto in un unico strumento di studio. Materiale: sbobine del corso, integrazioni Goodman &amp; Gilman segnalate.','From <strong>ion channels</strong> to <strong>G protein-coupled receptors</strong> (muscarinic, adrenergic, dopaminergic, serotonergic, opioid), through <strong>drug interactions</strong>, <strong>CYP450 enzymes</strong> and <strong>antibiotics</strong>: rotatable 3D models, mechanism animations and comparison tables in a single study tool. Source: del corso lecture transcripts, Goodman &amp; Gilman additions flagged.',true);
+  sq('.brand-sub','Canali ionici, recettori e farmaci · modelli 3D, animazioni, tabelle','Ion channels, receptors and drugs · 3D models, animations, tables');
+  { const dx=document.getElementById('dl-x'); if(dx) dx.setAttribute('aria-label',['Chiudi','Close'][e]); }
   idx('.badges .badge',['Farmacologia generale','Farmacologia speciale','Farmacologia'],['Ⓖ Generale · Pharmacodynamics','Ⓢ Speciale · CNS','Pharmacology']);
   sq('#btn-labels','etichette','labels'); sq('#btn-mem','membrana','membrane'); sq('#btn-ions','ioni','ions');
   sq('#btn-section','✂ sezione','✂ section'); sq('#btn-explode','⇲ esploso','⇲ explode');
@@ -4144,6 +4216,103 @@ function applyLangUI(){
   sq('#view-diff .exam > p','Provaci da solo prima di aprire la risposta. Difficoltà: <span class="pill" style="border-color:var(--ok);color:#7fe0b1">base</span> <span class="pill" style="border-color:var(--info);color:#9ecbef">media</span> <span class="pill" style="border-color:var(--warn);color:#f0d59a">alta</span> <span class="pill" style="border-color:var(--bra);color:#ff8d8f">trasversale</span>','Try it yourself before revealing the answer. Difficulty: <span class="pill" style="border-color:var(--ok);color:#7fe0b1">basic</span> <span class="pill" style="border-color:var(--info);color:#9ecbef">medium</span> <span class="pill" style="border-color:var(--warn);color:#f0d59a">high</span> <span class="pill" style="border-color:var(--bra);color:#ff8d8f">cross-cutting</span>',true);
 }
 
+/* =========================================================================
+   DEEP LINK — #card=<id carta> · #target=<chiave> · #q=<testo>
+   All'avvio, su hashchange e (in embed) via {__farmaco:1,type:'route',hash}.
+   #card: carta → farmaci (CARDMAP o .card in RECDRUGS) → bersagli (RECDRUGS/CHDRUGS);
+   stessa regola di build/atlas-index.js (build/atlas-cards.json).
+   ========================================================================= */
+let dl=null; // deep link attivo: {kind:'card'|'q'|'target', hits:[{id,drugs}], sel, q?, key?}
+function dlNorm(v){ return (''+(v||'')).toLowerCase().trim(); }
+/* bersagli con farmaci, nell'ordine dei chip (FAMS) */
+function dlTargetIds(){ const ids=allTargetIds(); Object.keys(RECDRUGS).concat(Object.keys(CHDRUGS)).forEach(k=>{ if(ids.indexOf(k)<0) ids.push(k); }); return ids.filter(id=>C[id]); }
+/* bersagli i cui farmaci soddisfano test(nome, [id carta…]) → [{id, drugs:[nomi]}], ordinati per n. di farmaci */
+function dlFind(test){
+  const hits=[];
+  dlTargetIds().forEach(id=>{
+    const drugs=[]; const add=n=>{ if(drugs.indexOf(n)<0) drugs.push(n); };
+    (RECDRUGS[id]||[]).forEach(g=>(g.d||[]).forEach(x=>{ if(test(x.n,[x.card,drugCard(x.n)])) add(x.n); }));
+    (CHDRUGS[id]||[]).forEach(g=>(g.drugs||[]).forEach(n=>{ if(test(n,[drugCard(n)])) add(n); }));
+    if(drugs.length) hits.push({id,drugs});
+  });
+  return hits.map((h,i)=>({h,i})).sort((x,y)=>(y.h.drugs.length-x.h.drugs.length)||(x.i-y.i)).map(x=>x.h); // prima i bersagli con più farmaci della carta
+}
+/* barra sopra il modello: contesto + bersagli rapidi, oppure un avviso */
+function dlRender(){
+  const bar=document.getElementById('dl-bar'), msg=document.getElementById('dl-msg'), box=document.getElementById('dl-chips');
+  if(!bar||!msg||!box) return;
+  msg.textContent=''; box.textContent='';
+  if(!dl){ bar.hidden=true; return; }
+  const strong=v=>{ const b=document.createElement('b'); b.textContent=v; return b; };
+  if(dl.kind==='card'){
+    if(!dl.hits.length) msg.textContent=t(["Questa carta non ha un bersaglio di membrana nell'atlante","This card has no membrane target in the atlas"]);
+    else { const names=[]; dl.hits.forEach(h=>h.drugs.forEach(n=>{ if(names.indexOf(n)<0) names.push(n); }));
+      msg.append(t(['Dalla carta: ','From the card: ']), strong(names.slice(0,4).join(', ')+(names.length>4?'…':'')),
+        dl.hits.length>1?t([' · '+dl.hits.length+' bersagli:',' · '+dl.hits.length+' targets:']):t([' · bersaglio:',' · target:'])); }
+  } else if(dl.kind==='q'){
+    msg.append(dl.hits.length?t(['Nessun bersaglio si chiama ','No target is named ']):t(['Nessun bersaglio o farmaco corrisponde a ','No target or drug matches ']),
+      strong('«'+dl.q+'»'), dl.hits.length?t([' · farmaci trovati in:',' · drugs found in:']):'');
+  } else msg.append(t(["Bersaglio non trovato nell'atlante: ",'Target not found in the atlas: ']), strong('«'+dl.key+'»'));
+  dl.hits.forEach(h=>{ const c=C[h.id]; if(!c) return;
+    const b=document.createElement('button'); b.type='button'; b.className='dl-chip'+(h.id===dl.sel?' sel':'');
+    b.setAttribute('aria-pressed',String(h.id===dl.sel)); b.title=h.drugs.join(', ');
+    const dot=document.createElement('span'); dot.className='dl-dot'; dot.style.background=accentOf(c);
+    b.append(dot,c.short); b.onclick=()=>dlOpen(h.id); box.append(b); });
+  box.hidden=!dl.hits.length; bar.classList.toggle('is-note',!dl.hits.length); bar.hidden=false;
+}
+/* evidenzia nel pannello i farmaci della carta e (scroll) li porta in vista nel pannello */
+function dlMark(scroll){
+  const body=document.getElementById('panel-body'); if(!body) return;
+  body.querySelectorAll('.dl-hit').forEach(p=>p.classList.remove('dl-hit'));
+  const h=dl&&dl.hits.find(x=>x.id===dl.sel); if(!h) return;
+  const want=new Set(h.drugs.map(dlNorm)); let first=null;
+  body.querySelectorAll('.drugpill,.drugpill-r').forEach(p=>{ if(want.has(dlNorm(p.dataset.d))){ p.classList.add('dl-hit'); if(!first) first=p; } });
+  if(scroll&&first&&body.scrollHeight>body.clientHeight+1) body.scrollTop+=first.getBoundingClientRect().top-body.getBoundingClientRect().top-body.clientHeight/3;
+}
+/* scorre la pagina (istantaneo) sotto la tab bar sticky */
+function dlScrollTo(el){
+  if(!el||!el.getBoundingClientRect) return;
+  const tabs=document.querySelector('.tabs'); const off=(tabs?tabs.getBoundingClientRect().height+10:0)+12;
+  const y=Math.max(0,el.getBoundingClientRect().top+window.scrollY-off);
+  const root=document.documentElement, prev=root.style.scrollBehavior; root.style.scrollBehavior='auto'; window.scrollTo(0,y); root.style.scrollBehavior=prev;
+}
+/* apre il bersaglio come un clic sul suo chip */
+function dlOpen(id){
+  if(!C[id]) return;
+  closeDrugModal(); switchView('explorer');
+  if(dl) dl.sel=id;
+  buildModel(id);
+  document.querySelectorAll('#chip-zone .chip').forEach(ch=>ch.classList.toggle('sel',ch.dataset.id===id));
+  dlRender(); dlMark(true);
+  dlScrollTo(dl?document.getElementById('dl-bar'):document.querySelector('#view-explorer .stage'));
+}
+function dlNotice(){ closeDrugModal(); switchView('explorer'); dlRender(); dlScrollTo(document.getElementById('dl-bar')); }
+/* #q: testo nella ricerca dei bersagli; se nessun chip corrisponde, cerca tra i nomi dei farmaci */
+function dlQuery(q){
+  closeDrugModal(); switchView('explorer');
+  const s=document.getElementById('fam-search'); if(s){ s.value=q; famSearch({target:s}); }
+  const anyChip=[...document.querySelectorAll('#chip-zone .chip')].some(ch=>ch.style.display!=='none');
+  const qq=dlNorm(q);
+  dl=(qq&&!anyChip)?{kind:'q',q,hits:qq.length>=3?dlFind(n=>dlNorm(n).indexOf(qq)>=0):[],sel:null}:null;
+  dlRender(); dlScrollTo(document.getElementById('chip-zone'));
+}
+function dlApply(hash){
+  let p; try{ p=new URLSearchParams((typeof hash==='string'?hash:location.hash||'').replace(/^#/,'')); }catch(_){ return; }
+  const card=p.get('card'), key=p.get('target'), q=p.get('q');
+  if(card!==null){
+    const id=card.trim(); const hits=/^[\w-]{1,200}$/.test(id)?dlFind((n,cards)=>cards.indexOf(id)>=0):[];
+    dl={kind:'card',hits,sel:hits.length?hits[0].id:null};
+    if(hits.length) dlOpen(hits[0].id); else dlNotice();
+  } else if(key!==null){
+    const k=key.trim();
+    if(/^[\w-]{1,60}$/.test(k)&&C[k]){ dl=null; dlOpen(k); }
+    else { dl={kind:'target',key:k.slice(0,60),hits:[],sel:null}; dlNotice(); }
+  } else if(q!==null) dlQuery(q.trim().slice(0,100));
+}
+document.getElementById('dl-x').onclick=function(){ dl=null; dlRender(); dlMark(false); };
+document.addEventListener('input',function(e){ if(e.target&&e.target.id==='fam-search'&&dl&&dl.kind==='q'){ dl=null; dlRender(); } });
+addEventListener('hashchange',()=>dlApply());
+
 buildChips();
 buildTable();
 buildDiffs();
@@ -4156,11 +4325,11 @@ buildInteractions();
 buildAntibiotics();
 buildDrugTable();
 buildClassif();
-if(initThree()){ buildModel('nav'); }
+initThree();buildModel('nav');
 document.getElementById('btn-theme').onclick=function(){ applyTheme(document.documentElement.dataset.theme==='light'?'dark':'light'); };
 /* FarmacoFlash deep-link: Safari blocks target=_blank to local files (file://) — try a new tab, fall back to same-tab so the #card= hash still opens the card */
 document.addEventListener('click',function(e){
-  const a=e.target&&e.target.closest&&e.target.closest('#dm-flash, a.ff-link, a.ff-mini');
+  const a=e.target&&e.target.closest&&e.target.closest('#dm-flash, a.ff-link, a.ff-mini, #dm-tbl, a.tbl-mini');
   if(!a||!a.getAttribute('href')) return;
   if(location.protocol==='file:'){
     e.preventDefault();
@@ -4172,6 +4341,7 @@ document.addEventListener('click',function(e){
 document.getElementById('btn-lang').onclick=function(){ setLang(LANG==='en'?'it':'en'); };
 (function(){ let th='light'; try{ if(!localStorage.getItem('cr-theme-v2')){ localStorage.setItem('cr-theme-v2','1'); localStorage.setItem('cr-theme','light'); th='light'; } else { th=localStorage.getItem('cr-theme')||'light'; } }catch(e){} applyTheme(th);
   let lg='it'; try{lg=localStorage.getItem('cr-lang')||'it';}catch(e){} if(lg==='en') setLang('en'); })();
+if(location.hash) dlApply(); // deep link all'apertura (standalone o iframe con hash)
 window.showOverview=showOverview; // esposto per l'handler inline del pannello
 /* delega: clic su un farmaco → scheda "come agisce sul canale"; bottone → apri canale 3D */
 document.addEventListener('click',function(e){
@@ -4189,16 +4359,29 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDrugM
 
 /* ===== Modalita embed: dentro lo shell unificato (index.html) ===== */
 (function(){
-  if(!/[?&]embed=1/.test(location.search)) return;
+  if(!/[?&]embed=1(?:&|$)/.test(location.search)) return;
   var st=document.createElement('style');
   st.textContent='.embed .hdr-ctl{display:none!important}';
   (document.head||document.documentElement).appendChild(st);
-  document.documentElement.classList.add('embed');
-  function send(m){ try{ parent.postMessage(m,'*'); }catch(_){ } }
+  document.documentElement.classList.add('embed'); // già impostata in <head>; ripetuta per sicurezza
+  function send(m){ try{ parent.postMessage(m,location.origin==='null'?'*':location.origin); }catch(_){ } }
   window.addEventListener('message', function(e){
-    var d=e.data||{}; if(!d||!d.__fusion) return;
+    if(e.source!==parent||e.origin!==location.origin)return;
+    var d=e.data; if(!d||typeof d!=='object') return;
+    /* protocollo src/bridge.js: route verso #card= / #target= / #q= (stessa validazione del bridge) */
+    if(d.__farmaco===1){
+      if(d.type==='route'&&typeof d.hash==='string'&&d.hash.length<500&&/^#(?:card|target|q)=/.test(d.hash)){
+        try{ history.replaceState(history.state,'',d.hash); }catch(_){ }
+        dlApply(d.hash);
+      }
+      return; // 'appearance' è già coperto dai messaggi __fusion theme/lang inviati insieme
+    }
+    if(!d.__fusion) return;
+    if(d.__fusion==='visibility'){sceneVisible=d.value===true;if(!sceneVisible)stopTour();resumeAnimation();return;}
+    if(d.__fusion==='theme'&&!['light','dark'].includes(d.value))return;
+    if(d.__fusion==='lang'&&!['it','en'].includes(d.value))return;
     if(d.__fusion==='theme'){ try{ applyTheme(d.value); }catch(_){ } }
-    else if(d.__fusion==='lang'){ try{ setLang(d.value); }catch(_){ } }
+    else if(d.__fusion==='lang'){ try{ if(d.value!==LANG) setLang(d.value); }catch(_){ } } // stessa lingua: niente ricostruzione (perderebbe ricerca e deep link)
   });
   document.addEventListener('click', function(e){
     var a=e.target&&e.target.closest&&e.target.closest('a#dm-flash, a.ff-link, a.ff-mini');
@@ -4207,7 +4390,16 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDrugM
     var href=a.getAttribute('href')||''; var m=href.match(/[#&]card=([^&]+)/);
     send({__fusion:'open-flashcard', card: m?decodeURIComponent(m[1]):null});
   }, true);
-  send({__fusion:'ready', app:'canali'});
+  /* "📋 Tabella" → lo shell apre Tabella-Farmaci.html con #q=<nome> */
+  document.addEventListener('click', function(e){
+    var a=e.target&&e.target.closest&&e.target.closest('a#dm-tbl, a.tbl-mini');
+    if(!a) return;
+    e.preventDefault(); e.stopPropagation();
+    var href=a.getAttribute('href')||''; var i=href.indexOf('#'); var hash=i>=0?href.slice(i):'';
+    if(/^#q=/.test(hash)&&hash.length<500) send({__farmaco:1,type:'navigate',path:'Tabella-Farmaci.html',hash:hash});
+  }, true);
+  /* un solo messaggio valido per entrambi i protocolli: lo shell lo gestisce una volta sola */
+  send({__farmaco:1,type:'ready',app:'canali',__fusion:'ready'});
 })();
 
 </script>
