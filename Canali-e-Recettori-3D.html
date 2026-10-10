@@ -1149,6 +1149,9 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
   cursor:pointer;transition:border-color .18s ease-out,background-color .18s ease-out}
 @media(hover:hover){.abx-btn:hover{border-color:var(--gold)}}
 .abx-btn:disabled{opacity:.4;cursor:default;border-color:var(--line2)}
+.abx-btn[hidden]{display:none}
+.abx-rmnote{flex:1;min-width:0;margin:0;font-size:12.5px;line-height:1.4;color:var(--ink-dim)}
+.abx-rmnote[hidden]{display:none}
 .abx-btn svg{width:14px;height:14px;fill:currentColor}
 .abx-btn.abx-play{min-width:132px;background:var(--gold);border-color:var(--gold);color:var(--panel)}
 .abx-btn.abx-play:hover{filter:brightness(1.06)}
@@ -1157,6 +1160,7 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 .abx-bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .25s ease-out}
 .abx-nw{white-space:nowrap}
 .abx-dock{display:flex;flex-direction:column;gap:10px}
+@media(min-width:641px){.abx-dock{order:-1}}
 .abx-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .abx-scrim{position:fixed;inset:0;z-index:69;background:rgba(10,8,4,.42)}
 html.abx-lock,html.abx-lock body{overflow:hidden}
@@ -1172,6 +1176,7 @@ html.abx-lock,html.abx-lock body{overflow:hidden}
   .abx-btn.abx-play{min-width:0;flex:1}
   .abx-panel.is-sheet .abx-dock{position:sticky;bottom:calc(-16px - env(safe-area-inset-bottom));z-index:2;margin:0 -12px calc(-16px - env(safe-area-inset-bottom));padding:10px 12px calc(14px + env(safe-area-inset-bottom));background:var(--panel);border-top:1px solid var(--line)}
   .abx-count{margin-left:0}
+  .abx-panel.is-sheet .abx-st,.abx-panel.is-sheet .abx-out{scroll-margin-bottom:var(--dockh,104px)}
 }
 @media(prefers-reduced-motion:no-preference){
   .abx-panel.is-sheet{animation:abxUp .24s ease-out}
@@ -1192,7 +1197,7 @@ html.abx-lock,html.abx-lock body{overflow:hidden}
 :root[data-theme="dark"] .abx-panel{--sc-bg:#191611;--sc-out:#1f1b14;--sc-peri:#1d1a14;--sc-cyto:#151a1e;--sc-ink:#efe9db;--sc-dim:#b8b09f;
   --mem-head:#a68c5c;--mem-tail:#54482f;--mem-core:#29231a;--lps:#c9a566;--oant:#7f6c4a;--porin:#6f86a0;
   --nag:#68bba2;--nam:#8ba7ea;--gly:#6f6a61;--pep:#8f846f;--dala:#f29a4d;--xl:#58c690;
-  --enz:#6990dc;--enz-l:#25314a;--enz-a:#ad8ae4;--res:#f26a5f;
+  --enz:#4a72b8;--enz-l:#25314a;--enz-a:#ad8ae4;--res:#f26a5f;
   --drug:#e3bd80;--drug-s:#fbe6c2;--halo:rgba(227,189,128,.24);
   --r50:#29333d;--r50-s:#5e7589;--r30:#33414e;--r30-s:#6f879b;--tun:#1b2228;
   --mrna:#b993de;--trna:#8cc47b;--trna-s:#bfe3b0;--aa:#9bd58a;--chain:#8cb4dd;
@@ -1230,6 +1235,8 @@ html.abx-lock,html.abx-lock body{overflow:hidden}
 .abx-svg .halo{fill:var(--halo)}
 .abx-svg .bond{stroke:var(--drug-s);stroke-width:2.5;stroke-dasharray:3 3}
 .abx-svg .dead .enz{fill:var(--gly)}
+.abx-svg .dead .lw{fill:var(--sc-ink)}
+:root[data-theme="dark"] .abx-svg .dead .lw{fill:#fff}
 .abx-svg .r50{fill:var(--r50);stroke:var(--r50-s);stroke-width:1.5}
 .abx-svg .r30{fill:var(--r30);stroke:var(--r30-s);stroke-width:1.5}
 .abx-svg .tun{fill:none;stroke:var(--tun);stroke-width:15;stroke-linecap:round}
@@ -1273,7 +1280,7 @@ html.abx-lock,html.abx-lock body{overflow:hidden}
   .abx-svg .chomp>g{transform-box:fill-box;transform-origin:center;animation:abxChomp .35s ease-in-out .9s 3}
   .abx-svg .pulse>*{animation:abxPulse 1.6s ease-in-out infinite}
 }
-.abx-stage.paused .abx-svg *{animation-play-state:paused!important}
+.abx-stage.paused .abx-svg .pulse>*{animation-play-state:paused}
 @keyframes abxBoom{0%{opacity:0;transform:scale(.4)}25%{opacity:1}100%{opacity:0;transform:scale(1.9)}}
 @keyframes abxShake{0%,100%{transform:translateX(0)}30%{transform:translateX(-6px)}70%{transform:translateX(6px)}}
 @keyframes abxChomp{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
@@ -1283,6 +1290,16 @@ html.abx-lock,html.abx-lock body{overflow:hidden}
   .abx-svg .boom>g{opacity:1}
 }
 :root[data-theme="dark"] .abx-svg .ld{fill:var(--drug)}
+.abx-svg .mo{display:none}
+/* etichette leggibili sul telefono: il viewBox da 560 è reso a circa 0,65× */
+@media(max-width:640px){
+  .abx-svg text{font-size:19px;stroke-width:4.5px}
+  .abx-svg .ls{font-size:17px}
+  .abx-svg .lm{font-size:17px}
+  .abx-svg .zl,.abx-svg .dk{display:none}
+  .abx-svg .lw{font-size:16px}
+  .abx-svg .mo{display:inline}
+}
 </style>
 <!-- ─ -->
 <style data-slot="classif">
@@ -4225,7 +4242,7 @@ function buildAntibiotics(){
     {c:"#b388eb", h:["Acidi nucleici","Nucleic acids"], tgt:["bersaglio: DNA girasi / RNA polimerasi","target: DNA gyrase / RNA polymerase"], cs:"cida", cls:[
       {k:"fq",nm:["Fluorochinoloni","Fluoroquinolones"], ex:["ciprofloxacina, levofloxacina","ciprofloxacin, levofloxacin"], mech:["inibiscono DNA girasi e topoisomerasi IV","inhibit DNA gyrase and topoisomerase IV"]},
       {k:"rif",nm:["Rifamicine","Rifamycins"], ex:["rifampicina","rifampicin"], mech:["inibiscono la RNA polimerasi DNA-dipendente","inhibit DNA-dependent RNA polymerase"]},
-      {k:"metro",nm:["Nitroimidazoli","Nitroimidazoles"], ex:["metronidazolo","metronidazole"], mech:["danno ossidativo al DNA (anaerobi)","oxidative DNA damage (anaerobes)"]}
+      {k:"metro",nm:["Nitroimidazoli","Nitroimidazoles"], ex:["metronidazolo","metronidazole"], mech:["attivato per riduzione → danno al DNA (anaerobi)","activated by reduction → DNA damage (anaerobes)"]}
     ]},
     {c:"#f6bd60", h:["Antimetaboliti · folati","Antimetabolites · folate"], tgt:["bersaglio: sintesi dei folati","target: folate synthesis"], cs:"stat", cls:[
       {k:"sulfa",nm:["Sulfamidici","Sulfonamides"], ex:["sulfametossazolo","sulfamethoxazole"], mech:["inibiscono la diidropteroato sintetasi","inhibit dihydropteroate synthase"]},
@@ -4775,7 +4792,7 @@ function envGramNeg(l,{oant=true,porinX=416,labels=true}={}){
   if(oant) for(let x=14;x<400;x+=24) s+=P(`M${x},42 q-5,-8 0,-15 q5,-7 0,-14`,'oant');
   s+=mem(44,0,560,'om')+R(porinX,40,12,38,5,'porin')+R(porinX+28,40,12,38,5,'porin');
   s+=mem(250,0,560);
-  if(labels) s+=T(548,30,l.omLps,'ls','end')+T(12,99,l.peri,'ls','start')+T(548,300,l.im,'ls','end')+T(548,346,l.cyto,'ls','end');
+  if(labels) s+=T(548,30,l.omLps,'ls','end')+T(12,99,l.peri,'ls zl','start')+T(548,300,l.im,'ls','end')+T(548,346,l.cyto,'ls zl','end');
   return s;
 }
 /* due catene di peptidoglicano con i loro peptidi (donatore a x, accettore a x+44); il ponte va dal 4° al 3° residuo */
@@ -4838,7 +4855,7 @@ function scGlyco(l){
   [90,222,354,486].forEach(x=>{s+=`<g class="faint">`+stem(x,yS[0],1,4,11,5)+stem(x+44,yS[1],-1,4,11,5)+P(`M${x},${yS[0]+44} L${x+44},${yS[1]-33}`,'xl')+`</g>`;});
   [46,178].forEach(x=>{s+=stem(x,yS[1],1,4,11,5)+stem(x+44,yS[2],-1,4,11,5)+P(`M${x},${yS[1]+44} L${x+44},${yS[2]-33}`,'xl');});
   s+=mem(262,0,560);
-  s+=T(548,24,l.wallPos,'ls','end')+T(548,312,l.mem,'ls','end')+T(548,348,l.cyto,'ls','end');
+  s+=T(548,24,l.wallPos,'ls','end')+T(548,312,l.mem,'ls zl','end')+T(548,348,l.cyto,'ls zl','end');
   /* precursore lipide II: trasportatore lipidico (bactoprenolo) nella membrana + NAG–NAM + peptide verso l'alto */
   const carrier=x=>P(`M${x},290 l6,-5 l-6,-5 l6,-5 l-6,-5 l6,-5 l-6,-3`,'res-s',' style="stroke:var(--fe);stroke-width:2.5"')+C(x,254,3.5,'porin')+C(x,247,3.5,'porin');
   const unit=x=>Ln(x-12,236,x+10,236,'gly')+hex(x-12,236,8.5,'nag')+hex(x+10,236,8.5,'nam')+Ln(x+10,236,x+10,236-44,'stem')+[0,1,2,3].map(i=>C(x+10,236-11*(i+1),5,i>=3?'dala':'pep')).join('');
@@ -4848,7 +4865,7 @@ function scGlyco(l){
   s+=G('pre2','o0',carrier(430)+unit(430));
   s+=G('tip2','o0',Ln(440,192,440,181,'stem')+C(440,181,5,'dala'));
   s+=G('dlac','o0',C(440,181,5.5,'dlac')+T(456,177,'D-Lac','lr lm','start'));
-  s+=G('lab2','o0',T(472,190,'D-Ala–D-Ala','lm','start')+T(464,240,l.lipid2,'ls','start'));
+  s+=G('lab2','o0',T(472,190,'D-Ala–D-Ala','lm dk','start')+T(468,186,'D-Ala–','lm mo','start')+T(468,204,'D-Ala','lm mo','start')+T(464,240,l.lipid2,'ls','start'));
   /* PBP/transglicosilasi al bordo che cresce */
   s+=G('tg','',`<g>${blob(350,212,26,17,'enz')}${T(350,216,'PBP','lw lm')}</g>`);
   s+=G('xb','o0',xMark(414,206,7));
@@ -4869,7 +4886,7 @@ function scFosBac(l){
   let s=R(0,0,560,150,0,'zout')+R(0,180,560,180,0,'zcyto');
   s+=`<g class="faint">`+glycan(24,24,24)+`</g>`+glycan(66,24,14);
   s+=mem(150,0,560)+R(92,146,10,38,4,'porin')+R(110,146,10,38,4,'porin');
-  s+=T(548,140,l.mem,'ls','end')+T(200,98,l.pg,'ls','start');
+  s+=T(548,140,l.mem,'ls zl','end')+T(200,98,l.pg,'ls','start')+T(128,206,l.fosTr,'ls','start');
   /* catena di montaggio nel citoplasma */
   s+=hex(56,300,9,'nag')+T(56,326,'UDP-NAG','lm')+P('M72,300 L134,300','arrow')+
      `<g data-n="mura" data-b=""><g>${blob(166,300,30,20,'enz')}${T(166,304,'MurA','lw lm')}</g></g>`+
@@ -4901,7 +4918,7 @@ const stFosBac=[
 /* ══ ribosoma 70S (50S + 30S, mRNA, siti E/P/A, tunnel di uscita) ══ */
 const RB={E:239,P:285,A:331,top:150,mrnaY:211};
 function ribBase(l,{split=false,chain=true,cyc=true,fmet=false,in50='',cycB='',memb=true}={}){
-  let s=memb?R(0,0,560,10,0,'zout')+R(0,40,560,320,0,'zcyto')+mem(10,0,560)+T(12,62,l.mem,'ls','start'):R(0,0,560,360,0,'zcyto');
+  let s=memb?R(0,0,560,10,0,'zout')+R(0,40,560,320,0,'zcyto')+mem(10,0,560)+T(12,62,l.mem,'ls zl','start'):R(0,0,560,360,0,'zcyto');
   const r50=P('M152,206 C138,150 156,92 222,76 C262,66 300,64 338,70 C404,80 432,140 418,206 Z','r50')+
     P('M308,140 C314,116 322,92 328,74','tun')+
     R(216,150,46,56,6,'site')+R(262,150,46,56,6,'site')+R(308,150,46,56,6,'site')+T(180,124,'50S','lk');
@@ -4955,7 +4972,7 @@ function scTetra(l){
   s+=aTRNA('tA');
   s+=G('xA','o0',xMark(RB.A,128,9));
   s+=G('pump','o0',R(458,6,11,38,4,'res')+R(478,6,11,38,4,'res')+T(548,62,l.pump,'lr ls','end')+G('pumpF','',flow('M473,96 L473,-14',3,2.4,'drug',4.5)));
-  s+=G('tetm','x60 o0',resBlob(386,262,l.tetm,'start',266));
+  s+=G('tetm','x60 o0',resBlob(386,262,l.tetm));
   return s;
 }
 const stTetra=[
@@ -4978,7 +4995,7 @@ function scMacro(l){
 const stMacro=[
   {},
   {chain:'y-70 o0 t1200', lt:'o1 d600', mac:'x0 y0 o1 d500 t1500'},
-  {cyc:'o0 t300', scg:'o1', sc1:'o1 d200', sc2:'o1 d700', sc3:'o1 d1200', tP:'x-34 y40 o0.35 d2100 t1000', scgM:'x-34 y40 o0.35 d2100 t1000'},
+  {cyc:'o0 t300', scg:'o1', sc1:'o1 d200', sc2:'o1 d700', sc3:'o1 d1200', tP:'x-120 y-90 o0 d2100 t1100', scgM:'x-120 y-90 o0 d2100 t1100'},
   {lt:'o0', erm:'o1', me:'o1 d700', mac:'x60 y-80 o0 d1200 t900', scg:'o0', scgM:'x0 y0', tP:'x0 y0 o1 d1400', chain:'y0 o1 d1900 t900', cyc:'o1 d2200'}
 ];
 
@@ -5006,7 +5023,7 @@ function scChlor(l){
   s+=G('tA','x120 y-170 o0',trna(RB.A,RB.top,'')+G('tAaa','',C(RB.A,RB.top-7,7,'aa')));
   s+=G('xP','o0',xMark(300,122,7));
   s+=G('cat','o0',resBlob(118,118,l.cat));
-  s+=G('cmR','y-120 o0',at(176,98,ICON.cm+G('acT','o0',C(10,-10,5,'res'))));
+  s+=G('cmR','y-120 o0',at(120,78,ICON.cm+G('acT','o0',C(10,-10,5,'res'))));
   return s;
 }
 const stChlor=[
@@ -5021,8 +5038,8 @@ function scOxaz(l){
   /* farmaco e mutazione dentro la 50S: si muovono con lei */
   const in50=G('lz','y-120 o0',drugIcon('lz',312,168,l.dLZ,{dx:24,dy:-14,anc:'start'}))+G('mutL','o0',`<circle cx="312" cy="168" r="10" class="res-s"/>`+T(330,112,l.mut23,'lr ls','start'));
   let s=ribBase(l,{split:true,chain:false,fmet:true,in50,cycB:'o0',memb:false});
-  s+=G('lab70','o0',T(446,120,'70S','lk','start'));
-  s+=G('xI','o0',xMark(436,196,8));
+  s+=G('lab70','o0',T(146,110,'70S','lk','end'));
+  s+=G('xI','o0',xMark(372,197,8));
   return s;
 }
 const stOxaz=[
@@ -5033,11 +5050,11 @@ const stOxaz=[
 ];
 /* ══ DNA girasi / topoisomerasi IV ══ */
 function scFQ(l){
-  let s=R(0,0,560,360,0,'zcyto')+T(12,26,l.cyto,'ls','start');
+  let s=R(0,0,560,360,0,'zcyto')+T(12,96,l.cyto,'ls zl','start');
   /* metà sinistra e destra del segmento G: ognuna con la sua metà di girasi (le estremità tagliate restano legate all'enzima) */
   const gyrHalf=(x,side)=>G(side==='L'?'eL':'eR','o0',blob(x,236,30,22,'enz')+blob(x,166,22,15,'enz')+(side==='L'?T(x-34,276,l.gyr,'lk ls','end'):''));
-  s+=G('gL','',G('gLc','',helix(16,274,200,11,40)+gyrHalf(258,'L')));
-  s+=G('gR','',G('gRc','',helix(286,544,200,11,40,Math.PI*(270/20))+gyrHalf(302,'R')));
+  s+=G('gL','',G('gLc','',helix(16,280,200,11,40)+gyrHalf(258,'L')));
+  s+=G('gR','',G('gRc','',helix(280,544,200,11,40,Math.PI*(264/20))+gyrHalf(302,'R')));
   s+=G('rep','',`<g>${blob(66,200,26,20,'trna')}</g>`);
   s+=G('repL','',T(66,246,l.fork,'ls'));
   const sc=(t,c)=>[[136,172],[170,172],[204,172]].map(([x,y])=>T(x,y,t,c)).join('');
@@ -5062,10 +5079,10 @@ const stFQ=[
 
 /* ══ RNA polimerasi ══ */
 function scRif(l){
-  let s=R(0,0,560,360,0,'zcyto')+T(12,26,l.cyto,'ls','start');
+  let s=R(0,0,560,360,0,'zcyto')+T(12,104,l.cyto,'ls zl','start');
   s+=helix(16,544,262,10,40);
   const beads=[[322,236],[311,226],[300,216],[289,207],[278,199],[267,191],[256,184],[245,177],[234,170],[223,163]];
-  let rna=''; beads.forEach(([x,y],i)=>{rna+=G('r'+i,'o0',C(x,y,5.5,'rna'));});
+  let rna=''; beads.forEach(([x,y],i)=>{rna+=G('r'+i,'o0',C(x,y,5.5,'rna')+(i===beads.length-1?T(x-9,y-3,'RNA','lm','end'):''));});
   s+=G('pol','',
     P('M210,262 C204,214 226,178 278,174 C330,170 380,190 388,236 C394,280 360,306 300,306 C246,306 214,296 210,262 Z','pol')+
     G('beta','',P('M218,236 C214,200 236,182 268,180 L276,212 C258,216 244,226 240,244 Z','beta')+T(240,222,'β','lw'))+
@@ -5073,7 +5090,7 @@ function scRif(l){
     T(300,294,l.rnap,'lk ls')+rna+
     G('rif','y-210 o0',drugIcon('rif',262,204,l.dRif))+
     G('rX','o0',C(300,216,6.5,'res'))+
-    G('mutB','o0',C(234,214,6,'res')+T(206,206,l.rpoB,'lr ls','end'))+T(214,160,'RNA','lm','end')
+    G('mutB','o0',C(234,214,6,'res')+T(206,206,l.rpoB,'lr ls','end'))
   );
   s+=G('lab','',T(548,236,l.dna,'lm','end'));
   s+=G('prot','o0',`<g>${xMark(470,140,9)}${T(470,176,l.noRNA,'lr ls')}</g>`);
@@ -5089,14 +5106,14 @@ const stRif=[
 /* ══ metronidazolo: attivazione per riduzione nell'anaerobio ══ */
 function scMetro(l){
   let s=R(0,0,560,86,0,'zout')+R(0,116,560,244,0,'zcyto')+mem(86,0,560);
-  s+=T(548,28,l.outside,'ls','end')+T(548,142,l.anaer,'ls','end');
+  s+=T(548,28,l.outside,'ls zl','end')+T(548,142,l.anaer,'ls','end');
   s+=G('fd','',`<g>${R(126,222,20,20,3,'fe')}${R(142,232,20,20,3,'fe')}${T(150,282,l.fd,'ls')}</g>`);
   s+=G('ef','o0',flow('M150,222 L150,192',3,1.4,'kion',3.5)+T(170,212,'e⁻','lm','start'));
   s+=G('mtz','y-210 o0',drugIcon('mtz',150,176,l.dMtz));
   s+=G('mtz2','y-200 o0',drugIcon('mtz',86,170));
   s+=G('rad','o0 s0.4',G('rad2','',drugIcon('rad',150,176)));
-  s+=G('dL','',G('dLc','',helix(262,396,262,11,40)));
-  s+=G('dR','',helix(404,544,262,11,40,Math.PI*(142/20)));
+  s+=G('dL','',G('dLc','',helix(262,406,262,11,40)));
+  s+=G('dR','',helix(406,544,262,11,40,Math.PI*(144/20)));
   s+=T(548,306,l.dna,'lm','end');
   s+=G('bolt','o0',`<g><polygon points="402,226 390,252 400,252 392,278 414,246 404,246 412,226" class="bolt"/></g>`);
   s+=G('nim','o0',resBlob(240,176,'Nim','middle',212));
@@ -5115,7 +5132,7 @@ const stMetro=[
 function folBase(l){
   let s=R(0,0,560,360,0,'zcyto');
   const pill=(x,y,w,txt,cls='node')=>R(x-w/2,y-15,w,30,15,cls)+T(x,y+5,txt,'lk ls');
-  const enz=(n,x,y,txt)=>G(n,'',`<g>${C(x,y,25,'enz')}${T(x+5,y+4,txt,'lw lm')}</g>`);
+  const enz=(n,x,y,txt)=>G(n,'',`<g>${C(x,y,25,'enz')}${T(x,y+4,txt,'lw lm')}</g>`);
   s+=pill(58,96,74,'PABA')+P('M95,96 L150,96','arrow')+T(184,34,l.pter,'ls')+P('M184,42 L184,66','arrow')+enz('dhps',184,96,'DHPS');
   s+=P('M209,96 L262,96','arrow')+pill(330,96,128,l.dhp)+P('M394,96 L438,96','arrow')+T(416,84,'+ Glu','lm')+pill(482,96,74,'DHF');
   s+=P('M482,111 L482,190','arrow')+enz('dhfr',482,220,'DHFR')+P('M457,220 L392,220','arrow')+pill(350,220,74,'THF');
@@ -5163,8 +5180,8 @@ const stTMP=[
 function scDapto(l){
   let s=R(0,0,560,170,0,'zout')+R(0,200,560,160,0,'zcyto');
   s+=`<g class="faint">`+glycan(30,24,24)+glycan(92,24,24)+[90,222,354,486].map(x=>stem(x,30,1,4,11,5)+stem(x+44,92,-1,4,11,5)).join('')+`</g>`;
-  s+=T(548,128,l.wallPos,'ls','end');
-  s+=mem(170,0,560)+T(12,224,l.mem,'ls','start');
+  s+=T(548,112,l.wallPos,'ls','end');
+  s+=mem(170,0,560)+T(12,224,l.mem,'ls zl','start');
   s+=G('chg','',[110,180,380,450].map(x=>T(x,162,'+','lk')+T(x,224,'−','lk')).join(''));
   const ions=[[70,262],[130,300],[196,250],[250,320],[310,270],[360,312],[118,340],[282,236]];
   ions.forEach(([x,y],i)=>{s+=G('k'+i,'',C(x,y,6,'kion'));});
@@ -5185,7 +5202,7 @@ const stDapto=[
   Object.assign({d1:'x16', d3:'x-16', psi:'sy0.06 d600 t1800', chg:'o0.15 d600 t1200'},
     ...[[70,262],[130,300],[196,250],[250,320],[310,270],[360,312],[118,340],[282,236]].map(([x,y],i)=>({['k'+i]:`x${250-x+(i%3-1)*14} y${100-y-(i%2)*24} o0.25 d${300+i*140} t1300`}))),
   {syn:'o0.45', synX:'o1 d300 t500', nolys:'o1 d800'},
-  Object.assign({syn:'o1', synX:'o0', nolys:'o0', psi:'sy1 t900', chg:'o1', posM:'o1 t500', d1:'x0 y-96 o0.55 d500', d2:'y-96 o0.55 d600', d3:'x0 y-96 o0.55 d700'},
+  Object.assign({syn:'o1', synX:'o0', nolys:'o0', psi:'sy1 t900', chg:'o0', posM:'o1 t500', d1:'x0 y-96 o0.55 d500', d2:'y-96 o0.55 d600', d3:'x0 y-96 o0.55 d700'},
     ...[0,1,2,3,4,5,6,7].map(i=>({['k'+i]:'x0 y0 o1 t900'})))
 ];
 
@@ -5204,7 +5221,7 @@ function scPoly(l){
   [[150,'p1'],[280,'p2'],[410,'p3']].forEach(([x,n],i)=>{
     s+=G(n,'y-90 o0',G(n+'b','',drugIcon('poly',x,46,i===1?l.dPoly:'')));
   });
-  s+=G('posL','o0',[40,110,180,250,320,390,460,530].map(x=>T(x,84,'+','lr')).join('')+T(12,30,l.lipidAmod,'lr ls','start'));
+  s+=G('posL','o0',[40,110,180,250,320,390,460,530].map(x=>T(x,84,'+','lr')).join('')+T(12,118,l.lipidAmod,'lr ls','start'));
   return s;
 }
 const stPoly=[
@@ -5212,7 +5229,7 @@ const stPoly=[
   {p1:'y0 o1 t1100', p2:'y0 o1 d200 t1100', p3:'y0 o1 d400 t1100', mg:'y-50 o0 d1100 t900'},
   {om1:'r-4 y6 t900', om2:'y-8 t900', om3:'r4 y6 t900', p1b:'y150 d900 t1100', p2b:'y150 d1000 t1100', p3b:'y150 d1100 t1100'},
   {im1:'x-14 r-3 t900', im2:'x14 r3 t900', cont:'y-70 o0 d700 t1600'},
-  {om1:'r0 y0', om2:'y0', om3:'r0 y0', im1:'x0 r0', im2:'x0 r0', cont:'y0 o1', mg:'y0 o1', p1:'y-26 o0.6 d400', p2:'y-26 o0.6 d500', p3:'y-26 o0.6 d600', p1b:'y0', p2b:'y0', p3b:'y0', posL:'o1 t500'}
+  {om1:'r0 y0', om2:'y0', om3:'r0 y0', im1:'x0 r0', im2:'x0 r0', cont:'y0 o1', mg:'y0 o1', p1:'y-8 o0.6 d400', p2:'y-8 o0.6 d500', p3:'y-8 o0.6 d600', p1b:'y0', p2b:'y0', p3b:'y0', posL:'o1 t500'}
 ];
 /* ══ testi (IT/EN). Verificati su Goodman & Gilman 14ª ed., capp. 56–60 e 65 ══ */
 const RIBO_IT=['Il ribosoma al lavoro','Il ribosoma 70S legge l\'mRNA: ogni aminoacil-tRNA entra nel sito A, si forma il legame peptidico e la catena nascente esce dal tunnel della 50S.'];
@@ -5222,7 +5239,7 @@ const FOL_EN=['The folate pathway','The bacterium must make its own folate: PABA
 const L={
 it:{
   ui:{close:'Chiudi',play:'Riproduci',pause:'Pausa',replay:'Rivedi',prev:'Passo precedente',next:'Passo successivo',step:'Passo',of:'di',
-    drug:'farmaco',target:'bersaglio batterico',res:'resistenza',cida:'battericida',stat:'batteriostatico',mainRes:'Resistenza principale:',
+    drug:'farmaco',target:'bersaglio batterico',res:'resistenza',red:'blocco, danno o resistenza',cida:'battericida',stat:'batteriostatico',mainRes:'Resistenza principale:',
     steps:'Passi della scena',scene:'Scena animata',rm:'Movimento ridotto attivo: scorri i passi con i pulsanti.'},
   lb:{omLps:'membrana esterna · LPS',peri:'periplasma',im:'membrana interna',mem:'membrana',cyto:'citoplasma',outside:'esterno',pg:'peptidoglicano',
     wallPos:'peptidoglicano spesso (Gram+)',lysis:'lisi',bla:'β-lattamasi',lipid2:'lipide II',udpnam:'UDP-NAM-pentapeptide',carrier:'bactoprenolo',
@@ -5231,7 +5248,7 @@ it:{
     tseg:'segmento T',mutGyr:'girasi mutata',rnap:'RNA polimerasi',rpoB:'rpoB mutata',dna:'DNA',noRNA:'niente mRNA',anaer:'batterio anaerobio',
     fd:'ferredossina',inact:'inattivo',pter:'pteridina',dhp:'diidropteroato',nucl:'timidina, purine',human:'cellule umane: folati dalla dieta',
     altDHPS:'DHPS alterata',altDHFR:'DHFR alterata',psi:'potenziale',synth:'sintesi di DNA, RNA, proteine',noLysis:'nessuna lisi',
-    surfPos:'superficie più positiva',lipidAmod:'lipide A modificato',mut23:'RNA 23S mutato',
+    surfPos:'superficie più positiva',lipidAmod:'lipide A modificato',mut23:'RNA 23S mutato',fosTr:'trasportatore (GlpT/UhpT)',
     dBL:'β-lattamico',dVan:'vancomicina',dFos:'fosfomicina',dBac:'bacitracina',dAG:'gentamicina',dTC:'tetraciclina',dMac:'eritromicina',dCL:'clindamicina',
     dCM:'cloramfenicolo',dLZ:'linezolid',dFQ:'fluorochinolone',dRif:'rifampicina',dMtz:'metronidazolo',dSulfa:'sulfametossazolo',dTMP:'trimetoprim',
     dPoly:'colistina',dDap:'daptomicina + Ca²⁺'},
@@ -5241,7 +5258,7 @@ it:{
       ['La PBP costruisce i ponti','La transpeptidasi (PBP, in blu) stacca l\'ultima D-Ala e lega il peptide a quello della catena vicina. Ogni ponte nuovo rende la parete più rigida.'],
       ['Il β-lattamico acila la PBP','Entra dalle porine. Il suo anello β-lattamico somiglia al D-Ala–D-Ala: la PBP lo scambia per il substrato, apre l\'anello e ci resta legata in modo covalente (acil-enzima). La PBP è fuori uso.'],
       ['Niente ponti nuovi','Le catene appena sintetizzate restano scollegate. Intanto le autolisine (in viola), enzimi del batterio che rimodellano la parete, continuano a tagliare i ponti esistenti.'],
-      ['Lisi','La parete si indebolisce: la membrana, spinta dalla pressione osmotica, esce dai varchi e la cellula scoppia. Per questo i β-lattamici sono battericidi.'],
+      ['Lisi','La parete si indebolisce: la membrana, spinta dalla pressione osmotica, esce dai varchi e la cellula scoppia. La lisi è una delle vie con cui i β-lattamici uccidono: sono battericidi.'],
       ['Resistenza: β-lattamasi','Le β-lattamasi (in rosso) idrolizzano l\'anello prima che il farmaco raggiunga la PBP; nei Gram− stanno nel periplasma, proprio sulla sua strada. La PBP torna a fare i ponti. Altre vie: PBP a bassa affinità (PBP2a nel MRSA), meno porine, pompe di efflusso.']],
       res:'β-lattamasi (penicillinasi, ESBL, carbapenemasi); PBP a bassa affinità (PBP2a nel MRSA).'},
     glyco:{t:'Glicopeptidi: come agiscono',sub:'Bersaglio: l\'estremità D-Ala–D-Ala dei precursori della parete. Solo Gram+.',steps:[
@@ -5250,7 +5267,7 @@ it:{
       ['La vancomicina abbraccia il D-Ala–D-Ala','La molecola, molto grande, si lega all\'estremità D-Ala–D-Ala del precursore con legami non covalenti ad alta affinità.'],
       ['Blocco sterico','Il complesso è troppo ingombrante: gli enzimi non riescono né ad aggiungere l\'unità alla catena né a formare il ponte. La parete smette di crescere: effetto battericida. Per le dimensioni non attraversa la membrana esterna dei Gram−.'],
       ['Resistenza: D-Ala–D-Lac','Negli enterococchi resistenti (VRE) i geni van cambiano l\'estremità in D-Ala–D-Lac (o D-Ala–D-Ser), che la vancomicina lega male: il farmaco si stacca e la sintesi riprende.']],
-      res:'Geni van (vanA, vanB): D-Ala–D-Ala diventa D-Ala–D-Lac o D-Ala–D-Ser (VRE).'},
+      res:'vanA, vanB: D-Ala–D-Ala → D-Ala–D-Lac (affinità circa 1000 volte minore); vanC: D-Ala–D-Ser, resistenza di basso livello.'},
     fosbac:{t:'Fosfomicina e bacitracina: come agiscono',sub:'Bersaglio: le prime tappe della sintesi del peptidoglicano.',steps:[
       ['La catena di montaggio','Nel citoplasma l\'enzima MurA avvia la trasformazione dell\'UDP-NAG; le tappe successive portano all\'UDP-NAM-pentapeptide. Un trasportatore lipidico (bactoprenolo) porta l\'unità oltre la membrana e torna indietro per il carico successivo.'],
       ['Fosfomicina: MurA bloccata','Entra nel citoplasma con i trasportatori di membrana e inibisce MurA, la prima tappa della sintesi della parete: a valle non arriva più nulla. Il meccanismo è unico, quindi la resistenza crociata è rara.'],
@@ -5274,7 +5291,7 @@ it:{
       RIBO_IT,
       ['Il macrolide entra nel tunnel','Si lega in modo reversibile alla 50S (RNA 23S), nel tunnel da cui esce la catena nascente.'],
       ['Catena bloccata, tRNA staccato','La nuova catena si allunga di pochi aminoacidi, urta il farmaco e non avanza: la traslocazione si blocca e il peptidil-tRNA si stacca dal ribosoma. Batteriostatici; battericidi solo ad alte concentrazioni.'],
-      ['Resistenza','La metilasi Erm (in rosso) aggiunge un metile all\'RNA 23S nel sito di legame: resistenza crociata con clindamicina (fenotipo MLSB). Altre vie: pompe di efflusso, esterasi, mutazioni del ribosoma.']],
+      ['Resistenza','La metilasi Erm (in rosso) aggiunge un metile all\'RNA 23S nel sito di legame: resistenza crociata con clindamicina (fenotipo MLSB; per la clindamicina solo se la metilasi è costitutiva). Altre vie: pompe di efflusso, esterasi, mutazioni del ribosoma.']],
       res:'Metilazione dell\'RNA 23S (Erm, MLSB); pompe di efflusso.'},
     linco:{t:'Lincosamidi: come agiscono',sub:'Bersaglio: subunità 50S, accanto al centro peptidil-transferasico.',steps:[
       RIBO_IT,
@@ -5286,12 +5303,12 @@ it:{
       RIBO_IT,
       ['Legame alla 50S','Penetra facilmente nel batterio e si lega in modo reversibile alla 50S, vicino al sito di macrolidi e clindamicina, dove dovrebbe sistemarsi l\'estremità dell\'aminoacil-tRNA.'],
       ['Niente legame peptidico','Il tRNA nel sito A legge il codone, ma la sua estremità con l\'aminoacido non raggiunge la peptidil-transferasi: il legame peptidico non si forma. Batteriostatico; battericida su H. influenzae, N. meningitidis e S. pneumoniae.'],
-      ['Resistenza e tossicità','Un\'acetiltransferasi (CAT) codificata da plasmidi acetila il farmaco, che non si lega più al ribosoma. Il cloramfenicolo inibisce anche i ribosomi mitocondriali: da qui la tossicità sul midollo.']],
+      ['Resistenza e tossicità','Un\'acetiltransferasi (CAT) codificata da plasmidi acetila il farmaco, che non si lega più al ribosoma. Il cloramfenicolo inibisce anche i ribosomi mitocondriali: da qui la depressione midollare dose-dipendente e reversibile. L\'anemia aplastica, spesso fatale, è invece idiosincrasica.']],
       res:'Acetiltransferasi (CAT) da plasmidi; minore permeabilità; mutazioni del ribosoma.'},
-    oxaz:{t:'Oxazolidinoni: come agiscono',sub:'Bersaglio: subunità 50S, formazione del complesso d\'inizio.',cs2:'battericida sulla maggior parte degli streptococchi',steps:[
+    oxaz:{t:'Oxazolidinoni: come agiscono',sub:'Bersaglio: subunità 50S, formazione del complesso d\'inizio.',cs2:'può essere battericida sugli streptococchi',steps:[
       ['Il complesso d\'inizio','La 30S con l\'mRNA e il fMet-tRNA nel sito P aspetta la 50S: quando questa si aggancia nasce il ribosoma 70S e la sintesi parte.'],
       ['Il linezolid si lega alla 50S','Si lega alla 50S, nella regione del sito P.'],
-      ['Niente 70S','La 50S non forma il complesso con la 30S e il fMet-tRNA: la sintesi non parte. Batteriostatico su stafilococchi ed enterococchi, battericida sulla maggior parte degli streptococchi. Il meccanismo è unico: attivo anche su MRSA e VRE.'],
+      ['Niente 70S','La 50S non forma il complesso con la 30S e il fMet-tRNA: la sintesi non parte. Batteriostatico su stafilococchi ed enterococchi, può essere battericida sugli streptococchi. Il meccanismo è unico: attivo anche su MRSA e VRE.'],
       ['Resistenza','Mutazioni puntiformi dell\'RNA 23S (servono più copie del gene mutate) e una metiltransferasi trasferibile che modifica il ribosoma. Ancora poco frequente.']],
       res:'Mutazioni dell\'RNA 23S; metiltransferasi trasferibile (cfr).'},
     fq:{t:'Fluorochinoloni: come agiscono',sub:'Bersaglio: DNA girasi (soprattutto Gram−) e topoisomerasi IV (soprattutto Gram+).',steps:[
@@ -5305,7 +5322,7 @@ it:{
       ['La trascrizione','La RNA polimerasi scorre sul DNA, apre la doppia elica e costruisce l\'RNA (in arancione), che esce da un canale dell\'enzima.'],
       ['La rifampicina si lega alla subunità β','Si lega alla subunità β (rpoB) e forma con l\'enzima un complesso stabile, lungo la via di uscita dell\'RNA.'],
       ['L\'RNA non si allunga','La nuova catena di RNA si ferma dopo pochi nucleotidi: niente mRNA, niente proteine. Effetto battericida.'],
-      ['Resistenza','Mutazioni di rpoB cambiano la tasca di legame e il farmaco non si lega più. Compaiono facilmente (circa 1 batterio su 10⁷–10⁸): per questo nella tubercolosi la rifampicina si usa sempre in associazione.']],
+      ['Resistenza','Mutazioni di rpoB cambiano la tasca di legame e il farmaco non si lega più. Una caverna tubercolare può contenere fino a 10⁹ bacilli, quindi i mutanti resistenti (circa 1 su 10⁷–10⁸) ci sono già prima della terapia: per questo nella tubercolosi la rifampicina si usa sempre in associazione.']],
       res:'Mutazioni di rpoB (subunità β).'},
     metro:{t:'Metronidazolo: come agisce',sub:'Bersaglio: DNA, dopo attivazione per riduzione negli anaerobi.',steps:[
       ['Un profarmaco','Il metronidazolo è piccolo e attraversa la membrana per diffusione, ma così com\'è non fa nulla.'],
@@ -5345,7 +5362,7 @@ it:{
 },
 en:{
   ui:{close:'Close',play:'Play',pause:'Pause',replay:'Replay',prev:'Previous step',next:'Next step',step:'Step',of:'of',
-    drug:'drug',target:'bacterial target',res:'resistance',cida:'bactericidal',stat:'bacteriostatic',mainRes:'Main resistance:',
+    drug:'drug',target:'bacterial target',res:'resistance',red:'block, damage or resistance',cida:'bactericidal',stat:'bacteriostatic',mainRes:'Main resistance:',
     steps:'Scene steps',scene:'Animated scene',rm:'Reduced motion is on: move through the steps with the buttons.'},
   lb:{omLps:'outer membrane · LPS',peri:'periplasm',im:'inner membrane',mem:'membrane',cyto:'cytoplasm',outside:'outside',pg:'peptidoglycan',
     wallPos:'thick peptidoglycan (Gram+)',lysis:'lysis',bla:'β-lactamase',lipid2:'lipid II',udpnam:'UDP-NAM-pentapeptide',carrier:'bactoprenol',
@@ -5354,7 +5371,7 @@ en:{
     tseg:'T segment',mutGyr:'mutated gyrase',rnap:'RNA polymerase',rpoB:'mutated rpoB',dna:'DNA',noRNA:'no mRNA',anaer:'anaerobic bacterium',
     fd:'ferredoxin',inact:'inactive',pter:'pteridine',dhp:'dihydropteroate',nucl:'thymidine, purines',human:'human cells: dietary folate',
     altDHPS:'altered DHPS',altDHFR:'altered DHFR',psi:'potential',synth:'DNA, RNA, protein synthesis',noLysis:'no lysis',
-    surfPos:'more positive surface',lipidAmod:'modified lipid A',mut23:'mutated 23S RNA',
+    surfPos:'more positive surface',lipidAmod:'modified lipid A',mut23:'mutated 23S RNA',fosTr:'transporter (GlpT/UhpT)',
     dBL:'β-lactam',dVan:'vancomycin',dFos:'fosfomycin',dBac:'bacitracin',dAG:'gentamicin',dTC:'tetracycline',dMac:'erythromycin',dCL:'clindamycin',
     dCM:'chloramphenicol',dLZ:'linezolid',dFQ:'fluoroquinolone',dRif:'rifampicin',dMtz:'metronidazole',dSulfa:'sulfamethoxazole',dTMP:'trimethoprim',
     dPoly:'colistin',dDap:'daptomycin + Ca²⁺'},
@@ -5364,7 +5381,7 @@ en:{
       ['The PBP builds cross-links','The transpeptidase (PBP, blue) cuts off the last D-Ala and joins the peptide to one on the neighbouring chain. Each new cross-link makes the wall stiffer.'],
       ['The β-lactam acylates the PBP','It enters through porins. Its β-lactam ring resembles D-Ala–D-Ala: the PBP takes it for its substrate, opens the ring and stays covalently bound to it (acyl-enzyme). The PBP is out of action.'],
       ['No new cross-links','Newly made chains stay unlinked. Meanwhile autolysins (purple), the bacterium\'s own wall-remodelling enzymes, keep cutting existing cross-links.'],
-      ['Lysis','The wall weakens: pushed by osmotic pressure, the membrane bulges through the gaps and the cell bursts. This is why β-lactams are bactericidal.'],
+      ['Lysis','The wall weakens: pushed by osmotic pressure, the membrane bulges through the gaps and the cell bursts. Lysis is one of the ways β-lactams kill: they are bactericidal.'],
       ['Resistance: β-lactamases','β-lactamases (red) hydrolyse the ring before the drug reaches the PBP; in Gram− bacteria they sit in the periplasm, right in its path. The PBP goes back to making cross-links. Other routes: low-affinity PBPs (PBP2a in MRSA), fewer porins, efflux pumps.']],
       res:'β-lactamases (penicillinases, ESBLs, carbapenemases); low-affinity PBPs (PBP2a in MRSA).'},
     glyco:{t:'Glycopeptides: how they work',sub:'Target: the D-Ala–D-Ala end of cell-wall precursors. Gram+ only.',steps:[
@@ -5373,7 +5390,7 @@ en:{
       ['Vancomycin hugs D-Ala–D-Ala','The very large molecule binds the D-Ala–D-Ala end of the precursor through high-affinity non-covalent bonds.'],
       ['Steric block','The complex is too bulky: the enzymes can neither add the unit to the chain nor form the cross-link. The wall stops growing: bactericidal effect. Its size keeps it out of the Gram− outer membrane.'],
       ['Resistance: D-Ala–D-Lac','In resistant enterococci (VRE) van genes change the end to D-Ala–D-Lac (or D-Ala–D-Ser), which vancomycin binds poorly: the drug falls off and synthesis resumes.']],
-      res:'van genes (vanA, vanB): D-Ala–D-Ala becomes D-Ala–D-Lac or D-Ala–D-Ser (VRE).'},
+      res:'vanA, vanB: D-Ala–D-Ala → D-Ala–D-Lac (about 1000-fold lower affinity); vanC: D-Ala–D-Ser, low-level resistance.'},
     fosbac:{t:'Fosfomycin and bacitracin: how they work',sub:'Target: the early steps of peptidoglycan synthesis.',steps:[
       ['The assembly line','In the cytoplasm the enzyme MurA starts converting UDP-NAG; later steps lead to UDP-NAM-pentapeptide. A lipid carrier (bactoprenol) takes the unit across the membrane and comes back for the next load.'],
       ['Fosfomycin: MurA blocked','It enters the cytoplasm through membrane transporters and inhibits MurA, the first step of cell-wall synthesis: nothing reaches the later steps. The mechanism is unique, so cross-resistance is rare.'],
@@ -5397,7 +5414,7 @@ en:{
       RIBO_EN,
       ['The macrolide enters the tunnel','It binds the 50S (23S RNA) reversibly, in the tunnel through which the nascent chain leaves.'],
       ['Chain stalled, tRNA released','The new chain grows by a few amino acids, hits the drug and cannot advance: translocation stalls and the peptidyl-tRNA drops off the ribosome. Bacteriostatic; bactericidal only at high concentrations.'],
-      ['Resistance','The Erm methylase (red) adds a methyl group to the 23S RNA at the binding site: cross-resistance with clindamycin (MLSB phenotype). Other routes: efflux pumps, esterases, ribosomal mutations.']],
+      ['Resistance','The Erm methylase (red) adds a methyl group to the 23S RNA at the binding site: cross-resistance with clindamycin (MLSB phenotype; for clindamycin only when the methylase is constitutive). Other routes: efflux pumps, esterases, ribosomal mutations.']],
       res:'23S RNA methylation (Erm, MLSB); efflux pumps.'},
     linco:{t:'Lincosamides: how they work',sub:'Target: 50S subunit, next to the peptidyl transferase centre.',steps:[
       RIBO_EN,
@@ -5409,12 +5426,12 @@ en:{
       RIBO_EN,
       ['Binding to 50S','It readily enters the bacterium and binds the 50S reversibly, near the macrolide and clindamycin site, where the end of the aminoacyl-tRNA should settle.'],
       ['No peptide bond','The tRNA in the A site reads the codon, but its amino-acid end cannot reach the peptidyl transferase: no peptide bond forms. Bacteriostatic; bactericidal against H. influenzae, N. meningitidis and S. pneumoniae.'],
-      ['Resistance and toxicity','A plasmid-encoded acetyltransferase (CAT) acetylates the drug, which no longer binds the ribosome. Chloramphenicol also inhibits mitochondrial ribosomes: hence its bone-marrow toxicity.']],
+      ['Resistance and toxicity','A plasmid-encoded acetyltransferase (CAT) acetylates the drug, which no longer binds the ribosome. Chloramphenicol also inhibits mitochondrial ribosomes: hence dose-related, reversible marrow suppression. Aplastic anaemia, often fatal, is instead idiosyncratic.']],
       res:'Plasmid acetyltransferase (CAT); reduced permeability; ribosomal mutations.'},
-    oxaz:{t:'Oxazolidinones: how they work',sub:'Target: 50S subunit, formation of the initiation complex.',cs2:'bactericidal against most streptococci',steps:[
+    oxaz:{t:'Oxazolidinones: how they work',sub:'Target: 50S subunit, formation of the initiation complex.',cs2:'may be bactericidal against streptococci',steps:[
       ['The initiation complex','The 30S, carrying the mRNA and fMet-tRNA in the P site, waits for the 50S: when it docks, the 70S ribosome forms and synthesis starts.'],
       ['Linezolid binds the 50S','It binds the 50S, in the region of the P site.'],
-      ['No 70S','The 50S cannot form the complex with the 30S and fMet-tRNA: synthesis never starts. Bacteriostatic against staphylococci and enterococci, bactericidal against most streptococci. The mechanism is unique: active against MRSA and VRE too.'],
+      ['No 70S','The 50S cannot form the complex with the 30S and fMet-tRNA: synthesis never starts. Bacteriostatic against staphylococci and enterococci, may be bactericidal against streptococci. The mechanism is unique: active against MRSA and VRE too.'],
       ['Resistance','Point mutations of 23S RNA (several gene copies must be mutated) and a transferable methyltransferase that modifies the ribosome. Still uncommon.']],
       res:'23S RNA mutations; transferable methyltransferase (cfr).'},
     fq:{t:'Fluoroquinolones: how they work',sub:'Target: DNA gyrase (mainly Gram−) and topoisomerase IV (mainly Gram+).',steps:[
@@ -5428,7 +5445,7 @@ en:{
       ['Transcription','RNA polymerase slides along the DNA, opens the double helix and builds RNA (orange), which leaves through a channel in the enzyme.'],
       ['Rifampicin binds the β subunit','It binds the β subunit (rpoB) and forms a stable complex with the enzyme, along the RNA exit path.'],
       ['RNA cannot grow','The new RNA chain stops after a few nucleotides: no mRNA, no proteins. Bactericidal effect.'],
-      ['Resistance','rpoB mutations change the binding pocket and the drug no longer binds. They arise easily (about 1 bacterium in 10⁷–10⁸): this is why rifampicin is always combined in tuberculosis.']],
+      ['Resistance','rpoB mutations change the binding pocket and the drug no longer binds. A tuberculous cavity can hold up to 10⁹ bacilli, so resistant mutants (about 1 in 10⁷–10⁸) are already there before treatment: this is why rifampicin is always combined in tuberculosis.']],
       res:'rpoB mutations (β subunit).'},
     metro:{t:'Metronidazole: how it works',sub:'Target: DNA, after reductive activation in anaerobes.',steps:[
       ['A prodrug','Metronidazole is small and crosses the membrane by diffusion, but on its own it does nothing.'],
@@ -5471,7 +5488,7 @@ const SC={
   betalact:{b:scBetaLact,s:stBetaLact,cs:'cida'}, glyco:{b:scGlyco,s:stGlyco,cs:'cida'}, fosbac:{b:scFosBac,s:stFosBac,cs:'cida'},
   amino:{b:scAmino,s:stAmino,cs:'cida'}, tetra:{b:scTetra,s:stTetra,cs:'stat'}, macro:{b:scMacro,s:stMacro,cs:'stat'},
   linco:{b:scLinco,s:stLinco,cs:'stat'}, chlor:{b:scChlor,s:stChlor,cs:'stat'}, oxaz:{b:scOxaz,s:stOxaz,cs:'stat'},
-  fq:{b:scFQ,s:stFQ,cs:'cida'}, rif:{b:scRif,s:stRif,cs:'cida'}, metro:{b:scMetro,s:stMetro,cs:'cida'},
+  fq:{b:scFQ,s:stFQ,cs:'cida',vb:'0 70 560 280'}, rif:{b:scRif,s:stRif,cs:'cida',vb:'0 84 560 280'}, metro:{b:scMetro,s:stMetro,cs:'cida'},
   sulfa:{b:scSulfa,s:stSulfa,cs:'stat'}, tmp:{b:scTMP,s:stTMP,cs:'stat'},
   poly:{b:scPoly,s:stPoly,cs:'cida'}, dapto:{b:scDapto,s:stDapto,cs:'cida'}
 };
@@ -5525,7 +5542,7 @@ function buildPanel(key){
     <div class="abx-body">
       <div class="abx-stagewrap">
         <div class="abx-stage" role="img" aria-label="${u.scene}: ${sc.t}"></div>
-        <div class="abx-legend" aria-hidden="true"><span><i class="lg-d"></i>${u.drug}</span><span><i class="lg-t"></i>${u.target}</span><span><i class="lg-r"></i>${u.res}</span></div>
+        <div class="abx-legend" aria-hidden="true"><span><i class="lg-d"></i>${u.drug}</span><span><i class="lg-t"></i>${u.target}</span><span><i class="lg-r"></i>${u.red}</span></div>
       </div>
       <div class="abx-side">
         <ol class="abx-steps" aria-label="${u.steps}">${steps}</ol>
@@ -5534,20 +5551,21 @@ function buildPanel(key){
         <div class="abx-ctl">
           <button type="button" class="abx-btn abx-prev" aria-label="${u.prev}">${ICO.prev}</button>
           <button type="button" class="abx-btn abx-play"></button>
+          <p class="abx-rmnote" hidden>${u.rm}</p>
           <button type="button" class="abx-btn abx-next" aria-label="${u.next}">${ICO.next}</button>
           <span class="abx-count" aria-hidden="true"></span>
         </div></div>
         <p class="abx-sr" aria-live="polite"></p>
       </div>
     </div>`;
-  if(rm()) p.querySelector('.abx-play').hidden=true;
+  if(rm()){ p.querySelector('.abx-play').hidden=true; p.querySelector('.abx-rmnote').hidden=false; }
   return p;
 }
 
 function mountScene(){
   const def=SC[cur.key], stage=cur.panel.querySelector('.abx-stage');
   const defs='<defs><marker id="abxArr" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,1 L9,5 L0,9 Z" style="fill:var(--gly)"/></marker></defs>';
-  stage.innerHTML=`<svg class="abx-svg" viewBox="0 0 560 360" aria-hidden="true" focusable="false">${defs}${def.b(L[lg()].lb)}</svg>`;
+  stage.innerHTML=`<svg class="abx-svg" viewBox="${def.vb||'0 0 560 360'}" aria-hidden="true" focusable="false">${defs}${def.b(L[lg()].lb)}</svg>`;
   cur.svg=stage.firstElementChild; cur.stage=stage;
   cur.els={}; cur.base={};
   cur.svg.querySelectorAll('[data-n]').forEach(el=>{ const n=el.getAttribute('data-n'); cur.els[n]=el; cur.base[n]=parse(el.getAttribute('data-b')); });
@@ -5593,7 +5611,11 @@ function render(){
     if(i===cur.step) b.setAttribute('aria-current','step'); else b.removeAttribute('aria-current');
   });
   p.querySelector('.abx-out').hidden=!last;
-  if(isSheet()&&cur.navd){ const on=p.querySelector('.abx-st.on'); if(on) on.scrollIntoView({block:'nearest',behavior:rm()?'auto':'smooth'}); }
+  if(isSheet()&&cur.navd){
+    const dock=p.querySelector('.abx-dock'); if(dock) p.style.setProperty('--dockh',(dock.offsetHeight+16)+'px');
+    const tgt=last?p.querySelector('.abx-out'):p.querySelector('.abx-st.on');
+    if(tgt) tgt.scrollIntoView({block:'nearest',behavior:rm()?'auto':'smooth'});
+  }
   p.querySelector('.abx-bar i').style.width=(n>1?cur.step/(n-1)*100:100)+'%';
   p.querySelector('.abx-count').textContent=`${cur.step+1} / ${n}`;
   p.querySelector('.abx-prev').disabled=cur.step===0;
@@ -5628,7 +5650,16 @@ function setPlaying(on){
 }
 
 /* ── posizione: sotto la riga del ramo (desktop) o foglio dal basso (mobile) ── */
-let scrim=null;
+let scrim=null, inerted=[];
+/* foglio aperto: il resto della pagina è inerte (niente Tab né lettore di schermo dietro lo sfondo) */
+function setInert(on){
+  inerted.forEach(el=>{ el.inert=false; }); inerted=[];
+  if(!on||!cur) return;
+  [...document.body.children].forEach(el=>{
+    if(el===cur.panel||el===scrim||el.tagName==='SCRIPT'||el.tagName==='STYLE'||el.inert) return;
+    el.inert=true; inerted.push(el);
+  });
+}
 function place(){
   if(!cur) return;
   const p=cur.panel;
@@ -5636,13 +5667,15 @@ function place(){
     if(!scrim){ scrim=document.createElement('div'); scrim.className='abx-scrim'; scrim.addEventListener('click',()=>closeScene()); }
     if(scrim.parentNode!==document.body) document.body.appendChild(scrim);
     if(p.parentNode!==document.body) document.body.appendChild(p);
-    p.classList.add('is-sheet'); p.setAttribute('role','dialog');
+    p.classList.add('is-sheet'); p.setAttribute('role','dialog'); p.setAttribute('aria-modal','true');
     document.documentElement.classList.add('abx-lock');
+    setInert(true);
     return;
   }
+  setInert(false);
   if(scrim&&scrim.parentNode) scrim.remove();
   document.documentElement.classList.remove('abx-lock');
-  p.classList.remove('is-sheet'); p.removeAttribute('role');
+  p.classList.remove('is-sheet'); p.removeAttribute('role'); p.removeAttribute('aria-modal');
   const grid=document.querySelector('#view-antibiotics .mm-branches'); if(!grid) return;
   const branches=[...grid.children].filter(e=>e.classList.contains('mm-branch'));
   const i=branches.indexOf(cur.branch); if(i<0) return;
@@ -5684,6 +5717,7 @@ function closeScene({restoreFocus=true}={}){
   if(panel&&panel.parentNode) panel.remove();
   if(scrim&&scrim.parentNode) scrim.remove();
   document.documentElement.classList.remove('abx-lock');
+  setInert(false);
   if(io) io.disconnect();
   cur=null;
   if(restoreFocus&&btn&&btn.isConnected){ try{ btn.focus({preventScroll:true}); }catch(_){ btn.focus(); } }
@@ -5697,11 +5731,19 @@ function wirePanel(){
   p.querySelector('.abx-play').addEventListener('click',()=>{
     const n=SC[cur.key].s.length;
     if(cur.playing){ setPlaying(false); return; }
-    if(cur.step>=n-1){ cur.playing=true; go(0); return; }
+    if(cur.step>=n-1){ go(0); setPlaying(true); return; }
     setPlaying(true);
   });
   p.querySelector('.abx-steps').addEventListener('click',e=>{ const b=e.target.closest('.abx-st'); if(b) go(+b.dataset.k,{announce:!cur.playing}); });
   p.addEventListener('keydown',e=>{
+    if(e.key==='Tab'&&p.classList.contains('is-sheet')){
+      const f=[...p.querySelectorAll('button')].filter(b=>!b.disabled&&b.offsetParent!==null);
+      if(!f.length) return;
+      const a=document.activeElement, first=f[0], lastB=f[f.length-1];
+      if(e.shiftKey&&(a===first||!f.includes(a))){ e.preventDefault(); lastB.focus(); }
+      else if(!e.shiftKey&&a===lastB){ e.preventDefault(); first.focus(); }
+      return;
+    }
     if(e.target.matches&&e.target.matches('input,textarea')) return;
     if(e.key==='ArrowRight'){ e.preventDefault(); go(cur.step+1,{announce:true}); }
     else if(e.key==='ArrowLeft'){ e.preventDefault(); go(cur.step-1,{announce:true}); }
@@ -5732,6 +5774,11 @@ document.addEventListener('keydown',e=>{
 let rzT=0;
 window.addEventListener('resize',()=>{ clearTimeout(rzT); rzT=setTimeout(()=>{ if(cur){ const wasSheet=cur.panel.classList.contains('is-sheet'); place(); if(wasSheet!==isSheet()&&!isSheet()) cur.panel.scrollIntoView({block:'nearest'}); } },120); });
 document.addEventListener('visibilitychange',()=>{ if(document.hidden&&cur&&cur.playing) setPlaying(false); });
+if(/[?&]embed=1(?:&|$)/.test(location.search)) window.addEventListener('message',e=>{
+  if(e.source!==parent||e.origin!==location.origin) return;
+  const d=e.data; if(!d||typeof d!=='object'||d.__fusion!=='visibility') return;
+  if(d.value!==true&&cur&&cur.playing) setPlaying(false); // iframe nascosta dallo shell: la scena si ferma dov'è
+});
 const view=document.getElementById('view-antibiotics');
 if(view&&'MutationObserver' in window){
   new MutationObserver(()=>{ if(cur&&!view.classList.contains('active')) closeScene({restoreFocus:false}); }).observe(view,{attributes:true,attributeFilter:['class']});
@@ -5741,7 +5788,7 @@ if(RMQ.addEventListener) RMQ.addEventListener('change',()=>{ if(cur){ const {key
 abxAfterBuild=function(){
   if(!cur) return;
   const {key,step,playing}=cur;
-  clearTimers(); if(cur.panel&&cur.panel.parentNode) cur.panel.remove(); cur=null;
+  clearTimers(); setInert(false); if(cur.panel&&cur.panel.parentNode) cur.panel.remove(); cur=null;
   const btn=document.querySelector(`#view-antibiotics .abx-go[data-abx="${key}"]`);
   if(btn) openScene(key,btn,{step,playing,focus:false});
 };
