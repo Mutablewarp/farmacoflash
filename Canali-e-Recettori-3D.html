@@ -1088,23 +1088,26 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
   --mt-c:#176b45; --mt-c-bg:#e5f3eb; --mt-c-line:rgba(23,107,69,.5);
   --mt-on:#ffffff; --tbl-zebra:rgba(28,26,21,.022); --tbl-hover:rgba(131,92,20,.07);
 }
-/* strumenti: ricerca + filtri con bersagli ≥44px */
+/* strumenti: ricerca + filtri (controlli UI: Archivo, accento oro, bersagli ≥44px) + conteggio */
 #view-table .table-tools{gap:10px}
 #view-table .table-tools input.search{min-height:44px;font-family:var(--ui)}
 #view-table .tbl-filters{display:flex;flex-wrap:wrap;gap:6px}
 :root[data-theme="light"] #view-table .table-tools input.search,:root[data-theme="light"] #view-table .filt:not(.on){background:var(--panel);border-color:var(--line2)}
-#view-table .filt{min-height:44px;padding:0 14px;display:inline-flex;align-items:center;transition:background-color .18s ease-out,border-color .18s ease-out,color .18s ease-out}
+#view-table .filt{min-height:44px;padding:0 14px;display:inline-flex;align-items:center;font:500 13px/1 var(--ui);letter-spacing:0;transition:background-color .18s ease-out,border-color .18s ease-out,color .18s ease-out}
+#view-table .filt.on,:root[data-theme="light"] #view-table .filt.on{background:var(--gold-soft);border-color:var(--gold);color:var(--ink)}
 #view-table .filt:focus-visible,#view-table .table-tools input.search:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#view-table .tbl-count{margin-left:auto;padding:0 2px;font:500 12.5px/1.2 var(--ui);color:var(--ink-dim);white-space:nowrap;font-variant-numeric:tabular-nums}
 /* contenitore: la scheda ritaglia gli angoli senza diventare contenitore di scroll (così l'intestazione può restare fissa) */
 #view-table .table-card{overflow:clip}
 #view-table .tbl-scroll{overflow-x:auto;overscroll-behavior-x:contain}
 #cmp-table{min-width:960px;font-size:12.8px;border-collapse:separate;border-spacing:0}
 #cmp-table caption{caption-side:top;text-align:left}
 #cmp-table .tbl-sr,#cmp-table caption{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-#cmp-table thead th{position:sticky;top:0;z-index:2;background:var(--panel2);color:var(--ink-dim);vertical-align:bottom;padding:12px 13px 11px;border-bottom:1px solid var(--line2)}
+#cmp-table thead th{position:sticky;top:0;z-index:2;background:var(--panel2);color:var(--ink-dim);vertical-align:bottom;padding:10px 13px 9px;border-bottom:1px solid var(--line2)}
 #cmp-table thead th .th-t{display:block}
-#cmp-table .mod-key{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:4px 6px;margin-top:7px;font:500 11.5px/1.2 var(--ui);letter-spacing:0;text-transform:none;color:var(--ink-dim);white-space:nowrap}
-#cmp-table .mk{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;font:700 9.5px/1 var(--ui);letter-spacing:0;color:var(--mt-on);flex:none}
+/* legenda Modulo nell'intestazione: due righe compatte (G generale / S speciale) */
+#cmp-table .mod-key{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:3px 6px;margin-top:5px;font:500 11.5px/1.15 var(--ui);letter-spacing:0;text-transform:none;color:var(--ink-dim);white-space:nowrap}
+#cmp-table .mk{display:inline-grid;place-items:center;width:15px;height:15px;border-radius:50%;font:700 9px/1 var(--ui);letter-spacing:0;color:var(--mt-on);flex:none}
 #cmp-table .mk.b{background:var(--mt-b)} #cmp-table .mk.c{background:var(--mt-c)}
 #cmp-table .mk-sep{display:none}
 #cmp-table caption .mk-sep{display:inline;margin:0 6px;color:var(--ink-faint)}
@@ -1112,63 +1115,106 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 #cmp-table tbody tr:last-child td{border-bottom:0}
 #cmp-table tbody tr{cursor:pointer;transition:background-color .16s ease-out}
 #cmp-table tbody tr.z{background:var(--tbl-zebra)}
-#cmp-table tbody tr:hover{background:var(--tbl-hover)}
-#cmp-table tbody tr:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;background:var(--tbl-hover)}
+@media (hover:hover){#cmp-table tbody tr:hover{background:var(--tbl-hover)}} /* niente hover "appiccicato" dopo il tocco */
 #cmp-table tr[hidden]{display:none!important}
-#cmp-table td.c-name{white-space:nowrap}
-#cmp-table td.c-name .nmcell{min-height:26px}
+/* nome del canale = vero pulsante "Apri in 3D"; il clic sull'intera riga resta come scorciatoia */
+#cmp-table .nm-btn{-webkit-appearance:none;appearance:none;margin:0;padding:0;border:0;border-radius:4px;background:none;color:inherit;font:inherit;line-height:inherit;text-align:left;cursor:pointer;min-width:0;max-width:100%}
+#cmp-table .nm-btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@supports selector(:has(*)){
+  #cmp-table .nm-btn:focus-visible{outline:none}
+  #cmp-table tbody tr:has(.nm-btn:focus-visible){outline:2px solid var(--gold);outline-offset:-2px;background:var(--tbl-hover)}
+}
+#cmp-table td.c-name{white-space:normal}
+#cmp-table td.c-name .nmcell{min-width:0}
+#cmp-table td.c-name strong{min-width:0;overflow-wrap:break-word}
 #cmp-table td.c-mod{white-space:nowrap}
 #cmp-table td .sub{display:block;margin-top:2px;color:var(--ink-dim);font-size:11.5px;font-family:var(--ui)}
 #cmp-table td.c-eff .eff-v{white-space:nowrap;font-weight:600}
 #cmp-table td.c-ion{font-family:var(--ui);font-size:12.6px}
 #cmp-table td.c-drug{color:var(--ink)}
-/* badge Modulo: pillola unica (mai spezzata su due righe), bordo pieno nel colore del modulo */
-#cmp-table .modtag{display:inline-flex;align-items:center;gap:6px;box-sizing:border-box;height:26px;padding:0 10px 0 3px;
+#cmp-table .drug-list{list-style:none;margin:0;padding:0}
+#cmp-table .drug-list li+li{margin-top:6px}
+#cmp-table .drug-list .dk{color:var(--ink-dim)}
+/* badge Modulo: pillola unica (mai spezzata), bordo pieno nel colore del modulo; centrata sulla prima riga di testo della riga */
+#cmp-table .modtag{display:inline-flex;align-items:center;gap:6px;box-sizing:border-box;height:24px;margin-top:-3px;padding:0 10px 0 3px;
   border-radius:999px;border:1px solid var(--mt-line);background:var(--mt-bg);color:var(--mt);
-  font:600 12px/1 var(--ui);letter-spacing:0;white-space:nowrap;vertical-align:top;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  font:600 12px/1 var(--ui);letter-spacing:0;white-space:nowrap;vertical-align:top}
 #cmp-table .modtag.b{--mt:var(--mt-b);--mt-bg:var(--mt-b-bg);--mt-line:var(--mt-b-line)}
 #cmp-table .modtag.c{--mt:var(--mt-c);--mt-bg:var(--mt-c-bg);--mt-line:var(--mt-c-line)}
-#cmp-table .modtag .mt-l{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--mt);color:var(--mt-on);font:700 11px/1 var(--ui)}
-#cmp-table .tbl-empty td{padding:28px 16px;text-align:center;color:var(--ink-dim);cursor:default}
-#cmp-table tr.tbl-empty:hover{background:none}
-/* desktop largo: la tabella sta nella scheda, quindi niente scroll interno e intestazione fissa rispetto alla pagina, sotto la barra schede */
+#cmp-table .modtag.x{--mt:var(--ink-dim);--mt-bg:transparent;--mt-line:var(--line2)}
+#cmp-table .modtag .mt-l{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--mt);color:var(--mt-on);font:700 10.5px/1 var(--ui)}
+#cmp-table .modtag.x .mt-l{background:var(--line2);color:var(--ink)}
+/* stato vuoto con via d'uscita */
+#cmp-table tr.tbl-empty{cursor:default}
+#cmp-table tbody tr.tbl-empty:hover{background:none}
+#cmp-table .tbl-empty td{padding:28px 16px;text-align:center;color:var(--ink-dim)}
+#cmp-table .tbl-empty-msg{margin:0 0 12px}
+#cmp-table .tbl-reset{min-height:44px;padding:0 16px;border:1px solid var(--gold);border-radius:9px;background:var(--gold-soft);color:var(--ink);font:500 13px/1 var(--ui);cursor:pointer}
+#cmp-table .tbl-reset:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+/* "Mostra tutto": solo nelle schede mobili */
+#cmp-table .tbl-more{display:none}
+/* desktop: la tabella sta nella scheda; intestazione fissa rispetto alla pagina, sotto la barra schede */
 @media (min-width:1024px){
   #view-table .tbl-scroll{overflow:visible}
   #cmp-table{min-width:0;table-layout:fixed}
-  #cmp-table th:nth-child(1){width:11%} #cmp-table th:nth-child(2){width:116px} #cmp-table th:nth-child(3){width:13%}
-  #cmp-table th:nth-child(4){width:14%} #cmp-table th:nth-child(5){width:12%} #cmp-table th:nth-child(6){width:116px} #cmp-table th:nth-child(7){width:13%}
-  #cmp-table td.c-name{white-space:normal}
-  #cmp-table td{overflow-wrap:break-word}
-  #cmp-table thead th{top:var(--tbl-top,0px)}
+  #cmp-table th:nth-child(1){width:132px} #cmp-table th:nth-child(2){width:112px} #cmp-table th:nth-child(3){width:12%}
+  #cmp-table th:nth-child(4){width:13.5%} #cmp-table th:nth-child(5){width:12.5%} #cmp-table th:nth-child(6){width:110px} #cmp-table th:nth-child(7){width:12.5%}
+  #cmp-table thead th{top:var(--tbl-top,0px);white-space:normal;overflow-wrap:break-word;padding-left:10px;padding-right:10px}
+  /* niente sillabazione automatica (spezzava nomi di farmaci): a capo solo tra parole; le parole troppo lunghe hanno un trattino morbido esplicito */
+  #cmp-table tbody td{padding-left:10px;padding-right:10px;overflow-wrap:break-word}
+  #cmp-table td.c-name strong{overflow-wrap:anywhere}
+  /* il fuoco da tastiera non finisce sotto barra schede + intestazione (WCAG 2.4.11) */
+  #cmp-table tbody tr{scroll-margin-top:calc(var(--tbl-top,0px) + var(--tbl-head,72px) + 4px)}
+  #cmp-table .nm-btn{scroll-margin-top:calc(var(--tbl-top,0px) + var(--tbl-head,72px) + 18px)}
 }
-/* tablet: scroll orizzontale solo dentro la scheda, con intestazione fissa al suo interno */
+@media (min-width:1200px){
+  #cmp-table th:nth-child(1){width:12%} #cmp-table th:nth-child(2){width:116px} #cmp-table th:nth-child(6){width:116px}
+  #cmp-table thead th,#cmp-table tbody td{padding-left:13px;padding-right:13px}
+}
+/* tablet: scroll solo orizzontale dentro la scheda (nessuna area di scroll verticale annidata), prima colonna fissa */
 @media (min-width:761px) and (max-width:1023px){
-  #view-table .tbl-scroll{overflow:auto;max-height:calc(100vh - var(--tbl-top,0px) - 24px);max-height:calc(100dvh - var(--tbl-top,0px) - 24px)}
-  #cmp-table td.c-name{position:sticky;left:0;z-index:1;background:var(--panel);white-space:normal;min-width:116px;max-width:150px;box-shadow:inset -1px 0 0 var(--line)}
+  #cmp-table td.c-name{position:sticky;left:0;z-index:1;background:var(--panel);min-width:116px;max-width:150px;box-shadow:inset -1px 0 0 var(--line)}
   #cmp-table tbody tr.z td.c-name{background:linear-gradient(var(--tbl-zebra),var(--tbl-zebra)),var(--panel)}
-  #cmp-table tbody tr:hover td.c-name,#cmp-table tbody tr:focus-visible td.c-name{background:linear-gradient(var(--tbl-hover),var(--tbl-hover)),var(--panel)}
+  @media (hover:hover){#cmp-table tbody tr:hover td.c-name{background:linear-gradient(var(--tbl-hover),var(--tbl-hover)),var(--panel)}}
   #cmp-table thead th:first-child{position:sticky;left:0;z-index:3;box-shadow:inset -1px 0 0 var(--line)}
+  #cmp-table tbody tr{scroll-margin-top:calc(var(--tbl-top,0px) + 8px)}
+  #cmp-table .nm-btn{scroll-margin-top:calc(var(--tbl-top,0px) + 22px)}
+  @supports selector(:has(*)){
+    #cmp-table tbody tr:has(.nm-btn:focus-visible) td.c-name{background:linear-gradient(var(--tbl-hover),var(--tbl-hover)),var(--panel);box-shadow:inset 2px 0 0 var(--gold),inset 0 2px 0 var(--gold),inset 0 -2px 0 var(--gold),inset -1px 0 0 var(--line)}
+  }
 }
 /* mobile: ogni canale diventa una scheda con le etichette dei campi; nessuno scroll orizzontale */
 @media (max-width:760px){
   #view-table .table-tools{padding:12px}
   #view-table .table-tools input.search{flex:1 1 100%}
+  #view-table .tbl-count{flex:1 1 100%;margin-left:0}
   #view-table .tbl-scroll{overflow:visible}
   #cmp-table,#cmp-table tbody{display:block;min-width:0;width:100%}
   #cmp-table caption{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto;white-space:normal;display:flex;align-items:center;flex-wrap:wrap;gap:4px;padding:12px 14px 2px;font:500 12.5px/1.3 var(--ui);color:var(--ink-dim)}
+  #cmp-table caption .cap-key{display:inline-flex;align-items:center;flex-wrap:wrap;gap:4px}
   #cmp-table caption .cap-lead{font-weight:600;color:var(--ink);margin-right:4px}
   #cmp-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
   #cmp-table tbody{display:grid;gap:10px;padding:10px 12px 14px}
-  #cmp-table tbody tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px 14px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+  #cmp-table tbody tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px 14px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--panel);scroll-margin-top:calc(var(--tbl-top,0px) + 8px)}
+  #cmp-table .nm-btn{scroll-margin-top:calc(var(--tbl-top,0px) + 22px)}
   #cmp-table tbody tr.z{background:var(--panel)}
-  #cmp-table tbody tr:hover{background:var(--panel2)}
+  @media (hover:hover){#cmp-table tbody tr:hover{background:var(--panel2)}}
   #cmp-table tbody td{display:block;padding:0;border:0;min-width:0;overflow-wrap:anywhere}
   #cmp-table tbody td:not(.eff-up):not(.eff-dn){color:var(--ink)}
-  #cmp-table td.c-name{grid-column:1;align-self:center;white-space:normal}
+  /* ordine: nome + modulo, poi famiglia accanto all'effetto, poi i campi lunghi a tutta larghezza */
+  #cmp-table td.c-name{order:1;grid-column:1;align-self:center}
   #cmp-table td.c-name strong{font-size:15px}
-  #cmp-table td.c-mod{grid-column:2;justify-self:end;align-self:center}
-  #cmp-table td.c-fam,#cmp-table td.c-sub,#cmp-table td.c-drug,#cmp-table td.c-feat{grid-column:1/-1}
+  #cmp-table td.c-mod{order:2;grid-column:2;justify-self:end;align-self:center}
+  #cmp-table .modtag{margin-top:0}
+  #cmp-table td.c-fam{order:3;grid-column:1}
+  #cmp-table td.c-eff{order:4;grid-column:2}
+  #cmp-table td.c-sub{order:5} #cmp-table td.c-ion{order:6} #cmp-table td.c-drug{order:7} #cmp-table td.c-feat{order:8}
+  #cmp-table td.c-sub,#cmp-table td.c-ion,#cmp-table td.c-drug,#cmp-table td.c-feat{grid-column:1/-1}
   #cmp-table td[data-l]::before{content:attr(data-l);display:block;margin-bottom:3px;font:500 11.5px/1.3 var(--ui);color:var(--ink-dim)}
+  /* campi molto lunghi: 4 righe, poi "Mostra tutto" */
+  #cmp-table tr.long:not(.open) .clampable{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;line-clamp:4;overflow:hidden}
+  #cmp-table .tbl-more{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;padding:0 14px;border:1px solid var(--line2);border-radius:9px;background:var(--panel2);color:var(--ink);font:500 13px/1 var(--ui);cursor:pointer}
+  #cmp-table .tbl-more:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   #cmp-table tr.tbl-empty{display:block;border-style:dashed}
   #cmp-table tr.tbl-empty td{padding:12px}
 }
@@ -1326,15 +1372,16 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
           <button type="button" class="filt" data-f="nicotinico" aria-pressed="false">Nicotinici (5 sub)</button>
           <button type="button" class="filt" data-f="glutammato" aria-pressed="false">Glutammato (4 sub)</button>
         </div>
+        <span class="tbl-count" id="tbl-count" role="status" aria-live="polite"></span>
       </div>
       <div class="tbl-scroll">
-        <table id="cmp-table">
+        <table id="cmp-table" role="table">
           <caption class="tbl-cap"></caption>
-          <thead><tr>
-            <th scope="col">Canale</th><th scope="col">Modulo</th><th scope="col">Famiglia · topologia</th><th scope="col">Subunità</th>
-            <th scope="col">Poro / ione</th><th scope="col">Effetto</th><th scope="col">Farmaci chiave</th><th scope="col">Feature distintiva</th>
+          <thead role="rowgroup"><tr role="row">
+            <th scope="col" role="columnheader">Canale</th><th scope="col" role="columnheader">Modulo</th><th scope="col" role="columnheader">Famiglia · topologia</th><th scope="col" role="columnheader">Subunità</th>
+            <th scope="col" role="columnheader">Poro / ione</th><th scope="col" role="columnheader">Effetto</th><th scope="col" role="columnheader">Farmaci chiave</th><th scope="col" role="columnheader">Feature distintiva</th>
           </tr></thead>
-          <tbody id="tbl-body"></tbody>
+          <tbody id="tbl-body" role="rowgroup"></tbody>
         </table>
       </div>
     </div>
@@ -2612,21 +2659,22 @@ function buildTable(){
   const L=tblL(), col=L.cols;
   ORDER.forEach(id=>{
     const c=C[id]; if(!c) return;
-    const tr=document.createElement('tr'); tr.dataset.id=id; tr.dataset.fam=c.fam; tr.tabIndex=0;
-    const up=c.effect==='up';
+    const tr=document.createElement('tr'); tr.dataset.id=id; tr.dataset.fam=c.fam; tr.setAttribute('role','row');
+    const ef=tblEff(id,c), nm=tblShort(id,c), plain=nm.replace(/<[^>]+>/g,''), poro=tblSoft(c.poro.split('·')[0]);
+    const stoich=tblSoft(c.stoich), feat=tblSoft(c.feat);
+    const long=tblIsLong(c);
     tr.innerHTML=`
-      <td class="c-name"><div class="nmcell"><span class="dot" style="background:${c.geom.ionColor}"></span><strong>${c.short}</strong></div></td>
-      <td class="c-mod">${tblModBadge(c.mod)}</td>
-      <td class="feat c-fam" data-l="${col[2]}">${famLabel(c.fam)}<span class="sub">${topoShort(id)}</span></td>
-      <td class="c-sub" data-l="${col[3]}">${c.stoich}</td>
-      <td class="ion c-ion" data-l="${col[4]}">${c.poro.split('·')[0]}</td>
-      <td class="c-eff ${up?'eff-up':'eff-dn'}" data-l="${col[5]}"><span class="eff-v">${up?t(['▲ depolarizz.','▲ depolariz.']):t(['▼ iperpolarizz.','▼ hyperpolariz.'])}</span><span class="sub">${up?t(['eccitatorio','excitatory']):t(['inibitorio','inhibitory'])}</span></td>
-      <td class="c-drug" data-l="${col[6]}">${c.drugs.map(d=>d.split('(')[0].trim()).slice(0,3).join('<br>')}</td>
-      <td class="feat c-feat" data-l="${col[7]}">${c.feat}</td>`;
-    tr.title=L.open+c.short.replace(/<[^>]+>/g,'');
-    const go=()=>{ switchView('explorer'); buildModel(id); };
-    tr.onclick=go;
-    tr.onkeydown=e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } };
+      <td class="c-name" role="cell"><button type="button" class="nmcell nm-btn" aria-label="${L.open}${plain}"><span class="dot" aria-hidden="true" style="background:${c.geom.ionColor}"></span><strong>${nm}</strong></button></td>
+      <td class="c-mod" role="cell">${tblModBadge(c.mod)}</td>
+      <td class="feat c-fam" role="cell" data-l="${col[2]}">${famLabel(c.fam)}<span class="sub">${topoShort(id)}</span></td>
+      <td class="c-sub" role="cell" data-l="${col[3]}"><span class="clampable">${stoich}</span></td>
+      <td class="ion c-ion" role="cell" data-l="${col[4]}"><span class="clampable">${poro}</span></td>
+      <td class="c-eff ${ef.up?'eff-up':'eff-dn'}" role="cell" data-l="${col[5]}"><span class="eff-v">${ef.v}</span><span class="sub">${ef.s}</span></td>
+      <td class="c-drug" role="cell" data-l="${col[6]}">${tblDrugsHTML(id,c)}</td>
+      <td class="feat c-feat" role="cell" data-l="${col[7]}"><span class="clampable">${feat}</span>${long?`<button type="button" class="tbl-more" aria-expanded="false">${L.more}</button>`:''}</td>`;
+    if(long) tr.classList.add('long');
+    tr.title=L.open+plain;
+    tr.onclick=e=>{ if(e.target.closest&&e.target.closest('.tbl-more')) return; tblOpen3D(id); };
     tb.appendChild(tr);
   });
   tblDecorate();
@@ -2635,6 +2683,8 @@ function buildTable(){
 }
 function topoShort(id){
   const c=C[id];
+  if(id==='katp')return t(['ottamero 4:4 · poro da 4 Kir6.2','octamer 4:4 · pore from 4 Kir6.2']);
+  if(c.geom.type==='pentamer'&&(c.geom.order||[]).length===3)return t(['trimero · 3 subunità','trimer · 3 subunits']);
   if(c.geom.type==='pentamer')return t(['pentamero · 5 subunità','pentamer · 5 subunits']);
   if(c.geom.type==='tetramerK')return t(['tetramero · 4 subunità','tetramer · 4 subunits']);
   if(c.geom.type==='pseudotetramer')return t(['pseudotetramero · 4 domini','pseudotetramer · 4 domains']);
@@ -2648,17 +2698,11 @@ function filterTable(){
   const on=root.querySelector('.filt.on'); const f=on?on.dataset.f:'all';
   let n=0;
   tb.querySelectorAll('tr[data-id]').forEach(tr=>{
-    const c=C[tr.dataset.id];
-    const hay=(c.short+c.name+c.stoich+c.feat+c.drugs.join(' ')+c.poro+c.topo).toLowerCase();
-    const show=(f==='all'||tr.dataset.fam===f)&&(!q||hay.includes(q));
+    const show=(f==='all'||tr.dataset.fam===f)&&(!q||tblHay(tr.dataset.id).includes(q));
     tr.hidden=!show;
     tr.classList.toggle('z', show && (n++ % 2===1));
   });
-  let em=document.getElementById('tbl-empty');
-  if(!n){
-    if(!em){ em=document.createElement('tr'); em.id='tbl-empty'; em.className='tbl-empty'; em.innerHTML='<td colspan="8"></td>'; }
-    em.firstElementChild.textContent=tblL().empty; tb.appendChild(em); em.hidden=false;
-  } else if(em) em.hidden=true;
+  tblEmpty(tb,n);
 }
 
 /* =========================================================================
@@ -2857,6 +2901,8 @@ document.getElementById('explode').oninput=function(){explodeAmt=explodeTarget=+
 document.getElementById('btn-section').onclick=function(){ sectionOn=!sectionOn; this.classList.toggle('on',sectionOn); applySection(); };
 document.getElementById('btn-explode').onclick=function(){ explodeTarget = explodeTarget>50?0:100; this.classList.toggle('on',explodeTarget>50); };
 document.getElementById('btn-tour').onclick=function(){ if(tour) stopTour(); else startTour(); };
+document.getElementById('tbl-search').oninput=filterTable;
+document.querySelectorAll('.filt').forEach(f=>f.onclick=function(){document.querySelectorAll('.filt').forEach(x=>x.classList.remove('on'));this.classList.add('on');filterTable();});
 
 document.getElementById('honesty-note').innerHTML='<b>Trasparenza sui dati:</b> i modelli 3D sono <b>schemi didattici</b> dell\'organizzazione delle subunità (numero, disposizione attorno al poro, posizione di M2/S4), non strutture atomiche da cryo-EM. Le frasi tra virgolette provengono dagli appunti delle lezioni; i blocchi verdi sono integrazioni da <b>Goodman &amp; Gilman</b>; i blocchi gialli segnalano punti in cui gli appunti divergono dal modello canonico e che conviene <b>verificare sui tuoi appunti</b>. Le stechiometrie dei recettori neuronali nicotinici hanno varianti reali: non considerarle assolute.';
 
@@ -4584,60 +4630,182 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDrugM
 /* ═══ slot anim: fine ═══ */
 // ·
 /* ═══ slot table: inizio (solo il suo agente) ═══ */
-/* testi IT/EN della tabella: funzione (non const) perché buildTable() gira all'avvio, prima di questo slot */
+/* Solo function declarations (niente const/let di modulo): buildTable() gira all'avvio, prima di questo slot (TDZ). */
+/* testi IT/EN della tabella */
 function tblL(){
   const L={
     it:{ cols:['Canale','Modulo','Famiglia · topologia','Subunità','Poro / ione','Effetto','Farmaci chiave','Feature distintiva'],
-         mod:{ b:['G','Generale','Modulo generale'], c:['S','Speciale','Modulo speciale'] },
+         mod:{ b:['G','Generale','Modulo generale'], c:['S','Speciale','Modulo speciale'] }, modX:'Modulo',
          keyG:'generale', keyS:'speciale', capLead:'Modulo', capSr:'Tabella comparativa dei canali ionici.',
-         note:'<b>Suggerimento:</b> clicca una riga per aprire il modello 3D corrispondente.',
-         empty:'Nessun canale corrisponde alla ricerca o al filtro.', open:'Apri in 3D: ',
+         note:'<b>Suggerimento:</b> clicca una riga, o premi Invio sul nome del canale, per aprire il modello 3D corrispondente.',
+         empty:'Nessun canale corrisponde alla ricerca o al filtro.', reset:'Azzera filtri', open:'Apri in 3D: ',
+         n1:'1 canale', nN:' canali', more:'Mostra tutto', less:'Mostra meno',
          searchAria:'Cerca nella tabella', filtAria:'Filtra per famiglia' },
     en:{ cols:['Channel','Module','Family · topology','Subunits','Pore / ion','Effect','Key drugs','Distinctive feature'],
-         mod:{ b:['G','General','General module'], c:['S','Special','Special module'] },
+         mod:{ b:['G','General','General module'], c:['S','Special','Special module'] }, modX:'Module',
          keyG:'general', keyS:'special', capLead:'Module', capSr:'Comparison table of ion channels.',
-         note:'<b>Tip:</b> click a row to open the matching 3D model.',
-         empty:'No channel matches the search or filter.', open:'Open in 3D: ',
+         note:'<b>Tip:</b> click a row, or press Enter on the channel name, to open the matching 3D model.',
+         empty:'No channel matches the search or filter.', reset:'Clear filters', open:'Open in 3D: ',
+         n1:'1 channel', nN:' channels', more:'Show all', less:'Show less',
          searchAria:'Search the table', filtAria:'Filter by family' }
   };
   return L[LANG==='en'?'en':'it'];
 }
+/* badge Modulo; un codice sconosciuto resta neutro e mostra il codice grezzo (mai "Generale" per errore) */
 function tblModBadge(m){
-  const k=tblL().mod[m]||tblL().mod.b;
-  return `<span class="modtag ${m==='c'?'c':'b'}" role="img" title="${k[2]}" aria-label="${k[2]}"><span class="mt-l">${k[0]}</span><span class="mt-t">${k[1]}</span></span>`;
+  const L=tblL(), k=L.mod[m];
+  if(!k){ const raw=String(m==null?'?':m).replace(/[^\w-]/g,'').slice(0,4)||'?';
+    return `<span class="modtag x" role="img" title="${L.modX} ${raw}" aria-label="${L.modX} ${raw}"><span class="mt-l">${raw.charAt(0).toUpperCase()}</span><span class="mt-t">${raw}</span></span>`; }
+  return `<span class="modtag ${m}" role="img" title="${k[2]}" aria-label="${k[2]}"><span class="mt-l">${k[0]}</span><span class="mt-t">${k[1]}</span></span>`;
 }
 function tblKeyHTML(){
   const L=tblL();
-  return `<span class="mk b" aria-hidden="true">G</span> ${L.keyG}<span class="mk-sep" aria-hidden="true">·</span><span class="mk c" aria-hidden="true">S</span> ${L.keyS}`;
+  return `<span class="mk b">G</span> ${L.keyG}<span class="mk-sep">·</span><span class="mk c">S</span> ${L.keyS}`;
+}
+/* nome breve: in EN, se il dato non è ancora tradotto (identico all'IT), usa la versione inglese della sola tabella */
+function tblShort(id,c){
+  if(LANG!=='en') return c.short;
+  const EN={glyr:'GlyR (inhibitory Cl⁻ channel)',enac:'ENaC (epithelial Na⁺ channel)',trpv1:'TRPV1 (capsaicin)'};
+  const it=(typeof C_IT!=='undefined'&&C_IT[id])?C_IT[id].short:null;
+  return (EN[id]&&c.short===it)?EN[id]:c.short;
+}
+/* a capo puliti senza sillabazione automatica: trattino morbido nelle parole maiuscole lunghe, punto di a capo dopo "/" tra parole (es. metabotropici/GPCR) */
+function tblSoft(s){
+  s=String(s==null?'':s).replace(/INTRAMEMBRAN/g,'INTRA\u00ADMEMBRAN').replace(/(di(?:hy|i)dro)(p[iy]ridin)/gi,'$1\u00AD$2');
+  return /<a\s/i.test(s)?s:s.replace(/([^\s<\/])\/(?=[A-Za-zÀ-ÿ0-9])/g,'$1/<wbr>');
+}
+/* effetto dell'apertura del canale (regola della colonna); eccezioni solo per la tabella, i dati condivisi restano intatti */
+function tblEff(id,c){
+  const e=LANG==='en'?1:0;
+  const O={
+    katp:{ up:false, s:['la chiusura (ATP, sulfaniluree) depolarizza → insulina','closure (ATP, sulfonylureas) depolarizes → insulin'] },
+    enac:{ up:true, s:['riassorbimento di Na⁺','Na⁺ reabsorption'] }
+  };
+  const o=O[id]||{}, up=('up' in o)?o.up:c.effect==='up';
+  return { up,
+    v:(up?['▲ depolarizz.','▲ depolariz.']:['▼ iperpolarizz.','▼ hyperpolariz.'])[e],
+    s:(o.s||(up?['eccitatorio','excitatory']:['inibitorio','inhibitory']))[e] };
+}
+/* farmaci chiave: elenco breve curato per la tabella (verificato su Goodman & Gilman), IT/EN */
+function tblDrugs(id,c){
+  const e=LANG==='en'?1:0, h='\u2011'; /* trattino non separabile in «‑setron» */
+  const D={
+    nav:[['Anestetici locali: lidocaina','Local anesthetics: lidocaine'],['Antiepilettici','Antiepileptics'],['Antiaritmici classe I (Ia, Ib, Ic)','Class I antiarrhythmics (Ia, Ib, Ic)']],
+    cav:[['Calcio-antagonisti: diidropiridine, verapamil, diltiazem','Ca²⁺ channel blockers: dihydropyridines, verapamil, diltiazem'],['Etosuccimide (canali T)','Ethosuximide (T-type channels)'],['Gabapentin, pregabalin (α2-δ)','Gabapentin, pregabalin (α2-δ)']],
+    kv:[['Antiaritmici classe III: amiodarone, sotalolo, ibutilide','Class III antiarrhythmics: amiodarone, sotalol, ibutilide'],['Apertori KCNQ (Kv7): retigabina (ezogabina)','KCNQ (Kv7) openers: retigabine (ezogabine)']],
+    herg:[['Classe III, blocco diretto: dofetilide, ibutilide, sotalolo, amiodarone','Class III, direct block: dofetilide, ibutilide, sotalol, amiodarone'],['Classe Ia (anche hERG): chinidina, disopiramide, procainamide (via NAPA)','Class Ia (also hERG): quinidine, disopyramide, procainamide (via NAPA)'],['Blocco off-target (↑ QT): terfenadina, astemizolo, aloperidolo, macrolidi','Off-target block (↑ QT): terfenadine, astemizole, haloperidol, macrolides']],
+    nachr:[['Agonisti: ACh, nicotina, succinilcolina (depolarizzante)','Agonists: ACh, nicotine, succinylcholine (depolarizing)'],['Antagonisti non depolarizzanti: tubocurarina, rocuronio','Non-depolarizing antagonists: tubocurarine, rocuronium'],['SNC (α4β2 neuronale): vareniclina','CNS (neuronal α4β2): varenicline']],
+    gabaa:[['Agonisti: GABA (endogeno), muscimolo','Agonists: GABA (endogenous), muscimol'],['Benzodiazepine (PAM, sito α-γ); flumazenil (antagonista)','Benzodiazepines (PAM, α-γ site); flumazenil (antagonist)'],['Barbiturici, farmaci Z (zolpidem), etanolo, neurosteroidi','Barbiturates, Z-drugs (zolpidem), ethanol, neurosteroids']],
+    ht3:[['Antagonisti «'+h+'setron»: ondansetron, granisetron (antiemetici)','“'+h+'setron” antagonists: ondansetron, granisetron (antiemetics)']],
+    glyr:[['Agonista endogeno: glicina','Endogenous agonist: glycine'],['Antagonista competitivo (convulsivante): stricnina','Competitive antagonist (convulsant): strychnine']],
+    glu:[['Antagonista NMDA non competitivo: ketamina','Non-competitive NMDA antagonist: ketamine'],['Antagonisti NMDA: memantina; Mg²⁺ (blocco del poro)','NMDA antagonists: memantine; Mg²⁺ (pore block)'],['Antagonista AMPA: perampanel','AMPA antagonist: perampanel']],
+    katp:[['Sulfaniluree (chiudono): glibenclamide, glipizide, gliclazide, glimepiride','Sulfonylureas (close): glibenclamide, glipizide, gliclazide, glimepiride'],['Glinidi (chiudono): repaglinide, nateglinide','Glinides (close): repaglinide, nateglinide'],['Apertore (via SUR1): diazossido','Opener (via SUR1): diazoxide']],
+    enac:[['Bloccanti diretti: amiloride, triamterene','Direct blockers: amiloride, triamterene'],['Antialdosteronici (a monte): spironolattone, eplerenone','Aldosterone antagonists (upstream): spironolactone, eplerenone']],
+    trpv1:[['Agonista: capsaicina (in cronico desensibilizza)','Agonist: capsaicin (desensitizes with chronic use)'],['Modulatore: AM404 (metabolita del paracetamolo)','Modulator: AM404 (paracetamol metabolite)']]
+  };
+  return D[id]?D[id].map(p=>p[e]):tblDrugsAuto(c&&c.drugs);
+}
+/* elenco come lista: la classe (fino all'ultimo ":") in tono attenuato, i nomi in evidenza */
+function tblDrugsHTML(id,c){
+  return '<ul class="drug-list">'+tblDrugs(id,c).map(d=>{ d=tblSoft(d); const i=d.lastIndexOf(':'); return '<li>'+(i>0?'<span class="dk">'+d.slice(0,i+1)+'</span> '+d.slice(i+1).trim():d)+'</li>'; }).join('')+'</ul>';
+}
+/* ripiego per bersagli senza elenco curato: toglie le parentesi ma tiene la classe e i nomi dopo l'ultimo ":" */
+function tblDrugsAuto(list){
+  const out=[];
+  (list||[]).forEach(d=>{
+    let s=String(d), p; do{ p=s; s=s.replace(/\s*\([^()]*\)/g,''); }while(s!==p); s=s.trim();
+    const i=s.lastIndexOf(':'), head=s.split(' — ')[0].split(':')[0].trim();
+    const v=i>0?head+': '+s.slice(i+1).trim():head;
+    if(v&&out.indexOf(v)<0) out.push(v);
+  });
+  return out.slice(0,3);
+}
+/* campi lunghi (schede mobili): oltre ~200 caratteri si accorciano a 4 righe con "Mostra tutto" */
+function tblIsLong(c){ return [c.stoich,c.poro,c.feat].some(s=>String(s||'').replace(/<[^>]+>/g,'').length>200); }
+/* testo di ricerca: campi separati da " | " così una corrispondenza non scavalca due campi */
+function tblHay(id){
+  const c=C[id]; if(!c) return '';
+  const k=tblL().mod[c.mod];
+  return [tblShort(id,c),c.short,c.name,k?k[1]+' '+k[2]:'',famLabel(c.fam),topoShort(id),c.stoich,c.poro,c.feat,c.topo,tblDrugs(id,c).join(' | '),(c.drugs||[]).join(' | ')]
+    .join(' | ').replace(/<[^>]+>/g,'').replace(/\u00AD/g,'').toLowerCase();
+}
+/* conteggio annunciato (role=status) + riga vuota con "Azzera filtri" */
+function tblEmpty(tb,n){
+  const L=tblL();
+  const cnt=document.getElementById('tbl-count'); if(cnt) cnt.textContent=n===1?L.n1:n+L.nN;
+  let em=document.getElementById('tbl-empty');
+  if(n){ if(em) em.hidden=true; return; }
+  if(!em){
+    em=document.createElement('tr'); em.id='tbl-empty'; em.className='tbl-empty'; em.setAttribute('role','row');
+    em.innerHTML='<td colspan="8" role="cell"><p class="tbl-empty-msg"></p><button type="button" class="tbl-reset"></button></td>';
+    em.querySelector('.tbl-reset').onclick=tblResetFilters;
+  }
+  em.querySelector('.tbl-empty-msg').textContent=L.empty; em.querySelector('.tbl-reset').textContent=L.reset;
+  tb.appendChild(em); em.hidden=false;
+}
+function tblResetFilters(){
+  const s=document.getElementById('tbl-search'); if(s) s.value='';
+  document.querySelectorAll('#view-table .filt').forEach(x=>{ const me=x.dataset.f==='all'; x.classList.toggle('on',me); x.setAttribute('aria-pressed',me?'true':'false'); });
+  filterTable(); if(s) s.focus();
+}
+/* apre il canale nel 3D e porta in vista il visore (sotto la barra schede), con la scheda attiva visibile nella barra */
+function tblOpen3D(id){
+  if(!C[id]) return;
+  switchView('explorer'); buildModel(id);
+  let rm=false; try{ rm=matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(_){ }
+  const beh=rm?'auto':'smooth';
+  const bar=document.querySelector('.tabs'), tab=bar&&bar.querySelector('.tab.active');
+  if(tab&&bar.scrollWidth>bar.clientWidth+1){
+    const a=tab.getBoundingClientRect(), b=bar.getBoundingClientRect();
+    if(a.left<b.left) bar.scrollBy({left:a.left-b.left-8,behavior:beh});
+    else if(a.right>b.right) bar.scrollBy({left:a.right-b.right+8,behavior:beh});
+  }
+  const el=document.querySelector('#view-explorer .viewer-card')||document.querySelector('#view-explorer .stage'); if(!el) return;
+  let off=12;
+  if(bar){ const cs=getComputedStyle(bar); if(cs.position==='sticky'||cs.position==='fixed') off+=(parseFloat(cs.top)||0)+bar.getBoundingClientRect().height; }
+  /* posizione di layout (offsetTop): ignora la traslazione dell'animazione d'ingresso della vista */
+  let y=0; for(let n=el;n;n=n.offsetParent) y+=n.offsetTop;
+  scrollTo({top:Math.max(0,y-off),behavior:beh});
 }
 /* intestazione, legenda e nota: riscritte dopo applyLangUI (che imposta solo il testo semplice delle th) */
 function tblDecorate(){
   const L=tblL();
   const ths=document.querySelectorAll('#cmp-table thead th');
   ths.forEach((th,i)=>{ if(L.cols[i]!=null) th.textContent=L.cols[i]; });
-  if(ths[1]) ths[1].innerHTML=`<span class="th-t">${L.cols[1]}</span><span class="mod-key">${tblKeyHTML()}</span>`;
+  if(ths[1]) ths[1].innerHTML=`<span class="th-t">${L.cols[1]}</span><span class="mod-key" aria-hidden="true">${tblKeyHTML()}</span>`;
   const cap=document.querySelector('#cmp-table caption');
-  if(cap) cap.innerHTML=`<span class="tbl-sr">${L.capSr} </span><span class="cap-lead">${L.capLead}</span> ${tblKeyHTML()}`;
+  if(cap) cap.innerHTML=`<span class="tbl-sr">${L.capSr}</span><span class="cap-key" aria-hidden="true"><span class="cap-lead">${L.capLead}</span> ${tblKeyHTML()}</span>`;
   const note=document.querySelector('#view-table .note'); if(note) note.innerHTML=L.note;
   const s=document.getElementById('tbl-search'); if(s) s.setAttribute('aria-label',L.searchAria);
   const g=document.querySelector('#view-table .tbl-filters'); if(g) g.setAttribute('aria-label',L.filtAria);
 }
-/* intestazione fissa sotto la barra delle schede (anch'essa sticky): l'offset dipende dalla sua altezza reale */
+/* intestazione fissa sotto la barra delle schede (anch'essa sticky): offset e altezza reali, usati anche da scroll-margin */
 function tblStickyTop(){
   const v=document.getElementById('view-table'); if(!v) return;
   const bar=document.querySelector('.tabs'); let top=0;
   if(bar){ const cs=getComputedStyle(bar); if(cs.position==='sticky'||cs.position==='fixed') top=Math.ceil((parseFloat(cs.top)||0)+bar.getBoundingClientRect().height-2); }
   v.style.setProperty('--tbl-top',top+'px');
+  const th=document.querySelector('#cmp-table thead'), h=th?Math.ceil(th.getBoundingClientRect().height):0;
+  if(h>1) v.style.setProperty('--tbl-head',h+'px');
 }
 (function wireTable(){
-  const s=document.getElementById('tbl-search'); if(s) s.addEventListener('input',filterTable);
+  /* i gestori condivisi (oninput/onclick impostati prima di questo slot) vengono sostituiti da quelli della tabella */
+  const s=document.getElementById('tbl-search'); if(s){ s.oninput=null; s.addEventListener('input',filterTable); }
   const fs=document.querySelectorAll('#view-table .filt');
-  fs.forEach(b=>b.addEventListener('click',function(){
+  fs.forEach(b=>{ b.onclick=null; b.addEventListener('click',function(){
     fs.forEach(x=>{ const me=(x===this); x.classList.toggle('on',me); x.setAttribute('aria-pressed',me?'true':'false'); });
     filterTable();
-  }));
+  }); });
+  const tb=document.getElementById('tbl-body');
+  if(tb) tb.addEventListener('click',e=>{
+    const b=e.target.closest&&e.target.closest('.tbl-more'); if(!b) return;
+    const tr=b.closest('tr'), open=!tr.classList.contains('open');
+    tr.classList.toggle('open',open); b.setAttribute('aria-expanded',open?'true':'false'); b.textContent=open?tblL().less:tblL().more;
+  });
   const tab=document.querySelector('.tab[data-view="table"]'); if(tab) tab.addEventListener('click',()=>requestAnimationFrame(tblStickyTop));
-  let rq=0; addEventListener('resize',()=>{ cancelAnimationFrame(rq); rq=requestAnimationFrame(()=>{ const v=document.getElementById('view-table'); if(v&&v.classList.contains('active')) tblStickyTop(); }); });
+  let rq=0; const later=()=>{ cancelAnimationFrame(rq); rq=requestAnimationFrame(()=>{ const v=document.getElementById('view-table'); if(v&&v.classList.contains('active')) tblStickyTop(); }); };
+  addEventListener('resize',later);
+  if(typeof ResizeObserver==='function'){ const ro=new ResizeObserver(later); const th=document.querySelector('#cmp-table thead'), bar=document.querySelector('.tabs'); if(th) ro.observe(th); if(bar) ro.observe(bar); }
 })();
 /* ═══ slot table: fine ═══ */
 // ·
