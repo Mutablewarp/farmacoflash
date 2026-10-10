@@ -1097,7 +1097,7 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 .cx-isob{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-height:62px;padding:10px 12px;border:1px solid var(--line);border-radius:var(--r-md,13px);
   background:var(--panel);cursor:pointer;text-align:left;transition:border-color .18s ease-out,background-color .18s ease-out,box-shadow .18s ease-out}
 .cx-isob:hover{border-color:var(--line2)}
-.cx-isob.sel{border-color:var(--gold);background:var(--gold-soft);box-shadow:0 0 0 1px var(--gold) inset}
+.cx-isob.sel{border-color:var(--ink);background:var(--panel2);box-shadow:0 0 0 1px var(--ink) inset}
 .cx-isob-n{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
 .cx-isob-c{display:flex;gap:6px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-dim)}
 .cx-isob-c i{font-style:normal;display:inline-flex;align-items:center;gap:4px}
@@ -1172,7 +1172,7 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 .cx-f>span:first-child{font-size:12.5px;font-weight:600;color:var(--ink-dim)}
 .cx-sel{position:relative;display:block}
 .cx-sel::after{content:"";position:absolute;right:15px;top:50%;width:7px;height:7px;border-right:1.6px solid var(--ink-dim);border-bottom:1.6px solid var(--ink-dim);transform:translateY(-70%) rotate(45deg);pointer-events:none}
-.cx-sel select{appearance:none;-webkit-appearance:none;width:100%;min-height:48px;padding:10px 40px 10px 14px;border-radius:12px;border:1px solid var(--line2);background:var(--panel2);color:var(--ink);font:inherit;font-size:15px;cursor:pointer}
+.cx-sel select{appearance:none;-webkit-appearance:none;width:100%;min-height:48px;padding:10px 40px 10px 14px;border-radius:12px;border:1px solid var(--line2);background:var(--panel2);color:var(--ink);font:inherit;font-size:16px;cursor:pointer}
 .cx-sel select:hover{border-color:var(--gold-line)}
 .cx-arrow{align-self:end;height:48px;display:flex;align-items:center;font-size:18px;color:var(--ink-dim)}
 .cx-res{margin-top:16px}
@@ -1213,6 +1213,19 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 .cx-base{fill:none;stroke:var(--ink-dim);stroke-width:1.8;stroke-dasharray:5 4;stroke-linejoin:round}
 .cx-int{fill:none;stroke:var(--ink);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round}
 .cx-up .cx-int{stroke:var(--cx-i)} .cx-down .cx-int{stroke:var(--cx-n)}
+.cx-int{transition:opacity .2s ease-out} .cx-int.cx-pend{opacity:.35}
+/* legenda dei conteggi, nota sotto il verdetto, stato vuoto, riga per lettori di schermo */
+.cx-leg{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;font-size:12.5px;color:var(--ink-dim);margin-bottom:-6px}
+.cx-lk{display:inline-flex;align-items:center;gap:5px}
+.cx-lk::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cx-s)}
+.cx-lk.i::before{background:var(--cx-i)} .cx-lk.n::before{background:var(--cx-n)}
+.cx-note{font-size:13px;line-height:1.45;color:var(--ink-dim);margin-top:7px;max-width:72ch}
+.cx-rbody-1{grid-template-columns:minmax(0,1fr)}
+.cx-r-mix .cx-big{color:var(--ink);background:var(--panel);border-color:var(--line2)}
+.cx-r-none .cx-big{color:var(--ink-dim);font-size:24px}
+.cx-nl{list-style:none;display:flex;flex-direction:column;gap:4px}
+.cx-nl b{font-weight:600}
+.cx-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
 .cx-ramp{display:block;width:100%;max-width:240px;height:auto}
 .cx-rl{fill:none;stroke-width:2.2;stroke:var(--cx-i);stroke-linejoin:round}
 .cx-r-down .cx-rl{stroke:var(--cx-n)}
@@ -1225,10 +1238,11 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 .cx-full[open]>summary::before{transform:rotate(45deg)}
 .cx-full>summary:hover{border-color:var(--line2)}
 .cx-full[open]>.gwrap{margin-top:10px}
+.cx-full .gwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .cx :focus-visible,.cx-full>summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-@media (prefers-reduced-motion:reduce){.cx-r.cx-in{animation:none}.cx-full>summary::before{transition:none}}
+@media (prefers-reduced-motion:reduce){.cx-r.cx-in{animation:none}.cx-full>summary::before{transition:none}.cx-int{transition:none}}
 @media (pointer:coarse){.cx-chip,.cx-q{min-height:44px}}
-@media (max-width:1060px){.cx-iso{grid-template-columns:repeat(3,minmax(0,1fr))}.cx-top{grid-template-columns:minmax(0,1fr)}.cx-rbody{grid-template-columns:minmax(0,1fr)}.cx-chart{max-width:460px}}
+@media (max-width:1060px){.cx-iso{grid-template-columns:repeat(3,minmax(0,1fr))}.cx-top{grid-template-columns:minmax(0,1fr)}.cx-rbody{grid-template-columns:minmax(0,1fr)}.cx-chart{max-width:460px;order:-1}}
 @media (max-width:760px){
   .cx-chip,.cx-q{min-height:44px}
   .cx-quick-row{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;margin-right:-14px;padding:2px 14px 4px 2px;margin-left:-2px}
@@ -4113,26 +4127,7 @@ function t(a){return a[LANG==='en'?1:0];}
 function applyTheme(th){ document.documentElement.dataset.theme=th; const b=document.getElementById('btn-theme'); if(b) b.textContent=(th==='light'?'☀':'☾'); try{localStorage.setItem('cr-theme',th);}catch(e){} const _li=(th==='light'); if(typeof scene!=='undefined'&&scene){ const _bg=_li?'#f3f0e9':'#13110d'; if(scene.fog){ scene.fog.color.set(_bg); scene.fog.density=_li?0.006:0.016; } scene.background=new THREE.Color(_bg); } if(typeof renderer!=='undefined'&&renderer) renderer.toneMappingExposure = _li?1.0:0.82; if(typeof bloomPass!=='undefined'&&bloomPass){ bloomPass.strength=_li?0.14:0.55; bloomPass.threshold=_li?0.62:0.85; } if(typeof mgIon!=='undefined'&&mgIon){ mgIon.material.emissiveIntensity=_li?1.15:0.75; } }
 /* ===================== INTERAZIONI: CYP450 + farmaco-farmaco ===================== */
 function buildInteractions(){
-  const CYP=[
-    {iso:"CYP3A4", sub:["statine (simva/atorva), Ca-antagonisti (verapamil/diltiazem), ciclosporina, warfarin, contraccettivi orali, molti altri","statins (simva/atorva), Ca-blockers (verapamil/diltiazem), ciclosporin, warfarin, oral contraceptives, many others"],
-      inh:["azoli (keto/itraconazolo), macrolidi (eritro/claritro), ritonavir, verapamil/diltiazem, succo di pompelmo","azoles (keto/itraconazole), macrolides (erythro/clarithro), ritonavir, verapamil/diltiazem, grapefruit juice"],
-      ind:["rifampicina, carbamazepina, fenitoina, fenobarbital, erba di San Giovanni","rifampicin, carbamazepine, phenytoin, phenobarbital, St John's wort"]},
-    {iso:"CYP2D6", sub:["codeina e tramadolo (profarmaci → oppioide attivo), metoprololo, antidepressivi (triciclici/SSRI), antipsicotici, tamoxifene","codeine and tramadol (prodrugs → active opioid), metoprolol, antidepressants (TCAs/SSRIs), antipsychotics, tamoxifen"],
-      inh:["fluoxetina, paroxetina, bupropione, chinidina","fluoxetine, paroxetine, bupropion, quinidine"],
-      ind:["scarsamente inducibile · polimorfico (metabolizzatori lenti/ultrarapidi)","poorly inducible · polymorphic (poor/ultra-rapid metabolizers)"]},
-    {iso:"CYP2C9", sub:["warfarin (S-warfarin), fenitoina, sulfaniluree, FANS","warfarin (S-warfarin), phenytoin, sulfonylureas, NSAIDs"],
-      inh:["fluconazolo, amiodarone, metronidazolo","fluconazole, amiodarone, metronidazole"],
-      ind:["rifampicina, carbamazepina","rifampicin, carbamazepine"]},
-    {iso:"CYP2C19", sub:["clopidogrel (profarmaco → attivo), inibitori di pompa (omeprazolo), diazepam","clopidogrel (prodrug → active), proton-pump inhibitors (omeprazole), diazepam"],
-      inh:["omeprazolo, fluvoxamina, fluconazolo","omeprazole, fluvoxamine, fluconazole"],
-      ind:["rifampicina","rifampicin"]},
-    {iso:"CYP1A2", sub:["teofillina, caffeina, clozapina, olanzapina","theophylline, caffeine, clozapine, olanzapine"],
-      inh:["ciprofloxacina, fluvoxamina","ciprofloxacin, fluvoxamine"],
-      ind:["fumo di sigaretta, omeprazolo, carbamazepina","cigarette smoke, omeprazole, carbamazepine"]},
-    {iso:"CYP2E1", sub:["paracetamolo (→ NAPQI epatotossico), etanolo, anestetici volatili","paracetamol (→ hepatotoxic NAPQI), ethanol, volatile anesthetics"],
-      inh:["disulfiram","disulfiram"],
-      ind:["etanolo cronico, isoniazide","chronic ethanol, isoniazid"]}
-  ];
+  /* righe CYP: generate da CX_ISO nello slot cyp (cxTableRows), così tabella ed esploratore non divergono */
   const DDI={
     pd:{lab:["Farmacodinamiche · effetti che si sommano sullo stesso sistema","Pharmacodynamic · effects adding on the same system"], rows:[
       [["β-bloccante + verapamil/diltiazem","β-blocker + verapamil/diltiazem"],["depressione additiva del nodo AV e dell'inotropismo","additive depression of the AV node and inotropy"],["bradicardia, blocco AV, scompenso","bradycardia, AV block, heart failure"],["evitare l'associazione","avoid the combination"]],
@@ -4153,17 +4148,16 @@ function buildInteractions(){
       [["Rifampicina + contraccettivi orali / warfarin","Rifampicin + oral contraceptives / warfarin"],["induzione del CYP (↑ metabolismo)","CYP induction (↑ metabolism)"],["fallimento terapeutico","therapeutic failure"],["aumentare la dose o cambiare metodo","increase dose or change method"]]
     ]}
   };
-  const cypRows=CYP.map(r=>`<tr><td class="rc">${r.iso}</td><td>${t(r.sub)}</td><td>${t(r.inh)}</td><td>${t(r.ind)}</td></tr>`).join('');
   const ddiSec=(d)=>`<tr class="ghead"><td colspan="4">${t(d.lab)}</td></tr>`+d.rows.map(r=>`<tr><td class="rc">${t(r[0])}</td><td>${t(r[1])}</td><td>${t(r[2])}</td><td>${t(r[3])}</td></tr>`).join('');
   document.getElementById('view-interactions').innerHTML=`
     <div class="subhead">⇌ ${t(['Citocromi CYP450: substrati, inibitori, induttori','Cytochrome CYP450: substrates, inhibitors, inducers'])}</div>
     <p class="lead">${t(['Il CYP450 epatico metabolizza la maggior parte dei farmaci. Un <b>inibitore</b> ↑ i livelli del substrato (rischio di <b>tossicità</b>); un <b>induttore</b> ↓ i livelli (rischio di <b>inefficacia</b>). Eccezione: per i <b>profarmaci</b> la logica si inverte.','Hepatic CYP450 metabolizes most drugs. An <b>inhibitor</b> ↑ substrate levels (risk of <b>toxicity</b>); an <b>inducer</b> ↓ levels (risk of <b>treatment failure</b>). Exception: for <b>prodrugs</b> the logic is reversed.'])}</p>
     <div id="cypx" class="cx"></div>
     <details class="cx-full"><summary>${t(['Tabella riassuntiva per isoenzima','Summary table by isoenzyme'])}</summary>
-    <div class="gwrap"><table class="gt"><thead><tr><th>${t(['Isoenzima','Isoenzyme'])}</th><th>${t(['Substrati (esempi)','Substrates (examples)'])}</th><th>${t(['Inibitori → ↑ effetto del substrato','Inhibitors → ↑ substrate effect'])}</th><th>${t(['Induttori → ↓ effetto del substrato','Inducers → ↓ substrate effect'])}</th></tr></thead><tbody>${cypRows}</tbody></table></div></details>
+    <div class="gwrap"><table class="gt"><thead><tr><th>${t(['Isoenzima','Isoenzyme'])}</th><th>${t(['Substrati (esempi)','Substrates (examples)'])}</th><th>${t(['Inibitori → ↑ effetto del substrato','Inhibitors → ↑ substrate effect'])}</th><th>${t(['Induttori → ↓ effetto del substrato','Inducers → ↓ substrate effect'])}</th></tr></thead><tbody id="cx-tbody"></tbody></table></div></details>
     <div class="hot" style="margin-top:16px"><h3>★ ${t(['Memoria rapida CYP','CYP quick memory'])}</h3><ol>
-      <li>${t(['<b>Inibitori</b> (↑ tossicità del substrato, effetto <b>rapido</b>: da ore a pochi giorni): azoli, macrolidi, ciprofloxacina, fluvoxamina, ritonavir, amiodarone, succo di pompelmo.','<b>Inhibitors</b> (↑ substrate toxicity, <b>fast</b> effect: hours to a few days): azoles, macrolides, ciprofloxacin, fluvoxamine, ritonavir, amiodarone, grapefruit juice.'])}</li>
-      <li>${t(['<b>Induttori</b> (↓ efficacia, effetto <b>lento</b>: circa 1–2 settimane, perché serve nuova sintesi di enzima; altrettanto per esaurirsi): rifampicina, carbamazepina, fenitoina, fenobarbital, erba di San Giovanni, fumo, etanolo cronico.','<b>Inducers</b> (↓ efficacy, <b>slow</b> effect: about 1–2 weeks, because new enzyme must be synthesized; as long to wear off): rifampicin, carbamazepine, phenytoin, phenobarbital, St John\'s wort, smoking, chronic ethanol.'])}</li>
+      <li>${t(['<b>Inibitori</b> (↑ tossicità del substrato, effetto <b>rapido</b>: da ore a pochi giorni): azoli, macrolidi, ciprofloxacina, fluvoxamina, ritonavir, succo di pompelmo. Più <b>lenti</b> per emivita lunga: amiodarone e fluoxetina (settimane, anche dopo la sospensione).','<b>Inhibitors</b> (↑ substrate toxicity, <b>fast</b> effect: hours to a few days): azoles, macrolides, ciprofloxacin, fluvoxamine, ritonavir, grapefruit juice. <b>Slower</b> because of long half-lives: amiodarone and fluoxetine (weeks, even after stopping).'])}</li>
+      <li>${t(['<b>Induttori</b> (↓ efficacia, effetto <b>lento</b>: circa 1–2 settimane, perché serve nuova sintesi di enzima via PXR, CAR o AhR; altrettanto per esaurirsi): rifampicina, carbamazepina, fenitoina, fenobarbital, erba di San Giovanni, fumo. Etanolo cronico e isoniazide aumentano il CYP2E1 soprattutto stabilizzandolo.','<b>Inducers</b> (↓ efficacy, <b>slow</b> effect: about 1–2 weeks, because new enzyme must be made via PXR, CAR or AhR; as long to wear off): rifampicin, carbamazepine, phenytoin, phenobarbital, St John\'s wort, smoking. Chronic ethanol and isoniazid raise CYP2E1 mainly by stabilizing it.'])}</li>
       <li>${t(['<b>Profarmaci</b> (logica opposta): codeina→morfina (CYP2D6) e clopidogrel (CYP2C19) <b>perdono</b> efficacia con un inibitore.','<b>Prodrugs</b> (opposite logic): codeine→morphine (CYP2D6) and clopidogrel (CYP2C19) <b>lose</b> efficacy with an inhibitor.'])}</li>
     </ol></div>
     <div class="subhead" style="margin-top:28px">⇌ ${t(['Interazioni farmaco-farmaco','Drug–drug interactions'])}</div>
@@ -4637,222 +4631,390 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDrugM
 // ·
 /* ═══ slot cyp: inizio (solo il suo agente) ═══ */
 /* Interazioni CYP interattive: isoenzima → ruoli dei farmaci → costruttore perpetratore/vittima.
-   Dati: stessi farmaci della tabella CYP della vista (buildInteractions) + coppie della tabella DDI.
-   Verifiche su Goodman & Gilman 14ª ed.: cap. 5 (induzione via PXR/AhR; omeprazolo induce CYP1A2; iperico → CYP3A4 → contraccettivi),
-   cap. 9 (etanolo cronico e isoniazide inducono CYP2E1 → più NAPQI), cap. 59 (ciprofloxacina ↑ teofillina),
-   tab. clozapina (fluvoxamina, inibitore forte del CYP1A2, ↑ 5–10 volte), App. II tab. AII-2 (inibitori/induttori «forti»:
-   AUC della vittima ≥5 volte o ridotta ≥80%), cap. 73 (tamoxifene → endoxifene via CYP2D6, peso clinico discusso).
+   Fonti, Goodman & Gilman 14ª ed. (pagine del testo): p.106 e tab. 5-5 (PXR, CAR, AhR); App. II tab. AII-2 (inibitori e induttori forti);
+   p.387 tab. 19-4 (clozapina, olanzapina); p.903 tab. 44-2 (teofillina); p.704-705 (amiodarone); p.736 e fig. 36-6 (warfarin, S e R);
+   p.755-756 (statine); p.793 (ciclosporina); p.1204 (macrolidi); p.1220 e tab. 61-3 (azoli); p.1095 (omeprazolo); p.1293 tab. 65-4 (isoniazide);
+   p.412-414 (antiepilettici); p.449 (benzodiazepine: CYP3A4 e 2C19); p.539-547 (etanolo, disulfiram); p.497-499 (anestetici volatili);
+   p.370 e 1575 (fluoxetina, norfluoxetina); p.1274 (ritonavir anche induttore). Induzione del CYP2E1 per stabilizzazione della proteina:
+   non in G&G, dalla letteratura (doi 10.1006/bbrc.1994.2242; 10.3109/00498259109044410).
    buildInteractions() gira prima di questo slot: cypxReady (var, quindi già dichiarata) evita la TDZ delle const qui sotto. */
-var cypxReady=false, cypxState=null;
+var cypxReady=false, cypxState=null, cypxIO=null;
 const CYPX_L={
-  it:{isoGroup:'Isoenzima',sub:'Substrati',subH:'vengono metabolizzati',inh:'Inibitori',inhH:'↑ livelli del substrato',ind:'Induttori',indH:'↓ livelli del substrato',
-    none:'Praticamente non inducibile.',strong:'forte',pro:'profarmaco',tox:'→ NAPQI',
+  it:{isoGroup:'Isoenzima',legT:'Conteggi:',sub:'Substrati',subH:'vengono metabolizzati',inh:'Inibitori',inhH:'↑ livelli del substrato',ind:'Induttori',indH:'↓ livelli del substrato',
+    none:'Praticamente non inducibile.',strong:'forte',pro:'profarmaco',
     hintT:'Tocca un farmaco',hint:'Vedi in un colpo solo tutti i suoi ruoli sui sei isoenzimi e mandalo al costruttore qui sotto.',
     hintI:'<b>Inibitore</b> → substrato ↑ → rischio di tossicità',hintN:'<b>Induttore</b> → substrato ↓ → rischio di inefficacia',hintP:'<b>Profarmaco</b> → logica inversa (serve il CYP per attivarlo)',
     roleS:'Substrato',roleI:'Inibitore',roleN:'Induttore',of:'di',and:' e ',close:'Chiudi la scheda',
     asP:'Usa come perpetratore',asV:'Usa come vittima',
     bT:'Costruisci l’interazione',bL:'Scegli chi agisce sull’enzima (perpetratore) e chi ne subisce l’effetto (vittima): il risultato mostra direzione, meccanismo, conseguenza e decorso.',
     quick:'Coppie classiche d’esame',pP:'Perpetratore',pV:'Vittima (substrato)',gI:'Inibitori',gN:'Induttori',gB:'Inibitore e induttore',
-mech:'Meccanismo',cons:'Conseguenza',ex:'Esempio · gestione',time:'Decorso',
-    stData:'Coppia classica',stGG:'Documentata (Goodman & Gilman)',stPred:'Prevista dal meccanismo',stNone:'Nessuna interazione CYP',stSame:'Stesso farmaco',
-    plasma:'nel plasma',alone:'senza ',withX:'con ',conc:'concentrazione',timeAx:'tempo (dosi ripetute)',
-    mec:'minima efficace',mtc:'soglia di tossicità',days:'giorni',onset:'comparsa dell’effetto',
+    mech:'Meccanismo',cons:'Conseguenza',ex:'Esempio · gestione',mgmt:'Gestione',time:'Decorso',
+    stData:'Coppia classica',stGG:'Documentata (G&G)',stPred:'Prevista dal meccanismo',stNone:'Non presente in questi dati',stSame:'Stesso farmaco',
+    plasma:'nel plasma',alone:'senza ',withX:'con ',timeAx:'tempo (dosi ripetute)',concOf:'Concentrazione di ',schem:' · andamento schematico',indFull:', a induzione piena (~2 settimane)',slowFull:', a effetto pieno (settimane)',
+    mec:'minima efficace',mtc:'soglia di tossicità',days:'giorni',onset:'comparsa dell’effetto',uncertain:'effetto netto incerto',
     sameTxt:'Scegli due farmaci diversi: perpetratore e vittima devono essere distinti.',
-    tInh:'Rapida: compare da ore a pochi giorni, appena l’inibitore raggiunge concentrazioni efficaci; il substrato si porta al nuovo equilibrio in circa 4–5 emivite. Regredisce quando l’inibitore viene eliminato.',
-    tInd:'Lenta: serve sintesi di nuovo enzima (recettori nucleari come PXR e AhR), quindi si sviluppa in circa 1–2 settimane e si esaurisce in tempi simili dopo la sospensione. Attenzione anche quando si toglie l’induttore: i livelli risalgono.',
-    predEx:'Non è tra le coppie classiche documentate qui: è una previsione dal profilo CYP. L’entità dipende da quanto è potente {P} e da quanto {V} dipende dal {ISO}.',
-    strongI:' {P} è un inibitore forte del {ISO} (G&G: AUC della vittima aumentata di almeno 5 volte).',
-    strongN:' {P} è un induttore forte del {ISO} (G&G: AUC della vittima ridotta di almeno l’80%).',
-    noneTxt:'{V} non è substrato degli isoenzimi su cui agisce {P} ({ISO}): in questi dati non c’è un’interazione via CYP, quindi nessun allarme.',
-    noneCons:'{V}: livelli invariati per questa via.',
-    noneEx:'Restano possibili interazioni per altre vie (trasportatori come la glicoproteina P, effetti farmacodinamici che si sommano): vedi la tabella farmaco-farmaco più sotto.',
-    mixed:'Effetto netto incerto: {P} inibisce un isoenzima e ne induce un altro.',
-    ntI:' Indice terapeutico stretto: il rischio è concreto.',
-    tamox:' Peso clinico discusso (G&G).'},
-  en:{isoGroup:'Isoenzyme',sub:'Substrates',subH:'are metabolized',inh:'Inhibitors',inhH:'↑ substrate levels',ind:'Inducers',indH:'↓ substrate levels',
-    none:'Practically non-inducible.',strong:'strong',pro:'prodrug',tox:'→ NAPQI',
+    noneHead:'In questi dati',noneWhat:'Cosa significa',noneRole:'nessun ruolo sui sei isoenzimi',
+    noneTxt:'Non vuol dire che l’interazione non esista: può passare per altri isoenzimi, per i trasportatori (come la glicoproteina P) o per effetti farmacodinamici che si sommano. Controlla la tabella farmaco-farmaco più sotto e una fonte aggiornata.',
+    vInh:'inibisce',vInd:'induce',moreI:'meno enzima attivo, meno metabolismo',moreN:'più enzima, più metabolismo',dirUp:'più',dirDn:'meno',riseV:'salgono',fallV:'scendono',
+    mPar1:'{PA} {VERB} {ISO}, la via che elimina {Va}: {MORE}, {DIR} {V} nel plasma.',
+    mParN:'{PA} {VERB} {ISO}, le vie che eliminano {Va}: {MORE}, {DIR} {V} nel plasma.',
+    mPro1:'{PA} {VERB} {ISO}, che attiva {Va}: si forma {DIR} {SP}.',
+    mProN:'{PA} {VERB} {ISO}, che attivano {Va}: si forma {DIR} {SP}.',
+    mTox1:'{PA} {VERB} {ISO}, che trasforma {Va} in {SP}: si forma {DIR} {SP}.',
+    mToxN:'{PA} {VERB} {ISO}, che trasformano {Va} in {SP}: si forma {DIR} {SP}.',
+    mixed:'{PA} inibisce {INH} ma induce {IND}: l’effetto netto {Vsu} non si deduce dal solo profilo CYP.',
+    strongI:' {PA} è un inibitore forte del {ISOX}: con i substrati sensibili l’AUC sale di almeno 5 volte (G&G, App. II).',
+    strongN:' {PA} è un induttore forte del {ISOX}: con i substrati sensibili l’AUC scende di almeno l’80% (G&G, App. II).',
+    cUp:'Più esposizione {Val}: effetti dose-dipendenti e tossicità ↑.',cDn:'Meno esposizione {Val}: rischio di inefficacia terapeutica.',
+    cProDn:'Meno {SP}: effetto {Vdi} ↓.',cProUp:'Più {SP}: effetto {Vdi} potenzialmente ↑.',cMix:'Effetto netto incerto: dipende da quale via prevale.',
+    ntI:' Indice terapeutico stretto: il rischio è concreto.',tamox:' Peso clinico discusso (G&G).',
+    mgmtPred:'Monitorare livelli o effetti {Vdi} e valutare un’alternativa.',
+    predNote:'Previsione dal profilo CYP, non una coppia documentata qui: l’entità dipende dalla potenza {Pdi} e dal peso di questa via per {Va}.',
+    mgmtMet:'Nessuna gestione specifica: cala solo la formazione di un metabolito.',
+    tInhMet:'Rapida: compare in ore o pochi giorni, man mano che {Pa} raggiunge concentrazioni efficaci. Regredisce con l’eliminazione {Pdi}.',
+    ritoNote:' Il ritonavir è anche un induttore moderato (G&G): con alcuni substrati l’effetto netto è una riduzione.',
+    tInh:'Rapida: compare in ore o pochi giorni, man mano che {Pa} raggiunge concentrazioni efficaci; poi servono circa 4–5 emivite {Vdi} per il nuovo equilibrio. Regredisce con l’eliminazione {Pdi}.',
+    tAmio:'Lenta in entrambe le direzioni: l’amiodarone si accumula nei tessuti e l’effetto si costruisce in settimane; dopo la sospensione scende con un’emivita di settimane o mesi (G&G), quindi l’interazione può durare mesi.',
+    tFluox:'Lenta: fluoxetina e norfluoxetina, il metabolita attivo con emivita di 1–2 settimane, si accumulano per settimane, quindi l’inibizione cresce nell’arco di 1–2 settimane o più. Dopo la sospensione persiste per settimane (G&G: almeno 5 settimane prima di iniziare un IMAO).',
+    tIndNR:'Lenta: {Pa} attiva recettori nucleari (PXR, CAR) e serve sintesi di nuovo enzima, quindi l’effetto si sviluppa in circa 1–2 settimane e si esaurisce in tempi simili dopo la sospensione.',
+    tIndAhR:'Lenta: {Pa} attiva il recettore AhR e serve sintesi di nuovo enzima, quindi l’effetto si sviluppa in circa 1–2 settimane e si esaurisce in tempi simili dopo la sospensione.',
+    tIndStab:'Qui non c’entrano PXR o AhR: {Pa} aumenta il CYP2E1 soprattutto stabilizzandolo, cioè rallentandone la degradazione. L’effetto dura finché continua l’esposizione e si riduce gradualmente dopo la sospensione.',
+    tFumo:'Il fumo induce il CYP1A2 attraverso il recettore AhR: bastano 7–12 sigarette al giorno. Quando si smette, l’attività del CYP1A2 torna al valore di base in circa una settimana (8 giorni in media, G&G) e i livelli {Vdi} risalgono.',
+    tOffPar:' Alla sospensione {Pdi} i livelli {Vdi} risalgono: rivalutare la dose.',
+    tOffMet:' Alla sospensione {Pdi} la formazione di {SP} torna ai valori di base.',
+    stPair:'Nel costruttore: {V} con {P}.'},
+  en:{isoGroup:'Isoenzyme',legT:'Counts:',sub:'Substrates',subH:'are metabolized',inh:'Inhibitors',inhH:'↑ substrate levels',ind:'Inducers',indH:'↓ substrate levels',
+    none:'Practically non-inducible.',strong:'strong',pro:'prodrug',
     hintT:'Tap a drug',hint:'See all its roles across the six isoenzymes at once, and send it to the builder below.',
     hintI:'<b>Inhibitor</b> → substrate ↑ → risk of toxicity',hintN:'<b>Inducer</b> → substrate ↓ → risk of failure',hintP:'<b>Prodrug</b> → reversed logic (the CYP activates it)',
     roleS:'Substrate',roleI:'Inhibitor',roleN:'Inducer',of:'of',and:' and ',close:'Close the card',
     asP:'Use as perpetrator',asV:'Use as victim',
     bT:'Build the interaction',bL:'Pick the drug acting on the enzyme (perpetrator) and the one affected (victim): the result shows direction, mechanism, consequence and time course.',
     quick:'Classic exam pairs',pP:'Perpetrator',pV:'Victim (substrate)',gI:'Inhibitors',gN:'Inducers',gB:'Inhibitor and inducer',
-mech:'Mechanism',cons:'Consequence',ex:'Example · management',time:'Time course',
-    stData:'Classic pair',stGG:'Documented (Goodman & Gilman)',stPred:'Predicted from mechanism',stNone:'No CYP interaction',stSame:'Same drug',
-    plasma:'in plasma',alone:'without ',withX:'with ',conc:'concentration',timeAx:'time (repeated doses)',
-    mec:'minimum effective',mtc:'toxicity threshold',days:'days',onset:'onset of the effect',
+    mech:'Mechanism',cons:'Consequence',ex:'Example · management',mgmt:'Management',time:'Time course',
+    stData:'Classic pair',stGG:'Documented (G&G)',stPred:'Predicted from mechanism',stNone:'Not in these data',stSame:'Same drug',
+    plasma:'in plasma',alone:'without ',withX:'with ',timeAx:'time (repeated doses)',concOf:'Concentration of ',schem:' · schematic',indFull:', fully induced (~2 weeks)',slowFull:', at full effect (weeks)',
+    mec:'minimum effective',mtc:'toxicity threshold',days:'days',onset:'onset of the effect',uncertain:'net effect uncertain',
     sameTxt:'Pick two different drugs: perpetrator and victim must differ.',
-    tInh:'Fast: appears within hours to a few days, as soon as the inhibitor reaches effective concentrations; the substrate settles at its new steady state in about 4–5 half-lives. It fades once the inhibitor is eliminated.',
-    tInd:'Slow: new enzyme must be synthesized (nuclear receptors such as PXR and AhR), so it builds up over about 1–2 weeks and wears off over a similar time after stopping. Watch out when the inducer is withdrawn too: levels climb back.',
-    predEx:'Not among the classic documented pairs here: it is a prediction from the CYP profile. Its size depends on how potent {P} is and on how much {V} relies on {ISO}.',
-    strongI:' {P} is a strong {ISO} inhibitor (G&G: victim AUC raised at least 5-fold).',
-    strongN:' {P} is a strong {ISO} inducer (G&G: victim AUC cut by at least 80%).',
-    noneTxt:'{V} is not a substrate of the isoenzymes {P} acts on ({ISO}): these data show no CYP interaction, so no alarm.',
-    noneCons:'{V} levels unchanged through this route.',
-    noneEx:'Interactions through other routes remain possible (transporters such as P-glycoprotein, additive pharmacodynamic effects): see the drug–drug table below.',
-    mixed:'Net effect uncertain: {P} inhibits one isoenzyme and induces another.',
-    ntI:' Narrow therapeutic index: the risk is real.',
-    tamox:' Clinical weight debated (G&G).'}
+    noneHead:'In these data',noneWhat:'What this means',noneRole:'no role on the six isoenzymes',
+    noneTxt:'It does not mean there is no interaction: it may run through other isoenzymes, transporters (such as P-glycoprotein) or additive pharmacodynamic effects. Check the drug–drug table below and an up-to-date source.',
+    vInh:'inhibits',vInd:'induces',moreI:'less active enzyme, less metabolism',moreN:'more enzyme, more metabolism',dirUp:'more',dirDn:'less',riseV:'rise',fallV:'fall',
+    mPar1:'{PA} {VERB} {ISO}, the route that clears {Va}: {MORE}; plasma levels of {Va} {DIRV}.',
+    mParN:'{PA} {VERB} {ISO}, the routes that clear {Va}: {MORE}; plasma levels of {Va} {DIRV}.',
+    mPro1:'{PA} {VERB} {ISO}, which activates {Va}: {DIR} {SP} is formed.',
+    mProN:'{PA} {VERB} {ISO}, which activate {Va}: {DIR} {SP} is formed.',
+    mTox1:'{PA} {VERB} {ISO}, which turns {Va} into {SP}: {DIR} {SP} is formed.',
+    mToxN:'{PA} {VERB} {ISO}, which turn {Va} into {SP}: {DIR} {SP} is formed.',
+    mixed:'{PA} inhibits {INH} but induces {IND}: the net effect on {Va} cannot be read from the CYP profile alone.',
+    strongI:' {PA} is a strong {ISOX} inhibitor: with sensitive substrates the AUC rises at least 5-fold (G&G, App. II).',
+    strongN:' {PA} is a strong {ISOX} inducer: with sensitive substrates the AUC falls by at least 80% (G&G, App. II).',
+    cUp:'Higher exposure to {Va}: dose-dependent effects and toxicity ↑.',cDn:'Lower exposure to {Va}: risk of therapeutic failure.',
+    cProDn:'Less {SP}: {Va} works less.',cProUp:'More {SP}: {Va} effect potentially ↑.',cMix:'Net effect uncertain: it depends on which route prevails.',
+    ntI:' Narrow therapeutic index: the risk is real.',tamox:' Clinical weight debated (G&G).',
+    mgmtPred:'Monitor {Va} levels or effects and consider an alternative.',
+    predNote:'Predicted from the CYP profile, not a pair documented here: its size depends on the potency of {Pa} and on how much this route matters for {Va}.',
+    mgmtMet:'No specific management: only the formation of a metabolite falls.',
+    tInhMet:'Fast: appears within hours to a few days, as {Pa} reaches effective concentrations. It fades as {Pa} is eliminated.',
+    ritoNote:' Ritonavir is also a moderate inducer (G&G): with some substrates the net effect is a decrease.',
+    tInh:'Fast: appears within hours to a few days, as {Pa} reaches effective concentrations; {Va} then needs about 4–5 half-lives to reach its new steady state. It fades as {Pa} is eliminated.',
+    tAmio:'Slow both ways: amiodarone accumulates in tissues and the effect builds over weeks; after stopping, it falls with a half-life of weeks to months (G&G), so the interaction can last for months.',
+    tFluox:'Slow: fluoxetine and norfluoxetine, its active metabolite with a 1–2-week half-life, accumulate for weeks, so inhibition builds over 1–2 weeks or more. It persists for weeks after stopping (G&G: at least 5 weeks before starting an MAOI).',
+    tIndNR:'Slow: {Pa} activates nuclear receptors (PXR, CAR) and new enzyme must be made, so the effect builds over about 1–2 weeks and wears off over a similar time after stopping.',
+    tIndAhR:'Slow: {Pa} activates the AhR receptor and new enzyme must be made, so the effect builds over about 1–2 weeks and wears off over a similar time after stopping.',
+    tIndStab:'PXR and AhR play no part here: {Pa} raises CYP2E1 mainly by stabilizing it, that is by slowing its breakdown. The effect lasts while exposure continues and fades gradually after stopping.',
+    tFumo:'Smoking induces CYP1A2 through the AhR receptor: 7–12 cigarettes a day are enough. After quitting, CYP1A2 activity returns to baseline in about a week (8 days on average, G&G) and levels of {Va} rise again.',
+    tOffPar:' When {Pa} is stopped, levels of {Va} rise again: reassess the dose.',
+    tOffMet:' When {Pa} is stopped, {SP} formation returns to baseline.',
+    stPair:'In the builder: {V} with {P}.'}
 };
 function cxl(k){ return CYPX_L[LANG==='en'?'en':'it'][k]; }
 function cxf(s,o){ return s.replace(/\{(\w+)\}/g,(m,k)=>o[k]!=null?o[k]:m); }
 function cxCap(s){ return s?s.charAt(0).toUpperCase()+s.slice(1):s; }
-/* farmaci: id → [it, en] (nomi della tabella CYP della vista) */
+/* farmaci: id → [it, en, articolo it] (nomi della tabella CYP della vista); l'articolo serve alle preposizioni articolate */
 const CX_D={
-  simva:['simvastatina','simvastatin'],atorva:['atorvastatina','atorvastatin'],verap:['verapamil','verapamil'],dilt:['diltiazem','diltiazem'],
-  ciclo:['ciclosporina','ciclosporin'],warf:['warfarin','warfarin'],oc:['contraccettivi orali','oral contraceptives'],
-  keto:['ketoconazolo','ketoconazole'],itra:['itraconazolo','itraconazole'],eritro:['eritromicina','erythromycin'],clari:['claritromicina','clarithromycin'],
-  rito:['ritonavir','ritonavir'],pomp:['succo di pompelmo','grapefruit juice'],rifa:['rifampicina','rifampicin'],carba:['carbamazepina','carbamazepine'],
-  feni:['fenitoina','phenytoin'],fenob:['fenobarbital','phenobarbital'],iper:['erba di San Giovanni','St John’s wort'],
-  codeina:['codeina','codeine'],trama:['tramadolo','tramadol'],meto:['metoprololo','metoprolol'],antidep:['antidepressivi (TCA, SSRI)','antidepressants (TCAs, SSRIs)'],
-  antips:['antipsicotici','antipsychotics'],tamox:['tamoxifene','tamoxifen'],fluox:['fluoxetina','fluoxetine'],parox:['paroxetina','paroxetine'],
-  bupro:['bupropione','bupropion'],chini:['chinidina','quinidine'],sulfo:['sulfaniluree','sulfonylureas'],fans:['FANS','NSAIDs'],
-  fluco:['fluconazolo','fluconazole'],amio:['amiodarone','amiodarone'],metro:['metronidazolo','metronidazole'],clopi:['clopidogrel','clopidogrel'],
-  omep:['omeprazolo','omeprazole'],diaz:['diazepam','diazepam'],fluvox:['fluvoxamina','fluvoxamine'],teof:['teofillina','theophylline'],
-  caff:['caffeina','caffeine'],cloz:['clozapina','clozapine'],olanz:['olanzapina','olanzapine'],cipro:['ciprofloxacina','ciprofloxacin'],
-  fumo:['fumo di sigaretta','cigarette smoke'],parac:['paracetamolo','paracetamol'],etoh:['etanolo','ethanol'],volat:['anestetici volatili','volatile anaesthetics'],
-  disulf:['disulfiram','disulfiram'],etohc:['etanolo cronico','chronic ethanol'],isoniaz:['isoniazide','isoniazid']
+  simva:['simvastatina','simvastatin','la'],atorva:['atorvastatina','atorvastatin','l'],verap:['verapamil','verapamil','il'],dilt:['diltiazem','diltiazem','il'],
+  ciclo:['ciclosporina','ciclosporin','la'],warf:['warfarin','warfarin','il'],oc:['contraccettivi orali','oral contraceptives','i'],
+  keto:['ketoconazolo','ketoconazole','il'],itra:['itraconazolo','itraconazole','l'],eritro:['eritromicina','erythromycin','l'],clari:['claritromicina','clarithromycin','la'],
+  rito:['ritonavir','ritonavir','il'],pomp:['succo di pompelmo','grapefruit juice','il'],rifa:['rifampicina','rifampicin','la'],carba:['carbamazepina','carbamazepine','la'],
+  feni:['fenitoina','phenytoin','la'],fenob:['fenobarbital','phenobarbital','il'],iper:['erba di San Giovanni','St John’s wort','l'],
+  codeina:['codeina','codeine','la'],trama:['tramadolo','tramadol','il'],meto:['metoprololo','metoprolol','il'],antidep:['antidepressivi (TCA, SSRI)','antidepressants (TCAs, SSRIs)','gli'],
+  antips:['antipsicotici','antipsychotics','gli'],tamox:['tamoxifene','tamoxifen','il'],fluox:['fluoxetina','fluoxetine','la'],parox:['paroxetina','paroxetine','la'],
+  bupro:['bupropione','bupropion','il'],chini:['chinidina','quinidine','la'],sulfo:['sulfaniluree','sulfonylureas','le'],fans:['FANS','NSAIDs','i'],
+  fluco:['fluconazolo','fluconazole','il'],amio:['amiodarone','amiodarone','l'],metro:['metronidazolo','metronidazole','il'],clopi:['clopidogrel','clopidogrel','il'],
+  omep:['omeprazolo','omeprazole','l'],diaz:['diazepam','diazepam','il'],fluvox:['fluvoxamina','fluvoxamine','la'],teof:['teofillina','theophylline','la'],
+  caff:['caffeina','caffeine','la'],cloz:['clozapina','clozapine','la'],olanz:['olanzapina','olanzapine','l'],cipro:['ciprofloxacina','ciprofloxacin','la'],
+  fumo:['fumo di sigaretta','cigarette smoke','il'],parac:['paracetamolo','paracetamol','il'],etoh:['etanolo','ethanol','l'],volat:['anestetici volatili','volatile anaesthetics','gli'],
+  disulf:['disulfiram','disulfiram','il'],etohc:['etanolo cronico','chronic ethanol','l'],isoniaz:['isoniazide','isoniazid','l']
 };
-/* isoenzimi: S substrati, I inibitori, N induttori; sI/sN = «forti» secondo G&G App. II (tab. AII-2 e testo sulla clozapina) */
+const CX_PREP={il:{_:'il ',di:'del ',a:'al ',da:'dal ',su:'sul '},la:{_:'la ',di:'della ',a:'alla ',da:'dalla ',su:'sulla '},l:{_:'l’',di:'dell’',a:'all’',da:'dall’',su:'sull’'},
+  i:{_:'i ',di:'dei ',a:'ai ',da:'dai ',su:'sui '},gli:{_:'gli ',di:'degli ',a:'agli ',da:'dagli ',su:'sugli '},le:{_:'le ',di:'delle ',a:'alle ',da:'dalle ',su:'sulle '}};
+function cxN(id){ return t(CX_D[id]); }
+function cxA(id,pr){ const n=cxN(id); return LANG==='en'?n:CX_PREP[CX_D[id][2]][pr||'_']+n; }
+/* segnaposto: {P} nome, {Pa} con articolo, {PA} maiuscolo, {Pdi} {Pal} {Psu} preposizione articolata; idem {V…} */
+function cxF(s,p,v,o){
+  const W=id=>id?{'':cxN(id),a:cxA(id),A:cxCap(cxA(id)),di:cxA(id,'di'),al:cxA(id,'a'),su:cxA(id,'su')}:{};
+  const w={P:W(p),V:W(v)};
+  return s.replace(/\{(P|V)(a|A|di|al|su)?\}/g,(m,x,f)=>{ const r=w[x][f||'']; return r!=null?r:m; }).replace(/\{(\w+)\}/g,(m,k)=>o&&o[k]!=null?o[k]:m);
+}
+function cxJoin(a){ if(a.length<2) return a.join(''); return a.slice(0,-1).join(', ')+cxl('and')+a[a.length-1]; }
+function cxIsoA(isos){ return cxJoin(isos.map(i=>LANG==='en'?i:'il '+i)); }
+/* isoenzimi: S substrati, I inibitori, N induttori; sI/sN = «forti» secondo G&G (App. II tab. AII-2; p.387 per fluvoxamina e ketoconazolo) */
 const CX_ISO=[
   {iso:'CYP3A4',why:['Il più importante: metabolizza la quota più ampia dei farmaci ed è presente anche nell’intestino (per questo il succo di pompelmo conta).','The most important: it clears the largest share of drugs and is also present in the gut (which is why grapefruit juice matters).'],
-    S:['simva','atorva','verap','dilt','ciclo','warf','oc'],I:['keto','itra','eritro','clari','rito','verap','dilt','pomp'],N:['rifa','carba','feni','fenob','iper'],sI:['itra','clari','rito'],sN:['rifa','carba','feni']},
+    S:['simva','atorva','verap','dilt','ciclo','warf','oc','diaz','cloz'],I:['keto','itra','eritro','clari','rito','verap','dilt','pomp','fluco','amio','isoniaz'],N:['rifa','carba','feni','fenob','iper'],sI:['keto','itra','clari','rito'],sN:['rifa','carba','feni']},
   {iso:'CYP2D6',why:['Polimorfico (metabolizzatori lenti o ultrarapidi) e quasi non inducibile: attiva codeina e tramadolo.','Polymorphic (poor or ultra-rapid metabolizers) and barely inducible: it activates codeine and tramadol.'],
-    S:['codeina','trama','meto','antidep','antips','tamox'],I:['fluox','parox','bupro','chini'],N:[],sI:['fluox','parox'],sN:[]},
+    S:['codeina','trama','meto','antidep','antips','tamox','cloz'],I:['fluox','parox','bupro','chini'],N:[],sI:['fluox','parox'],sN:[]},
   {iso:'CYP2C9',why:['Elimina l’S-warfarin, l’enantiomero più attivo: inibirlo fa salire l’INR.','Clears S-warfarin, the more active enantiomer: inhibiting it raises the INR.'],
-    S:['warf','feni','sulfo','fans'],I:['fluco','amio','metro'],N:['rifa','carba'],sI:[],sN:[]},
+    S:['warf','feni','sulfo','fans'],I:['fluco','amio','metro','fluox','disulf','isoniaz'],N:['rifa','carba','fenob'],sI:[],sN:[]},
   {iso:'CYP2C19',why:['Attiva il clopidogrel: con un inibitore (omeprazolo) o un genotipo lento l’antiaggregazione cala.','Activates clopidogrel: an inhibitor (omeprazole) or a poor-metabolizer genotype weakens the antiplatelet effect.'],
-    S:['clopi','omep','diaz'],I:['omep','fluvox','fluco'],N:['rifa'],sI:['fluco'],sN:['rifa']},
+    S:['clopi','omep','diaz','feni'],I:['omep','fluvox','fluco','fluox','isoniaz'],N:['rifa','rito'],sI:['fluco','fluox'],sN:['rifa','rito']},
   {iso:'CYP1A2',why:['Indotto dal fumo e dall’omeprazolo (via AhR); teofillina e clozapina risentono molto dei suoi inibitori.','Induced by smoking and omeprazole (via AhR); theophylline and clozapine are very sensitive to its inhibitors.'],
-    S:['teof','caff','cloz','olanz'],I:['cipro','fluvox'],N:['fumo','omep','carba'],sI:['cipro','fluvox'],sN:[]},
+    S:['teof','caff','cloz','olanz','warf'],I:['cipro','fluvox'],N:['fumo','omep','carba','rifa','fenob'],sI:['cipro','fluvox'],sN:[]},
   {iso:'CYP2E1',why:['Trasforma il paracetamolo nel NAPQI epatotossico: l’alcol cronico e l’isoniazide lo inducono.','Turns paracetamol into hepatotoxic NAPQI: chronic alcohol and isoniazid induce it.'],
     S:['parac','etoh','volat'],I:['disulf'],N:['etohc','isoniaz'],sI:[],sN:[]}
 ];
-/* profarmaci (il CYP crea la specie attiva) e metabolita tossico */
+/* profarmaci (il CYP crea la specie attiva) e vittime di cui conta un metabolito */
 const CX_PRO={codeina:['morfina','morphine'],trama:['O-desmetiltramadolo','O-desmethyltramadol'],clopi:['metabolita attivo','active metabolite'],tamox:['endoxifene','endoxifen']};
-const CX_TOX={parac:['NAPQI','NAPQI']};
+const CX_MET={
+  parac:{sp:['NAPQI','NAPQI'],tag:['→ NAPQI','→ NAPQI'],up:['Più NAPQI → rischio di epatotossicità ↑.','More NAPQI → higher hepatotoxicity risk.'],dn:['Meno NAPQI formato per questa via.','Less NAPQI formed by this route.']},
+  volat:{sp:['fluoruro inorganico','inorganic fluoride'],tag:['→ fluoruro','→ fluoride'],up:['Più fluoruro formato (G&G: con l’enflurano); i livelli dell’anestetico cambiano poco.','More fluoride formed (G&G: with enflurane); anaesthetic levels change little.'],dn:['Meno fluoruro formato; i livelli dell’anestetico cambiano poco.','Less fluoride formed; anaesthetic levels change little.'],
+    note:[' Gli anestetici volatili si eliminano soprattutto con l’espirazione: il CYP2E1 ne metabolizza solo una piccola quota (enflurano 2–8%, sevoflurano circa 5%, G&G).',' Volatile anaesthetics are cleared mainly by exhalation: CYP2E1 metabolizes only a small share (enflurane 2–8%, sevoflurane about 5%, G&G).']}
+};
+/* vittime con una via principale: se il perpetratore tocca solo vie secondarie, l'effetto previsto è minore */
+const CX_VNOTE={
+  warf:{main:'CYP2C9',up:1.6,dn:0.6,txt:[' Questa via elimina l’R-warfarin, l’enantiomero meno attivo (G&G): l’effetto atteso è minore che con il CYP2C9.',' This route clears R-warfarin, the less active enantiomer (G&G): expect a smaller effect than through CYP2C9.']},
+  cloz:{main:'CYP1A2',up:2,dn:0.5,txt:[' Per la clozapina è una via secondaria: la principale è il CYP1A2 (G&G).',' For clozapine this is a minor route: the main one is CYP1A2 (G&G).']}
+};
 const CX_NTI=['warf','feni','teof','ciclo'];
-/* coppie documentate: «perp>vittima» → conseguenza, esempio/gestione, fonte (d = tabella DDI della vista, g = Goodman & Gilman) */
+/* decorso: inibitori lenti per emivita lunga; meccanismo di induzione per perpetratore (predefinito: PXR/CAR) */
+const CX_PTIME={amio:{t:'tAmio',r:'amio'},fluox:{t:'tFluox',r:'fluox'}};
+const CX_IMECH={fumo:'AhR',omep:'AhR',etohc:'STAB',isoniaz:'STAB'};
+/* coppie documentate «perp>vittima»: src d = tabella DDI della vista, g = Goodman & Gilman, p = prevista con nota dedicata.
+   Campi opzionali: k/dir/iso/sp sovrascrivono il calcolo; fx = rapporto di AUC della vittima (curva); amp = fattore sul metabolita; time/ramp = decorso. */
 const CX_DOC={};
-function cxDoc(ps,vs,src,cons,ex,extra){ ps.forEach(p=>vs.forEach(v=>{ CX_DOC[p+'>'+v]=Object.assign({src,cons,ex},extra||{}); })); }
-cxDoc(['amio','metro','fluco'],['warf'],'d',['↑ INR → rischio di emorragia.','↑ INR → bleeding risk.'],['Fluconazolo in un paziente in warfarin: ridurre la dose e controllare l’INR.','Fluconazole in a patient on warfarin: reduce the dose and check the INR.']);
-cxDoc(['eritro','clari','keto','itra','verap'],['simva','atorva'],'d',['Miopatia, fino alla rabdomiolisi.','Myopathy, up to rhabdomyolysis.'],['Claritromicina in un paziente in simvastatina: sospendere o ridurre la statina.','Clarithromycin in a patient on simvastatin: stop or reduce the statin.']);
-cxDoc(['omep'],['clopi'],'d',['Meno metabolita attivo → antiaggregazione ↓ → rischio di trombosi.','Less active metabolite → weaker antiplatelet effect → thrombosis risk.'],['Paziente con stent in clopidogrel che deve proteggere lo stomaco: preferire il pantoprazolo.','Stented patient on clopidogrel needing gastric protection: prefer pantoprazole.']);
-cxDoc(['fluox','parox'],['codeina'],'d',['Meno morfina → analgesia ↓.','Less morphine → weaker analgesia.'],['Paziente in SSRI (fluoxetina o paroxetina) con dolore: scegliere un analgesico che non richieda il CYP2D6.','Patient on an SSRI (fluoxetine or paroxetine) in pain: choose an analgesic that does not need CYP2D6.']);
-cxDoc(['rifa'],['warf'],'d',['↓ INR → anticoagulazione inefficace.','↓ INR → ineffective anticoagulation.'],['Rifampicina per tubercolosi in un paziente in warfarin: aumentare la dose sotto controllo dell’INR e ridurla quando la rifampicina viene sospesa.','Rifampicin for TB in a patient on warfarin: raise the dose under INR control and lower it when rifampicin is stopped.']);
-cxDoc(['rifa'],['oc'],'d',['Contraccezione inefficace → gravidanza indesiderata.','Contraceptive failure → unintended pregnancy.'],['Donna in pillola che inizia rifampicina: usare un metodo non ormonale.','Woman on the pill starting rifampicin: use a non-hormonal method.']);
-cxDoc(['iper','carba','feni'],['oc'],'g',['Contraccezione inefficace → gravidanza indesiderata.','Contraceptive failure → unintended pregnancy.'],['Iperico «naturale» preso per l’umore insieme alla pillola: è un induttore del CYP3A4 (via PXR).','“Natural” St John’s wort taken for mood with the pill: it is a CYP3A4 inducer (via PXR).']);
-cxDoc(['cipro'],['teof'],'g',['↑ teofillina → tossicità (nausea, aritmie, convulsioni).','↑ theophylline → toxicity (nausea, arrhythmias, seizures).'],['Paziente con BPCO in teofillina e infezione: scegliere un altro antibiotico o ridurre la teofillina dosandone i livelli.','COPD patient on theophylline with an infection: choose another antibiotic or reduce theophylline and measure levels.']);
-cxDoc(['fluvox'],['cloz'],'g',['Clozapina ↑ di 5–10 volte → sedazione, ipotensione, convulsioni.','Clozapine ↑ 5–10-fold → sedation, hypotension, seizures.'],['Evitare l’associazione o ridurre molto la clozapina, dosandone i livelli.','Avoid the combination or cut clozapine markedly, measuring levels.']);
-cxDoc(['fumo'],['cloz','olanz'],'g',['Livelli più bassi nel fumatore; se smette di fumare risalgono.','Lower levels in smokers; they rise again after quitting.'],['Paziente in clozapina che smette di fumare: dosare i livelli e ridurre la dose se servono.','Patient on clozapine who quits smoking: measure levels and lower the dose if needed.']);
-cxDoc(['etohc','isoniaz'],['parac'],'g',['Più NAPQI (e, con l’alcol, meno glutatione) → rischio di epatotossicità ↑.','More NAPQI (and, with alcohol, less glutathione) → higher hepatotoxicity risk.'],['Bevitore cronico con febbre: paracetamolo a dosi prudenti.','Chronic drinker with fever: paracetamol at cautious doses.']);
-cxDoc(['disulf'],['etoh'],'g',['Vampate, nausea, tachicardia, ipotensione (reazione da disulfiram).','Flushing, nausea, tachycardia, hypotension (disulfiram reaction).'],['È l’uso terapeutico del disulfiram nella dipendenza da alcol.','This is the therapeutic use of disulfiram in alcohol dependence.'],
-  {mech:['Il disulfiram blocca l’aldeide deidrogenasi (non il CYP2E1): l’acetaldeide prodotta dall’etanolo si accumula.','Disulfiram blocks aldehyde dehydrogenase (not CYP2E1): acetaldehyde formed from ethanol builds up.'],sp:['acetaldeide','acetaldehyde'],dir:1});
+function cxDoc(ps,vs,o){ ps.forEach(p=>vs.forEach(v=>{ CX_DOC[p+'>'+v]=o; })); }
+const CXT={
+  inrUp:['↑ INR → rischio di emorragia.','↑ INR → bleeding risk.'],
+  inrUpEx:['{PA} in un paziente in terapia con il warfarin: ridurre la dose di warfarin e controllare spesso l’INR.','{PA} in a patient on warfarin: lower the warfarin dose and check the INR often.'],
+  inrDn:['↓ INR → anticoagulazione inefficace.','↓ INR → ineffective anticoagulation.'],
+  inrDnEx:['{PA} in un paziente in terapia con il warfarin: aumentare la dose sotto controllo dell’INR e ridurla alla sospensione {Pdi}.','{PA} in a patient on warfarin: raise the dose under INR control and lower it when {Pa} is stopped.'],
+  myo:['Miopatia, fino alla rabdomiolisi.','Myopathy, up to rhabdomyolysis.'],
+  myoEx:['{PA} in un paziente in terapia con {Va}: ridurre la statina, sospenderla per un ciclo breve o passare a una poco metabolizzata dal CYP3A4 (pravastatina, rosuvastatina).','{PA} in a patient on {Va}: lower the statin, pause it for a short course, or switch to one with little CYP3A4 metabolism (pravastatin, rosuvastatin).'],
+  ocFail:['Contraccezione inefficace → gravidanza indesiderata.','Contraceptive failure → unintended pregnancy.'],
+  ocEx:['Donna in pillola che inizia {Pa}: usare un metodo contraccettivo non ormonale.','Woman on the pill starting {Pa}: use a non-hormonal method.'],
+  cicUp:['↑ ciclosporina → nefrotossicità.','↑ ciclosporin → nephrotoxicity.'],
+  cicUpEx:['Dosare i livelli di ciclosporina e ridurre la dose quando si aggiunge {Pa}.','Measure ciclosporin levels and lower the dose when {Pa} is added.'],
+  cicDn:['↓ ciclosporina → rischio di rigetto del trapianto.','↓ ciclosporin → risk of graft rejection.'],
+  cicDnEx:['Dosare i livelli e aumentare la dose finché si usa {Pa}; ridurla alla sospensione.','Measure levels and raise the dose while {Pa} is used; lower it when it is stopped.'],
+  teoUp:['↑ teofillina → tossicità (nausea, aritmie, convulsioni).','↑ theophylline → toxicity (nausea, arrhythmias, seizures).'],
+  teoUpEx:['Paziente con BPCO in teofillina che deve prendere {Pa}: scegliere un’alternativa o ridurre la teofillina dosandone i livelli.','COPD patient on theophylline who needs {Pa}: choose an alternative or reduce theophylline and measure levels.'],
+  teoDn:['↓ teofillina → controllo dei sintomi peggiore.','↓ theophylline → poorer symptom control.'],
+  teoDnEx:['Dosare la teofillina e adeguare la dose quando si aggiunge o si toglie {Pa}.','Measure theophylline and adjust the dose when {Pa} is added or removed.'],
+  clzDn:['Clozapina più bassa (valle fino a −50%, G&G) → rischio di ricaduta.','Lower clozapine (trough down by up to 50%, G&G) → relapse risk.'],
+  clzUp2:['Clozapina circa raddoppiata (valle ~2 volte, G&G): sedazione, ipotensione, convulsioni.','Clozapine roughly doubled (trough ~2-fold, G&G): sedation, hypotension, seizures.'],
+  clzLvl:['Dosare la clozapina quando si aggiunge o si toglie {Pa} e adeguare la dose.','Measure clozapine when {Pa} is added or removed and adjust the dose.'],
+  diaEx:['Ridurre il diazepam o preferire una benzodiazepina coniugata direttamente, senza CYP (oxazepam).','Lower diazepam or prefer a benzodiazepine conjugated directly, without CYPs (oxazepam).'],
+  fenUp:['↑ fenitoina → tossicità neurologica (nistagmo, atassia).','↑ phenytoin → neurological toxicity (nystagmus, ataxia).'],
+  fenEx:['Dosare la fenitoina: la sua eliminazione è saturabile, quindi piccoli cambi di metabolismo pesano molto (G&G).','Measure phenytoin: its elimination is saturable, so small changes in metabolism matter a lot (G&G).'],
+  omeRef:['Esempio di riferimento in G&G per misurare la forza di un inibitore del CYP2C19 (App. II).','G&G’s reference example for grading a CYP2C19 inhibitor (App. II).']
+};
+/* warfarin (G&G p.705, 736, 1204, 412, 1095) */
+cxDoc(['fluco','amio','metro'],['warf'],{src:'d',cons:CXT.inrUp,ex:CXT.inrUpEx});
+cxDoc(['disulf','fluox','isoniaz','eritro','clari'],['warf'],{src:'g',cons:CXT.inrUp,ex:CXT.inrUpEx});
+cxDoc(['rifa'],['warf'],{src:'d',cons:CXT.inrDn,ex:['Rifampicina per tubercolosi in un paziente in terapia con il warfarin: aumentare la dose sotto controllo dell’INR e ridurla alla sospensione della rifampicina.','Rifampicin for TB in a patient on warfarin: raise the dose under INR control and lower it when rifampicin is stopped.']});
+cxDoc(['carba','fenob'],['warf'],{src:'g',cons:CXT.inrDn,ex:CXT.inrDnEx});
+cxDoc(['feni'],['warf'],{src:'g',k:'X',dir:0,iso:'CYP2C9 · CYP3A4',
+  mech:['La fenitoina compete con il warfarin per il CYP2C9 e ne rallenta l’eliminazione (G&G: aggiungerla può causare sanguinamento); intanto induce altri CYP, che col tempo ne accelerano il metabolismo.','Phenytoin competes with warfarin for CYP2C9 and slows its clearance (G&G: adding it can cause bleeding); meanwhile it induces other CYPs, which speed up warfarin metabolism over time.'],
+  cons:['INR instabile: prima rischio di emorragia, poi di anticoagulazione insufficiente.','Unstable INR: first a bleeding risk, then under-anticoagulation.'],
+  ex:['Quando si aggiunge o si toglie la fenitoina, controllare spesso l’INR.','When phenytoin is added or stopped, check the INR often.'],
+  time:['La competizione sul CYP2C9 è immediata; l’induzione richiede circa 1–2 settimane.','Competition at CYP2C9 is immediate; induction takes about 1–2 weeks.']});
+cxDoc(['omep'],['warf'],{src:'g',k:'X',dir:0,iso:'CYP1A2 · CYP2C19',
+  mech:['G&G segnala un’interazione tra omeprazolo e warfarin senza indicarne il verso. Il profilo CYP non basta a prevederlo: l’omeprazolo induce il CYP1A2 (una via dell’R-warfarin) e inibisce il CYP2C19.','G&G reports an omeprazole–warfarin interaction without stating its direction. The CYP profile cannot predict it: omeprazole induces CYP1A2 (one R-warfarin route) and inhibits CYP2C19.'],
+  cons:['L’INR può cambiare.','The INR may change.'],ex:['Controllare l’INR quando si inizia o si sospende l’omeprazolo.','Check the INR when omeprazole is started or stopped.']});
+cxDoc(['rito'],['warf'],{src:'p',k:'X',dir:0,iso:'CYP3A4',
+  mech:['Il ritonavir inibisce il CYP3A4, una via dell’R-warfarin, ma è anche un induttore (G&G): l’effetto netto sul warfarin non si deduce dal solo profilo CYP.','Ritonavir inhibits CYP3A4, one R-warfarin route, but it is also an inducer (G&G): the net effect on warfarin cannot be read from the CYP profile alone.'],
+  cons:['INR imprevedibile.','Unpredictable INR.'],ex:['Controllare l’INR all’inizio e alla sospensione del ritonavir.','Check the INR when ritonavir is started and stopped.']});
+/* statine (G&G p.755-756) */
+cxDoc(['eritro','clari','keto','itra'],['simva','atorva'],{src:'d',cons:CXT.myo,ex:CXT.myoEx});
+cxDoc(['verap'],['atorva'],{src:'d',cons:CXT.myo,ex:CXT.myoEx});
+cxDoc(['verap'],['simva'],{src:'d',cons:CXT.myo,ex:['Con il verapamil la simvastatina non deve superare 10 mg al giorno (G&G).','With verapamil, simvastatin should not exceed 10 mg a day (G&G).']});
+cxDoc(['dilt'],['simva'],{src:'g',cons:CXT.myo,ex:['Con il diltiazem la simvastatina non deve superare 10 mg al giorno (G&G).','With diltiazem, simvastatin should not exceed 10 mg a day (G&G).']});
+cxDoc(['amio'],['simva'],{src:'g',cons:CXT.myo,ex:['Con l’amiodarone la simvastatina non deve superare 20 mg al giorno (G&G).','With amiodarone, simvastatin should not exceed 20 mg a day (G&G).']});
+cxDoc(['amio','fluco'],['atorva'],{src:'g',cons:CXT.myo,ex:CXT.myoEx});
+cxDoc(['fluco'],['simva'],{src:'g',cons:CXT.myo,ex:CXT.myoEx});
+cxDoc(['rito'],['simva'],{src:'g',cons:CXT.myo,ex:['Non associare: la simvastatina non va usata con gli inibitori della proteasi dell’HIV (G&G).','Do not combine: simvastatin must not be used with HIV protease inhibitors (G&G).']});
+cxDoc(['rito'],['atorva'],{src:'g',cons:CXT.myo,ex:CXT.myoEx});
+/* ciclosporina (G&G p.793, 1204) */
+cxDoc(['verap','fluco','keto','eritro','clari'],['ciclo'],{src:'g',cons:CXT.cicUp,ex:CXT.cicUpEx});
+cxDoc(['pomp'],['ciclo'],{src:'g',cons:CXT.cicUp,ex:['Evitare il succo di pompelmo durante la terapia: inibisce il CYP3A4 e la glicoproteina P (G&G).','Avoid grapefruit juice during therapy: it inhibits CYP3A4 and P-glycoprotein (G&G).']});
+cxDoc(['rifa','fenob','feni'],['ciclo'],{src:'g',cons:CXT.cicDn,ex:CXT.cicDnEx});
+/* contraccettivi orali (G&G p.135, 412-414, 1274) */
+cxDoc(['rifa'],['oc'],{src:'d',cons:CXT.ocFail,ex:CXT.ocEx});
+cxDoc(['carba','feni','fenob'],['oc'],{src:'g',cons:CXT.ocFail,ex:CXT.ocEx});
+cxDoc(['iper'],['oc'],{src:'g',cons:CXT.ocFail,ex:['Iperico preso per l’umore insieme alla pillola: attiva il PXR e induce il CYP3A4; usare un altro metodo o evitare l’iperico.','St John’s wort taken for mood with the pill: it activates PXR and induces CYP3A4; use another method or avoid the herb.']});
+cxDoc(['rito'],['oc'],{src:'g',k:'N',dir:-1,fx:0.6,iso:'CYP3A4 · UGT',
+  mech:['Il ritonavir inibisce il CYP3A4 ma è anche un induttore moderato (CYP3A4, glucuronidazione): sull’etinilestradiolo prevale l’induzione e l’AUC cala del 40% (G&G).','Ritonavir inhibits CYP3A4 but is also a moderate inducer (CYP3A4, glucuronidation): for ethinylestradiol induction wins and the AUC falls by 40% (G&G).'],
+  cons:CXT.ocFail,ex:['Usare un metodo contraccettivo alternativo (G&G).','Use an alternative contraceptive method (G&G).']});
+/* profarmaci */
+cxDoc(['omep'],['clopi'],{src:'d',cons:['Meno metabolita attivo → antiaggregazione ↓ → rischio di trombosi.','Less active metabolite → weaker antiplatelet effect → thrombosis risk.'],ex:['Paziente con stent in clopidogrel che deve proteggere lo stomaco: preferire il pantoprazolo.','Stented patient on clopidogrel needing gastric protection: prefer pantoprazole.']});
+cxDoc(['rito'],['clopi'],{src:'p',k:'X',dir:0,
+  mech:['Il ritonavir induce il CYP2C19, che attiva il clopidogrel, ma ha effetti misti sugli altri CYP (inibitore e induttore, G&G): l’effetto netto non si deduce da questi dati.','Ritonavir induces CYP2C19, which activates clopidogrel, but has mixed effects on other CYPs (inhibitor and inducer, G&G): the net effect cannot be read from these data.'],
+  cons:['Effetto antiaggregante incerto.','Uncertain antiplatelet effect.'],ex:['Monitorare l’effetto antiaggregante o valutare un’alternativa.','Monitor the antiplatelet effect or consider an alternative.']});
+cxDoc(['fluox','parox'],['codeina'],{src:'d',cons:['Meno morfina → analgesia ↓.','Less morphine → weaker analgesia.'],ex:['Paziente in terapia con {Pa} che ha dolore: scegliere un analgesico che non richieda il CYP2D6.','Patient on {Pa} in pain: choose an analgesic that does not need CYP2D6.']});
+/* teofillina (G&G tab. 44-2, p.1163, 1204, 1095, tab. 65-4) */
+cxDoc(['cipro'],['teof'],{src:'g',cons:CXT.teoUp,ex:CXT.teoUpEx});
+cxDoc(['fluvox'],['teof'],{src:'g',cons:CXT.teoUp,ex:['Evitare l’associazione o ridurre la teofillina dosandone i livelli.','Avoid the combination or reduce theophylline and measure levels.']});
+cxDoc(['eritro','clari'],['teof'],{src:'g',k:'I',dir:1,iso:'CYP',
+  mech:['{PA} riduce la clearance della teofillina, probabilmente interferendo con il suo metabolismo via CYP (G&G).','{PA} lowers theophylline clearance, probably by interfering with its CYP metabolism (G&G).'],cons:CXT.teoUp,ex:CXT.teoUpEx});
+cxDoc(['isoniaz'],['teof'],{src:'g',k:'I',dir:1,iso:'CYP3A4',
+  mech:['L’isoniazide inibisce il CYP3A4 e rallenta l’eliminazione della teofillina (G&G, tab. 65-4).','Isoniazid inhibits CYP3A4 and slows theophylline clearance (G&G, Table 65-4).'],
+  cons:['↑ teofillina → convulsioni, palpitazioni, nausea (G&G).','↑ theophylline → seizures, palpitations, nausea (G&G).'],ex:['Dosare la teofillina durante la terapia antitubercolare.','Measure theophylline during TB treatment.']});
+cxDoc(['fumo'],['teof'],{src:'g',cons:CXT.teoDn,ex:['Fumatore in teofillina che smette: la clearance cala e i livelli salgono; ridurre la dose e dosarli.','Smoker on theophylline who quits: clearance falls and levels rise; lower the dose and measure levels.']});
+cxDoc(['rifa','fenob','omep'],['teof'],{src:'g',cons:CXT.teoDn,ex:CXT.teoDnEx});
+/* antipsicotici (G&G p.387-388, tab. 19-4) */
+cxDoc(['fluvox'],['cloz'],{src:'g',fx:7.5,cons:['Clozapina ↑ di 5–10 volte → sedazione, ipotensione, convulsioni.','Clozapine ↑ 5–10-fold → sedation, hypotension, seizures.'],ex:['Evitare l’associazione o ridurre molto la clozapina, dosandone i livelli.','Avoid the combination or cut clozapine markedly, measuring levels.']});
+cxDoc(['fumo'],['cloz'],{src:'g',fx:0.65,cons:['Livelli più bassi nel fumatore; se smette di fumare salgono di almeno il 50% (G&G).','Lower levels in smokers; after quitting they rise by at least 50% (G&G).'],ex:['Paziente in clozapina che smette di fumare: dosare i livelli e ridurre la dose se servono.','Patient on clozapine who quits smoking: measure levels and lower the dose if needed.']});
+cxDoc(['carba','feni','fenob','rifa','omep'],['cloz'],{src:'g',fx:0.5,cons:CXT.clzDn,ex:CXT.clzLvl});
+cxDoc(['fluox','parox','keto','itra','clari','rito'],['cloz'],{src:'g',fx:2,cons:CXT.clzUp2,ex:CXT.clzLvl});
+cxDoc(['fumo'],['olanz'],{src:'g',fx:0.65,cons:['Olanzapina più bassa nel fumatore (rapporto concentrazione/dose almeno −30%, G&G).','Lower olanzapine in smokers (concentration-to-dose ratio at least 30% lower, G&G).'],ex:['Se il paziente smette di fumare, rivalutare la dose.','If the patient quits smoking, reassess the dose.']});
+cxDoc(['carba'],['olanz'],{src:'g',fx:0.67,cons:['↓ olanzapina: la clearance sale del 50% (G&G).','↓ olanzapine: clearance rises by 50% (G&G).'],ex:['Rivalutare la dose di olanzapina.','Reassess the olanzapine dose.']});
+cxDoc(['fluvox'],['olanz'],{src:'g',fx:1.8,cons:['↑ olanzapina: AUC da +50% a circa il doppio, secondo la dose di fluvoxamina (G&G).','↑ olanzapine: AUC from +50% to about double, depending on the fluvoxamine dose (G&G).'],ex:['Ridurre l’olanzapina se compaiono sedazione o altri effetti dose-dipendenti.','Lower olanzapine if sedation or other dose-dependent effects appear.']});
+/* omeprazolo, diazepam, fenitoina (G&G App. II tab. AII-2, p.1095, p.547, tab. 65-4) */
+cxDoc(['fluco'],['omep'],{src:'g',fx:13.5,cons:['AUC dell’omeprazolo circa 13 volte più alta (G&G, App. II).','Omeprazole AUC about 13-fold higher (G&G, App. II).'],ex:CXT.omeRef});
+cxDoc(['fluox'],['omep'],{src:'g',fx:7.1,cons:['AUC dell’omeprazolo circa 7 volte più alta (G&G, App. II).','Omeprazole AUC about 7-fold higher (G&G, App. II).'],ex:CXT.omeRef});
+cxDoc(['rifa'],['omep'],{src:'g',fx:0.07,cons:['AUC dell’omeprazolo ridotta del 93% (G&G, App. II): effetto antisecretivo insufficiente.','Omeprazole AUC cut by 93% (G&G, App. II): inadequate acid suppression.'],ex:['Esempio di riferimento in G&G di induttore forte del CYP2C19 (App. II).','G&G’s reference example of a strong CYP2C19 inducer (App. II).']});
+cxDoc(['omep'],['diaz'],{src:'g',cons:['↑ diazepam → sedazione prolungata.','↑ diazepam → prolonged sedation.'],ex:CXT.diaEx});
+cxDoc(['isoniaz'],['diaz'],{src:'g',cons:['Sedazione e depressione respiratoria (G&G).','Sedation and respiratory depression (G&G).'],ex:CXT.diaEx});
+cxDoc(['disulf','omep','isoniaz'],['feni'],{src:'g',cons:CXT.fenUp,ex:CXT.fenEx});
+/* CYP2E1: paracetamolo, etanolo, anestetici volatili (G&G p.178-180, 499, 539-547, tab. 65-4) */
+cxDoc(['etohc'],['parac'],{src:'g',cons:['Più NAPQI e, con l’alcol, meno glutatione → rischio di epatotossicità ↑.','More NAPQI and, with alcohol, less glutathione → higher hepatotoxicity risk.'],ex:['Bevitore cronico con febbre: paracetamolo a dosi prudenti.','Chronic drinker with fever: paracetamol at cautious doses.']});
+cxDoc(['isoniaz'],['parac'],{src:'g',cons:['Più NAPQI → rischio di epatotossicità ↑ (G&G, tab. 65-4).','More NAPQI → higher hepatotoxicity risk (G&G, Table 65-4).'],ex:['Paziente in terapia antitubercolare con isoniazide: paracetamolo a dosi prudenti.','Patient on isoniazid for TB: paracetamol at cautious doses.']});
+cxDoc(['disulf'],['etoh'],{src:'g',k:'I',dir:1,iso:'ALDH',sp:['acetaldeide','acetaldehyde'],amp:5,ramp:'aldh',
+  mech:['Il disulfiram blocca in modo irreversibile l’aldeide deidrogenasi (ALDH), non il CYP2E1: l’acetaldeide prodotta dall’etanolo sale di 5–10 volte (G&G).','Disulfiram irreversibly blocks aldehyde dehydrogenase (ALDH), not CYP2E1: acetaldehyde formed from ethanol rises 5–10-fold (G&G).'],
+  cons:['Vampate, nausea, tachicardia, ipotensione (reazione da disulfiram).','Flushing, nausea, tachycardia, hypotension (disulfiram reaction).'],ex:['È l’uso terapeutico del disulfiram nella dipendenza da alcol.','This is the therapeutic use of disulfiram in alcohol dependence.'],
+  time:['La reazione compare appena si beve. L’inattivazione dell’ALDH è irreversibile: la sensibilità all’alcol può durare fino a 14 giorni dall’ultima dose, il tempo per sintetizzare nuovo enzima (G&G).','The reaction starts as soon as the patient drinks. ALDH inactivation is irreversible: alcohol sensitivity can last up to 14 days after the last dose, the time needed to make new enzyme (G&G).']});
+cxDoc(['etohc'],['etoh'],{src:'g',fx:0.5,ramp:'stab',
+  mech:['Il consumo cronico induce il CYP2E1, che normalmente ossida circa il 10% dell’etanolo (il resto passa dall’alcol deidrogenasi): l’eliminazione accelera al massimo di circa 2 volte (G&G).','Chronic drinking induces CYP2E1, which normally oxidizes about 10% of ethanol (the rest goes through alcohol dehydrogenase): elimination speeds up at most about 2-fold (G&G).'],
+  cons:['Tolleranza farmacocinetica: a parità di dose, alcolemia più bassa. Si somma a una tolleranza farmacodinamica.','Pharmacokinetic tolerance: lower blood alcohol for the same dose. It adds to pharmacodynamic tolerance.'],
+  ex:['Spiega in parte perché il bevitore cronico regge più alcol; lo stesso CYP2E1 indotto aumenta il rischio con il paracetamolo.','Partly explains why chronic drinkers tolerate more alcohol; the same induced CYP2E1 raises the risk with paracetamol.'],
+  time:['L’induzione cresce con il consumo continuato e si riduce gradualmente con l’astinenza.','Induction grows with continued drinking and fades gradually with abstinence.']});
+cxDoc(['isoniaz'],['etoh'],{src:'p',fx:0.85,ramp:'stab',
+  mech:['L’isoniazide induce il CYP2E1, ma l’etanolo è ossidato soprattutto dall’alcol deidrogenasi: il CYP2E1 normalmente ne gestisce circa il 10% (G&G).','Isoniazid induces CYP2E1, but ethanol is oxidized mainly by alcohol dehydrogenase: CYP2E1 normally handles about 10% of it (G&G).'],
+  cons:['Al massimo un’eliminazione dell’alcol un po’ più rapida: conta poco.','At most slightly faster alcohol elimination: of little consequence.'],ex:['Nessuna gestione specifica per i livelli di alcol.','No specific management for alcohol levels.'],
+  time:['Si sviluppa durante la terapia con isoniazide e regredisce dopo la sospensione.','It develops during isoniazid therapy and fades after stopping.']});
+cxDoc(['isoniaz'],['volat'],{src:'g',cons:['Più fluoruro nel siero (con l’enflurano) ed effetto anestetico ridotto (G&G, tab. 65-4).','More serum fluoride (with enflurane) and reduced anaesthetic effect (G&G, Table 65-4).'],ex:['Segnalarlo all’anestesista: con isoflurano ed enflurano l’effetto può essere minore.','Tell the anaesthetist: isoflurane and enflurane may work less well.']});
 const CX_QUICK=[['fluco','warf'],['clari','simva'],['omep','clopi'],['fluox','codeina'],['rifa','oc'],['cipro','teof'],['etohc','parac'],['fluvox','cloz']];
 const CX_SHORT=i=>i.replace('CYP','');
-function cxN(id){ return t(CX_D[id]); }
 function cxRoles(id){ const r=[]; CX_ISO.forEach(b=>{ if(b.S.includes(id)) r.push({iso:b.iso,k:'S'}); if(b.I.includes(id)) r.push({iso:b.iso,k:'I',s:b.sI.includes(id)}); if(b.N.includes(id)) r.push({iso:b.iso,k:'N',s:b.sN.includes(id)}); }); return r; }
-function cxJoin(a){ if(a.length<2) return a.join(''); return a.slice(0,-1).join(', ')+cxl('and')+a[a.length-1]; }
 function cxReduce(){ return !!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches); }
 /* ── analisi della coppia ── */
 function cxAnalyze(p,v){
-  if(p===v) return {st:'same'};
+  if(p===v) return {st:'same',p,v};
   const links=[];
   CX_ISO.forEach(b=>{ if(!b.S.includes(v)) return; if(b.I.includes(p)) links.push({iso:b.iso,k:'I',s:b.sI.includes(p)}); if(b.N.includes(p)) links.push({iso:b.iso,k:'N',s:b.sN.includes(p)}); });
-  const doc=CX_DOC[p+'>'+v]||null;
-  const P=cxN(p), V=cxN(v);
-  if(!links.length){ const acts=cxRoles(p).filter(r=>r.k!=='S').map(r=>r.iso); return {st:'none',P,V,isos:cxJoin(acts)}; }
-  const kinds=[...new Set(links.map(l=>l.k))]; const k=kinds.length>1?'X':kinds[0];
-  const isoTxt=cxJoin(links.map(l=>l.iso));
-  const pro=CX_PRO[v], tox=CX_TOX[v];
-  let sp=V, dir=0, role='';
-  if(doc&&doc.sp){ sp=t(doc.sp); dir=doc.dir; }
-  else if(k!=='X'){
-    const inh=(k==='I');
-    if(pro){ sp=t(pro); dir=inh?-1:1; role='pro'; }
-    else if(tox){ sp=t(tox); dir=inh?-1:1; role='tox'; }
-    else dir=inh?1:-1;
-  }
-  const verb=k==='I'?t(['inibisce','inhibits']):t(['induce','induces']);
-  const pl=links.length>1, art=pl?'i':'il', Pc=cxCap(P);
-  const more=k==='I'?t(['meno enzima attivo, meno metabolismo','less active enzyme, less metabolism']):t(['più enzima, più metabolismo','more enzyme, more metabolism']);
+  const doc=CX_DOC[p+'>'+v]||null, P=cxN(p), V=cxN(v);
+  if(!links.length&&!(doc&&doc.k)) return {st:'none',p,v,P,V};
+  const kinds=[...new Set(links.map(l=>l.k))];
+  const k=(doc&&doc.k)||(kinds.length>1?'X':kinds[0]);
+  const use=links.filter(l=>k==='X'||l.k===k);
+  const isos=doc&&doc.iso?[doc.iso]:[...new Set(use.map(l=>l.iso))];
+  const pro=CX_PRO[v], met=CX_MET[v], role=pro?'pro':met?'tox':'';
+  const sp=doc&&doc.sp?t(doc.sp):pro?t(pro):met?t(met.sp):V;
+  let dir; if(doc&&doc.dir!=null) dir=doc.dir; else if(k==='X') dir=0; else { const inh=k==='I'; dir=role?(inh?-1:1):(inh?1:-1); }
+  const strong=(k==='X'||(doc&&doc.k))?null:use.find(l=>l.s)||null;
+  const vn=CX_VNOTE[v], side=!doc&&!!vn&&!use.some(l=>l.iso===vn.main);
+  let fx=doc&&doc.fx?doc.fx:(k==='I'?(strong?5:2.4):k==='N'?(strong?0.2:0.4):1);
+  if(side) fx=k==='I'?Math.min(fx,vn.up):Math.max(fx,vn.dn);
+  const o={ISO:cxIsoA(isos),SP:sp};
   let mech;
-  if(doc&&doc.mech) mech=t(doc.mech);
-  else if(k==='X') mech=cxf(cxl('mixed'),{P:Pc});
-  else if(role==='pro') mech=t([`${Pc} ${verb} ${art} ${isoTxt}, che ${pl?'attivano':'attiva'} ${V}: si forma ${dir>0?'più':'meno'} ${sp}.`,`${Pc} ${verb} ${isoTxt}, which ${pl?'activate':'activates'} ${V}: ${dir>0?'more':'less'} ${sp} is formed.`]);
-  else if(role==='tox') mech=t([`${Pc} ${verb} ${art} ${isoTxt}, che ${pl?'trasformano':'trasforma'} ${V} in ${sp}: si forma ${dir>0?'più':'meno'} ${sp}.`,`${Pc} ${verb} ${isoTxt}, which ${pl?'turn':'turns'} ${V} into ${sp}: ${dir>0?'more':'less'} ${sp} is formed.`]);
-  else mech=t([`${Pc} ${verb} ${art} ${isoTxt}, ${pl?'le vie che eliminano':'la via che elimina'} ${V}: ${more}, ${dir>0?'più':'meno'} ${V} nel plasma.`,`${Pc} ${verb} ${isoTxt}, the ${pl?'routes that clear':'route that clears'} ${V}: ${more}, ${dir>0?'more':'less'} ${V} in plasma.`]);
-  const strong=links.find(l=>l.s);
-  if(strong&&!(doc&&doc.mech)) mech+=cxf(cxl(strong.k==='I'?'strongI':'strongN'),{P:Pc,ISO:strong.iso});
-  let cons, ex;
-  if(doc){ cons=t(doc.cons); ex=t(doc.ex); }
+  if(doc&&doc.mech) mech=cxF(t(doc.mech),p,v,o);
+  else if(k==='X') mech=cxF(cxl('mixed'),p,v,{INH:cxIsoA(links.filter(l=>l.k==='I').map(l=>l.iso)),IND:cxIsoA(links.filter(l=>l.k==='N').map(l=>l.iso))});
   else {
-    if(k==='X') cons=cxf(cxl('mixed'),{P});
-    else if(role==='pro') cons=dir<0?t([`Meno ${sp}: effetto di ${V} ↓.`,`Less ${sp}: ${V} works less.`]):t([`Più ${sp}: effetto di ${V} potenzialmente ↑.`,`More ${sp}: ${V} effect potentially ↑.`]);
-    else if(role==='tox') cons=dir>0?t([`Più ${sp} → rischio di epatotossicità ↑.`,`More ${sp} → higher hepatotoxicity risk.`]):t([`Meno ${sp} formato per questa via.`,`Less ${sp} formed by this route.`]);
-    else cons=dir>0?t([`Più esposizione a ${V}: effetti dose-dipendenti e tossicità ↑.`,`Higher exposure to ${V}: dose-dependent effects and toxicity ↑.`]):t([`Meno esposizione a ${V}: rischio di inefficacia terapeutica.`,`Lower exposure to ${V}: risk of therapeutic failure.`]);
-    if(role===''&&dir>0&&CX_NTI.includes(v)) cons+=cxl('ntI');
-    if(v==='tamox'&&dir<0) cons+=cxl('tamox');
-    ex=cxf(cxl('predEx'),{P,V,ISO:isoTxt});
+    Object.assign(o,{VERB:cxl(k==='I'?'vInh':'vInd'),MORE:cxl(k==='I'?'moreI':'moreN'),DIR:cxl(dir>0?'dirUp':'dirDn'),DIRV:cxl(dir>0?'riseV':'fallV')});
+    mech=cxF(cxl((role==='pro'?'mPro':role==='tox'?'mTox':'mPar')+(isos.length>1?'N':'1')),p,v,o);
+    if(strong) mech+=cxF(cxl(strong.k==='I'?'strongI':'strongN'),p,v,{ISOX:strong.iso});
+    if(met&&met.note) mech+=t(met.note);
+    if(side) mech+=t(vn.txt);
   }
-  const time=k==='N'?cxl('tInd'):k==='I'?cxl('tInh'):cxl('tInh')+' '+cxl('tInd');
-  return {st:doc?(doc.src==='d'?'data':'gg'):'pred',P,V,sp,dir,k,mech,cons,ex,time,role,isoTxt};
+  let cons, ex;
+  if(doc){ cons=cxF(t(doc.cons),p,v,o); ex=cxF(t(doc.ex),p,v,o); }
+  else {
+    if(k==='X') cons=cxl('cMix');
+    else if(role==='pro') cons=cxF(cxl(dir<0?'cProDn':'cProUp'),p,v,o);
+    else if(role==='tox') cons=t(dir>0?met.up:met.dn);
+    else cons=cxF(cxl(dir>0?'cUp':'cDn'),p,v,o);
+    if(!role&&dir>0&&CX_NTI.includes(v)&&!side) cons+=cxl('ntI');
+    if(v==='tamox'&&dir<0) cons+=cxl('tamox');
+    ex=cxF(cxl(role==='tox'&&dir<0?'mgmtMet':'mgmtPred'),p,v,o);
+  }
+  const note=(!doc||doc.src==='p')?cxF(cxl('predNote'),p,v,o)+(p==='rito'&&!doc?cxl('ritoNote'):''):'';
+  let time, ramp=null;
+  const mInd=CX_IMECH[p]||'NR', indTxt=cxF(cxl(mInd==='AhR'?'tIndAhR':mInd==='STAB'?'tIndStab':'tIndNR'),p,v,o);
+  if(doc&&doc.time){ time=cxF(t(doc.time),p,v,o); ramp=doc.ramp||(k==='N'?'ind':k==='I'?'inh':null); }
+  else if(k==='X') time=cxF(cxl('tInh'),p,v,o)+' '+indTxt;
+  else if(k==='I'){ const pt=CX_PTIME[p]; time=cxF(cxl(pt?pt.t:sp!==V?'tInhMet':'tInh'),p,v,o); ramp=pt?pt.r:'inh'; }
+  else if(p==='fumo'){ time=cxF(cxl('tFumo'),p,v,o); ramp='fumo'; }
+  else { time=indTxt+cxF(cxl(sp!==V?'tOffMet':'tOffPar'),p,v,o); ramp=mInd==='STAB'?'stab':'ind'; }
+  if(doc&&doc.ramp) ramp=doc.ramp;
+  return {st:doc?(doc.src==='d'?'data':doc.src==='g'?'gg':'pred'):'pred',p,v,P,V,sp,dir,k,mech,cons,ex,exLab:doc&&doc.src!=='p'?cxl('ex'):cxl('mgmt'),note,time,ramp,role,
+    isoTxt:isos.join(' · '),fx,strong:!!strong,amp:doc&&doc.amp||0,slow:k==='I'&&!!CX_PTIME[p]};
 }
-/* ── curva concentrazione–tempo (dosi orali ripetute, modello a 1 compartimento) ── */
+/* ── curva concentrazione–tempo (dosi orali ripetute, 1 compartimento): schema, non una simulazione del paziente ── */
 const CX_PK={ka:1.1,ke:0.14,tau:8,T:48,n:96};
-function cxCurve(amp,keF){ const {ka,tau,T,n}=CX_PK, ke=CX_PK.ke*keF, pts=[];
+function cxCurve(amp,keF){ const {ka,tau,T,n}=CX_PK, ke=CX_PK.ke*keF, pts=[]; /* keF ≤ 6 → ke < ka: niente singolarità */
   for(let i=0;i<=n;i++){ const tt=T*i/n; let c=0; for(let d=0;d*tau<=tt;d++){ const s=tt-d*tau; c+=ka/(ka-ke)*(Math.exp(-ke*s)-Math.exp(-ka*s)); } pts.push([tt,c*amp]); } return pts; }
-function cxTarget(r){ /* fattori: farmaco madre → cambia l'eliminazione; metabolita → cambia la formazione */
-  if(r.st==='none') return {amp:1,keF:1};
-  if(r.role==='pro'||r.role==='tox'||r.sp!==r.V) return r.dir>0?{amp:2.1,keF:1}:{amp:0.36,keF:1};
-  return r.dir>0?{amp:1,keF:0.42}:r.dir<0?{amp:1,keF:2.6}:{amp:1,keF:1};
+/* fattori dalla forza del perpetratore: AUC della vittima × fx (forte ≥5, moderato ~2,4; induttore forte −80%, moderato −60%) */
+function cxTarget(r){
+  if(r.st==='none'||r.st==='same'||!r.dir) return null;
+  if(r.sp!==r.V) return {amp:r.amp||(r.dir>0?(r.strong?2.5:2.1):(r.k==='I'?Math.max(0.18,Math.min(0.6,1/r.fx)):0.4)),keF:1};
+  return {amp:1,keF:Math.max(0.1,Math.min(6,1/r.fx))};
 }
 const CX_G={w:320,h:184,l:12,r:10,t:12,b:26};
 function cxPath(pts,ymax){ const {w,h,l,r,t:tp,b}=CX_G, pw=w-l-r, ph=h-tp-b;
   return pts.map((p,i)=>(i?'L':'M')+(l+p[0]/CX_PK.T*pw).toFixed(1)+' '+(tp+ph-Math.min(p[1],ymax*1.04)/ymax*ph).toFixed(1)).join(''); }
-function cxChart(r){
-  const base=cxCurve(1,1), b0=Math.max(...base.map(p=>p[1])), tg=cxTarget(r), fin=cxCurve(tg.amp,tg.keF), f0=Math.max(...fin.map(p=>p[1]));
+function cxChart(r,tg){
+  const base=cxCurve(1,1), b0=Math.max(...base.map(p=>p[1])), fin=cxCurve(tg.amp,tg.keF), f0=Math.max(...fin.map(p=>p[1]));
   const ymax=Math.max(b0*2.3,f0*1.08);
   const {w,h,l,r:rr,t:tp,b}=CX_G, ph=h-tp-b, Y=v=>(tp+ph-v/ymax*ph).toFixed(1);
-  const mec=b0*0.42, mtc=b0*1.4, toxOnly=r.role==='tox'||(r.st!=='none'&&r.sp!==r.V&&r.role!=='pro');
-  const dirC=r.dir>0?'up':r.dir<0?'down':'flat';
-  const lbl=r.st==='none'?r.V:r.sp;
-  const aria=r.st==='none'?t([`Curva di ${lbl}: invariata.`,`Curve of ${lbl}: unchanged.`]):t([`Curva di ${lbl}: ${r.dir>0?'sale verso la soglia di tossicità':'scende sotto la minima efficace'} rispetto a ${r.V} da solo.`,`Curve of ${lbl}: it ${r.dir>0?'rises towards the toxicity threshold':'falls below the minimum effective level'} compared with ${r.V} alone.`]);
+  const met=r.sp!==r.V, mec=b0*0.3, mtc=b0*1.4, toxOnly=met&&r.role!=='pro';
+  const lbl=r.sp, up=r.dir>0;
+  const aria=t([`Curva schematica di ${lbl}: ${up?'sale verso la soglia di tossicità':'scende verso o sotto la minima efficace'} rispetto a ${lbl} senza ${r.P}.`,`Schematic curve of ${lbl}: it ${up?'rises towards the toxicity threshold':'falls towards or below the minimum effective level'} compared with ${lbl} without ${r.P}.`]);
   const it=(cls,txt)=>`<span class="cx-li"><span class="cx-lg ${cls}"></span>${txt}</span>`;
-  return `<figure class="cx-chart cx-${dirC}"><p class="cx-ct">${t(['Concentrazione di ','Concentration of '])}<b>${escAttr(lbl)}</b>${r.st!=='none'&&r.sp!==r.V?` (${escAttr(r.V)})`:''}</p><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${escAttr(aria)}">
+  return `<figure class="cx-chart cx-${up?'up':'down'}"><p class="cx-ct">${cxl('concOf')}<b>${escAttr(lbl)}</b>${met?` (${escAttr(r.V)})`:''}${cxl('schem')}</p><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${escAttr(aria)}">
     <rect x="${l}" y="${tp}" width="${w-l-rr}" height="${(Y(mtc)-tp).toFixed(1)}" class="cx-ztox"/>
     ${toxOnly?'':`<rect x="${l}" y="${Y(mtc)}" width="${w-l-rr}" height="${(Y(mec)-Y(mtc)).toFixed(1)}" class="cx-win"/><rect x="${l}" y="${Y(mec)}" width="${w-l-rr}" height="${(tp+ph-Y(mec)).toFixed(1)}" class="cx-zlow"/><line x1="${l}" x2="${w-rr}" y1="${Y(mec)}" y2="${Y(mec)}" class="cx-ml"/>`}
     <line x1="${l}" x2="${w-rr}" y1="${Y(mtc)}" y2="${Y(mtc)}" class="cx-tl"/>
     <line x1="${l}" x2="${w-rr}" y1="${tp+ph}" y2="${tp+ph}" class="cx-ax"/><line x1="${l}" x2="${l}" y1="${tp}" y2="${tp+ph}" class="cx-ax"/>
     <text x="${l}" y="${h-8}" class="cx-axt">${cxl('timeAx')} →</text>
     <path d="${cxPath(base,ymax)}" class="cx-base"/>
-    ${r.st==='none'?'':`<path d="${cxPath(fin,ymax)}" class="cx-int" data-amp="${tg.amp}" data-kef="${tg.keF}" data-ymax="${ymax}"/>`}
-  </svg><figcaption>${it('cx-lg-b',escAttr(lbl)+' '+cxl('alone')+escAttr(r.P))}${r.st==='none'?'':it('cx-lg-i',escAttr(lbl)+' '+cxl('withX')+escAttr(r.P))}${it('cx-lg-t',cxl('mtc'))}${toxOnly?'':it('cx-lg-m',cxl('mec'))}</figcaption></figure>`;
+    <path d="${cxPath(fin,ymax)}" class="cx-int cx-pend" data-amp="${tg.amp}" data-kef="${tg.keF}" data-ymax="${ymax}"/>
+  </svg><figcaption>${it('cx-lg-b',escAttr(lbl)+' '+cxl('alone')+escAttr(r.P))}${it('cx-lg-i',escAttr(lbl)+' '+cxl('withX')+escAttr(r.P)+(r.k==='N'?cxl('indFull'):r.slow?cxl('slowFull'):''))}${it('cx-lg-t',cxl('mtc'))}${toxOnly?'':it('cx-lg-m',cxl('mec'))}</figcaption></figure>`;
 }
-/* rampa del decorso: 0–21 giorni */
-function cxRamp(k){
-  const W=220,H=36,X=d=>(8+d/21*(W-16)).toFixed(1),pts=[]; for(let i=0;i<=42;i++){ const d=21*i/42; const y=k==='N'?1-Math.exp(-d/4):1-Math.exp(-d/0.45); pts.push(X(d)+' '+(24-y*20).toFixed(1)); }
-  return `<span class="cx-rampw"><svg class="cx-ramp cx-ramp-${k==='N'?'n':'i'}" viewBox="0 0 ${W} ${H}" aria-hidden="true"><line x1="8" x2="${W-8}" y1="24" y2="24" class="cx-ax"/>
+/* rampa del decorso: 0–21 giorni; costante di comparsa per tipo */
+const CX_RAMP={inh:0.45,ind:4,amio:10,fluox:7,stab:3,fumo:3,aldh:0.05};
+function cxRamp(kind){
+  const tau=CX_RAMP[kind]||1, W=220,H=36,X=d=>(8+d/21*(W-16)).toFixed(1),pts=[]; for(let i=0;i<=42;i++){ const d=21*i/42; pts.push(X(d)+' '+(24-(1-Math.exp(-d/tau))*20).toFixed(1)); }
+  return `<span class="cx-rampw"><svg class="cx-ramp" viewBox="0 0 ${W} ${H}" aria-hidden="true"><line x1="8" x2="${W-8}" y1="24" y2="24" class="cx-ax"/>
     ${[0,7,14,21].map(d=>`<line x1="${X(d)}" x2="${X(d)}" y1="24" y2="27" class="cx-ax"/><text x="${X(d)}" y="${H-1}" text-anchor="middle" class="cx-axt">${d}</text>`).join('')}
     <path d="M${pts.join('L')}" class="cx-rl"/></svg><span class="cx-rampc">${cxl('onset')} · ${cxl('days')} 0–21</span></span>`;
 }
-/* animazione: dalla curva di base a quella con interazione (niente animazione con riduzione del movimento) */
+/* animazione: la curva finale è già disegnata (tenue); quando il grafico entra in vista parte dalla base e arriva alla finale */
 function cxAnimate(svgPath){
+  if(cypxIO){ cypxIO.disconnect(); cypxIO=null; }
   if(!svgPath) return;
   const amp=+svgPath.dataset.amp, keF=+svgPath.dataset.kef, ymax=+svgPath.dataset.ymax;
-  if(cxReduce()) return;
-  const run=()=>{ const t0=performance.now(), D=900; const step=now=>{ const x=Math.min(1,(now-t0)/D), e=1-Math.pow(1-x,3);
+  const done=()=>svgPath.classList.remove('cx-pend');
+  if(cxReduce()||!('IntersectionObserver' in window)){ done(); return; }
+  const run=()=>{ done(); const t0=performance.now(), D=900; const step=now=>{ if(!svgPath.isConnected) return; const x=Math.min(1,(now-t0)/D), e=1-Math.pow(1-x,3);
       svgPath.setAttribute('d',cxPath(cxCurve(1+(amp-1)*e,1+(keF-1)*e),ymax)); if(x<1) requestAnimationFrame(step); };
     svgPath.setAttribute('d',cxPath(cxCurve(1,1),ymax)); requestAnimationFrame(step); };
-  if(!('IntersectionObserver' in window)){ run(); return; }
-  svgPath.setAttribute('d',cxPath(cxCurve(1,1),ymax)); /* parte dalla base: niente lampo della curva finale */
-  const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ io.disconnect(); run(); } },{threshold:.35}); /* vista nascosta: parte quando diventa visibile */
-  io.observe(svgPath.closest('svg'));
+  const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ io.disconnect(); if(cypxIO===io) cypxIO=null; run(); } },{threshold:.35});
+  cypxIO=io; io.observe(svgPath.closest('svg'));
 }
 /* ── render ── */
 function cxChip(id,k,b){
   const strong=(k==='I'&&b.sI.includes(id))||(k==='N'&&b.sN.includes(id));
-  const tag=strong?`<span class="cx-tag">${cxl('strong')}</span>`:(k==='S'&&CX_PRO[id])?`<span class="cx-tag">${cxl('pro')}</span>`:(k==='S'&&CX_TOX[id])?`<span class="cx-tag">${cxl('tox')}</span>`:'';
+  const tag=strong?`<span class="cx-tag">${cxl('strong')}</span>`:(k==='S'&&CX_PRO[id])?`<span class="cx-tag">${cxl('pro')}</span>`:(k==='S'&&CX_MET[id])?`<span class="cx-tag">${t(CX_MET[id].tag)}</span>`:'';
   const on=cypxState.drug===id;
   return `<button type="button" class="cx-chip cx-${k.toLowerCase()}${on?' on':''}" data-d="${id}" aria-pressed="${on}">${escAttr(cxN(id))}${tag}</button>`;
 }
@@ -4860,7 +5022,7 @@ function cxIsoHTML(){
   const roles=cypxState.drug?cxRoles(cypxState.drug):[];
   return CX_ISO.map(b=>{ const sel=b.iso===cypxState.iso, rs=roles.filter(r=>r.iso===b.iso);
     const al=`${b.iso}: ${b.S.length} ${cxl('sub').toLowerCase()}, ${b.I.length} ${cxl('inh').toLowerCase()}, ${b.N.length} ${cxl('ind').toLowerCase()}`+(rs.length?' · '+cxN(cypxState.drug)+': '+rs.map(r=>cxl('role'+r.k).toLowerCase()).join(', '):'');
-    return `<button type="button" class="cx-isob${sel?' sel':''}${rs.length?' hit':''}" data-iso="${b.iso}" aria-pressed="${sel}" aria-label="${escAttr(al)}"><span class="cx-isob-n">${b.iso}</span><span class="cx-isob-c"><i class="s">${b.S.length}</i><i class="i">${b.I.length}</i><i class="n">${b.N.length}</i></span>${rs.length?`<span class="cx-isob-r">${rs.map(r=>`<b class="${r.k.toLowerCase()}">${cxl('role'+r.k)}</b>`).join('')}</span>`:''}</button>`; }).join('');
+    return `<button type="button" role="radio" class="cx-isob${sel?' sel':''}${rs.length?' hit':''}" data-iso="${b.iso}" aria-checked="${sel}" tabindex="${sel?0:-1}" aria-label="${escAttr(al)}" title="${escAttr(al)}"><span class="cx-isob-n">${b.iso}</span><span class="cx-isob-c" aria-hidden="true"><i class="s">${b.S.length}</i><i class="i">${b.I.length}</i><i class="n">${b.N.length}</i></span>${rs.length?`<span class="cx-isob-r" aria-hidden="true">${rs.map(r=>`<b class="${r.k.toLowerCase()}">${cxl('role'+r.k)}</b>`).join('')}</span>`:''}</button>`; }).join('');
 }
 function cxPanelHTML(){
   const b=CX_ISO.find(x=>x.iso===cypxState.iso)||CX_ISO[0];
@@ -4868,51 +5030,76 @@ function cxPanelHTML(){
   return `<header class="cx-ph"><h3 class="cx-iso-t">${b.iso}</h3><p class="cx-why">${t(b.why)}</p></header>
     <div class="cx-cols">${col('S',cxl('sub'),cxl('subH'),b.S)}${col('I',cxl('inh'),cxl('inhH'),b.I)}${col('N',cxl('ind'),cxl('indH'),b.N)}</div>`;
 }
+function cxRoleLine(id,k){ const a=cxRoles(id).filter(r=>r.k===k); return a.length?`${cxl('role'+k)} ${cxl('of')} ${cxJoin(a.map(r=>r.iso+(r.s?` (${cxl('strong')})`:'')))}`:''; }
+function cxRoleSummary(id){ return ['S','I','N'].map(k=>cxRoleLine(id,k)).filter(Boolean).map(s=>s.charAt(0).toLowerCase()+s.slice(1)).join('; '); }
 function cxDrugHTML(){
   const id=cypxState.drug;
   if(!id) return `<div class="cx-hint"><p class="cx-hint-t">${cxl('hintT')}</p><p>${cxl('hint')}</p><ul><li><span class="cx-sw i"></span><span>${cxl('hintI')}</span></li><li><span class="cx-sw n"></span><span>${cxl('hintN')}</span></li><li><span class="cx-sw s"></span><span>${cxl('hintP')}</span></li></ul></div>`;
-  const rs=cxRoles(id), byK=k=>rs.filter(r=>r.k===k);
-  const line=(k,lab)=>{ const a=byK(k); return a.length?`<li><span class="cx-sw ${k.toLowerCase()}"></span><span><b>${lab}</b> ${cxl('of')} ${cxJoin(a.map(r=>r.iso+(r.s?` (${cxl('strong')})`:'')))}</span></li>`:''; };
+  const rs=cxRoles(id);
+  const line=k=>{ const s=cxRoleLine(id,k); if(!s) return ''; const lab=cxl('role'+k); return `<li><span class="cx-sw ${k.toLowerCase()}"></span><span><b>${lab}</b>${s.slice(lab.length)}</span></li>`; };
   const cell=(iso,k)=>{ const r=rs.find(x=>x.iso===iso&&x.k===k); return `<td>${r?`<span class="cx-dot ${k.toLowerCase()}${r.s?' strong':''}" title="${escAttr(cxl('role'+k)+' · '+iso)}"></span>`:'<span class="cx-dot0"></span>'}</td>`; };
   const isP=rs.some(r=>r.k!=='S'), isV=rs.some(r=>r.k==='S');
   const ff=(typeof ffMini==='function')?ffMini(CX_D[id][0]):'';
   return `<div class="cx-dcard"><div class="cx-dh"><h4>${escAttr(cxN(id))}${ff}</h4><button type="button" class="cx-x" data-act="close" aria-label="${escAttr(cxl('close'))}">✕</button></div>
-    <ul class="cx-dl-r">${line('S',cxl('roleS'))}${line('I',cxl('roleI'))}${line('N',cxl('roleN'))}</ul>
+    <ul class="cx-dl-r">${line('S')}${line('I')}${line('N')}</ul>
     <table class="cx-mx"><thead><tr><th></th>${CX_ISO.map(b=>`<th scope="col">${CX_SHORT(b.iso)}</th>`).join('')}</tr></thead><tbody>
       ${['S','I','N'].map(k=>`<tr><th scope="row">${cxl('role'+k)}</th>${CX_ISO.map(b=>cell(b.iso,k)).join('')}</tr>`).join('')}</tbody></table>
     <div class="cx-dact">${isP?`<button type="button" class="cx-btn" data-act="asP">${cxl('asP')} →</button>`:''}${isV?`<button type="button" class="cx-btn" data-act="asV">${cxl('asV')} →</button>`:''}</div></div>`;
 }
+function cxVictims(){ const s=new Set(); CX_ISO.forEach(b=>b.S.forEach(id=>s.add(id))); return [...s].sort((a,b)=>cxN(a).localeCompare(cxN(b))); }
+function cxPerps(){ const s=new Set(); CX_ISO.forEach(b=>{ b.I.forEach(id=>s.add(id)); b.N.forEach(id=>s.add(id)); }); return [...s].sort((a,b)=>cxN(a).localeCompare(cxN(b))); }
 function cxOpts(){
-  const perp=new Map(), vict=new Set();
-  CX_ISO.forEach(b=>{ b.I.forEach(id=>{ perp.set(id,(perp.get(id)||'')+'I'); }); b.N.forEach(id=>{ perp.set(id,(perp.get(id)||'')+'N'); }); b.S.forEach(id=>vict.add(id)); });
-  const by=g=>[...perp].filter(([id,s])=>g==='B'?(s.includes('I')&&s.includes('N')):g==='I'?(s.includes('I')&&!s.includes('N')):(!s.includes('I'))).map(([id])=>id).sort((a,b)=>cxN(a).localeCompare(cxN(b)));
+  const kind=id=>{ let i=false,n=false; CX_ISO.forEach(b=>{ if(b.I.includes(id)) i=true; if(b.N.includes(id)) n=true; }); return i&&n?'B':i?'I':'N'; };
   const o=(id,cur)=>`<option value="${id}"${id===cur?' selected':''}>${escAttr(cxN(id))}</option>`;
-  const P=cypxState.p, V=cypxState.v;
-  const pHTML=[['I','gI'],['N','gN'],['B','gB']].map(([g,lk])=>{ const ids=by(g); return ids.length?`<optgroup label="${escAttr(cxl(lk))}">${ids.map(id=>o(id,P)).join('')}</optgroup>`:''; }).join('');
-  const vHTML=[...vict].sort((a,b)=>cxN(a).localeCompare(cxN(b))).map(id=>o(id,V)).join('');
-  return {pHTML,vHTML};
+  const ps=cxPerps(), P=cypxState.p, V=cypxState.v;
+  const pHTML=[['I','gI'],['N','gN'],['B','gB']].map(([g,lk])=>{ const ids=ps.filter(id=>kind(id)===g); return ids.length?`<optgroup label="${escAttr(cxl(lk))}">${ids.map(id=>o(id,P)).join('')}</optgroup>`:''; }).join('');
+  return {pHTML,vHTML:cxVictims().map(id=>o(id,V)).join('')};
 }
 function cxQuickHTML(){ return CX_QUICK.map(([p,v])=>{ const on=cypxState.p===p&&cypxState.v===v; return `<button type="button" class="cx-q${on?' on':''}" data-p="${p}" data-v="${v}" aria-pressed="${on}">${escAttr(cxN(v))} <span aria-hidden="true">+</span> ${escAttr(cxN(p))}</button>`; }).join(''); }
-function cxResultHTML(){
-  const r=cxAnalyze(cypxState.p,cypxState.v);
-  if(r.st==='same') return `<div class="cx-r cx-r-same"><div class="cx-rhead"><span class="cx-big" aria-hidden="true">=</span><div><p class="cx-verdict">${cxl('sameTxt')}</p><span class="cx-st cx-st-none">${cxl('stSame')}</span></div></div></div>`;
-  const stLab={data:cxl('stData'),gg:cxl('stGG'),pred:cxl('stPred'),none:cxl('stNone')}[r.st];
-  if(r.st==='none'){
-    return `<div class="cx-r cx-r-none"><div class="cx-rhead"><span class="cx-big" aria-hidden="true">≈</span><div><p class="cx-verdict">${escAttr(r.V)}: ${t(['livelli invariati','levels unchanged'])}</p><span class="cx-st cx-st-none">${stLab}</span></div></div>
-      <div class="cx-rbody"><dl class="cx-dl"><div><dt>${cxl('mech')}</dt><dd>${cxf(cxl('noneTxt'),{P:r.P,V:cxCap(r.V),ISO:r.isos})}</dd></div><div><dt>${cxl('cons')}</dt><dd>${cxf(cxl('noneCons'),{V:cxCap(r.V)})}</dd></div><div><dt>${cxl('ex')}</dt><dd>${cxl('noneEx')}</dd></div></dl>${cxChart(r)}</div></div>`;
-  }
-  const up=r.dir>0, arrow=r.dir>0?'↑':r.dir<0?'↓':'↕';
-  return `<div class="cx-r cx-r-${up?'up':r.dir<0?'down':'mix'}"><div class="cx-rhead"><span class="cx-big" aria-hidden="true">${arrow}</span><div><p class="cx-verdict">${escAttr(r.sp)} ${arrow} ${r.sp===r.V?cxl('plasma'):`<span class="cx-vsub">(${escAttr(r.V)})</span>`}</p><span class="cx-st cx-st-${r.st}">${stLab}</span><span class="cx-iso-pill">${r.isoTxt}</span></div></div>
-    <div class="cx-rbody"><dl class="cx-dl"><div><dt>${cxl('mech')}</dt><dd>${r.mech}</dd></div><div><dt>${cxl('cons')}</dt><dd>${r.cons}</dd></div><div><dt>${cxl('ex')}</dt><dd>${r.ex}</dd></div>
-      <div><dt>${cxl('time')}</dt><dd>${r.time}${r.k==='X'?'':cxRamp(r.k)}</dd></div></dl>${cxChart(r)}</div></div>`;
+const CX_ST=()=>({data:cxl('stData'),gg:cxl('stGG'),pred:cxl('stPred')});
+function cxVerdict(r){
+  if(r.st==='same') return cxl('sameTxt');
+  if(r.st==='none') return cxl('stNone');
+  if(!r.dir) return `${r.V} ↕, ${cxl('uncertain')}`;
+  const a=r.dir>0?'↑':'↓'; return r.sp===r.V?`${r.sp} ${a} ${cxl('plasma')}`:`${r.sp} ${a} (${r.V})`;
 }
-function cxRenderResult(animate){
-  const root=document.getElementById('cypx'); if(!root) return;
-  const box=root.querySelector('.cx-res'); box.innerHTML=cxResultHTML();
+function cxResultHTML(r){
+  if(r.st==='same') return `<div class="cx-r cx-r-same"><div class="cx-rhead"><span class="cx-big" aria-hidden="true">=</span><div><p class="cx-verdict">${cxl('sameTxt')}</p></div></div></div>`;
+  if(r.st==='none'){
+    const pl=['I','N'].map(k=>cxRoleLine(r.p,k)).filter(Boolean).map(s=>s.charAt(0).toLowerCase()+s.slice(1)).join('; ')||cxl('noneRole');
+    const vl=(cxRoleLine(r.v,'S')||cxl('noneRole')); const vl2=vl.charAt(0).toLowerCase()+vl.slice(1);
+    return `<div class="cx-r cx-r-none"><div class="cx-rhead"><span class="cx-big" aria-hidden="true">?</span><div><p class="cx-verdict">${cxl('stNone')}</p><p class="cx-note">${escAttr(cxCap(r.V))} + ${escAttr(r.P)}</p></div></div>
+      <div class="cx-rbody cx-rbody-1"><dl class="cx-dl"><div><dt>${cxl('noneHead')}</dt><dd><ul class="cx-nl"><li><b>${escAttr(cxCap(r.P))}</b>: ${pl}</li><li><b>${escAttr(cxCap(r.V))}</b>: ${vl2}</li></ul></dd></div><div><dt>${cxl('noneWhat')}</dt><dd>${cxl('noneTxt')}</dd></div></dl></div></div>`;
+  }
+  const tg=cxTarget(r), cls=r.dir>0?'up':r.dir<0?'down':'mix', arrow=r.dir>0?'↑':r.dir<0?'↓':'↕';
+  const verdict=!r.dir?`${escAttr(r.V)} ↕ <span class="cx-vsub">${cxl('uncertain')}</span>`:`${escAttr(r.sp)} ${arrow} ${r.sp===r.V?cxl('plasma'):`<span class="cx-vsub">(${escAttr(r.V)})</span>`}`;
+  return `<div class="cx-r cx-r-${cls}"><div class="cx-rhead"><span class="cx-big" aria-hidden="true">${arrow}</span><div><p class="cx-verdict">${verdict}</p><span class="cx-st cx-st-${r.st}"${r.st==='gg'?' title="Goodman & Gilman"':''}>${CX_ST()[r.st]}</span><span class="cx-iso-pill">${r.isoTxt}</span>${r.note?`<p class="cx-note">${r.note}</p>`:''}</div></div>
+    <div class="cx-rbody${tg?'':' cx-rbody-1'}"><dl class="cx-dl"><div><dt>${cxl('mech')}</dt><dd>${r.mech}</dd></div><div><dt>${cxl('cons')}</dt><dd>${r.cons}</dd></div><div><dt>${r.exLab}</dt><dd>${r.ex}</dd></div>
+      <div><dt>${cxl('time')}</dt><dd>${r.time}${r.ramp?cxRamp(r.ramp):''}</dd></div></dl>${tg?cxChart(r,tg):''}</div></div>`;
+}
+/* annuncio breve per lettori di schermo (una riga, non l'intera scheda) */
+function cxSay(msg){ const s=document.querySelector('#cypx .cx-sr'); if(!s) return; s.textContent=''; requestAnimationFrame(()=>{ s.textContent=msg; }); }
+function cxStatusOf(r){ return cxVerdict(r)+(r.st==='data'||r.st==='gg'||r.st==='pred'?'. '+CX_ST()[r.st]+'.':'.'); }
+/* porta il risultato in vista sotto la barra delle schede (che è sticky) */
+function cxTop(){ const tb=document.querySelector('.tabs'); if(tb){ const rb=tb.getBoundingClientRect(); if(rb.height&&rb.top<=24&&rb.bottom>0) return rb.bottom+8; } return 8; }
+function cxScrollBy(dy){ if(Math.abs(dy)>4) window.scrollBy({top:dy,behavior:cxReduce()?'auto':'smooth'}); }
+function cxReveal(el){
+  if(!el) return;
+  const top=cxTop(), r=el.getBoundingClientRect(), vh=window.innerHeight; let dy=0;
+  if(r.height<=vh-top-8){ if(r.bottom>vh-8) dy=r.bottom-(vh-8); if(r.top-dy<top) dy=r.top-top; }
+  else if(r.top>vh*0.55||r.top<top) dy=r.top-top;
+  cxScrollBy(dy);
+}
+function cxRenderResult(animate,reveal){
+  const root=document.getElementById('cypx'); if(!root) return null;
+  const r=cxAnalyze(cypxState.p,cypxState.v);
+  const box=root.querySelector('.cx-res'); box.innerHTML=cxResultHTML(r);
   root.querySelector('.cx-quick-row').innerHTML=cxQuickHTML();
   const ps=root.querySelector('#cx-p'), vs=root.querySelector('#cx-v'); if(ps) ps.value=cypxState.p; if(vs) vs.value=cypxState.v;
-  if(animate&&!cxReduce()){ const c=box.firstElementChild; if(c){ c.classList.add('cx-in'); } }
+  if(animate&&!cxReduce()){ const c=box.firstElementChild; if(c) c.classList.add('cx-in'); }
   cxAnimate(box.querySelector('.cx-int'));
+  if(reveal) cxReveal(box.firstElementChild);
+  return r;
 }
 function cxRenderTop(){
   const root=document.getElementById('cypx'); if(!root) return;
@@ -4920,37 +5107,79 @@ function cxRenderTop(){
   root.querySelector('.cx-panel').innerHTML=cxPanelHTML();
   root.querySelector('.cx-drug').innerHTML=cxDrugHTML();
 }
+/* tabella riassuntiva generata dagli stessi dati (una sola fonte) */
+const CX_TN={'CYP2C9:warf':['S-warfarin','S-warfarin'],'CYP1A2:warf':['R-warfarin','R-warfarin'],'CYP3A4:warf':['R-warfarin','R-warfarin']};
+const CX_TX={'CYP3A4:S':['molti altri','many others'],'CYP2D6:N':['scarsamente inducibile · polimorfico (metabolizzatori lenti o ultrarapidi)','poorly inducible · polymorphic (poor or ultra-rapid metabolizers)']};
+function cxTableRows(){
+  const nm=(id,b,k)=>{ const tags=[]; if((k==='I'&&b.sI.includes(id))||(k==='N'&&b.sN.includes(id))) tags.push(cxl('strong'));
+    if(k==='S'&&CX_PRO[id]) tags.push(cxl('pro')+' → '+t(CX_PRO[id])); if(k==='S'&&CX_MET[id]) tags.push(t(CX_MET[id].tag)); const n=CX_TN[b.iso+':'+id]; if(n) tags.push(t(n));
+    return cxN(id)+(tags.length?' ('+tags.join(', ')+')':''); };
+  return CX_ISO.map(b=>`<tr><td class="rc">${b.iso}</td>${['S','I','N'].map(k=>{ const x=CX_TX[b.iso+':'+k]; const parts=b[k].map(id=>nm(id,b,k)); if(x) parts.push(t(x)); return `<td>${parts.join(', ')}</td>`; }).join('')}</tr>`).join('');
+}
+/* partner migliore quando un farmaco viene mandato al costruttore: coppia documentata, poi coppia d'esame, poi la prima prevista */
+function cxPartner(id,as){
+  const pair=x=>as==='P'?[id,x]:[x,id];
+  const ok=x=>{ const [p,v]=pair(x); if(p===v) return false; const r=cxAnalyze(p,v); return r.st!=='none'&&r.st!=='same'; };
+  const isDoc=x=>{ const [p,v]=pair(x); const d=CX_DOC[p+'>'+v]; return !!d&&d.src!=='p'&&d.dir!==0; }; /* coppia documentata con verso chiaro */
+  const cur=as==='P'?cypxState.v:cypxState.p;
+  if(isDoc(cur)) return cur;
+  const q=CX_QUICK.find(x=>as==='P'?x[0]===id:x[1]===id); if(q) return as==='P'?q[1]:q[0];
+  const d=Object.keys(CX_DOC).map(k=>k.split('>')).find(([p,v])=>(as==='P'?p===id:v===id)&&isDoc(as==='P'?v:p));
+  if(d) return as==='P'?d[1]:d[0];
+  if(ok(cur)) return cur;
+  return (as==='P'?cxVictims():cxPerps()).find(ok)||cur;
+}
 function cypxMount(){
   const root=document.getElementById('cypx'); if(!root) return;
   if(!cypxState) cypxState={iso:'CYP3A4',drug:null,p:'fluco',v:'warf'};
   const {pHTML,vHTML}=cxOpts();
-  root.innerHTML=`<div class="cx-iso" role="group" aria-label="${escAttr(cxl('isoGroup'))}"></div>
-    <div class="cx-top"><section class="cx-panel"></section><aside class="cx-drug" aria-live="polite"></aside></div>
+  root.innerHTML=`<div class="cx-leg" aria-hidden="true"><span>${cxl('legT')}</span><span class="cx-lk s">${cxl('sub').toLowerCase()}</span><span class="cx-lk i">${cxl('inh').toLowerCase()}</span><span class="cx-lk n">${cxl('ind').toLowerCase()}</span></div>
+    <div class="cx-iso" role="radiogroup" aria-label="${escAttr(cxl('isoGroup'))}"></div>
+    <div class="cx-top"><section class="cx-panel"></section><aside class="cx-drug"></aside></div>
     <section class="cx-build" id="cx-build"><div class="cx-bh"><h3>${cxl('bT')}</h3><p>${cxl('bL')}</p></div>
       <div class="cx-quick"><p class="cx-ql">${cxl('quick')}</p><div class="cx-quick-row"></div></div>
       <div class="cx-pick"><label class="cx-f"><span>${cxl('pP')}</span><span class="cx-sel"><select id="cx-p">${pHTML}</select></span></label>
         <span class="cx-arrow" aria-hidden="true">→</span>
         <label class="cx-f"><span>${cxl('pV')}</span><span class="cx-sel"><select id="cx-v">${vHTML}</select></span></label></div>
-      <div class="cx-res" aria-live="polite"></div></section>`;
-  cxRenderTop(); cxRenderResult(false);
+      <div class="cx-res"></div></section>
+    <p class="cx-sr" role="status" aria-live="polite" aria-atomic="true"></p>`;
+  cxRenderTop(); cxRenderResult(false,false);
+  const tb=document.getElementById('cx-tbody'); if(tb){ tb.innerHTML=cxTableRows(); if(typeof linkifyDrugsIn==='function') linkifyDrugsIn(tb); }
   root.addEventListener('click',cxOnClick);
-  root.querySelector('#cx-p').addEventListener('change',e=>{ cypxState.p=e.target.value; cxRenderResult(true); });
-  root.querySelector('#cx-v').addEventListener('change',e=>{ cypxState.v=e.target.value; cxRenderResult(true); });
+  root.addEventListener('keydown',cxOnKey);
+  const onSel=(key,e)=>{ cypxState[key]=e.target.value; const r=cxRenderResult(true,true); if(r) cxSay(cxStatusOf(r)); };
+  root.querySelector('#cx-p').addEventListener('change',e=>onSel('p',e));
+  root.querySelector('#cx-v').addEventListener('change',e=>onSel('v',e));
+}
+function cxFocus(sel){ const f=document.querySelector('#cypx '+sel); if(f) f.focus({preventScroll:true}); return f; }
+function cxSelectIso(iso){ cypxState.iso=iso; cxRenderTop(); cxFocus('.cx-isob[data-iso="'+iso+'"]'); }
+function cxCloseCard(){ const d=cypxState.drug; if(!d) return; cypxState.drug=null; cxRenderTop(); if(!cxFocus('.cx-chip[data-d="'+d+'"]')) cxFocus('.cx-isob.sel'); }
+function cxOnKey(e){
+  const ib=e.target.closest&&e.target.closest('.cx-isob');
+  if(ib&&['ArrowRight','ArrowDown','ArrowLeft','ArrowUp','Home','End'].includes(e.key)){
+    e.preventDefault(); const i=CX_ISO.findIndex(b=>b.iso===ib.dataset.iso), n=CX_ISO.length;
+    const j=e.key==='Home'?0:e.key==='End'?n-1:(e.key==='ArrowRight'||e.key==='ArrowDown')?(i+1)%n:(i-1+n)%n;
+    cxSelectIso(CX_ISO[j].iso); return; }
+  if(e.key==='Escape'&&cypxState.drug&&e.target.closest&&e.target.closest('.cx-top,.cx-iso')){ e.preventDefault(); cxCloseCard(); }
 }
 function cxOnClick(e){
-  const ib=e.target.closest('.cx-isob'); if(ib){ cypxState.iso=ib.dataset.iso; cxRenderTop(); const f=document.querySelector('#cypx .cx-isob[data-iso="'+ib.dataset.iso+'"]'); if(f) f.focus(); return; }
+  const ib=e.target.closest('.cx-isob'); if(ib){ cxSelectIso(ib.dataset.iso); return; }
   const ch=e.target.closest('.cx-chip'); if(ch){ const d=ch.dataset.d; cypxState.drug=(cypxState.drug===d)?null:d; cxRenderTop();
-    const f=document.querySelector('#cypx .cx-chip[data-d="'+d+'"]'); if(f) f.focus();
+    cxFocus('.cx-chip[data-d="'+d+'"]');
+    if(cypxState.drug) cxSay(cxN(d)+': '+cxRoleSummary(d)+'.');
     const card=document.querySelector('#cypx .cx-drug'); /* schermi stretti: la scheda sta sotto il pannello, la porto in vista */
     if(cypxState.drug&&card&&matchMedia('(max-width:1060px)').matches){ const rc=card.getBoundingClientRect(); if(rc.top>innerHeight-80) card.scrollIntoView({behavior:cxReduce()?'auto':'smooth',block:'nearest'}); }
     return; }
-  const q=e.target.closest('.cx-q'); if(q){ cypxState.p=q.dataset.p; cypxState.v=q.dataset.v; cxRenderResult(true); const f=document.querySelector('#cypx .cx-q[data-p="'+q.dataset.p+'"][data-v="'+q.dataset.v+'"]'); if(f) f.focus(); return; }
+  const q=e.target.closest('.cx-q'); if(q){ cypxState.p=q.dataset.p; cypxState.v=q.dataset.v; const r=cxRenderResult(true,true); cxFocus('.cx-q[data-p="'+q.dataset.p+'"][data-v="'+q.dataset.v+'"]'); if(r) cxSay(cxStatusOf(r)); return; }
   const a=e.target.closest('[data-act]'); if(!a) return;
   const act=a.dataset.act;
-  if(act==='close'){ const d=cypxState.drug; cypxState.drug=null; cxRenderTop(); const f=document.querySelector('#cypx .cx-chip[data-d="'+d+'"]')||document.querySelector('#cypx .cx-isob.sel'); if(f) f.focus(); return; }
-  if(act==='asP'||act==='asV'){ if(act==='asP') cypxState.p=cypxState.drug; else cypxState.v=cypxState.drug; cxRenderResult(true);
-    const bld=document.getElementById('cx-build'); if(bld) bld.scrollIntoView({behavior:cxReduce()?'auto':'smooth',block:'start'});
-    const s=document.getElementById(act==='asP'?'cx-p':'cx-v'); if(s) s.focus({preventScroll:true}); return; }
+  if(act==='close'){ cxCloseCard(); return; }
+  if(act==='asP'||act==='asV'){ const d=cypxState.drug, as=act==='asP'?'P':'V', other=cxPartner(d,as);
+    if(as==='P'){ cypxState.p=d; cypxState.v=other; } else { cypxState.v=d; cypxState.p=other; }
+    const r=cxRenderResult(true,false);
+    const bld=document.getElementById('cx-build'); if(bld) cxScrollBy(bld.getBoundingClientRect().top-cxTop());
+    cxFocus(as==='P'?'#cx-p':'#cx-v');
+    if(r) cxSay(cxf(cxl('stPair'),{P:cxN(cypxState.p),V:cxN(cypxState.v)})+' '+cxStatusOf(r)); return; }
 }
 cypxReady=true;
 cypxMount();
