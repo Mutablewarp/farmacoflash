@@ -95,6 +95,9 @@ nav{display:flex;gap:2px;margin-left:auto;border:1px solid var(--line2);border-r
 .langtog:hover{color:var(--ink);border-color:var(--ink-dim)}
 .langtog .ico{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .streak{display:inline-flex;align-items:center;gap:4px;min-height:44px;padding:0 6px;font-family:var(--font-mono);font-size:.85rem;color:var(--ink-dim)}
+/* icone a tratto in currentColor al posto delle emoji (su iOS le emoji arrivano a colori, fuori dalla palette) */
+.streak .ico,.shuffle-btn .ico,.tablink .ico,.atlaslink .ico,.nv-meta .ico{width:1.1em;height:1.1em;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.15em}
+.streak .ico{color:var(--gold)}.shuffle-btn .ico{width:20px;height:20px}
 .embed header{display:none}
 
 /* ---------- layout ---------- */
@@ -437,9 +440,9 @@ body:has(.gradebar.show) .toast{bottom:calc(100px + env(safe-area-inset-bottom))
     <div class="hctl">
       <button class="langtog" id="themeTog" type="button" title="Tema chiaro / scuro" aria-label="Tema chiaro / scuro"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8.2 8.2 0 1 1 9.4 4a6.6 6.6 0 0 0 10.6 10.6z"/></svg></button>
       <a class="langtog" href="index.html" title="Home" aria-label="Home">⌂</a>
-      <a class="langtog applink" href="Canali-e-Recettori-3D.html" title="Bersagli &amp; Farmaci in 3D: canali e recettori" aria-label="Atlante 3D">🧬<span class="lbl"> 3D</span></a>
+      <a class="langtog applink" href="Canali-e-Recettori-3D.html" title="Bersagli &amp; Farmaci in 3D: canali e recettori" aria-label="Atlante 3D"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.8 20.2 7.4v9.2L12 21.2l-8.2-4.6V7.4z"/><path d="M3.8 7.4 12 12l8.2-4.6M12 12v9.2"/></svg><span class="lbl"> 3D</span></a>
       <button class="langtog" id="langTog" type="button" onclick="toggleLang()" title="Italiano / English">EN</button>
-      <div class="streak" id="streakWrap" title="Giorni di studio di fila">🔥 <span id="streakN">0</span></div>
+      <div class="streak" id="streakWrap" title="Giorni di studio di fila"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg><span id="streakN">0</span></div>
     </div>
   </div>
 </header>
@@ -493,9 +496,9 @@ let LANG=(()=>{try{let l=localStorage.getItem('cr-lang');if(l!=='it'&&l!=='en')l
 const STR={
  nav_dash:{it:'Oggi',en:'Today'},nav_study:{it:'Studia',en:'Study'},nav_browse:{it:'Sfoglia',en:'Browse'},nav_stats:{it:'Statistiche',en:'Stats'},
  brand_sub:{it:'flashcard di farmacologia',en:'pharmacology flashcards'},streak_t:{it:'Giorni di studio di fila',en:'Day study streak'},
- due_today:{it:'carte da ripassare oggi 🎒',en:'cards due today 🎒'},all_done:{it:'tutto fatto: sei in pari',en:"all done: you're up to date"},
- start_review:{it:'▶ Inizia il ripasso',en:'▶ Start review'},browse_all:{it:'Sfoglia tutto',en:'Browse all'},table_btn:{it:'Tabella dei nomi',en:'Names table'},tab_class:{it:'Questa classe nella Tabella dei nomi',en:'This class in the Names table'},tab_deck:{it:'📋 Tutti i nomi (Tabella)',en:'📋 All names (Table)'},cards:{it:'carte',en:'cards'},
- sess_lab:{it:'Sessione:',en:'Session:'},sess_both:{it:'Entrambe',en:'Both'},sess_new:{it:'Solo nuove',en:'New only'},sess_due:{it:'Solo ripasso',en:'Review only'},start_session:{it:'▶ Inizia lo studio',en:'▶ Start studying'},sess_lbl_both:{it:'carte in coda oggi, tra nuove e ripasso',en:'cards queued today, new and review'},sess_lbl_new:{it:'carte nuove da studiare',en:'new cards to study'},sess_lbl_due:{it:'carte da ripassare',en:'cards to review'},
+ due_today:{it:'carte da ripassare oggi',en:'cards due today'},all_done:{it:'tutto fatto: sei in pari',en:"all done: you're up to date"},
+ start_review:{it:'▶\uFE0E Inizia il ripasso',en:'▶\uFE0E Start review'},browse_all:{it:'Sfoglia tutto',en:'Browse all'},table_btn:{it:'Tabella dei nomi',en:'Names table'},tab_class:{it:'Questa classe nella Tabella dei nomi',en:'This class in the Names table'},tab_deck:{it:'Tutti i nomi (Tabella)',en:'All names (Table)'},cards:{it:'carte',en:'cards'},
+ sess_lab:{it:'Sessione:',en:'Session:'},sess_both:{it:'Entrambe',en:'Both'},sess_new:{it:'Solo nuove',en:'New only'},sess_due:{it:'Solo ripasso',en:'Review only'},start_session:{it:'▶\uFE0E Inizia lo studio',en:'▶\uFE0E Start studying'},sess_lbl_both:{it:'carte in coda oggi, tra nuove e ripasso',en:'cards queued today, new and review'},sess_lbl_new:{it:'carte nuove da studiare',en:'new cards to study'},sess_lbl_due:{it:'carte da ripassare',en:'cards to review'},
  m_mature:{it:'Mature',en:'Mature'},m_started:{it:'Avviate',en:'Started'},m_new:{it:'Nuove',en:'New'},m_young:{it:'Giovani',en:'Young'},m_learning:{it:'In appr.',en:'Learning'},
  tile_due:{it:'Da ripassare',en:'Due'},tile_newtoday:{it:'Nuove oggi',en:'New today'},tile_studied:{it:'Studiate oggi',en:'Studied today'},tile_streak:{it:'Costanza',en:'Streak'},
  today_how:{it:"Com'è andata oggi",en:'How it went today'},today_how_h:{it:'Cosa ricordi bene, così così, male.',en:'What you remember well, so-so, badly.'},
@@ -509,16 +512,16 @@ const STR={
  study_q:{it:'quale farmaco / classe?',en:'which drug / class?'},reveal_hint:{it:'pensa alla risposta, poi',en:'think of the answer, then'},reveal_or:{it:'o tocca la carta',en:'or tap the card'},
  exit:{it:'✕ Esci',en:'✕ Exit'},howworks:{it:'Come agisce',en:'How it works'},
  done_title:{it:'Fatto!',en:'Done!'},done_answers:{it:'risposte',en:'answers'},back_today:{it:'Torna a Oggi',en:'Back to Today'},
- br_eyebrow:{it:'✏️ esplora',en:'✏️ explore'},br_title_a:{it:'Sfoglia il',en:'Browse the'},br_title_b:{it:'formulario',en:'formulary'},
+ br_eyebrow:{it:'esplora',en:'explore'},br_title_a:{it:'Sfoglia il',en:'Browse the'},br_title_b:{it:'formulario',en:'formulary'},
  br_sub:{it:'Cerca per nome, meccanismo, target o reazione avversa. Apri una card per leggerla senza toccare il ripasso.',en:'Search by name, mechanism, target or adverse reaction. Open a card to read it without affecting your reviews.'},
  br_search:{it:'Cerca un farmaco, un meccanismo, un recettore…',en:'Search a drug, a mechanism, a receptor…'},br_all:{it:'Tutti',en:'All'},
  empty:{it:'Nessuna carta trovata. Prova un altro termine.',en:'No cards found. Try another term.'},
  sd_new:{it:'nuova',en:'new'},sd_learning:{it:'appr.',en:'learn.'},sd_young:{it:'giovane',en:'young'},sd_mature:{it:'matura',en:'mature'},
  mat_new:{it:'nuova',en:'new'},mat_learning:{it:'in apprendimento',en:'learning'},mat_young:{it:'giovane',en:'young'},mat_mature:{it:'matura',en:'mature'},
  chip_new:{it:'nuova',en:'new'},chip_learning:{it:'in apprendimento',en:'learning'},chip_young:{it:'giovane',en:'young'},chip_mature:{it:'matura',en:'mature'},
- deck_study:{it:'▶ Studia',en:'▶ Study'},deck_all:{it:'Tutte',en:'All'},deck_review:{it:'ripasso',en:'review'},
+ deck_study:{it:'▶\uFE0E Studia',en:'▶\uFE0E Study'},deck_all:{it:'Tutte',en:'All'},deck_review:{it:'ripasso',en:'review'},
  never:{it:'mai studiata',en:'never studied'},due_now:{it:'in ripasso oggi',en:'due today'},next_in:{it:'prossimo ripasso tra',en:'next review in'},
- st_eyebrow:{it:'📊 progressi',en:'📊 progress'},st_title_a:{it:'Le tue',en:'Your'},st_title_b:{it:'statistiche',en:'stats'},
+ st_eyebrow:{it:'progressi',en:'progress'},st_title_a:{it:'Le tue',en:'Your'},st_title_b:{it:'statistiche',en:'stats'},
  st_sub:{it:'Quanto hai studiato, quanto ricordi e dove conviene insistere.',en:'How much you studied, how much you remember, and where to focus.'},
  st_reviews:{it:'Ripassi totali',en:'Total reviews'},st_days:{it:'Giorni attivi',en:'Active days'},st_streak:{it:'Costanza',en:'Streak'},st_ret:{it:'Ritenzione',en:'Retention'},st_mat:{it:'Carte mature',en:'Mature cards'},st_tostart:{it:'Da iniziare',en:'To start'},
  st_comp:{it:'Composizione del mazzo',en:'Deck composition'},st_comp_h:{it:'Stato delle',en:'State of the'},st_comp_h2:{it:'carte.',en:'cards.'},
@@ -528,14 +531,14 @@ const STR={
  set_h:{it:'I progressi vivono solo in questo browser. Esporta un backup per non perderli o per spostarli su un altro dispositivo.',en:'Progress lives only in this browser. Export a backup to keep it safe or move it to another device.'},
  set_export:{it:'⬇ Esporta backup',en:'⬇ Export backup'},set_import:{it:'⬆ Importa backup',en:'⬆ Import backup'},set_reset:{it:'↺ Azzera progressi',en:'↺ Reset progress'},
  foot:{it:'FarmacoFlash · materiali personali + Goodman & Gilman, con integrazioni · ripetizione spaziata · i progressi restano su questo dispositivo',en:'FarmacoFlash · personal study materials + Goodman & Gilman, with updates · spaced repetition · progress stays on this device'},
- t_saved:{it:'Salvato ✓',en:'Saved ✓'},t_exported:{it:'Backup esportato 💾',en:'Backup exported 💾'},t_imported:{it:'Backup importato ✓',en:'Backup imported ✓'},t_invalid:{it:'File non valido 🙈',en:'Invalid file 🙈'},t_reset:{it:'Progressi azzerati',en:'Progress reset'},
- t_nothing:{it:'Niente da studiare qui.',en:'Nothing to study here.'},t_clear:{it:'Nessuna carta in coda — bravo! 🎉',en:'No cards in queue — nice! 🎉'},
+ t_saved:{it:'Salvato ✓',en:'Saved ✓'},t_exported:{it:'Backup esportato',en:'Backup exported'},t_imported:{it:'Backup importato ✓',en:'Backup imported ✓'},t_invalid:{it:'File non valido',en:'Invalid file'},t_reset:{it:'Progressi azzerati',en:'Progress reset'},
+ t_nothing:{it:'Niente da studiare qui.',en:'Nothing to study here.'},t_clear:{it:'Nessuna carta in coda: bravo!',en:'No cards in queue: nice work!'},
  confirm_reset:{it:'Azzerare TUTTI i progressi? I farmaci restano, ma riparti da zero.',en:'Reset ALL progress? The drugs stay, but you start over.'},
  npd_set:{it:'Nuove al giorno:',en:'New per day:'},npd_all:{it:'Tutte',en:'All'},
- shuffle_label:{it:'Ordine casuale',en:'Shuffle'},shuffle_on:{it:'🔀 Ordine casuale attivo',en:'🔀 Shuffle on'},shuffle_off:{it:'Ordine normale ripristinato',en:'Normal order restored'},shuffle_now:{it:'Mescola le carte',en:'Shuffle the cards'},
+ shuffle_label:{it:'Ordine casuale',en:'Shuffle'},shuffle_on:{it:'Ordine casuale attivo',en:'Shuffle on'},shuffle_off:{it:'Ordine normale ripristinato',en:'Normal order restored'},shuffle_now:{it:'Mescola le carte',en:'Shuffle the cards'},
  indepth:{it:'Approfondimento',en:'In depth'},
  opt_sess:{it:'Sessione',en:'Session'},opt_npd:{it:'Nuove al giorno',en:'New per day'},streak_days:{it:'giorni di fila',en:'day streak'},more_lbl:{it:'Altre azioni',en:'More actions'},
- deck_focus_study:{it:'▶ Studia questo argomento',en:'▶ Study this topic'},deck_clear:{it:'Mostra tutti gli argomenti',en:'Show all topics'},new_lc:{it:'nuove',en:'new'},
+ deck_focus_study:{it:'▶\uFE0E Studia questo argomento',en:'▶\uFE0E Study this topic'},deck_clear:{it:'Mostra tutti gli argomenti',en:'Show all topics'},new_lc:{it:'nuove',en:'new'},
  atlas_link:{it:"Vedi nell'Atlante 3D",en:'View in the 3D Atlas'},nv_head:{it:'Aggiornamento ufficiale',en:'Official update'},nv_note:{it:'Fonte ufficiale; la carta non è stata modificata.',en:'Official source; this card has not been changed.'},
  front_lbl:{it:'Mostra la risposta',en:'Show the answer'},close:{it:'Chiudi',en:'Close'},
  theme_to_dark:{it:'Passa al tema scuro',en:'Switch to dark theme'},theme_to_light:{it:'Passa al tema chiaro',en:'Switch to light theme'}
@@ -680,8 +683,8 @@ function renderBack(card){
   const ft=C.freetext||card.freetext||[];
   if(ft.length)h+=`<section class="seg free"><div class="val">${ft.map(f=>fmt(f)).join('')}</div></section>`;
   if(!h)h='<section class="seg"><div class="val">'+esc(C.name||card.name)+'</div></section>';
-  let links=`<a class="tablink" href="Tabella-Farmaci.html#deck=${esc(card.deckId)}">📋 ${T('tab_class')} →</a>`;
-  if(ATLAS_CARDS.has(card.id))links+=`<a class="atlaslink" href="Canali-e-Recettori-3D.html#card=${encodeURIComponent(card.id)}">🧬 ${T('atlas_link')}</a>`;
+  let links=`<a class="tablink" href="Tabella-Farmaci.html#deck=${esc(card.deckId)}"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 9.5v10"/></svg>${T('tab_class')} →</a>`;
+  if(ATLAS_CARDS.has(card.id))links+=`<a class="atlaslink" href="Canali-e-Recettori-3D.html#card=${encodeURIComponent(card.id)}"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.8 20.2 7.4v9.2L12 21.2l-8.2-4.6V7.4z"/><path d="M3.8 7.4 12 12l8.2-4.6M12 12v9.2"/></svg>${T('atlas_link')}</a>`;
   return novitaSlot(card.id)+h+`<div class="backlinks">${links}</div>`;
 }
 /* ---- avvisi ufficiali (novita.json, generato da build/novita.py): mai bloccanti ---- */
@@ -692,7 +695,7 @@ function novitaHTML(id){
   return items.slice(0,2).map(it=>{
     const t=Date.parse(it.date);const d=Number.isFinite(t)?new Date(t).toLocaleDateString(loc,{day:'numeric',month:'short',year:'numeric'}):'';
     const meta=[T('nv_head'),String(it.source||'').toUpperCase(),d].filter(Boolean).map(x=>esc(x)).join(' · ');
-    return `<a class="nv-item" href="${esc(it.url)}" target="_blank" rel="noopener"><span class="nv-meta">🔔 ${meta}:</span> <span class="nv-title">${esc(it.title)}</span> <span aria-hidden="true">→</span></a>`;
+    return `<a class="nv-item" href="${esc(it.url)}" target="_blank" rel="noopener"><span class="nv-meta"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 16.5V11a6 6 0 1 1 12 0v5.5l1.5 2h-15z"/><path d="M10 21a2 2 0 0 0 4 0"/></svg> ${meta}:</span> <span class="nv-title">${esc(it.title)}</span> <span aria-hidden="true">→</span></a>`;
   }).join('')+`<p class="nv-note">${T('nv_note')}</p>`;
 }
 function novitaSlot(id){return `<div class="novita" data-card="${esc(id)}" role="note">${novitaHTML(id)}</div>`;}
@@ -948,7 +951,7 @@ function renderStudy(){
       <button class="exit" type="button" onclick="quitSession()">${T('exit')}</button>
       <div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="${session.total}" aria-valuenow="${session.done}"><i style="width:${pct}%"></i></div>
       <div class="study-counts"><span class="c-done">${session.done}</span>/${session.total}</div>
-      <button class="exit shuffle-btn" type="button" title="${T('shuffle_now')}" aria-label="${T('shuffle_now')}" onclick="shuffleRest()">🔀</button>
+      <button class="exit shuffle-btn" type="button" title="${T('shuffle_now')}" aria-label="${T('shuffle_now')}" onclick="shuffleRest()"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.7-1.1 2-1.7 3.3-1.7H22"/><path d="m18 2 4 4-4 4"/><path d="M2 6h1.9c1.5 0 2.9.9 3.6 2.2"/><path d="M22 18h-5.9c-1.3 0-2.6-.7-3.3-1.8l-.5-.8"/><path d="m18 14 4 4-4 4"/></svg></button>
     </div>
     <article class="flash">
       <div class="flash-head">${deckChip(card)} <span class="chip">${T('chip_'+mat)}</span></div>
@@ -1036,11 +1039,11 @@ function showGradeCards(g){const gl=gradeLbls();showCardSet('',gl[g]+' · '+T('t
 function studyCardId(id){const c=CARD_BY_ID[id];if(!c)return;closeModal();startSession([c],L(c).nameShort||L(c).name);}
 function studySetSel(){const cs=setSelIds.map(id=>CARD_BY_ID[id]).filter(Boolean);if(!cs.length)return;closeModal();startSession(cs,T('review_these'));}
 function pickItem(c){const C=L(c),d=DECK_BY_ID[c.deckId],on=setSelIds.indexOf(c.id)>=0;
-  return `<button type="button" class="brow pickrow${on?' on':''}" data-id="${c.id}" aria-pressed="${on}" onclick="togglePick(this)"><span class="pickbox" aria-hidden="true">${on?'☑':'☐'}</span><span class="bn">${esc(C.nameShort||C.name)}</span><span class="bd">${esc(d.code)} · ${esc(deckTitle(d))}</span></button>`;}
+  return `<button type="button" class="brow pickrow${on?' on':''}" data-id="${c.id}" aria-pressed="${on}" onclick="togglePick(this)"><span class="pickbox" aria-hidden="true">${on?'☑\uFE0E':'☐'}</span><span class="bn">${esc(C.nameShort||C.name)}</span><span class="bd">${esc(d.code)} · ${esc(deckTitle(d))}</span></button>`;}
 function togglePick(row){const id=row.dataset.id,i=setSelIds.indexOf(id);if(i>=0)setSelIds.splice(i,1);else setSelIds.push(id);
-  const on=setSelIds.indexOf(id)>=0;row.classList.toggle('on',on);row.setAttribute('aria-pressed',on);row.querySelector('.pickbox').textContent=on?'☑':'☐';
+  const on=setSelIds.indexOf(id)>=0;row.classList.toggle('on',on);row.setAttribute('aria-pressed',on);row.querySelector('.pickbox').textContent=on?'☑\uFE0E':'☐';
   const n=$('#pickN');if(n)n.textContent=setSelIds.length;const g=$('#pickGo');if(g)g.disabled=!setSelIds.length;}
-function pickAll(on){setSelIds=on?setAllIds.slice():[];document.querySelectorAll('.pickrow').forEach(row=>{const sel=setSelIds.indexOf(row.dataset.id)>=0;row.classList.toggle('on',sel);row.setAttribute('aria-pressed',sel);row.querySelector('.pickbox').textContent=sel?'☑':'☐';});const n=$('#pickN');if(n)n.textContent=setSelIds.length;const g=$('#pickGo');if(g)g.disabled=!setSelIds.length;}
+function pickAll(on){setSelIds=on?setAllIds.slice():[];document.querySelectorAll('.pickrow').forEach(row=>{const sel=setSelIds.indexOf(row.dataset.id)>=0;row.classList.toggle('on',sel);row.setAttribute('aria-pressed',sel);row.querySelector('.pickbox').textContent=sel?'☑\uFE0E':'☐';});const n=$('#pickN');if(n)n.textContent=setSelIds.length;const g=$('#pickGo');if(g)g.disabled=!setSelIds.length;}
 function chooseReview(){const m=S.settings.sessMode||'both';const cs=m==='weak'?weakCards():buildQueue(null,m).queue;if(!cs.length){toast(T('t_clear'));return;}showCardSet('',T('pick_title'),cs.map(c=>c.id),T('pick_hint'),true);}
 function heroClick(e){if(e&&e.target&&e.target.closest('button,a,input,select,label'))return;chooseReview();}
 function applyBrowse(){

@@ -115,10 +115,10 @@ button{cursor:pointer}
 /* ---------- palco ---------- */
 .stage{position:fixed;left:env(safe-area-inset-left);right:env(safe-area-inset-right);top:var(--top-h);bottom:max(var(--nav-h),env(safe-area-inset-bottom))}
 /* dentro un iframe env(safe-area-inset-*) vale 0: il palco stesso resta fuori da tacca e indicatore home.
-   color-scheme 'normal' sull'elemento: un documento ancora vuoto (about:blank, in caricamento) non riceve il fondo
-   bianco opaco che Safari mette quando elemento e documento hanno schemi diversi, e si vede --bg. Con 'normal' il
-   prefers-color-scheme dentro l'iframe resta quello del sistema (in WebKit segue lo schema dell'elemento): le app,
-   senza una scelta salvata, ricadono sullo stesso tema dello shell. */
+   color-scheme 'normal' sull'elemento: il prefers-color-scheme dentro l'iframe resta quello del sistema (in WebKit
+   segue lo schema dell'elemento), così le app senza una scelta salvata ricadono sullo stesso tema dello shell.
+   Un documento ancora vuoto (about:blank) in iOS 26 resta comunque bianco: per questo un iframe su about:blank non si
+   mostra mai (.wait finché l'app non dice 'painted', vedi reveal). */
 .stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg);color-scheme:normal}
 .stage iframe.wait{visibility:hidden}/* finché il documento non porta il tema dello shell (vedi boot) */
 .stage iframe[hidden],.page[hidden],.loading[hidden]{display:none}
@@ -217,6 +217,7 @@ button{cursor:pointer}
 .tour{position:fixed;inset:0;z-index:var(--z-tour);pointer-events:none}
 .tour[hidden]{display:none}
 .shade{position:fixed;background:rgb(16 14 11/.6);pointer-events:auto}
+.shade.clear{background:transparent}/* passi centrati: la testata resta al suo colore (la barra di stato di Safari la campiona) */
 .ring{position:fixed;border-radius:12px;box-shadow:0 0 0 2px var(--gold),0 0 0 7px rgb(227 189 128/.35);transition:left .22s var(--ease),top .22s var(--ease),width .22s var(--ease),height .22s var(--ease)}
 .ring[hidden]{display:none}
 .pop{position:fixed;pointer-events:auto;width:min(380px,calc(100vw - 24px));background:var(--raised);color:var(--ink);border:1px solid var(--line2);border-radius:16px;padding:18px 18px 14px;box-shadow:0 24px 60px -20px rgb(0 0 0/.45);transition:left .22s var(--ease),top .22s var(--ease)}
@@ -249,7 +250,7 @@ button{cursor:pointer}
   .top.searching .search{display:block}
   .search svg{left:25px}
   #search-toggle{display:inline-grid}
-  .sub{height:44px;padding:0 6px}
+  .sub{height:45px;padding:0 6px}/* 1px di bordo + bottoni da 44px */
   .sub button{padding:0 11px;font-size:13.5px}
   .sub .hint{display:none}
   .wrap{padding-top:26px}
@@ -274,6 +275,9 @@ button{cursor:pointer}
   .link{min-height:44px;padding:0 4px}
   .news .nd button{min-height:44px}
   .pop .acts .btn{min-height:44px}
+  .ib.txt{min-width:44px}
+  /* titoli delle novità: riga da 44px al tocco senza spostare l'impaginazione */
+  .news a.nt{display:block;padding:11px 0;margin:-11px 0}
   .sp:not([aria-current]):active,.sub button:active,.ib:active,.chip:active,.deck:active,.brand:active{background:var(--sunk)}
 }
 /* tastiera aperta su telefono: la barra in basso lascia spazio al campo (vedi kbWatch) */
@@ -291,8 +295,10 @@ button{cursor:pointer}
 .upd .x svg{width:16px;height:16px}
 .upd .x:hover{color:var(--ink)}
 @media (pointer:coarse){.upd .btn,.upd .x{min-height:44px}.upd .x{width:44px;height:44px}}
-@media (max-width:860px){.upd{bottom:calc(var(--nav-h) + 10px)}}
+/* telefono: in alto, sotto testata e sotto-schede, mai sopra la barra dei voti delle flashcard o la barra in basso */
+@media (max-width:860px){.upd{bottom:auto;top:calc(var(--top-h) + 8px);animation-name:upd-in-top}.top.searching~.upd{top:calc(var(--top-h) + 70px)}}
 @keyframes upd-in{from{opacity:0;transform:translate(-50%,12px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes upd-in-top{from{opacity:0;transform:translate(-50%,-12px)}to{opacity:1;transform:translate(-50%,0)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 <style>/* © giorgiom250698 */:root{--author:"giorgiom250698";--author-sha256:"7e89b191a704024f69214d2e5be7e71b95a3d374165994eb77a8021abb59ea6d"}</style>
@@ -544,7 +550,9 @@ function route(app,hash){
 }
 /* L'iframe resta invisibile (con «Caricamento…») finché l'app non dice 'painted': contenuto disegnato nel tema
    dello shell, transizioni finite. Riserve: 600 ms dopo il load, 8 s in tutto. */
-function reveal(app){const f=frames[app];clearTimeout(revealT[app]);if(!f.classList.contains('wait'))return;f.classList.remove('wait');if(cur.app===app)$('#loading').hidden=true;}
+/* un iframe su about:blank (ancora vuoto, o tornato lì) in iOS è bianco opaco anche al buio: non si mostra mai */
+const blank=f=>{try{return f.contentWindow.location.href==='about:blank'}catch(e){return false}};
+function reveal(app){const f=frames[app];clearTimeout(revealT[app]);if(!f.classList.contains('wait')||blank(f))return;f.classList.remove('wait');if(cur.app===app)$('#loading').hidden=true;}
 function boot(app,hash){
   const f=frames[app];if(!hash&&app==='flashcard')hash='#dash';
   f.classList.add('wait');ready[app]=false;loaded[app]=false;pending[app]='';sent[app]=hash||'';
@@ -556,6 +564,7 @@ function hello(app){ready[app]=true;loaded[app]=true;newsSent[app]=null;syncApp(
 function sendNews(app){if(app!=='flashcard'||!ready[app]||newsState!=='ok'||newsSent[app]===NEWS)return;newsSent[app]=NEWS;tell(app,{__farmaco:1,type:'news',feed:NEWS});}
 for(const [app,f] of Object.entries(frames))f.addEventListener('load',()=>{
   if(!f.getAttribute('src'))return;
+  if(blank(f)){f.classList.add('wait');return;}
   loaded[app]=true;
   if(!ready[app])hello(app);else syncApp(app); // anche se il saluto si fosse perso, la rotta parte per frammento
   setTimeout(()=>reveal(app),600);
@@ -662,7 +671,7 @@ function applyChrome(){
 }
 /* barra di stato (app installata) e barre del browser: il fondo del tema; durante il giro guidato lo stesso fondo
    velato come la pagina, così in alto non resta una striscia chiara sopra il velo */
-function paintBars(){const c=ti>=0?(theme==='dark'?'#110f0c':'#6b6864'):(theme==='dark'?'#13110d':'#f3f0e9');$$('meta[name=theme-color]').forEach(m=>{m.content=c;});}
+function paintBars(){const c=ti>=0&&tourDim?(theme==='dark'?'#110f0c':'#6b6864'):(theme==='dark'?'#13110d':'#f3f0e9');$$('meta[name=theme-color]').forEach(m=>{m.content=c;});}
 function setTheme(t){if(t===theme)return;theme=t;applyChrome();Object.keys(frames).forEach(syncApp);}
 /* il bottone ha due stati: se il tema scelto è quello del sistema si torna a seguire il sistema (niente blocco),
    altrimenti la scelta si salva in 'cr-theme' e vale anche per le app aperte da sole */
@@ -713,19 +722,32 @@ let NEWS=null,newsState='idle',newsFrom='',filter='all';
    (consente la lettura a ogni origine). Se nessuna risponde: l'ultima copia buona salvata, altrimenti un messaggio chiaro. */
 const FEED='https://mutablewarp.github.io/farmacoflash/novita.json',NEWS_KEY='ff-news-cache';
 async function getFeed(u){const r=await fetch(u,{cache:'no-cache'});if(!r.ok)throw new Error(r.status);const j=await r.json();if(!j||!Array.isArray(j.items))throw new Error('schema');return j;}
-function loadNews(){
-  if(newsState!=='idle')return;
-  newsState='loading';
+/* again: ricarica al ritorno nell'app (vedi sotto). Il feed già mostrato resta visibile finché arriva il nuovo;
+   se nessuna fonte risponde, resta quello. */
+let newsBusy=false;
+function loadNews(again){
+  if(newsBusy||(newsState!=='idle'&&!again))return;
+  const quiet=newsState==='ok';
+  newsBusy=true;if(!quiet)newsState='loading';
   (async()=>{
+    let got=null,from='';
     for(const u of /^https?:$/.test(location.protocol)?['novita.json',FEED]:[FEED]){
-      try{NEWS=await getFeed(u);newsState='ok';newsFrom=u===FEED?'site':'';break;}catch(e){}
+      try{got=await getFeed(u);from=u===FEED?'site':'';break;}catch(e){}
     }
-    if(newsState==='ok')store(NEWS_KEY,JSON.stringify(NEWS));
-    else{let c=null;try{c=JSON.parse(localStorage.getItem(NEWS_KEY)||'null')}catch(e){}
+    newsBusy=false;
+    if(got){NEWS=got;newsState='ok';newsFrom=from;store(NEWS_KEY,JSON.stringify(NEWS));}
+    else if(!quiet){let c=null;try{c=JSON.parse(localStorage.getItem(NEWS_KEY)||'null')}catch(e){}
       if(c&&Array.isArray(c.items)){NEWS=c;newsState='ok';newsFrom='cache';}else newsState='error';}
     refreshNews();
   })();
 }
+/* app ripresa dopo 30 minuti o più (l'app installata resta in memoria per giorni): feed, badge e avvisi sulle carte
+   si ricaricano; le flashcard ricevono il feed nuovo da sendNews */
+let newsHiddenAt=0;
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='hidden'){newsHiddenAt=Date.now();return;}
+  if(newsHiddenAt&&Date.now()-newsHiddenAt>=18e5){newsHiddenAt=0;loadNews(true);}
+});
 function refreshNews(){if(cur.app==='home')paintNews($('#home-news'),3);if(cur.app==='news')renderNews();updateBadge();sendNews('flashcard');}
 const safeUrl=u=>/^https?:\/\//i.test(String(u||''))?String(u):'';
 const fmtDate=d=>{const x=new Date(d+'T12:00:00');return isNaN(x)?'':x.toLocaleDateString(lang==='en'?'en-GB':'it-IT',{day:'numeric',month:'short',year:'numeric'});};
@@ -785,12 +807,12 @@ const TOUR=[{},
   {sel:'.sp[data-space="atlas"]',click:true},
   {sel:'.sp[data-space="news"]'},
   {sel:'#help'}];
-let ti=-1,tEl=null,tOff=null;
+let ti=-1,tEl=null,tOff=null,tourDim=false;
 const tour=$('#tour'),pop=$('#tour-pop'),ring=$('#tour-ring'),shades=$$('.shade');
 const visible=el=>!!el&&el.getClientRects().length>0;
 const pick=s=>{if(!s.sel)return null;for(const q of s.sel.split(','))for(const el of document.querySelectorAll(q.trim()))if(visible(el))return el;return null;};
 function unbind(){if(tEl&&tOff)tEl.removeEventListener('click',tOff);tEl=tOff=null;}
-function tourOpen(){toggleSearch(false);ti=0;tour.hidden=false;paintBars();document.addEventListener('keydown',tourKey,true);addEventListener('resize',place);tourShow();}
+function tourOpen(){toggleSearch(false);ti=0;tourDim=false;tour.hidden=false;paintBars();document.addEventListener('keydown',tourKey,true);addEventListener('resize',place);tourShow();}
 function tourClose(){if(ti<0)return;unbind();ti=-1;tour.hidden=true;paintBars();document.removeEventListener('keydown',tourKey,true);removeEventListener('resize',place);store('ff-tour-v2','done');$('#help').focus();}
 function advance(d){const n=ti+d;if(n<0)return;if(n>=TOUR.length)return tourClose();ti=n;tourShow();}
 function tourShow(){
@@ -812,8 +834,14 @@ function place(){
   if(ti<0)return;
   const W=innerWidth,H=innerHeight,pw=pop.offsetWidth,ph=pop.offsetHeight,set=(el,x,y,w,h)=>Object.assign(el.style,{left:x+'px',top:y+'px',width:Math.max(0,w)+'px',height:Math.max(0,h)+'px'});
   const r=tEl&&visible(tEl)?tEl.getBoundingClientRect():null;
-  if(!r){ring.hidden=true;set(shades[0],0,0,W,H);for(const s of shades.slice(1))set(s,0,0,0,0);Object.assign(pop.style,{left:Math.max(12,(W-pw)/2)+'px',top:Math.max(12,(H-ph)/2)+'px'});return;}
+  /* il velo copre la cima dello schermo? allora anche le barre del browser (Chrome Android) prendono il colore velato */
+  const dim=d=>{if(d!==tourDim){tourDim=d;paintBars();}};
+  shades[1].classList.toggle('clear',!r);
+  /* passo centrato: il velo parte sotto la testata, che resta del suo colore (e la copre un velo trasparente, che
+     ferma i tocchi): Safari colora la barra di stato campionando la pagina, non da theme-color */
+  if(!r){ring.hidden=true;const th=Math.min(H,top_.offsetHeight);set(shades[0],0,th,W,H-th);set(shades[1],0,0,W,th);for(const s of shades.slice(2))set(s,0,0,0,0);dim(false);Object.assign(pop.style,{left:Math.max(12,(W-pw)/2)+'px',top:Math.max(12,(H-ph)/2)+'px'});return;}
   const p=6,x=Math.max(0,r.left-p),y=Math.max(0,r.top-p),w=Math.min(W,r.right+p)-x,h=Math.min(H,r.bottom+p)-y;
+  dim(y>0);
   set(shades[0],0,0,W,y);set(shades[1],0,y+h,W,H-y-h);set(shades[2],0,y,x,h);set(shades[3],x+w,y,W-x-w,h);
   ring.hidden=false;set(ring,x,y,w,h);
   const below=y+h+12,top=below+ph<=H-12?below:Math.max(12,y-12-ph);
@@ -857,8 +885,11 @@ try{if(!localStorage.getItem('ff-tour-v2')&&cur.app==='home')setTimeout(tourOpen
    resta sopra la tastiera. Su Android la pagina si ridimensiona (interactive-widget), su iOS si restringe l'area visibile. */
 if(window.visualViewport){
   const vv=visualViewport,touch=matchMedia('(pointer: coarse)');let base=vv.height;
-  const typing=()=>{const a=document.activeElement;return !!a&&/^(INPUT|TEXTAREA|SELECT|IFRAME)$/.test(a.tagName);};
-  const kbWatch=()=>{const t=typing();if(!t||vv.height>base)base=vv.height;root.classList.toggle('kb',touch.matches&&t&&base-vv.height>140);};
+  const field=a=>!!a&&(/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)||a.isContentEditable);
+  /* dentro un'app conta il campo che ha il fuoco nell'app; da file:// (origine opaca) non si vede: si assume di sì */
+  const typing=()=>{const a=document.activeElement;if(!a)return false;if(a.tagName!=='IFRAME')return field(a);let d=null;try{d=a.contentDocument}catch(e){}return d?field(d.activeElement):true;};
+  /* con la pagina ingrandita (pinch-zoom) l'area visibile si accorcia senza tastiera: non si tocca nulla */
+  const kbWatch=()=>{if(vv.scale>1.01)return;const t=typing();if(!t||vv.height>base)base=vv.height;root.classList.toggle('kb',touch.matches&&t&&base-vv.height>140);};
   vv.addEventListener('resize',kbWatch);
   document.addEventListener('focusout',()=>setTimeout(kbWatch,60));
   addEventListener('orientationchange',()=>setTimeout(()=>{base=vv.height;kbWatch();},400));
@@ -871,17 +902,24 @@ if(window.visualViewport){
 $('#upd-go').addEventListener('click',()=>location.reload());
 $('#upd-x').addEventListener('click',()=>{$('#upd').hidden=true;});
 if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){
-  const sw=navigator.serviceWorker,hadCtl=!!sw.controller,showUpd=()=>{$('#upd').hidden=false;};
-  let hiddenAt=0,checked=Date.now();
-  sw.addEventListener('controllerchange',()=>{if(hadCtl)showUpd();});
-  sw.addEventListener('message',e=>{if(e.data&&e.data.__farmaco===1&&e.data.type==='stale'&&hadCtl)showUpd();});
-  const reg=()=>sw.register('sw.js',{updateViaCache:'none'}).catch(()=>{});
+  const sw=navigator.serviceWorker,showUpd=()=>{$('#upd').hidden=false;},saveData=()=>!!(navigator.connection&&navigator.connection.saveData);
+  const post=m=>{try{if(sw.controller)sw.controller.postMessage(Object.assign({__farmaco:1},m));}catch(e){}};
+  /* 'had': c'era già un worker. Il primo passaggio di controllo (prima installazione, anche della prima apertura
+     dell'app installata su iOS) non mostra nulla; da lì in poi ogni worker nuovo sì, anche nella stessa sessione. */
+  let had=!!sw.controller,hiddenAt=0,checked=Date.now(),warmT=0;
+  /* offline completo: a pagina ferma il worker salva le app non ancora salvate e i moduli 3D (mai con risparmio dati) */
+  const warmUp=()=>{if(saveData())return;clearTimeout(warmT);warmT=setTimeout(()=>idle(()=>post({type:'warm'}),5000),8000);};
+  sw.addEventListener('controllerchange',()=>{if(had)showUpd();had=true;warmUp();});
+  sw.addEventListener('message',e=>{if(e.data&&e.data.__farmaco===1&&e.data.type==='stale'&&sw.controller)showUpd();});
+  const reg=()=>{sw.register('sw.js',{updateViaCache:'none'}).catch(()=>{});if(sw.controller)warmUp();};
   document.readyState==='complete'?reg():addEventListener('load',reg,{once:true});
   document.addEventListener('visibilitychange',()=>{
     if(document.visibilityState==='hidden'){hiddenAt=Date.now();return;}
     if(!hiddenAt||Date.now()-hiddenAt<18e5)return;
     sw.getRegistration().then(r=>r&&r.update()).catch(()=>{});
-    if(sw.controller&&Date.now()-checked>216e5&&!(navigator.connection&&navigator.connection.saveData)){checked=Date.now();sw.controller.postMessage({__farmaco:1,type:'check'});}
+    /* solo le pagine aperte in questa sessione: mai un avviso per una sezione mai caricata */
+    if(sw.controller&&Date.now()-checked>216e5&&!saveData()){checked=Date.now();
+      post({type:'check',pages:['index.html',...Object.values(frames).filter(f=>f.getAttribute('src')).map(f=>f.dataset.src.split('?')[0])]});}
   });
 }
 </script>

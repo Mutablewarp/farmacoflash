@@ -180,6 +180,7 @@ body.m-rubrica #rubrica{display:block;column-width:330px;column-gap:34px;padding
 .quiz-top{display:flex;align-items:center;gap:14px;width:100%;max-width:680px;margin:0 auto}
 .quiz-score{font-family:var(--font-mono);font-size:.88rem;color:var(--ok)}
 .quiz-streak{margin-left:auto;font-family:var(--font-mono);font-size:.88rem;color:var(--ink-dim)}
+.quiz-streak .q-ico{width:1.1em;height:1.1em;vertical-align:-.18em;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .quiz-card{width:100%;max-width:680px;margin:18px auto 0;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-panel);box-shadow:var(--shadow);padding:24px 22px calc(24px + env(safe-area-inset-bottom,0px))}
 .quiz-card h2{font-family:var(--font-display);font-weight:500;margin:0 0 8px}
 .quiz-card > p{color:var(--ink-dim)}
@@ -277,16 +278,16 @@ body.m-rubrica #rubrica{display:block;column-width:330px;column-gap:34px;padding
     <div class="ctl-group" id="modRow"><span class="lab" id="labMod" data-i="lab_mod">Modulo</span><div class="segctl" id="modSeg" role="group" aria-labelledby="labMod"></div></div>
     <div class="ctl-group"><span class="lab" id="labVista" data-i="lab_view">Vista</span>
       <div class="segctl c4" role="group" aria-labelledby="labVista">
-        <button class="chip mode on" type="button" data-mode="all" data-i="mode_all">📖 Tutto</button>
-        <button class="chip mode" type="button" data-mode="nomi" data-i="mode_nomi">🧠 Solo nomi</button>
-        <button class="chip mode" type="button" data-mode="effetti" data-i="mode_effetti">💊 Solo effetti</button>
-        <button class="chip mode" type="button" data-mode="rubrica" data-i="mode_rubrica">🔤 A→Z</button>
+        <button class="chip mode on" type="button" data-mode="all" data-i="mode_all">Tutto</button>
+        <button class="chip mode" type="button" data-mode="nomi" data-i="mode_nomi">Solo nomi</button>
+        <button class="chip mode" type="button" data-mode="effetti" data-i="mode_effetti">Solo effetti</button>
+        <button class="chip mode" type="button" data-mode="rubrica" data-i="mode_rubrica">A→Z</button>
       </div>
     </div>
     <div class="ctl-group actions">
-      <button class="btn quizbtn" type="button" onclick="quizStart('mc')" data-i="btn_mc">🎯 Quiz a scelta</button>
-      <button class="btn quizbtn" type="button" onclick="quizStart('write')" data-i="btn_write">✍️ Scrivi i nomi</button>
-      <button class="btn" type="button" onclick="quizErrors()" data-i="btn_err">📊 Errori</button>
+      <button class="btn quizbtn" type="button" onclick="quizStart('mc')" data-i="btn_mc">Quiz a scelta</button>
+      <button class="btn quizbtn" type="button" onclick="quizStart('write')" data-i="btn_write">Scrivi i nomi</button>
+      <button class="btn" type="button" onclick="quizErrors()" data-i="btn_err">Errori</button>
       <button class="btn" type="button" id="clrBtn" data-i="btn_clear">↺ Azzera filtri</button>
     </div>
   </div>
@@ -340,19 +341,19 @@ const STR={
  search_ph:{it:'Nome, nome commerciale, bersaglio o meccanismo…',en:'Drug (EN/IT), brand, mechanism…'},
  lab_mod:{it:'Modulo',en:'Module'},lab_view:{it:'Vista',en:'View'},
  mod_all:{it:'Tutti',en:'All'},mod_I:{it:'Generale',en:'General'},mod_II:{it:'Speciale',en:'Systematic'},
- mode_all:{it:'📖 Tutto',en:'📖 Everything'},mode_nomi:{it:'🧠 Solo nomi',en:'🧠 Names only'},mode_effetti:{it:'💊 Solo effetti',en:'💊 Effects only'},mode_rubrica:{it:'🔤 A→Z',en:'🔤 A→Z'},
- btn_mc:{it:'🎯 Quiz a scelta',en:'🎯 Multiple-choice quiz'},btn_write:{it:'✍️ Scrivi i nomi',en:'✍️ Write the names'},btn_err:{it:'📊 Errori',en:'📊 Mistakes'},btn_clear:{it:'↺ Azzera filtri',en:'↺ Clear filters'},
+ mode_all:{it:'Tutto',en:'Everything'},mode_nomi:{it:'Solo nomi',en:'Names only'},mode_effetti:{it:'Solo effetti',en:'Effects only'},mode_rubrica:{it:'A→Z',en:'A→Z'},
+ btn_mc:{it:'Quiz a scelta',en:'Multiple-choice quiz'},btn_write:{it:'Scrivi i nomi',en:'Write the names'},btn_err:{it:'Errori',en:'Mistakes'},btn_clear:{it:'↺ Azzera filtri',en:'↺ Clear filters'},
  decks_aria:{it:'Mazzo / argomento',en:'Deck / topic'},
  decks_more:{it:n=>'Mostra tutti gli argomenti ('+n+')',en:n=>'Show all topics ('+n+')'},decks_less:{it:'Mostra meno argomenti',en:'Show fewer topics'},
  th_topic:{it:'Argomento',en:'Topic'},th_drug:{it:'Farmaco',en:'Drug'},th_mecc:{it:'Meccanismo',en:'Mechanism'},th_ind:{it:'Indicazioni',en:'Indications'},th_adr:{it:'Reazioni avverse',en:'Adverse reactions'},
- hint_all:{it:'👆 Tocca una riga per aprirla nello studio di FarmacoFlash',en:'👆 Tap a row to open it in FarmacoFlash study'},
- hint_nomi:{it:'👆 Tocca un farmaco per vedere a cosa serve',en:'👆 Tap a drug to see what it is for'},
- hint_effetti:{it:'👆 Leggi gli effetti e prova a indovinare: tocca per scoprire il farmaco',en:'👆 Read the effects and take a guess: tap to reveal the drug'},
- hint_rubrica:{it:'🔤 Tutti i farmaci in ordine alfabetico — tocca un codice classe per studiarlo',en:'🔤 Every drug in alphabetical order: tap a class code to study it'},
+ hint_all:{it:'Tocca una riga per aprirla nello studio di FarmacoFlash',en:'Tap a row to open it in FarmacoFlash study'},
+ hint_nomi:{it:'Tocca un farmaco per vedere a cosa serve',en:'Tap a drug to see what it is for'},
+ hint_effetti:{it:'Leggi gli effetti e prova a indovinare: tocca per scoprire il farmaco',en:'Read the effects and take a guess: tap to reveal the drug'},
+ hint_rubrica:{it:'Tutti i farmaci in ordine alfabetico: tocca un codice classe per studiarlo',en:'Every drug in alphabetical order: tap a class code to study it'},
  count:{it:(d,r,n)=>pl(d,'farmaco','farmaci')+' · '+r+'/'+n+' schede',en:(d,r,n)=>pl(d,'drug','drugs')+' · '+r+'/'+n+' cards'},
  count_az:{it:n=>pl(n,'farmaco','farmaci')+' (A→Z)',en:n=>pl(n,'drug','drugs')+' (A→Z)'},
  foot:{it:(d,c,k)=>pl(d,'farmaco','farmaci')+' · '+c+' schede · '+k+' argomenti · Moduli I–II · dati dalle tue carte FarmacoFlash',en:(d,c,k)=>pl(d,'drug','drugs')+' · '+c+' cards · '+k+' topics · Modules I–II · data from your FarmacoFlash cards'},
- empty:{it:'Nessun farmaco trovato 🐢',en:'No drugs found 🐢'},
+ empty:{it:'Nessun farmaco trovato',en:'No drugs found'},
  did_you_mean:{it:'Forse cercavi: ',en:'Did you mean: '},
  brand_lab:{it:'Nome commerciale',en:'Italian brand'},it_brand:{it:'marchio italiano',en:'Italian brand'},it_name:{it:'nome italiano',en:'Italian name'},
  study_ff:{it:'↗ Studia in FarmacoFlash',en:'↗ Study in FarmacoFlash'},
@@ -360,21 +361,21 @@ const STR={
  q_cls_k:{it:'In quale scheda trovi questo farmaco?',en:'Which card lists this drug?'},
  q_cls_sub:{it:'Associazione alle schede di studio, non classificazione farmacologica.',en:'Matches the study cards, not a pharmacological classification.'},
  q_drug_k:{it:'Quale nome è incluso in questa scheda?',en:'Which name is listed on this card?'},
- q_write_k:{it:'✍️ Scrivi il farmaco preciso',en:'✍️ Write the exact drug name'},
+ q_write_k:{it:'Scrivi il farmaco preciso',en:'Write the exact drug name'},
  q_hint:{it:(i,n)=>'inizia per <b>'+i+'</b> · '+n+' lettere',en:(i,n)=>'starts with <b>'+i+'</b> · '+n+' letters · synonyms and the Italian name are accepted too'},
  q_ph:{it:'scrivi qui il nome…',en:'type the name here…'},q_check:{it:'Verifica',en:'Check'},
- q_right:{it:'Giusto! 🎉',en:'Correct! 🎉'},q_answer:{it:a=>'Risposta: <b>'+a+'</b>',en:a=>'Answer: <b>'+a+'</b>'},
+ q_right:{it:'Giusto!',en:'Correct!'},q_answer:{it:a=>'Risposta: <b>'+a+'</b>',en:a=>'Answer: <b>'+a+'</b>'},
  q_typo:{it:'Refuso.',en:'Typo.'},q_diff:{it:'Il nome richiesto è diverso.',en:'That is a different name.'},
  q_spell:{it:a=>'Si scrive <b>'+a+'</b>. Riscrivilo per continuare: il primo tentativo resta nello storico.',en:a=>'It is spelled <b>'+a+'</b>. Type it again to continue: the first attempt stays in your history.'},
  q_fixed:{it:'Correzione completata. Il primo tentativo resta un errore da ripassare.',en:'Correction done. The first attempt still counts as a mistake to review.'},
  q_ok:{it:'Nome corretto.',en:'Correct name.'},
- q_next:{it:'Avanti →',en:'Next →'},q_new:{it:'Nuova →',en:'New →'},q_back:{it:'← Indietro',en:'← Back'},q_study:{it:'📖 Studia questa scheda',en:'📖 Study this card'},
+ q_next:{it:'Avanti →',en:'Next →'},q_new:{it:'Nuova →',en:'New →'},q_back:{it:'← Indietro',en:'← Back'},q_study:{it:'Studia questa scheda',en:'Study this card'},
  q_done_t:{it:'Sessione completata',en:'Session complete'},
  q_done_p:{it:'Hai incontrato tutti i nomi selezionati. Puoi ripassare gli errori o iniziare una nuova sessione.',en:'You have met every selected name. Review your mistakes or start a new session.'},
  q_review_err:{it:'Rivedi errori',en:'Review mistakes'},q_close:{it:'Chiudi',en:'Close'},
- e_title:{it:'📊 I tuoi errori (nel tempo)',en:'📊 Your mistakes (over time)'},e_none:{it:'Nessun errore registrato 🎉',en:'No mistakes recorded 🎉'},
+ e_title:{it:'I tuoi errori (nel tempo)',en:'Your mistakes (over time)'},e_none:{it:'Nessun errore registrato',en:'No mistakes recorded'},
  e_n:{it:n=>pl(n,'nome','nomi')+' da rivedere (i più sbagliati in alto).',en:n=>pl(n,'name','names')+' to review (most missed first).'},
- e_write:{it:'✍️ Riscrivi gli errori',en:'✍️ Rewrite your mistakes'},e_mc:{it:'🎯 Ripassa (scelta)',en:'🎯 Review (multiple choice)'},e_clear:{it:'🗑 Azzera',en:'🗑 Clear'},
+ e_write:{it:'Riscrivi gli errori',en:'Rewrite your mistakes'},e_mc:{it:'Ripassa (scelta)',en:'Review (multiple choice)'},e_clear:{it:'Azzera',en:'Clear'},
  e_answers:{it:n=>'Risposte: '+n,en:n=>'Answers: '+n},
  e_confirm:{it:'Azzerare lo storico degli errori del quiz?',en:'Clear the quiz mistake history?'},
  save_fail:{it:'Salvataggio non riuscito: i dati precedenti non sono stati sovrascritti. Esporta un backup da FarmacoFlash prima di chiudere.',en:'Saving failed: your previous data was not overwritten. Export a backup from FarmacoFlash before closing.'}
@@ -634,7 +635,9 @@ function quizStart(kind, errorsOnly){
   $('#quiz').hidden=false; document.body.style.overflow='hidden'; quizNext();
 }
 function quizExit(){ $('#quiz').hidden=true; document.body.style.overflow=''; }
-function topBar(){ $('#qScore').textContent='✔ '+quiz.score+'/'+quiz.total; $('#qStreak').textContent='🔥 '+quiz.streak; }
+/* serie di risposte giuste: fiamma a tratto in currentColor (l'emoji su iOS arriva a colori) */
+const FLAME_ICO='<svg class="q-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>';
+function topBar(){ $('#qScore').textContent='✔\uFE0E '+quiz.score+'/'+quiz.total; $('#qStreak').innerHTML=FLAME_ICO+' '+(+quiz.streak||0); }
 function buildQ(){
   const avail=langPool(quiz.pool).filter(d=>!quiz.used.has(uKey(d.drug))); if(!avail.length)return null;
   const it=avail[Math.floor(Math.random()*avail.length)];
@@ -715,7 +718,7 @@ function quizErrors(){
   qView='errors';
   $('#quiz').hidden=false; document.body.style.overflow='hidden';
   const ent=Object.keys(qstore.wrong).filter(k=>qstore.wrong[k]>0).map(k=>[k,qstore.wrong[k]]).sort((a,b)=>b[1]-a[1]);
-  $('#qScore').textContent=t('e_answers',qstore.answered); $('#qStreak').textContent='✔ '+qstore.correct;
+  $('#qScore').textContent=t('e_answers',qstore.answered); $('#qStreak').textContent='✔\uFE0E '+qstore.correct;
   let b='<div class="q-kicker">'+esc(t('e_title'))+'</div>';
   if(!ent.length){ b+='<div class="q-prompt" style="font-size:1.2rem">'+esc(t('e_none'))+'</div><div class="q-nav"><button class="q-back" onclick="quizExit()">'+esc(t('q_close'))+'</button></div>'; }
   else{ b+='<div class="q-sub">'+esc(t('e_n',ent.length))+'</div><div class="q-errlist">'+ent.slice(0,80).map(e=>'<span class="q-err"'+dTitle(e[0])+'><b>'+esc(dText(e[0]))+'</b> ×'+e[1]+'</span>').join('')+'</div>';
