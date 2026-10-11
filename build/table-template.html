@@ -7,7 +7,7 @@
 __PWA_HEAD__
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script>/* tema, lingua ed embed applicati prima del primo paint: tema salvato (cr-theme) o quello del sistema; lingua: nello shell solo cr-lang (la stessa regola dello shell, così non c'è un lampo nella lingua sbagliata), da sola come FarmacoFlash (farmaco-lang, poi cr-lang) */(function(){var r=document.documentElement,e=/[?&]embed=1/.test(location.search),t,l,m;try{t=localStorage.getItem('cr-theme');}catch(x){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';r.dataset.theme=t;m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#13110d':'#f3f0e9';try{l=e?localStorage.getItem('cr-lang'):(localStorage.getItem('farmaco-lang')||localStorage.getItem('cr-lang'));}catch(x){}r.lang=l==='en'?'en':'it';if(e)r.classList.add('embed');if(r.lang==='en'){r.classList.add('i18n-wait');setTimeout(function(){r.classList.remove('i18n-wait');},2500);}})();</script>
+<script>/* tema, lingua ed embed applicati prima del primo paint: tema salvato (cr-theme) o quello del sistema; lingua: cr-lang, la chiave unica condivisa con lo shell e le altre app (farmaco-lang, la vecchia chiave, vale solo se cr-lang manca); stessa regola ovunque, così non c'è un lampo nella lingua sbagliata */(function(){var r=document.documentElement,e=/[?&]embed=1/.test(location.search),t,l,m;try{t=localStorage.getItem('cr-theme');}catch(x){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';r.dataset.theme=t;m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#13110d':'#f3f0e9';try{l=localStorage.getItem('cr-lang');if(l!=='it'&&l!=='en')l=localStorage.getItem('farmaco-lang');}catch(x){}r.lang=l==='en'?'en':'it';if(e)r.classList.add('embed');if(r.lang==='en'){r.classList.add('i18n-wait');setTimeout(function(){r.classList.remove('i18n-wait');},2500);}})();</script>
 <style>
 /* Tabella dei farmaci · stesso sistema visivo di FarmacoFlash e dello shell */
 :root{
@@ -725,10 +725,13 @@ function quizErrors(){
 }
 function qClearErr(){ if(confirm(t('e_confirm'))){ qstore.wrong={}; qsave(); quizErrors(); } }
 
-function applyUrlState(){
+/* reset=true: la rotta è lo stato completo della tabella (q, deck, mod, vista); le chiavi assenti si azzerano,
+   così un filtro vecchio non svuota la tabella aperta da un altro link */
+function applyUrlState(reset){
   try{
     const p=new URLSearchParams(location.search||''); const h=new URLSearchParams((location.hash||'').replace(/^#/,''));
     const get=k=>p.get(k)||h.get(k);
+    if(reset){ state.q=''; state.deck=null; state.mod=null; const el=$('#q'); if(el) el.value=''; }
     const q=get('q'); if(q){ state.q=q; const el=$('#q'); if(el) el.value=q; }
     const dk=get('deck'); if(dk && DECKS.some(d=>d.id===dk)) state.deck=dk;
     const md=get('mod'); if(md==='I'||md==='II') state.mod=md;
@@ -737,6 +740,8 @@ function applyUrlState(){
   }catch(e){}
   return null;
 }
+/* rotta dallo shell (bridge.js) o hash cambiato da sola: stato completo, vista predefinita «tutto» */
+function applyRoute(){ if(!/^#(?:deck|q|vista|view|mod)=/.test(location.hash)) return; const v=applyUrlState(true); setMode(v||'all'); }
 
 /* ===== testi statici, lingua e tema ===== */
 function applyStatic(){
@@ -753,7 +758,7 @@ function applyStatic(){
 }
 function setLang(l,persist){
   if(l!=='it'&&l!=='en') return;
-  LANG=l; if(persist!==false) try{localStorage.setItem('farmaco-lang',l);}catch(e){}
+  LANG=l; if(persist!==false&&!EMBED) try{localStorage.setItem('cr-lang',l);}catch(e){} // dentro lo shell la lingua la salva lo shell
   applyStatic(); labelDecks(); toggleDecks(!$('#deckRow').classList.contains('collapsed'));
   $('#hint').textContent=t('hint_'+mode); render();
   if(!$('#quiz').hidden){ if(qView==='errors') quizErrors(); else if(qView==='done') renderDone(); else if(quiz&&quiz.hist[quiz.hidx]) renderQ(quiz.hist[quiz.hidx]); }
@@ -767,17 +772,13 @@ function setTheme(th,persist){
 }
 // l'icona (sole/luna) la sceglie il CSS dal tema; nome e tooltip dicono cosa fa il bottone
 function themeLabel(){ const b=$('#themeTog'); if(!b) return; const k=ROOT.dataset.theme==='dark'?'theme_to_light':'theme_to_dark'; b.title=t(k); b.setAttribute('aria-label',t(k)); }
-// nello shell: lo shell invia {__farmaco:1,type:'appearance',theme,lang}; il tema lo applica src/bridge.js, la lingua la applichiamo qui
-if(EMBED&&parent!==window) addEventListener('message',e=>{
-  if(e.source!==parent||e.origin!==location.origin||!e.data||e.data.__farmaco!==1)return;
-  const d=e.data;
-  if(d.type==='appearance'){ if(d.theme==='dark'||d.theme==='light') setTheme(d.theme,false); if((d.lang==='it'||d.lang==='en')&&d.lang!==LANG) setLang(d.lang); }
-});
+// nello shell tema, lingua e rotte arrivano da src/bridge.js (setTheme, setLang, applyRoute)
 if(!EMBED){
   $('#themeTog').addEventListener('click',()=>setTheme(ROOT.dataset.theme==='dark'?'light':'dark',true));
   $('#langTog').addEventListener('click',()=>setLang(LANG==='it'?'en':'it'));
-  // altre schede aperte che cambiano tema o lingua: FarmacoFlash (farmaco-lang) e lo shell o l'atlante (cr-lang); vince l'ultimo cambio
-  addEventListener('storage',e=>{ if(e.key==='cr-theme'||e.key===null){const v=e.key?e.newValue:null;setTheme(v==='dark'||v==='light'?v:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),false);} if((e.key==='farmaco-lang'||e.key==='cr-lang')&&(e.newValue==='it'||e.newValue==='en')&&e.newValue!==LANG) setLang(e.newValue,false); });
+  // altre schede aperte che cambiano tema o lingua (shell, FarmacoFlash, atlante: chiave cr-lang); vince l'ultimo cambio
+  addEventListener('storage',e=>{ if(e.key==='cr-theme'||e.key===null){const v=e.key?e.newValue:null;setTheme(v==='dark'||v==='light'?v:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),false);} if(e.key==='cr-lang'&&(e.newValue==='it'||e.newValue==='en')&&e.newValue!==LANG) setLang(e.newValue,false); });
+  addEventListener('hashchange',applyRoute);
   // senza tema salvato si segue il sistema, anche se cambia mentre la pagina è aperta
   try{ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',ev=>{let s=null;try{s=localStorage.getItem('cr-theme');}catch(x){} if(s!=='dark'&&s!=='light') setTheme(ev.matches?'dark':'light',false);}); }catch(e){}
 }

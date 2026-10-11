@@ -409,8 +409,8 @@ it:{home:'Inizio',cards:'Flashcard',atlas:'Atlante 3D',news:'Novità',dash:'Oggi
   kind:{sicurezza:'Sicurezza','linea-guida':'Linea guida',scheda:'Scheda tecnica',notizia:'Notizia'},
   linked:'Nelle tue carte:',updated:'Aggiornato il',sources:'Fonti controllate',src_err:'non raggiungibile',
   none:'Nessuna novità con questo filtro.',none_home:'Nessuna novità recente.',loading:'Caricamento…',
-  offline:"Le novità arrivano dal sito pubblicato: apri l'app dal suo link per vederle. Tutto il resto funziona anche da file.",
-  error:'Non riesco a scaricare le novità adesso. Riprova più tardi.',
+  error:'Non riesco a scaricare le novità: serve una connessione a internet. Tutto il resto funziona anche senza.',retry:'Riprova',
+  from_site:'dal sito pubblicato',from_cache:'copia salvata, senza connessione',
   step:(a,b)=>a+' di '+b,next:'Avanti',back:'Indietro',skip:'Esci',done:'Fine',try:'Oppure tocca il pulsante evidenziato.',
   tour:[['Benvenuto in FarmacoFlash','Un giro di un minuto per sapere dove sta tutto. Puoi uscire quando vuoi con Esc.'],
     ['Flashcard','Qui studi con le carte a ripetizione spaziata: ogni farmaco torna quando stai per dimenticarlo.'],
@@ -440,8 +440,8 @@ en:{home:'Home',cards:'Flashcards',atlas:'3D Atlas',news:'Updates',dash:'Today',
   kind:{sicurezza:'Safety','linea-guida':'Guideline',scheda:'Product information',notizia:'News'},
   linked:'In your cards:',updated:'Updated',sources:'Sources checked',src_err:'unreachable',
   none:'No updates match this filter.',none_home:'No recent updates.',loading:'Loading…',
-  offline:'Updates come from the published site: open the app from its link to see them. Everything else works from a file too.',
-  error:'Updates could not be downloaded right now. Try again later.',
+  error:'Updates could not be downloaded: an internet connection is needed. Everything else works without one.',retry:'Try again',
+  from_site:'from the published site',from_cache:'saved copy, offline',
   step:(a,b)=>a+' of '+b,next:'Next',back:'Back',skip:'Exit',done:'Done',try:'Or tap the highlighted button.',
   tour:[['Welcome to FarmacoFlash','A one minute tour of where everything lives. Press Esc to leave at any time.'],
     ['Flashcards','Study with spaced-repetition cards here: each drug comes back just before you would forget it.'],
@@ -461,8 +461,10 @@ const pages={home:$('#page-home'),news:$('#page-news')};
 const PATHS={'Flashcard-Farmacologia.html':'flashcard','Tabella-Farmaci.html':'catalog','Canali-e-Recettori-3D.html':'canali','index.html':'home'};
 let INDEX={total:0,cards:{}};try{INDEX=JSON.parse($('#ff-index').textContent)}catch(e){}
 let theme=root.dataset.theme,lang='it',cur={app:'',hash:''},lastCards={app:'flashcard',hash:'#dash'};
-try{if(localStorage.getItem('cr-lang')==='en')lang='en'}catch(e){}
-const ready={},loaded={},pending={},sent={};
+/* lingua: chiave unica cr-lang (condivisa con le app); farmaco-lang, la vecchia chiave di FarmacoFlash, vale solo se cr-lang manca */
+const savedLang=()=>{try{let l=localStorage.getItem('cr-lang');if(l!=='it'&&l!=='en')l=localStorage.getItem('farmaco-lang');return l==='en'?'en':'it'}catch(e){return null}};
+lang=savedLang()||'it';
+const ready={},loaded={},pending={},sent={},revealT={};
 const T=k=>(I18N[lang]||I18N.it)[k];
 const store=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
 const unstore=k=>{try{localStorage.removeItem(k)}catch(e){}};
@@ -472,32 +474,48 @@ const savedTheme=()=>{let t=null;try{t=localStorage.getItem('cr-theme')}catch(e)
 const osDark=matchMedia('(prefers-color-scheme: dark)'),osTheme=()=>osDark.matches?'dark':'light';
 let themeAuto=!savedTheme();
 
-/* ---------- comunicazione con le app ---------- */
-function tell(app,msg){const f=frames[app];if(f&&f.contentWindow)try{f.contentWindow.postMessage(msg,location.origin==='null'?'*':location.origin)}catch(e){}}
-function syncApp(app){tell(app,{__farmaco:1,type:'appearance',theme,lang});if(app==='canali'){tell(app,{__fusion:'theme',value:theme});tell(app,{__fusion:'lang',value:lang});tell(app,{__fusion:'visibility',value:cur.app==='canali'});}}
-/* L'iframe resta invisibile finché il suo documento non porta il tema dello shell e non ha finito le
-   transizioni CSS del cambio di tema: niente pagina vuota, di tema sbagliato o a metà strada durante il
-   caricamento. Stessa origine: si controlla a ogni fotogramma; senza accesso (file://) si mostra subito
-   dopo il caricamento; con accesso, al più 90 fotogrammi dopo il caricamento. Riserva: 12 s. */
-const fading=d=>!!d.getAnimations&&d.getAnimations().some(a=>a.playState==='running'&&'transitionProperty' in a);
-function boot(app,hash){
-  const f=frames[app];f.classList.add('wait');f.src=f.dataset.src+(hash||'');sent[app]=hash;
-  const show=()=>{f.classList.remove('wait');if(cur.app===app)$('#loading').hidden=true;};let late=0;
-  const check=()=>{
-    if(!f.classList.contains('wait'))return;
-    let d=null;try{d=f.contentDocument}catch(e){}
-    const own=d&&d.documentElement&&d.URL!=='about:blank';
-    if(own&&d.documentElement.dataset.theme===theme&&!fading(d))return requestAnimationFrame(show);
-    if(loaded[app]&&++late>(own?90:2))return show();
-    requestAnimationFrame(check);
-  };
-  requestAnimationFrame(check);setTimeout(show,12000);
+/* ---------- comunicazione con le app ----------
+   Da file:// ogni iframe ha origine opaca ('null') mentre location.origin vale 'file://': lì si invia con '*' e si
+   riconosce il mittente solo dalla finestra (uno dei nostri iframe). In http(s) e nell'app installata resta la
+   stessa origine stretta. I messaggi portano solo tema, lingua, visibilità e rotte. */
+const LOCAL=location.protocol==='file:'||location.origin==='null';
+const TARGET=LOCAL?'*':location.origin;
+const fromApp=o=>LOCAL?(o==='null'||o==='file://'):o===location.origin;
+function tell(app,msg){const f=frames[app];if(f&&f.contentWindow&&f.getAttribute('src'))try{f.contentWindow.postMessage(msg,TARGET)}catch(e){}}
+function syncApp(app){tell(app,{__farmaco:1,type:'appearance',theme,lang});if(app==='canali')tell(app,{__fusion:'visibility',value:cur.app==='canali'});}
+/* Rotta verso un'app già avviata, per due strade che l'app esegue una volta sola (bridge.js):
+   1) navigazione di frammento: lo shell sostituisce l'hash dell'iframe (location.replace è permesso anche
+      tra origini diverse, come da file://), l'app riceve hashchange, nessun ricaricamento né voce di cronologia;
+   2) messaggio 'route', che copre anche la stessa rotta ripetuta (l'hash non cambia, hashchange non scatta).
+   Prima del saluto dell'app la rotta aspetta in pending. */
+function route(app,hash){
+  sent[app]=hash;
+  if(!ready[app]){pending[app]=hash;return;}
+  pending[app]='';
+  const f=frames[app];
+  try{f.contentWindow.location.replace(new URL(f.dataset.src+hash,location.href).href)}catch(e){}
+  tell(app,{__farmaco:1,type:'route',hash});
 }
-for(const [app,f] of Object.entries(frames))f.addEventListener('load',()=>{if(!f.getAttribute('src'))return;loaded[app]=true;syncApp(app);});
+/* L'iframe resta invisibile (con «Caricamento…») finché l'app non dice 'painted': contenuto disegnato nel tema
+   dello shell, transizioni finite. Riserve: 600 ms dopo il load, 8 s in tutto. */
+function reveal(app){const f=frames[app];clearTimeout(revealT[app]);if(!f.classList.contains('wait'))return;f.classList.remove('wait');if(cur.app===app)$('#loading').hidden=true;}
+function boot(app,hash){
+  const f=frames[app];if(!hash&&app==='flashcard')hash='#dash';
+  f.classList.add('wait');ready[app]=false;loaded[app]=false;pending[app]='';sent[app]=hash||'';
+  f.src=f.dataset.src+(hash||'');
+  clearTimeout(revealT[app]);revealT[app]=setTimeout(()=>reveal(app),8000);
+}
+function hello(app){ready[app]=true;loaded[app]=true;syncApp(app);if(pending[app])route(app,pending[app]);}
+for(const [app,f] of Object.entries(frames))f.addEventListener('load',()=>{
+  if(!f.getAttribute('src'))return;
+  loaded[app]=true;
+  if(!ready[app])hello(app);else syncApp(app); // anche se il saluto si fosse perso, la rotta parte per frammento
+  setTimeout(()=>reveal(app),600);
+});
 
 /* ---------- navigazione ---------- */
 const spaceOf=app=>app==='flashcard'||app==='catalog'?'cards':app==='canali'?'atlas':app;
-function subOf(app,hash){if(app==='catalog')return'names';if(app!=='flashcard')return'';const k=(hash||'#dash').split('=')[0];return{'#dash':'dash','#study':'study','#browse':'browse','#deck':'browse','#stats':'stats'}[k]||'';}
+function subOf(app,hash){if(app==='catalog')return'names';if(app!=='flashcard')return'';const k=(hash||'#dash').split('=')[0];return{'#dash':'dash','#study':'study','#front':'study','#card':'study','#browse':'browse','#deck':'browse','#stats':'stats'}[k]||'';}
 function hashFor(app,hash){return app==='home'?'#inizio':app==='news'?'#novita':'#'+app+'/'+encodeURIComponent(hash||'')}
 function go(app,hash='',push=true,force=false){
   if(!(app in frames)&&!(app in pages))app='home';
@@ -506,19 +524,22 @@ function go(app,hash='',push=true,force=false){
   for(const [k,f] of Object.entries(frames)){
     const on=k===app;f.hidden=!on;
     if(on&&!f.getAttribute('src'))boot(k,hash);
-    else if(on&&hash&&(force||hash!==sent[k])){sent[k]=hash;if(ready[k])tell(k,{__farmaco:1,type:'route',hash});else pending[k]=hash;}
-    tell(k,{__fusion:'visibility',value:on});
+    else if(on&&hash&&(force||hash!==sent[k]))route(k,hash);
+    if(k==='canali')tell(k,{__fusion:'visibility',value:on});
   }
   const ld=$('#loading');ld.hidden=!(app in frames)||!frames[app].classList.contains('wait');ld.textContent=T('loading');
+  marks(app,hash);
+  if(push&&location.hash!==hashFor(app,hash))history.pushState(null,'',hashFor(app,hash));
+  if(app==='home')renderHome();
+  if(app==='news'){renderNews();markNewsSeen();}
+  measure();
+}
+function marks(app,hash){
   const sp=spaceOf(app),sub=subOf(app,hash);
   if(sp==='cards')lastCards={app,hash:hash||(app==='flashcard'?'#dash':'')};
   $$('.sp[data-space]').forEach(b=>b.dataset.space===sp?b.setAttribute('aria-current','page'):b.removeAttribute('aria-current'));
   $('#sub').hidden=sp!=='cards';
   $$('[data-sub]').forEach(b=>b.dataset.sub===sub?b.setAttribute('aria-current','page'):b.removeAttribute('aria-current'));
-  if(push&&location.hash!==hashFor(app,hash))history.pushState(null,'',hashFor(app,hash));
-  if(app==='home')renderHome();
-  if(app==='news'){renderNews();markNewsSeen();}
-  measure();
 }
 function restore(){
   const h=location.hash;let m;
@@ -527,6 +548,7 @@ function restore(){
   go('home','',false);
 }
 addEventListener('popstate',restore);
+addEventListener('hashchange',restore); // un'app senza risposta dallo shell apre index.html#<app>/<hash>: stesso documento, solo il frammento
 function goSpace(s){if(s==='home')go('home');else if(s==='news')go('news');else if(s==='atlas')go('canali');else go(lastCards.app,lastCards.hash);}
 document.addEventListener('click',e=>{
   const sp=e.target.closest('[data-space]');if(sp){goSpace(sp.dataset.space);return;}
@@ -537,11 +559,15 @@ document.addEventListener('click',e=>{
 
 addEventListener('message',e=>{
   const app=Object.keys(frames).find(k=>frames[k].contentWindow===e.source);
-  if(!app||e.origin!==location.origin||!e.data||typeof e.data!=='object')return;
+  if(!app||!fromApp(e.origin)||!e.data||typeof e.data!=='object')return;
   const d=e.data;
-  if((d.__farmaco===1&&d.type==='ready')||d.__fusion==='ready'){
-    ready[app]=true;loaded[app]=true;syncApp(app);
-    if(pending[app]){tell(app,{__farmaco:1,type:'route',hash:pending[app]});pending[app]='';}
+  if((d.__farmaco===1&&d.type==='ready')||d.__fusion==='ready')hello(app);
+  else if(d.__farmaco===1&&d.type==='painted'){if(d.theme===theme)reveal(app);if(app==='flashcard')queueTable();}
+  else if(d.__farmaco===1&&d.type==='view'&&app==='flashcard'&&typeof d.hash==='string'&&/^#(?:dash|study|browse|stats)$/.test(d.hash)){
+    /* vista cambiata dentro le flashcard: barra e indirizzo dello shell la seguono, senza nuove voci di cronologia */
+    sent[app]=d.hash;
+    if(cur.app===app){cur={app,hash:d.hash};marks(app,d.hash);if(location.hash!==hashFor(app,d.hash))history.replaceState(null,'',hashFor(app,d.hash));}
+    else lastCards={app,hash:d.hash};
   }
   else if(d.__farmaco===1&&d.type==='navigate'&&typeof d.path==='string'&&typeof d.hash==='string'&&d.hash.length<500){const to=PATHS[d.path.split('?')[0]];if(to)go(to,d.hash,true,true);}
   else if(d.__fusion==='open-flashcard'&&typeof d.card==='string'&&/^[\w-]+$/.test(d.card))go('flashcard','#card='+d.card,true,true);
@@ -590,7 +616,11 @@ if(osDark.addEventListener)osDark.addEventListener('change',followOs);else if(os
 const syncTheme=()=>{const t=savedTheme();themeAuto=!t;setTheme(t||osTheme());};
 addEventListener('storage',e=>{if((e.key==='cr-theme'||e.key===null)&&!/[?&]embed=1(?:&|#|$)/.test(e.url||''))syncTheme();});
 addEventListener('pageshow',e=>{if(e.persisted)syncTheme();});
-$('#lang').addEventListener('click',()=>{lang=lang==='it'?'en':'it';store('cr-lang',lang);applyChrome();Object.keys(frames).forEach(syncApp);});
+function setLang(l){if(l===lang)return;lang=l;applyChrome();Object.keys(frames).forEach(syncApp);}
+$('#lang').addEventListener('click',()=>{const l=lang==='it'?'en':'it';store('cr-lang',l);setLang(l);});
+/* lingua scelta in un'altra scheda o in un'app aperta da sola */
+addEventListener('storage',e=>{if(e.key==='cr-lang'||e.key===null){const l=savedLang();if(l)setLang(l);}});
+addEventListener('pageshow',e=>{if(e.persisted){const l=savedLang();if(l)setLang(l);}});
 function measure(){root.style.setProperty('--top-h',top_.offsetHeight+'px');if(ti>=0)requestAnimationFrame(place);}
 new ResizeObserver(measure).observe(top_);
 
@@ -619,14 +649,23 @@ function renderHome(){
 addEventListener('storage',e=>{if(e.key==='farmaco-srs-v1'&&cur.app==='home')renderHome();});
 
 /* ---------- Novità ---------- */
-let NEWS=null,newsState='idle',filter='all';
-async function loadNews(){
+let NEWS=null,newsState='idle',newsFrom='',filter='all';
+/* Fonte: in http(s) la copia accanto alla pagina, poi il sito pubblicato; da file:// subito il sito pubblicato
+   (consente la lettura a ogni origine). Se nessuna risponde: l'ultima copia buona salvata, altrimenti un messaggio chiaro. */
+const FEED='https://mutablewarp.github.io/farmacoflash/novita.json',NEWS_KEY='ff-news-cache';
+async function getFeed(u){const r=await fetch(u,{cache:'no-cache'});if(!r.ok)throw new Error(r.status);const j=await r.json();if(!j||!Array.isArray(j.items))throw new Error('schema');return j;}
+function loadNews(){
   if(newsState!=='idle')return;
-  if(!/^https?:$/.test(location.protocol)){newsState='offline';return refreshNews();}
   newsState='loading';
-  try{const r=await fetch('novita.json',{cache:'no-cache'});if(!r.ok)throw new Error(r.status);NEWS=await r.json();if(!NEWS||!Array.isArray(NEWS.items))throw new Error('schema');newsState='ok';}
-  catch(e){newsState='error';}
-  refreshNews();
+  (async()=>{
+    for(const u of /^https?:$/.test(location.protocol)?['novita.json',FEED]:[FEED]){
+      try{NEWS=await getFeed(u);newsState='ok';newsFrom=u===FEED&&/^https?:$/.test(location.protocol)?'site':'';break;}catch(e){}
+    }
+    if(newsState==='ok')store(NEWS_KEY,JSON.stringify(NEWS));
+    else{let c=null;try{c=JSON.parse(localStorage.getItem(NEWS_KEY)||'null')}catch(e){}
+      if(c&&Array.isArray(c.items)){NEWS=c;newsState='ok';newsFrom='cache';}else newsState='error';}
+    refreshNews();
+  })();
 }
 function refreshNews(){if(cur.app==='home')paintNews($('#home-news'),3);if(cur.app==='news')renderNews();updateBadge();}
 const safeUrl=u=>/^https?:\/\//i.test(String(u||''))?String(u):'';
@@ -648,8 +687,10 @@ function newsItem(it){
 }
 function paintNews(list,max){
   list.replaceChildren();
-  if(newsState==='idle'||newsState==='loading'){loadNews();list.append(Object.assign(document.createElement('p'),{className:'empty',textContent:T('loading')}));return;}
-  if(newsState!=='ok'){list.append(Object.assign(document.createElement('p'),{className:'empty',textContent:T(newsState==='offline'?'offline':'error')}));return;}
+  loadNews();
+  if(newsState==='loading'){list.append(Object.assign(document.createElement('p'),{className:'empty',textContent:T('loading')}));return;}
+  if(newsState!=='ok'){const p=Object.assign(document.createElement('p'),{className:'empty',textContent:T('error')+' '}),b=Object.assign(document.createElement('button'),{type:'button',className:'link',textContent:T('retry')});
+    b.addEventListener('click',()=>{newsState='idle';refreshNews();});p.append(b);list.append(p);return;}
   let items=NEWS.items;
   if(filter==='mine'&&!max)items=items.filter(linked);
   else if(filter!=='all'&&!max)items=items.filter(it=>it.kind===filter);
@@ -662,7 +703,7 @@ function renderNews(){
   $$('[data-f]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.f===filter));
   const meta=$('#news-meta'),src=$('#news-sources');meta.textContent='';src.textContent='';
   if(newsState!=='ok')return;
-  if(NEWS.generated){const d=new Date(NEWS.generated);if(!isNaN(d))meta.textContent=T('updated')+' '+d.toLocaleString(lang==='en'?'en-GB':'it-IT',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});}
+  if(NEWS.generated){const d=new Date(NEWS.generated);if(!isNaN(d))meta.textContent=T('updated')+' '+d.toLocaleString(lang==='en'?'en-GB':'it-IT',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'})+(newsFrom==='site'?' · '+T('from_site'):newsFrom==='cache'?' · '+T('from_cache'):'');}
   if(Array.isArray(NEWS.sources))src.textContent=T('sources')+': '+NEWS.sources.map(s=>String(s.name||s.id)+(s.ok?'':' ('+T('src_err')+')')).join(' · ');
 }
 $$('[data-f]').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.f;renderNews();}));
@@ -735,8 +776,22 @@ $('#tour-start').addEventListener('click',tourOpen);
 applyChrome();
 restore();
 loadNews();
-const prewarm=()=>{if(!frames.flashcard.getAttribute('src'))boot('flashcard','');};
-window.requestIdleCallback?requestIdleCallback(prewarm,{timeout:4000}):setTimeout(prewarm,2500);
+/* Precaricamento: le flashcard (su Oggi) appena la pagina è disegnata; la tabella dei nomi dopo che le flashcard
+   sono pronte. Su telefono, o con risparmio dati, la tabella aspetta il primo tocco (o 6 s), così il primo avvio resta leggero.
+   L'atlante 3D si carica quando lo si apre. */
+const idle=(fn,t)=>window.requestIdleCallback?requestIdleCallback(fn,{timeout:t}):setTimeout(fn,300);
+const prewarm=(app,hash)=>{if(!frames[app].getAttribute('src'))boot(app,hash);};
+let tableQueued=false;
+function queueTable(){
+  if(tableQueued)return;tableQueued=true;
+  const light=matchMedia('(pointer: coarse)').matches,save=!!(navigator.connection&&navigator.connection.saveData);
+  const start=()=>{removeEventListener('pointerdown',start,true);removeEventListener('keydown',start,true);idle(()=>prewarm('catalog',''),3000);};
+  if(!light&&!save)return start();
+  addEventListener('pointerdown',start,true);addEventListener('keydown',start,true);
+  if(!save)setTimeout(start,6000);
+}
+const warm=()=>idle(()=>prewarm('flashcard','#dash'),1500);
+document.readyState==='complete'?warm():addEventListener('load',warm,{once:true});
 try{if(!localStorage.getItem('ff-tour-v2')&&cur.app==='home')setTimeout(tourOpen,700);}catch(e){}
 if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 </script>

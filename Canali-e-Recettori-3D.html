@@ -15,7 +15,14 @@
 }}
 </script>
 <!-- embed (?embed=1, dentro index.html): classe impostata subito, così la testata compatta non "salta" dopo il caricamento di Three.js -->
-<script>if(/[?&]embed=1(?:&|$)/.test(location.search))document.documentElement.classList.add('embed');</script>
+<script>if(/[?&]embed=1(?:&|$)/.test(location.search))document.documentElement.classList.add('embed');
+/* messaggi con lo shell (index.html): da file:// le pagine hanno origine opaca ('null') mentre location.origin vale
+   'file://'; lì si invia con '*' e si accetta solo ciò che arriva dalla finestra parent. In http(s) origine stretta. */
+(function(){var L=location.protocol==='file:'||location.origin==='null',last=['',-1e9];
+window.__ffTarget=L?'*':location.origin;
+window.__ffFromShell=function(e){return e.source===parent&&(L?(e.origin==='null'||e.origin==='file://'):e.origin===location.origin);};
+/* la stessa rotta arriva per hashchange (lo shell sostituisce l'hash) e per messaggio: si esegue una volta sola */
+window.__ffGate=function(h){try{h=new URL(h,location.href).hash;}catch(e){}var n=performance.now();if(h===last[0]&&n-last[1]<1000)return false;last=[h,n];return true;};})();</script>
 <!-- tema prima del primo disegno (niente lampo): tema salvato 'cr-theme' (condiviso con index.html), altrimenti quello del sistema -->
 <script>(function(){var t;try{t=localStorage.getItem('cr-theme')}catch(e){}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;})();</script>
 <style>
@@ -5258,7 +5265,7 @@ function setLang(lang){
   LANG=lang;
   C = lang==='en'?C_EN:C_IT; DIFFS = lang==='en'?DIFFS_EN:DIFFS_IT; EXAM = lang==='en'?EXAM_EN:EXAM_IT;
   document.documentElement.lang = lang;
-  try{localStorage.setItem('cr-lang',lang);}catch(e){}
+  if(!document.documentElement.classList.contains('embed')) try{localStorage.setItem('cr-lang',lang);}catch(e){} // nello shell la salva lo shell
   const lb=document.getElementById('btn-lang'); if(lb) lb.textContent=(lang==='en'?'IT':'EN');
   applyLangUI();
   buildChips(); buildTable(); buildDiffs(); buildExam(); buildGProtTable(); buildInteractions(); buildAntibiotics(); buildDrugTable(); buildClassif();
@@ -5401,7 +5408,7 @@ function dlApply(hash){
 }
 document.getElementById('dl-x').onclick=function(){ dl=null; dlRender(); dlMark(false); };
 document.addEventListener('input',function(e){ if(e.target&&e.target.id==='fam-search'&&dl&&dl.kind==='q'){ dl=null; dlRender(); } });
-addEventListener('hashchange',()=>dlApply());
+addEventListener('hashchange',()=>{ if(/^#(?:card|target|q)=/.test(location.hash)&&!window.__ffGate(location.hash)) return; dlApply(); });
 
 buildChips();
 buildTable();
@@ -5436,7 +5443,7 @@ document.getElementById('btn-lang').onclick=function(){ setLang(LANG==='en'?'it'
   applyTheme(document.documentElement.dataset.theme==='dark'?'dark':'light', false);
   if(!document.documentElement.classList.contains('embed')){ /* da sola: segue anche le scelte fatte in altre schede o app */ addEventListener('storage',e=>{ if(e.key==='cr-theme'||e.key===null){ const v=e.key?e.newValue:null; applyTheme(v==='dark'||v==='light'?v:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'), false); } }); }
   if(!document.documentElement.classList.contains('embed')&&window.matchMedia){ const mq=matchMedia('(prefers-color-scheme: dark)'); const f=e=>{ let s2=null; try{ s2=localStorage.getItem('cr-theme'); }catch(_){} if(s2!=='light'&&s2!=='dark') applyTheme(e.matches?'dark':'light', false); }; if(mq.addEventListener) mq.addEventListener('change',f); else if(mq.addListener) mq.addListener(f); }
-  let lg='it'; try{lg=localStorage.getItem('cr-lang')||'it';}catch(e){} if(lg==='en') setLang('en'); })();
+  let lg='it'; try{lg=localStorage.getItem('cr-lang'); if(lg!=='it'&&lg!=='en') lg=localStorage.getItem('farmaco-lang');}catch(e){} if(lg==='en') setLang('en'); })();
 if(location.hash) dlApply(); // deep link all'apertura (standalone o iframe con hash)
 window.showOverview=showOverview; // esposto per l'handler inline del pannello
 /* delega: clic su un farmaco → scheda "come agisce sul canale"; bottone → apri canale 3D */
@@ -5460,30 +5467,63 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDrugM
   st.textContent='.embed .hdr-ctl{display:none!important}';
   (document.head||document.documentElement).appendChild(st);
   document.documentElement.classList.add('embed'); // già impostata in <head>; ripetuta per sicurezza
-  function send(m){ try{ parent.postMessage(m,location.origin==='null'?'*':location.origin); }catch(_){ } }
+  function send(m){ try{ parent.postMessage(m,window.__ffTarget); }catch(_){ } }
+  var linked=false; // lo shell ha risposto: i link passano da lui
+  /* tema e lingua: li decide lo shell ('appearance'); in più si seguono le chiavi condivise cr-theme / cr-lang
+     ('storage', ritorno alla pagina), così anche un messaggio perso converge */
+  var osDark=window.matchMedia?matchMedia('(prefers-color-scheme: dark)'):null;
+  function readTheme(){ var t; try{ t=localStorage.getItem('cr-theme'); }catch(_){ return null; } return t==='dark'||t==='light'?t:(osDark&&osDark.matches?'dark':'light'); }
+  function readLang(){ var l; try{ l=localStorage.getItem('cr-lang'); if(l!=='it'&&l!=='en') l=localStorage.getItem('farmaco-lang'); }catch(_){ return null; } return l==='en'?'en':'it'; }
+  function appear(th,lg){
+    if((th==='light'||th==='dark')&&document.documentElement.dataset.theme!==th){ try{ applyTheme(th,false); }catch(_){ } }
+    if((lg==='it'||lg==='en')&&lg!==LANG){ try{ setLang(lg); }catch(_){ } } // stessa lingua: niente ricostruzione (perderebbe ricerca e deep link)
+  }
+  /* 'painted': disegnato nel tema giusto, transizioni finite; lo shell mostra l'iframe solo allora */
+  var paintSeq=0;
+  function painted(){
+    var n=++paintSeq, done=false;
+    function fire(){
+      if(done||n!==paintSeq) return; done=true;
+      var run=document.getAnimations?document.getAnimations().filter(function(a){ return a.playState==='running'&&'transitionProperty' in a; }):[];
+      function out(){ if(n===paintSeq) send({__farmaco:1,type:'painted',app:'canali',theme:document.documentElement.dataset.theme,lang:LANG,hash:location.hash}); }
+      if(!run.length) return out();
+      Promise.race([Promise.all(run.map(function(a){ return a.finished.catch(function(){}); })),new Promise(function(r){ setTimeout(r,400); })]).then(out);
+    }
+    requestAnimationFrame(function(){ requestAnimationFrame(fire); }); setTimeout(fire,120); // in un iframe nascosto rAF può non girare
+  }
+  function reread(){ if(!document.hidden) appear(readTheme(),readLang()); }
+  addEventListener('storage',function(e){ if(e.key===null||e.key==='cr-theme'||e.key==='cr-lang') appear(readTheme(),readLang()); });
+  if(osDark){ var f=function(){ appear(readTheme(),null); }; if(osDark.addEventListener) osDark.addEventListener('change',f); else if(osDark.addListener) osDark.addListener(f); }
+  addEventListener('pageshow',reread);
+  document.addEventListener('visibilitychange',reread);
+  /* link verso le carte o la tabella senza risposta dallo shell: si apre lo shell stesso su quell'app */
+  function openInShell(app,hash){ try{ parent.location.href=new URL('index.html#'+app+'/'+encodeURIComponent(hash),location.href).href; }catch(_){ } }
   window.addEventListener('message', function(e){
-    if(e.source!==parent||e.origin!==location.origin)return;
+    if(!window.__ffFromShell(e))return;
     var d=e.data; if(!d||typeof d!=='object') return;
-    /* protocollo src/bridge.js: route verso #card= / #target= / #q= (stessa validazione del bridge) */
+    linked=true;
+    /* protocollo src/bridge.js: tema e lingua, route verso #card= / #target= / #q= (stessa validazione del bridge) */
     if(d.__farmaco===1){
-      if(d.type==='route'&&typeof d.hash==='string'&&d.hash.length<500&&/^#(?:card|target|q)=/.test(d.hash)){
-        try{ history.replaceState(history.state,'',d.hash); }catch(_){ }
+      if(d.type==='appearance'){ appear(d.theme,d.lang); painted(); }
+      else if(d.type==='route'&&typeof d.hash==='string'&&d.hash.length<500&&/^#(?:card|target|q)=/.test(d.hash)&&window.__ffGate(d.hash)){
+        try{ if(location.hash!==new URL(d.hash,location.href).hash) history.replaceState(history.state,'',d.hash); }catch(_){ }
         dlApply(d.hash);
       }
-      return; // 'appearance' è già coperto dai messaggi __fusion theme/lang inviati insieme
+      return;
     }
     if(!d.__fusion) return;
     if(d.__fusion==='visibility'){sceneVisible=d.value===true;if(!sceneVisible)stopTour();resumeAnimation();return;}
     if(d.__fusion==='theme'&&!['light','dark'].includes(d.value))return;
     if(d.__fusion==='lang'&&!['it','en'].includes(d.value))return;
-    if(d.__fusion==='theme'){ try{ applyTheme(d.value,false); }catch(_){ } } // la shell salva già la scelta: qui si applica soltanto
-    else if(d.__fusion==='lang'){ try{ if(d.value!==LANG) setLang(d.value); }catch(_){ } } // stessa lingua: niente ricostruzione (perderebbe ricerca e deep link)
+    if(d.__fusion==='theme') appear(d.value,null); // la shell salva già la scelta: qui si applica soltanto
+    else if(d.__fusion==='lang') appear(null,d.value);
   });
   document.addEventListener('click', function(e){
     var a=e.target&&e.target.closest&&e.target.closest('a#dm-flash, a.ff-link, a.ff-mini');
     if(!a) return;
     e.preventDefault(); e.stopPropagation();
     var href=a.getAttribute('href')||''; var m=href.match(/[#&]card=([^&]+)/);
+    if(!linked){ var id=m?decodeURIComponent(m[1]):''; if(/^[\w-]+$/.test(id)) openInShell('flashcard','#card='+id); return; }
     send({__fusion:'open-flashcard', card: m?decodeURIComponent(m[1]):null});
   }, true);
   /* "📋 Tabella" → lo shell apre Tabella-Farmaci.html con #q=<nome> */
@@ -5492,10 +5532,11 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDrugM
     if(!a) return;
     e.preventDefault(); e.stopPropagation();
     var href=a.getAttribute('href')||''; var i=href.indexOf('#'); var hash=i>=0?href.slice(i):'';
-    if(/^#q=/.test(hash)&&hash.length<500) send({__farmaco:1,type:'navigate',path:'Tabella-Farmaci.html',hash:hash});
+    if(/^#q=/.test(hash)&&hash.length<500){ if(linked) send({__farmaco:1,type:'navigate',path:'Tabella-Farmaci.html',hash:hash}); else openInShell('catalog',hash); }
   }, true);
   /* un solo messaggio valido per entrambi i protocolli: lo shell lo gestisce una volta sola */
-  send({__farmaco:1,type:'ready',app:'canali',__fusion:'ready'});
+  appear(readTheme(),readLang());
+  send({__farmaco:1,type:'ready',app:'canali',__fusion:'ready',theme:document.documentElement.dataset.theme,lang:LANG,hash:location.hash});
 })();
 
 /* ═══ slot header: inizio (solo il suo agente) ═══ */
@@ -6454,7 +6495,7 @@ var A3=(function(){
   }
   function kick(){ if(!raf&&canRun()){ last=performance.now(); raf=requestAnimationFrame(frame); } }
   document.addEventListener('visibilitychange',()=>{ if(!document.hidden) kick(); });
-  window.addEventListener('message',e=>{ if(e.source!==window.parent||e.origin!==location.origin) return; const d=e.data;
+  window.addEventListener('message',e=>{ if(!window.__ffFromShell(e)) return; const d=e.data;
     if(d&&typeof d==='object'&&d.__fusion==='visibility'){ shellVisible=d.value===true; if(shellVisible) kick(); } });
   new MutationObserver(()=>{themeApply(); for(const id in stages) stages[id].renderNow();}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
   const onRM=()=>{for(const id in stages){const s=stages[id];s.playing=!RM.matches;s.root.classList.toggle('a3-rm',!!RM.matches);s.ui();if(RM.matches)s.go(s.k);} kick();};
@@ -8381,7 +8422,7 @@ let rzT=0;
 window.addEventListener('resize',()=>{ clearTimeout(rzT); rzT=setTimeout(()=>{ if(cur){ const wasSheet=cur.panel.classList.contains('is-sheet'); place(); if(wasSheet!==isSheet()&&!isSheet()) cur.panel.scrollIntoView({block:'nearest'}); } },120); });
 document.addEventListener('visibilitychange',()=>{ if(document.hidden&&cur&&cur.playing) setPlaying(false); });
 if(/[?&]embed=1(?:&|$)/.test(location.search)) window.addEventListener('message',e=>{
-  if(e.source!==parent||e.origin!==location.origin) return;
+  if(!window.__ffFromShell(e)) return;
   const d=e.data; if(!d||typeof d!=='object'||d.__fusion!=='visibility') return;
   if(d.value!==true&&cur&&cur.playing) setPlaying(false); // iframe nascosta dallo shell: la scena si ferma dov'è
 });
