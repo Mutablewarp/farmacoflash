@@ -1,6 +1,6 @@
 // Offline per l'app installata. Pagine e dati: rete prima (versione sempre aggiornata),
 // copia in cache come riserva senza connessione. Librerie CDN versionate: cache prima.
-const CACHE = 'ff-v2';
+const CACHE = 'ff-v3';
 const CORE = ['./', 'index.html', 'Flashcard-Farmacologia.html', 'Tabella-Farmaci.html',
   'Canali-e-Recettori-3D.html', 'manifest.webmanifest', 'assets/icon.svg', 'assets/icon-180.png', 'assets/icon-512.png'];
 const CDN = /^(unpkg\.com|fonts\.googleapis\.com|fonts\.gstatic\.com)$/;
