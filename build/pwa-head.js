@@ -1,23 +1,10 @@
-// Genera il blocco <head> PWA/iOS (meta + apple-touch-icon PNG + manifest) da
-// incorporare nei file single-file. Usato da build.js e table.js via
-// placeholder __PWA_HEAD__. Icone embeddate come data: URI (resta single-file).
-const fs = require('fs'), path = require('path');
-const b64 = p => fs.readFileSync(path.join(__dirname, p)).toString('base64');
-
+// Genera il blocco <head> PWA/iOS (meta + apple-touch-icon + manifest) dei due HTML generati.
+// Usato da build.js e table.js via placeholder __PWA_HEAD__.
+// Icone e manifest sono file accanto all'HTML (assets/, manifest.webmanifest), non data: URI:
+// dentro lo shell (iframe) non servono e prima pesavano ~140 KB gzip per documento; da file:// e da https
+// i percorsi relativi funzionano lo stesso e il service worker li tiene in cache.
 function pwaHead(o) {
   const theme = o.theme || '#f3f0e9';
-  const i180 = 'data:image/png;base64,' + b64('icon-180.png');
-  const i512 = 'data:image/png;base64,' + b64('icon-512.png');
-  const manifest = {
-    name: o.name, short_name: o.title, display: 'standalone', orientation: 'portrait',
-    background_color: theme, theme_color: theme,
-    icons: [
-      { src: i512, sizes: '512x512', type: 'image/png', purpose: 'any' },
-      { src: i512, sizes: '512x512', type: 'image/png', purpose: 'maskable' },
-      { src: i180, sizes: '180x180', type: 'image/png' }
-    ]
-  };
-  const man = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifest));
   return [
     '<meta name="theme-color" content="' + theme + '">',
     '<meta name="mobile-web-app-capable" content="yes">',
@@ -26,9 +13,9 @@ function pwaHead(o) {
     '<meta name="apple-mobile-web-app-title" content="' + o.title + '">',
     '<meta name="application-name" content="' + o.title + '">',
     '<meta name="format-detection" content="telephone=no">',
-    '<link rel="apple-touch-icon" href="' + i180 + '">',
-    '<link rel="icon" type="image/png" sizes="512x512" href="' + i512 + '">',
-    '<link rel="manifest" href="' + man + '">'
+    '<link rel="apple-touch-icon" href="assets/icon-180.png">',
+    '<link rel="icon" type="image/svg+xml" href="assets/icon.svg">',
+    '<link rel="manifest" href="manifest.webmanifest">'
   ].join('\n');
 }
 module.exports = { pwaHead };

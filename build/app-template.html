@@ -7,7 +7,7 @@
 __PWA_HEAD__
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>/* tema + embed applicati prima del primo paint: tema salvato (cr-theme), altrimenti quello del sistema.
    Migrazione una tantum: le versioni precedenti salvavano 'light' a ogni avvio, anche senza una scelta;
    quel valore si toglie una volta sola, così da qui in poi si segue il sistema finché non si sceglie. */(function(){var r=document.documentElement,t=null;try{if(!localStorage.getItem('cr-theme-mig')){if(localStorage.getItem('cr-theme')==='light')localStorage.removeItem('cr-theme');localStorage.setItem('cr-theme-mig','1');}}catch(e){}try{t=localStorage.getItem('cr-theme');}catch(e){}if(t!=='dark'&&t!=='light')t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';r.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='dark'?'#13110d':'#f3f0e9');if(/[?&]embed=1/.test(location.search))r.classList.add('embed');})();</script>
@@ -62,6 +62,7 @@ __PWA_HEAD__
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{font-family:var(--font-body);font-size:16px;line-height:1.6;color:var(--ink);background:var(--bg);min-height:100vh;min-height:100dvh;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:transparent;text-rendering:optimizeLegibility}
+b,strong,th{font-weight:600} /* il disegno si ferma a 600; il foglio dei caratteri condiviso con lo shell include Archivo 700, che renderebbe <b> e <th> più pesanti */
 ::selection{background:var(--gold-line);color:var(--ink)}
 a{color:var(--gold)}
 button,input,select{font:inherit;color:inherit}
@@ -467,11 +468,12 @@ body:has(.gradebar.show) .toast{bottom:calc(100px + env(safe-area-inset-bottom))
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script type="application/json" id="ff-data">__DATA_JSON__</script>
 <script>__CORE_JS__</script>
 <script>
 /* ============================ DATI ============================ */
-function decodeData(b64){return JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(b64),c=>c.charCodeAt(0))));}
-const DATA = decodeData("__DATA_B64__");
+/* JSON puro in un blocco dati (build/build.js): un solo JSON.parse, niente base64 da decodificare carattere per carattere */
+const DATA = (()=>{const el=document.getElementById('ff-data'),d=JSON.parse(el.textContent);el.remove();return d;})();
 const CARDS = DATA.cards, DECKS = DATA.decks;
 const CARD_BY_ID = {}; CARDS.forEach(c=>CARD_BY_ID[c.id]=c);
 const DECK_BY_ID = {}; DECKS.forEach(d=>DECK_BY_ID[d.id]=d);
@@ -480,12 +482,14 @@ const ATLAS_CARDS=new Set(__ATLAS_CARDS__);                                // ca
 // colori stabili: i mazzi G (principi generali) hanno un colore proprio e non spostano quelli degli altri
 let _ci=0;DECKS.forEach(d=>d.color=/^G\d/.test(d.id)?'#7d6f55':DECK_COLORS[_ci++%DECK_COLORS.length]);
 const norm=s=>(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-CARDS.forEach(c=>{
+/* testo di ricerca di Sfoglia: calcolato alla prima ricerca, non all'avvio (normalizzare ~1.8 MB di testo costa centinaia di ms sui telefoni lenti) */
+function searchText(c){
   const parts=[c.name]; c.segments.forEach(s=>parts.push(s.value)); (c.freetext||[]).forEach(f=>parts.push(f));
   if(c.memo)parts.push(c.memo);
   if(c.en){parts.push(c.en.name);(c.en.segments||[]).forEach(s=>parts.push(s.value));(c.en.freetext||[]).forEach(f=>parts.push(f));if(c.en.memo)parts.push(c.en.memo);}
-  c._search=norm(parts.join(' '));
-});
+  return norm(parts.join(' '));
+}
+CARDS.forEach(c=>Object.defineProperty(c,'_search',{configurable:true,get(){const v=searchText(c);Object.defineProperty(c,'_search',{value:v,configurable:true});return v;}}));
 
 /* ============================ i18n ============================ */
 /* lingua: chiave unica cr-lang, condivisa con lo shell, la tabella e l'atlante; farmaco-lang (vecchia chiave) vale solo se cr-lang manca */
@@ -1130,7 +1134,9 @@ function applyHash(){let h;try{h=decodeURIComponent(location.hash.replace(/^#/,'
 window.addEventListener('hashchange',()=>{if(!window.FarmacoBridge)applyHash();});
 $('#search').addEventListener('input',()=>{browseMark=null;applyBrowse();});
 window.addEventListener('resize',fitGradeClearance);
-applyStaticStrings();renderDash();$('#streakN').textContent=streak();applyHash();loadNovita();
+applyStaticStrings();renderDash();$('#streakN').textContent=streak();applyHash();
+/* il feed Novità (solo da sola: nello shell arriva dallo shell) non serve al primo disegno: si chiede subito dopo */
+requestAnimationFrame(()=>setTimeout(loadNovita,0));
 
 /* tema chiaro/scuro condiviso con lo shell e l'app 3D (chiave cr-theme).
    Si salva solo una scelta esplicita: senza scelta si segue il sistema (prefers-color-scheme).

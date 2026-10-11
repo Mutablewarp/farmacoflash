@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 /**
  * Build finale: cards.json + memo/*.json (memofrasi) + enrichments.json → Flashcard-Farmacologia.html
- * I dati sono iniettati come base64 dell'UTF-8 del JSON (zero problemi di escape/HTML).
+ * I dati sono iniettati come JSON puro in <script type="application/json" id="ff-data">: comprime con gzip
+ * molto meglio del base64 (~-300 KB) e il browser lo legge con un solo JSON.parse, senza decodifica carattere per carattere.
+ * Escape: '<' → \u003c (niente </script> o <!-- nel blocco), U+2028/2029 per sicurezza.
  */
 'use strict';
 const fs = require('fs');
@@ -87,13 +89,13 @@ const atlasRaw = readJsonIfExists(path.join(BUILD, 'atlas-cards.json'));
 const atlasCards = [...new Set((Array.isArray(atlasRaw) ? atlasRaw : []).filter(id => typeof id === 'string' && byId.has(id)))].sort();
 
 const tpl = fs.readFileSync(path.join(BUILD, 'app-template.html'), 'utf8');
-const b64 = Buffer.from(JSON.stringify(data), 'utf8').toString('base64');
+const json = JSON.stringify(data).replace(/</g, '\\u003c').replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
 fs.writeFileSync(OUT, tpl
   .replace('__PWA_HEAD__', pwaHead({ name: 'FarmacoFlash · Flashcard di Farmacologia', title: 'FarmacoFlash' }))
-  .replace('__DATA_B64__', b64)
   .replace('__ATLAS_CARDS__', () => JSON.stringify(atlasCards).replace(/</g, '\\u003c'))
   .replace('__CORE_JS__',()=>fs.readFileSync(path.join(ROOT,'src/core.js'),'utf8'))
-  .replace('__BRIDGE_JS__',()=>fs.readFileSync(path.join(ROOT,'src/bridge.js'),'utf8')));
+  .replace('__BRIDGE_JS__',()=>fs.readFileSync(path.join(ROOT,'src/bridge.js'),'utf8'))
+  .replace('__DATA_JSON__', () => json));   // per ultimo: un segnaposto dentro i dati non verrebbe mai sostituito
 
 const sizeMB = (fs.statSync(OUT).size / 1024 / 1024).toFixed(2);
 console.log(`✓ Scritto ${path.basename(OUT)}  (${sizeMB} MB)`);
