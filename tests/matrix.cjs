@@ -291,6 +291,23 @@ async function run(browserName, mode, base, vp) {
   await new Promise(res => setTimeout(res, 300));
   assert.equal(feedHits, 1, 'news feed downloaded ' + feedHits + ' times per load');
   step('Novità ok, one download, card notices');
+  // 8a. App ripresa dopo 30 minuti o più (l'app installata resta in memoria per giorni): il feed si riscarica una
+  //     volta, il vecchio resta visibile nel frattempo, le flashcard ricevono il nuovo
+  const oldFeed = await page.evaluate(() => { window.__oldFeed = NEWS; return !!NEWS; });
+  assert(oldFeed, 'feed loaded before resume');
+  await page.evaluate(() => {
+    const vs = v => Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => v });
+    vs('hidden'); document.dispatchEvent(new Event('visibilitychange'));
+    const now = Date.now; Date.now = () => now() + 31 * 60e3;
+    try { vs('visible'); document.dispatchEvent(new Event('visibilitychange')); } finally { Date.now = now; delete document.visibilityState; }
+  });
+  assert.equal((await H.shell()).news, 'ok', 'old feed stays visible while reloading');
+  await until('feed reloaded on resume', async () => feedHits === 2 && !(await page.evaluate(() => newsBusy)));
+  await new Promise(res => setTimeout(res, 300));
+  assert.equal(feedHits, 2, 'feed downloads after resume: ' + feedHits);
+  assert(await page.evaluate(() => NEWS !== window.__oldFeed && newsSent.flashcard === NEWS), 'flashcard did not receive the reloaded feed');
+  await until('card notices after resume', notices);
+  step('resume after 30 min → feed reloaded once, cards updated');
   // offline con una copia salvata: Novità e avvisi sulle carte vengono dalla copia
   feedDown = true;
   await page.reload();
