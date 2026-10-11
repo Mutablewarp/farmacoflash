@@ -723,7 +723,13 @@ let NEWS=null,newsState='idle',newsFrom='',filter='all';
 const FEED='https://mutablewarp.github.io/farmacoflash/novita.json',NEWS_KEY='ff-news-cache';
 async function getFeed(u){const r=await fetch(u,{cache:'no-cache'});if(!r.ok)throw new Error(r.status);const j=await r.json();if(!j||!Array.isArray(j.items))throw new Error('schema');return j;}
 /* again: ricarica al ritorno nell'app (vedi sotto). Il feed già mostrato resta visibile finché arriva il nuovo;
-   se nessuna fonte risponde, resta quello. */
+   se nessuna fonte risponde, resta quello.
+   Il sito pubblicato si prova solo se la copia locale ha risposto male (404, JSON rotto). Se la richiesta non ha avuto
+   risposta (TypeError: rete assente, oppure pagina che si ricarica o cambia indirizzo e annulla la richiesta) il sito
+   non risponderebbe comunque: si passa subito alla copia salvata. Altrimenti WebKit, che annulla con lo stesso
+   «Load failed» della rete assente, rifiuterebbe la richiesta al sito partita dalla pagina che si chiude e la
+   registrerebbe come errore della pagina («… novita.json due to access control checks»). */
+const noAnswer=e=>!!e&&(e.name==='TypeError'||e.name==='AbortError');
 let newsBusy=false;
 function loadNews(again){
   if(newsBusy||(newsState!=='idle'&&!again))return;
@@ -732,7 +738,7 @@ function loadNews(again){
   (async()=>{
     let got=null,from='';
     for(const u of /^https?:$/.test(location.protocol)?['novita.json',FEED]:[FEED]){
-      try{got=await getFeed(u);from=u===FEED?'site':'';break;}catch(e){}
+      try{got=await getFeed(u);from=u===FEED?'site':'';break;}catch(e){if(noAnswer(e))break;}
     }
     newsBusy=false;
     if(got){NEWS=got;newsState='ok';newsFrom=from;store(NEWS_KEY,JSON.stringify(NEWS));}

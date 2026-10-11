@@ -706,7 +706,10 @@ function novitaSlot(id){return `<div class="novita" data-card="${esc(id)}" role=
 function fillNovita(){$$('.novita[data-card]').forEach(el=>{el.innerHTML=novitaHTML(el.dataset.card);});}
 /* Dentro lo shell il feed lo scarica solo lo shell e lo passa qui (messaggio 'news' di bridge.js): una richiesta
    sola, e senza rete arriva la copia che lo shell ha salvato. Da sola: la copia accanto alla pagina (http), poi il
-   sito pubblicato; se nessuno risponde, l'ultima copia buona (chiave ff-news-cache, la stessa dello shell). */
+   sito pubblicato; se nessuno risponde, l'ultima copia buona (chiave ff-news-cache, la stessa dello shell).
+   Come nello shell, il sito si prova solo se la copia locale ha risposto male (404, JSON rotto): una richiesta senza
+   risposta (TypeError: offline, o pagina che si ricarica) passa subito alla copia salvata, così WebKit non registra
+   come errore della pagina una richiesta al sito partita mentre la pagina si chiude. */
 const NEWS_KEY='ff-news-cache';
 function setNovita(j){
   if(!j||!Array.isArray(j.items))return false;
@@ -725,7 +728,8 @@ function loadNovita(){
     if(typeof fetch!=='function')return cached();
     const get=u=>fetch(u,{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>j&&Array.isArray(j.items)?j:Promise.reject());
     const FEED='https://mutablewarp.github.io/farmacoflash/novita.json';
-    (/^https?:$/.test(location.protocol)?get('novita.json').catch(()=>get(FEED)):get(FEED)).then(j=>{
+    const noAnswer=e=>!!e&&(e.name==='TypeError'||e.name==='AbortError');
+    (/^https?:$/.test(location.protocol)?get('novita.json').catch(e=>noAnswer(e)?Promise.reject(e):get(FEED)):get(FEED)).then(j=>{
       if(setNovita(j))try{localStorage.setItem(NEWS_KEY,JSON.stringify(j));}catch(e){}
     }).catch(cached);
   }catch(e){cached();}

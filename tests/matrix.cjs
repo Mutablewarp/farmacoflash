@@ -93,13 +93,16 @@ async function run(browserName, mode, base, vp) {
   const browser = await launch(browserName);
   const ctx = await browser.newContext({ ...VP[vp], serviceWorkers: 'block' });
   const mobile = vp === 'mobile';
-  let feedDown = false, feedHits = 0;
-  ctx.on('request', q => { if (/novita\.json(?:$|\?)/.test(q.url())) feedHits++; });
+  let feedDown = false, feedHits = 0, feedSlow = 0, siteHits = 0;
+  ctx.on('request', q => { if (/novita\.json(?:$|\?)/.test(q.url())) feedHits++; if (q.url() === FEED) siteHits++; });
   await ctx.route(url => !/^(file:|http:\/\/127\.0\.0\.1)/.test(url.href), r => {
     if (r.request().url() === FEED && !feedDown) return r.fulfill({ status: 200, headers: { 'access-control-allow-origin': '*', 'content-type': 'application/json' }, body: fs.readFileSync(path.join(ROOT, 'novita.json')) });
     return r.abort();
   });
-  await ctx.route(/127\.0\.0\.1.*novita\.json/, r => feedDown ? r.abort() : r.continue());
+  await ctx.route(/127\.0\.0\.1.*novita\.json/, async r => {
+    if (feedSlow) await new Promise(res => setTimeout(res, feedSlow));
+    try { await (feedDown ? r.abort() : r.continue()); } catch (e) { /* richiesta annullata dalla pagina nel frattempo */ }
+  });
   const page = await ctx.newPage(), problems = [];
   page.on('pageerror', e => problems.push('pageerror: ' + e.message));
   page.on('console', m => { if (/postMessage|Unable to post message|recipient window's origin/i.test(m.text())) problems.push('console: ' + m.text()); });
@@ -144,9 +147,14 @@ async function run(browserName, mode, base, vp) {
 
   // 4. Mazzo dal programma in Inizio, poi Oggi
   await page.click('.brand');
+  // Le flashcard sono già su Sfoglia (passo 3): «v-browse» visibile non prova che la rotta sia arrivata. L'hash
+  // dell'iframe cambia subito, il filtro un compito dopo (hashchange): si aspetta il filtro, non la vista.
   await page.click('[data-go="flashcard:#deck=G1"]');
-  r = await H.showing('flashcard', 'v-browse');
-  assert.equal(await H.frame('flashcard').evaluate(() => browseFilter), 'G1');
+  r = await until('Sfoglia filtered to G1', async () => {
+    await H.showing('flashcard', 'v-browse');
+    const f = await H.frame('flashcard').evaluate(() => browseFilter); return f === 'G1' ? f : { ok: false, f };
+  });
+  assert.equal(r.v, 'G1');
   await page.click('[data-sub="dash"]'); await H.showing('flashcard', 'v-dash');
   step('course deck G1 → Sfoglia');
 
@@ -328,6 +336,19 @@ async function run(browserName, mode, base, vp) {
   await page.click('#news-list button.link');
   await until('news retry', async () => (await H.shell()).news === 'ok');
   step('Novità offline message + retry');
+  // 8b. Ricarica mentre la copia locale si scarica ancora (http): la richiesta annullata non è una fonte giù, quindi la
+  //     pagina che si chiude non chiede il sito pubblicato (WebKit la rifiuterebbe come errore «access control checks»)
+  if (mode === 'http') {
+    feedSlow = 1500;
+    await page.reload();
+    await new Promise(res => setTimeout(res, 300));
+    feedSlow = 0; siteHits = 0;
+    await page.reload();
+    await until('news after reload during download', async () => (await H.shell()).news === 'ok');
+    await new Promise(res => setTimeout(res, 300));
+    assert.equal(siteHits, 0, 'published feed requested by the page being reloaded');
+    step('reload during feed download → no request to the published site');
+  }
 
   assert.deepEqual(problems, [], problems.join('\n'));
   await browser.close();
