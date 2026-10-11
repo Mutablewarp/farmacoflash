@@ -5434,7 +5434,8 @@ document.getElementById('btn-lang').onclick=function(){ setLang(LANG==='en'?'it'
      in embed l'unica fonte è la shell ({__fusion:'theme'}), altrimenti l'atlante cambierebbe tema dentro una shell chiara. */
   let saved=null; try{ saved=localStorage.getItem('cr-theme'); }catch(e){}
   applyTheme(document.documentElement.dataset.theme==='dark'?'dark':'light', false);
-  if(!document.documentElement.classList.contains('embed')&&saved!=='light'&&saved!=='dark'&&window.matchMedia){ const mq=matchMedia('(prefers-color-scheme: dark)'); const f=e=>{ let s2=null; try{ s2=localStorage.getItem('cr-theme'); }catch(_){} if(s2!=='light'&&s2!=='dark') applyTheme(e.matches?'dark':'light', false); }; if(mq.addEventListener) mq.addEventListener('change',f); else if(mq.addListener) mq.addListener(f); }
+  if(!document.documentElement.classList.contains('embed')){ /* da sola: segue anche le scelte fatte in altre schede o app */ addEventListener('storage',e=>{ if(e.key==='cr-theme'||e.key===null){ const v=e.key?e.newValue:null; applyTheme(v==='dark'||v==='light'?v:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'), false); } }); }
+  if(!document.documentElement.classList.contains('embed')&&window.matchMedia){ const mq=matchMedia('(prefers-color-scheme: dark)'); const f=e=>{ let s2=null; try{ s2=localStorage.getItem('cr-theme'); }catch(_){} if(s2!=='light'&&s2!=='dark') applyTheme(e.matches?'dark':'light', false); }; if(mq.addEventListener) mq.addEventListener('change',f); else if(mq.addListener) mq.addListener(f); }
   let lg='it'; try{lg=localStorage.getItem('cr-lang')||'it';}catch(e){} if(lg==='en') setLang('en'); })();
 if(location.hash) dlApply(); // deep link all'apertura (standalone o iframe con hash)
 window.showOverview=showOverview; // esposto per l'handler inline del pannello

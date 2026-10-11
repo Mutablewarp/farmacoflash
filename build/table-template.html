@@ -777,7 +777,7 @@ if(!EMBED){
   $('#themeTog').addEventListener('click',()=>setTheme(ROOT.dataset.theme==='dark'?'light':'dark',true));
   $('#langTog').addEventListener('click',()=>setLang(LANG==='it'?'en':'it'));
   // altre schede aperte che cambiano tema o lingua: FarmacoFlash (farmaco-lang) e lo shell o l'atlante (cr-lang); vince l'ultimo cambio
-  addEventListener('storage',e=>{ if(e.key==='cr-theme') setTheme(e.newValue,false); if((e.key==='farmaco-lang'||e.key==='cr-lang')&&(e.newValue==='it'||e.newValue==='en')&&e.newValue!==LANG) setLang(e.newValue,false); });
+  addEventListener('storage',e=>{ if(e.key==='cr-theme'||e.key===null){const v=e.key?e.newValue:null;setTheme(v==='dark'||v==='light'?v:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),false);} if((e.key==='farmaco-lang'||e.key==='cr-lang')&&(e.newValue==='it'||e.newValue==='en')&&e.newValue!==LANG) setLang(e.newValue,false); });
   // senza tema salvato si segue il sistema, anche se cambia mentre la pagina è aperta
   try{ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',ev=>{let s=null;try{s=localStorage.getItem('cr-theme');}catch(x){} if(s!=='dark'&&s!=='light') setTheme(ev.matches?'dark':'light',false);}); }catch(e){}
 }
