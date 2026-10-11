@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node build/atlas-index.js && node build/build.js && node build/shell.js",
     "privacy": "node build/privacy.js",
-    "test": "node tests/core.cjs && node tests/build.cjs && python3 tests/novita_test.py",
+    "test": "node tests/core.cjs && node tests/build.cjs && node tests/cyp.cjs && python3 tests/novita_test.py",
     "start": "node build/serve.js",
     "test:browser": "node tests/browser.cjs"
   },
