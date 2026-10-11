@@ -6,6 +6,16 @@
 <title>FarmacoFlash · Farmacologia</title>
 <meta name="description" content="Flashcard a ripetizione spaziata e atlante 3D dei bersagli dei farmaci, per l'esame di Farmacologia.">
 <meta name="theme-color" content="#f3f0e9">
+<meta name="color-scheme" content="light dark">
+<script>/* tema prima del primo disegno, prima ancora dei caratteri: niente lampo chiaro in modalità scura.
+   'cr-theme' contiene solo una scelta esplicita; senza scelta si segue il sistema (lo shell non scrive mai il tema
+   del sistema, così anche le app aperte da sole continuano a seguirlo). Migrazione una tantum condivisa con
+   FarmacoFlash ('cr-theme-mig'): il vecchio FarmacoFlash salvava 'light' a ogni avvio, quel valore si toglie. */
+(function(){var d=document.documentElement,t,set=function(n,v){var e=document.querySelector('meta[name="'+n+'"]');if(e)e.content=v};
+try{if(!localStorage.getItem('cr-theme-mig')){if(localStorage.getItem('cr-theme')==='light')localStorage.removeItem('cr-theme');localStorage.setItem('cr-theme-mig','1')}}catch(e){}
+try{t=localStorage.getItem('cr-theme')}catch(e){}
+if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+d.dataset.theme=t;set('color-scheme',t);set('theme-color',t==='dark'?'#13110d':'#f3f0e9');})();</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
 <link rel="apple-touch-icon" href="assets/icon-180.png">
@@ -16,8 +26,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script>/* tema prima del primo disegno: niente lampo chiaro in modalità scura */
-(function(){var t;try{t=localStorage.getItem('cr-theme')}catch(e){}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;})();</script>
 <style>
 :root{
   --bg:#f3f0e9;--panel:#fdfbf6;--sunk:#ebe6db;--line:#e6e0d4;--line2:#d6cdbd;
@@ -25,6 +33,8 @@
   --gold:#835c14;--on-gold:#fff;--gold-line:#e6d6b4;--gold-soft:#f4ecda;
   --warn:#8a5a00;--warn-soft:#f6ead2;--info:#2b5f8a;--info-soft:#e4edf4;
   --night:#1d1a15;--night-ink:#efe9db;--night-dim:#c2b9a6;--night-gold:#e3bd80;--night-line:#3a352a;
+  --rule:var(--ink);--tag:var(--sunk);--sel:var(--gold-soft);--raised:var(--panel);
+  --chip-on:var(--ink);--chip-on-line:var(--ink);--chip-on-ink:var(--bg);
   --shadow:0 1px 2px rgb(28 26 21/.06),0 10px 28px -14px rgb(28 26 21/.22);
   --ease:cubic-bezier(.2,.8,.2,1);
   --display:'Fraunces',Georgia,'Times New Roman',serif;
@@ -32,13 +42,19 @@
   --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
   --top-h:65px;--nav-h:0px;
   --z-top:20;--z-nav:21;--z-tour:40;
+  color-scheme:light;
 }
 :root[data-theme="dark"]{
   --bg:#13110d;--panel:#1b1812;--sunk:#0f0d0a;--line:#2a261d;--line2:#3a352a;
   --ink:#efe9db;--ink-dim:#b3ab9a;--ink-faint:#837b6c;
   --gold:#e3bd80;--on-gold:#1c1a15;--gold-line:#4a3d22;--gold-soft:#241c0d;
   --warn:#e8b45a;--warn-soft:#2a2112;--info:#8cb8e0;--info-soft:#15202a;
-  --night:#211d16;--night-line:#4a3d22;
+  /* la carta dell'atlante resta la superficie più profonda, sotto pagina e pannelli, come la coppia chiaro/notte di giorno */
+  --night:var(--sunk);--night-line:#4a3d22;
+  /* al buio: righe che non abbagliano, etichette staccate dal fondo, selezione visibile, popover in rilievo,
+     filtro premuto con un riempimento vero (non solo il bordo, che l'anello di fuoco imiterebbe) */
+  --rule:var(--ink-faint);--tag:var(--line);--sel:var(--gold-line);--raised:#221e17;
+  --chip-on:var(--gold-line);--chip-on-line:var(--gold);--chip-on-ink:var(--ink);
   --shadow:0 1px 2px rgb(0 0 0/.35),0 14px 32px -18px rgb(0 0 0/.7);
   color-scheme:dark;
 }
@@ -48,7 +64,7 @@ body{font:400 15px/1.55 var(--sans);color:var(--ink);background:var(--bg);-webki
 button,input{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-::selection{background:var(--gold-soft);color:var(--ink)}
+::selection{background:var(--sel);color:var(--ink)}
 .i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
@@ -89,6 +105,7 @@ button{cursor:pointer}
 /* ---------- palco ---------- */
 .stage{position:fixed;left:0;right:0;top:var(--top-h);bottom:var(--nav-h)}
 .stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg)}
+.stage iframe.wait{visibility:hidden}/* finché il documento non porta il tema dello shell (vedi boot) */
 .stage iframe[hidden],.page[hidden],.loading[hidden]{display:none}
 .page{position:absolute;inset:0;overflow:auto;overscroll-behavior:contain}
 .wrap{max-width:1120px;margin:0 auto;padding:40px max(20px,env(safe-area-inset-right)) 64px max(20px,env(safe-area-inset-left))}
@@ -147,7 +164,7 @@ button{cursor:pointer}
 .deck .t{font-weight:500;font-size:14.5px}
 .deck .n{font:500 12px/1 var(--mono);color:var(--ink-dim);font-variant-numeric:tabular-nums}
 .how{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:0;padding:0;list-style:none;counter-reset:s}
-.how li{counter-increment:s;padding-top:14px;border-top:2px solid var(--ink)}
+.how li{counter-increment:s;padding-top:14px;border-top:2px solid var(--rule)}
 .how li::before{content:counter(s);font:500 26px/1 var(--display);color:var(--gold);display:block;margin-bottom:8px}
 .how b{display:block;font-size:15.5px;margin-bottom:4px}
 .how p{margin:0;color:var(--ink-dim);font-size:14.5px;text-wrap:pretty}
@@ -161,11 +178,11 @@ button{cursor:pointer}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 6px}
 .chip{border:1px solid var(--line2);background:var(--panel);border-radius:999px;min-height:36px;padding:0 14px;font-size:13.5px;font-weight:600;color:var(--ink-dim);transition:color .15s var(--ease),background-color .15s var(--ease),border-color .15s var(--ease)}
 .chip:hover{color:var(--ink);border-color:var(--ink-faint)}
-.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.chip[aria-pressed="true"]{background:var(--chip-on);border-color:var(--chip-on-line);color:var(--chip-on-ink)}
 .news-list{list-style:none;margin:0;padding:0}
 .news{padding:18px 0;border-bottom:1px solid var(--line);display:grid;gap:6px}
 .news .nm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--ink-dim)}
-.tag{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font-weight:600;font-size:12px;background:var(--sunk);color:var(--ink)}
+.tag{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font-weight:600;font-size:12px;background:var(--tag);color:var(--ink)}
 .tag.k-sicurezza{background:var(--warn-soft);color:var(--warn)}
 .tag.k-linea-guida{background:var(--info-soft);color:var(--info)}
 .news time{font-family:var(--mono);font-size:12px}
@@ -187,7 +204,7 @@ button{cursor:pointer}
 .shade{position:fixed;background:rgb(16 14 11/.6);pointer-events:auto}
 .ring{position:fixed;border-radius:12px;box-shadow:0 0 0 2px var(--gold),0 0 0 7px rgb(227 189 128/.35);transition:left .22s var(--ease),top .22s var(--ease),width .22s var(--ease),height .22s var(--ease)}
 .ring[hidden]{display:none}
-.pop{position:fixed;pointer-events:auto;width:min(380px,calc(100vw - 24px));background:var(--panel);color:var(--ink);border:1px solid var(--line2);border-radius:16px;padding:18px 18px 14px;box-shadow:0 24px 60px -20px rgb(0 0 0/.45);transition:left .22s var(--ease),top .22s var(--ease)}
+.pop{position:fixed;pointer-events:auto;width:min(380px,calc(100vw - 24px));background:var(--raised);color:var(--ink);border:1px solid var(--line2);border-radius:16px;padding:18px 18px 14px;box-shadow:0 24px 60px -20px rgb(0 0 0/.45);transition:left .22s var(--ease),top .22s var(--ease)}
 .pop .prog{display:flex;align-items:center;gap:10px;font:500 12px/1 var(--mono);color:var(--ink-dim)}
 .pop .prog i{flex:1;height:3px;border-radius:3px;background:var(--line);overflow:hidden;display:block}
 .pop .prog b{display:block;height:100%;background:var(--gold);transition:width .22s var(--ease)}
@@ -197,6 +214,7 @@ button{cursor:pointer}
 .pop .try[hidden]{display:none}
 .pop .acts{display:flex;gap:8px;margin-top:16px;align-items:center}
 .pop .acts .btn{min-height:40px;padding:0 14px;font-size:14px}
+.pop .acts .btn:not(.primary):not(.ghost){background:transparent}/* il secondario prende il fondo del popover, non quello del pannello */
 .pop .acts .grow{flex:1}
 
 /* ---------- telefono ---------- */
@@ -447,11 +465,35 @@ try{if(localStorage.getItem('cr-lang')==='en')lang='en'}catch(e){}
 const ready={},loaded={},pending={},sent={};
 const T=k=>(I18N[lang]||I18N.it)[k];
 const store=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+const unstore=k=>{try{localStorage.removeItem(k)}catch(e){}};
+/* Tema: 'cr-theme' è solo la scelta esplicita (condivisa con le app aperte da sole); senza scelta si segue il sistema.
+   Gli iframe nascono nel tema giusto anche così: senza scelta leggono lo stesso prefers-color-scheme dello shell. */
+const savedTheme=()=>{let t=null;try{t=localStorage.getItem('cr-theme')}catch(e){}return t==='light'||t==='dark'?t:null;};
+const osDark=matchMedia('(prefers-color-scheme: dark)'),osTheme=()=>osDark.matches?'dark':'light';
+let themeAuto=!savedTheme();
 
 /* ---------- comunicazione con le app ---------- */
 function tell(app,msg){const f=frames[app];if(f&&f.contentWindow)try{f.contentWindow.postMessage(msg,location.origin==='null'?'*':location.origin)}catch(e){}}
 function syncApp(app){tell(app,{__farmaco:1,type:'appearance',theme,lang});if(app==='canali'){tell(app,{__fusion:'theme',value:theme});tell(app,{__fusion:'lang',value:lang});tell(app,{__fusion:'visibility',value:cur.app==='canali'});}}
-for(const [app,f] of Object.entries(frames))f.addEventListener('load',()=>{loaded[app]=true;syncApp(app);if(cur.app===app)$('#loading').hidden=true;});
+/* L'iframe resta invisibile finché il suo documento non porta il tema dello shell e non ha finito le
+   transizioni CSS del cambio di tema: niente pagina vuota, di tema sbagliato o a metà strada durante il
+   caricamento. Stessa origine: si controlla a ogni fotogramma; senza accesso (file://) si mostra subito
+   dopo il caricamento; con accesso, al più 90 fotogrammi dopo il caricamento. Riserva: 12 s. */
+const fading=d=>!!d.getAnimations&&d.getAnimations().some(a=>a.playState==='running'&&'transitionProperty' in a);
+function boot(app,hash){
+  const f=frames[app];f.classList.add('wait');f.src=f.dataset.src+(hash||'');sent[app]=hash;
+  const show=()=>{f.classList.remove('wait');if(cur.app===app)$('#loading').hidden=true;};let late=0;
+  const check=()=>{
+    if(!f.classList.contains('wait'))return;
+    let d=null;try{d=f.contentDocument}catch(e){}
+    const own=d&&d.documentElement&&d.URL!=='about:blank';
+    if(own&&d.documentElement.dataset.theme===theme&&!fading(d))return requestAnimationFrame(show);
+    if(loaded[app]&&++late>(own?90:2))return show();
+    requestAnimationFrame(check);
+  };
+  requestAnimationFrame(check);setTimeout(show,12000);
+}
+for(const [app,f] of Object.entries(frames))f.addEventListener('load',()=>{if(!f.getAttribute('src'))return;loaded[app]=true;syncApp(app);});
 
 /* ---------- navigazione ---------- */
 const spaceOf=app=>app==='flashcard'||app==='catalog'?'cards':app==='canali'?'atlas':app;
@@ -463,11 +505,11 @@ function go(app,hash='',push=true,force=false){
   for(const [k,p] of Object.entries(pages))p.hidden=k!==app;
   for(const [k,f] of Object.entries(frames)){
     const on=k===app;f.hidden=!on;
-    if(on&&!f.getAttribute('src')){f.src=f.dataset.src+(hash||'');sent[k]=hash;}
+    if(on&&!f.getAttribute('src'))boot(k,hash);
     else if(on&&hash&&(force||hash!==sent[k])){sent[k]=hash;if(ready[k])tell(k,{__farmaco:1,type:'route',hash});else pending[k]=hash;}
     tell(k,{__fusion:'visibility',value:on});
   }
-  const ld=$('#loading');ld.hidden=!(app in frames)||!!loaded[app];ld.textContent=T('loading');
+  const ld=$('#loading');ld.hidden=!(app in frames)||!frames[app].classList.contains('wait');ld.textContent=T('loading');
   const sp=spaceOf(app),sub=subOf(app,hash);
   if(sp==='cards')lastCards={app,hash:hash||(app==='flashcard'?'#dash':'')};
   $$('.sp[data-space]').forEach(b=>b.dataset.space===sp?b.setAttribute('aria-current','page'):b.removeAttribute('aria-current'));
@@ -498,7 +540,7 @@ addEventListener('message',e=>{
   if(!app||e.origin!==location.origin||!e.data||typeof e.data!=='object')return;
   const d=e.data;
   if((d.__farmaco===1&&d.type==='ready')||d.__fusion==='ready'){
-    ready[app]=true;loaded[app]=true;if(cur.app===app)$('#loading').hidden=true;syncApp(app);
+    ready[app]=true;loaded[app]=true;syncApp(app);
     if(pending[app]){tell(app,{__farmaco:1,type:'route',hash:pending[app]});pending[app]='';}
   }
   else if(d.__farmaco===1&&d.type==='navigate'&&typeof d.path==='string'&&typeof d.hash==='string'&&d.hash.length<500){const to=PATHS[d.path.split('?')[0]];if(to)go(to,d.hash,true,true);}
@@ -523,6 +565,7 @@ const MOON='M20 14.6A8.2 8.2 0 1 1 9.4 4a6.6 6.6 0 0 0 10.6 10.6z';
 function applyChrome(){
   root.dataset.theme=theme;root.lang=lang;
   $('meta[name=theme-color]').content=theme==='dark'?'#13110d':'#f3f0e9';
+  $('meta[name=color-scheme]').content=theme;
   $('#theme-path').setAttribute('d',theme==='dark'?SUN:MOON);
   $('#theme').setAttribute('aria-label',T(theme==='dark'?'theme_to_light':'theme_to_dark'));
   $('#lang').textContent=T('lang_btn');$('#lang').setAttribute('aria-label',T('lang_to'));
@@ -535,7 +578,18 @@ function applyChrome(){
   if(cur.app==='news')renderNews();
   if(ti>=0)tourShow();
 }
-$('#theme').addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';store('cr-theme',theme);applyChrome();Object.keys(frames).forEach(syncApp);});
+function setTheme(t){if(t===theme)return;theme=t;applyChrome();Object.keys(frames).forEach(syncApp);}
+/* il bottone ha due stati: se il tema scelto è quello del sistema si torna a seguire il sistema (niente blocco),
+   altrimenti la scelta si salva in 'cr-theme' e vale anche per le app aperte da sole */
+$('#theme').addEventListener('click',()=>{const t=theme==='dark'?'light':'dark';themeAuto=t===osTheme();if(themeAuto)unstore('cr-theme');else store('cr-theme',t);setTheme(t);});
+/* senza una scelta esplicita lo shell segue il sistema anche mentre è aperto (e porta con sé gli iframe) */
+const followOs=()=>{if(themeAuto)setTheme(osTheme());};
+if(osDark.addEventListener)osDark.addEventListener('change',followOs);else if(osDark.addListener)osDark.addListener(followOs);
+/* scelta fatta altrove (un'altra scheda dello shell, un'app aperta da sola): lo stato si rilegge da 'cr-theme'.
+   Si ignorano le app incorniciate (?embed=1): seguono lo shell, non lo comandano. Stessa rilettura al ritorno dalla bfcache. */
+const syncTheme=()=>{const t=savedTheme();themeAuto=!t;setTheme(t||osTheme());};
+addEventListener('storage',e=>{if((e.key==='cr-theme'||e.key===null)&&!/[?&]embed=1(?:&|#|$)/.test(e.url||''))syncTheme();});
+addEventListener('pageshow',e=>{if(e.persisted)syncTheme();});
 $('#lang').addEventListener('click',()=>{lang=lang==='it'?'en':'it';store('cr-lang',lang);applyChrome();Object.keys(frames).forEach(syncApp);});
 function measure(){root.style.setProperty('--top-h',top_.offsetHeight+'px');if(ti>=0)requestAnimationFrame(place);}
 new ResizeObserver(measure).observe(top_);
@@ -681,7 +735,7 @@ $('#tour-start').addEventListener('click',tourOpen);
 applyChrome();
 restore();
 loadNews();
-const prewarm=()=>{const f=frames.flashcard;if(!f.getAttribute('src'))f.src=f.dataset.src;};
+const prewarm=()=>{if(!frames.flashcard.getAttribute('src'))boot('flashcard','');};
 window.requestIdleCallback?requestIdleCallback(prewarm,{timeout:4000}):setTimeout(prewarm,2500);
 try{if(!localStorage.getItem('ff-tour-v2')&&cur.app==='home')setTimeout(tourOpen,700);}catch(e){}
 if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));

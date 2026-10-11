@@ -7,7 +7,7 @@
 __PWA_HEAD__
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script>/* tema + embed applicati prima del primo paint */(function(){var r=document.documentElement;try{var t=localStorage.getItem('cr-theme');if(t==='dark'||t==='light')r.dataset.theme=t;}catch(e){}if(/[?&]embed=1/.test(location.search))r.classList.add('embed');})();</script>
+<script>/* tema, lingua ed embed applicati prima del primo paint: tema salvato (cr-theme) o quello del sistema; lingua: nello shell solo cr-lang (la stessa regola dello shell, così non c'è un lampo nella lingua sbagliata), da sola come FarmacoFlash (farmaco-lang, poi cr-lang) */(function(){var r=document.documentElement,e=/[?&]embed=1/.test(location.search),t,l,m;try{t=localStorage.getItem('cr-theme');}catch(x){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';r.dataset.theme=t;m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#13110d':'#f3f0e9';try{l=e?localStorage.getItem('cr-lang'):(localStorage.getItem('farmaco-lang')||localStorage.getItem('cr-lang'));}catch(x){}r.lang=l==='en'?'en':'it';if(e)r.classList.add('embed');if(r.lang==='en'){r.classList.add('i18n-wait');setTimeout(function(){r.classList.remove('i18n-wait');},2500);}})();</script>
 <style>
 /* Tabella dei farmaci · stesso sistema visivo di FarmacoFlash e dello shell */
 :root{
@@ -29,6 +29,7 @@ __PWA_HEAD__
   --gold:#e3bd80; --gold-line:#4a3d22; --gold-soft:#241c0d; --on-gold:#1c1a15;
   --ok:#7fcfa8; --warn:#e8b45a; --bad:#f09a8f; --info:#8cb8e0;
   --shadow:0 1px 2px rgb(0 0 0/.2),0 10px 28px -14px rgb(0 0 0/.38);
+  --scroll:#6e6656;   /* cursore delle barre di scorrimento: ≥3:1 su --panel e --bg */
   color-scheme:dark;
 }
 :root{
@@ -37,9 +38,11 @@ __PWA_HEAD__
   --bad-soft:color-mix(in srgb,var(--bad) 11%,var(--panel));
   --hl:color-mix(in srgb,var(--gold) 22%,var(--panel));
 }
+:root:not([data-theme="dark"]){--scroll:var(--line2)}
 *{box-sizing:border-box}
 html,body{margin:0}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;background:var(--bg)}
+html.i18n-wait header,html.i18n-wait main{visibility:hidden}
 body{font-family:var(--font-body);font-size:16px;line-height:1.55;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:transparent;overflow-x:hidden;padding-bottom:40px}
 button,input{font:inherit;color:inherit}
 button{cursor:pointer}
@@ -47,7 +50,8 @@ button{cursor:pointer}
 ::selection{background:var(--gold-line);color:var(--ink)}
 ::-webkit-scrollbar{width:11px;height:11px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--line2);border-radius:9px;border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb{background:var(--scroll);border-radius:9px;border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-corner{background:transparent}
 
 /* ---- header (solo standalone; nascosto in embed) ---- */
 header{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--line);padding:calc(8px + env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 8px max(16px,env(safe-area-inset-left))}
@@ -59,6 +63,12 @@ header{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px s
 .mk line{stroke:var(--gold)}
 h1{font-family:var(--font-display);font-weight:600;font-size:1.2rem;letter-spacing:-.01em;line-height:1.15;margin:0}
 .hsub{font-size:.78rem;color:var(--ink-dim);line-height:1.25}
+.hctl{display:flex;align-items:center;gap:8px}
+.langtog{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 12px;border:1px solid var(--line2);border-radius:var(--r-pill);background:transparent;color:var(--ink-dim);font-size:.86rem;font-weight:500;transition:color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.langtog:hover{color:var(--ink);border-color:var(--ink-dim)}
+/* tema: stessa icona disegnata per i due stati (sole in chiaro, luna in scuro), scelta dal CSS così segue anche il tema impostato dallo shell */
+.langtog svg{width:18px;height:18px;flex:0 0 auto}
+:root[data-theme="dark"] #themeTog .ic-sun,:root:not([data-theme="dark"]) #themeTog .ic-moon{display:none}
 
 /* ---- bottoni e chip: stesso vocabolario dell'app flashcard ---- */
 .btn,.backapp,.studia,.q-study,.q-back,.q-fwd,.q-go{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:var(--r-ctl);font-size:.93rem;font-weight:500;line-height:1.2;text-decoration:none;white-space:nowrap;transition:background-color var(--dur) var(--ease),border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
@@ -115,10 +125,15 @@ tbody tr.dr:hover,tr.dr.open{background:color-mix(in srgb,var(--gold-soft) 65%,v
 .namelink:hover{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
 .drugtags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
 body.m-nomi .drugtags{gap:7px;margin-top:10px}
-.dtag{display:inline-flex;align-items:center;font-family:var(--font-body);font-size:.8rem;font-weight:500;line-height:1.5;padding:1px 10px;border:1px solid var(--gold-line);border-radius:var(--r-pill);background:var(--gold-soft);color:var(--ink);white-space:nowrap;text-decoration:none;transition:border-color var(--dur) var(--ease)}
+.dtag{display:inline-flex;align-items:center;flex-wrap:wrap;column-gap:.3em;max-width:100%;font-family:var(--font-body);font-size:.8rem;font-weight:500;line-height:1.5;padding:1px 10px;border:1px solid var(--gold-line);border-radius:var(--r-pill);background:var(--gold-soft);color:var(--ink);white-space:nowrap;text-decoration:none;transition:border-color var(--dur) var(--ease)}
 .dtag:hover{border-color:var(--gold)}
 body.m-nomi .dtag{font-size:.9rem;padding:2px 12px}
 .dtag mark{background:var(--hl)}
+/* nome alternativo (USA/UK) o etichetta «marchio italiano»: più tenue ma sopra 4.5:1 */
+.dalt{font-weight:400;color:var(--ink-dim);white-space:normal}
+.rb-name .dalt,.q-prompt .dalt,.q-opt .dalt,.dn .dalt{margin-left:.3em}
+.bhit{margin-top:8px;font-family:var(--font-body);font-size:.84rem;font-weight:400;line-height:1.4;color:var(--ink-dim)}
+.bhit b{font-weight:600;color:var(--ink)}
 .c-mecc,.c-ind,.c-adr{max-width:240px;color:var(--ink-dim)}
 mark{background:var(--hl);color:var(--ink);border-radius:3px;padding:0 1px}
 .dn{font-weight:600;box-shadow:inset 0 -.38em 0 var(--gold-line)}
@@ -151,6 +166,8 @@ body.m-rubrica #rubrica{display:block;column-width:330px;column-gap:34px;padding
 .rb-letter{margin:4px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--line2);font-family:var(--font-display);font-weight:500;font-size:1.3rem;color:var(--gold);break-after:avoid}
 .rb-row{padding:8px 2px;border-bottom:1px solid var(--line);break-inside:avoid}
 .rb-name{font-family:var(--font-display);font-weight:500;font-size:1rem;color:var(--ink)}
+.rb-name .dalt{font-family:var(--font-body);font-size:.84rem}
+.rb-it{display:block;margin-top:2px;font-size:.8rem;color:var(--ink-dim)}
 .rb-cls-wrap{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
 .rb-cls{display:inline-flex;align-items:center;gap:6px;padding:1px 9px;border:1px solid var(--line2);border-radius:var(--r-pill);font-size:.76rem;line-height:1.6;color:var(--ink);text-decoration:none;white-space:nowrap;transition:border-color var(--dur) var(--ease)}
 .rb-cls b{font-family:var(--font-mono);font-weight:500}
@@ -197,6 +214,7 @@ body.m-rubrica #rubrica{display:block;column-width:330px;column-gap:34px;padding
 /* ---- telefono: righe impilate, niente scroll orizzontale ---- */
 @media (max-width:720px){
   .hsub{display:none}
+  .hwrap{gap:8px}
   .actions{margin-left:0;width:100%}
   .actions .btn{flex:1 1 calc(50% - 4px);white-space:normal;text-align:center;padding:0 10px}
   .ctl-group{width:100%}
@@ -227,6 +245,12 @@ body.m-rubrica #rubrica{display:block;column-width:330px;column-gap:34px;padding
   .dtag,.rb-cls{min-height:44px;padding:0 12px}
   .q-prompt{font-size:1.35rem}
 }
+/* telefono stretto: il ritorno a FarmacoFlash resta una freccia (nome accessibile nell'aria-label), il titolo sta su una riga */
+@media (max-width:520px){
+  .bk-l{display:none}
+  .backapp{min-width:44px;padding:0 12px;border-radius:var(--r-pill)}
+  h1{font-size:1.08rem}
+}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
@@ -237,51 +261,55 @@ body.m-rubrica #rubrica{display:block;column-width:330px;column-gap:34px;padding
 <header><div class="hwrap">
   <div class="brand">
     <svg class="mk" viewBox="0 0 44 44" fill="none" aria-hidden="true"><rect x="7" y="16" width="30" height="14" rx="7" transform="rotate(-30 22 22)" stroke-width="2.4"/><line x1="15" y1="26" x2="29" y2="18" stroke-width="2.4"/></svg>
-    <div><h1>Tabella dei farmaci</h1><div class="hsub">Catalogo e quiz dei nomi · FarmacoFlash</div></div>
+    <div><h1 data-i="h1">Tabella dei farmaci</h1><div class="hsub" data-i="hsub">Catalogo e quiz dei nomi · FarmacoFlash</div></div>
   </div>
-  <a class="backapp" href="Flashcard-Farmacologia.html" title="Torna a FarmacoFlash">← FarmacoFlash</a>
+  <div class="hctl">
+    <button class="langtog" id="themeTog" type="button" title="Tema chiaro / scuro" aria-label="Tema chiaro / scuro"><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.35 5.35l1.55 1.55M17.1 17.1l1.55 1.55M5.35 18.65l1.55-1.55M17.1 6.9l1.55-1.55"/></svg><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8z"/></svg></button>
+    <button class="langtog" id="langTog" type="button" title="Italiano / English" aria-label="Italiano / English">EN</button>
+    <a class="backapp" href="Flashcard-Farmacologia.html" data-i-title="back_t" data-i-aria="back_t" title="Torna a FarmacoFlash" aria-label="Torna a FarmacoFlash"><span aria-hidden="true">←</span><span class="bk-l">FarmacoFlash</span></a>
+  </div>
 </div></header>
 <main>
-  <p class="intro">Catalogo didattico delle schede: non è l'elenco completo dei medicinali autorizzati. I nomi commerciali sono ausili di ricerca, non equivalenze terapeutiche verificate.</p>
-  <input class="search" id="q" type="search" aria-label="Cerca un farmaco o un argomento" autocomplete="off" placeholder="Nome, nome commerciale, bersaglio o meccanismo…">
+  <p class="intro" data-i="intro">Catalogo didattico delle schede: non è l'elenco completo dei medicinali autorizzati. I nomi commerciali sono ausili di ricerca, non equivalenze terapeutiche verificate.</p>
+  <input class="search" id="q" type="search" data-i-aria="search_aria" data-i-ph="search_ph" aria-label="Cerca un farmaco o un argomento" autocomplete="off" placeholder="Nome, nome commerciale, bersaglio o meccanismo…">
   <div id="suggestions" role="status" aria-live="polite"></div>
   <div class="controls">
-    <div class="ctl-group" id="modRow"><span class="lab" id="labMod">Modulo</span><div class="segctl" id="modSeg" role="group" aria-labelledby="labMod"></div></div>
-    <div class="ctl-group"><span class="lab" id="labVista">Vista</span>
+    <div class="ctl-group" id="modRow"><span class="lab" id="labMod" data-i="lab_mod">Modulo</span><div class="segctl" id="modSeg" role="group" aria-labelledby="labMod"></div></div>
+    <div class="ctl-group"><span class="lab" id="labVista" data-i="lab_view">Vista</span>
       <div class="segctl c4" role="group" aria-labelledby="labVista">
-        <button class="chip mode on" type="button" data-mode="all">📖 Tutto</button>
-        <button class="chip mode" type="button" data-mode="nomi">🧠 Solo nomi</button>
-        <button class="chip mode" type="button" data-mode="effetti">💊 Solo effetti</button>
-        <button class="chip mode" type="button" data-mode="rubrica">🔤 A→Z</button>
+        <button class="chip mode on" type="button" data-mode="all" data-i="mode_all">📖 Tutto</button>
+        <button class="chip mode" type="button" data-mode="nomi" data-i="mode_nomi">🧠 Solo nomi</button>
+        <button class="chip mode" type="button" data-mode="effetti" data-i="mode_effetti">💊 Solo effetti</button>
+        <button class="chip mode" type="button" data-mode="rubrica" data-i="mode_rubrica">🔤 A→Z</button>
       </div>
     </div>
     <div class="ctl-group actions">
-      <button class="btn quizbtn" type="button" onclick="quizStart('mc')">🎯 Quiz a scelta</button>
-      <button class="btn quizbtn" type="button" onclick="quizStart('write')">✍️ Scrivi i nomi</button>
-      <button class="btn" type="button" onclick="quizErrors()">📊 Errori</button>
-      <button class="btn" type="button" id="clrBtn">↺ Azzera filtri</button>
+      <button class="btn quizbtn" type="button" onclick="quizStart('mc')" data-i="btn_mc">🎯 Quiz a scelta</button>
+      <button class="btn quizbtn" type="button" onclick="quizStart('write')" data-i="btn_write">✍️ Scrivi i nomi</button>
+      <button class="btn" type="button" onclick="quizErrors()" data-i="btn_err">📊 Errori</button>
+      <button class="btn" type="button" id="clrBtn" data-i="btn_clear">↺ Azzera filtri</button>
     </div>
   </div>
   <div class="meta-row"><div class="hint" id="hint"></div><span class="count" id="count"></span></div>
-  <div class="row deckchips collapsed" id="deckRow" role="group" aria-label="Mazzo / argomento"></div>
+  <div class="row deckchips collapsed" id="deckRow" role="group" data-i-aria="decks_aria" aria-label="Mazzo / argomento"></div>
   <button class="more-decks" id="moreDecks" type="button" aria-expanded="false" aria-controls="deckRow" onclick="toggleDecks()">Mostra tutti gli argomenti</button>
   <div class="tbl-wrap">
     <table>
       <thead><tr>
-        <th data-k="o" id="thCls">Argomento <span class="ar">▾</span></th>
-        <th class="hN" data-k="name">Farmaco <span class="ar">▾</span></th>
-        <th class="col-d" data-k="mecc">Meccanismo <span class="ar">▾</span></th>
-        <th class="col-d" data-k="ind">Indicazioni <span class="ar">▾</span></th>
-        <th class="col-d" data-k="adr">Reazioni avverse <span class="ar">▾</span></th>
+        <th data-k="o" id="thCls"><span data-i="th_topic">Argomento</span> <span class="ar" aria-hidden="true">▾</span></th>
+        <th class="hN" data-k="name"><span data-i="th_drug">Farmaco</span> <span class="ar" aria-hidden="true">▾</span></th>
+        <th class="col-d" data-k="mecc"><span data-i="th_mecc">Meccanismo</span> <span class="ar" aria-hidden="true">▾</span></th>
+        <th class="col-d" data-k="ind"><span data-i="th_ind">Indicazioni</span> <span class="ar" aria-hidden="true">▾</span></th>
+        <th class="col-d" data-k="adr"><span data-i="th_adr">Reazioni avverse</span> <span class="ar" aria-hidden="true">▾</span></th>
       </tr></thead>
       <tbody id="tb"></tbody>
     </table>
     <div id="rubrica"></div>
   </div>
   <div class="foot" id="foot"></div>
-  <div class="quiz" id="quiz" hidden role="dialog" aria-modal="true" aria-label="Quiz dei nomi">
+  <div class="quiz" id="quiz" hidden role="dialog" aria-modal="true" data-i-aria="quiz_aria" aria-label="Quiz dei nomi">
     <div class="quiz-top">
-      <button class="btn" type="button" onclick="quizExit()">✕ Esci</button>
+      <button class="btn" type="button" onclick="quizExit()" data-i="q_exit">✕ Esci</button>
       <span class="quiz-score" id="qScore"></span>
       <span class="quiz-streak" id="qStreak"></span>
     </div>
@@ -292,8 +320,66 @@ body.m-rubrica #rubrica{display:block;column-width:330px;column-gap:34px;padding
 <script>
 const DATA = __DATA__;
 const DECKS = __DECKS__;
+const NAMES = __NAMES__;   // {en:{nome italiano: "INN inglese (nome USA/UK)"}, brands:{nome: [marchi italiani]}, brandOf:{marchio in drugs.json: principio attivo}}
 const $ = s=>document.querySelector(s);
+const ROOT = document.documentElement, EMBED = ROOT.classList.contains('embed');
 let state = { q:'', mod:null, deck:null, sort:{k:'o',dir:1} };
+
+/* ===== LINGUA (IT/EN, come FarmacoFlash) ===== */
+let LANG = ROOT.lang==='en' ? 'en' : 'it';
+const pl=(n,one,many)=>n+' '+(n===1?one:many);
+const STR={
+ doc_title:{it:'Tabella Farmaci · FarmacoFlash',en:'Names table · FarmacoFlash'},
+ h1:{it:'Tabella dei farmaci',en:'Names table'},
+ hsub:{it:'Catalogo e quiz dei nomi · FarmacoFlash',en:'Drug catalogue and name quizzes · FarmacoFlash'},
+ back_t:{it:'Torna a FarmacoFlash',en:'Back to FarmacoFlash'},
+ theme_to_dark:{it:'Passa al tema scuro',en:'Switch to dark theme'},theme_to_light:{it:'Passa al tema chiaro',en:'Switch to light theme'},
+ intro:{it:"Catalogo didattico delle schede: non è l'elenco completo dei medicinali autorizzati. I nomi commerciali sono ausili di ricerca, non equivalenze terapeutiche verificate.",
+        en:'A study catalogue of the cards, not a complete list of authorised medicines. Names use the English INN where one exists (abbreviations as on the cards), with the US/UK name in brackets. Italian brand names are search aids, not verified therapeutic equivalents.'},
+ search_aria:{it:'Cerca un farmaco o un argomento',en:'Search a drug (English or Italian name), a brand or a topic'},
+ search_ph:{it:'Nome, nome commerciale, bersaglio o meccanismo…',en:'Drug (EN/IT), brand, mechanism…'},
+ lab_mod:{it:'Modulo',en:'Module'},lab_view:{it:'Vista',en:'View'},
+ mod_all:{it:'Tutti',en:'All'},mod_I:{it:'Generale',en:'General'},mod_II:{it:'Speciale',en:'Systematic'},
+ mode_all:{it:'📖 Tutto',en:'📖 Everything'},mode_nomi:{it:'🧠 Solo nomi',en:'🧠 Names only'},mode_effetti:{it:'💊 Solo effetti',en:'💊 Effects only'},mode_rubrica:{it:'🔤 A→Z',en:'🔤 A→Z'},
+ btn_mc:{it:'🎯 Quiz a scelta',en:'🎯 Multiple-choice quiz'},btn_write:{it:'✍️ Scrivi i nomi',en:'✍️ Write the names'},btn_err:{it:'📊 Errori',en:'📊 Mistakes'},btn_clear:{it:'↺ Azzera filtri',en:'↺ Clear filters'},
+ decks_aria:{it:'Mazzo / argomento',en:'Deck / topic'},
+ decks_more:{it:n=>'Mostra tutti gli argomenti ('+n+')',en:n=>'Show all topics ('+n+')'},decks_less:{it:'Mostra meno argomenti',en:'Show fewer topics'},
+ th_topic:{it:'Argomento',en:'Topic'},th_drug:{it:'Farmaco',en:'Drug'},th_mecc:{it:'Meccanismo',en:'Mechanism'},th_ind:{it:'Indicazioni',en:'Indications'},th_adr:{it:'Reazioni avverse',en:'Adverse reactions'},
+ hint_all:{it:'👆 Tocca una riga per aprirla nello studio di FarmacoFlash',en:'👆 Tap a row to open it in FarmacoFlash study'},
+ hint_nomi:{it:'👆 Tocca un farmaco per vedere a cosa serve',en:'👆 Tap a drug to see what it is for'},
+ hint_effetti:{it:'👆 Leggi gli effetti e prova a indovinare: tocca per scoprire il farmaco',en:'👆 Read the effects and take a guess: tap to reveal the drug'},
+ hint_rubrica:{it:'🔤 Tutti i farmaci in ordine alfabetico — tocca un codice classe per studiarlo',en:'🔤 Every drug in alphabetical order: tap a class code to study it'},
+ count:{it:(d,r,n)=>pl(d,'farmaco','farmaci')+' · '+r+'/'+n+' schede',en:(d,r,n)=>pl(d,'drug','drugs')+' · '+r+'/'+n+' cards'},
+ count_az:{it:n=>pl(n,'farmaco','farmaci')+' (A→Z)',en:n=>pl(n,'drug','drugs')+' (A→Z)'},
+ foot:{it:(d,c,k)=>pl(d,'farmaco','farmaci')+' · '+c+' schede · '+k+' argomenti · Moduli I–II · dati dalle tue carte FarmacoFlash',en:(d,c,k)=>pl(d,'drug','drugs')+' · '+c+' cards · '+k+' topics · Modules I–II · data from your FarmacoFlash cards'},
+ empty:{it:'Nessun farmaco trovato 🐢',en:'No drugs found 🐢'},
+ did_you_mean:{it:'Forse cercavi: ',en:'Did you mean: '},
+ brand_lab:{it:'Nome commerciale',en:'Italian brand'},it_brand:{it:'marchio italiano',en:'Italian brand'},it_name:{it:'nome italiano',en:'Italian name'},
+ study_ff:{it:'↗ Studia in FarmacoFlash',en:'↗ Study in FarmacoFlash'},
+ quiz_aria:{it:'Quiz dei nomi',en:'Names quiz'},q_exit:{it:'✕ Esci',en:'✕ Exit'},
+ q_cls_k:{it:'In quale scheda trovi questo farmaco?',en:'Which card lists this drug?'},
+ q_cls_sub:{it:'Associazione alle schede di studio, non classificazione farmacologica.',en:'Matches the study cards, not a pharmacological classification.'},
+ q_drug_k:{it:'Quale nome è incluso in questa scheda?',en:'Which name is listed on this card?'},
+ q_write_k:{it:'✍️ Scrivi il farmaco preciso',en:'✍️ Write the exact drug name'},
+ q_hint:{it:(i,n)=>'inizia per <b>'+i+'</b> · '+n+' lettere',en:(i,n)=>'starts with <b>'+i+'</b> · '+n+' letters · synonyms and the Italian name are accepted too'},
+ q_ph:{it:'scrivi qui il nome…',en:'type the name here…'},q_check:{it:'Verifica',en:'Check'},
+ q_right:{it:'Giusto! 🎉',en:'Correct! 🎉'},q_answer:{it:a=>'Risposta: <b>'+a+'</b>',en:a=>'Answer: <b>'+a+'</b>'},
+ q_typo:{it:'Refuso.',en:'Typo.'},q_diff:{it:'Il nome richiesto è diverso.',en:'That is a different name.'},
+ q_spell:{it:a=>'Si scrive <b>'+a+'</b>. Riscrivilo per continuare: il primo tentativo resta nello storico.',en:a=>'It is spelled <b>'+a+'</b>. Type it again to continue: the first attempt stays in your history.'},
+ q_fixed:{it:'Correzione completata. Il primo tentativo resta un errore da ripassare.',en:'Correction done. The first attempt still counts as a mistake to review.'},
+ q_ok:{it:'Nome corretto.',en:'Correct name.'},
+ q_next:{it:'Avanti →',en:'Next →'},q_new:{it:'Nuova →',en:'New →'},q_back:{it:'← Indietro',en:'← Back'},q_study:{it:'📖 Studia questa scheda',en:'📖 Study this card'},
+ q_done_t:{it:'Sessione completata',en:'Session complete'},
+ q_done_p:{it:'Hai incontrato tutti i nomi selezionati. Puoi ripassare gli errori o iniziare una nuova sessione.',en:'You have met every selected name. Review your mistakes or start a new session.'},
+ q_review_err:{it:'Rivedi errori',en:'Review mistakes'},q_close:{it:'Chiudi',en:'Close'},
+ e_title:{it:'📊 I tuoi errori (nel tempo)',en:'📊 Your mistakes (over time)'},e_none:{it:'Nessun errore registrato 🎉',en:'No mistakes recorded 🎉'},
+ e_n:{it:n=>pl(n,'nome','nomi')+' da rivedere (i più sbagliati in alto).',en:n=>pl(n,'name','names')+' to review (most missed first).'},
+ e_write:{it:'✍️ Riscrivi gli errori',en:'✍️ Rewrite your mistakes'},e_mc:{it:'🎯 Ripassa (scelta)',en:'🎯 Review (multiple choice)'},e_clear:{it:'🗑 Azzera',en:'🗑 Clear'},
+ e_answers:{it:n=>'Risposte: '+n,en:n=>'Answers: '+n},
+ e_confirm:{it:'Azzerare lo storico degli errori del quiz?',en:'Clear the quiz mistake history?'},
+ save_fail:{it:'Salvataggio non riuscito: i dati precedenti non sono stati sovrascritti. Esporta un backup da FarmacoFlash prima di chiudere.',en:'Saving failed: your previous data was not overwritten. Export a backup from FarmacoFlash before closing.'}
+};
+function t(k,...a){const e=STR[k];if(!e)return k;const v=e[LANG]!=null?e[LANG]:e.it;return typeof v==='function'?v(...a):v;}
 
 function esc(s){return FarmacoCore.escape(s);}
 function hi(s){ const toks=state.q.trim().split(/\s+/).filter(Boolean); if(!toks.length) return esc(s); let h=esc(s); try{const re=new RegExp('('+toks.map(t=>t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')+')','ig'); h=h.replace(re,'<mark>$1</mark>'); }catch(e){} return h; }
@@ -302,54 +388,98 @@ function dnHi(name, drugs){ let h=esc(name);
   (drugs||[]).slice().sort((a,b)=>b.length-a.length).forEach(d=>{ const e=esc(d).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); if(!e) return; h=h.replace(new RegExp(e,'gi'),'\x01$&\x02'); });
   return h.replace(/\x01/g,'<span class="dn">').replace(/\x02/g,'</span>'); }
 
-function deckColor(id){const d=DECKS.find(x=>x.id===id);return d&&d.color?d.color:'#ece1cb';}
-function deckTitle(id){const d=DECKS.find(x=>x.id===id);return d?d.title:id;}
+/* ---- nomi dei farmaci: la chiave resta il nome italiano (dati, storico del quiz); in EN si mostra l'INN inglese ---- */
+const _DP={};
+function dParts(it){ if(_DP[it]) return _DP[it]; const v=NAMES.en[it]||it, m=v.match(/^(.*?)\s*\((.*)\)\s*$/);
+  return _DP[it]= m ? {main:m[1],alts:m[2].split(/\s*,\s*/).filter(Boolean)} : {main:v,alts:[]}; }
+function dMain(it){ return LANG==='en' ? dParts(it).main : it; }
+function dAll(it){ const p=dParts(it); return [it,p.main,...p.alts,NAMES.en[it]||it]; }   // tutti i nomi con cui cercare o rispondere (anche la forma completa «INN (USA/UK)»)
+function isItBrand(it){ return Object.prototype.hasOwnProperty.call(NAMES.brandOf,it); }
+// sinonimi (calcolati e verificati in build/table.js): ASA / acido acetilsalicilico / Aspirina, L-DOPA / levodopa, marchio / principio attivo…
+// grp() dà la voce preferita del gruppo; i membri sono i nomi italiani presenti nelle schede
+function grp(it){ return (NAMES.syn&&NAMES.syn[it])||it; }
+const _GM={}; DATA.forEach(x=>(x.drugs||[]).forEach(d=>{const g=grp(d);(_GM[g]=_GM[g]||[]);if(_GM[g].indexOf(d)<0)_GM[g].push(d);}));
+function gMembers(it){ return _GM[grp(it)]||[it]; }
+// chiave per contare i farmaci: in EN un farmaco con più nomi conta una volta; in IT si contano i nomi delle schede (come prima)
+function dKey(it){ return LANG==='en' ? 'g:'+grp(it) : norm(it); }
+function dText(it){ if(LANG!=='en') return it; const p=dParts(it); return p.main+(p.alts.length?' ('+p.alts.join(', ')+')':'')+(isItBrand(it)?' · '+t('it_brand'):''); }
+// nome principale + nome USA/UK tra parentesi (o «marchio italiano»), in span separati: nei chip flex lo spazio lo dà il gap
+function dHtml(it,hl){ const f=hl?hi:esc; if(LANG!=='en') return '<span>'+f(it)+'</span>'; const p=dParts(it);
+  return '<span>'+f(p.main)+'</span>'+(p.alts.length?'<span class="dalt">('+f(p.alts.join(', '))+')</span>':'')+(isItBrand(it)?'<span class="dalt">· '+esc(t('it_brand'))+'</span>':''); }
+function dTitle(it){ return LANG==='en'&&norm(it)!==norm(dParts(it).main) ? ' title="'+esc(t('it_name')+': '+it)+'" ' : ''; }
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+
+/* ---- testi della scheda nella lingua attiva ---- */
+const F_EN={name:'nameEn',mecc:'meccEn',ind:'indEn',adr:'adrEn'};
+function fld(x,k){ return LANG==='en'&&F_EN[k] ? (x[F_EN[k]]||'') : (x[k]||''); }
+function txt(x){ return LANG==='en' ? x._se : x._s; }
+function dnames(x){ return x._n||(x._n=(x.drugs||[]).flatMap(dAll)); }
+function deckColor(id){const d=DECKS.find(x=>x.id===id);return d&&d.color?d.color:'var(--ink-faint)';}
+function deckTitle(id){const d=DECKS.find(x=>x.id===id);return d?(LANG==='en'&&d.titleEn?d.titleEn:d.title):id;}
+function deckCode(id){const d=DECKS.find(x=>x.id===id)||{};return (LANG==='en'&&d.codeEn)||d.code||id;}   // solo etichetta: i link usano l'id
 
 function filtered(){
   const toks=norm(state.q).split(' ').filter(Boolean);
   let r=DATA.filter(x=>{
     if(state.mod && x.mod!==state.mod) return false;
     if(state.deck && x.deck!==state.deck) return false;
-    if(toks.length && !FarmacoCore.rank(state.q,x.drugs||[],x.aliases||[],x._s)) return false;
+    if(toks.length && !FarmacoCore.rank(state.q,dnames(x),x.aliases||[],txt(x))) return false;
     return true;
   });
   const {k,dir}=state.sort;
   r=r.slice().sort((a,b)=>{
-    if(toks.length){const byRank=FarmacoCore.rank(state.q,b.drugs||[],b.aliases||[],b._s)-FarmacoCore.rank(state.q,a.drugs||[],a.aliases||[],a._s);if(byRank)return byRank;}
-    let va=a[k], vb=b[k];
-    if(k==='o'){ if(va!==vb) return (va-vb); return a.name.localeCompare(b.name,'it'); }
-    return String(va).localeCompare(String(vb),'it')*dir;
+    if(toks.length){const byRank=FarmacoCore.rank(state.q,dnames(b),b.aliases||[],txt(b))-FarmacoCore.rank(state.q,dnames(a),a.aliases||[],txt(a));if(byRank)return byRank;}
+    if(k==='o'){ if(a.o!==b.o) return (a.o-b.o); return fld(a,'name').localeCompare(fld(b,'name'),LANG); }
+    return String(fld(a,k)).localeCompare(String(fld(b,k)),LANG)*dir;
   });
   return r;
 }
+// marchi italiani che corrispondono alla ricerca (mostrati nella riga, così si capisce perché compare)
+function brandHits(x){
+  const q=norm(state.q); if(q.length<3) return [];
+  const out=[]; (x.drugs||[]).forEach(d=>(NAMES.brands[d]||[]).forEach(b=>{const nb=norm(b);if(nb===q||nb.startsWith(q)||q.split(' ').indexOf(nb)>=0)out.push([b,d]);}));
+  return out;
+}
+function suggest(){
+  const box=$('#suggestions');box.replaceChildren();
+  const q=norm(state.q); if(q.length<5||filtered().length) return;
+  const all=[...new Set(DATA.flatMap(x=>(x.drugs||[]).flatMap(d=>LANG==='en'?[dParts(d).main,d]:[d])))];
+  const names=all.filter(n=>Math.abs(norm(n).length-q.length)<=1&&FarmacoCore.distance(norm(n),q)<=1).slice(0,4);
+  if(!names.length) return;
+  box.append(t('did_you_mean'));
+  for(const n of names){const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=n;b.onclick=()=>{state.q=n;$('#q').value=n;render();};box.append(b);}
+}
 
 function render(){
-  const suggestions=$('#suggestions');suggestions.replaceChildren();
-  if(norm(state.q).length>=5&&!filtered().length){const q=norm(state.q);const names=[...new Set(DATA.flatMap(x=>x.drugs||[]))].filter(n=>Math.abs(norm(n).length-q.length)<=1&&FarmacoCore.distance(norm(n),q)<=1).slice(0,4);if(names.length){suggestions.append('Forse cercavi: ');for(const n of names){const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=n;b.onclick=()=>{state.q=n;$('#q').value=n;render();};suggestions.append(b);}}}
+  suggest();
   if(document.body.classList.contains('m-rubrica')) return renderRubrica();
   const rows=filtered();
-  const nd=new Set(); rows.forEach(x=>(x.drugs||[]).forEach(d=>nd.add(d)));
-  $('#count').textContent = nd.size+' farmaci · '+rows.length+'/'+DATA.length+' schede';
-  if(!rows.length){ $('#tb').innerHTML='<tr><td colspan="5" class="empty">Nessun farmaco trovato 🐢</td></tr>'; return; }
+  const nd=new Set(); rows.forEach(x=>(x.drugs||[]).forEach(d=>nd.add(dKey(d))));
+  $('#count').textContent = t('count',nd.size,rows.length,DATA.length);
+  if(!rows.length){ $('#tb').innerHTML='<tr><td colspan="5" class="empty">'+esc(t('empty'))+'</td></tr>'; return; }
+  const L={d:esc(t('th_drug')),m:esc(t('th_mecc')),i:esc(t('th_ind')),a:esc(t('th_adr'))};
   $('#tb').innerHTML = rows.map(x=>{
-    const code = (DECKS.find(d=>d.id===x.deck)||{}).code || x.deck;
-    const cls='<span class="dchip" style="--dc:'+deckColor(x.deck)+'">'+esc(code)+'</span><span class="mod-pill mod-'+x.mod+'">Mod '+x.mod+'</span><small>'+esc(deckTitle(x.deck))+'</small>';
+    const cls='<span class="dchip" style="--dc:'+deckColor(x.deck)+'">'+esc(deckCode(x.deck))+'</span><span class="mod-pill mod-'+x.mod+'">Mod '+x.mod+'</span><small>'+esc(deckTitle(x.deck))+'</small>';
     const href='Flashcard-Farmacologia.html#front='+esc(x.id||'');
+    const nm=fld(x,'name'), hits=brandHits(x);
+    const hl=LANG==='en'?(x.drugs||[]).flatMap(d=>{const p=dParts(d);return [p.main,...p.alts];}):x.drugs;
     return '<tr class="dr" data-id="'+esc(x.id||'')+'">'+
       '<td class="c-cls">'+cls+'</td>'+
-      '<td class="c-name hN"><a class="namelink" href="'+href+'">'+dnHi(x.name,x.drugs)+'</a>'+(x.drugs&&x.drugs.length?'<div class="drugtags">'+x.drugs.map(dn=>'<a class="dtag" href="'+href+'">'+hi(dn)+'</a>').join('')+'</div>':'')+'</td>'+
-      '<td class="c-mecc col-d" data-label="Meccanismo">'+hi(x.mecc||'—')+'</td>'+
-      '<td class="c-ind col-d" data-label="Indicazioni">'+hi(x.ind||'—')+'</td>'+
-      '<td class="c-adr col-d" data-label="Reazioni avverse">'+hi(x.adr||'—')+'</td>'+
+      '<td class="c-name hN"><a class="namelink" href="'+href+'">'+dnHi(nm,hl)+'</a>'+
+        (x.drugs&&x.drugs.length?'<div class="drugtags">'+x.drugs.map(dn=>'<a class="dtag" href="'+href+'"'+dTitle(dn)+'>'+dHtml(dn,true)+'</a>').join('')+'</div>':'')+
+        (hits.length?'<div class="bhit">'+esc(t('brand_lab'))+': '+hits.map(([b,d])=>'<b>'+hi(cap(b))+'</b> → '+esc(dMain(d))).join(', ')+'</div>':'')+'</td>'+
+      '<td class="c-mecc col-d" data-label="'+L.m+'">'+hi(fld(x,'mecc')||'—')+'</td>'+
+      '<td class="c-ind col-d" data-label="'+L.i+'">'+hi(fld(x,'ind')||'—')+'</td>'+
+      '<td class="c-adr col-d" data-label="'+L.a+'">'+hi(fld(x,'adr')||'—')+'</td>'+
     '</tr>'+
     '<tr class="exp"><td colspan="5"><div class="exp-in">'+
-      '<div class="nm"><span class="exp-lab">Farmaco</span><a class="namelink" href="'+href+'">'+hi(x.name)+'</a></div>'+
+      '<div class="nm"><span class="exp-lab">'+L.d+'</span><a class="namelink" href="'+href+'">'+hi(nm)+'</a></div>'+
       '<div class="eff">'+
-        '<div><span class="exp-lab">Meccanismo</span>'+hi(x.mecc||'—')+'</div>'+
-        '<div><span class="exp-lab">Indicazioni</span>'+hi(x.ind||'—')+'</div>'+
-        '<div><span class="exp-lab">Reazioni avverse</span>'+hi(x.adr||'—')+'</div>'+
+        '<div><span class="exp-lab">'+L.m+'</span>'+hi(fld(x,'mecc')||'—')+'</div>'+
+        '<div><span class="exp-lab">'+L.i+'</span>'+hi(fld(x,'ind')||'—')+'</div>'+
+        '<div><span class="exp-lab">'+L.a+'</span>'+hi(fld(x,'adr')||'—')+'</div>'+
       '</div>'+
-      '<a class="studia" href="'+href+'">↗ Studia in FarmacoFlash</a>'+
+      '<a class="studia" href="'+href+'">'+esc(t('study_ff'))+'</a>'+
     '</div></td></tr>';
   }).join('');
 }
@@ -360,28 +490,51 @@ function drugIndex(){
   const m=new Map();
   DATA.forEach(x=>(x.drugs||[]).forEach(dn=>{
     if(!m.has(dn)) m.set(dn,[]);
-    m.get(dn).push({id:x.id,deck:x.deck,code:(DECKS.find(d=>d.id===x.deck)||{}).code||x.deck,title:deckTitle(x.deck),mod:x.mod});
+    m.get(dn).push({id:x.id,deck:x.deck,mod:x.mod});   // il codice del mazzo si calcola al render: dipende dalla lingua
   }));
   _DIDX=m; return m;
 }
+// voci della rubrica nella lingua attiva: in IT un nome per voce (come prima); in EN un farmaco per voce,
+// con i nomi dello stesso gruppo di sinonimi riuniti (ASA / acido acetilsalicilico / Aspirina → acetylsalicylic acid)
+function rubricaEntries(){
+  const m=drugIndex();
+  if(LANG!=='en') return [...m.entries()].map(([dn,refs])=>({label:dn,its:[dn],refs}));
+  const g=new Map();
+  for(const [dn,refs] of m){ const k=grp(dn); if(!g.has(k)) g.set(k,{pref:k,its:[],refs:[]}); const e=g.get(k); e.its.push(dn); refs.forEach(r=>{if(!e.refs.some(o=>o.id===r.id))e.refs.push(r);}); }
+  return [...g.values()].map(e=>{ if(e.its.indexOf(e.pref)<0) e.pref=e.its[0]; e.label=dParts(e.pref).main; return e; });
+}
+// nome inglese di una voce EN: voce preferita + gli altri nomi inglesi del gruppo tra parentesi (i marchi italiani a parte)
+function rbNameEn(e){
+  const inns=e.its.filter(n=>!isItBrand(n)); if(!inns.length) return {html:dHtml(e.pref,true),en:[e.label]};
+  const seen=new Set([norm(e.label)]), alts=[];
+  [e.pref,...inns].forEach(n=>{const p=dParts(n);[p.main,...p.alts].forEach(a=>{const k=norm(a);if(!seen.has(k)){seen.add(k);alts.push(a);}});});
+  return {html:'<span>'+hi(e.label)+'</span>'+(alts.length?'<span class="dalt">('+hi(alts.join(', '))+')</span>':''),en:[e.label,...alts]};
+}
 function renderRubrica(){
-  const toks=norm(state.q).split(' ').filter(Boolean), m=drugIndex();
-  const sel=dn=>{ let r=m.get(dn); if(state.mod) r=r.filter(o=>o.mod===state.mod); if(state.deck) r=r.filter(o=>o.deck===state.deck); return r; };
-  let names=[...m.keys()].filter(dn=>{
-    const refs=sel(dn); if(!refs.length) return false;
-    if(toks.length){const rows=DATA.filter(x=>refs.some(r=>r.id===x.id));if(!rows.some(x=>FarmacoCore.rank(state.q,[dn],x.aliases||[],dn+' '+x._s)))return false;}
+  const toks=norm(state.q).split(' ').filter(Boolean);
+  const sel=e=>{ let r=e.refs; if(state.mod) r=r.filter(o=>o.mod===state.mod); if(state.deck) r=r.filter(o=>o.deck===state.deck); return r; };
+  const entries=rubricaEntries().filter(e=>{
+    const refs=sel(e); if(!refs.length) return false;
+    if(toks.length){const rows=DATA.filter(x=>refs.some(r=>r.id===x.id)), nm=e.its.flatMap(dAll);if(!rows.some(x=>FarmacoCore.rank(state.q,nm,x.aliases||[],e.label+' '+txt(x))))return false;}
     return true;
   });
-  names.sort((a,b)=>a.localeCompare(b,'it'));
-  $('#count').textContent = names.length+' farmaci (A→Z)';
-  if(!names.length){ $('#rubrica').innerHTML='<div class="empty">Nessun farmaco trovato 🐢</div>'; return; }
+  entries.sort((a,b)=>a.label.localeCompare(b.label,LANG));
+  $('#count').textContent = t('count_az',entries.length);
+  if(!entries.length){ $('#rubrica').innerHTML='<div class="empty">'+esc(t('empty'))+'</div>'; return; }
   const groups={}, order=[];
-  names.forEach(dn=>{ let i=(dn[0]||'#').toUpperCase(); if(!/[A-Z]/.test(i)) i='#'; if(!groups[i]){groups[i]=[];order.push(i);} groups[i].push(dn); });
+  entries.forEach(e=>{ let i=(e.label.normalize('NFD')[0]||'#').toUpperCase(); if(!/[A-Z]/.test(i)) i='#'; if(!groups[i]){groups[i]=[];order.push(i);} groups[i].push(e); });
   $('#rubrica').innerHTML = order.map(letter=>{
-    const rows=groups[letter].map(dn=>{
-      const seen={}, chips=sel(dn).filter(r=>seen[r.code]?false:(seen[r.code]=1))
-        .map(r=>{const nm=r.title.length>26?r.title.slice(0,25)+'…':r.title; return '<a class="rb-cls" href="Flashcard-Farmacologia.html#front='+esc(r.id)+'" style="--dc:'+deckColor(r.deck)+'" title="'+esc(r.title)+'"><b>'+esc(r.code)+'</b> '+esc(nm)+'</a>';}).join('');
-      return '<div class="rb-row"><span class="rb-name">'+hi(dn)+'</span><span class="rb-cls-wrap">'+chips+'</span></div>';
+    const rows=groups[letter].map(e=>{
+      const seen={}, chips=sel(e).filter(r=>seen[r.deck]?false:(seen[r.deck]=1))
+        .map(r=>{const tt=deckTitle(r.deck),nm=tt.length>26?tt.slice(0,25)+'…':tt; return '<a class="rb-cls" href="Flashcard-Farmacologia.html#front='+esc(r.id)+'" style="--dc:'+deckColor(r.deck)+'" title="'+esc(tt)+'"><b>'+esc(deckCode(r.deck))+'</b> '+esc(nm)+'</a>';}).join('');
+      if(LANG!=='en') return '<div class="rb-row"><span class="rb-name">'+hi(e.its[0])+'</span><span class="rb-cls-wrap">'+chips+'</span></div>';
+      // EN: nomi italiani diversi dai nomi inglesi mostrati, e i marchi italiani su una riga a parte
+      const nmEn=rbNameEn(e), shown=new Set(nmEn.en.map(norm));
+      const itNames=e.its.filter(n=>!isItBrand(n)&&!shown.has(norm(n))), brands=e.its.filter(isItBrand);
+      return '<div class="rb-row"><span class="rb-name">'+nmEn.html+'</span>'+
+        (itNames.length?'<span class="rb-it">'+esc(t('it_name'))+': <span lang="it">'+itNames.map(hi).join(' · ')+'</span></span>':'')+
+        (brands.length?'<span class="rb-it">'+esc(t('brand_lab'))+': <span lang="it">'+brands.map(hi).join(' · ')+'</span></span>':'')+
+        '<span class="rb-cls-wrap">'+chips+'</span></div>';
     }).join('');
     return '<div class="rb-group"><div class="rb-letter">'+esc(letter)+'</div>'+rows+'</div>';
   }).join('');
@@ -390,21 +543,22 @@ function renderRubrica(){
 function buildChips(){
   // modulo
   const mr=$('#modSeg');
-  [['Tutti',null],['Generale',  'I'],['Speciale','II']].forEach(([t,v])=>{
-    const b=document.createElement('button'); b.type='button'; b.className='chip'+((state.mod===v)?' on':''); b.textContent=t;
+  [['mod_all',null],['mod_I','I'],['mod_II','II']].forEach(([k,v])=>{
+    const b=document.createElement('button'); b.type='button'; b.className='chip'+((state.mod===v)?' on':''); b.dataset.i=k; b.textContent=t(k);
     b.onclick=()=>{ state.mod=v; refreshChips(); render(); }; b.dataset.mod=String(v); mr.appendChild(b);
   });
   // classi
   const dr=$('#deckRow');
   DECKS.forEach(d=>{
     const b=document.createElement('button'); b.type='button'; b.className='chip dk'; b.dataset.deck=d.id;
-    if(d.color) b.style.setProperty('--dc',d.color); b.textContent=(d.code||d.id)+' · '+d.title;
-    b.title=d.title;
+    if(d.color) b.style.setProperty('--dc',d.color);
     b.onclick=()=>{ state.deck = (state.deck===d.id)?null:d.id; refreshChips(); render(); };
     dr.appendChild(b);
   });
+  labelDecks();
 }
-function toggleDecks(open){const row=$('#deckRow'),btn=$('#moreDecks');if(!row||!btn)return;if(typeof open!=='boolean')open=row.classList.contains('collapsed');row.classList.toggle('collapsed',!open);btn.setAttribute('aria-expanded',open);btn.textContent=open?'Mostra meno argomenti':'Mostra tutti gli argomenti ('+DECKS.length+')';}
+function labelDecks(){ document.querySelectorAll('#deckRow .chip').forEach(b=>{const tt=deckTitle(b.dataset.deck);b.textContent=deckCode(b.dataset.deck)+' · '+tt;b.title=tt;}); }
+function toggleDecks(open){const row=$('#deckRow'),btn=$('#moreDecks');if(!row||!btn)return;if(typeof open!=='boolean')open=row.classList.contains('collapsed');row.classList.toggle('collapsed',!open);btn.setAttribute('aria-expanded',open);btn.textContent=open?t('decks_less'):t('decks_more',DECKS.length);}
 function refreshChips(){
   if(state.deck)toggleDecks(true);
   document.querySelectorAll('#modRow .chip').forEach(b=>{const on=b.dataset.mod===String(state.mod);b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);});
@@ -419,10 +573,7 @@ function setMode(m){
   document.body.classList.add('m-'+m);
   document.querySelectorAll('.chip.mode').forEach(b=>{const on=b.dataset.mode===m;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);});
   document.querySelectorAll('tr.open').forEach(t=>t.classList.remove('open'));
-  $('#hint').textContent = m==='nomi' ? '👆 Tocca un farmaco per vedere a cosa serve'
-    : m==='effetti' ? '👆 Leggi gli effetti e prova a indovinare: tocca per scoprire il farmaco'
-    : m==='rubrica' ? '🔤 Tutti i farmaci in ordine alfabetico — tocca un codice classe per studiarlo'
-    : '👆 Tocca una riga per aprirla nello studio di FarmacoFlash';
+  $('#hint').textContent = t('hint_'+m);
   render();
 }
 document.querySelectorAll('.chip.mode').forEach(b=> b.addEventListener('click', ()=>setMode(b.dataset.mode)) );
@@ -446,71 +597,100 @@ document.querySelectorAll('thead th').forEach(th=>{
   });
 });
 
-/* ===== QUIZ NOMI ===== */
-const ALLDRUGS=[]; DATA.forEach(x=>(x.drugs||[]).forEach(dn=>ALLDRUGS.push({drug:dn,id:x.id,deck:x.deck,mod:x.mod,cls:x.name,use:x.ind||x.mecc||''})));
+/* ===== QUIZ NOMI =====
+   Le domande salvano i valori canonici (nome italiano del farmaco, nome italiano della scheda):
+   le etichette si calcolano a ogni render, quindi cambiare lingua a metà quiz non rompe nulla. */
+const ALLDRUGS=[]; DATA.forEach(x=>(x.drugs||[]).forEach(dn=>ALLDRUGS.push({drug:dn,id:x.id,deck:x.deck,mod:x.mod,cls:x.name})));
 const ALLCLS=[...new Set(ALLDRUGS.map(d=>d.cls))];
+const ROW={}, CLS_EN={}; DATA.forEach(x=>{ROW[x.id]=x;if(!(x.name in CLS_EN))CLS_EN[x.name]=x.nameEn;});
+function clsL(c){ return LANG==='en'?(CLS_EN[c]||c):c; }
+function useOf(id){ const x=ROW[id]; return x ? (fld(x,'ind')||fld(x,'mecc')) : ''; }
 const QKEY='farmaco-quiz-v1';
 let quizStorageBlocked=false;
 let qstore=(()=>{try{const raw=localStorage.getItem(QKEY);return raw?FarmacoCore.validateQuiz(JSON.parse(raw)):{wrong:{}};}catch(e){quizStorageBlocked=true;return {wrong:{}};}})();
 qstore.wrong=qstore.wrong||{}; qstore.answered=qstore.answered||0; qstore.correct=qstore.correct||0;
-function qsave(){try{if(quizStorageBlocked)throw Error('Stored quiz needs recovery');localStorage.setItem(QKEY,JSON.stringify(qstore));}catch(e){alert('Salvataggio non riuscito: i dati precedenti non sono stati sovrascritti. Esporta un backup da FarmacoFlash prima di chiudere.');}}
-let quiz=null;
+function qsave(){try{if(quizStorageBlocked)throw Error('Stored quiz needs recovery');localStorage.setItem(QKEY,JSON.stringify(qstore));}catch(e){alert(t('save_fail'));}}
+let quiz=null, qView='q';
 function shuf(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a;}
-function sample(arr,n,not){const o=[];for(const v of shuf(arr)){if(o.length>=n)break;if(not&&v===not)continue;if(o.indexOf(v)<0)o.push(v);}return o;}
+// n valori a caso con etichette diverse tra loro e da quelle escluse (in EN due nomi italiani possono avere lo stesso INN)
+function pickDistinct(cands,n,labelOf,exclude){const seen=new Set(exclude.map(norm)),out=[];for(const v of shuf(cands)){if(out.length>=n)break;const k=norm(labelOf(v));if(seen.has(k))continue;seen.add(k);out.push(v);}return out;}
 function nrm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();}
 function lev(a,b){const m=a.length,n=b.length,d=[];for(let i=0;i<=m;i++)d[i]=[i];for(let j=0;j<=n;j++)d[0][j]=j;for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n];}
 function qPool(){const p=ALLDRUGS.filter(d=>(!state.mod||d.mod===state.mod)&&(!state.deck||d.deck===state.deck));return p.length?p:ALLDRUGS;}
+// in EN il quiz chiede l'INN, non i marchi italiani (Aulin, Toradol): il principio attivo è nella stessa scheda. Si applica a ogni domanda, anche dopo un cambio di lingua
+function langPool(p){ if(LANG!=='en') return p; const f=p.filter(d=>!isItBrand(d.drug)); return f.length?f:p; }
+// niente ripetizioni nella sessione: lo stesso farmaco non torna, con nessuno dei suoi nomi e in nessuna lingua
+function uKey(dn){return 'g:'+norm(grp(dn));}
 function quizStart(kind, errorsOnly){
   if(ALLDRUGS.length<4)return;
   let pool=qPool();
-  if(errorsOnly){ const ew=Object.keys(qstore.wrong).filter(k=>qstore.wrong[k]>0); const p=ALLDRUGS.filter(d=>ew.indexOf(d.drug)>=0); if(p.length) pool=p; }
+  if(errorsOnly){
+    const ew=new Set(Object.keys(qstore.wrong).filter(k=>qstore.wrong[k]>0));
+    // in EN un errore su un marchio italiano si ripassa col suo principio attivo
+    const p=ALLDRUGS.filter(d=>ew.has(d.drug)||(LANG==='en'&&!isItBrand(d.drug)&&gMembers(d.drug).some(m=>isItBrand(m)&&ew.has(m))));
+    if(p.length) pool=p;
+  }
   quiz={kind:kind||'mc',errorsOnly:!!errorsOnly,score:0,total:0,streak:0,best:0,pool:pool,used:new Set(),hist:[],hidx:-1};
   $('#quiz').hidden=false; document.body.style.overflow='hidden'; quizNext();
 }
 function quizExit(){ $('#quiz').hidden=true; document.body.style.overflow=''; }
 function topBar(){ $('#qScore').textContent='✔ '+quiz.score+'/'+quiz.total; $('#qStreak').textContent='🔥 '+quiz.streak; }
 function buildQ(){
-  let avail=quiz.pool.filter(d=>!quiz.used.has(norm(d.drug))); if(!avail.length)return null;
+  const avail=langPool(quiz.pool).filter(d=>!quiz.used.has(uKey(d.drug))); if(!avail.length)return null;
   const it=avail[Math.floor(Math.random()*avail.length)];
+  if(quiz.kind==='write') return {mode:'write',wtype:'target',target:it.drug,focus:it.drug,cardId:it.id,cls:it.cls,done:false};
   const members=[...new Set(ALLDRUGS.filter(d=>d.cls===it.cls).map(d=>d.drug))];
-  if(quiz.kind==='write'){
-    const wtype='target';
-    const q={mode:'write',wtype:wtype,members:members,target:it.drug,focus:it.drug,cardId:it.id,prompt:esc(it.cls),sub:it.use?esc(it.use).slice(0,110):'',hint:'',done:false};
-    if(wtype==='target'){ const t=it.drug, ini=((t.match(/[A-Za-zÀ-ÿ]/)||[''])[0]).toUpperCase(), nl=t.replace(/\s/g,'').length;
-      q.kicker='✍️ Scrivi il farmaco preciso'; q.hint='<div class="q-hint">inizia per <b>'+ini+'</b> · '+nl+' lettere</div>'; }
-    else q.kicker='✍️ Scrivi un farmaco di questa classe (nuovo)';
-    return q;
-  }
   const type=Math.random()<0.5?'cls':'drug';
-  if(type==='cls') return {mode:'mc',type:type,answer:it.cls,focus:it.drug,cardId:it.id,kicker:'In quale scheda trovi questo farmaco?',prompt:'<span class="dn">'+esc(it.drug)+'</span>',sub:'Associazione alle schede di studio, non classificazione farmacologica.',options:shuf([it.cls,...sample(ALLCLS.filter(c=>!ALLDRUGS.some(d=>d.cls===c&&norm(d.drug)===norm(it.drug))),3,it.cls)]),done:false};
-  return {mode:'mc',type:type,answer:it.drug,focus:it.drug,cardId:it.id,kicker:'Quale nome è incluso in questa scheda?',prompt:esc(it.cls),sub:'',options:shuf([it.drug,...sample(ALLDRUGS.filter(d=>!members.some(m=>norm(m)===norm(d.drug))).map(d=>d.drug),3,it.drug)]),done:false};
+  if(type==='cls'){
+    // distrattori: schede che non elencano il farmaco con nessuno dei suoi nomi (per ASA è giusta anche la scheda che elenca Aspirina)
+    const g=grp(it.drug);
+    const cands=ALLCLS.filter(c=>c!==it.cls&&!ALLDRUGS.some(d=>d.cls===c&&grp(d.drug)===g));
+    return {mode:'mc',type:type,answer:it.cls,focus:it.drug,cardId:it.id,cls:it.cls,options:shuf([it.cls,...pickDistinct(cands,3,clsL,[clsL(it.cls)])]),done:false};
+  }
+  // distrattori: farmaci che non sono un sinonimo di nessun nome della scheda; in EN niente marchi italiani
+  const mg=new Set(members.map(grp));
+  const cands=[...new Set(ALLDRUGS.map(d=>d.drug))].filter(dn=>!mg.has(grp(dn))&&!(LANG==='en'&&isItBrand(dn)));
+  return {mode:'mc',type:type,answer:it.drug,focus:it.drug,cardId:it.id,cls:it.cls,options:shuf([it.drug,...pickDistinct(cands,3,dMain,members.flatMap(m=>[m,dMain(m)]))]),done:false};
 }
+function optLabel(q,o,html){ return q.type==='cls' ? esc(clsL(o)) : (html?dHtml(o):esc(dText(o))); }
 function qNav(){
   const cur=quiz.hist[quiz.hidx];
-  const fwd=(cur&&cur.done)?'<button class="q-fwd" onclick="quizNext()">'+(quiz.hidx<quiz.hist.length-1?'Avanti →':'Nuova →')+'</button>':'';
-  return '<div class="q-nav"><button class="q-back"'+(quiz.hidx>0?'':' disabled')+' onclick="quizBack()">← Indietro</button>'+fwd+'</div>';
+  const fwd=(cur&&cur.done)?'<button class="q-fwd" onclick="quizNext()">'+esc(quiz.hidx<quiz.hist.length-1?t('q_next'):t('q_new'))+'</button>':'';
+  return '<div class="q-nav"><button class="q-back"'+(quiz.hidx>0?'':' disabled')+' onclick="quizBack()">'+esc(t('q_back'))+'</button>'+fwd+'</div>';
 }
+// risposte accettate nello scritto: il nome richiesto e i suoi sinonimi (ASA → anche acido acetilsalicilico e Aspirina; levodopa → anche L-DOPA).
+// In IT i nomi italiani; in EN anche INN, nomi USA/UK e nomi italiani. Un marchio vale solo se è proprio il nome richiesto; per un marchio vale anche il principio attivo.
+function accepted(q){ const ms=gMembers(q.target).filter(m=>m===q.target||!isItBrand(m)); if(ms.indexOf(q.target)<0) ms.unshift(q.target); return LANG==='en' ? ms.flatMap(dAll) : ms; }
 function renderQ(q){
-  topBar();
-  let b='<div class="q-kicker">'+q.kicker+'</div><div class="q-prompt">'+q.prompt+'</div>'+(q.sub?'<div class="q-sub">'+q.sub+'</div>':'')+(q.hint||'');
+  qView='q'; topBar();
+  let kicker, prompt, sub='', hint='';
+  if(q.mode==='write'){
+    const main=dMain(q.target), ini=((main.match(/[A-Za-zÀ-ÿ]/)||[''])[0]).toUpperCase(), nl=main.replace(/\s/g,'').length, use=useOf(q.cardId);
+    kicker=t('q_write_k'); prompt=esc(clsL(q.cls)); sub=use?esc(use.length>110?use.slice(0,109)+'…':use):''; hint='<div class="q-hint">'+t('q_hint',esc(ini),nl)+'</div>';
+  }else if(q.type==='cls'){ kicker=t('q_cls_k'); prompt='<span class="dn">'+dHtml(q.focus)+'</span>'; sub=esc(t('q_cls_sub')); }
+  else { kicker=t('q_drug_k'); prompt=esc(clsL(q.cls)); }
+  let b='<div class="q-kicker">'+esc(kicker)+'</div><div class="q-prompt">'+prompt+'</div>'+(sub?'<div class="q-sub">'+sub+'</div>':'')+hint;
   if(q.mode==='mc'){
-    b+='<div class="q-opts">'+q.options.map((o,i)=>{let c='q-opt';if(q.done){if(o===q.answer)c+=' ok';else if(o===q.chosen)c+=' no';}return '<button class="'+c+'"'+(q.done?' disabled':'')+' onclick="quizAnswer('+i+')">'+esc(o)+'</button>';}).join('')+'</div>';
-    b+='<div class="q-next" id="qNext">'+(q.done?(q.feedback||''):'')+'</div>';
+    const fb=q.done?(q.wasCorrect?esc(t('q_right')):t('q_answer',optLabel(q,q.answer))):'';
+    b+='<div class="q-opts">'+q.options.map((o,i)=>{let c='q-opt';if(q.done){if(o===q.answer)c+=' ok';else if(o===q.chosen)c+=' no';}return '<button class="'+c+'"'+(q.done?' disabled':'')+' onclick="quizAnswer('+i+')">'+optLabel(q,o,true)+'</button>';}).join('')+'</div>';
+    b+='<div class="q-next" id="qNext">'+fb+'</div>';
   }else{
-    b+='<input class="q-in'+(q.done?(q.wasCorrect?' ok':' no'):'')+'" id="qIn" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="scrivi qui il nome…"'+(q.done?' value="'+esc(q.chosen||'')+'" disabled':'')+' onkeydown="if(event.key===&quot;Enter&quot;)quizEnter()">'+(q.done?'':'<button class="q-go" id="qGo" onclick="quizSubmit()">Verifica</button>')+'<div class="q-next" id="qNext">'+(q.done?(q.feedback||''):'')+'</div>';
+    const fb=q.done?esc(q.needsCorrection?t('q_fixed'):t('q_ok')):(q.needsCorrection?'<p role="alert">'+esc(q.near?t('q_typo'):t('q_diff'))+' '+t('q_spell',esc(dMain(q.target)))+'</p>':'');
+    b+='<input class="q-in'+(q.done?(q.wasCorrect?' ok':' no'):'')+'" id="qIn" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" lang="'+LANG+'" placeholder="'+esc(t('q_ph'))+'"'+(q.done?' value="'+esc(q.chosen||'')+'" disabled':'')+' onkeydown="if(event.key===&quot;Enter&quot;)quizEnter()">'+(q.done?'':'<button class="q-go" id="qGo" onclick="quizSubmit()">'+esc(t('q_check'))+'</button>')+'<div class="q-next" id="qNext">'+fb+'</div>';
   }
-  if(q.done && q.cardId) b+='<a class="q-study" href="Flashcard-Farmacologia.html#front='+esc(q.cardId)+'">📖 Studia questa scheda</a>';
+  if(q.done && q.cardId) b+='<a class="q-study" href="Flashcard-Farmacologia.html#front='+esc(q.cardId)+'">'+esc(t('q_study'))+'</a>';
   b+=qNav();
   $('#qCard').innerHTML=b;
   if(!q.done && q.mode==='write'){ const el=$('#qIn'); if(el) el.focus(); }
 }
+function renderDone(){ qView='done'; $('#qCard').innerHTML='<h2>'+esc(t('q_done_t'))+'</h2><p>'+esc(t('q_done_p'))+'</p><div class="q-nav"><button class="q-fwd" type="button" onclick="quizErrors()">'+esc(t('q_review_err'))+'</button><button class="q-back" type="button" onclick="quizExit()">'+esc(t('q_close'))+'</button></div>'; }
 function quizNext(){
   if(quiz.hidx<quiz.hist.length-1){ quiz.hidx++; renderQ(quiz.hist[quiz.hidx]); return; }
-  const q=buildQ();if(!q){$('#qCard').innerHTML='<h2>Sessione completata</h2><p>Hai incontrato tutti i nomi selezionati. Puoi ripassare gli errori o iniziare una nuova sessione.</p><div class="q-nav"><button class="q-fwd" type="button" onclick="quizErrors()">Rivedi errori</button><button class="q-back" type="button" onclick="quizExit()">Chiudi</button></div>';return;}quiz.hist.push(q); quiz.hidx=quiz.hist.length-1; renderQ(q);
+  const q=buildQ();if(!q){renderDone();return;}quiz.hist.push(q); quiz.hidx=quiz.hist.length-1; renderQ(q);
 }
 function quizBack(){ if(quiz.hidx>0){ quiz.hidx--; renderQ(quiz.hist[quiz.hidx]); } }
 function scoreQ(q,canon){
-  if(q.scored)return;q.scored=true;quiz.used.add(norm(canon||q.focus));
+  if(q.scored)return;q.scored=true;quiz.used.add(uKey(canon||q.focus));
   quiz.total++; qstore.answered++;
   if(q.wasCorrect){ quiz.score++; quiz.streak++; quiz.best=Math.max(quiz.best,quiz.streak); qstore.correct++; }
   else { quiz.streak=0; qstore.wrong[q.focus]=(qstore.wrong[q.focus]||0)+1; }
@@ -519,33 +699,31 @@ function scoreQ(q,canon){
 function quizAnswer(i){
   const q=quiz.hist[quiz.hidx]; if(!q||q.done||q.mode!=='mc')return;
   q.done=true; q.chosen=q.options[i]; q.wasCorrect=(q.chosen===q.answer);
-  scoreQ(q); q.feedback=q.wasCorrect?'Giusto! 🎉':'Risposta: <b>'+esc(q.answer)+'</b>';
-  renderQ(q);
+  scoreQ(q); renderQ(q);
 }
 function quizSubmit(){
   const q=quiz.hist[quiz.hidx]; if(!q||q.done||q.mode!=='write')return;
   const el=$('#qIn'); const v=el?el.value:''; if(!nrm(v))return;
   const nv=nrm(v), near1=a=>{const na=nrm(a);return Math.abs(na.length-nv.length)<=2 && lev(na,nv)<=1;};
-  if(q.wtype==='target'){
-    const exact=norm(v)===norm(q.target);
-    if(!q.scored){q.chosen=v;q.wasCorrect=exact;scoreQ(q);}
-    if(!exact){q.needsCorrection=true;$('#qNext').innerHTML='<p role="alert">'+(near1(q.target)?'Refuso.':'Il nome richiesto è diverso.')+' Si scrive <b>'+esc(q.target)+'</b>. Riscrivilo per continuare: il primo tentativo resta nello storico.</p>';el.value='';el.focus();return;}
-    q.done=true;q.chosen=v;q.feedback=q.needsCorrection?'Correzione completata. Il primo tentativo resta un errore da ripassare.':'Nome corretto.';renderQ(q);return;
-  }
+  const ok=accepted(q), exact=ok.some(a=>norm(v)===norm(a));
+  if(!q.scored){q.chosen=v;q.wasCorrect=exact;scoreQ(q);}
+  if(!exact){q.needsCorrection=true;q.near=ok.some(near1);renderQ(q);return;}   // correzione obbligatoria: si riscrive finché è giusto
+  q.done=true;q.chosen=v;renderQ(q);
 }
 function quizEnter(){ const q=quiz.hist[quiz.hidx]; if(q&&!q.done) quizSubmit(); else quizNext(); }
 function quizErrors(){
+  qView='errors';
   $('#quiz').hidden=false; document.body.style.overflow='hidden';
   const ent=Object.keys(qstore.wrong).filter(k=>qstore.wrong[k]>0).map(k=>[k,qstore.wrong[k]]).sort((a,b)=>b[1]-a[1]);
-  $('#qScore').textContent='Risposte: '+qstore.answered; $('#qStreak').textContent='✔ '+qstore.correct;
-  let b='<div class="q-kicker">📊 I tuoi errori (nel tempo)</div>';
-  if(!ent.length){ b+='<div class="q-prompt" style="font-size:1.2rem">Nessun errore registrato 🎉</div><div class="q-nav"><button class="q-back" onclick="quizExit()">Chiudi</button></div>'; }
-  else{ b+='<div class="q-sub">'+ent.length+' nomi da rivedere (i più sbagliati in alto).</div><div class="q-errlist">'+ent.slice(0,80).map(e=>'<span class="q-err"><b>'+esc(e[0])+'</b> ×'+e[1]+'</span>').join('')+'</div>';
-    b+='<div class="q-nav"><button class="q-fwd" onclick="quizStart(&quot;write&quot;,true)">✍️ Riscrivi gli errori</button><button class="q-fwd" onclick="quizStart(&quot;mc&quot;,true)">🎯 Ripassa (scelta)</button></div>';
-    b+='<div class="q-nav"><button class="q-back" onclick="qClearErr()">🗑 Azzera</button><button class="q-back" onclick="quizExit()">Chiudi</button></div>'; }
+  $('#qScore').textContent=t('e_answers',qstore.answered); $('#qStreak').textContent='✔ '+qstore.correct;
+  let b='<div class="q-kicker">'+esc(t('e_title'))+'</div>';
+  if(!ent.length){ b+='<div class="q-prompt" style="font-size:1.2rem">'+esc(t('e_none'))+'</div><div class="q-nav"><button class="q-back" onclick="quizExit()">'+esc(t('q_close'))+'</button></div>'; }
+  else{ b+='<div class="q-sub">'+esc(t('e_n',ent.length))+'</div><div class="q-errlist">'+ent.slice(0,80).map(e=>'<span class="q-err"'+dTitle(e[0])+'><b>'+esc(dText(e[0]))+'</b> ×'+e[1]+'</span>').join('')+'</div>';
+    b+='<div class="q-nav"><button class="q-fwd" onclick="quizStart(&quot;write&quot;,true)">'+esc(t('e_write'))+'</button><button class="q-fwd" onclick="quizStart(&quot;mc&quot;,true)">'+esc(t('e_mc'))+'</button></div>';
+    b+='<div class="q-nav"><button class="q-back" onclick="qClearErr()">'+esc(t('e_clear'))+'</button><button class="q-back" onclick="quizExit()">'+esc(t('q_close'))+'</button></div>'; }
   $('#qCard').innerHTML=b;
 }
-function qClearErr(){ if(confirm('Azzerare lo storico degli errori del quiz?')){ qstore.wrong={}; qsave(); quizErrors(); } }
+function qClearErr(){ if(confirm(t('e_confirm'))){ qstore.wrong={}; qsave(); quizErrors(); } }
 
 function applyUrlState(){
   try{
@@ -559,10 +737,56 @@ function applyUrlState(){
   }catch(e){}
   return null;
 }
+
+/* ===== testi statici, lingua e tema ===== */
+function applyStatic(){
+  ROOT.lang=LANG; document.title=t('doc_title');
+  document.querySelectorAll('[data-i]').forEach(el=>{el.textContent=t(el.dataset.i);});
+  document.querySelectorAll('[data-i-ph]').forEach(el=>{el.placeholder=t(el.dataset.iPh);});
+  document.querySelectorAll('[data-i-aria]').forEach(el=>{el.setAttribute('aria-label',t(el.dataset.iAria));});
+  document.querySelectorAll('[data-i-title]').forEach(el=>{el.title=t(el.dataset.iTitle);});
+  const lt=$('#langTog'); if(lt) lt.textContent=LANG==='it'?'EN':'IT';
+  themeLabel();
+  const nd=new Set(DATA.flatMap(x=>(x.drugs||[]).map(dKey)));
+  $('#foot').textContent=t('foot',nd.size,DATA.length,DECKS.length);
+  ROOT.classList.remove('i18n-wait');
+}
+function setLang(l,persist){
+  if(l!=='it'&&l!=='en') return;
+  LANG=l; if(persist!==false) try{localStorage.setItem('farmaco-lang',l);}catch(e){}
+  applyStatic(); labelDecks(); toggleDecks(!$('#deckRow').classList.contains('collapsed'));
+  $('#hint').textContent=t('hint_'+mode); render();
+  if(!$('#quiz').hidden){ if(qView==='errors') quizErrors(); else if(qView==='done') renderDone(); else if(quiz&&quiz.hist[quiz.hidx]) renderQ(quiz.hist[quiz.hidx]); }
+}
+function setTheme(th,persist){
+  if(th!=='dark'&&th!=='light') return;
+  ROOT.dataset.theme=th;
+  const m=document.querySelector('meta[name="theme-color"]'); if(m) m.content=th==='dark'?'#13110d':'#f3f0e9';
+  themeLabel();
+  if(persist) try{localStorage.setItem('cr-theme',th);}catch(e){}
+}
+// l'icona (sole/luna) la sceglie il CSS dal tema; nome e tooltip dicono cosa fa il bottone
+function themeLabel(){ const b=$('#themeTog'); if(!b) return; const k=ROOT.dataset.theme==='dark'?'theme_to_light':'theme_to_dark'; b.title=t(k); b.setAttribute('aria-label',t(k)); }
+// nello shell: lo shell invia {__farmaco:1,type:'appearance',theme,lang}; il tema lo applica src/bridge.js, la lingua la applichiamo qui
+if(EMBED&&parent!==window) addEventListener('message',e=>{
+  if(e.source!==parent||e.origin!==location.origin||!e.data||e.data.__farmaco!==1)return;
+  const d=e.data;
+  if(d.type==='appearance'){ if(d.theme==='dark'||d.theme==='light') setTheme(d.theme,false); if((d.lang==='it'||d.lang==='en')&&d.lang!==LANG) setLang(d.lang); }
+});
+if(!EMBED){
+  $('#themeTog').addEventListener('click',()=>setTheme(ROOT.dataset.theme==='dark'?'light':'dark',true));
+  $('#langTog').addEventListener('click',()=>setLang(LANG==='it'?'en':'it'));
+  // altre schede aperte che cambiano tema o lingua: FarmacoFlash (farmaco-lang) e lo shell o l'atlante (cr-lang); vince l'ultimo cambio
+  addEventListener('storage',e=>{ if(e.key==='cr-theme') setTheme(e.newValue,false); if((e.key==='farmaco-lang'||e.key==='cr-lang')&&(e.newValue==='it'||e.newValue==='en')&&e.newValue!==LANG) setLang(e.newValue,false); });
+  // senza tema salvato si segue il sistema, anche se cambia mentre la pagina è aperta
+  try{ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',ev=>{let s=null;try{s=localStorage.getItem('cr-theme');}catch(x){} if(s!=='dark'&&s!=='light') setTheme(ev.matches?'dark':'light',false);}); }catch(e){}
+}
+
 buildChips();
 toggleDecks(false);
+setTheme(ROOT.dataset.theme,false);
+applyStatic();
 const _initView=applyUrlState();
-$('#foot').textContent = DATA.length+' farmaci · '+DECKS.length+' classi · Moduli I–II · dati dalle tue carte FarmacoFlash';
 setMode(_initView||'all');
 </script>
 <script>__BRIDGE_JS__</script>
