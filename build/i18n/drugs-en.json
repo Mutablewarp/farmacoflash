@@ -4,6 +4,17 @@
   "Aulin": "nimesulide",
   "Toradol": "ketorolac"
  },
+ "_synonyms": [
+  ["acido acetilsalicilico", "ASA", "Aspirina"],
+  ["levodopa", "L-DOPA"],
+  ["idrocortisone", "cortisolo"],
+  ["benzilpenicillina", "penicillina G"],
+  ["fenossimetilpenicillina", "penicillina V"],
+  ["metotrexate", "metotressato"],
+  ["nimesulide", "Aulin"],
+  ["ketorolac", "Toradol"]
+ ],
+ "_synonymsNote": "Stesso farmaco con più nomi nelle schede (nomi che condividono un nome normalizzato, più marchio -> principio attivo di _brands). Il primo nome è la voce preferita della rubrica inglese. build/table.js ricalcola i gruppi e si ferma se non coincidono con questo elenco: un nuovo nome che ne unisce due va deciso a mano.",
  "_notInGoodman": {
   "INN first, US name in brackets found in Goodman": "etacrynic acid, zoledronic acid, beclometasone (dipropionate), chlorphenamine, colestyramine, sodium cromoglicate, phenoxymethylpenicillin, glycopyrronium bromide, indometacin, meticillin, sulfafurazole, torasemide, fampridine (4-aminopyridine)",
   "INN not cited in Goodman 14th ed. (withdrawn, non-US or investigational), kept as the standard INN": "chlortetracycline, oxytetracycline, roxithromycin, pefloxacin, oxprenolol, rilmenidine, roxatidine, etifoxine, tolazamide, tocainide, moricizine, drotrecogin alfa, otamixaban, razaxaban, terutroban, nacubactam, zidebactam",
@@ -141,7 +152,7 @@
  "cortisolo": "cortisol (hydrocortisone)",
  "cortisone": "cortisone",
  "cromoglicato di sodio": "sodium cromoglicate (cromolyn sodium)",
- "cumarina": "coumarin",
+ "cumarina": "coumarins (coumarin anticoagulants)",
  "dabigatran": "dabigatran",
  "daptomicina": "daptomycin",
  "demeclociclina": "demeclocycline",
@@ -250,7 +261,7 @@
  "irbesartan": "irbesartan",
  "isoflurano": "isoflurane",
  "isoniazide": "isoniazid",
- "isosorbide": "isosorbide",
+ "isosorbide": "isosorbide dinitrate (isosorbide mononitrate, isosorbide)",
  "kanamicina": "kanamycin",
  "ketamina": "ketamine",
  "ketoprofene": "ketoprofen",

@@ -1,5 +1,10 @@
 {
- "_comment": "Titoli inglesi dei mazzi per la Tabella (chiave = codice del mazzo). Stessi testi di DECK_T_EN in build/app-template.html.",
+ "_comment": "Titoli inglesi dei mazzi per la Tabella (chiave = codice del mazzo). Stessi testi di DECK_T_EN in build/app-template.html, tranne i due mazzi di antibiotici, che qui hanno un titolo distinto. _codes: codici mostrati in inglese al posto dei codici italiani (solo etichetta: id e link restano invariati).",
+ "_codes": {
+  "Antibiotici-2": "ABX-2",
+  "Antibiotici-3": "ABX-3",
+  "Beta-lattamici": "β-LACT"
+ },
  "G1": "Principles · Absorption & bioavailability",
  "G2": "Principles · Distribution & metabolism",
  "G3": "Principles · Elimination & PK parameters",
@@ -32,7 +37,7 @@
  "B12b": "Vasodilators",
  "B13": "Antiarrhythmics",
  "B14": "Antineoplastics / Precision oncology",
- "Antibiotici-2": "Antibiotics",
- "Antibiotici-3": "Antibiotics",
+ "Antibiotici-2": "Antibiotics II: cell wall & antimycobacterials",
+ "Antibiotici-3": "Antibiotics III: protein & nucleic acid synthesis",
  "Beta-lattamici": "β-lactam antibiotics"
 }

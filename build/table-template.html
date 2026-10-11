@@ -7,7 +7,7 @@
 __PWA_HEAD__
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script>/* tema, lingua ed embed applicati prima del primo paint: tema salvato (cr-theme) o quello del sistema; lingua come FarmacoFlash (farmaco-lang, poi cr-lang; nello shell prima cr-lang) */(function(){var r=document.documentElement,e=/[?&]embed=1/.test(location.search),t,l,m;try{t=localStorage.getItem('cr-theme');}catch(x){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';r.dataset.theme=t;m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#13110d':'#f3f0e9';try{l=(e&&localStorage.getItem('cr-lang'))||localStorage.getItem('farmaco-lang')||localStorage.getItem('cr-lang');}catch(x){}r.lang=l==='en'?'en':'it';if(e)r.classList.add('embed');if(r.lang==='en'){r.classList.add('i18n-wait');setTimeout(function(){r.classList.remove('i18n-wait');},2500);}})();</script>
+<script>/* tema, lingua ed embed applicati prima del primo paint: tema salvato (cr-theme) o quello del sistema; lingua: nello shell solo cr-lang (la stessa regola dello shell, così non c'è un lampo nella lingua sbagliata), da sola come FarmacoFlash (farmaco-lang, poi cr-lang) */(function(){var r=document.documentElement,e=/[?&]embed=1/.test(location.search),t,l,m;try{t=localStorage.getItem('cr-theme');}catch(x){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';r.dataset.theme=t;m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#13110d':'#f3f0e9';try{l=e?localStorage.getItem('cr-lang'):(localStorage.getItem('farmaco-lang')||localStorage.getItem('cr-lang'));}catch(x){}r.lang=l==='en'?'en':'it';if(e)r.classList.add('embed');if(r.lang==='en'){r.classList.add('i18n-wait');setTimeout(function(){r.classList.remove('i18n-wait');},2500);}})();</script>
 <style>
 /* Tabella dei farmaci · stesso sistema visivo di FarmacoFlash e dello shell */
 :root{
@@ -66,6 +66,9 @@ h1{font-family:var(--font-display);font-weight:600;font-size:1.2rem;letter-spaci
 .hctl{display:flex;align-items:center;gap:8px}
 .langtog{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 12px;border:1px solid var(--line2);border-radius:var(--r-pill);background:transparent;color:var(--ink-dim);font-size:.86rem;font-weight:500;transition:color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
 .langtog:hover{color:var(--ink);border-color:var(--ink-dim)}
+/* tema: stessa icona disegnata per i due stati (sole in chiaro, luna in scuro), scelta dal CSS così segue anche il tema impostato dallo shell */
+.langtog svg{width:18px;height:18px;flex:0 0 auto}
+:root[data-theme="dark"] #themeTog .ic-sun,:root:not([data-theme="dark"]) #themeTog .ic-moon{display:none}
 
 /* ---- bottoni e chip: stesso vocabolario dell'app flashcard ---- */
 .btn,.backapp,.studia,.q-study,.q-back,.q-fwd,.q-go{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:var(--r-ctl);font-size:.93rem;font-weight:500;line-height:1.2;text-decoration:none;white-space:nowrap;transition:background-color var(--dur) var(--ease),border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
@@ -261,7 +264,7 @@ body.m-rubrica #rubrica{display:block;column-width:330px;column-gap:34px;padding
     <div><h1 data-i="h1">Tabella dei farmaci</h1><div class="hsub" data-i="hsub">Catalogo e quiz dei nomi · FarmacoFlash</div></div>
   </div>
   <div class="hctl">
-    <button class="langtog" id="themeTog" type="button" data-i-title="theme_t" data-i-aria="theme_t" title="Tema chiaro / scuro" aria-label="Tema chiaro / scuro">☾</button>
+    <button class="langtog" id="themeTog" type="button" title="Tema chiaro / scuro" aria-label="Tema chiaro / scuro"><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.35 5.35l1.55 1.55M17.1 17.1l1.55 1.55M5.35 18.65l1.55-1.55M17.1 6.9l1.55-1.55"/></svg><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8z"/></svg></button>
     <button class="langtog" id="langTog" type="button" title="Italiano / English" aria-label="Italiano / English">EN</button>
     <a class="backapp" href="Flashcard-Farmacologia.html" data-i-title="back_t" data-i-aria="back_t" title="Torna a FarmacoFlash" aria-label="Torna a FarmacoFlash"><span aria-hidden="true">←</span><span class="bk-l">FarmacoFlash</span></a>
   </div>
@@ -330,11 +333,11 @@ const STR={
  h1:{it:'Tabella dei farmaci',en:'Names table'},
  hsub:{it:'Catalogo e quiz dei nomi · FarmacoFlash',en:'Drug catalogue and name quizzes · FarmacoFlash'},
  back_t:{it:'Torna a FarmacoFlash',en:'Back to FarmacoFlash'},
- theme_t:{it:'Tema chiaro / scuro',en:'Light / dark theme'},
+ theme_to_dark:{it:'Passa al tema scuro',en:'Switch to dark theme'},theme_to_light:{it:'Passa al tema chiaro',en:'Switch to light theme'},
  intro:{it:"Catalogo didattico delle schede: non è l'elenco completo dei medicinali autorizzati. I nomi commerciali sono ausili di ricerca, non equivalenze terapeutiche verificate.",
-        en:'A study catalogue of the cards, not a complete list of authorised medicines. Names follow the English INN, with the common US/UK name in brackets. Italian brand names are search aids, not verified therapeutic equivalents.'},
- search_aria:{it:'Cerca un farmaco o un argomento',en:'Search a drug or a topic'},
- search_ph:{it:'Nome, nome commerciale, bersaglio o meccanismo…',en:'English or Italian name, brand, target, mechanism…'},
+        en:'A study catalogue of the cards, not a complete list of authorised medicines. Names use the English INN where one exists (abbreviations as on the cards), with the US/UK name in brackets. Italian brand names are search aids, not verified therapeutic equivalents.'},
+ search_aria:{it:'Cerca un farmaco o un argomento',en:'Search a drug (English or Italian name), a brand or a topic'},
+ search_ph:{it:'Nome, nome commerciale, bersaglio o meccanismo…',en:'Drug (EN/IT), brand, mechanism…'},
  lab_mod:{it:'Modulo',en:'Module'},lab_view:{it:'Vista',en:'View'},
  mod_all:{it:'Tutti',en:'All'},mod_I:{it:'Generale',en:'General'},mod_II:{it:'Speciale',en:'Systematic'},
  mode_all:{it:'📖 Tutto',en:'📖 Everything'},mode_nomi:{it:'🧠 Solo nomi',en:'🧠 Names only'},mode_effetti:{it:'💊 Solo effetti',en:'💊 Effects only'},mode_rubrica:{it:'🔤 A→Z',en:'🔤 A→Z'},
@@ -358,7 +361,7 @@ const STR={
  q_cls_sub:{it:'Associazione alle schede di studio, non classificazione farmacologica.',en:'Matches the study cards, not a pharmacological classification.'},
  q_drug_k:{it:'Quale nome è incluso in questa scheda?',en:'Which name is listed on this card?'},
  q_write_k:{it:'✍️ Scrivi il farmaco preciso',en:'✍️ Write the exact drug name'},
- q_hint:{it:(i,n)=>'inizia per <b>'+i+'</b> · '+n+' lettere',en:(i,n)=>'starts with <b>'+i+'</b> · '+n+' letters · the Italian name is accepted too'},
+ q_hint:{it:(i,n)=>'inizia per <b>'+i+'</b> · '+n+' lettere',en:(i,n)=>'starts with <b>'+i+'</b> · '+n+' letters · synonyms and the Italian name are accepted too'},
  q_ph:{it:'scrivi qui il nome…',en:'type the name here…'},q_check:{it:'Verifica',en:'Check'},
  q_right:{it:'Giusto! 🎉',en:'Correct! 🎉'},q_answer:{it:a=>'Risposta: <b>'+a+'</b>',en:a=>'Answer: <b>'+a+'</b>'},
  q_typo:{it:'Refuso.',en:'Typo.'},q_diff:{it:'Il nome richiesto è diverso.',en:'That is a different name.'},
@@ -392,6 +395,13 @@ function dParts(it){ if(_DP[it]) return _DP[it]; const v=NAMES.en[it]||it, m=v.m
 function dMain(it){ return LANG==='en' ? dParts(it).main : it; }
 function dAll(it){ const p=dParts(it); return [it,p.main,...p.alts,NAMES.en[it]||it]; }   // tutti i nomi con cui cercare o rispondere (anche la forma completa «INN (USA/UK)»)
 function isItBrand(it){ return Object.prototype.hasOwnProperty.call(NAMES.brandOf,it); }
+// sinonimi (calcolati e verificati in build/table.js): ASA / acido acetilsalicilico / Aspirina, L-DOPA / levodopa, marchio / principio attivo…
+// grp() dà la voce preferita del gruppo; i membri sono i nomi italiani presenti nelle schede
+function grp(it){ return (NAMES.syn&&NAMES.syn[it])||it; }
+const _GM={}; DATA.forEach(x=>(x.drugs||[]).forEach(d=>{const g=grp(d);(_GM[g]=_GM[g]||[]);if(_GM[g].indexOf(d)<0)_GM[g].push(d);}));
+function gMembers(it){ return _GM[grp(it)]||[it]; }
+// chiave per contare i farmaci: in EN un farmaco con più nomi conta una volta; in IT si contano i nomi delle schede (come prima)
+function dKey(it){ return LANG==='en' ? 'g:'+grp(it) : norm(it); }
 function dText(it){ if(LANG!=='en') return it; const p=dParts(it); return p.main+(p.alts.length?' ('+p.alts.join(', ')+')':'')+(isItBrand(it)?' · '+t('it_brand'):''); }
 // nome principale + nome USA/UK tra parentesi (o «marchio italiano»), in span separati: nei chip flex lo spazio lo dà il gap
 function dHtml(it,hl){ const f=hl?hi:esc; if(LANG!=='en') return '<span>'+f(it)+'</span>'; const p=dParts(it);
@@ -406,7 +416,7 @@ function txt(x){ return LANG==='en' ? x._se : x._s; }
 function dnames(x){ return x._n||(x._n=(x.drugs||[]).flatMap(dAll)); }
 function deckColor(id){const d=DECKS.find(x=>x.id===id);return d&&d.color?d.color:'var(--ink-faint)';}
 function deckTitle(id){const d=DECKS.find(x=>x.id===id);return d?(LANG==='en'&&d.titleEn?d.titleEn:d.title):id;}
-function deckCode(id){return (DECKS.find(d=>d.id===id)||{}).code||id;}
+function deckCode(id){const d=DECKS.find(x=>x.id===id)||{};return (LANG==='en'&&d.codeEn)||d.code||id;}   // solo etichetta: i link usano l'id
 
 function filtered(){
   const toks=norm(state.q).split(' ').filter(Boolean);
@@ -444,7 +454,7 @@ function render(){
   suggest();
   if(document.body.classList.contains('m-rubrica')) return renderRubrica();
   const rows=filtered();
-  const nd=new Set(); rows.forEach(x=>(x.drugs||[]).forEach(d=>nd.add(norm(dMain(d)))));
+  const nd=new Set(); rows.forEach(x=>(x.drugs||[]).forEach(d=>nd.add(dKey(d))));
   $('#count').textContent = t('count',nd.size,rows.length,DATA.length);
   if(!rows.length){ $('#tb').innerHTML='<tr><td colspan="5" class="empty">'+esc(t('empty'))+'</td></tr>'; return; }
   const L={d:esc(t('th_drug')),m:esc(t('th_mecc')),i:esc(t('th_ind')),a:esc(t('th_adr'))};
@@ -480,17 +490,25 @@ function drugIndex(){
   const m=new Map();
   DATA.forEach(x=>(x.drugs||[]).forEach(dn=>{
     if(!m.has(dn)) m.set(dn,[]);
-    m.get(dn).push({id:x.id,deck:x.deck,code:deckCode(x.deck),mod:x.mod});
+    m.get(dn).push({id:x.id,deck:x.deck,mod:x.mod});   // il codice del mazzo si calcola al render: dipende dalla lingua
   }));
   _DIDX=m; return m;
 }
-// voci della rubrica nella lingua attiva: in EN i nomi italiani con lo stesso INN (es. metotressato/metotrexate) diventano una voce sola
+// voci della rubrica nella lingua attiva: in IT un nome per voce (come prima); in EN un farmaco per voce,
+// con i nomi dello stesso gruppo di sinonimi riuniti (ASA / acido acetilsalicilico / Aspirina → acetylsalicylic acid)
 function rubricaEntries(){
   const m=drugIndex();
   if(LANG!=='en') return [...m.entries()].map(([dn,refs])=>({label:dn,its:[dn],refs}));
   const g=new Map();
-  for(const [dn,refs] of m){ const k=norm(dText(dn)); if(!g.has(k)) g.set(k,{label:dParts(dn).main,its:[],refs:[]}); const e=g.get(k); e.its.push(dn); refs.forEach(r=>{if(!e.refs.some(o=>o.id===r.id))e.refs.push(r);}); }
-  return [...g.values()];
+  for(const [dn,refs] of m){ const k=grp(dn); if(!g.has(k)) g.set(k,{pref:k,its:[],refs:[]}); const e=g.get(k); e.its.push(dn); refs.forEach(r=>{if(!e.refs.some(o=>o.id===r.id))e.refs.push(r);}); }
+  return [...g.values()].map(e=>{ if(e.its.indexOf(e.pref)<0) e.pref=e.its[0]; e.label=dParts(e.pref).main; return e; });
+}
+// nome inglese di una voce EN: voce preferita + gli altri nomi inglesi del gruppo tra parentesi (i marchi italiani a parte)
+function rbNameEn(e){
+  const inns=e.its.filter(n=>!isItBrand(n)); if(!inns.length) return {html:dHtml(e.pref,true),en:[e.label]};
+  const seen=new Set([norm(e.label)]), alts=[];
+  [e.pref,...inns].forEach(n=>{const p=dParts(n);[p.main,...p.alts].forEach(a=>{const k=norm(a);if(!seen.has(k)){seen.add(k);alts.push(a);}});});
+  return {html:'<span>'+hi(e.label)+'</span>'+(alts.length?'<span class="dalt">('+hi(alts.join(', '))+')</span>':''),en:[e.label,...alts]};
 }
 function renderRubrica(){
   const toks=norm(state.q).split(' ').filter(Boolean);
@@ -507,11 +525,16 @@ function renderRubrica(){
   entries.forEach(e=>{ let i=(e.label.normalize('NFD')[0]||'#').toUpperCase(); if(!/[A-Z]/.test(i)) i='#'; if(!groups[i]){groups[i]=[];order.push(i);} groups[i].push(e); });
   $('#rubrica').innerHTML = order.map(letter=>{
     const rows=groups[letter].map(e=>{
-      const seen={}, chips=sel(e).filter(r=>seen[r.code]?false:(seen[r.code]=1))
-        .map(r=>{const tt=deckTitle(r.deck),nm=tt.length>26?tt.slice(0,25)+'…':tt; return '<a class="rb-cls" href="Flashcard-Farmacologia.html#front='+esc(r.id)+'" style="--dc:'+deckColor(r.deck)+'" title="'+esc(tt)+'"><b>'+esc(r.code)+'</b> '+esc(nm)+'</a>';}).join('');
-      const first=e.its[0], itNames=LANG==='en'?e.its.filter(n=>norm(n)!==norm(e.label)):[];
-      const name=LANG==='en'?dHtml(first,true):hi(first);
-      return '<div class="rb-row"><span class="rb-name">'+name+'</span>'+(itNames.length?'<span class="rb-it" lang="it">'+esc(t('it_name'))+': '+itNames.map(hi).join(' · ')+'</span>':'')+'<span class="rb-cls-wrap">'+chips+'</span></div>';
+      const seen={}, chips=sel(e).filter(r=>seen[r.deck]?false:(seen[r.deck]=1))
+        .map(r=>{const tt=deckTitle(r.deck),nm=tt.length>26?tt.slice(0,25)+'…':tt; return '<a class="rb-cls" href="Flashcard-Farmacologia.html#front='+esc(r.id)+'" style="--dc:'+deckColor(r.deck)+'" title="'+esc(tt)+'"><b>'+esc(deckCode(r.deck))+'</b> '+esc(nm)+'</a>';}).join('');
+      if(LANG!=='en') return '<div class="rb-row"><span class="rb-name">'+hi(e.its[0])+'</span><span class="rb-cls-wrap">'+chips+'</span></div>';
+      // EN: nomi italiani diversi dai nomi inglesi mostrati, e i marchi italiani su una riga a parte
+      const nmEn=rbNameEn(e), shown=new Set(nmEn.en.map(norm));
+      const itNames=e.its.filter(n=>!isItBrand(n)&&!shown.has(norm(n))), brands=e.its.filter(isItBrand);
+      return '<div class="rb-row"><span class="rb-name">'+nmEn.html+'</span>'+
+        (itNames.length?'<span class="rb-it">'+esc(t('it_name'))+': <span lang="it">'+itNames.map(hi).join(' · ')+'</span></span>':'')+
+        (brands.length?'<span class="rb-it">'+esc(t('brand_lab'))+': <span lang="it">'+brands.map(hi).join(' · ')+'</span></span>':'')+
+        '<span class="rb-cls-wrap">'+chips+'</span></div>';
     }).join('');
     return '<div class="rb-group"><div class="rb-letter">'+esc(letter)+'</div>'+rows+'</div>';
   }).join('');
@@ -594,29 +617,39 @@ function pickDistinct(cands,n,labelOf,exclude){const seen=new Set(exclude.map(no
 function nrm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();}
 function lev(a,b){const m=a.length,n=b.length,d=[];for(let i=0;i<=m;i++)d[i]=[i];for(let j=0;j<=n;j++)d[0][j]=j;for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n];}
 function qPool(){const p=ALLDRUGS.filter(d=>(!state.mod||d.mod===state.mod)&&(!state.deck||d.deck===state.deck));return p.length?p:ALLDRUGS;}
-// niente ripetizioni nella sessione: lo stesso nome (nella lingua del quiz) non torna
-function uKey(dn){return LANG==='en'?'en:'+norm(dParts(dn).main):norm(dn);}
+// in EN il quiz chiede l'INN, non i marchi italiani (Aulin, Toradol): il principio attivo è nella stessa scheda. Si applica a ogni domanda, anche dopo un cambio di lingua
+function langPool(p){ if(LANG!=='en') return p; const f=p.filter(d=>!isItBrand(d.drug)); return f.length?f:p; }
+// niente ripetizioni nella sessione: lo stesso farmaco non torna, con nessuno dei suoi nomi e in nessuna lingua
+function uKey(dn){return 'g:'+norm(grp(dn));}
 function quizStart(kind, errorsOnly){
   if(ALLDRUGS.length<4)return;
   let pool=qPool();
-  if(errorsOnly){ const ew=Object.keys(qstore.wrong).filter(k=>qstore.wrong[k]>0); const p=ALLDRUGS.filter(d=>ew.indexOf(d.drug)>=0); if(p.length) pool=p; }
+  if(errorsOnly){
+    const ew=new Set(Object.keys(qstore.wrong).filter(k=>qstore.wrong[k]>0));
+    // in EN un errore su un marchio italiano si ripassa col suo principio attivo
+    const p=ALLDRUGS.filter(d=>ew.has(d.drug)||(LANG==='en'&&!isItBrand(d.drug)&&gMembers(d.drug).some(m=>isItBrand(m)&&ew.has(m))));
+    if(p.length) pool=p;
+  }
   quiz={kind:kind||'mc',errorsOnly:!!errorsOnly,score:0,total:0,streak:0,best:0,pool:pool,used:new Set(),hist:[],hidx:-1};
   $('#quiz').hidden=false; document.body.style.overflow='hidden'; quizNext();
 }
 function quizExit(){ $('#quiz').hidden=true; document.body.style.overflow=''; }
 function topBar(){ $('#qScore').textContent='✔ '+quiz.score+'/'+quiz.total; $('#qStreak').textContent='🔥 '+quiz.streak; }
 function buildQ(){
-  const avail=quiz.pool.filter(d=>!quiz.used.has(uKey(d.drug))); if(!avail.length)return null;
+  const avail=langPool(quiz.pool).filter(d=>!quiz.used.has(uKey(d.drug))); if(!avail.length)return null;
   const it=avail[Math.floor(Math.random()*avail.length)];
   if(quiz.kind==='write') return {mode:'write',wtype:'target',target:it.drug,focus:it.drug,cardId:it.id,cls:it.cls,done:false};
   const members=[...new Set(ALLDRUGS.filter(d=>d.cls===it.cls).map(d=>d.drug))];
   const type=Math.random()<0.5?'cls':'drug';
   if(type==='cls'){
-    const same=d=>norm(d)===norm(it.drug)||norm(dMain(d))===norm(dMain(it.drug));
-    const cands=ALLCLS.filter(c=>c!==it.cls&&!ALLDRUGS.some(d=>d.cls===c&&same(d.drug)));
+    // distrattori: schede che non elencano il farmaco con nessuno dei suoi nomi (per ASA è giusta anche la scheda che elenca Aspirina)
+    const g=grp(it.drug);
+    const cands=ALLCLS.filter(c=>c!==it.cls&&!ALLDRUGS.some(d=>d.cls===c&&grp(d.drug)===g));
     return {mode:'mc',type:type,answer:it.cls,focus:it.drug,cardId:it.id,cls:it.cls,options:shuf([it.cls,...pickDistinct(cands,3,clsL,[clsL(it.cls)])]),done:false};
   }
-  const cands=[...new Set(ALLDRUGS.map(d=>d.drug))].filter(dn=>!members.some(m=>norm(m)===norm(dn)));
+  // distrattori: farmaci che non sono un sinonimo di nessun nome della scheda; in EN niente marchi italiani
+  const mg=new Set(members.map(grp));
+  const cands=[...new Set(ALLDRUGS.map(d=>d.drug))].filter(dn=>!mg.has(grp(dn))&&!(LANG==='en'&&isItBrand(dn)));
   return {mode:'mc',type:type,answer:it.drug,focus:it.drug,cardId:it.id,cls:it.cls,options:shuf([it.drug,...pickDistinct(cands,3,dMain,members.flatMap(m=>[m,dMain(m)]))]),done:false};
 }
 function optLabel(q,o,html){ return q.type==='cls' ? esc(clsL(o)) : (html?dHtml(o):esc(dText(o))); }
@@ -625,8 +658,9 @@ function qNav(){
   const fwd=(cur&&cur.done)?'<button class="q-fwd" onclick="quizNext()">'+esc(quiz.hidx<quiz.hist.length-1?t('q_next'):t('q_new'))+'</button>':'';
   return '<div class="q-nav"><button class="q-back"'+(quiz.hidx>0?'':' disabled')+' onclick="quizBack()">'+esc(t('q_back'))+'</button>'+fwd+'</div>';
 }
-// risposte accettate nello scritto: in IT il nome italiano (come prima); in EN l'INN inglese, i nomi USA/UK tra parentesi e il nome italiano
-function accepted(q){ return LANG==='en' ? dAll(q.target) : [q.target]; }
+// risposte accettate nello scritto: il nome richiesto e i suoi sinonimi (ASA → anche acido acetilsalicilico e Aspirina; levodopa → anche L-DOPA).
+// In IT i nomi italiani; in EN anche INN, nomi USA/UK e nomi italiani. Un marchio vale solo se è proprio il nome richiesto; per un marchio vale anche il principio attivo.
+function accepted(q){ const ms=gMembers(q.target).filter(m=>m===q.target||!isItBrand(m)); if(ms.indexOf(q.target)<0) ms.unshift(q.target); return LANG==='en' ? ms.flatMap(dAll) : ms; }
 function renderQ(q){
   qView='q'; topBar();
   let kicker, prompt, sub='', hint='';
@@ -712,7 +746,8 @@ function applyStatic(){
   document.querySelectorAll('[data-i-aria]').forEach(el=>{el.setAttribute('aria-label',t(el.dataset.iAria));});
   document.querySelectorAll('[data-i-title]').forEach(el=>{el.title=t(el.dataset.iTitle);});
   const lt=$('#langTog'); if(lt) lt.textContent=LANG==='it'?'EN':'IT';
-  const nd=new Set(DATA.flatMap(x=>(x.drugs||[]).map(d=>norm(dMain(d)))));
+  themeLabel();
+  const nd=new Set(DATA.flatMap(x=>(x.drugs||[]).map(dKey)));
   $('#foot').textContent=t('foot',nd.size,DATA.length,DECKS.length);
   ROOT.classList.remove('i18n-wait');
 }
@@ -727,9 +762,11 @@ function setTheme(th,persist){
   if(th!=='dark'&&th!=='light') return;
   ROOT.dataset.theme=th;
   const m=document.querySelector('meta[name="theme-color"]'); if(m) m.content=th==='dark'?'#13110d':'#f3f0e9';
-  const b=$('#themeTog'); if(b) b.textContent=th==='dark'?'☾':'☀';
+  themeLabel();
   if(persist) try{localStorage.setItem('cr-theme',th);}catch(e){}
 }
+// l'icona (sole/luna) la sceglie il CSS dal tema; nome e tooltip dicono cosa fa il bottone
+function themeLabel(){ const b=$('#themeTog'); if(!b) return; const k=ROOT.dataset.theme==='dark'?'theme_to_light':'theme_to_dark'; b.title=t(k); b.setAttribute('aria-label',t(k)); }
 // nello shell: lo shell invia {__farmaco:1,type:'appearance',theme,lang}; il tema lo applica src/bridge.js, la lingua la applichiamo qui
 if(EMBED&&parent!==window) addEventListener('message',e=>{
   if(e.source!==parent||e.origin!==location.origin||!e.data||e.data.__farmaco!==1)return;
@@ -739,8 +776,8 @@ if(EMBED&&parent!==window) addEventListener('message',e=>{
 if(!EMBED){
   $('#themeTog').addEventListener('click',()=>setTheme(ROOT.dataset.theme==='dark'?'light':'dark',true));
   $('#langTog').addEventListener('click',()=>setLang(LANG==='it'?'en':'it'));
-  // altre schede aperte (FarmacoFlash, atlante) che cambiano tema o lingua
-  addEventListener('storage',e=>{ if(e.key==='cr-theme') setTheme(e.newValue,false); if(e.key==='farmaco-lang'&&e.newValue!==LANG) setLang(e.newValue,false); });
+  // altre schede aperte che cambiano tema o lingua: FarmacoFlash (farmaco-lang) e lo shell o l'atlante (cr-lang); vince l'ultimo cambio
+  addEventListener('storage',e=>{ if(e.key==='cr-theme') setTheme(e.newValue,false); if((e.key==='farmaco-lang'||e.key==='cr-lang')&&(e.newValue==='it'||e.newValue==='en')&&e.newValue!==LANG) setLang(e.newValue,false); });
   // senza tema salvato si segue il sistema, anche se cambia mentre la pagina è aperta
   try{ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',ev=>{let s=null;try{s=localStorage.getItem('cr-theme');}catch(x){} if(s!=='dark'&&s!=='light') setTheme(ev.matches?'dark':'light',false);}); }catch(e){}
 }
