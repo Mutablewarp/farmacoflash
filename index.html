@@ -8,10 +8,13 @@
 <meta name="theme-color" content="#f3f0e9">
 <meta name="color-scheme" content="light dark">
 <script>/* tema prima del primo disegno, prima ancora dei caratteri: niente lampo chiaro in modalità scura.
-   Se il tema salvato è quello scritto in automatico dallo shell (ff-theme-auto), si torna a seguire il sistema. */
-(function(){var d=document.documentElement,t,a,m=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light',set=function(n,v){var e=document.querySelector('meta[name="'+n+'"]');if(e)e.content=v};
-try{t=localStorage.getItem('cr-theme');a=localStorage.getItem('ff-theme-auto')}catch(e){}
-if((t!=='light'&&t!=='dark')||t===a){t=m;d.dataset.themeAuto='1'}
+   'cr-theme' contiene solo una scelta esplicita; senza scelta si segue il sistema (lo shell non scrive mai il tema
+   del sistema, così anche le app aperte da sole continuano a seguirlo). Migrazione una tantum condivisa con
+   FarmacoFlash ('cr-theme-mig'): il vecchio FarmacoFlash salvava 'light' a ogni avvio, quel valore si toglie. */
+(function(){var d=document.documentElement,t,set=function(n,v){var e=document.querySelector('meta[name="'+n+'"]');if(e)e.content=v};
+try{if(!localStorage.getItem('cr-theme-mig')){if(localStorage.getItem('cr-theme')==='light')localStorage.removeItem('cr-theme');localStorage.setItem('cr-theme-mig','1')}}catch(e){}
+try{t=localStorage.getItem('cr-theme')}catch(e){}
+if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
 d.dataset.theme=t;set('color-scheme',t);set('theme-color',t==='dark'?'#13110d':'#f3f0e9');})();</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
@@ -46,10 +49,12 @@ d.dataset.theme=t;set('color-scheme',t);set('theme-color',t==='dark'?'#13110d':'
   --ink:#efe9db;--ink-dim:#b3ab9a;--ink-faint:#837b6c;
   --gold:#e3bd80;--on-gold:#1c1a15;--gold-line:#4a3d22;--gold-soft:#241c0d;
   --warn:#e8b45a;--warn-soft:#2a2112;--info:#8cb8e0;--info-soft:#15202a;
-  --night:#211d16;--night-line:#4a3d22;
-  /* al buio: righe che non abbagliano, etichette staccate dal fondo, selezione visibile, popover in rilievo */
+  /* la carta dell'atlante resta la superficie più profonda, sotto pagina e pannelli, come la coppia chiaro/notte di giorno */
+  --night:var(--sunk);--night-line:#4a3d22;
+  /* al buio: righe che non abbagliano, etichette staccate dal fondo, selezione visibile, popover in rilievo,
+     filtro premuto con un riempimento vero (non solo il bordo, che l'anello di fuoco imiterebbe) */
   --rule:var(--ink-faint);--tag:var(--line);--sel:var(--gold-line);--raised:#221e17;
-  --chip-on:var(--gold-soft);--chip-on-line:var(--gold);--chip-on-ink:var(--gold);
+  --chip-on:var(--gold-line);--chip-on-line:var(--gold);--chip-on-ink:var(--ink);
   --shadow:0 1px 2px rgb(0 0 0/.35),0 14px 32px -18px rgb(0 0 0/.7);
   color-scheme:dark;
 }
@@ -209,6 +214,7 @@ button{cursor:pointer}
 .pop .try[hidden]{display:none}
 .pop .acts{display:flex;gap:8px;margin-top:16px;align-items:center}
 .pop .acts .btn{min-height:40px;padding:0 14px;font-size:14px}
+.pop .acts .btn:not(.primary):not(.ghost){background:transparent}/* il secondario prende il fondo del popover, non quello del pannello */
 .pop .acts .grow{flex:1}
 
 /* ---------- telefono ---------- */
@@ -454,22 +460,26 @@ const frames={flashcard:$('#if-flashcard'),catalog:$('#if-catalog'),canali:$('#i
 const pages={home:$('#page-home'),news:$('#page-news')};
 const PATHS={'Flashcard-Farmacologia.html':'flashcard','Tabella-Farmaci.html':'catalog','Canali-e-Recettori-3D.html':'canali','index.html':'home'};
 let INDEX={total:0,cards:{}};try{INDEX=JSON.parse($('#ff-index').textContent)}catch(e){}
-let theme=root.dataset.theme,themeAuto=root.dataset.themeAuto==='1',lang='it',cur={app:'',hash:''},lastCards={app:'flashcard',hash:'#dash'};
+let theme=root.dataset.theme,lang='it',cur={app:'',hash:''},lastCards={app:'flashcard',hash:'#dash'};
 try{if(localStorage.getItem('cr-lang')==='en')lang='en'}catch(e){}
 const ready={},loaded={},pending={},sent={};
 const T=k=>(I18N[lang]||I18N.it)[k];
 const store=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
 const unstore=k=>{try{localStorage.removeItem(k)}catch(e){}};
-/* Le app incorniciate leggono 'cr-theme' prima del loro primo disegno: quando lo shell segue il sistema
-   ci scrive il tema risolto (e lo marca come automatico), così ogni iframe nasce già nel tema giusto. */
-function keepAutoTheme(){if(themeAuto){store('cr-theme',theme);store('ff-theme-auto',theme);}}
+/* Tema: 'cr-theme' è solo la scelta esplicita (condivisa con le app aperte da sole); senza scelta si segue il sistema.
+   Gli iframe nascono nel tema giusto anche così: senza scelta leggono lo stesso prefers-color-scheme dello shell. */
+const savedTheme=()=>{let t=null;try{t=localStorage.getItem('cr-theme')}catch(e){}return t==='light'||t==='dark'?t:null;};
+const osDark=matchMedia('(prefers-color-scheme: dark)'),osTheme=()=>osDark.matches?'dark':'light';
+let themeAuto=!savedTheme();
 
 /* ---------- comunicazione con le app ---------- */
 function tell(app,msg){const f=frames[app];if(f&&f.contentWindow)try{f.contentWindow.postMessage(msg,location.origin==='null'?'*':location.origin)}catch(e){}}
 function syncApp(app){tell(app,{__farmaco:1,type:'appearance',theme,lang});if(app==='canali'){tell(app,{__fusion:'theme',value:theme});tell(app,{__fusion:'lang',value:lang});tell(app,{__fusion:'visibility',value:cur.app==='canali'});}}
-/* L'iframe resta invisibile finché il suo documento non porta il tema dello shell: niente pagina vuota
-   o di tema sbagliato durante il caricamento. Stessa origine: si legge il tema del documento a ogni
-   fotogramma; senza accesso (file://) si mostra subito dopo il caricamento. Riserva: 12 s. */
+/* L'iframe resta invisibile finché il suo documento non porta il tema dello shell e non ha finito le
+   transizioni CSS del cambio di tema: niente pagina vuota, di tema sbagliato o a metà strada durante il
+   caricamento. Stessa origine: si controlla a ogni fotogramma; senza accesso (file://) si mostra subito
+   dopo il caricamento; con accesso, al più 90 fotogrammi dopo il caricamento. Riserva: 12 s. */
+const fading=d=>!!d.getAnimations&&d.getAnimations().some(a=>a.playState==='running'&&'transitionProperty' in a);
 function boot(app,hash){
   const f=frames[app];f.classList.add('wait');f.src=f.dataset.src+(hash||'');sent[app]=hash;
   const show=()=>{f.classList.remove('wait');if(cur.app===app)$('#loading').hidden=true;};let late=0;
@@ -477,7 +487,7 @@ function boot(app,hash){
     if(!f.classList.contains('wait'))return;
     let d=null;try{d=f.contentDocument}catch(e){}
     const own=d&&d.documentElement&&d.URL!=='about:blank';
-    if(own&&d.documentElement.dataset.theme===theme)return requestAnimationFrame(show);
+    if(own&&d.documentElement.dataset.theme===theme&&!fading(d))return requestAnimationFrame(show);
     if(loaded[app]&&++late>(own?90:2))return show();
     requestAnimationFrame(check);
   };
@@ -568,17 +578,18 @@ function applyChrome(){
   if(cur.app==='news')renderNews();
   if(ti>=0)tourShow();
 }
-$('#theme').addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';themeAuto=false;store('cr-theme',theme);unstore('ff-theme-auto');delete root.dataset.themeAuto;applyChrome();Object.keys(frames).forEach(syncApp);});
+function setTheme(t){if(t===theme)return;theme=t;applyChrome();Object.keys(frames).forEach(syncApp);}
+/* il bottone ha due stati: se il tema scelto è quello del sistema si torna a seguire il sistema (niente blocco),
+   altrimenti la scelta si salva in 'cr-theme' e vale anche per le app aperte da sole */
+$('#theme').addEventListener('click',()=>{const t=theme==='dark'?'light':'dark';themeAuto=t===osTheme();if(themeAuto)unstore('cr-theme');else store('cr-theme',t);setTheme(t);});
 /* senza una scelta esplicita lo shell segue il sistema anche mentre è aperto (e porta con sé gli iframe) */
-const osDark=matchMedia('(prefers-color-scheme: dark)');
-const followOs=()=>{if(!themeAuto)return;const t=osDark.matches?'dark':'light';if(t===theme)return;theme=t;keepAutoTheme();applyChrome();Object.keys(frames).forEach(syncApp);};
+const followOs=()=>{if(themeAuto)setTheme(osTheme());};
 if(osDark.addEventListener)osDark.addEventListener('change',followOs);else if(osDark.addListener)osDark.addListener(followOs);
-/* scelta esplicita fatta in un'altra scheda dello shell (solo lo shell toglie ff-theme-auto): smetti di seguire il sistema */
-addEventListener('storage',e=>{
-  if(e.key!=='ff-theme-auto'||e.newValue!==null||!themeAuto)return;
-  themeAuto=false;delete root.dataset.themeAuto;let t='';try{t=localStorage.getItem('cr-theme')}catch(x){}
-  if((t==='light'||t==='dark')&&t!==theme){theme=t;applyChrome();Object.keys(frames).forEach(syncApp);}
-});
+/* scelta fatta altrove (un'altra scheda dello shell, un'app aperta da sola): lo stato si rilegge da 'cr-theme'.
+   Si ignorano le app incorniciate (?embed=1): seguono lo shell, non lo comandano. Stessa rilettura al ritorno dalla bfcache. */
+const syncTheme=()=>{const t=savedTheme();themeAuto=!t;setTheme(t||osTheme());};
+addEventListener('storage',e=>{if((e.key==='cr-theme'||e.key===null)&&!/[?&]embed=1(?:&|#|$)/.test(e.url||''))syncTheme();});
+addEventListener('pageshow',e=>{if(e.persisted)syncTheme();});
 $('#lang').addEventListener('click',()=>{lang=lang==='it'?'en':'it';store('cr-lang',lang);applyChrome();Object.keys(frames).forEach(syncApp);});
 function measure(){root.style.setProperty('--top-h',top_.offsetHeight+'px');if(ti>=0)requestAnimationFrame(place);}
 new ResizeObserver(measure).observe(top_);
@@ -721,7 +732,6 @@ $('#help').addEventListener('click',tourOpen);
 $('#tour-start').addEventListener('click',tourOpen);
 
 /* ---------- avvio ---------- */
-keepAutoTheme();
 applyChrome();
 restore();
 loadNews();
