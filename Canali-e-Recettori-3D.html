@@ -1102,8 +1102,9 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 :root[data-theme="dark"] .hot ol li strong{color:var(--ink)}
 :root[data-theme="dark"] .hot ol li::before{background:var(--d-bad);color:#1c1a15}
 /* riquadri di citazione / avviso (pannello informativo e scheda farmaco) */
-:root[data-theme="dark"] .box.quote{background:var(--sunk)}
-:root[data-theme="dark"] .box.gg{background:rgba(127,207,168,.07);color:#cfeadc}
+:root[data-theme="dark"] .box{border-left-width:1px} /* niente strisce laterali: bordo uniforme da 1px */
+:root[data-theme="dark"] .box.quote{background:var(--sunk);border-left-color:var(--line2)}
+:root[data-theme="dark"] .box.gg{background:rgba(127,207,168,.07);border-color:rgba(127,207,168,.3);color:#cfeadc}
 :root[data-theme="dark"] .box.flag{background:rgba(232,180,90,.07);border-color:rgba(232,180,90,.32);color:#f0d9a8}
 :root[data-theme="dark"] .note{color:var(--ink-dim)}
 /* scheda farmaco (modale) */
@@ -1128,6 +1129,17 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 :root[data-theme="dark"] .pill{background:var(--panel2);border-color:var(--line2)}
 :root[data-theme="dark"] .mlegend-lab{color:var(--ink-dim)}
 :root[data-theme="dark"] .dl-x:hover{background:rgba(239,233,219,.08)}
+/* piè di pagina: l'avvertenza clinica è testo vero, non decorazione (niente opacità, ink-dim) */
+:root[data-theme="dark"] footer{opacity:1;color:var(--ink-dim)}
+/* anello di fuoco oro pieno: distinto dal bordo gold-line della scheda attiva */
+:root[data-theme="dark"] :is(.tab,.ctl-btn,.fam-search,.fam-allbtn):focus-visible{outline-color:var(--gold)}
+/* titolo: «&» e «3D» senza doppio alone (resta solo il bagliore tenue dietro il titolo) */
+:root[data-theme="dark"] .brand h1 em{text-shadow:none;filter:none}
+/* effetto ↑/↓: una sola coppia di colori in pannello, Tabella comparativa e Liganti */
+:root[data-theme="dark"] :is(.kv dd,#cmp-table td).eff-up{color:#f2a982}
+:root[data-theme="dark"] :is(.kv dd,#cmp-table td).eff-dn{color:var(--d-ok)}
+/* link rapidi 📇/📋: mai il colore nativo dei link */
+:root[data-theme="dark"] :is(.ff-mini,.tbl-mini){color:var(--ink-dim)}
 </style>
 <!-- ─ -->
 <style data-slot="explorer">
@@ -1237,6 +1249,9 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 :root[data-theme="dark"] .cv-tip{background:rgba(27,24,18,.95);color:var(--ink)}
 :root[data-theme="dark"] .hud-orient{color:var(--ink-dim)}
 :root[data-theme="dark"] .viewer-title .sub{color:var(--ink-dim)}
+/* «Trabocchetto d'esame»: oro come nella scheda farmaco (.dm-trap), non un blocco bordeaux */
+:root[data-theme="dark"] .box.trap{background:rgba(227,189,128,.07);border-color:var(--gold-line);color:var(--ink)}
+:root[data-theme="dark"] .box.trap .lab{color:var(--gold);opacity:1}
 </style>
 <!-- ─ -->
 <style data-slot="anim">
@@ -1313,6 +1328,17 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 :root[data-theme="dark"] .a25 .anim-svg{box-shadow:0 22px 40px -28px rgba(0,0,0,.8),var(--hair)}
 :root[data-theme="dark"] #view-anim .scen:not(.sel){background:var(--panel);border-color:var(--line2);color:var(--ink-dim)}
 :root[data-theme="dark"] #view-anim .scen:not(.sel):hover{color:var(--ink);border-color:var(--ink-faint)}
+/* scenario scelto: chip tinto nel colore semantico (non un riempimento saturo con testo bianco) */
+:root[data-theme="dark"] :is(#view-anim,body) .scen.sel{--sc:var(--gold);background:color-mix(in srgb,var(--sc) 14%,var(--panel));border-color:color-mix(in srgb,var(--sc) 62%,var(--panel));color:var(--sc)}
+:root[data-theme="dark"] :is(#view-anim,body) .scen.sel.gs{--sc:var(--d-ok)}
+:root[data-theme="dark"] :is(#view-anim,body) .scen.sel.gi{--sc:var(--d-bad)}
+:root[data-theme="dark"] :is(#view-anim,body) .scen.sel.gq{--sc:var(--d-warn)}
+:root[data-theme="dark"] :is(#view-anim,body) .scen.sel.neu{--sc:var(--d-info)}
+:root[data-theme="dark"] :is(#view-anim,body) .scen.sel.musc{--sc:#cdb3f0}
+/* ripiego 2.5D: divisori e anelli letterali navy → linee calde; etichetta «intracellulare» leggibile */
+:root[data-theme="dark"] .anim-svg [stroke="#2a2c3a"]{stroke:var(--line2)}
+:root[data-theme="dark"] .anim-svg [stroke="#5a6a86"]{stroke:var(--ink-faint)}
+:root[data-theme="dark"] .anim-svg text[fill="#7c715d"]{fill:var(--ink-dim)}
 </style>
 <!-- ─ -->
 <style data-slot="table">
@@ -1516,7 +1542,6 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 @media(prefers-reduced-motion:reduce){
   .xq-item,.xq-q,.xq-n,.xq-chev,.xq-a,.xq-item.open .xq-a{transition:none}
 }
-/* stampa: tutte le risposte aperte, per ripassare su carta */
 /* tema scuro: schede di confronto, colonne, biforcazione ACh e domande in superfici calde (prima navy) */
 :root[data-theme="dark"] .diff-card,:root[data-theme="dark"] .exam{background:var(--panel);border-color:var(--line)}
 :root[data-theme="dark"] .cmp .col,:root[data-theme="dark"] .fork .arm{background:color-mix(in srgb,var(--sunk) 55%,var(--panel));border-color:var(--line2)}
@@ -1531,6 +1556,8 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
 :root[data-theme="dark"] .xq-item.open{background:color-mix(in srgb,var(--gold) 5%,var(--panel))}
 :root[data-theme="dark"] .xq-chev{stroke:var(--ink-dim)}
 :root[data-theme="dark"] .xq-item.open .xq-n,:root[data-theme="dark"] .xq-q:hover .xq-n{color:#1c1a15}
+:root[data-theme="dark"] .cmp .col li::before{color:var(--gold)} /* puntini degli elenchi in oro (prima arancio --acc) */
+/* stampa: tutte le risposte aperte, per ripassare su carta */
 @media print{
   .xq-a{grid-template-rows:1fr!important}
   .xq-a>div[hidden]{display:block!important;content-visibility:visible!important}
@@ -1715,6 +1742,8 @@ header.top::after{height:1px;opacity:1;box-shadow:none;
   .cx-big{width:44px;height:44px;font-size:24px}
   .cx-verdict{font-size:16.5px}
 }
+/* tema scuro: isoenzima scelto in oro (come gli altri controlli attivi), non un anello avorio */
+:root[data-theme="dark"] .cx-isob.sel{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
 </style>
 <!-- ─ -->
 <style data-slot="antibiotics">
@@ -1824,12 +1853,12 @@ html.abx-lock,html.abx-lock body{overflow:hidden}
   --r50:#dbe6ee;--r50-s:#98aec0;--r30:#c3d6e4;--r30-s:#87a1b6;--tun:#f2f7fa;
   --mrna:#8a5fb4;--trna:#7aa86a;--trna-s:#4b7a40;--aa:#5c9a4c;--chain:#5f87b3;
   --dna1:#6553b3;--dna2:#2f8fb8;--rna:#cf7a26;--k:#8366c4;--ca:#1f93a6;--fe:#a8642c;--x:#c0392b}
-:root[data-theme="dark"] .abx-panel{--sc-bg:#191611;--sc-out:#1f1b14;--sc-peri:#1d1a14;--sc-cyto:#151a1e;--sc-ink:#efe9db;--sc-dim:#b8b09f;
-  --mem-head:#a68c5c;--mem-tail:#54482f;--mem-core:#29231a;--lps:#c9a566;--oant:#7f6c4a;--porin:#6f86a0;
+:root[data-theme="dark"] .abx-panel{--sc-bg:#191611;--sc-out:#1f1b14;--sc-peri:#1d1a14;--sc-cyto:#18160f;--sc-ink:#efe9db;--sc-dim:#b8b09f;
+  --mem-head:#a68c5c;--mem-tail:#54482f;--mem-core:#29231a;--lps:#c9a566;--oant:#7f6c4a;--porin:color-mix(in srgb,#8cb8e0 48%,#3a352a);
   --nag:#68bba2;--nam:#8ba7ea;--gly:#6f6a61;--pep:#8f846f;--dala:#f29a4d;--xl:#58c690;
-  --enz:#4a72b8;--enz-l:#25314a;--enz-a:#ad8ae4;--res:#f26a5f;
+  --enz:#4a72b8;--enz-l:color-mix(in srgb,#8cb8e0 16%,#211d15);--enz-a:#ad8ae4;--res:#f26a5f;
   --drug:#e3bd80;--drug-s:#fbe6c2;--halo:rgba(227,189,128,.24);
-  --r50:#29333d;--r50-s:#5e7589;--r30:#33414e;--r30-s:#6f879b;--tun:#1b2228;
+  --r50:color-mix(in srgb,#8cb8e0 14%,#211d15);--r50-s:#6f7c86;--r30:color-mix(in srgb,#8cb8e0 20%,#211d15);--r30-s:#7d8a93;--tun:#1f1b14;
   --mrna:#b993de;--trna:#8cc47b;--trna-s:#bfe3b0;--aa:#9bd58a;--chain:#8cb4dd;
   --dna1:#9d8ee6;--dna2:#5cc1e2;--rna:#f2a650;--k:#b49cf2;--ca:#52c7d6;--fe:#d99a5c;--x:#f26a5f}
 :root[data-theme="dark"] .abx-legend .lg-d{box-shadow:none}
@@ -1920,7 +1949,6 @@ html.abx-lock,html.abx-lock body{overflow:hidden}
   .abx-svg .boom>g{opacity:1}
 }
 :root[data-theme="dark"] .abx-svg .ld{fill:var(--drug)}
-:root[data-theme="dark"] .abx-panel{--sc-cyto:#18160f}
 /* tema scuro: mappa mentale in superfici calde (prima navy) */
 :root[data-theme="dark"] .mm-center{background:var(--panel2);border-color:var(--gold-line)}
 :root[data-theme="dark"] .mm-branch{background:var(--panel);border-color:var(--line2);border-top-color:var(--bch,var(--gold))}
@@ -1928,6 +1956,13 @@ html.abx-lock,html.abx-lock body{overflow:hidden}
 :root[data-theme="dark"] .mm-branch .tgt,:root[data-theme="dark"] .mm-center .s{color:var(--ink-dim)}
 :root[data-theme="dark"] .mm-cls .mech{color:var(--ink-dim)}
 :root[data-theme="dark"] .mm-branch>h4{color:color-mix(in srgb,var(--bch,var(--gold)) 72%,#fff)}
+:root[data-theme="dark"] .mm-center .s{opacity:1}
+/* colori dei rami attenuati verso il pannello; le classi perdono la striscia laterale e prendono un puntino */
+:root[data-theme="dark"] .mm-branch{border-top-color:color-mix(in srgb,var(--bch,var(--gold)) 70%,var(--panel))}
+:root[data-theme="dark"] .mm-branch::before{background:color-mix(in srgb,var(--bch,var(--gold)) 70%,var(--panel))}
+:root[data-theme="dark"] .mm-cls{position:relative;border-left:0;padding-left:15px}
+:root[data-theme="dark"] .mm-cls.abx-sel{border-radius:10px}
+:root[data-theme="dark"] .mm-cls::before{content:"";position:absolute;left:2px;top:7px;width:6px;height:6px;border-radius:50%;background:color-mix(in srgb,var(--bch,var(--gold)) 70%,var(--panel))}
 .abx-svg .mo{display:none}
 /* etichette leggibili sul telefono: il viewBox da 560 è reso a circa 0,65× */
 @media(max-width:640px){
@@ -4962,7 +4997,7 @@ FAMS.push({id:"biologici",label:"Biologici · recettori citochinici e di superfi
 let C=C_IT, DIFFS=DIFFS_IT, EXAM=EXAM_IT;
 /* ===== i18n: helper + applicazione lingua, e tema chiaro/scuro ===== */
 function t(a){return a[LANG==='en'?1:0];}
-function applyTheme(th,save){ document.documentElement.dataset.theme=th; const b=document.getElementById('btn-theme'); if(b) b.textContent=(th==='light'?'☀':'☾'); if(save!==false){ try{localStorage.setItem('cr-theme',th);}catch(e){} } const _li=(th==='light'); if(typeof scene!=='undefined'&&scene){ const _bg=_li?'#f3f0e9':'#13110d'; if(scene.fog){ scene.fog.color.set(_bg); scene.fog.density=_li?0.006:0.016; } scene.background=new THREE.Color(_bg); } if(typeof renderer!=='undefined'&&renderer) renderer.toneMappingExposure = _li?1.0:0.82; if(typeof bloomPass!=='undefined'&&bloomPass){ bloomPass.strength=_li?0.14:0.55; bloomPass.threshold=_li?0.62:0.85; } if(typeof mgIon!=='undefined'&&mgIon){ mgIon.material.emissiveIntensity=_li?1.15:0.75; } }
+function applyTheme(th,save){ document.documentElement.dataset.theme=th; const b=document.getElementById('btn-theme'); if(b) b.textContent=(th==='light'?'☀':'☾'); if(save!==false){ try{localStorage.setItem('cr-theme',th);}catch(e){} } const _li=(th==='light'); if(typeof scene!=='undefined'&&scene){ const _bg=_li?'#f3f0e9':'#2a2722'; /* scuro: precompensato per ACES (esposizione 0.82) → reso come --bg #13110d, come la card */ if(scene.fog){ scene.fog.color.set(_bg); scene.fog.density=_li?0.006:0.016; } scene.background=new THREE.Color(_bg); } if(typeof renderer!=='undefined'&&renderer) renderer.toneMappingExposure = _li?1.0:0.82; if(typeof bloomPass!=='undefined'&&bloomPass){ bloomPass.strength=_li?0.14:0.55; bloomPass.threshold=_li?0.62:0.85; } if(typeof mgIon!=='undefined'&&mgIon){ mgIon.material.emissiveIntensity=_li?1.15:0.75; } }
 /* ===================== INTERAZIONI: CYP450 + farmaco-farmaco ===================== */
 function buildInteractions(){
   /* righe CYP: generate da CX_ISO nello slot cyp (cxTableRows), così tabella ed esploratore non divergono */
@@ -5395,10 +5430,11 @@ document.addEventListener('click',function(e){
 });
 document.getElementById('btn-lang').onclick=function(){ setLang(LANG==='en'?'it':'en'); };
 (function(){ /* tema: già scelto nello <head> (salvato o di sistema); qui solo icona e scena 3D, senza salvarlo.
-     Senza scelta salvata segue il sistema anche dopo il caricamento. */
+     Senza scelta salvata segue il sistema anche dopo il caricamento, ma solo da sola:
+     in embed l'unica fonte è la shell ({__fusion:'theme'}), altrimenti l'atlante cambierebbe tema dentro una shell chiara. */
   let saved=null; try{ saved=localStorage.getItem('cr-theme'); }catch(e){}
   applyTheme(document.documentElement.dataset.theme==='dark'?'dark':'light', false);
-  if(saved!=='light'&&saved!=='dark'&&window.matchMedia){ const mq=matchMedia('(prefers-color-scheme: dark)'); const f=e=>{ let s2=null; try{ s2=localStorage.getItem('cr-theme'); }catch(_){} if(s2!=='light'&&s2!=='dark') applyTheme(e.matches?'dark':'light', false); }; if(mq.addEventListener) mq.addEventListener('change',f); else if(mq.addListener) mq.addListener(f); }
+  if(!document.documentElement.classList.contains('embed')&&saved!=='light'&&saved!=='dark'&&window.matchMedia){ const mq=matchMedia('(prefers-color-scheme: dark)'); const f=e=>{ let s2=null; try{ s2=localStorage.getItem('cr-theme'); }catch(_){} if(s2!=='light'&&s2!=='dark') applyTheme(e.matches?'dark':'light', false); }; if(mq.addEventListener) mq.addEventListener('change',f); else if(mq.addListener) mq.addListener(f); }
   let lg='it'; try{lg=localStorage.getItem('cr-lang')||'it';}catch(e){} if(lg==='en') setLang('en'); })();
 if(location.hash) dlApply(); // deep link all'apertura (standalone o iframe con hash)
 window.showOverview=showOverview; // esposto per l'handler inline del pannello
