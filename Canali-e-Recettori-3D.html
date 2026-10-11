@@ -2255,10 +2255,27 @@ html.abx-lock,html.abx-lock body{overflow:hidden}
 
 <script type="module">
 let THREE,OrbitControls,EffectComposer,RenderPass,ShaderPass,UnrealBloomPass,OutlinePass,OutputPass,FXAAShader,RoomEnvironment;
-try{
-  [THREE,{OrbitControls},{EffectComposer},{RenderPass},{ShaderPass},{UnrealBloomPass},{OutlinePass},{OutputPass},{FXAAShader},{RoomEnvironment}]=await Promise.all([
-    import('three'),import('three/addons/controls/OrbitControls.js'),import('three/addons/postprocessing/EffectComposer.js'),import('three/addons/postprocessing/RenderPass.js'),import('three/addons/postprocessing/ShaderPass.js'),import('three/addons/postprocessing/UnrealBloomPass.js'),import('three/addons/postprocessing/OutlinePass.js'),import('three/addons/postprocessing/OutputPass.js'),import('three/addons/shaders/FXAAShader.js'),import('three/addons/environments/RoomEnvironment.js')]);
-}catch(error){console.warn('3D unavailable; educational text and diagrams remain available.');}
+/* Three.js (unpkg) non blocca più il modulo: testi, elenchi, tab e il saluto 'ready' allo shell partono subito,
+   il modello 3D compare quando i moduli sono arrivati (start3D, più sotto). I moduli di secondo livello degli addon
+   (Pass, CopyShader, MaskPass, OutputShader, LuminosityHighPassShader) si chiedono insieme ai primi con modulepreload,
+   così non aspettano in cascata. Se il CDN non risponde (offline da file://) restano testi e schemi 2D, come prima. */
+let threeLoad=null;
+function loadThree(){
+  if(threeLoad) return threeLoad;
+  const base='https://unpkg.com/three@0.160.0/';
+  ['build/three.module.js','examples/jsm/postprocessing/Pass.js','examples/jsm/shaders/CopyShader.js','examples/jsm/postprocessing/MaskPass.js',
+   'examples/jsm/shaders/OutputShader.js','examples/jsm/shaders/LuminosityHighPassShader.js'].forEach(f=>{
+    const l=document.createElement('link'); l.rel='modulepreload'; l.href=base+f; document.head.appendChild(l); });
+  threeLoad=Promise.all([
+    import('three'),import('three/addons/controls/OrbitControls.js'),import('three/addons/postprocessing/EffectComposer.js'),import('three/addons/postprocessing/RenderPass.js'),import('three/addons/postprocessing/ShaderPass.js'),import('three/addons/postprocessing/UnrealBloomPass.js'),import('three/addons/postprocessing/OutlinePass.js'),import('three/addons/postprocessing/OutputPass.js'),import('three/addons/shaders/FXAAShader.js'),import('three/addons/environments/RoomEnvironment.js')])
+    .then(m=>{ [THREE,{OrbitControls},{EffectComposer},{RenderPass},{ShaderPass},{UnrealBloomPass},{OutlinePass},{OutputPass},{FXAAShader},{RoomEnvironment}]=m; return true; },
+      ()=>{ THREE=undefined; console.warn('3D unavailable; educational text and diagrams remain available.'); return false; });
+  return threeLoad;
+}
+loadThree();   // l'Esploratore 3D è la vista d'apertura: il download parte subito, in parallelo al resto della pagina
+/* un solo giro del ciclo degli eventi (0 ms) prima del resto del modulo: le richieste a unpkg partono adesso,
+   non dopo i ~250 ms di costruzione delle viste; misurato: testo e modello compaiono prima */
+await new Promise(r=>setTimeout(r,0));
 /* =========================================================================
    DATI — bersagli (canali ionici, GPCR, recettori di superficie; elenco
    completo in FAMS). Questo letterale contiene i bersagli di base; gli altri
@@ -2635,9 +2652,9 @@ let spin=true, showMem=true, showIons=true, explodeAmt=0, showPins=true;
 let fly=null, lastT=0;
 let sectionOn=false, explodeTarget=0, tour=null;
 let mgIon=null, mgLabel=null, mgPlay=true, mgClock=0;  /* NMDA: blocco/espulsione del Mg²⁺ */
-const HOME_TARGET=THREE?new THREE.Vector3(0,0.1,0):null, HOME_POS=THREE?new THREE.Vector3(8.5,4.2,11.5):null;
+let HOME_TARGET=null, HOME_POS=null;   // assegnati da start3D, quando Three.js è arrivato
 const MEM_TOP=1.05, MEM_BOT=-1.05;
-const CLIP=THREE?new THREE.Plane(new THREE.Vector3(0,0,-1),0):null;
+let CLIP=null;
 
 /* messaggio quando il 3D non parte (es. offline da file://): nella lingua attiva, riscritto da applyLangUI */
 const LOADERR={three:['3D non disponibile. Puoi leggere le spiegazioni e aprire Animazioni per gli schemi 2D.','3D unavailable. You can still read the explanations and open Animations for the 2D diagrams.'],
@@ -5425,9 +5442,32 @@ showFork();
 buildGProtTable();
 buildInteractions();
 buildAntibiotics();
-buildDrugTable();
-buildClassif();
-initThree();buildModel('nav');
+/* Farmaci (~1700 nodi) e Classificazioni (~5700 nodi, il compito più lungo dell'avvio) sono nascoste all'apertura:
+   si costruiscono alla prima apertura della vista, non all'avvio. setLang le ricostruisce solo se esistono già;
+   il link diretto #cl-sys-… costruisce subito le Classificazioni. */
+const LAZY_VIEWS=(()=>{
+  const lazy=build=>{ const v={done:false, ensure(){ if(!v.done){ v.done=true; build(); return true; } return false; }, rebuild(){ if(v.done) build(); }}; return v; };
+  const z={drugs:lazy(buildDrugTable), classif:lazy(buildClassif)};
+  buildDrugTable=z.drugs.rebuild; buildClassif=z.classif.rebuild;
+  const show=switchView;
+  switchView=function(v){
+    const fresh=z[v]?z[v].ensure():false;
+    show(v);
+    if(fresh&&v==='classif') setTimeout(()=>{ clSysSetH(); clSysSched(); },30);   // come il listener del tab, aggiunto solo ora
+  };
+  if(/^#cl-sys-/.test(location.hash)) z.classif.ensure();
+  addEventListener('hashchange',()=>{ if(/^#cl-sys-/.test(location.hash)&&z.classif.ensure()) clSysHash(); });
+  return z;
+})();
+buildModel('nav');   // testi e pannello subito; il modello 3D lo costruisce start3D quando Three.js è pronto
+/* avvio del 3D in un compito a parte, dopo l'arrivo dei moduli: prima si vede e si usa la pagina */
+function start3D(ok){
+  if(ok&&THREE){ HOME_TARGET=new THREE.Vector3(0,0.1,0); HOME_POS=new THREE.Vector3(8.5,4.2,11.5); CLIP=new THREE.Plane(new THREE.Vector3(0,0,-1),0); }
+  if(initThree()){ buildModel(current); applyTheme(document.documentElement.dataset.theme==='dark'?'dark':'light', false); }
+  A3=makeA3();   // animazioni 3D (o ripiego 2.5D se Three.js manca)
+  const va=document.getElementById('view-anim'); if(A3&&A3.ok&&va&&va.classList.contains('active')){ showGPCRAnim(curGPCR); showChanAnim(curChan); showFork(); }
+}
+loadThree().then(ok=>setTimeout(()=>start3D(ok),0));
 document.getElementById('btn-theme').onclick=function(){ applyTheme(document.documentElement.dataset.theme==='light'?'dark':'light'); };
 /* FarmacoFlash deep-link: Safari blocks target=_blank to local files (file://) — try a new tab, fall back to same-tab so the #card= hash still opens the card */
 document.addEventListener('click',function(e){
@@ -5734,7 +5774,8 @@ function exDlScroll(el){
    Colori: ogni tipo di molecola ha il suo colore; ioni = sfere lucide, farmaci e ligandi = materiale satinato,
    bloccanti del poro = famiglia del rosso scuro.
    `var` (non const/let): showGPCRAnim/showChanAnim/showFork leggono A3 prima che questo blocco venga eseguito. */
-var A3=(function(){
+var A3=null;   // creato da start3D quando Three.js è arrivato (o è fallito); fino ad allora restano gli schemi SVG
+function makeA3(){ return (function(){
   const L={
     it:{play:'Riproduci',pause:'Pausa',prev:'Passo precedente',next:'Passo successivo',speed:'Velocità',steps:'Passi del meccanismo',
       stepOf:'Passo',drag:'Trascina per ruotare',ext:'Extracellulare',cyt:'Citoplasma',vm:'Vm',vmRest:'riposo',vmDep:'depolarizzazione',vmHyp:'iperpolarizzazione',
@@ -6516,7 +6557,7 @@ var A3=(function(){
       if(s) s.ui(); }
   };
   return api;
-})();
+})(); }
 /* 2.5D per gli schemi SVG di ripiego: strati con ombra (filtro nel <defs>) e inclinazione prospettica che segue il puntatore */
 function a25Enable(){
   document.querySelectorAll('#view-anim .anim-card').forEach(card=>{

@@ -6,7 +6,7 @@
 <title>Tabella Farmaci · FarmacoFlash</title>
 __PWA_HEAD__
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>/* tema, lingua ed embed applicati prima del primo paint: tema salvato (cr-theme) o quello del sistema; lingua: cr-lang, la chiave unica condivisa con lo shell e le altre app (farmaco-lang, la vecchia chiave, vale solo se cr-lang manca); stessa regola ovunque, così non c'è un lampo nella lingua sbagliata */(function(){var r=document.documentElement,e=/[?&]embed=1/.test(location.search),t,l,m;try{t=localStorage.getItem('cr-theme');}catch(x){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';r.dataset.theme=t;m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#13110d':'#f3f0e9';try{l=localStorage.getItem('cr-lang');if(l!=='it'&&l!=='en')l=localStorage.getItem('farmaco-lang');}catch(x){}r.lang=l==='en'?'en':'it';if(e)r.classList.add('embed');if(r.lang==='en'){r.classList.add('i18n-wait');setTimeout(function(){r.classList.remove('i18n-wait');},2500);}})();</script>
 <style>
 /* Tabella dei farmaci · stesso sistema visivo di FarmacoFlash e dello shell */
@@ -316,11 +316,11 @@ body.m-rubrica #rubrica{display:block;column-width:330px;column-gap:34px;padding
     <div class="quiz-card" id="qCard"></div>
   </div>
 </main>
+<script type="application/json" id="tb-data">{"rows":__DATA__,"decks":__DECKS__,"names":__NAMES__}</script>
 <script>__CORE_JS__</script>
 <script>
-const DATA = __DATA__;
-const DECKS = __DECKS__;
-const NAMES = __NAMES__;   // {en:{nome italiano: "INN inglese (nome USA/UK)"}, brands:{nome: [marchi italiani]}, brandOf:{marchio in drugs.json: principio attivo}}
+/* dati in un blocco JSON (build/table.js): JSON.parse è più rapido di un letterale JS di oltre 1 MB */
+const {rows:DATA,decks:DECKS,names:NAMES} = (()=>{const el=document.getElementById('tb-data'),d=JSON.parse(el.textContent);el.remove();return d;})();   // {en:{nome italiano: "INN inglese (nome USA/UK)"}, brands:{nome: [marchi italiani]}, brandOf:{marchio in drugs.json: principio attivo}}
 const $ = s=>document.querySelector(s);
 const ROOT = document.documentElement, EMBED = ROOT.classList.contains('embed');
 let state = { q:'', mod:null, deck:null, sort:{k:'o',dir:1} };
@@ -420,15 +420,16 @@ function deckCode(id){const d=DECKS.find(x=>x.id===id)||{};return (LANG==='en'&&
 
 function filtered(){
   const toks=norm(state.q).split(' ').filter(Boolean);
+  const score=new Map();   // punteggio calcolato una volta per riga, non a ogni confronto dell'ordinamento
   let r=DATA.filter(x=>{
     if(state.mod && x.mod!==state.mod) return false;
     if(state.deck && x.deck!==state.deck) return false;
-    if(toks.length && !FarmacoCore.rank(state.q,dnames(x),x.aliases||[],txt(x))) return false;
+    if(toks.length){const v=FarmacoCore.rank(state.q,dnames(x),x.aliases||[],txt(x)); if(!v) return false; score.set(x,v);}
     return true;
   });
   const {k,dir}=state.sort;
   r=r.slice().sort((a,b)=>{
-    if(toks.length){const byRank=FarmacoCore.rank(state.q,dnames(b),b.aliases||[],txt(b))-FarmacoCore.rank(state.q,dnames(a),a.aliases||[],txt(a));if(byRank)return byRank;}
+    if(toks.length){const byRank=score.get(b)-score.get(a);if(byRank)return byRank;}
     if(k==='o'){ if(a.o!==b.o) return (a.o-b.o); return fld(a,'name').localeCompare(fld(b,'name'),LANG); }
     return String(fld(a,k)).localeCompare(String(fld(b,k)),LANG)*dir;
   });

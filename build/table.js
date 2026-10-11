@@ -60,11 +60,12 @@ const rows=data.cards.map(c=>{
 });
 for(const id of Object.keys(drugs))if(!data.cards.some(c=>c.id===id))throw Error('Unknown drug card '+id);
 const names={en:nameEn,brands:Object.fromEntries([...usedNames].sort().map(n=>[n,brandList(n)]).filter(x=>x[1].length)),brandOf,syn:synonyms};
-const safe=x=>JSON.stringify(x).replace(/</g,'\\u003c');
+const safe=x=>JSON.stringify(x).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
 let html=fs.readFileSync(path.join(__dirname,'table-template.html'),'utf8')
  .replace('__PWA_HEAD__',pwaHead({name:'FarmacoFlash · Tabella dei farmaci',title:'FarmacoFlash'}))
- .replace('__DATA__',()=>safe(rows)).replace('__DECKS__',()=>safe(decks)).replace('__NAMES__',()=>safe(names))
  .replace('__CORE_JS__',()=>fs.readFileSync(path.join(root,'src/core.js'),'utf8'))
- .replace('__BRIDGE_JS__',()=>fs.readFileSync(path.join(root,'src/bridge.js'),'utf8'));
+ .replace('__BRIDGE_JS__',()=>fs.readFileSync(path.join(root,'src/bridge.js'),'utf8'))
+ // dati per ultimi, nel blocco <script type="application/json" id="tb-data">: un segnaposto dentro i dati resta com'è
+ .replace('__NAMES__',()=>safe(names)).replace('__DECKS__',()=>safe(decks)).replace('__DATA__',()=>safe(rows));
 fs.writeFileSync(path.join(root,'Tabella-Farmaci.html'),html);
 console.log('Tabella: '+rows.length+' schede · '+usedNames.size+' nomi (IT/EN)');
