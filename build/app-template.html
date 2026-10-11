@@ -8,7 +8,7 @@ __PWA_HEAD__
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script>/* tema + embed applicati prima del primo paint */(function(){var r=document.documentElement;try{var t=localStorage.getItem('cr-theme');if(t==='dark'||t==='light')r.dataset.theme=t;}catch(e){}if(/[?&]embed=1/.test(location.search))r.classList.add('embed');})();</script>
+<script>/* tema + embed applicati prima del primo paint: tema salvato (cr-theme), altrimenti quello del sistema */(function(){var r=document.documentElement,t=null;try{t=localStorage.getItem('cr-theme');}catch(e){}if(t!=='dark'&&t!=='light')t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';r.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='dark'?'#13110d':'#f3f0e9');if(/[?&]embed=1/.test(location.search))r.classList.add('embed');})();</script>
 <style>
 /* ==========================================================
    FarmacoFlash · sistema visivo condiviso con lo shell (index.html)
@@ -21,6 +21,11 @@ __PWA_HEAD__
   --ok:#2f7d5f; --warn:#8a5a00; --bad:#b3261e; --info:#2b5f8a; --violet:#6a4c9c;
   --shadow:0 1px 2px rgb(28 26 21/.06),0 10px 28px -14px rgb(28 26 21/.22);
   --shadow-up:0 -10px 28px -18px rgb(28 26 21/.28);
+  --info-soft:color-mix(in srgb,var(--info) 9%,var(--panel));
+  --scrim:rgb(22 18 14/.5); --shadow-pop:var(--shadow);
+  --viz-learn:var(--warn); --viz-new:var(--line2);
+  --draw:var(--ink); --draw-hi:#fff;
+  --scroll:var(--line2);
   --r-ctl:10px; --r-panel:16px; --r-pill:999px;
   --ease:cubic-bezier(.2,.8,.2,1); --dur:180ms;
   --font-display:'Fraunces',Georgia,serif;
@@ -36,13 +41,18 @@ __PWA_HEAD__
   --ok:#7fcfa8; --warn:#e8b45a; --bad:#f09a8f; --info:#8cb8e0; --violet:#c3a6ea;
   --shadow:0 1px 2px rgb(0 0 0/.2),0 10px 28px -14px rgb(0 0 0/.38);
   --shadow-up:0 -10px 28px -18px rgb(0 0 0/.45);
+  /* scuro: superfici, grafici e disegni tarati sul fondo notte (contrasti misurati, WCAG) */
+  --raised:#28231a; --info-soft:#15202a;
+  --scrim:rgb(6 5 3/.72); --shadow-pop:0 24px 60px -18px rgb(0 0 0/.85);
+  --viz-learn:#e0905f; --viz-new:#6e6656;
+  --draw:color-mix(in srgb,var(--ink) 80%,var(--panel)); --draw-hi:var(--ink-dim);
+  --scroll:#4d4639;
   color-scheme:dark;
 }
 :root{
   --panel-2:color-mix(in srgb,var(--bg) 55%,var(--panel));
   --ok-soft:color-mix(in srgb,var(--ok) 12%,var(--panel));
   --bad-soft:color-mix(in srgb,var(--bad) 11%,var(--panel));
-  --info-soft:color-mix(in srgb,var(--info) 9%,var(--panel));
   /* alias storici usati da stili inline */
   --paper:var(--bg); --paper-2:var(--panel); --surface:var(--panel); --muted:var(--ink-dim); --ink-soft:var(--ink-dim); --faint:var(--ink-faint);
   --blue:var(--info); --green:var(--ok); --green-deep:var(--ok); --red:var(--bad); --rose-deep:var(--bad); --orange:var(--warn); --amber-2:var(--gold); --amber-deep:var(--gold);
@@ -61,7 +71,7 @@ input,textarea{font-size:16px}
 .chip{max-width:100%}
 ::-webkit-scrollbar{width:11px;height:11px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--line2);border-radius:9px;border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb{background:var(--scroll);border-radius:9px;border:3px solid transparent;background-clip:padding-box}
 ::-webkit-scrollbar-thumb:hover{background:var(--ink-faint);background-clip:padding-box}
 
 /* ---------- header (solo standalone; nascosto in embed) ---------- */
@@ -188,7 +198,7 @@ button.gc .k::after{content:"→";margin-left:2px;color:var(--ink-faint)}
 .dc-title{font-family:var(--font-display);font-weight:500;font-size:1.05rem;line-height:1.25;min-height:2.5em;margin-bottom:12px}
 .deckcard .dc-bar{height:6px;border-radius:var(--r-pill);background:var(--line);overflow:hidden;display:flex}
 .dc-bar i,.minibar i{display:block;height:100%}
-.mat{background:var(--ok)} .yng{background:var(--gold)} .lrn{background:var(--warn)}
+.mat{background:var(--ok)} .yng{background:var(--gold)} .lrn{background:var(--viz-learn)}
 .deckcard .dc-meta{display:flex;justify-content:space-between;gap:8px;font-size:.82rem;color:var(--ink-dim);margin-top:8px}
 .dc-due{color:var(--gold);font-weight:600}
 
@@ -222,18 +232,23 @@ button.gc .k::after{content:"→";margin-left:2px;color:var(--ink-faint)}
 .diagram-box{background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:12px 16px 16px;margin:0 0 20px}
 .diagram-box .cap{font-size:.85rem;font-weight:500;color:var(--ink-dim);margin-bottom:6px}
 .diagram-box .art{max-width:340px;margin:0 auto}
-/* diagrammi disegnati: ricolorati sui token del tema */
-:is(.topic-diagram,.diagram-box) svg :is(text,tspan){font-family:var(--font-body)}
-:is(.topic-diagram,.diagram-box) svg [stroke="#3a322b"]{stroke:var(--ink)}
-:is(.topic-diagram,.diagram-box) svg [fill="#3a322b"]{fill:var(--ink)}
-:is(.topic-diagram,.diagram-box) svg [fill="#6f6253"]{fill:var(--ink-dim)}
-:is(.topic-diagram,.diagram-box) svg [fill="#fff"]{fill:var(--panel)}
-:is(.topic-diagram,.diagram-box) svg [stroke="#d9c9aa"]{stroke:var(--line2)}
-:is(.topic-diagram,.diagram-box) svg :is(text,tspan)[fill="#ff6b6b"]{fill:var(--bad)}
-:is(.topic-diagram,.diagram-box) svg :is(text,tspan)[fill="#5bc873"]{fill:var(--ok)}
-:is(.topic-diagram,.diagram-box) svg :is(text,tspan)[fill="#4ea8de"]{fill:var(--info)}
-:is(.topic-diagram,.diagram-box) svg :is(text,tspan):is([fill="#ff9f5a"],[fill="#ffce3a"]){fill:var(--warn)}
-:is(.topic-diagram,.diagram-box) svg :is(text,tspan):is([fill="#b07cd6"],[fill="#ff8fb1"]){fill:var(--violet)}
+/* diagrammi e doodle disegnati: ricolorati sui token del tema (anche gli attributi sulla radice <svg> e sui <g>) */
+:is(.topic-diagram,.diagram-box,.topic-doodle) svg :is(text,tspan){font-family:var(--font-body)}
+:is(.topic-diagram,.diagram-box,.topic-doodle) :is(svg,svg *)[stroke="#3a322b"]{stroke:var(--draw)}
+:is(.topic-diagram,.diagram-box,.topic-doodle) :is(svg,svg *)[fill="#3a322b"]{fill:var(--ink)}
+:is(.topic-diagram,.diagram-box,.topic-doodle) svg [fill="#6f6253"]{fill:var(--ink-dim)}
+:is(.topic-diagram,.diagram-box,.topic-doodle) svg [fill="#fff"]{fill:var(--panel)}
+:is(.topic-diagram,.diagram-box,.topic-doodle) svg [stroke="#fff"]{stroke:var(--draw-hi)}
+:is(.topic-diagram,.diagram-box,.topic-doodle) svg [stroke="#d9c9aa"]{stroke:var(--line2)}
+/* etichette senza colore proprio (ereditavano fill="none" della radice: invisibili) */
+:is(.topic-diagram,.diagram-box,.topic-doodle) :is(svg > text,svg > g:not([fill]) > text):not([fill]){fill:var(--ink)}
+:is(.topic-diagram,.diagram-box,.topic-doodle) svg :is(:is(text,tspan)[fill="#ff6b6b"],g[fill="#ff6b6b"] > text){fill:var(--bad)}
+:is(.topic-diagram,.diagram-box,.topic-doodle) svg :is(:is(text,tspan)[fill="#5bc873"],g[fill="#5bc873"] > text){fill:var(--ok)}
+:is(.topic-diagram,.diagram-box,.topic-doodle) svg :is(:is(text,tspan)[fill="#4ea8de"],g[fill="#4ea8de"] > text){fill:var(--info)}
+:is(.topic-diagram,.diagram-box,.topic-doodle) svg :is(:is(text,tspan):is([fill="#ff9f5a"],[fill="#ffce3a"]),g:is([fill="#ff9f5a"],[fill="#ffce3a"]) > text){fill:var(--warn)}
+:is(.topic-diagram,.diagram-box,.topic-doodle) svg :is(:is(text,tspan):is([fill="#b07cd6"],[fill="#ff8fb1"]),g:is([fill="#b07cd6"],[fill="#ff8fb1"]) > text){fill:var(--violet)}
+/* scuro: il giallo pieno (glucosio) diventa una tinta, così l'etichetta chiara resta leggibile */
+:root[data-theme="dark"] :is(.topic-diagram,.diagram-box,.topic-doodle) svg [fill="#ffce3a"]:not(text,tspan,[fill-opacity]){fill-opacity:.45}
 
 .seg{padding:16px 0;border-top:1px solid var(--line)}
 .seglab{display:inline-flex;align-items:center;gap:7px;margin-bottom:8px;padding:3px 11px 3px 9px;border-radius:var(--r-pill);font-size:.8rem;font-weight:600;line-height:1.4;color:var(--ink);background:color-mix(in srgb,var(--c) 13%,var(--panel));border:1px solid color-mix(in srgb,var(--c) 32%,var(--panel))}
@@ -294,7 +309,7 @@ button.gc .k::after{content:"→";margin-left:2px;color:var(--ink-faint)}
 .brow .bmech{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:.9rem;line-height:1.5;color:var(--ink-dim);margin-top:8px}
 .brow .statusdot{position:absolute;top:12px;right:12px;display:inline-block}
 .statusdot{font-size:.74rem;font-weight:500;padding:1px 9px;border-radius:var(--r-pill);border:1px solid var(--line2);color:var(--ink-dim);background:var(--panel)}
-.sd-learning{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 40%,var(--line2))}
+.sd-learning{color:var(--viz-learn);border-color:color-mix(in srgb,var(--viz-learn) 40%,var(--line2))}
 .sd-young{color:var(--gold);border-color:var(--gold-line)}
 .sd-mature{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,var(--line2))}
 .pickrow{padding-left:48px}
@@ -304,10 +319,10 @@ button.gc .k::after{content:"→";margin-left:2px;color:var(--ink-faint)}
 .pick-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 16px}
 
 /* ---------- modale ---------- */
-.modal{position:fixed;inset:0;z-index:100;background:rgb(22 18 14/.5);display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;overflow:hidden}
+.modal{position:fixed;inset:0;z-index:100;background:var(--scrim);display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;overflow:hidden}
 .modal.show{display:flex;animation:fadeIn .18s var(--ease) both}
 .modal.show .modal-box{animation:riseIn .22s var(--ease) both}
-.modal-box{position:relative;display:flex;flex-direction:column;width:100%;max-width:720px;max-height:90vh;overflow:hidden;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-panel);box-shadow:var(--shadow)}
+.modal-box{position:relative;display:flex;flex-direction:column;width:100%;max-width:720px;max-height:90vh;overflow:hidden;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-panel);box-shadow:var(--shadow-pop)}
 .modal-head{flex:0 0 auto;padding:20px 68px 14px 24px;border-bottom:1px solid var(--line)}
 .modal-head h2{font-family:var(--font-display);font-weight:500;font-size:1.55rem;line-height:1.15;letter-spacing:-.015em;margin-top:8px}
 .mh-meta{color:var(--ink-dim);font-size:.88rem;margin-top:6px}
@@ -330,6 +345,12 @@ table.mastery .dk{display:inline-flex;align-items:center;gap:7px;font-family:var
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));z-index:200;max-width:calc(100vw - 32px);transform:translate(-50%,14px);opacity:0;pointer-events:none;background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:var(--r-ctl);font-size:.92rem;font-weight:500;box-shadow:var(--shadow);transition:opacity .2s var(--ease),transform .2s var(--ease)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 body:has(.gradebar.show) .toast{bottom:calc(100px + env(safe-area-inset-bottom))}
+
+/* ---------- ritocchi del tema scuro (il chiaro resta com'è) ---------- */
+:root[data-theme="dark"] .tab.active{background:var(--gold-soft);color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold-line)}
+:root[data-theme="dark"] .toast{background:var(--raised);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line2),var(--shadow-pop)}
+:root[data-theme="dark"] .modal-box{border-color:var(--line2)}
+:root[data-theme="dark"] .seglab::before{background:color-mix(in srgb,var(--c) 70%,var(--ink))}
 
 /* ---------- responsive ---------- */
 @media (max-width:760px){
@@ -504,7 +525,8 @@ const STR={
  opt_sess:{it:'Sessione',en:'Session'},opt_npd:{it:'Nuove al giorno',en:'New per day'},streak_days:{it:'giorni di fila',en:'day streak'},more_lbl:{it:'Altre azioni',en:'More actions'},
  deck_focus_study:{it:'▶ Studia questo argomento',en:'▶ Study this topic'},deck_clear:{it:'Mostra tutti gli argomenti',en:'Show all topics'},new_lc:{it:'nuove',en:'new'},
  atlas_link:{it:"Vedi nell'Atlante 3D",en:'View in the 3D Atlas'},nv_head:{it:'Aggiornamento ufficiale',en:'Official update'},nv_note:{it:'Fonte ufficiale; la carta non è stata modificata.',en:'Official source; this card has not been changed.'},
- front_lbl:{it:'Mostra la risposta',en:'Show the answer'},close:{it:'Chiudi',en:'Close'}
+ front_lbl:{it:'Mostra la risposta',en:'Show the answer'},close:{it:'Chiudi',en:'Close'},
+ theme_to_dark:{it:'Passa al tema scuro',en:'Switch to dark theme'},theme_to_light:{it:'Passa al tema chiaro',en:'Switch to light theme'}
 };
 function T(k){const e=STR[k];return e?(e[LANG]||e.it):k;}
 const DECK_T_EN={G1:'Principles · Absorption & bioavailability',G2:'Principles · Distribution & metabolism',G3:'Principles · Elimination & PK parameters',G4:'Principles · Pharmacodynamics',G5:'Targets · Channels, pumps & transporters',G6:'Targets · Receptors & signalling',G7:'Molecular neuropharmacology',A4:'Glucocorticoids',A5:'NSAIDs + Paracetamol',A6:'Antihistamines',A7:'Antimigraine + Antiemetics',A8:'Antiasthmatics / COPD',A9:'Biologics / Biosimilars / Anti-TNF-α',A10:'Diabetes / Insulin',A11:'Gastrointestinal drugs',A12:'Bone / Osteoporosis',B1:'Sedative-hypnotics & Anxiolytics',B2:'General & Local anaesthetics',B3:'Antidepressants',B4:'Bipolar disorder / Mood stabilizers',B5:'Antipsychotics',B6:'Antiparkinson',B7:"Alzheimer's & Multiple Sclerosis",B8:'Opioids / Pain therapy',B9:'Antiepileptics + Statins',B10:'Antihypertensives: sympatholytics, α-/β-blockers',B11:'RAAS',B11b:'Heart failure, Xanthines & Diuretics',B12:'Antithrombotics',B12b:'Vasodilators',B13:'Antiarrhythmics',B14:'Antineoplastics / Precision oncology','Antibiotici-2':'Antibiotics','Antibiotici-3':'Antibiotics','Beta-lattamici':'β-lactam antibiotics'};
@@ -521,6 +543,7 @@ function applyStaticStrings(){
   const lt=$('#langTog');if(lt)lt.textContent=(LANG==='it'?'EN':'IT');
   const f=$('#foot');if(f)f.textContent=T('foot');
   const mc=$('.modal-close');if(mc)mc.setAttribute('aria-label',T('close'));
+  themeLabel();
   // vista Sfoglia (statica)
   const be=$('#brEyebrow');if(be)be.textContent=T('br_eyebrow');
   const bt=$('#brTitle');if(bt)bt.innerHTML=T('br_title_a')+' <em>'+T('br_title_b')+'</em>';
@@ -801,7 +824,7 @@ function renderDash(){
           <div class="bignum" id="heroNum">${sessCount}</div>
           <p class="bignum-lbl">${sessCount?sessLbl(sm):T('all_done')}</p>
         </div>
-        <div class="hero-donut">${donut([[T('m_mature'),mature,'var(--ok)'],[T('m_started'),started-mature,'var(--gold)'],[T('m_new'),CARDS.length-started,'var(--line2)']],CARDS.length,T('cards'))}</div>
+        <div class="hero-donut">${donut([[T('m_mature'),mature,'var(--ok)'],[T('m_started'),started-mature,'var(--gold)'],[T('m_new'),CARDS.length-started,'var(--viz-new)']],CARDS.length,T('cards'))}</div>
       </div>
       <div class="hero-actions">
         <button class="cta lg" type="button" onclick="startGlobal()" ${sessCount?'':'disabled'}>${T('start_session')}</button>
@@ -967,7 +990,7 @@ function showCardSet(emoji,label,ids,hint,selectable){
   $('#modalHead').innerHTML=`<span class="chip">${emoji?emoji+' ':''}${esc(label)}</span><h2>${cards.length} ${cards.length===1?T('card_one'):T('cards')}</h2><p class="mh-meta">${esc(hint||T('grade_drill_hint'))}</p>`;
   const list=cards.length?cards.map(c=>selectable?pickItem(c):browItem(c,'study')).join(''):`<div class="empty">${T('empty')}</div>`;
   const btn=cards.length?(selectable
-    ?`<div class="pick-bar"><button class="cta" type="button" id="pickGo" onclick="studySetSel()">${T('review_sel')} (<span id="pickN">${setSelIds.length}</span>)</button><button class="ghostchip" type="button" onclick="pickAll(1)">${T('pick_all')}</button><button class="ghostchip" type="button" onclick="pickAll(0)">${T('pick_none')}</button></div>`
+    ?`<div class="pick-bar"><button class="cta" type="button" id="pickGo" onclick="studySetSel()"><span>${T('review_sel')} (<span id="pickN">${setSelIds.length}</span>)</span></button><button class="ghostchip" type="button" onclick="pickAll(1)">${T('pick_all')}</button><button class="ghostchip" type="button" onclick="pickAll(0)">${T('pick_none')}</button></div>`
     :`<div class="modal-actions"><button class="cta" type="button" onclick="studySetSel()">${T('review_these')} (${cards.length})</button></div>`):'';
   $('#modalBody').innerHTML=btn+`<div class="browse-list" style="grid-template-columns:1fr">${list}</div>`;
   openModal();
@@ -1017,7 +1040,7 @@ function renderStats(){
         ${gradeCount(1,nm.length,nm.length?`showCardSet('','${T('immature_lbl')}',startedNotMature().map(c=>c.id))`:'',T('immature_lbl'))}
       </div></section>
     <section class="panel"><h3>${T('st_comp')}</h3><p class="hint">${T('st_comp_h')} ${total} ${T('st_comp_h2')}</p>
-      ${donut([[T('m_mature'),cnt.mature,'var(--ok)'],[T('m_young'),cnt.young,'var(--gold)'],[T('m_learning'),cnt.learning,'var(--warn)'],[T('m_new'),cnt.new,'var(--line2)']],total,T('cards'))}</section>
+      ${donut([[T('m_mature'),cnt.mature,'var(--ok)'],[T('m_young'),cnt.young,'var(--gold)'],[T('m_learning'),cnt.learning,'var(--viz-learn)'],[T('m_new'),cnt.new,'var(--viz-new)']],total,T('cards'))}</section>
     <section class="panel"><h3>${T('st_mastery')}</h3><p class="hint">${T('st_mastery_h')}</p>
       <div class="tblscroll"><table class="mastery"><thead><tr><th>${T('th_deck')}</th><th class="n">${T('th_cards')}</th><th style="width:36%">${T('th_prog')}</th><th class="n">${T('th_mature')}</th></tr></thead><tbody>
       ${DECKS.map(d=>{const cs=CARDS.filter(c=>c.deckId===d.id);const n=cs.length||1;const m=cs.filter(c=>maturity(c.id)==='mature').length;const y=cs.filter(c=>maturity(c.id)==='young').length;const l=cs.filter(c=>maturity(c.id)==='learning').length;const pc=Math.round(m/n*100);return `<tr><td><span class="dk"><span class="ddot" style="background:${d.color}"></span>${esc(d.code)}</span>${esc(deckTitle(d))}</td><td class="n">${cs.length}</td><td><div class="minibar"><i class="mat" style="width:${m/n*100}%"></i><i class="yng" style="width:${y/n*100}%"></i><i class="lrn" style="width:${l/n*100}%"></i></div></td><td class="n">${pc}%</td></tr>`;}).join('')}
@@ -1070,10 +1093,22 @@ $('#search').addEventListener('input',applyBrowse);
 window.addEventListener('resize',fitGradeClearance);
 applyStaticStrings();renderDash();$('#streakN').textContent=streak();applyHash();loadNovita();
 
-/* tema chiaro/scuro condiviso con l'app 3D (chiave cr-theme) */
-function ffTheme(t){document.documentElement.dataset.theme=t;var b=document.getElementById('themeTog');if(b)b.textContent=(t==='light'?'☀':'☾');try{localStorage.setItem('cr-theme',t);}catch(e){}}
-(function(){var t='light';try{t=localStorage.getItem('cr-theme')||'light';}catch(e){}ffTheme(t);})();
-(function(){var b=document.getElementById('themeTog');if(b)b.addEventListener('click',function(){ffTheme(document.documentElement.dataset.theme==='light'?'dark':'light');if(typeof rerender==='function')rerender();});})();
+/* tema chiaro/scuro condiviso con lo shell e l'app 3D (chiave cr-theme).
+   Si salva solo una scelta esplicita: senza scelta si segue il sistema (prefers-color-scheme).
+   Tutti i colori passano dai token CSS: cambiare tema non richiede di ridisegnare la vista. */
+function savedTheme(){try{const t=localStorage.getItem('cr-theme');return (t==='dark'||t==='light')?t:null;}catch(e){return null;}}
+function systemTheme(){return (window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}
+function themeLabel(){const b=$('#themeTog');if(!b)return;const dark=document.documentElement.dataset.theme==='dark',l=T(dark?'theme_to_light':'theme_to_dark');b.textContent=dark?'☀︎':'☾︎';b.title=l;b.setAttribute('aria-label',l);}
+function applyTheme(t){if(t!=='dark'&&t!=='light')return;document.documentElement.dataset.theme=t;themeLabel();
+  const m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='dark'?'#13110d':'#f3f0e9');}
+function ffTheme(t){applyTheme(t);try{localStorage.setItem('cr-theme',t);}catch(e){}}
+applyTheme(document.documentElement.dataset.theme||savedTheme()||systemTheme());
+$('#themeTog').addEventListener('click',()=>ffTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'));
+addEventListener('storage',e=>{if(e.key==='cr-theme'&&(e.newValue==='dark'||e.newValue==='light'))applyTheme(e.newValue);});
+if(!/[?&]embed=1/.test(location.search)&&window.matchMedia){   // in embed decide lo shell
+  const mq=matchMedia('(prefers-color-scheme: dark)'),follow=()=>{if(!savedTheme())applyTheme(mq.matches?'dark':'light');};
+  if(mq.addEventListener)mq.addEventListener('change',follow);else if(mq.addListener)mq.addListener(follow);
+}
 
 /* ===== Modalita embed: dentro lo shell unificato (index.html) ===== */
 (function(){
@@ -1083,7 +1118,7 @@ function ffTheme(t){document.documentElement.dataset.theme=t;var b=document.getE
   window.addEventListener('message', function(e){
     if(e.source!==parent||e.origin!==location.origin)return;
     var d=e.data||{}; if(!d||!d.__fusion) return;
-    if(d.__fusion==='theme'){ try{ ffTheme(d.value); if(typeof rerender==='function')rerender(); }catch(_){ } }
+    if(d.__fusion==='theme'){ try{ applyTheme(d.value); }catch(_){ } }
     else if(d.__fusion==='lang'){ try{ if(typeof LANG!=='undefined' && LANG!==d.value) toggleLang(); }catch(_){ } }
     else if(d.__fusion==='open-card' && d.card){ try{ location.hash='card='+encodeURIComponent(d.card); applyHash(); }catch(_){ } }
   });
