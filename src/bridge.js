@@ -97,6 +97,8 @@
     const d=e.data;linked=true;
     if(d.type==='appearance'){appear(d.theme,d.lang);painted();}
     else if(d.type==='route'&&typeof d.hash==='string'&&d.hash.length<500)routeTo(d.hash);
+    // feed delle novità scaricato dallo shell (una sola richiesta, copia salvata se offline): avvisi sulle carte
+    else if(d.type==='news'&&app==='flashcard'&&d.feed&&typeof d.feed==='object'&&typeof setNovita==='function')setNovita(d.feed);
     else if(d.type==='storage-reloaded'&&app==='catalog'&&typeof qstore!=='undefined'){try{qstore=FarmacoCore.validateQuiz(JSON.parse(localStorage.getItem(QKEY))||{wrong:{},answered:0,correct:0});quizStorageBlocked=false;}catch{quizStorageBlocked=true;}}
   });
   window.FarmacoBridge={send,view,gate};

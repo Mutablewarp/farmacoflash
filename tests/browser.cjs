@@ -62,7 +62,7 @@ const {chromium}=require('playwright');
  await explore.locator('#ex-toggle').click(); // l'elenco dei bersagli sta nel cassetto «Guarda canali e recettori»
  await explore.locator('#chip-zone button.chip').first().waitFor();
  assert.equal(await explore.locator('#chip-zone button.chip').count(),81);
- assert.match(await explore.locator('#canvas-host').innerText(),/unavailable/);
+ assert.match(await explore.locator('#canvas-host').innerText(),/non disponibile|unavailable/); // nella lingua attiva
  await explore.locator('#chip-zone button.chip').first().click();
  // Without 3D the "In vista" bar must still follow the chosen target (not only the first one, already current).
  await explore.locator('#ex-toggle').click();

@@ -2639,10 +2639,14 @@ const HOME_TARGET=THREE?new THREE.Vector3(0,0.1,0):null, HOME_POS=THREE?new THRE
 const MEM_TOP=1.05, MEM_BOT=-1.05;
 const CLIP=THREE?new THREE.Plane(new THREE.Vector3(0,0,-1),0):null;
 
+/* messaggio quando il 3D non parte (es. offline da file://): nella lingua attiva, riscritto da applyLangUI */
+const LOADERR={three:['3D non disponibile. Puoi leggere le spiegazioni e aprire Animazioni per gli schemi 2D.','3D unavailable. You can still read the explanations and open Animations for the 2D diagrams.'],
+  webgl:['WebGL non disponibile. Usa le spiegazioni e gli schemi 2D in Animazioni.','WebGL unavailable. Use the explanations and the 2D diagrams in Animations.']};
+function loadErr(k){return '<div class="loaderr" data-err="'+k+'">'+LOADERR[k][LANG==='en'?1:0]+'</div>';}
 function initThree(){
   host=document.getElementById('canvas-host');
   if(typeof THREE==='undefined'){
-    host.innerHTML='<div class="loaderr">3D non disponibile / 3D unavailable. Puoi leggere le spiegazioni e aprire Animazioni per gli schemi 2D. Text and 2D diagrams remain available.</div>';
+    host.innerHTML=loadErr('three');
     return false;
   }
   scene=new THREE.Scene();
@@ -2650,7 +2654,7 @@ function initThree(){
   const w=host.clientWidth,h=host.clientHeight;
   camera=new THREE.PerspectiveCamera(42,w/h,0.1,200);
   camera.position.copy(HOME_POS);
-  try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});}catch(error){scene=null;host.innerHTML='<div class="loaderr">WebGL non disponibile / unavailable. Usa le spiegazioni e gli schemi 2D in Animazioni.</div>';return false;}
+  try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});}catch(error){scene=null;host.innerHTML=loadErr('webgl');return false;}
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
   renderer.setSize(w,h);
   if('outputColorSpace' in renderer){ try{renderer.outputColorSpace=THREE.SRGBColorSpace;}catch(e){} }
@@ -5275,6 +5279,7 @@ function setLang(lang){
 }
 function applyLangUI(){
   const e=LANG==='en'?1:0;
+  document.querySelectorAll('.loaderr[data-err]').forEach(el=>{const m=LOADERR[el.dataset.err];if(m)el.textContent=m[e];});
   const sq=(sel,it,en,html)=>{const el=document.querySelector(sel); if(!el)return; if(html) el.innerHTML=[it,en][e]; else el.textContent=[it,en][e];};
   const idx=(sel,its,ens,html)=>{document.querySelectorAll(sel).forEach((el,i)=>{ if(its[i]==null)return; if(html) el.innerHTML=[its,ens][e][i]; else el.textContent=[its,ens][e][i]; });};
   sq('.tab[data-view="explorer"]','◍ Esploratore 3D','◍ 3D Explorer');
@@ -5438,7 +5443,7 @@ document.addEventListener('click',function(e){
 document.getElementById('btn-lang').onclick=function(){ setLang(LANG==='en'?'it':'en'); };
 (function(){ /* tema: già scelto nello <head> (salvato o di sistema); qui solo icona e scena 3D, senza salvarlo.
      Senza scelta salvata segue il sistema anche dopo il caricamento, ma solo da sola:
-     in embed l'unica fonte è la shell ({__fusion:'theme'}), altrimenti l'atlante cambierebbe tema dentro una shell chiara. */
+     in embed l'unica fonte è lo shell (messaggio 'appearance' di src/bridge.js), altrimenti l'atlante cambierebbe tema dentro uno shell chiaro. */
   let saved=null; try{ saved=localStorage.getItem('cr-theme'); }catch(e){}
   applyTheme(document.documentElement.dataset.theme==='dark'?'dark':'light', false);
   if(!document.documentElement.classList.contains('embed')){ /* da sola: segue anche le scelte fatte in altre schede o app */ addEventListener('storage',e=>{ if(e.key==='cr-theme'||e.key===null){ const v=e.key?e.newValue:null; applyTheme(v==='dark'||v==='light'?v:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'), false); } }); }

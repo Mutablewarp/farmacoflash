@@ -697,22 +697,31 @@ function novitaHTML(id){
 }
 function novitaSlot(id){return `<div class="novita" data-card="${esc(id)}" role="note">${novitaHTML(id)}</div>`;}
 function fillNovita(){$$('.novita[data-card]').forEach(el=>{el.innerHTML=novitaHTML(el.dataset.card);});}
+/* Dentro lo shell il feed lo scarica solo lo shell e lo passa qui (messaggio 'news' di bridge.js): una richiesta
+   sola, e senza rete arriva la copia che lo shell ha salvato. Da sola: la copia accanto alla pagina (http), poi il
+   sito pubblicato; se nessuno risponde, l'ultima copia buona (chiave ff-news-cache, la stessa dello shell). */
+const NEWS_KEY='ff-news-cache';
+function setNovita(j){
+  if(!j||!Array.isArray(j.items))return false;
+  const m=new Map(),ts=it=>{const t=Date.parse(it.date);return Number.isFinite(t)?t:0;};
+  for(const it of j.items){
+    if(!it||typeof it.title!=='string'||typeof it.url!=='string'||!/^https?:\/\//i.test(it.url)||!Array.isArray(it.cards))continue;
+    for(const id of it.cards){if(typeof id!=='string'||!CARD_BY_ID[id])continue;if(!m.has(id))m.set(id,[]);m.get(id).push(it);}
+  }
+  m.forEach(list=>list.sort((a,b)=>ts(b)-ts(a)));
+  NOVITA.byCard=m;fillNovita();return true;
+}
 function loadNovita(){
+  if(parent!==window&&/[?&]embed=1(?:&|#|$)/.test(location.search))return; // nello shell: il feed arriva dallo shell
+  const cached=()=>{try{setNovita(JSON.parse(localStorage.getItem(NEWS_KEY)||'null'));}catch(e){}};
   try{
-    if(typeof fetch!=='function')return;
-    /* da file:// (o se la copia locale manca) le novità arrivano dal sito pubblicato, che le consente a ogni origine */
+    if(typeof fetch!=='function')return cached();
     const get=u=>fetch(u,{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>j&&Array.isArray(j.items)?j:Promise.reject());
     const FEED='https://mutablewarp.github.io/farmacoflash/novita.json';
     (/^https?:$/.test(location.protocol)?get('novita.json').catch(()=>get(FEED)):get(FEED)).then(j=>{
-      const m=new Map(),ts=it=>{const t=Date.parse(it.date);return Number.isFinite(t)?t:0;};
-      for(const it of j.items){
-        if(!it||typeof it.title!=='string'||typeof it.url!=='string'||!/^https?:\/\//i.test(it.url)||!Array.isArray(it.cards))continue;
-        for(const id of it.cards){if(typeof id!=='string'||!CARD_BY_ID[id])continue;if(!m.has(id))m.set(id,[]);m.get(id).push(it);}
-      }
-      m.forEach(list=>list.sort((a,b)=>ts(b)-ts(a)));
-      NOVITA.byCard=m;fillNovita();
-    }).catch(()=>{});
-  }catch(e){}
+      if(setNovita(j))try{localStorage.setItem(NEWS_KEY,JSON.stringify(j));}catch(e){}
+    }).catch(cached);
+  }catch(e){cached();}
 }
 function deckChip(card){const d=DECK_BY_ID[card.deckId];return `<span class="chip"><span class="ddot" style="background:${d.color}"></span>${esc(d.code)} · ${esc(deckTitle(d))}</span>`;}
 
@@ -819,13 +828,18 @@ const DIAGRAMS_EN=(DATA.diagramsEn)||{};
 function cardArtSvg(card){const k=CARD_DIAGRAM[card.id];if(!k)return null;return (LANG==='en'&&DIAGRAMS_EN[k])?DIAGRAMS_EN[k]:(DIAGRAMS[k]||null);}
 
 /* ============================ NAV ============================ */
-/* ogni vista ricorda dove eri: Sfoglia riapre allo stesso punto, le altre partono dall'alto (senza scorrimento animato).
+/* Sfoglia riapre allo stesso punto solo se si torna allo stesso elenco (stesso mazzo, stessa ricerca): un mazzo
+   nuovo, un filtro o una ricerca diversa partono dall'alto. Le altre viste partono sempre dall'alto (senza animazione).
    Dentro lo shell la vista scelta qui si comunica allo shell (FarmacoBridge.view), che aggiorna la sua barra. */
-const viewScroll={};let curView='dash';
-function leaveView(v){viewScroll[curView]=window.scrollY;curView=v;if(window.FarmacoBridge)FarmacoBridge.view(v);}
+let browseMark=null,curView='dash';
+const browseKey=()=>(browseFilter||'')+'|'+(($('#search')||{}).value||'');
+function leaveView(v){if(curView==='browse'&&v!=='browse')browseMark={y:window.scrollY,k:browseKey()};curView=v;if(window.FarmacoBridge)FarmacoBridge.view(v);}
 function go(v){leaveView(v);$$('.view').forEach(s=>s.classList.remove('active'));$('#v-'+v).classList.add('active');
   $$('.tab').forEach(t=>t.classList.toggle('active',t.dataset.v===v));
-  if(v==='dash')renderDash();if(v==='browse')renderBrowse();if(v==='stats')renderStats();window.scrollTo(0,v==='browse'?(viewScroll.browse||0):0);}
+  if(v==='dash')renderDash();if(v==='browse')renderBrowse();if(v==='stats')renderStats();
+  jump(v==='browse'&&browseMark&&browseMark.k===browseKey()?browseMark.y:0);}
+/* salto senza animazione: html ha scroll-behavior:smooth, che qui farebbe scorrere tutta la pagina a ogni cambio di vista */
+function jump(y){try{window.scrollTo({top:y,left:0,behavior:'instant'});}catch(e){window.scrollTo(0,y);}}
 
 /* ============================ DASHBOARD ============================ */
 function studiedToday(){const t=todayISO();return new Set(S.log.filter(e=>e.d===t).map(e=>e.id)).size;}
@@ -854,7 +868,7 @@ function renderDash(){
         ${sessCount?`<button class="pick-link" type="button" onclick="chooseReview()">${T('hero_pick')}</button>`:''}
         <div class="sec-actions" role="group" aria-label="${T('more_lbl')}">
           <button class="cta ghost" type="button" onclick="go('browse')">${T('browse_all')}</button>
-          <button class="cta ghost" type="button" onclick="navigateTable('')">${T('table_btn')}</button>
+          <button class="cta ghost" type="button" onclick="navigateTable('#vista=all')">${T('table_btn')}</button>
         </div>
       </div>
       <div class="hero-opts">
@@ -921,10 +935,10 @@ function deckStudy(id){if(!DECK_BY_ID[id])return;studyDeck(id,!buildQueue(id).qu
 let session=null;
 function sessTitle(m){return m==='new'?(LANG==='en'?'New cards':'Carte nuove'):m==='due'?(LANG==='en'?'Review':'Ripasso'):m==='weak'?(LANG==='en'?'Hard cards':'Carte difficili'):(LANG==='en'?'Daily review':'Ripasso del giorno');}
 function startGlobal(){const m=S.settings.sessMode||'both';const cs=m==='weak'?weakCards():buildQueue(null,m).queue;if(!cs.length){go('dash');toast(T('t_clear'));return;}startSession(cs,sessTitle(m));}
-function startSession(cards,title){if(!cards||!cards.length){toast(T('t_nothing'));return;}
-  session={queue:(S.settings.shuffle?shuffleArr([...cards]):[...cards]),idx:0,title,revealed:false,total:cards.length,done:0,res:{bad:0,mid:0,good:0,easy:0}};
+function startSession(cards,title,preview){if(!cards||!cards.length){toast(T('t_nothing'));return;}
+  session={queue:(S.settings.shuffle?shuffleArr([...cards]):[...cards]),idx:0,title,preview:!!preview,revealed:false,total:cards.length,done:0,res:{bad:0,mid:0,good:0,easy:0}};
   leaveView('study');$$('.tab').forEach(t=>t.classList.toggle('active',t.dataset.v==='study'));
-  $$('.view').forEach(s=>s.classList.remove('active'));$('#v-study').classList.add('active');window.scrollTo({top:0});renderStudy();}
+  $$('.view').forEach(s=>s.classList.remove('active'));$('#v-study').classList.add('active');jump(0);renderStudy();}
 function renderStudy(){
   if(!session)return;if(session.idx>=session.queue.length)return renderDone();
   const card=session.queue[session.idx];const C=L(card);const pv=preview(card);const mat=maturity(card.id);const gl=gradeLbls();const art=cardArtSvg(card);
@@ -994,10 +1008,10 @@ function deckFocusHTML(id){
       <button class="pick-link" type="button" onclick="setFilter(null)">${T('deck_clear')}</button></div></section>`;
 }
 function openDeckBrowse(id){
-  browseFilter=DECK_BY_ID[id]?id:null;const se=$('#search');if(se)se.value='';go('browse');
+  browseFilter=DECK_BY_ID[id]?id:null;browseMark=null;const se=$('#search');if(se)se.value='';go('browse');
   const row=$('#deckChips'),on=row&&row.querySelector('.fchip.on');if(on&&browseFilter&&row.scrollWidth>row.clientWidth)row.scrollLeft=on.offsetLeft-row.offsetLeft-(row.clientWidth-on.offsetWidth)/2;
 }
-function setFilter(id){browseFilter=id;renderBrowse();}
+function setFilter(id){browseFilter=id;browseMark=null;renderBrowse();}
 function browItem(c,act){
   const d=DECK_BY_ID[c.deckId];const mat=maturity(c.id);const C=L(c);
   const mech=C.memo||(C.segments&&C.segments[0]?C.segments[0].value:(C.freetext||[]).join(' '));
@@ -1111,10 +1125,10 @@ document.addEventListener('keydown',e=>{
   else if(session.revealed&&['1','2','3','4'].includes(e.key)){e.preventDefault();grade(+e.key-1);}
 });
 function navigateTable(hash){const url='Tabella-Farmaci.html'+hash;if(!window.FarmacoNavigate||!FarmacoNavigate(url))location.href=url;}
-function applyHash(){let h;try{h=decodeURIComponent(location.hash.replace(/^#/,''));}catch{return;}if(!h)return;if(h==='dash'||h==='browse'||h==='stats')go(h);else if(h==='study'){if(!session)startGlobal();else go('study');}else if(h.startsWith('front=')){const id=h.slice(6);if(CARD_BY_ID[id])startSession([CARD_BY_ID[id]],'anteprima');}else if(h.startsWith('card=')){const id=h.slice(5);if(CARD_BY_ID[id]){startSession([CARD_BY_ID[id]],'anteprima');revealCard();}}else if(h.startsWith('deck=')){openDeckBrowse(h.slice(5));}}
+function applyHash(){let h;try{h=decodeURIComponent(location.hash.replace(/^#/,''));}catch{return;}if(!h)return;if(h==='dash'||h==='browse'||h==='stats')go(h);else if(h==='study'){if(!session||session.preview||session.idx>=session.queue.length)startGlobal();else go('study');}else if(h.startsWith('front=')){const id=h.slice(6);if(CARD_BY_ID[id])startSession([CARD_BY_ID[id]],'anteprima',true);}else if(h.startsWith('card=')){const id=h.slice(5);if(CARD_BY_ID[id]){startSession([CARD_BY_ID[id]],'anteprima',true);revealCard();}}else if(h.startsWith('deck=')){openDeckBrowse(h.slice(5));}}
 /* dentro lo shell le rotte passano da bridge.js (una sola esecuzione per rotta); da sola si segue l'hash */
 window.addEventListener('hashchange',()=>{if(!window.FarmacoBridge)applyHash();});
-$('#search').addEventListener('input',applyBrowse);
+$('#search').addEventListener('input',()=>{browseMark=null;applyBrowse();});
 window.addEventListener('resize',fitGradeClearance);
 applyStaticStrings();renderDash();$('#streakN').textContent=streak();applyHash();loadNovita();
 

@@ -95,6 +95,10 @@ button{cursor:pointer}
 .sub{display:flex;gap:2px;height:46px;padding:0 max(14px,env(safe-area-inset-right)) 0 max(14px,env(safe-area-inset-left));border-top:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
 .sub::-webkit-scrollbar{display:none}
 .sub[hidden]{display:none}
+/* barra più larga dello schermo (telefono, italiano): il bordo che continua sfuma, così si capisce che scorre */
+.sub.ov-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent)}
+.sub.ov-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px);mask-image:linear-gradient(90deg,transparent,#000 36px)}
+.sub.ov-l.ov-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 36px),transparent)}
 .sub button{position:relative;border:0;background:none;padding:0 14px;font-weight:600;font-size:14px;color:var(--ink-dim);white-space:nowrap;transition:color .18s var(--ease)}
 .sub button:hover{color:var(--ink)}
 .sub button[aria-current="page"]{color:var(--ink)}
@@ -248,7 +252,7 @@ button{cursor:pointer}
   .how{grid-template-columns:1fr;gap:18px}
   .page-head h1{font-size:32px}
 }
-@media (max-width:400px){.ib.txt{padding:0 9px}.stats{gap:18px}.stats dd{font-size:26px}}
+@media (max-width:400px){.ib.txt{padding:0 9px}.sub button{padding:0 9px}.stats{gap:18px}.stats dd{font-size:26px}}
 @media (max-width:374px){.brand b{display:none}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
@@ -316,7 +320,7 @@ button{cursor:pointer}
           </dl>
           <div class="acts">
             <button class="btn primary" type="button" id="start" data-go="flashcard:#study">Inizia lo studio</button>
-            <button class="btn" type="button" data-go="catalog:" data-i="names">Tabella dei nomi</button>
+            <button class="btn" type="button" data-go="catalog:#vista=all" data-i="names">Tabella dei nomi</button>
           </div>
         </article>
         <article class="door door-atlas" aria-labelledby="door-atlas-h">
@@ -409,7 +413,7 @@ it:{home:'Inizio',cards:'Flashcard',atlas:'Atlante 3D',news:'Novità',dash:'Oggi
   kind:{sicurezza:'Sicurezza','linea-guida':'Linea guida',scheda:'Scheda tecnica',notizia:'Notizia'},
   linked:'Nelle tue carte:',updated:'Aggiornato il',sources:'Fonti controllate',src_err:'non raggiungibile',
   none:'Nessuna novità con questo filtro.',none_home:'Nessuna novità recente.',loading:'Caricamento…',
-  error:'Non riesco a scaricare le novità: serve una connessione a internet. Tutto il resto funziona anche senza.',retry:'Riprova',
+  error:'Non riesco a raggiungere il sito delle novità. Controlla la connessione e riprova: il resto dell\'app funziona anche senza.',retry:'Riprova',
   from_site:'dal sito pubblicato',from_cache:'copia salvata, senza connessione',
   step:(a,b)=>a+' di '+b,next:'Avanti',back:'Indietro',skip:'Esci',done:'Fine',try:'Oppure tocca il pulsante evidenziato.',
   tour:[['Benvenuto in FarmacoFlash','Un giro di un minuto per sapere dove sta tutto. Puoi uscire quando vuoi con Esc.'],
@@ -440,7 +444,7 @@ en:{home:'Home',cards:'Flashcards',atlas:'3D Atlas',news:'Updates',dash:'Today',
   kind:{sicurezza:'Safety','linea-guida':'Guideline',scheda:'Product information',notizia:'News'},
   linked:'In your cards:',updated:'Updated',sources:'Sources checked',src_err:'unreachable',
   none:'No updates match this filter.',none_home:'No recent updates.',loading:'Loading…',
-  error:'Updates could not be downloaded: an internet connection is needed. Everything else works without one.',retry:'Try again',
+  error:'The updates site cannot be reached. Check your connection and try again: the rest of the app works without it.',retry:'Try again',
   from_site:'from the published site',from_cache:'saved copy, offline',
   step:(a,b)=>a+' of '+b,next:'Next',back:'Back',skip:'Exit',done:'Done',try:'Or tap the highlighted button.',
   tour:[['Welcome to FarmacoFlash','A one minute tour of where everything lives. Press Esc to leave at any time.'],
@@ -460,11 +464,11 @@ const frames={flashcard:$('#if-flashcard'),catalog:$('#if-catalog'),canali:$('#i
 const pages={home:$('#page-home'),news:$('#page-news')};
 const PATHS={'Flashcard-Farmacologia.html':'flashcard','Tabella-Farmaci.html':'catalog','Canali-e-Recettori-3D.html':'canali','index.html':'home'};
 let INDEX={total:0,cards:{}};try{INDEX=JSON.parse($('#ff-index').textContent)}catch(e){}
-let theme=root.dataset.theme,lang='it',cur={app:'',hash:''},lastCards={app:'flashcard',hash:'#dash'};
+let theme=root.dataset.theme,lang='it',cur={app:'',hash:''};
 /* lingua: chiave unica cr-lang (condivisa con le app); farmaco-lang, la vecchia chiave di FarmacoFlash, vale solo se cr-lang manca */
 const savedLang=()=>{try{let l=localStorage.getItem('cr-lang');if(l!=='it'&&l!=='en')l=localStorage.getItem('farmaco-lang');return l==='en'?'en':'it'}catch(e){return null}};
 lang=savedLang()||'it';
-const ready={},loaded={},pending={},sent={},revealT={};
+const ready={},loaded={},pending={},sent={},revealT={},newsSent={};
 const T=k=>(I18N[lang]||I18N.it)[k];
 const store=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
 const unstore=k=>{try{localStorage.removeItem(k)}catch(e){}};
@@ -505,7 +509,9 @@ function boot(app,hash){
   f.src=f.dataset.src+(hash||'');
   clearTimeout(revealT[app]);revealT[app]=setTimeout(()=>reveal(app),8000);
 }
-function hello(app){ready[app]=true;loaded[app]=true;syncApp(app);if(pending[app])route(app,pending[app]);}
+function hello(app){ready[app]=true;loaded[app]=true;newsSent[app]=null;syncApp(app);sendNews(app);if(pending[app])route(app,pending[app]);}
+/* le flashcard non scaricano il feed per conto loro: lo shell passa il suo (anche la copia salvata, se offline) */
+function sendNews(app){if(app!=='flashcard'||!ready[app]||newsState!=='ok'||newsSent[app]===NEWS)return;newsSent[app]=NEWS;tell(app,{__farmaco:1,type:'news',feed:NEWS});}
 for(const [app,f] of Object.entries(frames))f.addEventListener('load',()=>{
   if(!f.getAttribute('src'))return;
   loaded[app]=true;
@@ -536,11 +542,16 @@ function go(app,hash='',push=true,force=false){
 }
 function marks(app,hash){
   const sp=spaceOf(app),sub=subOf(app,hash);
-  if(sp==='cards')lastCards={app,hash:hash||(app==='flashcard'?'#dash':'')};
   $$('.sp[data-space]').forEach(b=>b.dataset.space===sp?b.setAttribute('aria-current','page'):b.removeAttribute('aria-current'));
   $('#sub').hidden=sp!=='cards';
   $$('[data-sub]').forEach(b=>b.dataset.sub===sub?b.setAttribute('aria-current','page'):b.removeAttribute('aria-current'));
+  /* la scheda attiva resta sempre in vista, anche quando la barra scorre */
+  const bar=$('#sub'),on=bar.querySelector('[aria-current]');
+  if(on&&!bar.hidden){const a=on.getBoundingClientRect(),b=bar.getBoundingClientRect();if(a.left<b.left)bar.scrollLeft-=b.left-a.left+24;else if(a.right>b.right)bar.scrollLeft+=a.right-b.right+24;}
+  subFade();
 }
+function subFade(){const s=$('#sub');if(s.hidden)return;const x=Math.abs(s.scrollLeft),max=s.scrollWidth-s.clientWidth;s.classList.toggle('ov-l',x>2);s.classList.toggle('ov-r',max-x>2);}
+$('#sub').addEventListener('scroll',subFade,{passive:true});
 function restore(){
   const h=location.hash;let m;
   if(h==='#novita')return go('news','',false);
@@ -549,7 +560,9 @@ function restore(){
 }
 addEventListener('popstate',restore);
 addEventListener('hashchange',restore); // un'app senza risposta dallo shell apre index.html#<app>/<hash>: stesso documento, solo il frammento
-function goSpace(s){if(s==='home')go('home');else if(s==='news')go('news');else if(s==='atlas')go('canali');else go(lastCards.app,lastCards.hash);}
+/* «Flashcard» apre sempre Oggi: mai l'ultima sotto-scheda (Sfoglia, Tabella dei nomi). Una sessione in corso non si
+   perde: la riprende «Studia». */
+function goSpace(s){if(s==='home')go('home');else if(s==='news')go('news');else if(s==='atlas')go('canali');else go('flashcard','#dash',true,true);}
 document.addEventListener('click',e=>{
   const sp=e.target.closest('[data-space]');if(sp){goSpace(sp.dataset.space);return;}
   const sb=e.target.closest('[data-sub]');if(sb){const s=sb.dataset.sub;s==='names'?go('catalog','',true,true):go('flashcard','#'+s,true,true);return;}
@@ -564,10 +577,11 @@ addEventListener('message',e=>{
   if((d.__farmaco===1&&d.type==='ready')||d.__fusion==='ready')hello(app);
   else if(d.__farmaco===1&&d.type==='painted'){if(d.theme===theme)reveal(app);if(app==='flashcard')queueTable();}
   else if(d.__farmaco===1&&d.type==='view'&&app==='flashcard'&&typeof d.hash==='string'&&/^#(?:dash|study|browse|stats)$/.test(d.hash)){
-    /* vista cambiata dentro le flashcard: barra e indirizzo dello shell la seguono, senza nuove voci di cronologia */
+    /* vista cambiata dentro le flashcard: barra e indirizzo dello shell la seguono. L'inizio di una sessione è un
+       passo vero (Indietro torna alla vista di prima, anche su Android); gli altri cambi sostituiscono la voce. */
     sent[app]=d.hash;
-    if(cur.app===app){cur={app,hash:d.hash};marks(app,d.hash);if(location.hash!==hashFor(app,d.hash))history.replaceState(null,'',hashFor(app,d.hash));}
-    else lastCards={app,hash:d.hash};
+    if(cur.app===app){const step=d.hash==='#study'&&subOf(app,cur.hash)!=='study';cur={app,hash:d.hash};marks(app,d.hash);
+      if(location.hash!==hashFor(app,d.hash))history[step?'pushState':'replaceState'](null,'',hashFor(app,d.hash));}
   }
   else if(d.__farmaco===1&&d.type==='navigate'&&typeof d.path==='string'&&typeof d.hash==='string'&&d.hash.length<500){const to=PATHS[d.path.split('?')[0]];if(to)go(to,d.hash,true,true);}
   else if(d.__fusion==='open-flashcard'&&typeof d.card==='string'&&/^[\w-]+$/.test(d.card))go('flashcard','#card='+d.card,true,true);
@@ -621,7 +635,7 @@ $('#lang').addEventListener('click',()=>{const l=lang==='it'?'en':'it';store('cr
 /* lingua scelta in un'altra scheda o in un'app aperta da sola */
 addEventListener('storage',e=>{if(e.key==='cr-lang'||e.key===null){const l=savedLang();if(l)setLang(l);}});
 addEventListener('pageshow',e=>{if(e.persisted){const l=savedLang();if(l)setLang(l);}});
-function measure(){root.style.setProperty('--top-h',top_.offsetHeight+'px');if(ti>=0)requestAnimationFrame(place);}
+function measure(){root.style.setProperty('--top-h',top_.offsetHeight+'px');subFade();if(ti>=0)requestAnimationFrame(place);}
 new ResizeObserver(measure).observe(top_);
 
 /* ---------- Inizio ---------- */
@@ -659,7 +673,7 @@ function loadNews(){
   newsState='loading';
   (async()=>{
     for(const u of /^https?:$/.test(location.protocol)?['novita.json',FEED]:[FEED]){
-      try{NEWS=await getFeed(u);newsState='ok';newsFrom=u===FEED&&/^https?:$/.test(location.protocol)?'site':'';break;}catch(e){}
+      try{NEWS=await getFeed(u);newsState='ok';newsFrom=u===FEED?'site':'';break;}catch(e){}
     }
     if(newsState==='ok')store(NEWS_KEY,JSON.stringify(NEWS));
     else{let c=null;try{c=JSON.parse(localStorage.getItem(NEWS_KEY)||'null')}catch(e){}
@@ -667,7 +681,7 @@ function loadNews(){
     refreshNews();
   })();
 }
-function refreshNews(){if(cur.app==='home')paintNews($('#home-news'),3);if(cur.app==='news')renderNews();updateBadge();}
+function refreshNews(){if(cur.app==='home')paintNews($('#home-news'),3);if(cur.app==='news')renderNews();updateBadge();sendNews('flashcard');}
 const safeUrl=u=>/^https?:\/\//i.test(String(u||''))?String(u):'';
 const fmtDate=d=>{const x=new Date(d+'T12:00:00');return isNaN(x)?'':x.toLocaleDateString(lang==='en'?'en-GB':'it-IT',{day:'numeric',month:'short',year:'numeric'});};
 const linked=it=>Array.isArray(it.cards)&&it.cards.some(id=>INDEX.cards[id]);
