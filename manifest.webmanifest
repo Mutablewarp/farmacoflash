@@ -1,17 +1,27 @@
 {
+  "id": "./",
   "name": "FarmacoFlash · Farmacologia",
   "short_name": "FarmacoFlash",
   "description": "Flashcard a ripetizione spaziata e atlante 3D dei bersagli dei farmaci, per l'esame di Farmacologia.",
   "lang": "it",
+  "dir": "ltr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f3f0e9",
-  "theme_color": "#f3f0e9",
+  "background_color": "#13110d",
+  "theme_color": "#13110d",
+  "categories": ["education", "medical"],
   "icons": [
-    { "src": "assets/icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/icon-180.png", "sizes": "180x180", "type": "image/png" },
     { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "shortcuts": [
+    { "name": "Studia", "short_name": "Studia", "url": "./#flashcard/%23study", "icons": [{ "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Tabella dei nomi", "short_name": "Tabella", "url": "./#catalog/", "icons": [{ "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Atlante 3D", "short_name": "Atlante", "url": "./#canali/", "icons": [{ "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Novità", "short_name": "Novità", "url": "./#novita", "icons": [{ "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" }] }
   ]
 }

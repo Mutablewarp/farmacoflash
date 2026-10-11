@@ -21,7 +21,7 @@ __PWA_HEAD__
   --font-display:'Fraunces',Georgia,serif;
   --font-body:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
   --font-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
-  color-scheme:light;
+  color-scheme:only light; /* 'only': Chrome Android non ricolora il tema chiaro */
 }
 :root[data-theme="dark"]{
   --bg:#13110d; --panel:#1b1812; --line:#2a261d; --line2:#3a352a;
@@ -107,7 +107,7 @@ main{max-width:1180px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-ri
 .more-decks:hover{text-decoration-color:var(--gold)}
 
 /* ---- tabella ---- */
-.tbl-wrap{margin-top:12px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-panel);box-shadow:var(--shadow);overflow:auto;max-height:calc(100vh - 250px)}
+.tbl-wrap{margin-top:12px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-panel);box-shadow:var(--shadow);overflow:auto;max-height:calc(100vh - 250px);max-height:calc(100dvh - 250px)}
 table{width:100%;min-width:880px;border-collapse:separate;border-spacing:0}
 thead th{position:sticky;top:0;z-index:2;background:var(--panel-2);border-bottom:1px solid var(--line2);padding:11px 14px;text-align:left;font-size:.84rem;font-weight:600;color:var(--ink-dim);white-space:nowrap;cursor:pointer;user-select:none;transition:color var(--dur) var(--ease)}
 thead th:hover,thead th.s{color:var(--ink)}

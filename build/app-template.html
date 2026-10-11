@@ -34,7 +34,7 @@ __PWA_HEAD__
   --font-body:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
   --font-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
   --maxw:1060px;
-  color-scheme:light;
+  color-scheme:only light; /* 'only': Chrome Android non ricolora il tema chiaro */
 }
 :root[data-theme="dark"]{
   --bg:#13110d; --panel:#1b1812; --line:#2a261d; --line2:#3a352a;
@@ -60,7 +60,7 @@ __PWA_HEAD__
   --blue:var(--info); --green:var(--ok); --green-deep:var(--ok); --red:var(--bad); --rose-deep:var(--bad); --orange:var(--warn); --amber-2:var(--gold); --amber-deep:var(--gold);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;background:var(--bg)}
 body{font-family:var(--font-body);font-size:16px;line-height:1.6;color:var(--ink);background:var(--bg);min-height:100vh;min-height:100dvh;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:transparent;text-rendering:optimizeLegibility}
 ::selection{background:var(--gold-line);color:var(--ink)}
 a{color:var(--gold)}

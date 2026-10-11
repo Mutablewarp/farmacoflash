@@ -2,10 +2,11 @@
 <html lang="it" data-theme="light">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>FarmacoFlash · Farmacologia</title>
 <meta name="description" content="Flashcard a ripetizione spaziata e atlante 3D dei bersagli dei farmaci, per l'esame di Farmacologia.">
-<meta name="theme-color" content="#f3f0e9">
+<meta name="theme-color" content="#f3f0e9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13110d" media="(prefers-color-scheme: dark)">
 <meta name="color-scheme" content="light dark">
 <script>/* tema prima del primo disegno, prima ancora dei caratteri: niente lampo chiaro in modalità scura.
    'cr-theme' contiene solo una scelta esplicita; senza scelta si segue il sistema (lo shell non scrive mai il tema
@@ -15,7 +16,9 @@
 try{if(!localStorage.getItem('cr-theme-mig')){if(localStorage.getItem('cr-theme')==='light')localStorage.removeItem('cr-theme');localStorage.setItem('cr-theme-mig','1')}}catch(e){}
 try{t=localStorage.getItem('cr-theme')}catch(e){}
 if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
-d.dataset.theme=t;set('color-scheme',t);set('theme-color',t==='dark'?'#13110d':'#f3f0e9');})();</script>
+d.dataset.theme=t;set('color-scheme',t==='dark'?'dark':'only light');
+/* barra di stato e barre del browser: entrambe le meta (chiaro/scuro di sistema) prendono il colore del tema scelto */
+document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.content=t==='dark'?'#13110d':'#f3f0e9'});})();</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
 <link rel="apple-touch-icon" href="assets/icon-180.png">
@@ -41,8 +44,9 @@ d.dataset.theme=t;set('color-scheme',t);set('theme-color',t==='dark'?'#13110d':'
   --sans:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
   --top-h:65px;--nav-h:0px;
-  --z-top:20;--z-nav:21;--z-tour:40;
-  color-scheme:light;
+  --z-top:20;--z-nav:21;--z-bar:30;--z-tour:40;
+  /* 'only': il tema chiaro resta chiaro anche con «tema scuro per i siti» di Chrome (Android), che altrimenti lo ricolora */
+  color-scheme:only light;
 }
 :root[data-theme="dark"]{
   --bg:#13110d;--panel:#1b1812;--sunk:#0f0d0a;--line:#2a261d;--line2:#3a352a;
@@ -60,6 +64,8 @@ d.dataset.theme=t;set('color-scheme',t);set('theme-color',t==='dark'?'#13110d':'
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
+/* niente rimbalzo né lampo di tocco: fuori dai bordi e sotto il dito resta il fondo del tema */
+html{background:var(--bg);overscroll-behavior:none;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{font:400 15px/1.55 var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow:hidden}
 button,input{font:inherit;color:inherit}
 button{cursor:pointer}
@@ -107,8 +113,13 @@ button{cursor:pointer}
 .sub kbd{font:500 12px/1 var(--mono);padding:3px 6px;border:1px solid var(--line2);border-radius:5px;background:var(--panel)}
 
 /* ---------- palco ---------- */
-.stage{position:fixed;left:0;right:0;top:var(--top-h);bottom:var(--nav-h)}
-.stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg)}
+.stage{position:fixed;left:env(safe-area-inset-left);right:env(safe-area-inset-right);top:var(--top-h);bottom:max(var(--nav-h),env(safe-area-inset-bottom))}
+/* dentro un iframe env(safe-area-inset-*) vale 0: il palco stesso resta fuori da tacca e indicatore home.
+   color-scheme 'normal' sull'elemento: un documento ancora vuoto (about:blank, in caricamento) non riceve il fondo
+   bianco opaco che Safari mette quando elemento e documento hanno schemi diversi, e si vede --bg. Con 'normal' il
+   prefers-color-scheme dentro l'iframe resta quello del sistema (in WebKit segue lo schema dell'elemento): le app,
+   senza una scelta salvata, ricadono sullo stesso tema dello shell. */
+.stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg);color-scheme:normal}
 .stage iframe.wait{visibility:hidden}/* finché il documento non porta il tema dello shell (vedi boot) */
 .stage iframe[hidden],.page[hidden],.loading[hidden]{display:none}
 .page{position:absolute;inset:0;overflow:auto;overscroll-behavior:contain}
@@ -252,8 +263,36 @@ button{cursor:pointer}
   .how{grid-template-columns:1fr;gap:18px}
   .page-head h1{font-size:32px}
 }
+/* tocco: campi da 16px (iOS non ingrandisce la pagina), bersagli da 44px, risposta visibile al tocco */
+@media (pointer:coarse),(max-width:860px){
+  .search input{font-size:16px;height:44px}
+}
+@media (pointer:coarse){
+  .ib{width:44px;height:44px}
+  .brand{min-height:44px}
+  .chip{min-height:44px}
+  .link{min-height:44px;padding:0 4px}
+  .news .nd button{min-height:44px}
+  .pop .acts .btn{min-height:44px}
+  .sp:not([aria-current]):active,.sub button:active,.ib:active,.chip:active,.deck:active,.brand:active{background:var(--sunk)}
+}
+/* tastiera aperta su telefono: la barra in basso lascia spazio al campo (vedi kbWatch) */
+@media (max-width:860px){.kb .spaces{display:none}.kb{--nav-h:0px}}
 @media (max-width:400px){.ib.txt{padding:0 9px}.sub button{padding:0 9px}.stats{gap:18px}.stats dd{font-size:26px}}
 @media (max-width:374px){.brand b{display:none}}
+/* ---------- nuova versione ---------- */
+.upd{position:fixed;z-index:var(--z-bar);left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translateX(-50%);
+  width:max-content;max-width:calc(100vw - 24px);display:flex;align-items:center;gap:4px 10px;padding:6px 6px 6px 16px;border-radius:14px;
+  background:var(--raised);color:var(--ink);border:1px solid var(--line2);box-shadow:var(--shadow);font-size:14px;animation:upd-in .28s var(--ease) both}
+.upd[hidden]{display:none}
+.upd p{margin:0}
+.upd .btn{min-height:40px;padding:0 14px;font-size:14px}
+.upd .x{width:40px;height:40px;border:0;background:none;border-radius:10px;color:var(--ink-dim);display:inline-grid;place-items:center}
+.upd .x svg{width:16px;height:16px}
+.upd .x:hover{color:var(--ink)}
+@media (pointer:coarse){.upd .btn,.upd .x{min-height:44px}.upd .x{width:44px;height:44px}}
+@media (max-width:860px){.upd{bottom:calc(var(--nav-h) + 10px)}}
+@keyframes upd-in{from{opacity:0;transform:translate(-50%,12px)}to{opacity:1;transform:translate(-50%,0)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 <style>/* © giorgiom250698 */:root{--author:"giorgiom250698";--author-sha256:"7e89b191a704024f69214d2e5be7e71b95a3d374165994eb77a8021abb59ea6d"}</style>
@@ -390,6 +429,7 @@ button{cursor:pointer}
   </div>
 </div>
 <p class="sr-only" id="live" aria-live="polite"></p>
+<div class="upd" id="upd" role="status" hidden><p data-i="upd_t">Nuova versione disponibile</p><button class="btn primary" type="button" id="upd-go" data-i="upd_go">Aggiorna</button><button class="x" type="button" id="upd-x" data-i-aria="upd_x" aria-label="Più tardi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
 
 <!--INDEX:START--><script id="ff-index" type="application/json">{"total":255,"cards":{"G1__fase-biofarmaceutica-passaggio-membrane":"Fase biofarmaceutica e passaggio delle membrane","G1__pka-henderson-hasselbalch-ion-trapping":"pKa, equazione di Henderson–Hasselbalch e ion trapping","G1__vie-somministrazione-primo-passaggio":"Vie di somministrazione ed effetto di primo passaggio","G1__glicoproteina-p-mdr1-abcb1":"Glicoproteina P","G1__biodisponibilita-auc-cmax-tmax":"Biodisponibilità","G1__bioequivalenza-generici-biosimilari":"Bioequivalenza: farmaci equivalenti","G2__legame-proteine-plasmatiche-spiazzamento":"Legame alle proteine plasmatiche","G2__distribuzione-tissutale-bee-adipe":"Distribuzione tissutale: perfusione, barriera emato-encefalica, affinità per i tessuti e ridistribuzione","G2__volume-di-distribuzione-apparente":"Volume di distribuzione apparente","G2__biotrasformazione-fase-1-fase-2-cyp":"Biotrasformazione: reazioni di fase 1","G2__induttori-inibitori-cyp-pompelmo":"Induttori e inibitori dei CYP","G2__metaboliti-attivi-reattivi-profarmaci":"Metaboliti attivi, intermedi reattivi e profarmaci","G2__polimorfismi-cyp-farmacogenetica":"Polimorfismi dei CYP e farmacogenetica","G3__vie-eliminazione-circolo-enteroepatico":"Vie di eliminazione e circolo entero-epatico","G3__escrezione-renale-oat-oct-ph-urinario":"Escrezione renale: filtrazione, secrezione tubulare","G3__cinetica-ordine-uno-e-ordine-zero":"Cinetica di eliminazione di ordine 1 e di ordine 0","G3__clearance-renale-epatica-totale":"Clearance","G3__emivita-steady-state-dose-di-carico":"Emivita, steady state, dose di carico e dose di mantenimento","G4__curva-dose-risposta-potenza-efficacia":"Interazione farmaco–bersaglio e curva concentrazione–risposta: EC50, potenza ed efficacia","G4__indice-terapeutico-margine-sicurezza":"Indice terapeutico, finestra terapeutica e margine di sicurezza","G4__agonisti-parziali-inversi-antagonisti":"Agonisti pieni, parziali e inversi; antagonisti","G4__modulatori-allosterici-bdz-gaba-a":"Modulatori allosterici: benzodiazepine e recettore GABA-A","G4__antagonismo-competitivo-irreversibile":"Antagonismo: competitivo, irreversibile/non competitivo, funzionale e chimico","G4__tolleranza-tachifilassi-regolazione":"Adattamenti alla somministrazione ripetuta: tolleranza, tachifilassi, down/up-regulation, sensitizzazione","G4__additivita-sinergismo-antagonismo":"Interazioni farmacodinamiche: additività, sinergismo, antagonismo ed effetti cumulativi","G5__canali-na-blocco-uso-dipendente":"Canali Na⁺ voltaggio-dipendenti: tre stati funzionali e blocco uso-dipendente","G5__canali-ca-voltaggio-calcio-antagonisti":"Canali Ca²⁺ voltaggio-dipendenti","G5__canali-k-qt-girk-katp":"Canali K⁺: voltaggio-dipendenti","G5__pompe-atpasi-tipo-p-digitale-ipp":"Pompe ATPasi di tipo P: Na⁺/K⁺-ATPasi e digitale, H⁺/K⁺-ATPasi e inibitori di pompa","G5__trasportatori-epiteliali-e-neuronali":"Trasportatori come bersagli: epiteliali renali","G6__quattro-superfamiglie-recettori":"Le quattro superfamiglie di recettori: struttura, trasduzione e tempi di risposta","G6__superfamiglia-nicotinica-tubocurarina":"Superfamiglia dei recettori-canale pentamerici","G6__recettori-glutammato-ampa-nmda":"Recettori ionotropici del glutammato: AMPA e NMDA","G6__gpcr-proteine-g-gs-gi-gq":"Recettori accoppiati a proteine G","G6__recettori-intracellulari-nucleari":"Recettori intracellulari","A4__glucocorticoidi-classe-meccanismo-effett":"Glucocorticoidi","A4__idrocortisone-cortisolo-cortisone":"Idrocortisone","A4__prednisone-prednisolone":"Prednisone / Prednisolone","A4__metilprednisolone":"Metilprednisolone","A4__triamcinolone":"Triamcinolone","A4__betametasone-e-desametasone-fluorurati":"Betametasone e Desametasone","A4__fludrocortisone":"Fludrocortisone","A4__glucocorticoidi-topici-e-inalatori-beclo":"Glucocorticoidi topici e inalatori","A5__fans-classe-meccanismo-azioni-effetti-co":"FANS","A5__acido-acetilsalicilico-asa-aspirina":"Acido acetilsalicilico","A5__derivati-dell-acido-propionico-ibuprofen":"Derivati dell'acido propionico","A5__diclofenac-derivato-dell-acido-acetico":"Diclofenac","A5__indometacina-derivato-dell-acido-acetico":"Indometacina","A5__ketorolac-toradol-derivato-dell-acido-ac":"Ketorolac","A5__nimesulide-aulin":"Nimesulide","A5__oxicam-piroxicam-meloxicam":"Oxicam","A5__coxib-celecoxib-valdecoxib-rofecoxib":"Coxib","A5__paracetamolo-fans-atipico":"Paracetamolo","A6__istamina-recettori-e-strategie-farmacolo":"Istamina — recettori e strategie farmacologiche","A6__anti-h1-di-i-generazione-clorfeniramina-":"Anti-H1 di I generazione","A6__anti-h1-di-ii-generazione-loratadina-cet":"Anti-H1 di II generazione","A6__anti-h1-di-iii-generazione-desloratadina":"Anti-H1 di III generazione","A6__anti-h2-cimetidina-ranitidina-famotidina":"Anti-H2","A7__emicrania-terapia-dell-attacco-acuto-fan":"Emicrania — terapia dell'attacco acuto","A7__derivati-dell-ergot-ergotamina-diidroerg":"Derivati dell'ergot","A7__triptani-sumatriptan-ii-generazione":"Triptani","A7__nuove-classi-anti-emicrania-ditani-gepan":"Nuove classi anti-emicrania","A7__emicrania-terapia-profilattica":"Emicrania — terapia profilattica","A7__antiemetici-centro-del-vomito-e-classi":"Antiemetici","A7__domperidone-e-metoclopramide":"Domperidone e Metoclopramide","A8__asma-bpco-basi-e-strategia-terapeutica":"Asma / BPCO — basi e strategia terapeutica","A8__2-agonisti-saba-laba-ultra-laba":"β2-agonisti","A8__xantine-teofillinici-teofillina-aminofil":"Xantine / teofillinici","A8__antimuscarinici-sama-lama":"Antimuscarinici","A8__glucocorticoidi-sistemici-inalatori":"Glucocorticoidi","A8__cromoni-cromoglicato-di-sodio":"Cromoni","A8__antileucotrienici-zileuton-montelukast-z":"Antileucotrienici","A8__biotecnologici-omalizumab-anti-il5":"Biotecnologici","A9__farmaci-biologici-proteine-terapeutiche-":"Farmaci biologici / proteine terapeutiche","A9__anticorpi-monoclonali-tipi-e-nomenclatur":"Anticorpi monoclonali","A9__anti-tnf-classe":"Anti-TNF-α","A9__infliximab":"Infliximab","A9__adalimumab":"Adalimumab","A9__etanercept":"Etanercept","A9__biosimilari-concetti":"Biosimilari","A10__insulina-insulina-umana-analoghi":"Insulina","A10__sulfaniluree-i-gen-tolbutamide-clorpropa":"Sulfaniluree","A10__glinidi-derivati-della-meglitinide":"Glinidi","A10__metformina-biguanidi":"Metformina","A10__glitazoni-tiazolidinedioni-pioglitazone-":"Glitazoni","A10__acarbosio-inibitore-dell-glucosidasi":"Acarbosio","A10__incretine-agonisti-del-recettore-glp-1-e":"Incretine — agonisti del recettore GLP-1","A10__incretine-inibitori-della-dpp-4-gliptine":"Incretine — inibitori della DPP-4","A10__inibitori-sglt2-glifozine":"Inibitori SGLT2","A10__iperglicemizzanti-glucagone-octreotide-d":"Iperglicemizzanti","A11__antiacidi-sali-di-alluminio-magnesio":"Antiacidi","A11__antagonisti-dei-recettori-h2-famotidina-":"Antagonisti dei recettori H2","A11__antimuscarinici-gastrici-pirenzepina-tel":"Antimuscarinici gastrici","A11__inibitori-della-pompa-protonica-ipp-omep":"Inibitori della pompa protonica – IPP","A11__protettori-della-mucosa-misoprostolo-suc":"Protettori della mucosa","A11__procinetici-neostigmina-domperidone-meto":"Procinetici","A11__antidiarroici-loperamide":"Antidiarroici","A11__lassativi-stipsi-da-oppiacei":"Lassativi","A11__ibd-antinfiammatori-5-asa-mesalazina-sul":"IBD — antinfiammatori 5-ASA","A11__ibd-immunosoppressori-e-biologici":"IBD — immunosoppressori e biologici","A12__osso-regolazione-del-calcio-e-basi-della":"Osso — regolazione del calcio e basi della terapia","A12__calcio-vitamina-d":"Calcio + Vitamina D","A12__estrogeni-17-estradiolo":"Estrogeni","A12__serm-raloxifene-tamoxifene":"SERM","A12__calcitonina":"Calcitonina","A12__bifosfonati-i-iii-generazione":"Bifosfonati","A12__denosumab":"Denosumab","A12__teriparatide-pth-intermittente-fluoruri":"Teriparatide","G7__nt-classici-neuropeptidi-retrogradi":"Neurotrasmettitori classici e neuropeptidi; autorecettori e trasmissione retrograda","G7__catecolamine-sintesi-mao-comt":"Catecolamine: biosintesi, degradazione","G7__angina-iatrogena":"Angina iatrogena: meccanismi e farmaci responsabili","G7__omeostasi-calcio-intracellulare":"Omeostasi del Ca²⁺ intracellulare: canali, depositi","G7__nicotina-alfa4beta2-dipendenza":"Nicotina, recettore α4β2 e circuito della dipendenza","G7__asse-hpa-crh-cronofarmacologia":"Asse HPA, CRH e ritmi circadiani nella terapia","B1__benzodiazepine-bdz":"Benzodiazepine","B1__flumazenil":"Flumazenil","B1__barbiturici-fenobarbital-secobarbital-pe":"Barbiturici","B1__z-compounds-zaleplon-zolpidem":"Z-compounds","B1__etifoxina":"Etifoxina","B1__buspirone-e-serotoninergici-ansia-cronic":"Buspirone e serotoninergici","B1__neurosteroidi-steroidi-neuroattivi":"Neurosteroidi","B2__anestetici-generali-principi":"Anestetici generali — principi","B2__anestetici-inalatori-volatili-alotano-is":"Anestetici inalatori / volatili","B2__anestetici-endovenosi-tiopentale-propofo":"Anestetici endovenosi","B2__anestetici-locali-meccanismo-e-farmacoci":"Anestetici locali — meccanismo e farmacocinetica","B2__anestetici-locali-singole-molecole":"Anestetici locali — singole molecole","B2__anestetici-locali-adr-e-associazione-con":"Anestetici locali — ADR e associazione con vasocostrittore","B3__antidepressivi-basi-fisiopatologiche":"Antidepressivi — basi fisiopatologiche","B3__antidepressivi-triciclici-tca":"Antidepressivi triciclici","B3__imao-inibitori-delle-monoamino-ossidasi":"IMAO","B3__sindrome-serotoninergica":"Sindrome serotoninergica","B3__ssri-citalopram-escitalopram-fluoxetina-":"SSRI","B3__reboxetina-nri-inibitore-reuptake-noradr":"Reboxetina","B3__bupropione-dri-inibitore-reuptake-dopami":"Bupropione","B3__venlafaxina-snri":"Venlafaxina","B3__nassa-mirtazapina":"NaSSA","B3__sari-trazodone-nefazodone":"SARI","B4__disturbo-bipolare-basi":"Disturbo bipolare — basi","B4__litio-sali-di-litio":"Litio","B4__acido-valproico-valproato-sodico-come-st":"Acido valproico","B4__carbamazepina-come-stabilizzante-dell-um":"Carbamazepina — come stabilizzante dell'umore","B4__lamotrigina":"Lamotrigina","B5__psicosi-schizofrenia-basi-e-vie-dopamine":"Psicosi/schizofrenia — basi e vie dopaminergiche","B5__antipsicotici-tipici-1-generazione-neuro":"Antipsicotici tipici","B5__antipsicotici-atipici-2-generazione":"Antipsicotici atipici","B5__aripiprazolo-3-generazione":"Aripiprazolo","B5__antipsicotici-effetti-indesiderati-e-for":"Antipsicotici — effetti indesiderati e formulazioni LAI","B6__parkinson-strategia-terapeutica":"Parkinson — strategia terapeutica","B6__levodopa-l-dopa-carbidopa-benserazide":"Levodopa","B6__dopamino-agonisti":"Dopamino-agonisti","B6__imao-b-selegilina-rasagilina-safinamide":"IMAO-B","B6__comt-inibitori-entacapone-opicapone-tolc":"COMT-inibitori","B6__amantadina-antimuscarinici-e-farmaci-acc":"Amantadina, antimuscarinici e farmaci accessori","B7__alzheimer-strategia-terapeutica":"Alzheimer — strategia terapeutica","B7__inibitori-dell-acetilcolinesterasi-donep":"Inibitori dell'acetilcolinesterasi","B7__memantina":"Memantina","B7__alzheimer-terapie-accessorie-e-prospetti":"Alzheimer — terapie accessorie e prospettive","B7__sm-basi-e-glucocorticoidi-attacco-acuto":"SM — basi e glucocorticoidi","B7__sm-immunosoppressori-aspecifici":"SM — immunosoppressori aspecifici","B7__sm-disease-modifying-treatments-dmt":"SM — disease-modifying treatments","B7__sm-farmaci-adiuvanti-sintomatici":"SM — farmaci adiuvanti","B8__terapia-del-dolore-scala-oms-e-adiuvanti":"Terapia del dolore — scala OMS e adiuvanti","B8__sistema-oppioidergico-recettori-e-meccan":"Sistema oppioidergico — recettori e meccanismo","B8__oppioidi-effetti-tolleranza-e-dipendenza":"Oppioidi — effetti, tolleranza e dipendenza","B8__oppiacei-deboli-codeina-tramadolo-step-2":"Oppiacei deboli","B8__oppiacei-forti-step-3":"Oppiacei forti","B8__antagonisti-paracetamolo-e-cannabinoidi":"Antagonisti, paracetamolo e cannabinoidi","B9__antiepilettici-meccanismi-e-principi":"Antiepilettici — meccanismi e principi","B9__aed-i-gen-bloccanti-dei-canali-na-fenito":"AED I gen — bloccanti dei canali Na⁺","B9__aed-i-gen-gabaergici-e-altri-barbiturici":"AED I gen — GABAergici e altri","B9__aed-ii-generazione":"AED II generazione","B9__antiepilettici-indicazioni-per-tipo-di-c":"Antiepilettici — indicazioni per tipo di crisi","B9__statine-meccanismo-e-farmacocinetica":"Statine — meccanismo e farmacocinetica","B9__statine-classificazione-effetti-collater":"Statine — classificazione, effetti collaterali e interazioni","B9__altri-ipolipemizzanti-fibrati-acido-nico":"Altri ipolipemizzanti","B10__ipertensione-strategia-terapeutica":"Ipertensione — strategia terapeutica","B10__simpaticolitici-centrali-2-agonisti-clon":"Simpaticolitici centrali — α2-agonisti","B10__metildopa":"α-metildopa","B10__1-bloccanti-prazosina-doxazosina-tamsulo":"α1-bloccanti","B10__bloccanti-generazioni-e-proprieta-ancill":"β-bloccanti — generazioni e proprietà ancillari","B10__bloccanti-meccanismi-avanzati-indicazion":"β-bloccanti — meccanismi avanzati, indicazioni e ADR","B11__sraa-fisiologia-e-bersagli-farmacologici":"SRAA — fisiologia e bersagli farmacologici","B11__ace-inibitori-captopril-enalapril-ramipr":"ACE-inibitori","B11__sartani-losartan-valsartan-irbesartan-te":"Sartani","B11__inibitori-della-renina-aliskiren":"Inibitori della renina","B11__calcio-antagonisti-diidropiridine-verapa":"Calcio-antagonisti","B11b__insufficienza-cardiaca-basi-fisiopatolog":"Insufficienza cardiaca — basi fisiopatologiche","B11b__digitale-digossina":"Digitale / digossina","B11b__teofillina-e-xantine":"Teofillina e xantine","B11b__diuretici-overview-siti-e-classi":"Diuretici — overview","B11b__inibitori-dell-anidrasi-carbonica-acetaz":"Inibitori dell'anidrasi carbonica","B11b__diuretici-osmotici-mannitolo":"Diuretici osmotici","B11b__diuretici-dell-ansa-drastici-furosemide-":"Diuretici dell'ansa / drastici","B11b__diuretici-tiazidici-e-risparmiatori-di-k":"Diuretici tiazidici e risparmiatori di K⁺","B12__emostasi-e-bersagli-della-terapia":"Emostasi e bersagli della terapia","B12__aspirina-e-inibitori-reversibili-della-c":"Aspirina e inibitori reversibili della COX1","B12__antagonisti-del-recettore-p2y12-ticlopid":"Antagonisti del recettore P2Y12","B12__antagonisti-della-gp-iib-iiia-e-altri-an":"Antagonisti della GP IIb/IIIa e altri antiaggreganti","B12__eparina-eparine-a-basso-peso-molecolare-":"Eparina, eparine a basso peso molecolare e derivati sintetici","B12__anticoagulanti-orali-vka-inibitori-diret":"Anticoagulanti orali","B12__fibrinolitici-e-antitrombotico-ideale":"Fibrinolitici e antitrombotico ideale","B12b__vasodilatatori-overview-e-antagonisti-de":"Vasodilatatori — overview e antagonisti dell'endotelina","B12b__nitrati-nitrossidi-nitroglicerina-isosor":"Nitrati / nitrossidi","B12b__attivatori-dei-canali-k-atp-e-idralazina":"Attivatori dei canali K⁺-ATP e idralazina","B13__aritmie-e-strategie-antiaritmiche":"Aritmie e strategie antiaritmiche","B13__classe-i-bloccanti-dei-canali-del-na-ia-":"Classe I — bloccanti dei canali del Na⁺","B13__classe-ii-bloccanti":"Classe II — β-bloccanti","B13__classe-iii-bloccanti-dei-canali-del-k":"Classe III — bloccanti dei canali del K⁺","B13__classe-iv-ca-antagonisti-adenosina-e-pot":"Classe IV","B14__antitumorali-strategie-e-principi":"Antitumorali — strategie e principi","B14__target-therapy-e-biomarcatori":"Target therapy e biomarcatori","B14__parp-inibitori-e-letalita-sintetica":"PARP-inibitori e letalità sintetica","B14__immunoterapia-checkpoint-inhibitors-e-an":"Immunoterapia","Antibiotici-2__fosfomicina":"Fosfomicina","Antibiotici-2__cicloserina":"Cicloserina","Antibiotici-2__bacitracina":"Bacitracina","Antibiotici-2__glicopeptidi-classe-vancomicina-teicopla":"Glicopeptidi","Antibiotici-2__vancomicina":"Vancomicina","Antibiotici-2__teicoplanina":"Teicoplanina","Antibiotici-2__antimicobatterici-quadro-generale-terapi":"Antimicobatterici","Antibiotici-2__isoniazide-ini":"Isoniazide","Antibiotici-2__etambutolo":"Etambutolo","Antibiotici-2__rifampicina":"Rifampicina","Antibiotici-2__pirazinamide":"Pirazinamide","Antibiotici-2__antitubercolari-di-ii-scelta":"Antitubercolari di II scelta","Antibiotici-3__sulfamidici":"Sulfamidici","Antibiotici-3__trimetoprim":"Trimetoprim","Antibiotici-3__chinoloni-e-fluorochinoloni":"Chinoloni e Fluorochinoloni","Antibiotici-3__rifampicina-integrazione-lez-17-profilo-":"Rifampicina","Antibiotici-3__macrolidi-classe-eritromicina-claritromi":"Macrolidi","Antibiotici-3__eritromicina":"Eritromicina","Antibiotici-3__azitromicina":"Azitromicina","Antibiotici-3__claritromicina-nota":"Claritromicina","Antibiotici-3__lincosamidi-clindamicina":"Lincosamidi","Antibiotici-3__cloramfenicolo-caf":"Cloramfenicolo","Antibiotici-3__aminoglicosidi-classe-meccanismo-cinetic":"Aminoglicosidi","Antibiotici-3__aminoglicosidi-singoli-farmaci":"Aminoglicosidi — singoli farmaci","Antibiotici-3__tetracicline":"Tetracicline","Beta-lattamici__lattamici-classe-quadro-generale":"β-lattamici","Beta-lattamici__penicilline-naturali-penicillina-g-benzi":"Penicilline naturali — Penicillina G","Beta-lattamici__penicilline-resistenti-alle-lattamasi-me":"Penicilline resistenti alle β-lattamasi","Beta-lattamici__aminopenicilline-amoxicillina-ampicillin":"Aminopenicilline","Beta-lattamici__carbossipenicilline-carbenicillina-ticar":"Carbossipenicilline","Beta-lattamici__ureidopenicilline-piperacillina-mezlocil":"Ureidopenicilline","Beta-lattamici__cefalosporine-classe-quadro-generale":"Cefalosporine","Beta-lattamici__cefalosporine-di-i-generazione-cefazolin":"Cefalosporine di I generazione","Beta-lattamici__cefalosporine-di-ii-generazione-cefoxiti":"Cefalosporine di II generazione","Beta-lattamici__cefalosporine-di-iii-generazione-cefotax":"Cefalosporine di III generazione","Beta-lattamici__cefalosporine-di-iv-generazione-cefepime":"Cefalosporine di IV generazione","Beta-lattamici__nuove-cefalosporine-ceftolozano-ceftarol":"Nuove cefalosporine","Beta-lattamici__carbapenemici-imipenem-ertapenem-doripen":"Carbapenemici","Beta-lattamici__monobattamici-aztreonam":"Monobattamici","Beta-lattamici__lattamasi-classificazione-di-ambler-enzi":"β-lattamasi — classificazione di Ambler","Beta-lattamici__inibitori-delle-lattamasi-i-generazione-":"Inibitori delle β-lattamasi — I generazione","Beta-lattamici__inibitori-delle-lattamasi-ii-generazione":"Inibitori delle β-lattamasi — II generazione e nuovi"}}</script><!--INDEX:END-->
 <script>
@@ -415,8 +455,9 @@ it:{home:'Inizio',cards:'Flashcard',atlas:'Atlante 3D',news:'Novità',dash:'Oggi
   none:'Nessuna novità con questo filtro.',none_home:'Nessuna novità recente.',loading:'Caricamento…',
   error:'Non riesco a raggiungere il sito delle novità. Controlla la connessione e riprova: il resto dell\'app funziona anche senza.',retry:'Riprova',
   from_site:'dal sito pubblicato',from_cache:'copia salvata, senza connessione',
+  upd_t:'Nuova versione disponibile',upd_go:'Aggiorna',upd_x:'Più tardi',
   step:(a,b)=>a+' di '+b,next:'Avanti',back:'Indietro',skip:'Esci',done:'Fine',try:'Oppure tocca il pulsante evidenziato.',
-  tour:[['Benvenuto in FarmacoFlash','Un giro di un minuto per sapere dove sta tutto. Puoi uscire quando vuoi con Esc.'],
+  tour:[['Benvenuto in FarmacoFlash','Un giro di un minuto per sapere dove sta tutto. Puoi uscire quando vuoi con Esci.'],
     ['Flashcard','Qui studi con le carte a ripetizione spaziata: ogni farmaco torna quando stai per dimenticarlo.'],
     ['Studia','Una sessione alla volta: leggi il farmaco, rispondi a mente, gira la carta e valuta quanto ricordavi.'],
     ['Tabella dei nomi','Tutti i farmaci per classe, con i nomi commerciali e i quiz di scrittura. Da ogni riga apri la sua carta.'],
@@ -446,8 +487,9 @@ en:{home:'Home',cards:'Flashcards',atlas:'3D Atlas',news:'Updates',dash:'Today',
   none:'No updates match this filter.',none_home:'No recent updates.',loading:'Loading…',
   error:'The updates site cannot be reached. Check your connection and try again: the rest of the app works without it.',retry:'Try again',
   from_site:'from the published site',from_cache:'saved copy, offline',
+  upd_t:'New version available',upd_go:'Reload',upd_x:'Later',
   step:(a,b)=>a+' of '+b,next:'Next',back:'Back',skip:'Exit',done:'Done',try:'Or tap the highlighted button.',
-  tour:[['Welcome to FarmacoFlash','A one minute tour of where everything lives. Press Esc to leave at any time.'],
+  tour:[['Welcome to FarmacoFlash','A one minute tour of where everything lives. Leave at any time with Exit.'],
     ['Flashcards','Study with spaced-repetition cards here: each drug comes back just before you would forget it.'],
     ['Study','One session at a time: read the drug, answer in your head, flip the card and rate your recall.'],
     ['Names table','Every drug by class, with brand names and typing quizzes. Open the card from any row.'],
@@ -604,8 +646,8 @@ const SUN='M12 3v1.5M12 19.5V21M4.6 4.6l1.1 1.1M18.3 18.3l1.1 1.1M3 12h1.5M19.5 
 const MOON='M20 14.6A8.2 8.2 0 1 1 9.4 4a6.6 6.6 0 0 0 10.6 10.6z';
 function applyChrome(){
   root.dataset.theme=theme;root.lang=lang;
-  $('meta[name=theme-color]').content=theme==='dark'?'#13110d':'#f3f0e9';
-  $('meta[name=color-scheme]').content=theme;
+  paintBars();
+  $('meta[name=color-scheme]').content=theme==='dark'?'dark':'only light';
   $('#theme-path').setAttribute('d',theme==='dark'?SUN:MOON);
   $('#theme').setAttribute('aria-label',T(theme==='dark'?'theme_to_light':'theme_to_dark'));
   $('#lang').textContent=T('lang_btn');$('#lang').setAttribute('aria-label',T('lang_to'));
@@ -618,6 +660,9 @@ function applyChrome(){
   if(cur.app==='news')renderNews();
   if(ti>=0)tourShow();
 }
+/* barra di stato (app installata) e barre del browser: il fondo del tema; durante il giro guidato lo stesso fondo
+   velato come la pagina, così in alto non resta una striscia chiara sopra il velo */
+function paintBars(){const c=ti>=0?(theme==='dark'?'#110f0c':'#6b6864'):(theme==='dark'?'#13110d':'#f3f0e9');$$('meta[name=theme-color]').forEach(m=>{m.content=c;});}
 function setTheme(t){if(t===theme)return;theme=t;applyChrome();Object.keys(frames).forEach(syncApp);}
 /* il bottone ha due stati: se il tema scelto è quello del sistema si torna a seguire il sistema (niente blocco),
    altrimenti la scelta si salva in 'cr-theme' e vale anche per le app aperte da sole */
@@ -745,8 +790,8 @@ const tour=$('#tour'),pop=$('#tour-pop'),ring=$('#tour-ring'),shades=$$('.shade'
 const visible=el=>!!el&&el.getClientRects().length>0;
 const pick=s=>{if(!s.sel)return null;for(const q of s.sel.split(','))for(const el of document.querySelectorAll(q.trim()))if(visible(el))return el;return null;};
 function unbind(){if(tEl&&tOff)tEl.removeEventListener('click',tOff);tEl=tOff=null;}
-function tourOpen(){toggleSearch(false);ti=0;tour.hidden=false;document.addEventListener('keydown',tourKey,true);addEventListener('resize',place);tourShow();}
-function tourClose(){if(ti<0)return;unbind();ti=-1;tour.hidden=true;document.removeEventListener('keydown',tourKey,true);removeEventListener('resize',place);store('ff-tour-v2','done');$('#help').focus();}
+function tourOpen(){toggleSearch(false);ti=0;tour.hidden=false;paintBars();document.addEventListener('keydown',tourKey,true);addEventListener('resize',place);tourShow();}
+function tourClose(){if(ti<0)return;unbind();ti=-1;tour.hidden=true;paintBars();document.removeEventListener('keydown',tourKey,true);removeEventListener('resize',place);store('ff-tour-v2','done');$('#help').focus();}
 function advance(d){const n=ti+d;if(n<0)return;if(n>=TOUR.length)return tourClose();ti=n;tourShow();}
 function tourShow(){
   unbind();const s=TOUR[ti],txt=T('tour')[ti],last=ti===TOUR.length-1;
@@ -807,7 +852,38 @@ function queueTable(){
 const warm=()=>idle(()=>prewarm('flashcard','#dash'),1500);
 document.readyState==='complete'?warm():addEventListener('load',warm,{once:true});
 try{if(!localStorage.getItem('ff-tour-v2')&&cur.app==='home')setTimeout(tourOpen,700);}catch(e){}
-if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+/* ---------- tastiera su telefono ----------
+   Se l'area visibile si accorcia di molto mentre si scrive (qui o dentro un'app), la barra in basso si nasconde: il campo
+   resta sopra la tastiera. Su Android la pagina si ridimensiona (interactive-widget), su iOS si restringe l'area visibile. */
+if(window.visualViewport){
+  const vv=visualViewport,touch=matchMedia('(pointer: coarse)');let base=vv.height;
+  const typing=()=>{const a=document.activeElement;return !!a&&/^(INPUT|TEXTAREA|SELECT|IFRAME)$/.test(a.tagName);};
+  const kbWatch=()=>{const t=typing();if(!t||vv.height>base)base=vv.height;root.classList.toggle('kb',touch.matches&&t&&base-vv.height>140);};
+  vv.addEventListener('resize',kbWatch);
+  document.addEventListener('focusout',()=>setTimeout(kbWatch,60));
+  addEventListener('orientationchange',()=>setTimeout(()=>{base=vv.height;kbWatch();},400));
+}
+/* ---------- service worker e nuova versione ----------
+   Primo avvio: si installa in silenzio, nessun avviso. Versione nuova del worker: prende subito il controllo (le pagine
+   arrivano comunque dalla rete) e lo shell mostra «Nuova versione disponibile · Aggiorna»; un tocco ricarica, la rotta resta.
+   Lo stesso avviso arriva quando il worker trova pagine più nuove di quelle aperte (rete lenta servita dalla copia, o
+   controllo al ritorno nell'app). Al ritorno dopo 30 minuti si cerca un worker nuovo; ogni 6 ore anche pagine nuove. */
+$('#upd-go').addEventListener('click',()=>location.reload());
+$('#upd-x').addEventListener('click',()=>{$('#upd').hidden=true;});
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){
+  const sw=navigator.serviceWorker,hadCtl=!!sw.controller,showUpd=()=>{$('#upd').hidden=false;};
+  let hiddenAt=0,checked=Date.now();
+  sw.addEventListener('controllerchange',()=>{if(hadCtl)showUpd();});
+  sw.addEventListener('message',e=>{if(e.data&&e.data.__farmaco===1&&e.data.type==='stale'&&hadCtl)showUpd();});
+  const reg=()=>sw.register('sw.js',{updateViaCache:'none'}).catch(()=>{});
+  document.readyState==='complete'?reg():addEventListener('load',reg,{once:true});
+  document.addEventListener('visibilitychange',()=>{
+    if(document.visibilityState==='hidden'){hiddenAt=Date.now();return;}
+    if(!hiddenAt||Date.now()-hiddenAt<18e5)return;
+    sw.getRegistration().then(r=>r&&r.update()).catch(()=>{});
+    if(sw.controller&&Date.now()-checked>216e5&&!(navigator.connection&&navigator.connection.saveData)){checked=Date.now();sw.controller.postMessage({__farmaco:1,type:'check'});}
+  });
+}
 </script>
 <!-- authorship watermark (do not remove) :: author=giorgiom250698 :: sha256=7e89b191a704024f69214d2e5be7e71b95a3d374165994eb77a8021abb59ea6d -->
 <span id="__auth" hidden aria-hidden="true" data-z="⁠​‌‌​​‌‌‌​‌‌​‌​​‌​‌‌​‌‌‌‌​‌‌‌​​‌​​‌‌​​‌‌‌​‌‌​‌​​‌​‌‌​‌‌‌‌​‌‌​‌‌​‌​​‌‌​​‌​​​‌‌​‌​‌​​‌‌​​​​​​‌‌​‌‌​​​‌‌‌​​‌​​‌‌‌​​​⁠"></span>

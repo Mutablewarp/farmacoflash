@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f3f0e9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13110d" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
 <title>Bersagli &amp; Farmaci in 3D · FarmacoFlash</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,6 +30,9 @@ window.__ffFromShell=function(e){return e.source===parent&&(L?(e.origin==='null'
 window.__ffGate=function(h){try{h=new URL(h,location.href).hash;}catch(e){}var n=performance.now();if(h===last[0]&&n-last[1]<1000)return false;last=[h,n];return true;};})();</script>
 <!-- tema prima del primo disegno (niente lampo): tema salvato 'cr-theme' (condiviso con index.html), altrimenti quello del sistema -->
 <script>(function(){var t;try{t=localStorage.getItem('cr-theme')}catch(e){}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;})();</script>
+<script>/* barra di stato e barre del browser al tema scelto (anche quando cambia); 'only light': Chrome Android non ricolora il chiaro */
+(function(){var r=document.documentElement;function p(){var t=r.getAttribute('data-theme')==='dark',m=document.querySelectorAll('meta[name="theme-color"]'),s=document.querySelector('meta[name="color-scheme"]'),i;for(i=0;i<m.length;i++)m[i].content=t?'#13110d':'#f3f0e9';if(s)s.content=t?'dark':'only light';}
+p();if(window.MutationObserver)new MutationObserver(p).observe(r,{attributes:true,attributeFilter:['data-theme']});})();</script>
 <style>
 :root{
   --bg:#0c0d12; --bg2:#13141c; --panel:#171823; --panel2:#1d1f2b;
@@ -2049,6 +2057,29 @@ html.abx-lock,html.abx-lock body{overflow:hidden}
 :root[data-theme="dark"] .cl-guide-h{color:var(--d-info)}
 :root[data-theme="dark"] .cl-key{background:rgba(227,189,128,.07);border-color:var(--gold-line)}
 </style>
+<style>/* ---------- telefono e tocco ---------- */
+:root[data-theme="light"]{color-scheme:only light}
+html{background:var(--bg);-webkit-tap-highlight-color:transparent}
+/* chiaro: etichette dei dati leggibili (AA) e superfici calde come il resto dell'app */
+:root[data-theme="light"] .kv dt{color:var(--ink-dim)}
+:root[data-theme="light"] .mm-center{background:var(--panel)}
+:root[data-theme="light"] .vnav-b,:root[data-theme="light"] .viewer-card .tbtn{background:rgb(253 251 246/.9);color:var(--ink-dim);border-color:var(--line2)}
+:root[data-theme="light"] .viewer-card .tbtn.on{color:var(--gold);background:var(--gold-soft);border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+/* campi da 16px: iOS non ingrandisce la pagina quando li tocchi */
+@media (pointer:coarse),(max-width:760px){.fam-search,input.search,#fam-search,#cl-search,#drug-search,#tbl-search{font-size:16px}}
+/* bersagli da 44px al tatto */
+@media (pointer:coarse){
+  /* pulsanti del visore: 34px visibili, 44px al dito (l'area in più è trasparente, il modello resta in vista) */
+  .tbtn{position:relative;min-height:34px;padding-top:0;padding-bottom:0;display:inline-flex;align-items:center}
+  .tbtn::after{content:"";position:absolute;inset:-5px -2px}
+  .vnav-b{width:44px;height:44px}
+  input[type=range]{height:44px;background:transparent}
+  input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:var(--line2)}
+  input[type=range]::-moz-range-track{height:4px;border-radius:4px;background:var(--line2)}
+  input[type=range]::-webkit-slider-thumb{width:24px;height:24px;margin-top:-10px}
+  input[type=range]::-moz-range-thumb{width:24px;height:24px}
+}
+</style>
 <!-- ─ -->
 </head>
 <body>
@@ -2119,7 +2150,7 @@ html.abx-lock,html.abx-lock body{overflow:hidden}
         </div>
         <div class="explode-wrap">
           <label>ESPLODI</label>
-          <input type="range" id="explode" min="0" max="100" value="0">
+          <input type="range" id="explode" min="0" max="100" value="0" aria-label="Esplodi il modello">
         </div>
         <div id="canvas-host"></div>
         <div id="pin-layer"><svg xmlns="http://www.w3.org/2000/svg"></svg></div>
