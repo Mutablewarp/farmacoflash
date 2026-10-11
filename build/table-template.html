@@ -44,6 +44,7 @@ html,body{margin:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;background:var(--bg)}
 html.i18n-wait header,html.i18n-wait main{visibility:hidden}
 body{font-family:var(--font-body);font-size:16px;line-height:1.55;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:transparent;overflow-x:hidden;padding-bottom:40px}
+b,strong,th{font-weight:600} /* il disegno si ferma a 600; il foglio dei caratteri condiviso con lo shell include Archivo 700, che renderebbe <b> e <th> più pesanti */
 button,input{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:2px solid var(--gold);outline-offset:2px}
@@ -232,6 +233,8 @@ body.m-rubrica #rubrica{display:block;column-width:330px;column-gap:34px;padding
   table,tbody,tr,td{display:block;width:100%}
   thead{display:none}
   tbody tr.dr{margin:0 0 10px;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
+  /* schede fuori schermo non impaginate finché non si avvicinano: la ricerca ridisegna 255 schede in ~50 ms invece di ~300 (CPU 4x) */
+  tbody tr.dr{content-visibility:auto;contain-intrinsic-size:auto 410px}   /* altezza mediana di una scheda a 390 px */
   tbody tr.dr.open{margin-bottom:0;border-radius:14px 14px 0 0}
   tbody td,tbody td.c-name,tbody td.c-mecc,tbody td.c-ind,tbody td.c-adr{padding:3px 0;border:0;min-width:0;max-width:none;overflow-wrap:anywhere}
   .c-cls{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;white-space:normal}
@@ -418,13 +421,22 @@ function deckColor(id){const d=DECKS.find(x=>x.id===id);return d&&d.color?d.colo
 function deckTitle(id){const d=DECKS.find(x=>x.id===id);return d?(LANG==='en'&&d.titleEn?d.titleEn:d.title):id;}
 function deckCode(id){const d=DECKS.find(x=>x.id===id)||{};return (LANG==='en'&&d.codeEn)||d.code||id;}   // solo etichetta: i link usano l'id
 
+/* stesso punteggio di FarmacoCore.rank(state.q,dnames(x),x.aliases||[],txt(x)), ma nomi, sinonimi e testo di ricerca
+   della riga si normalizzano una volta per lingua (cache sulla riga), non a ogni tasto: q arriva già normalizzata */
+function rowNorm(x){ const k=LANG==='en'?'_ne':'_ni'; return x[k]||(x[k]={n:dnames(x).map(norm),a:(x.aliases||[]).map(norm),t:norm(txt(x))}); }
+function rankRow(q,x){
+  if(!q) return 1; const r=rowNorm(x);
+  if(r.n.includes(q)) return 100; if(r.a.includes(q)) return 90;
+  if(r.n.some(v=>v.startsWith(q))) return 80; if(r.a.some(v=>v.startsWith(q))) return 70;
+  return q.split(' ').every(t=>r.t.includes(t))?10:0;
+}
 function filtered(){
-  const toks=norm(state.q).split(' ').filter(Boolean);
+  const q=norm(state.q), toks=q.split(' ').filter(Boolean);
   const score=new Map();   // punteggio calcolato una volta per riga, non a ogni confronto dell'ordinamento
   let r=DATA.filter(x=>{
     if(state.mod && x.mod!==state.mod) return false;
     if(state.deck && x.deck!==state.deck) return false;
-    if(toks.length){const v=FarmacoCore.rank(state.q,dnames(x),x.aliases||[],txt(x)); if(!v) return false; score.set(x,v);}
+    if(toks.length){const v=rankRow(q,x); if(!v) return false; score.set(x,v);}
     return true;
   });
   const {k,dir}=state.sort;
@@ -452,6 +464,7 @@ function suggest(){
 }
 
 function render(){
+  clearTimeout(qTimer);   // una ricostruzione già in corso rende inutile quella in attesa della ricerca
   suggest();
   if(document.body.classList.contains('m-rubrica')) return renderRubrica();
   const rows=filtered();
@@ -566,7 +579,10 @@ function refreshChips(){
   document.querySelectorAll('#deckRow .chip').forEach(b=>{const on=b.dataset.deck===state.deck;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);});
 }
 
-$('#q').addEventListener('input', e=>{ state.q=e.target.value; render(); });
+/* ricerca mentre si scrive: una sola ricostruzione dopo 120 ms di pausa, non una per tasto (255 righe + dettagli);
+   campo svuotato: subito. var: render() la azzera e può girare prima di questa riga */
+var qTimer=0;
+$('#q').addEventListener('input', e=>{ state.q=e.target.value; clearTimeout(qTimer); if(!state.q.trim()) render(); else qTimer=setTimeout(render,120); });
 let mode='all';
 function setMode(m){
   mode=m;
